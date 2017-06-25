@@ -1,11 +1,17 @@
-<!DOCTYPE html>
-<html>
+
+ <!DOCTYPE HTML>
+<html >
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   
-  <title>Glemontree&#39;s blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录我学习的每一步">
+    <title>Glemontree&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Glemontree">
+    
+
+    
+    <meta name="description" content="记录我学习的每一步">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Glemontree's blog">
 <meta property="og:url" content="http://yoursite.com/page/6/index.html">
@@ -14,519 +20,573 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Glemontree's blog">
 <meta name="twitter:description" content="记录我学习的每一步">
-  
-    <link rel="alternate" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  
 
+    
+    <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Glemontree&#39;s blog</a>
-      </h1>
+  <body>
+    <header>
       
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">day day up!</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/favicon.ico" alt="Glemontree&#39;s blog" title="Glemontree&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Glemontree&#39;s blog">Glemontree&#39;s blog</a></h1>
+				<h2 class="blog-motto">day day up!</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="http://zhannei.baidu.com/cse/search" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="Search"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main">
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2016/12/19/effective_C++_条款02/" title="effective_C++_条款02" itemprop="url">
+  
+    <h1 itemprop="name">effective_C++_条款02</h1>
+    
+     
+           <p itemprop="description" >条款02：尽量用const, enum, inline代替#define
+该原则言下之意是说使用编译器替换预处理器
+
+假设你使用下面的表达式：
+1#define ASPECT_RATIO 1.653
+记号名称ASPECT_RATIO也许从未被编译器看到，也许在编译器开始处理源代码</p>
         
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-effective_C++_条款02" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/12/19/effective_C++_条款02/" class="article-date">
-  <time datetime="2016-12-19T08:12:12.000Z" itemprop="datePublished">2016-12-19</time>
-</a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/C/">C++</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/19/effective_C++_条款02/">effective_C++_条款02</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="条款02：尽量用const-enum-inline代替-define"><a href="#条款02：尽量用const-enum-inline代替-define" class="headerlink" title="条款02：尽量用const, enum, inline代替#define"></a>条款02：尽量用const, enum, inline代替#define</h2><ul>
-<li><p>该原则言下之意是说使用编译器替换预处理器</p>
-</li>
-<li><p>假设你使用下面的表达式：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> ASPECT_RATIO 1.653</span></div></pre></td></tr></table></figure>
-<p>记号名称ASPECT_RATIO也许从未被编译器看到，也许在编译器开始处理源代码之前它就被预处理器移走了，于是ASPECT_RATIO可能从来没进入记号表中，于是当你运用此常量但获得一个编译错误信息时，你可能不知道这个1.653是什么意思，这就是#define的坏处。</p>
-<p>因此你可以使用一个常量来替换上述的宏：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> <span class="keyword">double</span> AspectRatio = <span class="number">1.653</span>;</div></pre></td></tr></table></figure>
-<p>作为一个语言常量，AspectRatio肯定会被编译器看到，当然会进入记号表中</p>
-</li>
-<li><p>在定义常量指针时，由于常量定义通常被放在头文件中，以便被不同的源码包含，因此有必要将指针声明为const，例如若要在头文件内定义一个常量的char*字符串，需要些const两次：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> <span class="keyword">char</span>* <span class="keyword">const</span> authorName = <span class="string">"Scott Meyers"</span>;</div></pre></td></tr></table></figure>
-</li>
-<li><p>class专属常量。为了将常量的作用域限制于class内，你必须让它成为class的一个成员，而为确保此常量至多只有一份实体，必须让它成为一个static成员:</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> GamePlayer &#123;</div><div class="line"><span class="keyword">private</span>:</div><div class="line">	<span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> NumTurns = <span class="number">5</span>; <span class="comment">// 常量声明式</span></div><div class="line">  	<span class="keyword">int</span> scores[NumTurns]; <span class="comment">// 使用该常量</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>通常C++要求所使用的任何变量均需提供定义式，但如果它是一个class专属常量又是static且为整数类型(integral types, ints, chars, bools)，则需特殊处理，只要不取它们的地址，可以只声明并使用它们而无需提供定义式；但如果你取某个class专属常量的地址，你就必须提供下面的定义式：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> GamePlayer::NumTurns; <span class="comment">// 定义</span></div></pre></td></tr></table></figure>
-<p>在C++中，在默认情况下，全局变量的链接性是外部的，但const全部变量的链接性是内部的，也就是说，在C++看来，全局const定义就像使用了static说明符一样。</p>
-</li>
-<li><p>全局变量在多线程中容易出问题， 一份优秀的代码是几乎不出现全局变量的</p>
-</li>
-<li><p>一个属于枚举类型的数值可当做ints使用，即”the enum hack”</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> GamePlayer&#123;</div><div class="line">	<span class="keyword">enum</span> &#123;NumTurns = <span class="number">5</span>&#125;;</div><div class="line">	<span class="keyword">int</span> scores[NumTurns];</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-</li>
-<li><p>the enum hack 技术的好处：</p>
-<ul>
-<li>当你不想让别人获得一个pointer或reference指向你的某个整数常量时，enum可以实现</li>
-<li>enum和#define不会导致非必要的内存分配</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/19/effective_C++_条款02/" data-id="cj4cr2fhb001tw4ul62srxz4u" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-WebView之loadDataWithBaseUrl-和loadUrl" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/12/17/WebView之loadDataWithBaseUrl-和loadUrl/" class="article-date">
-  <time datetime="2016-12-17T03:36:48.000Z" itemprop="datePublished">2016-12-17</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/android/">android</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/17/WebView之loadDataWithBaseUrl-和loadUrl/">WebView之loadDataWithBaseUrl()和loadUrl()</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在写WebView的时候，经常会使用WebView，好处主要有两个：</p>
-<ul>
-<li>可以更改展现的内容（包括样式）</li>
-<li>可以实现部分功能的跨平台</li>
-</ul>
-<h3 id="loadData-和loadDataWithBaseUrl"><a href="#loadData-和loadDataWithBaseUrl" class="headerlink" title="loadData()和loadDataWithBaseUrl()"></a>loadData()和loadDataWithBaseUrl()</h3><p>WebView使用比较简单，可以使用loadUrl()来加载一个Url地址，也可以使用loadData()和loadDataWithBaseURL()加载一段HTML代码片段。</p>
-<p>从方法定义上来看：</p>
-<blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">loadData</span><span class="params">(String data, String mimeType, String encoding)</span></span></div><div class="line">&gt;</div><div class="line">&gt; <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">loadDataWithBaseURL</span><span class="params">(String baseUrl, String data, String mimeType, String encoding, String historyUrl)</span></div><div class="line">&gt;</div></pre></td></tr></table></figure>
-</blockquote>
-<p>loadDataWithBaseURL()比loadData()多两个参数，可以指定HTML代码片段中相关资源的相对根路径，也可以指定历史Url，两个方法的其余三个参数相同。</p>
-<p>其次，两个方法加载的HTML代码片段有些不同，loadData()中的html data不能包含’#’，’%’，’\’，’?’四种特殊字符，这就为我们内嵌css等制造了麻烦，因为css中经常用这四种字符，当然有方法解决，这里不介绍。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>本文主要是介绍WebView在嵌入HTML代码时常用的两种方法loadData()和loadDataWithBaseURL()两种方法的区别，本文虽短，但主要是为自己做个笔记。谢谢！</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/17/WebView之loadDataWithBaseUrl-和loadUrl/" data-id="cj4cr2fgi001aw4ul3yvfp3av" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-android-assets目录下资源使用" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/12/17/android-assets目录下资源使用/" class="article-date">
-  <time datetime="2016-12-17T02:40:29.000Z" itemprop="datePublished">2016-12-17</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/android/">android</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/17/android-assets目录下资源使用/">android assets目录下资源使用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="第一种方法"><a href="#第一种方法" class="headerlink" title="第一种方法"></a>第一种方法</h1><p><code>String path = &quot;file:///android_assert/文件名&quot;</code></p>
-<h1 id="第二种方法"><a href="#第二种方法" class="headerlink" title="第二种方法"></a>第二种方法</h1><p>​<code>InputStream abPath = getClass().getResourceAsStream(&quot;asserts/文件名&quot;);</code></p>
-<p>若想要转换成String类型：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">String path = <span class="keyword">new</span> String (InputStreamToByte(abpath));</div><div class="line"></div><div class="line">	<span class="keyword">private</span> <span class="keyword">byte</span>[] InputStreamToByte(InputStream is) <span class="keyword">throws</span> IOException &#123;</div><div class="line"></div><div class="line">		ByteArrayOutputStream bytesStream = <span class="keyword">new</span> ByteArrayOutputStream();</div><div class="line"></div><div class="line">		<span class="keyword">int</span> ch;</div><div class="line"></div><div class="line">		<span class="keyword">while</span> ((ch = is.read()) != -<span class="number">1</span>) &#123;</div><div class="line"></div><div class="line">			byteStream.write(ch);</div><div class="line"></div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="keyword">byte</span>[] imgData = byteStream.toByteArray();</div><div class="line"></div><div class="line">		byteStream.close();</div><div class="line"></div><div class="line">		<span class="keyword">return</span> imgData;</div><div class="line"></div><div class="line">	&#125;</div></pre></td></tr></table></figure>
-<p>​    </p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/17/android-assets目录下资源使用/" data-id="cj4cr2fgn001cw4ulkeef5j7p" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/assets/">assets</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-categories-test" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/12/14/categories-test/" class="article-date">
-  <time datetime="2016-12-14T14:48:03.000Z" itemprop="datePublished">2016-12-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/搭建博客/">搭建博客</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/14/categories-test/">categories_test</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/14/categories-test/" data-id="cj4cr2fhg001xw4ulcp6i5pxt" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-tags-test" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/12/14/tags-test/" class="article-date">
-  <time datetime="2016-12-14T14:44:48.000Z" itemprop="datePublished">2016-12-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/14/tags-test/">tags_test</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>熟练hexo的过程…</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/14/tags-test/" data-id="cj4cr2fju003jw4ul3dk4047y" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-华为编程规范-函数" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/12/13/华为编程规范-函数/" class="article-date">
-  <time datetime="2016-12-13T15:37:07.000Z" itemprop="datePublished">2016-12-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/C/">C++</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/13/华为编程规范-函数/">华为编程规范_函数.md</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>对所调用函数的错误返回码需要仔细、全面的处理；</li>
-<li>明确函数功能，精确地实现函数设计；</li>
-<li>编写可重入函数时，应注意局部变量的使用，不应使用static局部变量，否则必须经过特殊处理，才能使函数具有可重入性；</li>
-<li>编写可重入函数时，若使用全局变量，则应通过关中断、信号量（即P、V操作）等手段加以保护，若对所使用的全局变量不加以保护，则此函数不具有可重入性，即当多个进程调用此函数时，很有可能使有关全局变量变为不可知状态；</li>
-<li>在同一项目组应明确规定对接口函数参数的合法性检查应由函数的调用者负责还是由接口函数本身负责，缺省是由函数调用者负责，<strong>注意函数参数检查的必要性，这对于减少代码错误很有帮助</strong>；</li>
-<li>防止将函数的参数作为工作变量，最好先用局部变量代之，最后再将局部变量的内容赋值给该参数；</li>
-<li><strong>一个函数仅完成一件功能</strong>；</li>
-<li><p>为简单功能编写函数，虽然为仅用一两行就可完成的功能去编写函数好像没必要，但用函数可使功能明确化，增加程序可读性，举个例子：</p>
-<pre><code>value = (a &gt; b) ? a : b; //该语句的功能不很明显
-</code></pre><p>  修改如下：</p>
-<pre><code>int max(int a, int b) {
-    return ((a &gt; b) ? a : b);
-}
-value = max(a, b);
-</code></pre></li>
-<li>不要设计多用途面面俱到的函数；</li>
-<li>函数的功能应该是可以预测的，也就是说只要输入数据相同就应产生同样的输出；</li>
-<li>避免设计多参数函数，不使用的参数从接口中去掉，目的是减少函数间接口的复杂度；</li>
-<li>检查函数所有参数输入的有效性；</li>
-<li>检查函数所有非参数输入的有效性，如数据文件、公共变量等，函数在使用输入之前，应进行必要的检查；</li>
-<li>函数名应准确描述函数的功能；</li>
-<li>使用动宾词组为执行某操作的函数命名，如果是OOP方法，可以只有动词，名词是对象本身；</li>
-<li>避免使用无意义或含义不清的动词为函数命名，如process、handle等为函数命名，因为这些动词并没有说明要具体做什么；</li>
-<li>函数的返回值要清楚、明了，函数的每种出粗返回值的意义要清晰、明了、准确，防止使用者误用、理解错误；</li>
-<li><p>防止把没有关联的语句放在一个函数中，防止函数或过程内出现随机内聚，随机内聚是指没有关联或关联很弱的语句放到同一个函数或过程中，随机内聚给函数或过程的维护、测试及以后的升级等造成了不便，同时也使函数或过程的功能不明确。在编程时，经常遇到在不同函数中使用相同的代码，许多开发人员都愿意把这些代码提取出来，并构成一个新的函数，若这些代码关联较大并且是完成一个功能的，那么这种构造是合理的，否则这种构造将产生随机内聚的函数，例如：</p>
-<pre><code>void Init_Var(void) {
-    Rect.length = 0;
-    Rect.width = 0;
-    Point.x = 10;
-    Point.y = 10;
-}
-</code></pre><p>  矩形的长、宽与点的坐标基本没有任何关系，所以以上函数是随机内聚，应分成两个函数：</p>
-<pre><code>void Init_Rect(void) {
-    Rect.length = 0;
-    Rect.width = 0;
-}
-
-void Init_Point(void) {
-    Point.x = 10;
-    Point.y = 10;
-}
-</code></pre></li>
-<li>如果多段代码重复做同一件事情，那么在函数的划分上可能存在问题，可考虑把这段代码构造成一个新的函数；</li>
-<li>功能不明确较小的函数，特别是仅有一个上级函数调用它时，应考虑把它合并到上级函数中，而不必单独存在；</li>
-<li>设计高扇入、合理扇出的函数，扇出是指一个函数直接调用其他函数的数目，而扇入函数是指有多少上级函数调用它，扇出过大，表明函数过于复杂，需要控制和协调过多的下级函数，而扇出过小，如总是1，表明系统的调用层次可能过多，这样不利于程序阅读和函数结构的分析，函数较合理的扇出通常是3~5；</li>
-<li>减少函数本身或函数间的递归调用；</li>
-<li>改进模块中函数的结构，降低函数间的耦合度，并提高函数的独立性和代码可读性、效率和可维护性，应尽量提高函数的内聚性，单一功能的函数内聚性最高；</li>
-<li>避免使用BOOL参数，其一是BOOL参数无意义，调用时很难知道该参数到底传达的是什么意思，其二是BOOL参数值不利于扩充；</li>
-<li>当一个过程（函数）中对较长变量（一般是结构的成员）有较多引用时，可以用一个意义相当的宏代替；</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/13/华为编程规范-函数/" data-id="cj4cr2fl1004cw4ulwjpbrjet" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-  <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/5/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
-  </nav>
+    <time datetime="2016-12-19T08:12:12.000Z" itemprop="datePublished">2016-12-19</time>
+  </a>
 </section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2016/12/17/WebView之loadDataWithBaseUrl-和loadUrl/" title="WebView之loadDataWithBaseUrl()和loadUrl()" itemprop="url">
+  
+    <h1 itemprop="name">WebView之loadDataWithBaseUrl()和loadUrl()</h1>
+    
+     
+           <p itemprop="description" >前言在写WebView的时候，经常会使用WebView，好处主要有两个：
+
+可以更改展现的内容（包括样式）
+可以实现部分功能的跨平台
+
+loadData()和loadDataWithBaseUrl()WebView使用比较简单，可以使用loadUrl()来加载一个Url地址，也可</p>
         
-          <aside id="sidebar">
-  
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Boost/">Boost</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CMake/">CMake</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Qt/">Qt</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Struts/">Struts</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/多线程/">多线程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建博客/">搭建博客</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a></li></ul>
-    </div>
-  </div>
+    <time datetime="2016-12-17T03:36:48.000Z" itemprop="datePublished">2016-12-17</time>
+  </a>
+</section>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ACE/">ACE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bind/">Bind</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Boost/">Boost</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-11/">C++11</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMake/">CMake</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IO/">IO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/QWebView/">QWebView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qt/">Qt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VS/">VS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/assert/">assert</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/assets/">assets</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bind/">bind</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/processEvents/">processEvents</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xml-tools/">xml-tools</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/单例模式/">单例模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/回调/">回调</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多路复用/">多路复用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/监听电池电量/">监听电池电量</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程安全/">线程安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编译/">编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编辑/">编辑</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网页/">网页</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件图标/">软件图标</a></li></ul>
-    </div>
-  </div>
+
+
 
 
   
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2016/12/17/android-assets目录下资源使用/" title="android assets目录下资源使用" itemprop="url">
+  
+    <h1 itemprop="name">android assets目录下资源使用</h1>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/ACE/" style="font-size: 10px;">ACE</a> <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/Bind/" style="font-size: 10px;">Bind</a> <a href="/tags/Boost/" style="font-size: 10px;">Boost</a> <a href="/tags/C/" style="font-size: 17.5px;">C++</a> <a href="/tags/C-11/" style="font-size: 10px;">C++11</a> <a href="/tags/CMake/" style="font-size: 10px;">CMake</a> <a href="/tags/IO/" style="font-size: 10px;">IO</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/QWebView/" style="font-size: 10px;">QWebView</a> <a href="/tags/Qt/" style="font-size: 15px;">Qt</a> <a href="/tags/VS/" style="font-size: 15px;">VS</a> <a href="/tags/android/" style="font-size: 12.5px;">android</a> <a href="/tags/assert/" style="font-size: 10px;">assert</a> <a href="/tags/assets/" style="font-size: 10px;">assets</a> <a href="/tags/bind/" style="font-size: 10px;">bind</a> <a href="/tags/github/" style="font-size: 20px;">github</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/npm/" style="font-size: 20px;">npm</a> <a href="/tags/processEvents/" style="font-size: 10px;">processEvents</a> <a href="/tags/xml-tools/" style="font-size: 10px;">xml-tools</a> <a href="/tags/单例模式/" style="font-size: 10px;">单例模式</a> <a href="/tags/回调/" style="font-size: 10px;">回调</a> <a href="/tags/多路复用/" style="font-size: 10px;">多路复用</a> <a href="/tags/监听电池电量/" style="font-size: 10px;">监听电池电量</a> <a href="/tags/线程安全/" style="font-size: 10px;">线程安全</a> <a href="/tags/编译/" style="font-size: 10px;">编译</a> <a href="/tags/编辑/" style="font-size: 10px;">编辑</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/网页/" style="font-size: 10px;">网页</a> <a href="/tags/软件图标/" style="font-size: 10px;">软件图标</a>
-    </div>
-  </div>
+     
+           <p itemprop="description" >第一种方法String path = &amp;quot;file:///android_assert/文件名&amp;quot;
+第二种方法​InputStream abPath = getClass().getResourceAsStream(&amp;quot;asserts/文件名&amp;quot;)</p>
+        
+    
+    <time datetime="2016-12-17T02:40:29.000Z" itemprop="datePublished">2016-12-17</time>
+  </a>
+</section>
+
+
+
+
+
 
   
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2016/12/14/categories-test/" title="categories_test" itemprop="url">
+  
+    <h1 itemprop="name">categories_test</h1>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li></ul>
-    </div>
-  </div>
+     
+           <p itemprop="description" ></p>
+        
+    
+    <time datetime="2016-12-14T14:48:03.000Z" itemprop="datePublished">2016-12-14</time>
+  </a>
+</section>
+
+
+
+
 
 
   
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2016/12/14/tags-test/" title="tags_test" itemprop="url">
+  
+    <h1 itemprop="name">tags_test</h1>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
+     
+           <p itemprop="description" >熟练hexo的过程…</p>
+        
+    
+    <time datetime="2016-12-14T14:44:48.000Z" itemprop="datePublished">2016-12-14</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2016/12/13/华为编程规范-函数/" title="华为编程规范_函数.md" itemprop="url">
+  
+    <h1 itemprop="name">华为编程规范_函数.md</h1>
+    
+     
+           <p itemprop="description" >对所调用函数的错误返回码需要仔细、全面的处理；
+明确函数功能，精确地实现函数设计；
+编写可重入函数时，应注意局部变量的使用，不应使用static局部变量，否则必须经过特殊处理，才能使函数具有可重入性；
+编写可重入函数时，若使用全局变量，则应通过关中断、信号量（即P、V操作）等手段</p>
+        
+    
+    <time datetime="2016-12-13T15:37:07.000Z" itemprop="datePublished">2016-12-13</time>
+  </a>
+</section>
+
+
+
+
+
+
+
+  <nav id="page-nav" class="clearfix unexpand">
+    <a class="extend prev" rel="prev" href="/page/5/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
+  </nav>
+
+</div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="glemontree" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Boost/" title="Boost">Boost<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C/" title="C++">C++<sup>21</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CMake/" title="CMake">CMake<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Java/" title="Java">Java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Qt/" title="Qt">Qt<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Spring/" title="Spring">Spring<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Struts/" title="Struts">Struts<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/android/" title="android">android<sup>10</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/多线程/" title="多线程">多线程<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/搭建博客/" title="搭建博客">搭建博客<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/数据库/" title="数据库">数据库<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/npm/" title="npm">npm<sup>38</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>38</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/github/" title="github">github<sup>38</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C++">C++<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/VS/" title="VS">VS<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Qt/" title="Qt">Qt<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/android/" title="android">android<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-11/" title="C++11">C++11<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Bind/" title="Bind">Bind<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Boost/" title="Boost">Boost<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CMake/" title="CMake">CMake<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/监听电池电量/" title="监听电池电量">监听电池电量<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/IO/" title="IO">IO<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ACE/" title="ACE">ACE<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/编译/" title="编译">编译<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/processEvents/" title="processEvents">processEvents<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/软件图标/" title="软件图标">软件图标<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/QWebView/" title="QWebView">QWebView<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
         
           <li>
-            <a href="/2017/06/25/test/">test</a>
+            
+            	<a href="https://github.com/glemontree" target="_blank" title="GitHub">GitHub</a>
+            
           </li>
         
           <li>
-            <a href="/2017/06/25/单例模式/">单例模式</a>
+            
+            	<a href="http://blog.csdn.net/u010216743" target="_blank" title="CSDN">CSDN</a>
+            
           </li>
         
-          <li>
-            <a href="/2017/06/25/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/2017/06/20/数据库中-和-的用法/">数据库中%和_的用法</a>
-          </li>
-        
-          <li>
-            <a href="/2017/06/20/数据库将一个表中数据插入到另外一张表中/">数据库将一个表中数据插入到另外一张表中</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
+    </ul>
+</div>
 
-  
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">Weibo</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
+</div>
+
+
 </aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2017 Glemontree<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+</div>
     </div>
-  </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello World. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/glemontree" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:gtp0521@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Glemontree">Glemontree</a>
+		
+		
+		</p>
+</div>
 </footer>
-    </div>
-    <nav id="mobile-nav">
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
   
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+});
+</script>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js"></script>
 
-  </div>
-</body>
-</html>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'null'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+ </html>

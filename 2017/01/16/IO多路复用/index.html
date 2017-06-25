@@ -1,11 +1,17 @@
-<!DOCTYPE html>
-<html>
+
+ <!DOCTYPE HTML>
+<html >
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   
-  <title>IO多路复用 | Glemontree&#39;s blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="阻塞IO和非阻塞IO常见的IO操作有read和write，通常IO操作都是阻塞I/O，即当前调用read时如果没有数据收到，那么线程或者进行就会被挂起，直到收到数据。
+    <title>IO多路复用 | Glemontree&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Glemontree">
+    
+
+    
+    <meta name="description" content="阻塞IO和非阻塞IO常见的IO操作有read和write，通常IO操作都是阻塞I/O，即当前调用read时如果没有数据收到，那么线程或者进行就会被挂起，直到收到数据。
 对于非阻塞I/O，通过fcntl（POSIX）或ioctl（UNIX）设为非阻塞模式，这时当你调用read时，如果有数据收到，就返回数据，如果没有数据收到，就立刻返回。
 I/O多路复用多路复用是指使用一个线程来检查多个文件描述符（S">
 <meta property="og:type" content="article">
@@ -21,85 +27,85 @@ I/O多路复用多路复用是指使用一个线程来检查多个文件描述�
 <meta name="twitter:description" content="阻塞IO和非阻塞IO常见的IO操作有read和write，通常IO操作都是阻塞I/O，即当前调用read时如果没有数据收到，那么线程或者进行就会被挂起，直到收到数据。
 对于非阻塞I/O，通过fcntl（POSIX）或ioctl（UNIX）设为非阻塞模式，这时当你调用read时，如果有数据收到，就返回数据，如果没有数据收到，就立刻返回。
 I/O多路复用多路复用是指使用一个线程来检查多个文件描述符（S">
-  
-    <link rel="alternate" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  
 
+    
+    <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Glemontree&#39;s blog</a>
-      </h1>
+  <body>
+    <header>
       
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">day day up!</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/favicon.ico" alt="Glemontree&#39;s blog" title="Glemontree&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Glemontree&#39;s blog">Glemontree&#39;s blog</a></h1>
+				<h2 class="blog-motto">day day up!</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="http://zhannei.baidu.com/cse/search" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="Search"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/01/16/IO多路复用/" title="IO多路复用" itemprop="url">IO多路复用</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
+		
+  <p class="article-time">
+    <time datetime="2017-01-16T11:23:15.000Z" itemprop="datePublished"> Published 2017-01-16</time>
+    
+  </p>
 </header>
-      <div class="outer">
-        <section id="main"><article id="post-IO多路复用" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/01/16/IO多路复用/" class="article-date">
-  <time datetime="2017-01-16T11:23:15.000Z" itemprop="datePublished">2017-01-16</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/C/">C++</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      IO多路复用
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="阻塞IO和非阻塞IO"><a href="#阻塞IO和非阻塞IO" class="headerlink" title="阻塞IO和非阻塞IO"></a>阻塞IO和非阻塞IO</h1><p>常见的IO操作有read和write，通常IO操作都是阻塞I/O，即当前调用read时如果没有数据收到，那么线程或者进行就会被挂起，直到收到数据。</p>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#阻塞IO和非阻塞IO"><span class="toc-number">1.</span> <span class="toc-text">阻塞IO和非阻塞IO</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#I-O多路复用"><span class="toc-number">2.</span> <span class="toc-text">I/O多路复用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Poll介绍"><span class="toc-number">3.</span> <span class="toc-text">Poll介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Poll举例"><span class="toc-number">4.</span> <span class="toc-text">Poll举例</span></a></li></ol>
+		
+		</div>
+		
+		<h1 id="阻塞IO和非阻塞IO"><a href="#阻塞IO和非阻塞IO" class="headerlink" title="阻塞IO和非阻塞IO"></a>阻塞IO和非阻塞IO</h1><p>常见的IO操作有read和write，通常IO操作都是阻塞I/O，即当前调用read时如果没有数据收到，那么线程或者进行就会被挂起，直到收到数据。</p>
 <p>对于非阻塞I/O，通过fcntl（POSIX）或ioctl（UNIX）设为非阻塞模式，这时当你调用read时，如果有数据收到，就返回数据，如果没有数据收到，就立刻返回。</p>
 <h1 id="I-O多路复用"><a href="#I-O多路复用" class="headerlink" title="I/O多路复用"></a>I/O多路复用</h1><p>多路复用是指使用一个线程来检查多个文件描述符（Socket）的就绪状态，比如调用select和poll函数，传入多个文件描述符，如果有一个文件描述符就绪，则返回，否则阻塞直到超时。得到就绪状态后进行真正的操作可以在同一个线程里执行，也可以启动线程执行（比如使用线程池）。</p>
 <p>I/O多路复用又被称为事件驱动，操作系统提供了一个功能，当某个socket可读或者可写的时候，可以给你一个通知，这样当配合非阻塞的socket使用时，只有当系统通知我哪个描述符可读了，我才去执行read操作，可以保证每次read都能读到有效数据而不做纯返回-1和EAGAIN的无用功。</p>
@@ -117,146 +123,537 @@ I/O多路复用多路复用是指使用一个线程来检查多个文件描述�
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;errno.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;netinet/in.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/socket.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;poll.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IPADDRESS 	<span class="meta-string">"127.0.0.1"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> PORT		8787</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXLINE		1024</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> LISTENQ		5</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> OPEN_MAX	1000</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> INFTIM		-1</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">socket_bind</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* ip, <span class="keyword">int</span> port)</span></span>;</div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">do_poll</span><span class="params">(<span class="keyword">int</span> listenfd)</span></span>;</div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">handle_connection</span><span class="params">(<span class="keyword">struct</span> pollfd* connfds, <span class="keyword">int</span> num)</span></span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>** argv)</span> </span>&#123;</div><div class="line">  <span class="keyword">int</span> listenfd, connfd, sockfd;</div><div class="line">  <span class="keyword">struct</span> sockaddr_in cliaddr;</div><div class="line">  <span class="keyword">socklen_t</span> cliaddrlen;</div><div class="line">  listenfd = socket_bind(IPADDRESS, PORT);</div><div class="line">  listen(listenfd, LISTENQ);</div><div class="line">  do_poll(listenfd);</div><div class="line">  <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">socket_bind</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* ip, <span class="keyword">int</span> port)</span> </span>&#123;</div><div class="line">  <span class="keyword">int</span> listenfd;</div><div class="line">  <span class="keyword">struct</span> sockaddr_in servaddr;</div><div class="line">  listenfd = socket(AF_INET, SOCK_STREAM, <span class="number">0</span>);</div><div class="line">  <span class="keyword">if</span> (listenfd == <span class="number">-1</span>) &#123;</div><div class="line">    perror(<span class="string">"socket error:"</span>);</div><div class="line">    <span class="built_in">exit</span>(<span class="number">1</span>);</div><div class="line">  &#125;</div><div class="line">  bzero(&amp;servaddr, <span class="keyword">sizeof</span>(servaddr));</div><div class="line">  servaddr.sin_family = AF_INET;</div><div class="line">  inet_pton(AF_INET, ip, &amp;servaddr.sin_addr);</div><div class="line">  servaddr.sin_port = htons(port);</div><div class="line">  <span class="keyword">if</span> (bind(listenfd, (<span class="keyword">struct</span> sockaddr*)&amp;servaddr, <span class="keyword">sizeof</span>(servaddr)) == <span class="number">-1</span>) &#123;</div><div class="line">    perror(<span class="string">"bind error: "</span>);</div><div class="line">    <span class="built_in">exit</span>(<span class="number">1</span>);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> listenfd;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">do_poll</span><span class="params">(<span class="keyword">int</span> listenfd)</span> </span>&#123;</div><div class="line">  <span class="keyword">int</span> connfd, sockfd;</div><div class="line">  <span class="keyword">struct</span> sockaddr_in cliaddr;</div><div class="line">  <span class="keyword">socklen_t</span> cliaddrlen;</div><div class="line">  <span class="keyword">struct</span> pollfd clientfds[OPEN_MAX];</div><div class="line">  <span class="keyword">int</span> maxi;</div><div class="line">  <span class="keyword">int</span> i;</div><div class="line">  <span class="keyword">int</span> nready;</div><div class="line">  clientfds[<span class="number">0</span>].fd = listenfd;</div><div class="line">  clientfds[<span class="number">0</span>].events = POLLIN;</div><div class="line">  <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; OPEN_MAX; i++) &#123;</div><div class="line">    clientfds[i].fd = <span class="number">-1</span>;</div><div class="line">  &#125;</div><div class="line">  maxi = <span class="number">0</span>;</div><div class="line">  <span class="keyword">for</span> (; ;) &#123;</div><div class="line">    nready = poll(clientfds, maxi + <span class="number">1</span>, INFTIM);</div><div class="line">    <span class="keyword">if</span> (nready == <span class="number">-1</span>) &#123;</div><div class="line">      perror(<span class="string">"poll error: "</span>);</div><div class="line">      <span class="built_in">exit</span>(<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (clientfds[<span class="number">0</span>].revents &amp; POLLIN) &#123;</div><div class="line">      cliaddrlen = <span class="keyword">sizeof</span>(cliaddr);</div><div class="line">      <span class="keyword">if</span> ((connfd = accept(listenfd, (<span class="keyword">struct</span> sockaddr*)&amp;cliaddr, &amp;cliaddrlen)) == <span class="number">-1</span>) &#123;</div><div class="line">      	<span class="keyword">if</span> (errno == EINTR) &#123;</div><div class="line">          <span class="keyword">continue</span>;</div><div class="line">      	&#125; <span class="keyword">else</span> &#123;</div><div class="line">          perror(<span class="string">"accept error: "</span>);</div><div class="line">          <span class="built_in">exit</span>(<span class="number">1</span>);</div><div class="line">      	&#125;</div><div class="line">      &#125;</div><div class="line">      <span class="built_in">fprintf</span>(<span class="built_in">stdout</span>, <span class="string">"accept a new client: %s:%d\n"</span>, inet_ntoa(cliaddr.sin_addr), cliaddr.sin_port);</div><div class="line">      <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; OPEN_MAX; i++) &#123;</div><div class="line">        <span class="keyword">if</span> (clientfds[i].fd &lt; <span class="number">0</span>) &#123;</div><div class="line">          clientfds[i].fd = connfd;</div><div class="line">          <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">if</span> (i == OPEN_MAX) &#123;</div><div class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"too many clients.\n"</span>);</div><div class="line">        <span class="built_in">exit</span>(<span class="number">1</span>);</div><div class="line">      &#125;</div><div class="line">      clientfds[i].events = POLLIN;</div><div class="line">      maxi = (i &gt; maxi ? i : maxi);</div><div class="line">      <span class="keyword">if</span> (--nready &lt;= <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">continue</span>;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    handle_connection(clientfds, maxi);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">handle_connection</span><span class="params">(<span class="keyword">struct</span> pollfd* connfds, <span class="keyword">int</span> num)</span> </span>&#123;</div><div class="line">  <span class="keyword">int</span> i, n;</div><div class="line">  <span class="keyword">char</span> buf[MAXLINE];</div><div class="line">  <span class="built_in">memset</span>(buf, <span class="number">0</span>, MAXLINE);</div><div class="line">  <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt;= num; i++) &#123;</div><div class="line">    <span class="keyword">if</span> (connfds[i].fd &lt; <span class="number">0</span>) &#123;</div><div class="line">      <span class="keyword">continue</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (connfds[i].revents &amp; POLLIN) &#123;</div><div class="line">      n = read(connfds[i], fd, buf, MAXLINE);</div><div class="line">      <span class="keyword">if</span> (n == <span class="number">0</span>) &#123;</div><div class="line">        close(connfds[i].fd);</div><div class="line">        connfds[i].fd = <span class="number">-1</span>;</div><div class="line">        <span class="keyword">continue</span>;</div><div class="line">      &#125;</div><div class="line">      write(STDOUT_FILENO, buf, n);</div><div class="line">      write(connfds[i], fd, buf, n);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>客户端代码如下：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;netinet/in.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/socket.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;poll.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;time.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXLINE 	1024</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IPADDRESS	<span class="meta-string">"127.0.0.1"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> SERV_PORT	8787</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> max(a, b) (a &gt; b) ? a : b</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">handle_connection</span><span class="params">(<span class="keyword">int</span> sockfd)</span></span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span> </span>&#123;</div><div class="line">  <span class="keyword">int</span> sockfd;</div><div class="line">  <span class="keyword">struct</span> sockaddr_in servaddr;</div><div class="line">  sockfd = socket(AF_INET, SOCK_STREAM, <span class="number">0</span>);</div><div class="line">  bzero(&amp;servaddr, <span class="keyword">sizeof</span>(servaddr));</div><div class="line">  servaddr.sin_family = AF_INET;</div><div class="line">  servaddr.sin_port = htons(SERV_PORT);</div><div class="line">  inet_pton(AF_INET, IPADDRESS, &amp;servaddr.sin_addr);</div><div class="line">  connect(sockfd, (<span class="keyword">struct</span> sockaddr*)&amp;servaddr, <span class="keyword">sizeof</span>(servaddr));</div><div class="line">  handle_connection(sockfd);</div><div class="line">  <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">handle_connection</span><span class="params">(<span class="keyword">int</span> sockfd)</span> </span>&#123;</div><div class="line">  <span class="keyword">char</span> sendline[MAXLINE], recvline[MAXLINE];</div><div class="line">  <span class="keyword">int</span> maxfdp, stdineof;</div><div class="line">  <span class="keyword">struct</span> pollfd pfds[<span class="number">2</span>];</div><div class="line">  pfds[<span class="number">0</span>].fd = sockfd;</div><div class="line">  pfds[<span class="number">0</span>].events = POLLIN;</div><div class="line">  </div><div class="line">  pfds[<span class="number">1</span>].fd = STDIN_FILENO;</div><div class="line">  pfds[<span class="number">1</span>].events = POLLIN;</div><div class="line">  </div><div class="line">  <span class="keyword">for</span> (; ;) &#123;</div><div class="line">	poll(pfds, <span class="number">2</span>, <span class="number">-1</span>);</div><div class="line">	<span class="keyword">if</span> (pfds[<span class="number">0</span>].revents &amp; POLLIN) &#123;</div><div class="line">      n = read(sockfd, recvline, MAXLINE);</div><div class="line">      <span class="keyword">if</span> (n == <span class="number">0</span>) &#123;</div><div class="line">          <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>,<span class="string">"client: server is closed.\n"</span>);</div><div class="line">          close(sockfd);</div><div class="line">      &#125;</div><div class="line">      write(STDOUT_FILENO, recvline, n);</div><div class="line">	&#125;</div><div class="line">	<span class="comment">//测试标准输入是否准备好</span></div><div class="line">	<span class="keyword">if</span> (pfds[<span class="number">1</span>].revents &amp; POLLIN) &#123;</div><div class="line">		n = read(STDIN_FILENO, sendline, MAXLINE);</div><div class="line"> 		<span class="keyword">if</span> (n  == <span class="number">0</span>) &#123;</div><div class="line">			shutdown(sockfd, SHUT_WR);</div><div class="line">			<span class="keyword">continue</span>;</div><div class="line">		&#125;</div><div class="line">		write(sockfd, sendline, n);</div><div class="line">	&#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/16/IO多路复用/" data-id="cj4cr2ff4000ew4ull4kb42gg" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IO/">IO</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/多路复用/">多路复用</a></li></ul>
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/C/">C++</a>
+</div>
 
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2017/01/17/Android-监听电池电量/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Android_监听电池电量
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2017/01/12/linux中eventfd的使用/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">linux中eventfd的使用</div>
-    </a>
-  
-</nav>
 
+  <div class="article-tags">
   
-</article>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Boost/">Boost</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CMake/">CMake</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Qt/">Qt</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Struts/">Struts</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/多线程/">多线程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建博客/">搭建博客</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a></li></ul>
-    </div>
+  <span></span> <a href="/tags/Linux/">Linux</a><a href="/tags/IO/">IO</a><a href="/tags/多路复用/">多路复用</a>
   </div>
 
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ACE/">ACE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bind/">Bind</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Boost/">Boost</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-11/">C++11</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMake/">CMake</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IO/">IO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/QWebView/">QWebView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qt/">Qt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VS/">VS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/assert/">assert</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/assets/">assets</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bind/">bind</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/processEvents/">processEvents</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xml-tools/">xml-tools</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/单例模式/">单例模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/回调/">回调</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多路复用/">多路复用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/监听电池电量/">监听电池电量</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程安全/">线程安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编译/">编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编辑/">编辑</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网页/">网页</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件图标/">软件图标</a></li></ul>
-    </div>
-  </div>
+</div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/ACE/" style="font-size: 10px;">ACE</a> <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/Bind/" style="font-size: 10px;">Bind</a> <a href="/tags/Boost/" style="font-size: 10px;">Boost</a> <a href="/tags/C/" style="font-size: 17.5px;">C++</a> <a href="/tags/C-11/" style="font-size: 10px;">C++11</a> <a href="/tags/CMake/" style="font-size: 10px;">CMake</a> <a href="/tags/IO/" style="font-size: 10px;">IO</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/QWebView/" style="font-size: 10px;">QWebView</a> <a href="/tags/Qt/" style="font-size: 15px;">Qt</a> <a href="/tags/VS/" style="font-size: 15px;">VS</a> <a href="/tags/android/" style="font-size: 12.5px;">android</a> <a href="/tags/assert/" style="font-size: 10px;">assert</a> <a href="/tags/assets/" style="font-size: 10px;">assets</a> <a href="/tags/bind/" style="font-size: 10px;">bind</a> <a href="/tags/github/" style="font-size: 20px;">github</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/npm/" style="font-size: 20px;">npm</a> <a href="/tags/processEvents/" style="font-size: 10px;">processEvents</a> <a href="/tags/xml-tools/" style="font-size: 10px;">xml-tools</a> <a href="/tags/单例模式/" style="font-size: 10px;">单例模式</a> <a href="/tags/回调/" style="font-size: 10px;">回调</a> <a href="/tags/多路复用/" style="font-size: 10px;">多路复用</a> <a href="/tags/监听电池电量/" style="font-size: 10px;">监听电池电量</a> <a href="/tags/线程安全/" style="font-size: 10px;">线程安全</a> <a href="/tags/编译/" style="font-size: 10px;">编译</a> <a href="/tags/编辑/" style="font-size: 10px;">编辑</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/网页/" style="font-size: 10px;">网页</a> <a href="/tags/软件图标/" style="font-size: 10px;">软件图标</a>
-    </div>
-  </div>
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li></ul>
-    </div>
-  </div>
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2017/01/16/IO多路复用/" data-title="IO多路复用 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2017/06/25/test/">test</a>
-          </li>
-        
-          <li>
-            <a href="/2017/06/25/单例模式/">单例模式</a>
-          </li>
-        
-          <li>
-            <a href="/2017/06/25/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/2017/06/20/数据库中-和-的用法/">数据库中%和_的用法</a>
-          </li>
-        
-          <li>
-            <a href="/2017/06/20/数据库将一个表中数据插入到另外一张表中/">数据库将一个表中数据插入到另外一张表中</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2017 Glemontree<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
 </footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/01/17/Android-监听电池电量/" title="Android_监听电池电量">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Android_监听电池电量</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/01/12/linux中eventfd的使用/"  title="linux中eventfd的使用">
+ <strong>下一篇：</strong><br/> 
+ <span>linux中eventfd的使用
+</span>
+</a>
+</div>
+
 </nav>
-    
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/01/16/IO多路复用/" data-title="IO多路复用" data-url="http://yoursite.com/2017/01/16/IO多路复用/"></div>
+</section>
 
 
-<script src="/js/script.js"></script>
 
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#阻塞IO和非阻塞IO"><span class="toc-number">1.</span> <span class="toc-text">阻塞IO和非阻塞IO</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#I-O多路复用"><span class="toc-number">2.</span> <span class="toc-text">I/O多路复用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Poll介绍"><span class="toc-number">3.</span> <span class="toc-text">Poll介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Poll举例"><span class="toc-number">4.</span> <span class="toc-text">Poll举例</span></a></li></ol>
+ 
   </div>
-</body>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="glemontree" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Boost/" title="Boost">Boost<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C/" title="C++">C++<sup>21</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CMake/" title="CMake">CMake<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Java/" title="Java">Java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Qt/" title="Qt">Qt<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Spring/" title="Spring">Spring<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Struts/" title="Struts">Struts<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/android/" title="android">android<sup>10</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/多线程/" title="多线程">多线程<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/搭建博客/" title="搭建博客">搭建博客<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/数据库/" title="数据库">数据库<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/npm/" title="npm">npm<sup>38</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>38</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/github/" title="github">github<sup>38</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C++">C++<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/VS/" title="VS">VS<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Qt/" title="Qt">Qt<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/android/" title="android">android<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-11/" title="C++11">C++11<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Bind/" title="Bind">Bind<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Boost/" title="Boost">Boost<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CMake/" title="CMake">CMake<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/监听电池电量/" title="监听电池电量">监听电池电量<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/IO/" title="IO">IO<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ACE/" title="ACE">ACE<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/编译/" title="编译">编译<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/processEvents/" title="processEvents">processEvents<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/软件图标/" title="软件图标">软件图标<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/QWebView/" title="QWebView">QWebView<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://github.com/glemontree" target="_blank" title="GitHub">GitHub</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/u010216743" target="_blank" title="CSDN">CSDN</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">Weibo</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello World. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/glemontree" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:gtp0521@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Glemontree">Glemontree</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"glemontree"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'null'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
 </html>
