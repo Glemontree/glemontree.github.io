@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Glemontree&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="记录我学习的每一步">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Glemontree's blog">
+<meta property="og:url" content="http://yoursite.com/page/4/index.html">
+<meta property="og:site_name" content="Glemontree's blog">
+<meta property="og:description" content="记录我学习的每一步">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Glemontree's blog">
+<meta name="twitter:description" content="记录我学习的每一步">
+  
+    <link rel="alternate" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Glemontree&#39;s blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">day day up!</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-零散知识点" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/07/零散知识点/" class="article-date">
+  <time datetime="2017-01-07T06:56:04.000Z" itemprop="datePublished">2017-01-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C/">C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/07/零散知识点/">零散知识点</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>time_t实际上是长整型long int，它用来 保存从1970年1月1日0时0分0秒到现在时刻的秒数，用time()这个函数获取</p>
+</li>
+<li><p>gmtime</p>
+<ul>
+<li>函数原型：struct tm<em> gmtime(time_t</em> time)</li>
+<li>函数功能：得到以结构tm表示的时间信息</li>
+<li>函数返回：以结构tm表示的时间信息指针</li>
+<li>所述文件：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">```cpp</div><div class="line">#include &lt;stdio.h&gt;</div><div class="line">#include &lt;stdlib.h&gt;</div><div class="line">#include &lt;time.h&gt;</div><div class="line">int main() &#123;</div><div class="line">  time_t t;</div><div class="line">  struct tm* gmt;</div><div class="line">  t = time(NULL);</div><div class="line">  gmt = gmtime(&amp;t);</div><div class="line">  return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>tm结构体</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> tm &#123;</div><div class="line">  <span class="keyword">int</span> tm_sec; <span class="comment">// seconds</span></div><div class="line">  <span class="keyword">int</span> tm_min; <span class="comment">// minutes</span></div><div class="line">  <span class="keyword">int</span> tm_hour; <span class="comment">// hours</span></div><div class="line">  <span class="keyword">int</span> tm_mday; <span class="comment">// day</span></div><div class="line">  <span class="keyword">int</span> tm_mon; <span class="comment">// month</span></div><div class="line">  <span class="keyword">int</span> tm_year; <span class="comment">// year-1900</span></div><div class="line">  <span class="keyword">int</span> tm_wday; <span class="comment">// day of week[0-6]</span></div><div class="line">  <span class="keyword">int</span> tm_yday; <span class="comment">// days in year[0-365]</span></div><div class="line">  <span class="keyword">int</span> tm_isdst; <span class="comment">// DST [-1/0/1]</span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __USE_BSD</span></div><div class="line">  <span class="keyword">long</span> <span class="keyword">int</span> tm_gmtoff; <span class="comment">// seconds east of UTC</span></div><div class="line">  __const <span class="keyword">char</span>* tm_zone; <span class="comment">// Timezone abbreviation</span></div><div class="line"><span class="meta">#<span class="meta-keyword">else</span></span></div><div class="line">  <span class="keyword">long</span> <span class="keyword">int</span> __tm_gmtoff; <span class="comment">// seconds east of UTC</span></div><div class="line">  __const <span class="keyword">char</span>* __tm_zone; <span class="comment">// Timezone abbreviation</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>timeval结构体</p>
+<p>struct timeval结构体在time.h中定义：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> timeval &#123;</div><div class="line">  <span class="keyword">time_t</span> tv_sec; <span class="comment">// seconds</span></div><div class="line">  <span class="keyword">suseconds_t</span> tv_usec; <span class="comment">// Microseconds</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>其中，tv_sec为EPoch到创建struct timeval时的秒数，tv_usec为微秒数，即秒后面的零头，假如tv_sec为1244770435，tv_usec为442388，即当前时间距Epoch时间1244770435秒，442388微秒。</p>
+</li>
+<li><p>gettimeofday()</p>
+<p>获取当前时间（保存在结构体timeval中）</p>
+</li>
+<li><p>share_from_this</p>
+<p>当类对象被shared_ptr管理时，需要在类自己定义的函数里把当前对象作为参数传给其他函数时，这时需要传递一个shared_ptr，否则就不能保持shared_ptr管理这个类对象的语义（因为一个raw poiter指向这个类对象，而shared_ptr对类对象的这个引用没有计数，很可能shared_ptr已经把类对象资源释放了，而那个调用函数还在使用类对象）。</p>
+<p>对一个类 A ，当我们希望使用 shared_ptr 来管理其类对象时，而且需要在自己定义的函数里把类对象 shared_ptr （为什么不用普通指针，当我们使用智能指针管理资源时，必须统一使用智能指针，而不能在某些地方使用智能指针某些地方使用 raw pointer ，否则不能保持智能指针的语义，从而产生各种错误）传给其他函数时，可以让类 A 从 enable_shared_from_this 继承： </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> A : <span class="keyword">public</span> boost::enable_shared_from_this&lt;A&gt; &#123;&#125;;</div></pre></td></tr></table></figure>
+<p>然后在类A中需要传递类对象本身shared_ptr的地方使用shared_from_this函数获得指向自身的shared_ptr。</p>
+</li>
+<li><p>boost::shared_from_this值得注意的地方</p>
+<p>这个 函数仅在<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">- 如下代码是错误的</div><div class="line"></div><div class="line">  ```cpp</div><div class="line">  class D : public boost::enable_shared_from_this&lt;D&gt; &#123;</div><div class="line">  public:</div><div class="line">    D() &#123;</div><div class="line">      boost::shared_ptr&lt;D&gt; p = shared_from_this();</div><div class="line">    &#125;</div><div class="line">  &#125;;</div></pre></td></tr></table></figure></p>
+<p>  在D的构造函数中虽然可以保证<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">- 如下代码是错误的</div><div class="line"></div><div class="line">  ```cpp</div><div class="line">  class D : public boost::enable_shared_from_this&lt;D&gt; &#123;</div><div class="line">  public:</div><div class="line">    void func() &#123;</div><div class="line">      boost::shared_ptr&lt;D&gt; = shared_from_this();</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  void main() &#123;</div><div class="line">    D d;</div><div class="line">    d.func();</div><div class="line">  &#125;</div></pre></td></tr></table></figure></p>
+<p>  错误原因同上。</p>
+<ul>
+<li><p>如下代码是正确的</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">  boost::<span class="built_in">shared_ptr</span>&lt;D&gt; d(<span class="keyword">new</span> D);</div><div class="line">  d-&gt;func();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里<code>boost::shared_ptr&lt;D&gt; d(new D)</code>实际上执行了3个动作：</p>
+<ul>
+<li>首先调用<code>enable_shared_from_this&lt;D&gt;</code>的构造函数；</li>
+<li>其次调用D的构造函数；</li>
+<li>最后调用<code>shared_ptr&lt;D&gt;</code>的构造函数。</li>
+</ul>
+<p>是第3个动作设置了<code>enable_shared_from_this&lt;D&gt;</code>的weak_ptr，而不是第1个动作。</p>
+</li>
+</ul>
+</li>
+<li><p>shared_from_this使用场景</p>
+<p>需求：在类的内部需要自身的shared_ptr而不是this裸指针</p>
+<p>场景：在类中发起一个异步操作，callback回来要保证发起操作的对象仍然有效</p>
+<p>异步回调的时候对象可能已经销毁了，所以使用shared_ptr传出去就是保证最少还有一个引用计数维持对象的生命周期直至回调结束。</p>
+</li>
+<li><p>__thread</p>
+<p><code>__thread</code>是GCC内置的线程局部存储设施，存储效率可以和全局变量相比，<code>__thread</code>变量每一个线程有一份独立实体，各个线程的值互不干扰</p>
+</li>
+<li><p>getpid、SYS_gettid以及pthread_self</p>
+<p>getpid()得到的是进程的pid，在进程中，每个线程都有自己的pid，要得到线程的pid，必须用syscall(SYS_gettid)，其在系统内是唯一的，pthread_self函数获取的是线程ID，线程ID在某进程中是唯一的，在不同的进程中创建的线程可能会出现ID值相同的情况。</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/01/07/零散知识点/" data-id="cj4cr2fm50057w4uln8q7o8s0" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-BOOST-STATIC-ASSERT和assert的区别" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/07/BOOST-STATIC-ASSERT和assert的区别/" class="article-date">
+  <time datetime="2017-01-07T06:45:38.000Z" itemprop="datePublished">2017-01-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C/">C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/07/BOOST-STATIC-ASSERT和assert的区别/">BOOST_STATIC_ASSERT和assert的区别</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="BOOST-STATIC-ASSERT和assert的区别"><a href="#BOOST-STATIC-ASSERT和assert的区别" class="headerlink" title="BOOST_STATIC_ASSERT和assert的区别"></a>BOOST_STATIC_ASSERT和assert的区别</h2><p>assert是运行期断言，也就是编译期出现的错误，它不会提示；相反，BOOST_STATIC_ASSERT是编译期的断言，在编译的时候就可以断言出错误。</p>
+<p>需要注意的是BOOST_STATIC_ASSERT是放在全局命名空间中的，所以使用的时候不要加上boost::限定名</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/01/07/BOOST-STATIC-ASSERT和assert的区别/" data-id="cj4cr2feg0006w4ulxrxl7350" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-boost-less-than-comparable" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/07/boost-less-than-comparable/" class="article-date">
+  <time datetime="2017-01-07T06:10:09.000Z" itemprop="datePublished">2017-01-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C/">C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/07/boost-less-than-comparable/">boost::less_than_comparable</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="boost-less-than-comparable"><a href="#boost-less-than-comparable" class="headerlink" title="boost::less_than_comparable"></a>boost::less_than_comparable</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>很多操作符都是可以从其他操作符自动推导出来，例如a != b可以从!(a == b)推导出来，因此原则上只需要定义少量的基本操作符，其他的操作符就可以 通过逻辑组合推导出来。</p>
+<h3 id="std-rel-ops"><a href="#std-rel-ops" class="headerlink" title="std::rel::ops"></a>std::rel::ops</h3><p>在C++98标准的std::rel_ops中定义了四个模板比较操作符!=、&gt;、&lt;=、&gt;=，只需要为类定义==和&lt;操作符，那么这四个操作符就可以自动实现。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">#include &lt;iostream&gt;</div><div class="line">#include &lt;assert.h&gt;</div><div class="line">#include &lt;boost/logic/tribool.hpp&gt;</div><div class="line">#include &lt;boost/logic/tribool_io.hpp&gt;</div><div class="line">#include &lt;utility&gt;</div><div class="line"></div><div class="line">class demo_class &#123;</div><div class="line">public:</div><div class="line">	demo_class(int n) : x(n) &#123;</div><div class="line">      </div><div class="line">	&#125; </div><div class="line">private:</div><div class="line">  	int x;</div><div class="line">  	</div><div class="line">public:</div><div class="line">  	friend bool operator&lt;(const demo_class&amp; lhs, const demo_class&amp; rhs) &#123;</div><div class="line">    	return lhs.x &lt; rhs.x;</div><div class="line">  	&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">int main() &#123;</div><div class="line">  	demo_class a(10), b(20);</div><div class="line">  	using namespace std::rel_ops; // 打开命名空间</div><div class="line">  	std::cout &lt;&lt; (a &lt; b) &lt;&lt; std::endl;</div><div class="line">  	std::cout &lt;&lt; (b &gt;= a) &lt;&lt; std::endl;</div><div class="line">  	return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="boost-opeartors库"><a href="#boost-opeartors库" class="headerlink" title="boost.opeartors库"></a>boost.opeartors库</h3><p>同样地，boost.opeartors库允许用户在自己的类里仅定义少量的操作符（如&lt;）就可以方便的自动生成其他操作符重载。</p>
+<p>operators库由多个类组成，分别用来实现不同的运算概念，比如less_than_comparable定义了&lt;系列操作符，left_shiftable定义了&lt;&lt;系列操作符。</p>
+<ul>
+<li>equality_comparable： 要求提供==，可自动实现!=，相等语义；</li>
+<li>less_than_comparable：要求提供&lt;，可自动实现&gt;，&lt;=，&gt;=；</li>
+<li>addable：要求提供+=，自动实现+；</li>
+<li>subtractable：要求提供-=，可自动实现-；</li>
+<li>incrementable：要求提供前置++，可自动实现后置++；</li>
+<li>decrementable：要求提供前置–，可自动实现后置–；</li>
+<li>equivalent：要求提供&lt;，可自动实现==； </li>
+</ul>
+<p>这些概念在库中以同名类的形式提供，用户需要以继承的方式来使用它们，继承的修饰符并不重要(private，public都可以),因为operator库里的类都是空类，没有成员变量和成员函数，仅定义了数个友元操作符函数。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">#include &lt;iostream&gt;</div><div class="line">#include &lt;assert.h&gt;</div><div class="line">#include &lt;boost/operators.hpp&gt;</div><div class="line"></div><div class="line">class Point : public boost::less_than_comparable&lt;Point&gt; &#123;</div><div class="line">public:</div><div class="line">  	explicit Point(int a = 0, int b = 0, int c = 0)</div><div class="line">      	: x(a), y(b), z(c) &#123;</div><div class="line">    	      </div><div class="line">    &#125;</div><div class="line">public:</div><div class="line">  	void print() const &#123;</div><div class="line">      	std::cout &lt;&lt; x &lt;&lt; "," &lt;&lt; y &lt;&lt; "," &lt;&lt; z &lt;&lt; std::endl;</div><div class="line">  	&#125;</div><div class="line">  </div><div class="line">public:</div><div class="line">  	friend bool operator&lt;(const Point&amp; l, const Point&amp; r) &#123;</div><div class="line">      	return (l.x * l.x + l.y * l.y + l.z * l.z</div><div class="line">              &lt; r.x * r.x + r.y * r.y + r.z * r.z);</div><div class="line">  	&#125;</div><div class="line">private:</div><div class="line">	int x, y, z;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>在上面这段代码中，Point类中仅定义了一个友元operator&lt;函数，其余的&gt;、&lt;=、&gt;=均由less_than_comparable自动生成。</p>
+<p>在使用operators库时需要注意，模板类型参数必须是子类本身，，特别是当子类本身也是个模板类的时候，不要错写成子类的模板参数或者子类不带模板参数的名称，否则会造成编译错误。在上面代码中，less_than_comparable的模板类型参数必须是Point类。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/01/07/boost-less-than-comparable/" data-id="cj4cr2fh7001pw4ul62rymf1x" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-boost-function-boost-bind-与-回调" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/06/boost-function-boost-bind-与-回调/" class="article-date">
+  <time datetime="2017-01-06T08:43:39.000Z" itemprop="datePublished">2017-01-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C/">C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/06/boost-function-boost-bind-与-回调/">boost::function boost::bind 与 回调</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="boost-function-和-boost-bind"><a href="#boost-function-和-boost-bind" class="headerlink" title="boost::function 和 boost::bind"></a>boost::function 和 boost::bind</h1><p>boost::function是对函数指针的对象化封装，是一个函数对象的容器，在概念上与回调函数类似，先看一个例子：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boost/function.hpp&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boost/bind.hpp&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">class</span> TestA &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">method</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"TestA: method: no arguments"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">method</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</div><div class="line">		<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"TestA: method: with arguments"</span></div><div class="line">			&lt;&lt; <span class="string">"value of a is:"</span> &lt;&lt; a</div><div class="line">			&lt;&lt; <span class="string">"value of b is:"</span> &lt;&lt; b</div><div class="line">			&lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">	&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span> sum = a + b;</div><div class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"sum: "</span> &lt;&lt; sum &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">	boost::function&lt;<span class="keyword">void</span>()&gt; f;</div><div class="line">	TestA test;</div><div class="line"></div><div class="line">	f = boost::bind(&amp;TestA::method, &amp;test);</div><div class="line">	f();</div><div class="line"></div><div class="line">	f = boost::bind(&amp;TestA::method, &amp;test, <span class="number">1</span>, <span class="number">2</span>);</div><div class="line">	f();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>boost::function通常结合boost::bind一起使用，这是因为bind返回的正好是一个函数对象，在上面这段代码中，</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/01/06/boost-function-boost-bind-与-回调/" data-id="cj4cr2fh4001mw4ulwinv239d" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bind/">bind</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/回调/">回调</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-C++11 bind的用法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/05/C++11 bind的用法/" class="article-date">
+  <time datetime="2017-01-05T12:27:12.000Z" itemprop="datePublished">2017-01-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C/">C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/05/C++11 bind的用法/">C++11 bind 的用法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Bind"><a href="#Bind" class="headerlink" title="Bind"></a>Bind</h1><p>Bind可用于绑定函数、成员函数、函数对象、成员变量，bind函数支持最多10个自定义参数<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</div><div class="line">	<span class="keyword">return</span> a + b;</div><div class="line">&#125;</div><div class="line"><span class="built_in">std</span>::bind(f, <span class="number">5</span>, <span class="built_in">std</span>::placeholders::_1)(x); <span class="comment">// 相当于执行了f(5, x);</span></div></pre></td></tr></table></figure></p>
+<p>在上面这段代码中：</p>
+<ul>
+<li>std::bind函数返回绑定对象，后面跟的(x)表示传参x并执行;</li>
+<li>std::placeholders::_1是占位符，表示调用时的第一个参数，这段代码里表示x;</li>
+<li>如果代码是std::bind(f, std::placeholders::_2, std::placeholders::_1)(x, y)则表示执行f(y, x)</li>
+<li>调用前传入的函数参数会被复制并保存在std::bind返回的对象中，比如之前的std::bind(f, 5, std::placeholders::_1)中的5就被存储在了返回的对象中，所以为了性能上考虑，建议传入的类型为引用或指针，避免结构复制<h1 id="Bind和类成员函数"><a href="#Bind和类成员函数" class="headerlink" title="Bind和类成员函数"></a>Bind和类成员函数</h1></li>
+</ul>
+<p>此时需要注意的是成员函数绑定的第二个参数必须是类实例：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> X &#123;</div><div class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> a)</span></span>;</div><div class="line">&#125;;</div><div class="line">X x;</div><div class="line"><span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;X&gt; p(<span class="keyword">new</span> X);</div><div class="line"><span class="keyword">int</span> i = <span class="number">5</span>;</div><div class="line"><span class="built_in">std</span>::bind(&amp;X::f, ref(x), <span class="built_in">std</span>::placeholders::_1)(i); <span class="comment">//相当于执行了x.f(i)</span></div><div class="line"><span class="built_in">std</span>::bind(&amp;X::f, &amp;x, <span class="built_in">std</span>::placeholders::_1)(i); <span class="comment">// 相当于执行了(&amp;x)-&gt;f(i)</span></div><div class="line"><span class="built_in">std</span>::bind(&amp;X::f, x, <span class="built_in">std</span>::placeholders::_1)(i); <span class="comment">// 复制x，并执行（复制的x）.f(i)</span></div><div class="line"><span class="built_in">std</span>::bind(&amp;X::f, p, <span class="built_in">std</span>::placeholders::_1)(i); <span class="comment">//复制智能指针p，并执行（复制的p）-&gt;f(i)</span></div></pre></td></tr></table></figure></p>
+<p>由于第二个参数的类实例的保存方式与参数一致，所以也建议传入类引用或类指针，或者智能指针</p>
+<h1 id="bind举例"><a href="#bind举例" class="headerlink" title="bind举例"></a>bind举例</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;memory&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;functional&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">class</span> Button &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">	<span class="built_in">std</span>::function&lt;<span class="keyword">void</span>(<span class="keyword">int</span>)&gt; onClick;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">class</span> Player&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">play</span><span class="params">(<span class="keyword">void</span>* sender, <span class="keyword">int</span> param)</span> </span>&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"Play: %d =&gt; %d\n"</span>, (<span class="keyword">int</span>)sender, param);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">stop</span><span class="params">(<span class="keyword">void</span>* sender, <span class="keyword">int</span> param)</span> </span>&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"Play: %d =&gt; %d\n"</span>, (<span class="keyword">int</span>)sender, param);</div><div class="line">	&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Button playButton, stopButton;</div><div class="line">Player thePlayer;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">connect</span><span class="params">()</span> </span>&#123;</div><div class="line">	playButton.onClick = <span class="built_in">std</span>::Bind(&amp;Player::play, &amp;thePlayer, &amp;playButton, <span class="built_in">std</span>::placeholders::_1);</div><div class="line">	stopButton.onClick = <span class="built_in">std</span>::Bind(&amp;Player::stop, &amp;thePlayer, &amp;stopButton, <span class="built_in">std</span>::placeholders::_1);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">	connect();</div><div class="line">	playButton.onClick(<span class="number">0</span>);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面这段程序其实就是bind在回调函数中的用法，Button类中有一个回调函数onClick()，需要根据不同的场合实现不同的功能，使用bind函数为playButton绑定了play()函数，而为stopButton绑定了stop()函数，这是bind()函数在回调这方面的一个典型用法。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/01/05/C++11 bind的用法/" data-id="cj4cr2feo0008w4ulz8umfrob" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bind/">Bind</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-11/">C++11</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-android中xml-tools属性详解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/02/android中xml-tools属性详解/" class="article-date">
+  <time datetime="2017-01-02T05:51:39.000Z" itemprop="datePublished">2017-01-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/android/">android</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/02/android中xml-tools属性详解/">android中xml tools属性详解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="预览效果"><a href="#预览效果" class="headerlink" title="预览效果"></a>预览效果</h1><p>有些效果必须在运行之后才能看见，比如TextView在xml中没有设置任何字符，在activity中设置了text，因此为了在AS中预览效果，你可能会在xml中设置android:text属性来预览效果：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;TextView</div><div class="line">  android:id=<span class="string">"@+id/text_main"</span></div><div class="line">  android:layout_width=<span class="string">"match_parent"</span></div><div class="line">  android:layout_height=<span class="string">"wrap_content"</span></div><div class="line">  android:text=<span class="string">"Hello"</span>/&gt;</div></pre></td></tr></table></figure>
+<p>一般这样做之后在最终发布之前你仍然需要将<code>android:text=&quot;Hello&quot;</code>这行代码删除，但是存在的问题就是你很可能会忘记，而且如果代码中存在很多这样的代码，删除也是个很大的工作量，这时候你应该想到tools，我们只需要用如下的方法即可解决：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xmlns:tools=<span class="string">"http://schemas.android.com/tools"</span></div></pre></td></tr></table></figure>
+<p>tools可以告诉AS，哪些属性在运行的时候是被忽略的，只在设计的时候可以看到，在运行的时候tools本身也是被忽略的，不会被带进APK中。</p>
+<h1 id="tools属性的种类"><a href="#tools属性的种类" class="headerlink" title="tools属性的种类"></a>tools属性的种类</h1><p>tools属性可以分为两类，一种是影响Lint提示的，一种是关于xml布局设计的。</p>
+<h2 id="Lint相关的属性"><a href="#Lint相关的属性" class="headerlink" title="Lint相关的属性"></a>Lint相关的属性</h2><p>lint相关的属性主要有以下三个：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">tools:ignore</div><div class="line">tools:targetApi</div><div class="line">tools:locale</div></pre></td></tr></table></figure>
+<ul>
+<li><p>tools:ignore</p>
+<p>ignore属性时告诉lint忽略xml中的某些警告，假设我们有个ImageView如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;ImageView</div><div class="line">  android:layout_width=<span class="string">"wrap_content"</span></div><div class="line">  android:layout_height=<span class="string">"wrap_content"</span></div><div class="line">  android:scaleType=<span class="string">"center"</span></div><div class="line">  android:src=<span class="string">"@drawable/divider"</span>/&gt;</div></pre></td></tr></table></figure>
+<p>Lint会提示ImageView缺少android:contentDescription属性，我们可以使用tools:ignore来忽略这个警告：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;ImageView</div><div class="line">  android:layout_width=<span class="string">"wrap_content"</span></div><div class="line">  android:layout_height=<span class="string">"wrap_content"</span></div><div class="line">  android:scaleType=<span class="string">"center"</span></div><div class="line">  android:src=<span class="string">"@drawable/divider"</span></div><div class="line">  tools:ignore=<span class="string">"contentDescription"</span>/&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>tools:targetApi</p>
+<p>假设minSdkLevel 为15，而你使用了api21中的控件如RippleDrawable</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;ripple xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></div><div class="line">  android:color=<span class="string">"@color/accent_color"</span>/&gt;</div></pre></td></tr></table></figure>
+<p>那么Lint会提示警告，为了不显示这个警告，可以这样：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;ripple xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></div><div class="line">  xmlns:tools=<span class="string">"http://schemas.android.com/tools"</span></div><div class="line">  android:color=<span class="string">"@color/accent_color"</span></div><div class="line">  tools:targetApi=<span class="string">"LOLLIPOP"</span>/&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>tools:locale属性</p>
+<p>默认情况下res/values/strings.xml中的字符串会执行拼写检查，如果不是英语，会提示拼写错误，通过以下代码来告诉AS本地语言不是英语：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;resources</div><div class="line">  xmlns:android="http://schemas.android.com/apk/res/android"</div><div class="line">  xmlns:tools="http://schemas.android.com/tools"</div><div class="line">  tools:locale="it"&gt;</div><div class="line">&lt;/resources&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="xml布局相关的属性"><a href="#xml布局相关的属性" class="headerlink" title="xml布局相关的属性"></a>xml布局相关的属性</h2><p>xml布局相关的属性主要有以下几个：</p>
+<ul>
+<li>tools:context</li>
+<li>tools:menu</li>
+<li>tools:actionBarNavMode</li>
+<li>tools:listitem/listheader/listfooter</li>
+<li>tools:showIn</li>
+<li>tools:layout</li>
+</ul>
+<h6 id="tools-context"><a href="#tools-context" class="headerlink" title="tools:context"></a>tools:context</h6><p>该属性的值通常是activity的完整包名，例如：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;LinearLayout</div><div class="line">  xmlns:android="http://schemas.android.com/apk/res/android"</div><div class="line">  xmlns:tools="http://schemas.adnroid.com/tools"</div><div class="line">  android:id="@+id/container"</div><div class="line">  android:layout_width="match_parent"</div><div class="line">  android:lauouy_height="match_parent"</div><div class="line">  android:orientation="vertical"</div><div class="line">  tools:context="com.android.example.MainActivity"&gt;</div><div class="line">&lt;/LinearLayout&gt;</div></pre></td></tr></table></figure>
+<h6 id="tools-menu"><a href="#tools-menu" class="headerlink" title="tools:menu"></a>tools:menu</h6><p>告诉AS在预览窗口中使用哪个菜单，这个菜单将显示在layout的根结点上（actionbar的位置）。</p>
+<p>其实预览窗口非常智能，如果布局和一个activity关联（tools:context进行关联），它将会自动查询相关activity的onCreateOptionsMenu方法中的代码，以显示菜单，而menu属性可以覆盖这种行为。</p>
+<p>还以可以在menu属性中定义多个菜单资源，不同的菜单资源之间用逗号隔开。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tools:menu=<span class="string">"menu_main,menu_edit"</span></div></pre></td></tr></table></figure>
+<p>如果不希望在预览图中显示菜单则：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tools:menu=&quot;&quot;</div></pre></td></tr></table></figure>
+<p>需要注意的是：<strong>当主题为Theme.AppCompat时，这个属性不起作用</strong></p>
+<h6 id="tools-actionBarNavMode"><a href="#tools-actionBarNavMode" class="headerlink" title="tools:actionBarNavMode"></a>tools:actionBarNavMode</h6><p>这个属性告诉AS，app bar的显示模式，其值可以是：</p>
+<ul>
+<li>standard</li>
+<li>tabs</li>
+<li>list</li>
+</ul>
+<p>同样的，当主题为Theme.AppCompat或者Theme.Material该属性不起作用，只有holo主题才有效。</p>
+<h6 id="listitem，listheader，listfooter属性"><a href="#listitem，listheader，listfooter属性" class="headerlink" title="listitem，listheader，listfooter属性"></a>listitem，listheader，listfooter属性</h6><p>指在ListView或ExpandableListView等的预览效果中添加头部、尾部以及子item的预览布局。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;GridView</div><div class="line"> android:id=<span class="string">"@+id/list"</span></div><div class="line"> android:layout_width=<span class="string">"match_parent"</span></div><div class="line"> android:layout_height=<span class="string">"wrap_content"</span></div><div class="line"> tools:listheader=<span class="string">"@layout/list_header"</span></div><div class="line"> tools:listitem=<span class="string">"@layout/list_item"</span></div><div class="line"> tools:listfooter=<span class="string">"@layout/list_footer"</span> /&gt;</div></pre></td></tr></table></figure>
+<h6 id="layout属性"><a href="#layout属性" class="headerlink" title="layout属性"></a>layout属性</h6><p>tools:layout告诉AS，fragment在程序预览的时候该显示什么样：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;fragment xmlns=<span class="string">"http://schemas.android.com/apk/res/android"</span></div><div class="line">  xmlns:tools=<span class="string">"http://schemas.android.com/tools"</span></div><div class="line">  android:id=<span class="string">"@+id/item_list"</span></div><div class="line">  android:name=<span class="string">"com.example.fragmenttwopanel.ItemListFragment"</span></div><div class="line">  android:layout_width=<span class="string">"match_parent"</span></div><div class="line">  android:layout_height=<span class="string">"match_parent"</span></div><div class="line">  android:layout_marginLeft=<span class="string">"16dp"</span></div><div class="line">  android:layout_marginRight=<span class="string">"16dp"</span></div><div class="line">  tools:layout=<span class="string">"@android:layout/list_content"</span> /&gt;</div></pre></td></tr></table></figure>
+<h6 id="tools-showIn"><a href="#tools-showIn" class="headerlink" title="tools:showIn"></a>tools:showIn</h6><p>该属性设置与一个被其他布局<code>&lt;include&gt;</code>的布局的根元素上，这样可以指向包含此布局的其中一个布局，在设计时这个被包含的布局会带着周围的外部布局被渲染。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>本文摘录自<a href="http://blog.csdn.net/meegomeego/article/details/49176055" target="_blank" rel="external"><a href="http://my.csdn.net/meegomeego" target="_blank" rel="external">speedboy007的博客</a></a>，需要了解更多的可以去详细阅读！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/01/02/android中xml-tools属性详解/" data-id="cj4cr2fgz001iw4uljuqtkh6a" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xml-tools/">xml-tools</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-互斥对象和锁" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/28/互斥对象和锁/" class="article-date">
+  <time datetime="2016-12-28T11:47:18.000Z" itemprop="datePublished">2016-12-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C/">C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/28/互斥对象和锁/">互斥对象和锁</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="互斥对象和锁"><a href="#互斥对象和锁" class="headerlink" title="互斥对象和锁"></a>互斥对象和锁</h2><h3 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h3><p>互斥对象的主要操作有两个，即加锁(lock)和解锁(unlock)。当一个线程对互斥对象进行lock操作并成功获得这个互斥对象的所有权，在此线程对此对象unlock前，其他线程对这个互斥对象的lock操作都会被阻塞。</p>
+<h3 id="多个互斥对象加锁"><a href="#多个互斥对象加锁" class="headerlink" title="多个互斥对象加锁"></a>多个互斥对象加锁</h3><p>有些倾向需要对多个互斥对象进行加锁，考虑下面的代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">std</span>::mutex mt1, mt2;</div><div class="line">&#123;</div><div class="line">	<span class="built_in">std</span>::lock_guard&lt;<span class="built_in">std</span>::mutex&gt; lock1(mt1);</div><div class="line">  	<span class="built_in">std</span>::lock_guard&lt;<span class="built_in">std</span>::mutex&gt; lock2(mt2);</div><div class="line">&#125;</div><div class="line"></div><div class="line">&#123;</div><div class="line"> 	<span class="built_in">std</span>::lock_guard&lt;<span class="built_in">std</span>::mutex&gt; lock1(mt2);</div><div class="line">  	<span class="built_in">std</span>::lock_guard&lt;<span class="built_in">std</span>::mutex&gt; lock2(mt1);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面程序中，如果线程1执行到第4行的时候恰好线程2执行到第8行，那么就会出现下面的情况：</p>
+<ul>
+<li>线程1持有mt1，等待mt2</li>
+<li>线程2持有mt2，等待mt1</li>
+</ul>
+<p>线程1和线程2持有各自的mutex，互不松手，导致两个线程谁也运行不了，造成死锁现象。</p>
+<p>通常情况，要含有多个互斥对象时，为了避免死锁，要求在多个线程中进行加锁时应保证其先后顺序一致，如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">std</span>::mutex mt1, mt2;</div><div class="line">&#123;</div><div class="line">	<span class="built_in">std</span>::lock_guard&lt;<span class="built_in">std</span>::mutex&gt; lock1(mt1);</div><div class="line">  	<span class="built_in">std</span>::lock_guard&lt;<span class="built_in">std</span>::mutex&gt; lock2(mt2);</div><div class="line">&#125;</div><div class="line"></div><div class="line">&#123;</div><div class="line"> 	<span class="built_in">std</span>::lock_guard&lt;<span class="built_in">std</span>::mutex&gt; lock1(mt1);</div><div class="line">  	<span class="built_in">std</span>::lock_guard&lt;<span class="built_in">std</span>::mutex&gt; lock2(mt2);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样的话，即使线程1执行到第4行的时候线程2执行到第8行，由于互斥对象mt1已经被上锁，线程2只能等待线程1释放mt1，因此也就不会出现前面例子所说的死锁现象。</p>
+<p>其实更好的做法是使用标准库中的std::lock和std::try_lock函数对多个互斥对象进行加锁，std::lock()可以对多个互斥对象一次性进行加锁。std::lock会使用一种避免死锁的算法对多个待加锁对象进行lock操作，当待加锁的对象中有不可用对象时std::lock会阻塞当前线程直到所有对象都可用。代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">std</span>::mutex mt1, mt2;</div><div class="line">&#123;</div><div class="line">	<span class="built_in">std</span>::unique_lock&lt;<span class="built_in">std</span>::mutex&gt; lock1(mt1, <span class="built_in">std</span>::defer_lock);</div><div class="line">  	<span class="built_in">std</span>::unique_lock&lt;<span class="built_in">std</span>::mutex&gt; lock2(mt2, <span class="built_in">std</span>::defer_lock);</div><div class="line">  	<span class="built_in">std</span>::lock(lck1, lck2);</div><div class="line">&#125;</div><div class="line"></div><div class="line">&#123;</div><div class="line">  	<span class="built_in">std</span>::unique_lock&lt;<span class="built_in">std</span>::mutex&gt; lock1(mt1, <span class="built_in">std</span>::defer_lock);</div><div class="line">  	<span class="built_in">std</span>::unique_lock&lt;<span class="built_in">std</span>::mutex&gt; lock2(mt2, <span class="built_in">std</span>::defer_lock);</div><div class="line">  	<span class="built_in">std</span>::lock(lck2, lck1);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/12/28/互斥对象和锁/" data-id="cj4cr2fkk0042w4ulnqdr9ezi" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-windows核心编程-谈谈windows中的错误处理机制" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/26/windows核心编程-谈谈windows中的错误处理机制/" class="article-date">
+  <time datetime="2016-12-26T13:36:43.000Z" itemprop="datePublished">2016-12-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C/">C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/26/windows核心编程-谈谈windows中的错误处理机制/">windows核心编程_谈谈windows中的错误处理机制</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="谈谈windows中的错误处理机制"><a href="#谈谈windows中的错误处理机制" class="headerlink" title="谈谈windows中的错误处理机制"></a>谈谈windows中的错误处理机制</h2><ul>
+<li><p>windows除了使用返回值标识函数执行情况，还引入了错误代码机制。返回值指示函数是否发生了错误，而要想知道究竟发生了什么错误，就得使用错误代码。</p>
+</li>
+<li><p>windows将错误代码存储于独立于线程的，线程局部存储区中，也就是说这个区域时每个线程独有的其他线程无法更改，它存储着一些线程独有的东西。</p>
+</li>
+<li><p>在函数执行后，可通过<code>GetLastError()</code>函数来获得错误代码，并且这个代码永远反应的是上一个函数的执行情况，也就是说它的值是由上一个函数设置的，那么当调用一个函数后没有调用<code>GetLastError()</code>就调用其他函数，此时<code>GetLastError()</code>返回的就是第二个函数的执行情况。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">DWORD <span class="title">GetLastError</span><span class="params">()</span></span>;</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>GetLastError()</code>返回的是一个DWORD类型的数，我们无法直接从返回值得知具体的错误是什么，VS中给我们地提供了一个小工具可以将错误代码转换为相应的文本描述。在VS中你可以这样操作：工具-错误查找，只要输入相应的DWORD类型数就可以得到具体的错误信息。</p>
+</li>
+<li><p>另外，windows提供了函数<code>FormatMessage()</code>可以将传入的错误代码转换为对应的字符串的首地址。</p>
+</li>
+<li><p>调用<code>GetLastError()</code>返回的是windows定义的错误代码，我们还可以将这种机制用于我们自己的函数中，比如现在写了一个函数，返回false表示调用失败，那么此时你还可以使用错误代码来提供更多的信息，通过使用<code>SetLastError()</code>可以设置我们想设置的值，它将线程局部存储区的错误代码设置为我们传递的值，此后调用<code>GetLastError()</code>返回的就是我们刚刚设置的值。</p>
+</li>
+<li><p>Windows.h中定义了256个错误代码用于标识256中错误情况，我们在使用<code>SetLastError()</code>时 ，可以传入windows定义过得大部分错误代码，如果所有这些均不能满足，你可以传入大于255的数作为错误代码。</p>
+</li>
+<li><p>调试程序时，可以在watch窗口中输入$err,hr，它会在value一列显示当前线程的上一个错误代码和该值对应的 文本描述。</p>
+</li>
+<li><p>本文参考ithzhang的博客，想知道更多的可以去阅读他的博客：<a href="http://blog.csdn.net/ithzhang/article/details/7912489" target="_blank" rel="external">ithzhang的博客</a></p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/12/26/windows核心编程-谈谈windows中的错误处理机制/" data-id="cj4cr2fk6003qw4ulzitizjfv" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-windows核心编程-如何编写Unicode源代码" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/26/windows核心编程-如何编写Unicode源代码/" class="article-date">
+  <time datetime="2016-12-26T07:16:05.000Z" itemprop="datePublished">2016-12-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C/">C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/26/windows核心编程-如何编写Unicode源代码/">windows核心编程_如何编写Unicode源代码</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="如何编写Unicode源代码"><a href="#如何编写Unicode源代码" class="headerlink" title="如何编写Unicode源代码"></a>如何编写Unicode源代码</h2><ul>
+<li><p>标准的C运行期字符串函数，如strcpy、strchr和strcat只能对ANSI字符串进行操作，不能正确的处理Unicode字符串，因此，ANSI C拥有一组补充函数，例如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">char</span>* <span class="title">strcat</span><span class="params">(<span class="keyword">char</span>*, <span class="keyword">const</span> <span class="keyword">char</span>*)</span></span>;</div><div class="line"><span class="keyword">wchar_t</span>* wcscat(<span class="keyword">wchar_t</span>*, <span class="keyword">const</span> wchar_T*);</div></pre></td></tr></table></figure>
+<p>所有的Unicode函数均以wcs开头，wcs表示宽字符串</p>
+</li>
+<li><p>如果需要创建同时为ANSI何Unicode进行编译的单一源代码文件，必须包含TChar.h文件，而不是包含String.h文件。Tchar.h文件的唯一作用是帮助创建ANSI/Unicode通用源代码文件，它包含你应该用在源代码中的一组宏，而不应该直接调用str函数或wcs函数。如果在编译源代码文件中定义了_UNICODE，这些宏就会引用wcs这组函数，否则，引用str这组函数。</p>
+</li>
+<li><p>若要定义一个ANSI/Unicode通用的字符串数组，请使用下面的TCHAR数据类型。如果定义了_UNICODE，TCHAR将声明为下面的形式：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="keyword">wchar_t</span> TCHAR</div></pre></td></tr></table></figure>
+<p>如果没有定义_UNICODE，则TCHAR将声明为下面的形式：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="keyword">char</span> TCHAR</div></pre></td></tr></table></figure>
+<p>使用该数据类型，可以向下面这样拍分配一个字符串：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">TCHAR szString[<span class="number">100</span>];</div></pre></td></tr></table></figure>
+<p>也可以创建对字符串的指针：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">TCHAR* szError = <span class="string">"Error"</span></div></pre></td></tr></table></figure>
+<p>上面这行代码存在一个问题，如果没定义_UNICODE，该编译器将能正确的编译这一行代码；但是，如果定义了<code>__UNICODE</code>，将会产生一个错误。</p>
+<p>若要生成一个Unicode字符串而不是ANSI字符串，必须将该代码改写成下面的样子：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">TCHAR* szError = <span class="string">L"Error"</span>;</div></pre></td></tr></table></figure>
+<p>字符串前面的L用于告诉编译器该字符串作为Unicode字符串来编译，然而现在只有当定义了_UNICODE时程序才能正常编译。</p>
+<p>我们需要另一个宏，以便有选择的在字符串前面加上大写字母L。这项工作由_TEXT宏来完成，<code>__TEXT</code>宏也在TChar.h文件中做了定义。如果定义了<code>__UNICODE</code>，那么__TEXT定义成下面的形式：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> _TEXT(X) L ## x</span></div></pre></td></tr></table></figure>
+<p>如果没有定义，则定义成下面这种形式：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> _TEXT(x) x</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>Windows定义了以下的一些Unicode数据类型：</p>
+<p>WCHAR:             Unicode字符</p>
+<p>PWSTR            指向Unicode字符串的指针</p>
+<p>PCWSTR            指向一个恒定的Unicode字符串的指针</p>
+<p>这些数据类型是指Unicode字符和字符串，Windows头文件中也定义了ANSI/Unicode通用数据类型PTSTR和PCTSTR，这些数据类型既可以指ANSI字符串，也可以指Unicode字符串，这取决于当编译模块是否定义了UNICODE宏。</p>
+<p>​</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/12/26/windows核心编程-如何编写Unicode源代码/" data-id="cj4cr2fjz003nw4ulztppizn4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-assert用法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/26/assert用法/" class="article-date">
+  <time datetime="2016-12-26T06:33:20.000Z" itemprop="datePublished">2016-12-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C/">C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/26/assert用法/">assert用法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="assert-函数用法总结"><a href="#assert-函数用法总结" class="headerlink" title="assert()函数用法总结"></a>assert()函数用法总结</h2><ul>
+<li><p>assert宏的原型定义在<code>&lt;assert.h&gt;</code>中，如果它的条件返回错误，则终止程序执行：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;assert.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">assert</span><span class="params">(<span class="keyword">int</span> expression)</span></span>;</div></pre></td></tr></table></figure>
+<p>assert的作用是计算表达式expression，如果其值为假（0），那么向stderr打印出一条出错信息，然后调用abort来终止程序执行。</p>
+</li>
+<li><p>在调试结束后，可以通过在包含<code>#include&lt;assert.h&gt;</code> 的语句之前插入<code>#define NDEBUG</code>来禁用assert调用</p>
+</li>
+<li><p>一个非常简单的使用assert的规律就是：在方法或者函数的最开始使用，如果在方法的中间使用则需要慎重考虑是否是应该的，方法的最开始还没有开始一个功能过程，在一个功能过程执行中出现的问题几乎都是异常。</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/12/26/assert用法/" data-id="cj4cr2fgr001gw4ulmv7srpdi" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/assert/">assert</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/page/3/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">__('next') &raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Boost/">Boost</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CMake/">CMake</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Qt/">Qt</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Struts/">Struts</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/多线程/">多线程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建博客/">搭建博客</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ACE/">ACE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bind/">Bind</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Boost/">Boost</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-11/">C++11</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMake/">CMake</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IO/">IO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/QWebView/">QWebView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qt/">Qt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VS/">VS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/assert/">assert</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/assets/">assets</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bind/">bind</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/processEvents/">processEvents</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xml-tools/">xml-tools</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/单例模式/">单例模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/回调/">回调</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多路复用/">多路复用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/监听电池电量/">监听电池电量</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程安全/">线程安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编译/">编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编辑/">编辑</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网页/">网页</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件图标/">软件图标</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ACE/" style="font-size: 10px;">ACE</a> <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/Bind/" style="font-size: 10px;">Bind</a> <a href="/tags/Boost/" style="font-size: 10px;">Boost</a> <a href="/tags/C/" style="font-size: 17.5px;">C++</a> <a href="/tags/C-11/" style="font-size: 10px;">C++11</a> <a href="/tags/CMake/" style="font-size: 10px;">CMake</a> <a href="/tags/IO/" style="font-size: 10px;">IO</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/QWebView/" style="font-size: 10px;">QWebView</a> <a href="/tags/Qt/" style="font-size: 15px;">Qt</a> <a href="/tags/VS/" style="font-size: 15px;">VS</a> <a href="/tags/android/" style="font-size: 12.5px;">android</a> <a href="/tags/assert/" style="font-size: 10px;">assert</a> <a href="/tags/assets/" style="font-size: 10px;">assets</a> <a href="/tags/bind/" style="font-size: 10px;">bind</a> <a href="/tags/github/" style="font-size: 20px;">github</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/npm/" style="font-size: 20px;">npm</a> <a href="/tags/processEvents/" style="font-size: 10px;">processEvents</a> <a href="/tags/xml-tools/" style="font-size: 10px;">xml-tools</a> <a href="/tags/单例模式/" style="font-size: 10px;">单例模式</a> <a href="/tags/回调/" style="font-size: 10px;">回调</a> <a href="/tags/多路复用/" style="font-size: 10px;">多路复用</a> <a href="/tags/监听电池电量/" style="font-size: 10px;">监听电池电量</a> <a href="/tags/线程安全/" style="font-size: 10px;">线程安全</a> <a href="/tags/编译/" style="font-size: 10px;">编译</a> <a href="/tags/编辑/" style="font-size: 10px;">编辑</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/网页/" style="font-size: 10px;">网页</a> <a href="/tags/软件图标/" style="font-size: 10px;">软件图标</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/06/25/test/">test</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/25/单例模式/">单例模式</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/25/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/20/数据库中-和-的用法/">数据库中%和_的用法</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/20/数据库将一个表中数据插入到另外一张表中/">数据库将一个表中数据插入到另外一张表中</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Glemontree<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

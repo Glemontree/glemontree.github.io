@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>struts中OGNL | Glemontree&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="struts中OGNL一、OGNL概念OGNL（Object Graph Navigation Language），即对象图导航语言，是一种功能强大的表达式语言，可以任意存取对象的属性或者调用对象的方法。
+OGNL表达式的计算是围绕OGNL上下文进行的，OGNL上下文实际上是一个Map对象，由ognl.Context类来表示，它里面可以存放很多个JavaBean对象，它有一个上下文根对象，上下文中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="struts中OGNL">
+<meta property="og:url" content="http://yoursite.com/2017/06/03/struts中ognl表达式/index.html">
+<meta property="og:site_name" content="Glemontree's blog">
+<meta property="og:description" content="struts中OGNL一、OGNL概念OGNL（Object Graph Navigation Language），即对象图导航语言，是一种功能强大的表达式语言，可以任意存取对象的属性或者调用对象的方法。
+OGNL表达式的计算是围绕OGNL上下文进行的，OGNL上下文实际上是一个Map对象，由ognl.Context类来表示，它里面可以存放很多个JavaBean对象，它有一个上下文根对象，上下文中">
+<meta property="og:updated_time" content="2017-06-03T05:53:10.540Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="struts中OGNL">
+<meta name="twitter:description" content="struts中OGNL一、OGNL概念OGNL（Object Graph Navigation Language），即对象图导航语言，是一种功能强大的表达式语言，可以任意存取对象的属性或者调用对象的方法。
+OGNL表达式的计算是围绕OGNL上下文进行的，OGNL上下文实际上是一个Map对象，由ognl.Context类来表示，它里面可以存放很多个JavaBean对象，它有一个上下文根对象，上下文中">
+  
+    <link rel="alternate" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Glemontree&#39;s blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">day day up!</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-struts中ognl表达式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/03/struts中ognl表达式/" class="article-date">
+  <time datetime="2017-06-03T05:06:34.000Z" itemprop="datePublished">2017-06-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Struts/">Struts</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      struts中OGNL
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="struts中OGNL"><a href="#struts中OGNL" class="headerlink" title="struts中OGNL"></a>struts中OGNL</h1><h2 id="一、OGNL概念"><a href="#一、OGNL概念" class="headerlink" title="一、OGNL概念"></a>一、OGNL概念</h2><p>OGNL（Object Graph Navigation Language），即对象图导航语言，是一种功能强大的表达式语言，可以任意存取对象的属性或者调用对象的方法。</p>
+<p>OGNL表达式的计算是围绕OGNL上下文进行的，OGNL上下文实际上是一个Map对象，由ognl.Context类来表示，它里面可以存放很多个JavaBean对象，它有一个上下文根对象，上下文中的根对象可以直接使用名来访问或直接使用它的属性名来访问它的属性值，否则要加前缀”#key”。</p>
+<p>Struts的标签库都是使用OGNL表达式来访问ActionContext中的对象数据的。</p>
+<p>Struts将ActionContext设置为OGNL上下文，并将值栈作为OGNL的根对象放置到ActionContext中。</p>
+<h2 id="二、值栈"><a href="#二、值栈" class="headerlink" title="二、值栈"></a>二、值栈</h2><p>访问值栈中的对象不用“#”，Struts总是将当前Action实例放置在栈顶，所以在OGNL中引用Action中的属性也不需要“#”。</p>
+<h2 id="三、OGNL中三个重要的符号：-、-、"><a href="#三、OGNL中三个重要的符号：-、-、" class="headerlink" title="三、OGNL中三个重要的符号：#、%、$"></a>三、OGNL中三个重要的符号：#、%、$</h2><h3 id="3-1-符号"><a href="#3-1-符号" class="headerlink" title="3.1 #符号"></a>3.1 #符号</h3><ul>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">- 访问非根对象属性，例如#session.msg表达式，由于Struts中值栈被视为根对象，所以访问其他非根对象时，需要加#前缀，实际上#相当于ActionContext.getContext()，#session.msg	表达式相当于ActionContext.getContext().getSession().getAttribute(&quot;msg&quot;)；</div><div class="line"></div><div class="line">- 用于过滤和投影集合，如persons.&#123;?#this.age&gt;25&#125;, persons.&#123;?#this.name==&quot;pla1&quot;&#125;.&#123;age&#125;[0]；</div><div class="line"></div><div class="line">- 用于构造map，例如#&#123;&apos;foo1&apos;:&apos;bar1&apos;, &apos;foo2&apos;:&apos;bar2&apos;&#125;。</div><div class="line"></div><div class="line">  | 名称          | 作用                                      | 例子                                       |</div><div class="line">  | ----------- | --------------------------------------- | ---------------------------------------- |</div><div class="line">  | parameters  | 包含当前HTTP请求的Map                          | ```#parameters.id[0]=request.getParameter(&quot;id&quot;)``` |</div><div class="line">  | request     | 包含当前HttpServletRequest属性的Map            | ```#request.username=request.getAttribute(&quot;username&quot;)``` |</div><div class="line">  | session     | 包含当前HttpSession属性的Map                   | ```#session.username=session.getAttribute(&quot;username&quot;)``` |</div><div class="line">  | application | 包含当前ServletContext属性的Map                | ```#application.username=application.getAttribute(&quot;username&quot;)``` |</div><div class="line">  | attr        | 用于按照request&gt;session&gt;application的顺序访问其属性 | ```#attr.username```相当于按照顺序在以上三个范围内读取username的属性，直到找到为止 |</div><div class="line"></div><div class="line">  注意：也可以写成#request[&apos;username&apos;] #session[&apos;username&apos;] #application[&apos;username&apos;]</div><div class="line"></div><div class="line">### 3.2 %符号</div><div class="line"></div><div class="line">%符号的用途是在标志的属性为字符串类型时，计算OGNL表达式的值，即在struts字符串中用%&#123;&#125;指出，其内部是一个OGNL表达式，需要解析，例如：</div><div class="line"></div><div class="line">```jsp</div><div class="line">&lt;h3&gt;构造Map&lt;/h3&gt;</div><div class="line">&lt;s:set name=&quot;foobar&quot; value=&quot;#&#123;&apos;foo1&apos;:&apos;bar1&apos;,&apos;foo2&apos;:&apos;bar2&apos;&#125;&quot;/&gt;</div><div class="line">&lt;p&gt;The value of key &quot;fool&quot; is &lt;s:property value=&quot;#foobar[&apos;foo1&apos;]&quot;/&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt;不使用%：&lt;s:url value=&quot;#foobar[&apos;foo1&apos;]&quot;/&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt;使用%：&lt;s:url value=&quot;%&#123;#foobar[&apos;foo1&apos;]&#125;&quot;/&gt;&lt;/p&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>运行结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">the value of key &quot;fool&quot; is bar1</div><div class="line">不使用%：#foobar[&apos;foo1&apos;]</div><div class="line">使用%：bar1</div></pre></td></tr></table></figure>
+<h3 id="3-3-符号"><a href="#3-3-符号" class="headerlink" title="3.3 $符号"></a>3.3 $符号</h3><p>$符号有两个用途：</p>
+<ul>
+<li>在国际化资源文件中，引用OGNL表达式，例如国际化资源文件中的代码：reg.agerange=国际化资源信息：年龄必须在<code>${min}</code>同<code>${max}</code>之间</li>
+<li>在Struts 框架的配置文件中引用OGNL表达式。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/06/03/struts中ognl表达式/" data-id="cj4cr2fjf003bw4ulgltozwfa" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/06/15/VS-Qt生成软件图标/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          VS+Qt生成软件图标
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/05/02/推荐一个在线编辑、编译、运行程序的网页/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">推荐一个在线编辑、编译、运行程序的网页</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Boost/">Boost</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CMake/">CMake</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Qt/">Qt</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Struts/">Struts</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/多线程/">多线程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建博客/">搭建博客</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ACE/">ACE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bind/">Bind</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Boost/">Boost</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-11/">C++11</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMake/">CMake</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IO/">IO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/QWebView/">QWebView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qt/">Qt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VS/">VS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/assert/">assert</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/assets/">assets</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bind/">bind</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/processEvents/">processEvents</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xml-tools/">xml-tools</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/单例模式/">单例模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/回调/">回调</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多路复用/">多路复用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/监听电池电量/">监听电池电量</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程安全/">线程安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编译/">编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编辑/">编辑</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网页/">网页</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件图标/">软件图标</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ACE/" style="font-size: 10px;">ACE</a> <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/Bind/" style="font-size: 10px;">Bind</a> <a href="/tags/Boost/" style="font-size: 10px;">Boost</a> <a href="/tags/C/" style="font-size: 17.5px;">C++</a> <a href="/tags/C-11/" style="font-size: 10px;">C++11</a> <a href="/tags/CMake/" style="font-size: 10px;">CMake</a> <a href="/tags/IO/" style="font-size: 10px;">IO</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/QWebView/" style="font-size: 10px;">QWebView</a> <a href="/tags/Qt/" style="font-size: 15px;">Qt</a> <a href="/tags/VS/" style="font-size: 15px;">VS</a> <a href="/tags/android/" style="font-size: 12.5px;">android</a> <a href="/tags/assert/" style="font-size: 10px;">assert</a> <a href="/tags/assets/" style="font-size: 10px;">assets</a> <a href="/tags/bind/" style="font-size: 10px;">bind</a> <a href="/tags/github/" style="font-size: 20px;">github</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/npm/" style="font-size: 20px;">npm</a> <a href="/tags/processEvents/" style="font-size: 10px;">processEvents</a> <a href="/tags/xml-tools/" style="font-size: 10px;">xml-tools</a> <a href="/tags/单例模式/" style="font-size: 10px;">单例模式</a> <a href="/tags/回调/" style="font-size: 10px;">回调</a> <a href="/tags/多路复用/" style="font-size: 10px;">多路复用</a> <a href="/tags/监听电池电量/" style="font-size: 10px;">监听电池电量</a> <a href="/tags/线程安全/" style="font-size: 10px;">线程安全</a> <a href="/tags/编译/" style="font-size: 10px;">编译</a> <a href="/tags/编辑/" style="font-size: 10px;">编辑</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/网页/" style="font-size: 10px;">网页</a> <a href="/tags/软件图标/" style="font-size: 10px;">软件图标</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/06/25/test/">test</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/25/单例模式/">单例模式</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/25/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/20/数据库中-和-的用法/">数据库中%和_的用法</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/20/数据库将一个表中数据插入到另外一张表中/">数据库将一个表中数据插入到另外一张表中</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Glemontree<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
