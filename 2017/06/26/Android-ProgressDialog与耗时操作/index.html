@@ -4,29 +4,26 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>zsh corrupt | Glemontree&#39;s blog</title>
+    <title>[Android] ProgressDialog与耗时操作 | Glemontree&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Glemontree">
     
 
     
-    <meta name="description" content="Linux中zsh遇到corrupt bug这几天打开ubuntu，出现zsh: corrupt history file /home/gtp/.zsh_history的错误，网上找到了解决方案，这里记录一下，以防以后遇到了又得花时间在网上搜索解决方案。
-解决方案如下：
-123mv .zsh_history .zsh_history_badstrings .zsh_history_bad &amp;gt;">
+    <meta name="description" content="ProgressDialog与耗时操作今天来研究一下ProgressDialog与耗时操作，相信大家平时经常会看到在执行耗时操作时界面会有一个圆圈一直转，常见的比如网络请求时就经常会出现，虽然很简单，但是还是想亲自尝试一下！
+这其中会涉及到单个知识点，一个是ProgressDialog的使用，一个是Handler的使用，还有一个就是线程的使用，具体ProgressDialog怎么使用，Handle">
 <meta property="og:type" content="article">
-<meta property="og:title" content="zsh corrupt">
-<meta property="og:url" content="http://yoursite.com/2017/04/22/zsh-corrupt/index.html">
+<meta property="og:title" content="[Android] ProgressDialog与耗时操作">
+<meta property="og:url" content="http://yoursite.com/2017/06/26/Android-ProgressDialog与耗时操作/index.html">
 <meta property="og:site_name" content="Glemontree's blog">
-<meta property="og:description" content="Linux中zsh遇到corrupt bug这几天打开ubuntu，出现zsh: corrupt history file /home/gtp/.zsh_history的错误，网上找到了解决方案，这里记录一下，以防以后遇到了又得花时间在网上搜索解决方案。
-解决方案如下：
-123mv .zsh_history .zsh_history_badstrings .zsh_history_bad &amp;gt;">
-<meta property="og:updated_time" content="2017-04-22T14:44:03.224Z">
+<meta property="og:description" content="ProgressDialog与耗时操作今天来研究一下ProgressDialog与耗时操作，相信大家平时经常会看到在执行耗时操作时界面会有一个圆圈一直转，常见的比如网络请求时就经常会出现，虽然很简单，但是还是想亲自尝试一下！
+这其中会涉及到单个知识点，一个是ProgressDialog的使用，一个是Handler的使用，还有一个就是线程的使用，具体ProgressDialog怎么使用，Handle">
+<meta property="og:updated_time" content="2017-06-26T15:17:59.699Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="zsh corrupt">
-<meta name="twitter:description" content="Linux中zsh遇到corrupt bug这几天打开ubuntu，出现zsh: corrupt history file /home/gtp/.zsh_history的错误，网上找到了解决方案，这里记录一下，以防以后遇到了又得花时间在网上搜索解决方案。
-解决方案如下：
-123mv .zsh_history .zsh_history_badstrings .zsh_history_bad &amp;gt;">
+<meta name="twitter:title" content="[Android] ProgressDialog与耗时操作">
+<meta name="twitter:description" content="ProgressDialog与耗时操作今天来研究一下ProgressDialog与耗时操作，相信大家平时经常会看到在执行耗时操作时界面会有一个圆圈一直转，常见的比如网络请求时就经常会出现，虽然很简单，但是还是想亲自尝试一下！
+这其中会涉及到单个知识点，一个是ProgressDialog的使用，一个是Handler的使用，还有一个就是线程的使用，具体ProgressDialog怎么使用，Handle">
 
     
     <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
@@ -85,14 +82,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/04/22/zsh-corrupt/" title="zsh corrupt" itemprop="url">zsh corrupt</a>
+      <a href="/2017/06/26/Android-ProgressDialog与耗时操作/" title="[Android] ProgressDialog与耗时操作" itemprop="url">[Android] ProgressDialog与耗时操作</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
 		
   <p class="article-time">
-    <time datetime="2017-04-22T14:40:16.000Z" itemprop="datePublished"> Published 2017-04-22</time>
+    <time datetime="2017-06-26T15:01:46.000Z" itemprop="datePublished"> Published 2017-06-26</time>
     
   </p>
 </header>
@@ -101,14 +98,31 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux中zsh遇到corrupt-bug"><span class="toc-number">1.</span> <span class="toc-text">Linux中zsh遇到corrupt bug</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ProgressDialog与耗时操作"><span class="toc-number">1.</span> <span class="toc-text">ProgressDialog与耗时操作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#代码分析"><span class="toc-number">2.</span> <span class="toc-text">代码分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#后续工作"><span class="toc-number">3.</span> <span class="toc-text">后续工作</span></a></li></ol>
 		
 		</div>
 		
-		<h1 id="Linux中zsh遇到corrupt-bug"><a href="#Linux中zsh遇到corrupt-bug" class="headerlink" title="Linux中zsh遇到corrupt bug"></a>Linux中zsh遇到corrupt bug</h1><p>这几天打开ubuntu，出现<strong>zsh: corrupt history file /home/gtp/.zsh_history</strong>的错误，网上找到了解决方案，这里记录一下，以防以后遇到了又得花时间在网上搜索解决方案。</p>
-<p>解决方案如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mv .zsh_history .zsh_history_bad</div><div class="line">strings .zsh_history_bad &gt; .zsh_history</div><div class="line">fc -R .zsh_history</div></pre></td></tr></table></figure>
-<p>感谢<a href="http://blog.csdn.net/zhangyuehuan/article/details/50930027" target="_blank" rel="external">HIT-Lori</a>提供的解决方案。</p>
+		<h1 id="ProgressDialog与耗时操作"><a href="#ProgressDialog与耗时操作" class="headerlink" title="ProgressDialog与耗时操作"></a>ProgressDialog与耗时操作</h1><p>今天来研究一下ProgressDialog与耗时操作，相信大家平时经常会看到在执行耗时操作时界面会有一个圆圈一直转，常见的比如网络请求时就经常会出现，虽然很简单，但是还是想亲自尝试一下！</p>
+<p>这其中会涉及到单个知识点，一个是ProgressDialog的使用，一个是Handler的使用，还有一个就是线程的使用，具体ProgressDialog怎么使用，Handler的用法以及内部实现原理，大家可以去Google查找相关资料以加深理解。</p>
+<h1 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h1><ul>
+<li><p>activity_main.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">xmlns:app</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span></div><div class="line">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">tools:context</span>=<span class="string">"com.glemontree.progressdialogtest.MainActivity"</span>&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/download"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:text</span>=<span class="string">"开始下载"</span> /&gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>布局文件不要太简单。。就放置了一个Button，没什么好说的。。</p>
+</li>
+<li><p>MainActivity.class</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.glemontree.progressdialogtest;</div><div class="line"></div><div class="line"><span class="keyword">import</span> android.app.ProgressDialog;</div><div class="line"><span class="keyword">import</span> android.os.Handler;</div><div class="line"><span class="keyword">import</span> android.os.Message;</div><div class="line"><span class="keyword">import</span> android.support.v7.app.AppCompatActivity;</div><div class="line"><span class="keyword">import</span> android.os.Bundle;</div><div class="line"><span class="keyword">import</span> android.view.View;</div><div class="line"><span class="keyword">import</span> android.widget.Button;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Button mDownloadButton;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SHOW = <span class="number">1</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> HIDE = <span class="number">0</span>;</div><div class="line">    <span class="keyword">private</span> ProgressDialog mProgressDialog = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Handler handler = <span class="keyword">new</span> Handler() &#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message msg)</span> </span>&#123;</div><div class="line">            <span class="keyword">switch</span> (msg.what) &#123;</div><div class="line">                <span class="keyword">case</span> SHOW:</div><div class="line">                    mProgressDialog = ProgressDialog.show(MainActivity.<span class="keyword">this</span>, <span class="string">"test"</span>, <span class="string">"This is a test"</span>);</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="keyword">case</span> HIDE:</div><div class="line">                    mProgressDialog.dismiss();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        mDownloadButton = (Button) findViewById(R.id.download);</div><div class="line">        mDownloadButton.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">                handler.sendEmptyMessage(SHOW);</div><div class="line">                <span class="keyword">new</span> Thread() &#123;</div><div class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">                        <span class="keyword">try</span> &#123;</div><div class="line">                            Thread.sleep(<span class="number">3000</span>);</div><div class="line">                        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">                            e.printStackTrace();</div><div class="line">                        &#125;</div><div class="line">                        handler.sendEmptyMessage(HIDE);</div><div class="line">                    &#125;</div><div class="line">                &#125;.start();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>大家都知道更新UI只能在主线程中进行更新，因此如果将耗时操作放置在另外一个线程中完成，当耗时操作执行完成后若要更新UI，其实有两种方法：</p>
+<ul>
+<li>runOnUiThread</li>
+<li>Handler</li>
+</ul>
+<p>我这里使用的是Handler机制，主要是在主线程中建立Handler，在建立Handler的同时需要实现其handleMessage(Message msg)方法，该方法由用户实现，可以根据不同的msg实现不同的操作，在上面的程序中，主要是根据msg的内容实现ProgressDialog的显示和消失。</p>
+<p>在Button的点击事件中，首先通过Handler发送SHOW消息，然后消息到达handlerMessage(Message msg)方法中后由于是SHOW消息所以会显示ProgressDialog；然后会开启一个线程，在线程中睡眠3S用来模拟耗时操作的执行，当耗时操作执行完成后再发送HIDE消息，消息到达handlerMessage(Message msg)方法中后由于是HIDE消息所以ProgressDialog消息。这就是整个程序的功能！</p>
+</li>
+</ul>
+<h1 id="后续工作"><a href="#后续工作" class="headerlink" title="后续工作"></a>后续工作</h1><ul>
+<li>研究一下Handler的实现机制</li>
+</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -116,13 +130,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  <a class="article-category-link" href="/categories/android/">android</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/npm/">npm</a><a href="/tags/hexo/">hexo</a><a href="/tags/github/">github</a>
+  <span></span> <a href="/tags/Android/">Android</a><a href="/tags/ProgressDialog，-耗时操作/">ProgressDialog， 耗时操作</a>
   </div>
 
 </div>
@@ -131,7 +145,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2017/04/22/zsh-corrupt/" data-title="zsh corrupt | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/06/26/Android-ProgressDialog与耗时操作/" data-title="[Android] ProgressDialog与耗时操作 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -144,19 +158,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/04/23/x=y的原子性/" title="x=y的原子性">
-  <strong>上一篇：</strong><br/>
-  <span>
-  x=y的原子性</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/04/21/Linux内存管理/"  title="Linux内存管理">
+<a href="/2017/06/26/基于注解来配置Bean/"  title="基于注解来配置Bean">
  <strong>下一篇：</strong><br/> 
- <span>Linux内存管理
+ <span>基于注解来配置Bean
 </span>
 </a>
 </div>
@@ -165,7 +171,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2017/04/22/zsh-corrupt/" data-title="zsh corrupt" data-url="http://yoursite.com/2017/04/22/zsh-corrupt/"></div>
+	<div class="ds-thread" data-thread-key="2017/06/26/Android-ProgressDialog与耗时操作/" data-title="[Android] ProgressDialog与耗时操作" data-url="http://yoursite.com/2017/06/26/Android-ProgressDialog与耗时操作/"></div>
 </section>
 
 
@@ -176,7 +182,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux中zsh遇到corrupt-bug"><span class="toc-number">1.</span> <span class="toc-text">Linux中zsh遇到corrupt bug</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ProgressDialog与耗时操作"><span class="toc-number">1.</span> <span class="toc-text">ProgressDialog与耗时操作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#代码分析"><span class="toc-number">2.</span> <span class="toc-text">代码分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#后续工作"><span class="toc-number">3.</span> <span class="toc-text">后续工作</span></a></li></ol>
  
   </div>
 
