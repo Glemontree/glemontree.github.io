@@ -4,23 +4,35 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>[C++] 推荐一个在线编辑、编译、运行程序的网页 | Glemontree&#39;s blog</title>
+    <title>[C++] Effective_C++_条款06 | Glemontree&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Glemontree">
     
 
     
-    <meta name="description" content="记录我学习的每一步">
+    <meta name="description" content="条款06：若不想使用编译器自动生成的函数，就应该明确拒绝
+总有些情况，我们不希望编译器为我们生成拷贝构造函数和赋值函数，这时候我们就应该明确告诉编译器不要生成。
+
+为了解决这个问题，我们可以自己写拷贝构造函数和赋值函数，这样编译器就不会为我们生成，但不能写在public里，因为public里的函数可以被外界调用，一种好的方法就是将其写在private或protected里：
+123456789cl">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[C++] 推荐一个在线编辑、编译、运行程序的网页">
-<meta property="og:url" content="http://yoursite.com/2017/06/28/[C++] 推荐一个在线编辑、编译、运行程序的网页/index.html">
+<meta property="og:title" content="[C++] Effective_C++_条款06">
+<meta property="og:url" content="http://yoursite.com/2017/06/28/[C++] Effective_C++_条款06/index.html">
 <meta property="og:site_name" content="Glemontree's blog">
-<meta property="og:description" content="记录我学习的每一步">
-<meta property="og:updated_time" content="2017-06-28T09:21:53.603Z">
+<meta property="og:description" content="条款06：若不想使用编译器自动生成的函数，就应该明确拒绝
+总有些情况，我们不希望编译器为我们生成拷贝构造函数和赋值函数，这时候我们就应该明确告诉编译器不要生成。
+
+为了解决这个问题，我们可以自己写拷贝构造函数和赋值函数，这样编译器就不会为我们生成，但不能写在public里，因为public里的函数可以被外界调用，一种好的方法就是将其写在private或protected里：
+123456789cl">
+<meta property="og:updated_time" content="2017-06-28T10:10:09.006Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[C++] 推荐一个在线编辑、编译、运行程序的网页">
-<meta name="twitter:description" content="记录我学习的每一步">
+<meta name="twitter:title" content="[C++] Effective_C++_条款06">
+<meta name="twitter:description" content="条款06：若不想使用编译器自动生成的函数，就应该明确拒绝
+总有些情况，我们不希望编译器为我们生成拷贝构造函数和赋值函数，这时候我们就应该明确告诉编译器不要生成。
+
+为了解决这个问题，我们可以自己写拷贝构造函数和赋值函数，这样编译器就不会为我们生成，但不能写在public里，因为public里的函数可以被外界调用，一种好的方法就是将其写在private或protected里：
+123456789cl">
 
     
     <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
@@ -79,14 +91,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/06/28/[C++] 推荐一个在线编辑、编译、运行程序的网页/" title="[C++] 推荐一个在线编辑、编译、运行程序的网页" itemprop="url">[C++] 推荐一个在线编辑、编译、运行程序的网页</a>
+      <a href="/2017/06/28/[C++] Effective_C++_条款06/" title="[C++] Effective_C++_条款06" itemprop="url">[C++] Effective_C++_条款06</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-28T09:21:53.000Z" itemprop="datePublished"> Published 2017-06-28</time>
+    <time datetime="2017-06-28T10:09:52.000Z" itemprop="datePublished"> Published 2017-06-28</time>
     
   </p>
 </header>
@@ -95,15 +107,44 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#条款06：若不想使用编译器自动生成的函数，就应该明确拒绝"><span class="toc-number">1.</span> <span class="toc-text">条款06：若不想使用编译器自动生成的函数，就应该明确拒绝</span></a></li></ol>
 		
 		</div>
 		
-		  
+		<h2 id="条款06：若不想使用编译器自动生成的函数，就应该明确拒绝"><a href="#条款06：若不想使用编译器自动生成的函数，就应该明确拒绝" class="headerlink" title="条款06：若不想使用编译器自动生成的函数，就应该明确拒绝"></a>条款06：若不想使用编译器自动生成的函数，就应该明确拒绝</h2><ul>
+<li><p>总有些情况，我们不希望编译器为我们生成拷贝构造函数和赋值函数，这时候我们就应该明确告诉编译器不要生成。</p>
+</li>
+<li><p>为了解决这个问题，我们可以自己写拷贝构造函数和赋值函数，这样编译器就不会为我们生成，但不能写在public里，因为public里的函数可以被外界调用，一种好的方法就是将其写在private或protected里：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> HomeForSale &#123;</div><div class="line"><span class="keyword">private</span>:</div><div class="line">  	HomeForSale(<span class="keyword">const</span> HomeForSale&amp; house) &#123;</div><div class="line">  		...</div><div class="line">	&#125;</div><div class="line">  	HomeForSale&amp; <span class="keyword">operator</span>= (<span class="keyword">const</span> HomeForSale&amp; house) &#123;</div><div class="line">  		...</div><div class="line">	&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>这样做的话编译器就不会为我们生成默认的拷贝构造函数和赋值函数了，又因为我们定义的两个函数是private属性，所以不用担心会在外部会被调用，下面的两条语句是无法编译的：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function">HomeForSale <span class="title">house3</span><span class="params">(house1)</span></span>;</div><div class="line">house2 = house1;</div></pre></td></tr></table></figure>
+</li>
+<li><p>另一方面，如果像上面这种写法，如果类中出现了友元函数或者友元类，它们也可以访问到private下的函数，此时可以将定义换成声明：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> HomeForSale &#123;</div><div class="line"><span class="keyword">private</span>:</div><div class="line">  	HomeForSale(<span class="keyword">const</span> HomeForSale&amp; house);</div><div class="line">  	HomeForSale&amp; <span class="keyword">operator</span>= (<span class="keyword">const</span> HomeForSale&amp; house);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>这样即使通过编译，链接器也会报错，因为只有声明而没有具体的实现。那么能不能直接把拷贝构造函数和赋值函数声明在public下，只是不实现？这样也是可以的，因为链接器不会放过这个只有空架子的声明而没有具体的实现，但这不是一种好的解决方法，因为编程的一个原则是：<strong>错误越早被发现越好</strong>，编译要早于链接，所以在编译阶段能发现的错误就不要拖到链接阶段。</p>
+</li>
+<li><p>总结一下，为了驳回编译器自动生成的函数，有以下两种做法：</p>
+<ul>
+<li>将相应的成员函数声明为private且不实现</li>
+<li>继承Uncopyable</li>
+</ul>
+</li>
+</ul>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/C/">C++</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/C/">C++</a>
+  </div>
 
 </div>
 
@@ -111,7 +152,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2017/06/28/[C++] 推荐一个在线编辑、编译、运行程序的网页/" data-title="[C++] 推荐一个在线编辑、编译、运行程序的网页 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/06/28/[C++] Effective_C++_条款06/" data-title="[C++] Effective_C++_条款06 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -124,19 +165,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/06/28/[DB] 数据库中%和_的用法/" title="[DB] 数据库中%和_的用法">
-  <strong>上一篇：</strong><br/>
-  <span>
-  [DB] 数据库中%和_的用法</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/06/28/[CMake] 推荐一个关于CMake的一个很详细的教程/"  title="[CMake] 推荐一个关于CMake的一个很详细的教程">
+<a href="/2017/06/28/[Qt] file的作用/"  title="[Qt] file:///的作用">
  <strong>下一篇：</strong><br/> 
- <span>[CMake] 推荐一个关于CMake的一个很详细的教程
+ <span>[Qt] file:///的作用
 </span>
 </a>
 </div>
@@ -145,7 +178,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2017/06/28/[C++] 推荐一个在线编辑、编译、运行程序的网页/" data-title="[C++] 推荐一个在线编辑、编译、运行程序的网页" data-url="http://yoursite.com/2017/06/28/[C++] 推荐一个在线编辑、编译、运行程序的网页/"></div>
+	<div class="ds-thread" data-thread-key="2017/06/28/[C++] Effective_C++_条款06/" data-title="[C++] Effective_C++_条款06" data-url="http://yoursite.com/2017/06/28/[C++] Effective_C++_条款06/"></div>
 </section>
 
 
@@ -156,7 +189,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#条款06：若不想使用编译器自动生成的函数，就应该明确拒绝"><span class="toc-number">1.</span> <span class="toc-text">条款06：若不想使用编译器自动生成的函数，就应该明确拒绝</span></a></li></ol>
  
   </div>
 
