@@ -4,29 +4,26 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>[Qt] QWebView的使用 | Glemontree&#39;s blog</title>
+    <title>[C++] boost::function boost::bind 与 回调 | Glemontree&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Glemontree">
     
 
     
-    <meta name="description" content="Qt中使用QWebView在Qt中要使用QWebView必须经过一些配置，否则会出现error:C1083: 无法打开包括文件:”QWebView”这样的错误，这主要是因为QWebView、QWebFrame、QWebPage、QWebInspector等这些类被单独移到了QtWebKitWidgets模块，不再在QtWebKit模块当中。解决方法如下：
-
-在*.pro文件中添加Qt += web">
+    <meta name="description" content="boost::function 和 boost::bindboost::function是对函数指针的对象化封装，是一个函数对象的容器，在概念上与回调函数类似，先看一个例子：
+123456789101112131415161718192021222324252627282930313233#include &amp;lt;boost/function.hpp&amp;gt;#include &amp;lt;boost/b">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[Qt] QWebView的使用">
-<meta property="og:url" content="http://yoursite.com/2017/06/28/[Qt] QWebView的使用/index.html">
+<meta property="og:title" content="[C++] boost::function boost::bind 与 回调">
+<meta property="og:url" content="http://yoursite.com/2017/06/28/[C++] boostfunction boostbind 与 回调/index.html">
 <meta property="og:site_name" content="Glemontree's blog">
-<meta property="og:description" content="Qt中使用QWebView在Qt中要使用QWebView必须经过一些配置，否则会出现error:C1083: 无法打开包括文件:”QWebView”这样的错误，这主要是因为QWebView、QWebFrame、QWebPage、QWebInspector等这些类被单独移到了QtWebKitWidgets模块，不再在QtWebKit模块当中。解决方法如下：
-
-在*.pro文件中添加Qt += web">
-<meta property="og:updated_time" content="2017-06-28T09:46:51.430Z">
+<meta property="og:description" content="boost::function 和 boost::bindboost::function是对函数指针的对象化封装，是一个函数对象的容器，在概念上与回调函数类似，先看一个例子：
+123456789101112131415161718192021222324252627282930313233#include &amp;lt;boost/function.hpp&amp;gt;#include &amp;lt;boost/b">
+<meta property="og:updated_time" content="2017-06-28T10:20:23.582Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[Qt] QWebView的使用">
-<meta name="twitter:description" content="Qt中使用QWebView在Qt中要使用QWebView必须经过一些配置，否则会出现error:C1083: 无法打开包括文件:”QWebView”这样的错误，这主要是因为QWebView、QWebFrame、QWebPage、QWebInspector等这些类被单独移到了QtWebKitWidgets模块，不再在QtWebKit模块当中。解决方法如下：
-
-在*.pro文件中添加Qt += web">
+<meta name="twitter:title" content="[C++] boost::function boost::bind 与 回调">
+<meta name="twitter:description" content="boost::function 和 boost::bindboost::function是对函数指针的对象化封装，是一个函数对象的容器，在概念上与回调函数类似，先看一个例子：
+123456789101112131415161718192021222324252627282930313233#include &amp;lt;boost/function.hpp&amp;gt;#include &amp;lt;boost/b">
 
     
     <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
@@ -85,14 +82,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/06/28/[Qt] QWebView的使用/" title="[Qt] QWebView的使用" itemprop="url">[Qt] QWebView的使用</a>
+      <a href="/2017/06/28/[C++] boostfunction boostbind 与 回调/" title="[C++] boost::function boost::bind 与 回调" itemprop="url">[C++] boost::function boost::bind 与 回调</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-28T09:46:34.000Z" itemprop="datePublished"> Published 2017-06-28</time>
+    <time datetime="2017-06-28T10:20:01.000Z" itemprop="datePublished"> Published 2017-06-28</time>
     
   </p>
 </header>
@@ -101,20 +98,13 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Qt中使用QWebView"><span class="toc-number">1.</span> <span class="toc-text">Qt中使用QWebView</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#VS中使用QWebView"><span class="toc-number">2.</span> <span class="toc-text">VS中使用QWebView</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#boost-function-和-boost-bind"><span class="toc-number">1.</span> <span class="toc-text">boost::function 和 boost::bind</span></a></li></ol>
 		
 		</div>
 		
-		<h1 id="Qt中使用QWebView"><a href="#Qt中使用QWebView" class="headerlink" title="Qt中使用QWebView"></a>Qt中使用QWebView</h1><p>在Qt中要使用QWebView必须经过一些配置，否则会出现error:C1083: 无法打开包括文件:”QWebView”这样的错误，这主要是因为QWebView、QWebFrame、QWebPage、QWebInspector等这些类被单独移到了QtWebKitWidgets模块，不再在QtWebKit模块当中。解决方法如下：</p>
-<ul>
-<li>在*.pro文件中添加Qt += webkitwidgets；</li>
-<li>在源文件中添加<code>#include &lt;QtWebKitWidgets/QWebView&gt;</code>。</li>
-</ul>
-<h1 id="VS中使用QWebView"><a href="#VS中使用QWebView" class="headerlink" title="VS中使用QWebView"></a>VS中使用QWebView</h1><p>我个人比较喜欢在VS中开发Qt程序，不太喜欢Qt的界面，那么在VS中怎么使用QWebView呢？需要进行下面的配置：</p>
-<ul>
-<li>在解决方案资源管理器中右键你的项目，选择Qt Project Settings；</li>
-<li>选择“Qt Modules”选项卡，勾选WebKit和WebKit Widgets选项即可。</li>
-</ul>
+		<h1 id="boost-function-和-boost-bind"><a href="#boost-function-和-boost-bind" class="headerlink" title="boost::function 和 boost::bind"></a>boost::function 和 boost::bind</h1><p>boost::function是对函数指针的对象化封装，是一个函数对象的容器，在概念上与回调函数类似，先看一个例子：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boost/function.hpp&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boost/bind.hpp&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">class</span> TestA &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">method</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"TestA: method: no arguments"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">method</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</div><div class="line">		<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"TestA: method: with arguments"</span></div><div class="line">			&lt;&lt; <span class="string">"value of a is:"</span> &lt;&lt; a</div><div class="line">			&lt;&lt; <span class="string">"value of b is:"</span> &lt;&lt; b</div><div class="line">			&lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">	&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span> sum = a + b;</div><div class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"sum: "</span> &lt;&lt; sum &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">	boost::function&lt;<span class="keyword">void</span>()&gt; f;</div><div class="line">	TestA test;</div><div class="line"></div><div class="line">	f = boost::bind(&amp;TestA::method, &amp;test);</div><div class="line">	f();</div><div class="line"></div><div class="line">	f = boost::bind(&amp;TestA::method, &amp;test, <span class="number">1</span>, <span class="number">2</span>);</div><div class="line">	f();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>boost::function通常结合boost::bind一起使用，这是因为bind返回的正好是一个函数对象。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -122,13 +112,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Qt/">Qt</a>
+  <a class="article-category-link" href="/categories/C/">C++</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Qt-QWebView-VS/">Qt, QWebView, VS</a>
+  <span></span> <a href="/tags/C-bind-回调/">C++, bind, 回调</a>
   </div>
 
 </div>
@@ -137,7 +127,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2017/06/28/[Qt] QWebView的使用/" data-title="[Qt] QWebView的使用 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/06/28/[C++] boostfunction boostbind 与 回调/" data-title="[C++] boost::function boost::bind 与 回调 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -150,19 +140,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/06/28/[C++] VS中出现未将对象引用设置到对象的实例/" title="[C++] VS中出现未将对象引用设置到对象的实例">
-  <strong>上一篇：</strong><br/>
-  <span>
-  [C++] VS中出现未将对象引用设置到对象的实例</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/06/28/[android] WebView之loadDataWithBaseUrl()和loadUrl()/"  title="[android] WebView之loadDataWithBaseUrl()和loadUrl()">
+<a href="/2017/06/28/[C++] boostless_than_comparable/"  title="[C++] boost::less_than_comparable">
  <strong>下一篇：</strong><br/> 
- <span>[android] WebView之loadDataWithBaseUrl()和loadUrl()
+ <span>[C++] boost::less_than_comparable
 </span>
 </a>
 </div>
@@ -171,7 +153,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2017/06/28/[Qt] QWebView的使用/" data-title="[Qt] QWebView的使用" data-url="http://yoursite.com/2017/06/28/[Qt] QWebView的使用/"></div>
+	<div class="ds-thread" data-thread-key="2017/06/28/[C++] boostfunction boostbind 与 回调/" data-title="[C++] boost::function boost::bind 与 回调" data-url="http://yoursite.com/2017/06/28/[C++] boostfunction boostbind 与 回调/"></div>
 </section>
 
 
@@ -182,7 +164,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Qt中使用QWebView"><span class="toc-number">1.</span> <span class="toc-text">Qt中使用QWebView</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#VS中使用QWebView"><span class="toc-number">2.</span> <span class="toc-text">VS中使用QWebView</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#boost-function-和-boost-bind"><span class="toc-number">1.</span> <span class="toc-text">boost::function 和 boost::bind</span></a></li></ol>
  
   </div>
 
