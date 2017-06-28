@@ -4,38 +4,38 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>[Windows核心编程] 谈谈Windows中的错误处理机制 | Glemontree&#39;s blog</title>
+    <title>[Linux] Linux网络编程 | Glemontree&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Glemontree">
     
 
     
-    <meta name="description" content="谈谈Windows中的错误处理机制
-windows除了使用返回值标识函数执行情况，还引入了错误代码机制。返回值指示函数是否发生了错误，而要想知道究竟发生了什么错误，就得使用错误代码。
+    <meta name="description" content="EPoll的两种工作模式本文主要包含两个方面：
 
-windows将错误代码存储于独立于线程的，线程局部存储区中，也就是说这个区域时每个线程独有的其他线程无法更改，它存储着一些线程独有的东西。
+Linux中的EAGAIN错误码
+EPoll的两种工作模式
 
-在函数执行后，可通过GetLastError()函数来获得错误代码，并">
+一、EAGAIN从字面上来看，表示再试一次的意思，这个错误经常出现在当应用程序进行一些非阻塞操作（对文件或socket）的时候，例如以O_NONBLOCKING的标志打开文件/socket/FIFO，如果连续做read操作而没有数据可读，此时程序不会阻塞起来等待数据准备就绪返回，read">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[Windows核心编程] 谈谈Windows中的错误处理机制">
-<meta property="og:url" content="http://yoursite.com/2017/06/28/[Windows核心编程] 谈谈Windows中的错误处理机制/index.html">
+<meta property="og:title" content="[Linux] Linux网络编程">
+<meta property="og:url" content="http://yoursite.com/2017/06/28/[Linux] Linux网络编程/index.html">
 <meta property="og:site_name" content="Glemontree's blog">
-<meta property="og:description" content="谈谈Windows中的错误处理机制
-windows除了使用返回值标识函数执行情况，还引入了错误代码机制。返回值指示函数是否发生了错误，而要想知道究竟发生了什么错误，就得使用错误代码。
+<meta property="og:description" content="EPoll的两种工作模式本文主要包含两个方面：
 
-windows将错误代码存储于独立于线程的，线程局部存储区中，也就是说这个区域时每个线程独有的其他线程无法更改，它存储着一些线程独有的东西。
+Linux中的EAGAIN错误码
+EPoll的两种工作模式
 
-在函数执行后，可通过GetLastError()函数来获得错误代码，并">
-<meta property="og:updated_time" content="2017-06-28T09:44:04.330Z">
+一、EAGAIN从字面上来看，表示再试一次的意思，这个错误经常出现在当应用程序进行一些非阻塞操作（对文件或socket）的时候，例如以O_NONBLOCKING的标志打开文件/socket/FIFO，如果连续做read操作而没有数据可读，此时程序不会阻塞起来等待数据准备就绪返回，read">
+<meta property="og:updated_time" content="2017-06-28T09:57:00.729Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[Windows核心编程] 谈谈Windows中的错误处理机制">
-<meta name="twitter:description" content="谈谈Windows中的错误处理机制
-windows除了使用返回值标识函数执行情况，还引入了错误代码机制。返回值指示函数是否发生了错误，而要想知道究竟发生了什么错误，就得使用错误代码。
+<meta name="twitter:title" content="[Linux] Linux网络编程">
+<meta name="twitter:description" content="EPoll的两种工作模式本文主要包含两个方面：
 
-windows将错误代码存储于独立于线程的，线程局部存储区中，也就是说这个区域时每个线程独有的其他线程无法更改，它存储着一些线程独有的东西。
+Linux中的EAGAIN错误码
+EPoll的两种工作模式
 
-在函数执行后，可通过GetLastError()函数来获得错误代码，并">
+一、EAGAIN从字面上来看，表示再试一次的意思，这个错误经常出现在当应用程序进行一些非阻塞操作（对文件或socket）的时候，例如以O_NONBLOCKING的标志打开文件/socket/FIFO，如果连续做read操作而没有数据可读，此时程序不会阻塞起来等待数据准备就绪返回，read">
 
     
     <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
@@ -94,14 +94,14 @@ windows将错误代码存储于独立于线程的，线程局部存储区中，�
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/06/28/[Windows核心编程] 谈谈Windows中的错误处理机制/" title="[Windows核心编程] 谈谈Windows中的错误处理机制" itemprop="url">[Windows核心编程] 谈谈Windows中的错误处理机制</a>
+      <a href="/2017/06/28/[Linux] Linux网络编程/" title="[Linux] Linux网络编程" itemprop="url">[Linux] Linux网络编程</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-28T09:43:44.000Z" itemprop="datePublished"> Published 2017-06-28</time>
+    <time datetime="2017-06-28T09:56:40.000Z" itemprop="datePublished"> Published 2017-06-28</time>
     
   </p>
 </header>
@@ -110,29 +110,33 @@ windows将错误代码存储于独立于线程的，线程局部存储区中，�
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#谈谈Windows中的错误处理机制"><span class="toc-number">1.</span> <span class="toc-text">谈谈Windows中的错误处理机制</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#EPoll的两种工作模式"><span class="toc-number">1.</span> <span class="toc-text">EPoll的两种工作模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、EAGAIN"><span class="toc-number">1.1.</span> <span class="toc-text">一、EAGAIN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、EPoll的两种工作模式"><span class="toc-number">1.2.</span> <span class="toc-text">二、EPoll的两种工作模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、参考链接"><span class="toc-number">1.3.</span> <span class="toc-text">三、参考链接</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<h2 id="谈谈Windows中的错误处理机制"><a href="#谈谈Windows中的错误处理机制" class="headerlink" title="谈谈Windows中的错误处理机制"></a>谈谈Windows中的错误处理机制</h2><ul>
-<li><p>windows除了使用返回值标识函数执行情况，还引入了错误代码机制。返回值指示函数是否发生了错误，而要想知道究竟发生了什么错误，就得使用错误代码。</p>
+		<h1 id="EPoll的两种工作模式"><a href="#EPoll的两种工作模式" class="headerlink" title="EPoll的两种工作模式"></a>EPoll的两种工作模式</h1><p>本文主要包含两个方面：</p>
+<ul>
+<li>Linux中的EAGAIN错误码</li>
+<li>EPoll的两种工作模式</li>
+</ul>
+<h2 id="一、EAGAIN"><a href="#一、EAGAIN" class="headerlink" title="一、EAGAIN"></a>一、EAGAIN</h2><p>从字面上来看，表示再试一次的意思，这个错误经常出现在当应用程序进行一些非阻塞操作（对文件或socket）的时候，例如以O_NONBLOCKING的标志打开文件/socket/FIFO，如果连续做read操作而没有数据可读，此时程序不会阻塞起来等待数据准备就绪返回，read函数会返回一个EAGAIN错误，提示你的应用程序现在没有数据可读请稍后再试。</p>
+<h2 id="二、EPoll的两种工作模式"><a href="#二、EPoll的两种工作模式" class="headerlink" title="二、EPoll的两种工作模式"></a>二、EPoll的两种工作模式</h2><p>我们都知道EPoll有两种工作模式：</p>
+<ul>
+<li>ET（边沿触发）</li>
+<li>LT（水平触发）</li>
+</ul>
+<p>其中，ET工作模式是高速工作模式，只支持no-block socket，在这种模式下，当描述符从未就绪变为就绪时，内核通过epoll通知，然后它会假设你知道文件描述符已经就绪，并且不再为这个文件描述符发送更多的就绪通知，等到下次有新的数据进来的时候才会再次再次通知你；而LT工作模式是默认的工作模式，并且同时支持block 和no-block socket，在这种工作模式下，内核告诉你一个文件描述符准备就绪了，然后你可以对这个就绪的fd进行IO操作，如果你不进行任何操作，内核还是会继续通知你的。</p>
+<p>LT工作模式对代码编写要求比较低，并且不容易出现问题，但是它的问题就是它的效率低于ET工作模式，尤其在大并发、大流量的情况下。</p>
+<p>ET工作模式效率非常高，在并发大流量的情况下，会比LT少很多的epoll的系统调用，但是对编程要求高，需要细致的处理每个请求，否则容易出现丢失事件的情况。</p>
+<p>那么为什么ET工作模式只能使用非阻塞的socket呢？下面我以EPOLLIN事件为例进行说明：EPOLLIN事件只有当对端有数据写入时才会触发，所以触发一次后需要不断读取所有数据直到读完EAGAIN为止，否则剩下的数据只有在下次对端有写入时才能一起取出来了。并且EPOLLIN事件只有对端有新数据写入时才会触发一次，对于EPOLLIN事件，必须要将该文件描述符一直读到空，让error返回EAGAIN为止。</p>
+<p>如果你的文件描述符不是非阻塞的，对于读，由于需要一直读直到把数据读完，所以大家在编写程序的时候一般会用一个循环一直读取socket，那么这个循环势必在最后一次阻塞，即没有数据可读的情况下，阻塞式socket会在据读完之后一直阻塞下去，而非阻塞式的socket则返回&lt;0，并让errno返回EAGAIN。</p>
+<h2 id="三、参考链接"><a href="#三、参考链接" class="headerlink" title="三、参考链接"></a>三、参考链接</h2><ul>
+<li><p><a href="http://haoningabc.iteye.com/blog/1432958" target="_blank" rel="external">EPoll的两种模式</a></p>
 </li>
-<li><p>windows将错误代码存储于独立于线程的，线程局部存储区中，也就是说这个区域时每个线程独有的其他线程无法更改，它存储着一些线程独有的东西。</p>
+<li><p><a href="https://www.zhihu.com/question/23614342" target="_blank" rel="external">使用epoll时需要将socket设为非阻塞吗？</a></p>
 </li>
-<li><p>在函数执行后，可通过<code>GetLastError()</code>函数来获得错误代码，并且这个代码永远反应的是上一个函数的执行情况，也就是说它的值是由上一个函数设置的，那么当调用一个函数后没有调用<code>GetLastError()</code>就调用其他函数，此时<code>GetLastError()</code>返回的就是第二个函数的执行情况。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">DWORD <span class="title">GetLastError</span><span class="params">()</span></span>;</div></pre></td></tr></table></figure>
-</li>
-<li><p><code>GetLastError()</code>返回的是一个DWORD类型的数，我们无法直接从返回值得知具体的错误是什么，VS中给我们地提供了一个小工具可以将错误代码转换为相应的文本描述。在VS中你可以这样操作：工具-错误查找，只要输入相应的DWORD类型数就可以得到具体的错误信息。</p>
-</li>
-<li><p>另外，windows提供了函数<code>FormatMessage()</code>可以将传入的错误代码转换为对应的字符串的首地址。</p>
-</li>
-<li><p>调用<code>GetLastError()</code>返回的是windows定义的错误代码，我们还可以将这种机制用于我们自己的函数中，比如现在写了一个函数，返回false表示调用失败，那么此时你还可以使用错误代码来提供更多的信息，通过使用<code>SetLastError()</code>可以设置我们想设置的值，它将线程局部存储区的错误代码设置为我们传递的值，此后调用<code>GetLastError()</code>返回的就是我们刚刚设置的值。</p>
-</li>
-<li><p>Windows.h中定义了256个错误代码用于标识256中错误情况，我们在使用<code>SetLastError()</code>时 ，可以传入windows定义过得大部分错误代码，如果所有这些均不能满足，你可以传入大于255的数作为错误代码。</p>
-</li>
-<li><p>调试程序时，可以在watch窗口中输入$err,hr，它会在value一列显示当前线程的上一个错误代码和该值对应的 文本描述。</p>
-</li>
-<li><p>本文参考ithzhang的博客，想知道更多的可以去阅读他的博客：<a href="http://blog.csdn.net/ithzhang/article/details/7912489" target="_blank" rel="external">ithzhang的博客</a></p>
+<li><p><a href="http://www.voidcn.com/blog/tianmohust/article/p-1888732.html" target="_blank" rel="external">epoll的两种模式详解</a></p>
+<p>​</p>
 </li>
 </ul>
   
@@ -142,13 +146,13 @@ windows将错误代码存储于独立于线程的，线程局部存储区中，�
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Windows核心编程/">Windows核心编程</a>
+  <a class="article-category-link" href="/categories/Linux/">Linux</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/C-错误处理/">C++, 错误处理</a>
+  <span></span> <a href="/tags/Linux-网络编程-EPoll/">Linux, 网络编程, EPoll</a>
   </div>
 
 </div>
@@ -157,7 +161,7 @@ windows将错误代码存储于独立于线程的，线程局部存储区中，�
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2017/06/28/[Windows核心编程] 谈谈Windows中的错误处理机制/" data-title="[Windows核心编程] 谈谈Windows中的错误处理机制 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/06/28/[Linux] Linux网络编程/" data-title="[Linux] Linux网络编程 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -170,19 +174,11 @@ windows将错误代码存储于独立于线程的，线程局部存储区中，�
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/06/28/[Windows核心编程] 如何编写Unicode源代码/" title="[Windows核心编程] 如何编写Unicode源代码">
-  <strong>上一篇：</strong><br/>
-  <span>
-  [Windows核心编程] 如何编写Unicode源代码</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/06/28/[多线程] x=y的原子性/"  title="[多线程] x=y的原子性">
+<a href="/2017/06/28/[Linux] Linux中eventfd的使用/"  title="[Linux] Linux中eventfd的使用">
  <strong>下一篇：</strong><br/> 
- <span>[多线程] x=y的原子性
+ <span>[Linux] Linux中eventfd的使用
 </span>
 </a>
 </div>
@@ -191,7 +187,7 @@ windows将错误代码存储于独立于线程的，线程局部存储区中，�
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2017/06/28/[Windows核心编程] 谈谈Windows中的错误处理机制/" data-title="[Windows核心编程] 谈谈Windows中的错误处理机制" data-url="http://yoursite.com/2017/06/28/[Windows核心编程] 谈谈Windows中的错误处理机制/"></div>
+	<div class="ds-thread" data-thread-key="2017/06/28/[Linux] Linux网络编程/" data-title="[Linux] Linux网络编程" data-url="http://yoursite.com/2017/06/28/[Linux] Linux网络编程/"></div>
 </section>
 
 
@@ -202,7 +198,7 @@ windows将错误代码存储于独立于线程的，线程局部存储区中，�
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#谈谈Windows中的错误处理机制"><span class="toc-number">1.</span> <span class="toc-text">谈谈Windows中的错误处理机制</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#EPoll的两种工作模式"><span class="toc-number">1.</span> <span class="toc-text">EPoll的两种工作模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、EAGAIN"><span class="toc-number">1.1.</span> <span class="toc-text">一、EAGAIN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、EPoll的两种工作模式"><span class="toc-number">1.2.</span> <span class="toc-text">二、EPoll的两种工作模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、参考链接"><span class="toc-number">1.3.</span> <span class="toc-text">三、参考链接</span></a></li></ol></li></ol>
  
   </div>
 
