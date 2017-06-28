@@ -4,22 +4,29 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Glemontree&#39;s blog</title>
+    <title>[Qt] QWebView的使用 | Glemontree&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Glemontree">
     
 
     
-    <meta name="description" content="记录我学习的每一步">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Glemontree's blog">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+    <meta name="description" content="Qt中使用QWebView在Qt中要使用QWebView必须经过一些配置，否则会出现error:C1083: 无法打开包括文件:”QWebView”这样的错误，这主要是因为QWebView、QWebFrame、QWebPage、QWebInspector等这些类被单独移到了QtWebKitWidgets模块，不再在QtWebKit模块当中。解决方法如下：
+
+在*.pro文件中添加Qt += web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Qt] QWebView的使用">
+<meta property="og:url" content="http://yoursite.com/2017/06/28/[Qt] QWebView的使用/index.html">
 <meta property="og:site_name" content="Glemontree's blog">
-<meta property="og:description" content="记录我学习的每一步">
+<meta property="og:description" content="Qt中使用QWebView在Qt中要使用QWebView必须经过一些配置，否则会出现error:C1083: 无法打开包括文件:”QWebView”这样的错误，这主要是因为QWebView、QWebFrame、QWebPage、QWebInspector等这些类被单独移到了QtWebKitWidgets模块，不再在QtWebKit模块当中。解决方法如下：
+
+在*.pro文件中添加Qt += web">
+<meta property="og:updated_time" content="2017-06-28T09:46:51.430Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Glemontree's blog">
-<meta name="twitter:description" content="记录我学习的每一步">
+<meta name="twitter:title" content="[Qt] QWebView的使用">
+<meta name="twitter:description" content="Qt中使用QWebView在Qt中要使用QWebView必须经过一些配置，否则会出现error:C1083: 无法打开包括文件:”QWebView”这样的错误，这主要是因为QWebView、QWebFrame、QWebPage、QWebInspector等这些类被单独移到了QtWebKitWidgets模块，不再在QtWebKit模块当中。解决方法如下：
+
+在*.pro文件中添加Qt += web">
 
     
     <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
@@ -72,230 +79,104 @@
 </div>
     </header>
     <div id="container">
-      <div id="main">
-
+      <div id="main" class="post" itemscope itemprop="blogPost">
   
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[Spring] 基于注解来配置Bean/" title="[Spring] 基于注解来配置Bean" itemprop="url">
-  
-    <h1 itemprop="name">[Spring] 基于注解来配置Bean</h1>
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
     
-     
-           <p itemprop="description" >Bean的配置方式
-基于XML文件的方式
-基于注解的方式（基于注解配置Bean，基于注解来装配Bean的属性）
-
-在classpath中扫描组件
-组件扫描：Spring能够从classpath下自动扫描、侦测和实例化具有特定注解的组件
-
-特定组件包括：
-
-@component：基</p>
-        
+      <a href="/2017/06/28/[Qt] QWebView的使用/" title="[Qt] QWebView的使用" itemprop="url">[Qt] QWebView的使用</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
+		
+  <p class="article-time">
+    <time datetime="2017-06-28T09:46:34.000Z" itemprop="datePublished"> 发表于 2017-06-28</time>
     
-    <time datetime="2017-06-28T09:32:52.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Qt中使用QWebView"><span class="toc-number">1.</span> <span class="toc-text">Qt中使用QWebView</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#VS中使用QWebView"><span class="toc-number">2.</span> <span class="toc-text">VS中使用QWebView</span></a></li></ol>
+		
+		</div>
+		
+		<h1 id="Qt中使用QWebView"><a href="#Qt中使用QWebView" class="headerlink" title="Qt中使用QWebView"></a>Qt中使用QWebView</h1><p>在Qt中要使用QWebView必须经过一些配置，否则会出现error:C1083: 无法打开包括文件:”QWebView”这样的错误，这主要是因为QWebView、QWebFrame、QWebPage、QWebInspector等这些类被单独移到了QtWebKitWidgets模块，不再在QtWebKit模块当中。解决方法如下：</p>
+<ul>
+<li>在*.pro文件中添加Qt += webkitwidgets；</li>
+<li>在源文件中添加<code>#include &lt;QtWebKitWidgets/QWebView&gt;</code>。</li>
+</ul>
+<h1 id="VS中使用QWebView"><a href="#VS中使用QWebView" class="headerlink" title="VS中使用QWebView"></a>VS中使用QWebView</h1><p>我个人比较喜欢在VS中开发Qt程序，不太喜欢Qt的界面，那么在VS中怎么使用QWebView呢？需要进行下面的配置：</p>
+<ul>
+<li>在解决方案资源管理器中右键你的项目，选择Qt Project Settings；</li>
+<li>选择“Qt Modules”选项卡，勾选WebKit和WebKit Widgets选项即可。</li>
+</ul>
   
-<section class="post" itemscope itemprop="blogitem">
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Qt/">Qt</a>
+</div>
+
+
+  <div class="article-tags">
   
-    <a href="/2017/06/28/[C++] 继承与同名成员变量/" title="[C++] 继承与同名成员变量" itemprop="url">
-  
-    <h1 itemprop="name">[C++] 继承与同名成员变量</h1>
-    
-     
-           <p itemprop="description" >C++继承中子类与父类有同名成员变量的情况话不多说，先看下面这个例子：
-1234567891011121314151617181920212223242526272829303132333435#include &amp;lt;iostream&amp;gt;class Base &amp;#123;p</p>
-        
-    
-    <time datetime="2017-06-28T09:31:01.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[C++] 零散知识点/" title="[C++] 零散知识点" itemprop="url">
-  
-    <h1 itemprop="name">[C++] 零散知识点</h1>
-    
-     
-           <p itemprop="description" >time_t实际上是长整型long int，它用来 保存从1970年1月1日0时0分0秒到现在时刻的秒数，用time()这个函数获取
-
-gmtime
-
-函数原型：struct tm gmtime(time_t time)
-函数功能：得到以结构tm表示的时间信息
-函数返回：以结构t</p>
-        
-    
-    <time datetime="2017-06-28T09:29:08.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[C++] 前置++和后置++的区别/" title="[C++] 前置++和后置++的区别" itemprop="url">
-  
-    <h1 itemprop="name">[C++] 前置++和后置++的区别</h1>
-    
-     
-           <p itemprop="description" >前置++和后置++的区别前置++和后置++在程序开发中使用十分频繁，那么你是否真正了解它们的区别呢？
-其实++i相当于下面的代码：
-12i += 1;return i;
-而i++则相当于下面的代码：
-123j = i;i += 1;return j;
-对于内建数据类型，其实前置+</p>
-        
-    
-    <time datetime="2017-06-28T09:27:34.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[设计模式] 适配器模式/" title="[设计模式] 适配器模式" itemprop="url">
-  
-    <h1 itemprop="name">[设计模式] 适配器模式</h1>
-    
-     
-           <p itemprop="description" >C++中的适配器模式一、为什么需要适配器模式当你想使用一格现存的类，但是它的方法和你的要求不相同时，此时就需要使用适配器模式。
-二、适配器的作用是什么适配器就是将一个类的接口转换成客户希望的另外一个接口，适配器模式使得原本由于接口不兼容而不能一起工作的类可以一起工作。
-三、适配器</p>
-        
-    
-    <time datetime="2017-06-28T09:26:13.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[DB] 数据库将一个表中数据插入到另外一张表中/" title="[DB] 数据库将一个表中数据插入到另外一张表中" itemprop="url">
-  
-    <h1 itemprop="name">[DB] 数据库将一个表中数据插入到另外一张表中</h1>
-    
-     
-           <p itemprop="description" >两张表中的字段一致，并且希望插入全部数据：
-1INSERT INTO 目标表 SELECT * FROM 来源表;
-
-只导入指定字段：
-1INSERT INTO 目标表(字段1,字段2,...) SELECT 字段1,字段2,... FROM 来源表;
-
-只导入目标表中不存在的记</p>
-        
-    
-    <time datetime="2017-06-28T09:24:49.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[DB] 数据库中%和_的用法/" title="[DB] 数据库中%和_的用法" itemprop="url">
-  
-    <h1 itemprop="name">[DB] 数据库中%和_的用法</h1>
-    
-     
-           <p itemprop="description" >数据库中模糊查询命令like有两个通配符”%”和”_”，其中：
-
-%匹配0或多个字符
-_匹配任意1个字符（必须有一个）
-
-举例如下：
-12345678SQL&amp;gt;  create table tt ( name char(10) );SQL&amp;gt;  insert into t</p>
-        
-    
-    <time datetime="2017-06-28T09:23:09.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[C++] 推荐一个在线编辑、编译、运行程序的网页/" title="[C++] 推荐一个在线编辑、编译、运行程序的网页" itemprop="url">
-  
-    <h1 itemprop="name">[C++] 推荐一个在线编辑、编译、运行程序的网页</h1>
-    
-     
-           <p itemprop="description" ></p>
-        
-    
-    <time datetime="2017-06-28T09:21:53.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[CMake] 推荐一个关于CMake的一个很详细的教程/" title="[CMake] 推荐一个关于CMake的一个很详细的教程" itemprop="url">
-  
-    <h1 itemprop="name">[CMake] 推荐一个关于CMake的一个很详细的教程</h1>
-    
-     
-           <p itemprop="description" >如果你对CMake也很感兴趣这篇文章你值得拥有： CMake。</p>
-        
-    
-    <time datetime="2017-06-28T09:18:46.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-
-  <nav id="page-nav" class="clearfix unexpand">
-    <a class="extend prev" rel="prev" href="/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-  </nav>
+  <span></span> <a href="/tags/Qt-QWebView-VS/">Qt, QWebView, VS</a>
+  </div>
 
 </div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2017/06/28/[Qt] QWebView的使用/" data-title="[Qt] QWebView的使用 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2017/06/28/[android] WebView之loadDataWithBaseUrl()和loadUrl()/"  title="[android] WebView之loadDataWithBaseUrl()和loadUrl()">
+ <strong>下一篇：</strong><br/> 
+ <span>[android] WebView之loadDataWithBaseUrl()和loadUrl()
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/06/28/[Qt] QWebView的使用/" data-title="[Qt] QWebView的使用" data-url="http://yoursite.com/2017/06/28/[Qt] QWebView的使用/"></div>
+</section>
+
+
+
+</div>  
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Qt中使用QWebView"><span class="toc-number">1.</span> <span class="toc-text">Qt中使用QWebView</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#VS中使用QWebView"><span class="toc-number">2.</span> <span class="toc-text">VS中使用QWebView</span></a></li></ol>
+ 
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
@@ -569,14 +450,103 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
 });
 </script>
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
 
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"glemontree"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
 
 
 
@@ -662,4 +632,4 @@ _ts(option);
 <!-- Tiny_search End -->
 
   </body>
- </html>
+</html>
