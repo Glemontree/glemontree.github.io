@@ -4,44 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>[C++] 零散知识点 | Glemontree&#39;s blog</title>
+    <title>[Qt] Qt中processEvents函数 | Glemontree&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Glemontree">
     
 
     
-    <meta name="description" content="time_t实际上是长整型long int，它用来 保存从1970年1月1日0时0分0秒到现在时刻的秒数，用time()这个函数获取
-
-gmtime
-
-函数原型：struct tm gmtime(time_t time)
-函数功能：得到以结构tm表示的时间信息
-函数返回：以结构tm表示的时间信息指针
-所述文件：123456789101112```cpp#include &amp;lt;stdio.h&amp;g">
+    <meta name="description" content="什么情况下需要使用processEvents函数当我们在同一个线程中同时处理界面以及一些非常耗时的操作时，可能会出现界面无法响应，处于”假死“状态。通常解决这种现象的一种方法就是使用多线程，主线程专门负责界面，另开线程处理耗时的操作。在Qt中还有一种方法就是在耗时操作执行的过程中频繁调用QApplication::processEvents()函数，该函数的作用是让程序处理那些还没有处理的事件，然">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[C++] 零散知识点">
-<meta property="og:url" content="http://yoursite.com/2017/06/28/[C++] 零散知识点/index.html">
+<meta property="og:title" content="[Qt] Qt中processEvents函数">
+<meta property="og:url" content="http://yoursite.com/2017/06/28/[Qt] Qt中processEvents函数/index.html">
 <meta property="og:site_name" content="Glemontree's blog">
-<meta property="og:description" content="time_t实际上是长整型long int，它用来 保存从1970年1月1日0时0分0秒到现在时刻的秒数，用time()这个函数获取
-
-gmtime
-
-函数原型：struct tm gmtime(time_t time)
-函数功能：得到以结构tm表示的时间信息
-函数返回：以结构tm表示的时间信息指针
-所述文件：123456789101112```cpp#include &amp;lt;stdio.h&amp;g">
-<meta property="og:updated_time" content="2017-06-28T09:30:04.885Z">
+<meta property="og:description" content="什么情况下需要使用processEvents函数当我们在同一个线程中同时处理界面以及一些非常耗时的操作时，可能会出现界面无法响应，处于”假死“状态。通常解决这种现象的一种方法就是使用多线程，主线程专门负责界面，另开线程处理耗时的操作。在Qt中还有一种方法就是在耗时操作执行的过程中频繁调用QApplication::processEvents()函数，该函数的作用是让程序处理那些还没有处理的事件，然">
+<meta property="og:updated_time" content="2017-06-28T09:53:44.597Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[C++] 零散知识点">
-<meta name="twitter:description" content="time_t实际上是长整型long int，它用来 保存从1970年1月1日0时0分0秒到现在时刻的秒数，用time()这个函数获取
-
-gmtime
-
-函数原型：struct tm gmtime(time_t time)
-函数功能：得到以结构tm表示的时间信息
-函数返回：以结构tm表示的时间信息指针
-所述文件：123456789101112```cpp#include &amp;lt;stdio.h&amp;g">
+<meta name="twitter:title" content="[Qt] Qt中processEvents函数">
+<meta name="twitter:description" content="什么情况下需要使用processEvents函数当我们在同一个线程中同时处理界面以及一些非常耗时的操作时，可能会出现界面无法响应，处于”假死“状态。通常解决这种现象的一种方法就是使用多线程，主线程专门负责界面，另开线程处理耗时的操作。在Qt中还有一种方法就是在耗时操作执行的过程中频繁调用QApplication::processEvents()函数，该函数的作用是让程序处理那些还没有处理的事件，然">
 
     
     <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
@@ -100,14 +79,14 @@ gmtime
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/06/28/[C++] 零散知识点/" title="[C++] 零散知识点" itemprop="url">[C++] 零散知识点</a>
+      <a href="/2017/06/28/[Qt] Qt中processEvents函数/" title="[Qt] Qt中processEvents函数" itemprop="url">[Qt] Qt中processEvents函数</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-28T09:29:08.000Z" itemprop="datePublished"> Published 2017-06-28</time>
+    <time datetime="2017-06-28T09:53:28.000Z" itemprop="datePublished"> Published 2017-06-28</time>
     
   </p>
 </header>
@@ -116,67 +95,14 @@ gmtime
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么情况下需要使用processEvents函数"><span class="toc-number">1.</span> <span class="toc-text">什么情况下需要使用processEvents函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#怎么使用processEvents函数"><span class="toc-number">2.</span> <span class="toc-text">怎么使用processEvents函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考资料"><span class="toc-number">3.</span> <span class="toc-text">参考资料</span></a></li></ol>
 		
 		</div>
 		
-		<ul>
-<li><p>time_t实际上是长整型long int，它用来 保存从1970年1月1日0时0分0秒到现在时刻的秒数，用time()这个函数获取</p>
-</li>
-<li><p>gmtime</p>
-<ul>
-<li>函数原型：struct tm<em> gmtime(time_t</em> time)</li>
-<li>函数功能：得到以结构tm表示的时间信息</li>
-<li>函数返回：以结构tm表示的时间信息指针</li>
-<li>所述文件：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">```cpp</div><div class="line">#include &lt;stdio.h&gt;</div><div class="line">#include &lt;stdlib.h&gt;</div><div class="line">#include &lt;time.h&gt;</div><div class="line">int main() &#123;</div><div class="line">  time_t t;</div><div class="line">  struct tm* gmt;</div><div class="line">  t = time(NULL);</div><div class="line">  gmt = gmtime(&amp;t);</div><div class="line">  return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>tm结构体</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> tm &#123;</div><div class="line">  <span class="keyword">int</span> tm_sec; <span class="comment">// seconds</span></div><div class="line">  <span class="keyword">int</span> tm_min; <span class="comment">// minutes</span></div><div class="line">  <span class="keyword">int</span> tm_hour; <span class="comment">// hours</span></div><div class="line">  <span class="keyword">int</span> tm_mday; <span class="comment">// day</span></div><div class="line">  <span class="keyword">int</span> tm_mon; <span class="comment">// month</span></div><div class="line">  <span class="keyword">int</span> tm_year; <span class="comment">// year-1900</span></div><div class="line">  <span class="keyword">int</span> tm_wday; <span class="comment">// day of week[0-6]</span></div><div class="line">  <span class="keyword">int</span> tm_yday; <span class="comment">// days in year[0-365]</span></div><div class="line">  <span class="keyword">int</span> tm_isdst; <span class="comment">// DST [-1/0/1]</span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __USE_BSD</span></div><div class="line">  <span class="keyword">long</span> <span class="keyword">int</span> tm_gmtoff; <span class="comment">// seconds east of UTC</span></div><div class="line">  __const <span class="keyword">char</span>* tm_zone; <span class="comment">// Timezone abbreviation</span></div><div class="line"><span class="meta">#<span class="meta-keyword">else</span></span></div><div class="line">  <span class="keyword">long</span> <span class="keyword">int</span> __tm_gmtoff; <span class="comment">// seconds east of UTC</span></div><div class="line">  __const <span class="keyword">char</span>* __tm_zone; <span class="comment">// Timezone abbreviation</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-</li>
-<li><p>timeval结构体</p>
-<p>struct timeval结构体在time.h中定义：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> timeval &#123;</div><div class="line">  <span class="keyword">time_t</span> tv_sec; <span class="comment">// seconds</span></div><div class="line">  <span class="keyword">suseconds_t</span> tv_usec; <span class="comment">// Microseconds</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>其中，tv_sec为EPoch到创建struct timeval时的秒数，tv_usec为微秒数，即秒后面的零头，假如tv_sec为1244770435，tv_usec为442388，即当前时间距Epoch时间1244770435秒，442388微秒。</p>
-</li>
-<li><p>gettimeofday()</p>
-<p>获取当前时间（保存在结构体timeval中）</p>
-</li>
-<li><p>share_from_this</p>
-<p>当类对象被shared_ptr管理时，需要在类自己定义的函数里把当前对象作为参数传给其他函数时，这时需要传递一个shared_ptr，否则就不能保持shared_ptr管理这个类对象的语义（因为一个raw poiter指向这个类对象，而shared_ptr对类对象的这个引用没有计数，很可能shared_ptr已经把类对象资源释放了，而那个调用函数还在使用类对象）。</p>
-<p>对一个类 A ，当我们希望使用 shared_ptr 来管理其类对象时，而且需要在自己定义的函数里把类对象 shared_ptr （为什么不用普通指针，当我们使用智能指针管理资源时，必须统一使用智能指针，而不能在某些地方使用智能指针某些地方使用 raw pointer ，否则不能保持智能指针的语义，从而产生各种错误）传给其他函数时，可以让类 A 从 enable_shared_from_this 继承： </p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> A : <span class="keyword">public</span> boost::enable_shared_from_this&lt;A&gt; &#123;&#125;;</div></pre></td></tr></table></figure>
-<p>然后在类A中需要传递类对象本身shared_ptr的地方使用shared_from_this函数获得指向自身的shared_ptr。</p>
-</li>
-<li><p>boost::shared_from_this值得注意的地方</p>
-<p>这个 函数仅在<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">- 如下代码是错误的</div><div class="line"></div><div class="line">  ```cpp</div><div class="line">  class D : public boost::enable_shared_from_this&lt;D&gt; &#123;</div><div class="line">  public:</div><div class="line">    D() &#123;</div><div class="line">      boost::shared_ptr&lt;D&gt; p = shared_from_this();</div><div class="line">    &#125;</div><div class="line">  &#125;;</div></pre></td></tr></table></figure></p>
-<p>  在D的构造函数中虽然可以保证<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">- 如下代码是错误的</div><div class="line"></div><div class="line">  ```cpp</div><div class="line">  class D : public boost::enable_shared_from_this&lt;D&gt; &#123;</div><div class="line">  public:</div><div class="line">    void func() &#123;</div><div class="line">      boost::shared_ptr&lt;D&gt; = shared_from_this();</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  void main() &#123;</div><div class="line">    D d;</div><div class="line">    d.func();</div><div class="line">  &#125;</div></pre></td></tr></table></figure></p>
-<p>  错误原因同上。</p>
-<ul>
-<li><p>如下代码是正确的</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">  boost::<span class="built_in">shared_ptr</span>&lt;D&gt; d(<span class="keyword">new</span> D);</div><div class="line">  d-&gt;func();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这里<code>boost::shared_ptr&lt;D&gt; d(new D)</code>实际上执行了3个动作：</p>
-<ul>
-<li>首先调用<code>enable_shared_from_this&lt;D&gt;</code>的构造函数；</li>
-<li>其次调用D的构造函数；</li>
-<li>最后调用<code>shared_ptr&lt;D&gt;</code>的构造函数。</li>
-</ul>
-<p>是第3个动作设置了<code>enable_shared_from_this&lt;D&gt;</code>的weak_ptr，而不是第1个动作。</p>
-</li>
-</ul>
-</li>
-<li><p>shared_from_this使用场景</p>
-<p>需求：在类的内部需要自身的shared_ptr而不是this裸指针</p>
-<p>场景：在类中发起一个异步操作，callback回来要保证发起操作的对象仍然有效</p>
-<p>异步回调的时候对象可能已经销毁了，所以使用shared_ptr传出去就是保证最少还有一个引用计数维持对象的生命周期直至回调结束。</p>
-</li>
-<li><p>__thread</p>
-<p><code>__thread</code>是GCC内置的线程局部存储设施，存储效率可以和全局变量相比，<code>__thread</code>变量每一个线程有一份独立实体，各个线程的值互不干扰</p>
-</li>
-<li><p>getpid、SYS_gettid以及pthread_self</p>
-<p>getpid()得到的是进程的pid，在进程中，每个线程都有自己的pid，要得到线程的pid，必须用syscall(SYS_gettid)，其在系统内是唯一的，pthread_self函数获取的是线程ID，线程ID在某进程中是唯一的，在不同的进程中创建的线程可能会出现ID值相同的情况。</p>
-</li>
-</ul>
+		<h1 id="什么情况下需要使用processEvents函数"><a href="#什么情况下需要使用processEvents函数" class="headerlink" title="什么情况下需要使用processEvents函数"></a>什么情况下需要使用processEvents函数</h1><p>当我们在同一个线程中同时处理界面以及一些非常耗时的操作时，可能会出现界面无法响应，处于”假死“状态。通常解决这种现象的一种方法就是使用多线程，主线程专门负责界面，另开线程处理耗时的操作。在Qt中还有一种方法就是在耗时操作执行的过程中频繁调用<code>QApplication::processEvents()</code>函数，该函数的作用是让程序处理那些还没有处理的事件，然后再把使用权返回给调用者。</p>
+<h1 id="怎么使用processEvents函数"><a href="#怎么使用processEvents函数" class="headerlink" title="怎么使用processEvents函数"></a>怎么使用processEvents函数</h1><p>下面举个简单的例子：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">bool</span> MyApp::writeFile(<span class="keyword">const</span> QString &amp;filename)</div><div class="line">&#123;</div><div class="line">  <span class="function">QFile <span class="title">file</span><span class="params">(filename)</span></span>;</div><div class="line">  ...</div><div class="line">  QApplication::setOverrideCursor(Qt::WaitCursor);</div><div class="line">  QProgressDialog progress;</div><div class="line">  progress.setWindowTitle(tableData-&gt;sNameCH);</div><div class="line">  progress.setLabelText(QStringLiteral(<span class="string">"数据保存中，请稍候..."</span>));</div><div class="line">  <span class="comment">//progress.setCancelButton(0);//不显示“取消”按钮</span></div><div class="line">  progress.setCancelButtonText(<span class="string">"取消"</span>);</div><div class="line">  progress.setRange(<span class="number">0</span>,rowCount );</div><div class="line">  progress.setModal(<span class="literal">true</span>);</div><div class="line">  <span class="comment">//此处没有调用show()来显示，是因为QProgressDialog会自动决定是否显示</span></div><div class="line">  <span class="comment">//如果时间过短，就不会显示。</span></div><div class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> r = <span class="number">0</span>; r != rowCount; ++r)</div><div class="line">  &#123;</div><div class="line">    progress.setValue(row);</div><div class="line">    <span class="comment">//如果用户单击了“取消”,就取消保存文件，并删除该文件。</span></div><div class="line">    <span class="keyword">if</span>(progress.wasCanceled)</div><div class="line">    &#123;</div><div class="line">      file.remov();</div><div class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> c = <span class="number">0</span>; c != colCount; ++c)</div><div class="line">    &#123;</div><div class="line">      out &lt;&lt; table(r,c);   </div><div class="line">      qApp.processEvents();</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  QApplication::restoreOverrideCursor();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>本文参考自<a href="http://www.cnblogs.com/findumars/p/5607683.html" target="_blank" rel="external">文章</a>。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -184,13 +110,13 @@ gmtime
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/C/">C++</a>
+  <a class="article-category-link" href="/categories/Qt/">Qt</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/C/">C++</a>
+  <span></span> <a href="/tags/Qt-processEvents/">Qt, processEvents</a>
   </div>
 
 </div>
@@ -199,7 +125,7 @@ gmtime
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2017/06/28/[C++] 零散知识点/" data-title="[C++] 零散知识点 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/06/28/[Qt] Qt中processEvents函数/" data-title="[Qt] Qt中processEvents函数 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -212,19 +138,11 @@ gmtime
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/06/28/[C++] 继承与同名成员变量/" title="[C++] 继承与同名成员变量">
-  <strong>上一篇：</strong><br/>
-  <span>
-  [C++] 继承与同名成员变量</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/06/28/[C++] 前置++和后置++的区别/"  title="[C++] 前置++和后置++的区别">
+<a href="/2017/06/28/[Spring] Spring AOP编程理解/"  title="[Spring] Spring AOP编程理解">
  <strong>下一篇：</strong><br/> 
- <span>[C++] 前置++和后置++的区别
+ <span>[Spring] Spring AOP编程理解
 </span>
 </a>
 </div>
@@ -233,7 +151,7 @@ gmtime
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2017/06/28/[C++] 零散知识点/" data-title="[C++] 零散知识点" data-url="http://yoursite.com/2017/06/28/[C++] 零散知识点/"></div>
+	<div class="ds-thread" data-thread-key="2017/06/28/[Qt] Qt中processEvents函数/" data-title="[Qt] Qt中processEvents函数" data-url="http://yoursite.com/2017/06/28/[Qt] Qt中processEvents函数/"></div>
 </section>
 
 
@@ -244,7 +162,7 @@ gmtime
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么情况下需要使用processEvents函数"><span class="toc-number">1.</span> <span class="toc-text">什么情况下需要使用processEvents函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#怎么使用processEvents函数"><span class="toc-number">2.</span> <span class="toc-text">怎么使用processEvents函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考资料"><span class="toc-number">3.</span> <span class="toc-text">参考资料</span></a></li></ol>
  
   </div>
 
