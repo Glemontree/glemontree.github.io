@@ -4,29 +4,41 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>[Linux] Linux中eventfd的使用 | Glemontree&#39;s blog</title>
+    <title>[html] link标签 | Glemontree&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Glemontree">
     
 
     
-    <meta name="description" content="Linux中eventfd的使用eventfd简介eventfd是用来实现多进程或多线程之间的事件通知的，常见的事件通知机制除了eventfd外，还有条件变量和管道等 方式。
-条件变量必须和互斥锁相结合使用，使用起来较麻烦，并且条件变量不能像eventfd一样为I/O事件驱动。
-管道可以和I/O复用很好的融合，但是管道比eventfd多用了一个文件描述符，而且 管道内核还得给其管理的缓冲区，eve">
+    <meta name="description" content="概述link标签，当在文档中声明使用外接资源（比如CSS）时使用此标签，link是单独出现的
+属性
+href – 指定需要加载的资源(CSS文件)的地址URI 
+media – 媒体类型
+rel – 指定链接类型,设定是指对象和链接目标的关系,可选值, link还可以用Shortcut Icon等
+rev – 指定链接类型
+type – 指定所连接文档的MIME类型，css的MIME是type/c">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[Linux] Linux中eventfd的使用">
-<meta property="og:url" content="http://yoursite.com/2017/06/28/[Linux] Linux中eventfd的使用/index.html">
+<meta property="og:title" content="[html] link标签">
+<meta property="og:url" content="http://yoursite.com/2017/06/28/[html] link标签/index.html">
 <meta property="og:site_name" content="Glemontree's blog">
-<meta property="og:description" content="Linux中eventfd的使用eventfd简介eventfd是用来实现多进程或多线程之间的事件通知的，常见的事件通知机制除了eventfd外，还有条件变量和管道等 方式。
-条件变量必须和互斥锁相结合使用，使用起来较麻烦，并且条件变量不能像eventfd一样为I/O事件驱动。
-管道可以和I/O复用很好的融合，但是管道比eventfd多用了一个文件描述符，而且 管道内核还得给其管理的缓冲区，eve">
-<meta property="og:updated_time" content="2017-06-28T09:55:54.665Z">
+<meta property="og:description" content="概述link标签，当在文档中声明使用外接资源（比如CSS）时使用此标签，link是单独出现的
+属性
+href – 指定需要加载的资源(CSS文件)的地址URI 
+media – 媒体类型
+rel – 指定链接类型,设定是指对象和链接目标的关系,可选值, link还可以用Shortcut Icon等
+rev – 指定链接类型
+type – 指定所连接文档的MIME类型，css的MIME是type/c">
+<meta property="og:updated_time" content="2017-06-28T10:03:37.225Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[Linux] Linux中eventfd的使用">
-<meta name="twitter:description" content="Linux中eventfd的使用eventfd简介eventfd是用来实现多进程或多线程之间的事件通知的，常见的事件通知机制除了eventfd外，还有条件变量和管道等 方式。
-条件变量必须和互斥锁相结合使用，使用起来较麻烦，并且条件变量不能像eventfd一样为I/O事件驱动。
-管道可以和I/O复用很好的融合，但是管道比eventfd多用了一个文件描述符，而且 管道内核还得给其管理的缓冲区，eve">
+<meta name="twitter:title" content="[html] link标签">
+<meta name="twitter:description" content="概述link标签，当在文档中声明使用外接资源（比如CSS）时使用此标签，link是单独出现的
+属性
+href – 指定需要加载的资源(CSS文件)的地址URI 
+media – 媒体类型
+rel – 指定链接类型,设定是指对象和链接目标的关系,可选值, link还可以用Shortcut Icon等
+rev – 指定链接类型
+type – 指定所连接文档的MIME类型，css的MIME是type/c">
 
     
     <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
@@ -85,14 +97,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/06/28/[Linux] Linux中eventfd的使用/" title="[Linux] Linux中eventfd的使用" itemprop="url">[Linux] Linux中eventfd的使用</a>
+      <a href="/2017/06/28/[html] link标签/" title="[html] link标签" itemprop="url">[html] link标签</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-28T09:55:37.000Z" itemprop="datePublished"> Published 2017-06-28</time>
+    <time datetime="2017-06-28T10:03:18.000Z" itemprop="datePublished"> Published 2017-06-28</time>
     
   </p>
 </header>
@@ -101,18 +113,31 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux中eventfd的使用"><span class="toc-number">1.</span> <span class="toc-text">Linux中eventfd的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#eventfd简介"><span class="toc-number">1.1.</span> <span class="toc-text">eventfd简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#event的主要接口"><span class="toc-number">1.2.</span> <span class="toc-text">event的主要接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例"><span class="toc-number">1.3.</span> <span class="toc-text">实例</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#属性"><span class="toc-number">2.</span> <span class="toc-text">属性</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#rel属性"><span class="toc-number">2.0.1.</span> <span class="toc-text">rel属性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例"><span class="toc-number">3.</span> <span class="toc-text">实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义和用法"><span class="toc-number">4.</span> <span class="toc-text">定义和用法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提示和注释"><span class="toc-number">5.</span> <span class="toc-text">提示和注释</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="Linux中eventfd的使用"><a href="#Linux中eventfd的使用" class="headerlink" title="Linux中eventfd的使用"></a>Linux中eventfd的使用</h2><h3 id="eventfd简介"><a href="#eventfd简介" class="headerlink" title="eventfd简介"></a>eventfd简介</h3><p>eventfd是用来实现多进程或多线程之间的事件通知的，常见的事件通知机制除了eventfd外，还有条件变量和管道等 方式。</p>
-<p>条件变量必须和互斥锁相结合使用，使用起来较麻烦，并且条件变量不能像eventfd一样为I/O事件驱动。</p>
-<p>管道可以和I/O复用很好的融合，但是管道比eventfd多用了一个文件描述符，而且 管道内核还得给其管理的缓冲区，eventfd则不需要。</p>
-<h3 id="event的主要接口"><a href="#event的主要接口" class="headerlink" title="event的主要接口"></a>event的主要接口</h3><p> eventfd的接口形式如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">eventfd</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> initval, <span class="keyword">int</span> flags)</span></span>;</div></pre></td></tr></table></figure>
-<p>eventfd()创建一个文件描述符，这个文件描述符用户可以通过等待其可读来实现事件通知，该通知靠内核来响应用户空间的应用事件。上述接口的第一个参数是由内核来保持的64位计数器，这个计算器由参数initval来初始化，一般设为0。</p>
-<p>第二个参数flags可以为EFD_NONBLOCK或EFD_CLOEXEC。</p>
-<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/eventfd.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pthread.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">int</span> fd;</div><div class="line"><span class="keyword">uint64_t</span> buffer;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">threadFunc</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</div><div class="line">  <span class="keyword">int</span> t;</div><div class="line">  <span class="keyword">while</span> (<span class="number">1</span>) &#123;</div><div class="line">    t = read(fd, &amp;buffer, <span class="keyword">sizeof</span>(buffer));</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">sizeof</span>(buffer) &lt; <span class="number">8</span>) &#123;</div><div class="line">      <span class="built_in">printf</span>(<span class="string">"buffer错误\n"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"t = %11u buffer = %11u\n"</span>, t, buffer);</div><div class="line">    <span class="keyword">if</span> (t == <span class="number">8</span>) &#123;</div><div class="line">      <span class="built_in">printf</span>(<span class="string">"唤醒成功\n"</span>);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">  <span class="keyword">uint64_t</span> buf = <span class="number">1</span>;</div><div class="line">  <span class="keyword">int</span> ret;</div><div class="line">  <span class="keyword">pthread_t</span> tid;</div><div class="line">  <span class="keyword">if</span> ((fd = eventfd(<span class="number">0</span>, <span class="number">0</span>)) == <span class="number">-1</span>) &#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"创建失败\n"</span>);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">if</span> (pthread_create(&amp;tid, <span class="literal">NULL</span>, threadFunc, <span class="literal">NULL</span>) &lt; <span class="number">0</span>) &#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"线程创建失败\n"</span>);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">while</span> (<span class="number">1</span>) &#123;</div><div class="line">    ret = write(fd, &amp;buf, <span class="keyword">sizeof</span>(buf));</div><div class="line">    <span class="keyword">if</span> (ret != <span class="number">8</span>) &#123;</div><div class="line">      <span class="built_in">printf</span>(<span class="string">"写错误\n"</span>);</div><div class="line">    &#125;</div><div class="line">    sleep(<span class="number">2</span>);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+		<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>link标签，当在文档中声明使用外接资源（比如CSS）时使用此标签，link是单独出现的</p>
+<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><ul>
+<li>href – 指定需要加载的资源(CSS文件)的地址URI </li>
+<li>media – 媒体类型</li>
+<li>rel – 指定链接类型,设定是指对象和链接目标的关系,可选值, link还可以用Shortcut Icon等</li>
+<li>rev – 指定链接类型</li>
+<li>type – 指定所连接文档的MIME类型，css的MIME是type/css,一般使用type=”text/css” </li>
+</ul>
+<h5 id="rel属性"><a href="#rel属性" class="headerlink" title="rel属性"></a>rel属性</h5><p>link标签中的rel属性，定义了文档和链接的关系，rel属性通常出现在a，link标签中，其通常具有下列属性值：</p>
+<ul>
+<li>Alternate – 定义交替出现的链接</li>
+<li>Stylesheet – 定义一个外部加载的样式表</li>
+<li>Start – 通知搜索引擎，文档的开始</li>
+<li>…</li>
+</ul>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>链接一个外部样式表</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"theme.css"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>其中，href用于指定需要加载的资源（比如CSS）的地址URI</p>
+<h3 id="定义和用法"><a href="#定义和用法" class="headerlink" title="定义和用法"></a>定义和用法</h3><p><code>&lt;link&gt;</code>标签定义文档与外部资源的关系</p>
+<p><code>&lt;link&gt;</code>标签最常见的用途是链接样式表</p>
+<h3 id="提示和注释"><a href="#提示和注释" class="headerlink" title="提示和注释"></a>提示和注释</h3><p>此元素只能存在于head部分，不过它可以出现任意次</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -120,13 +145,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  <a class="article-category-link" href="/categories/html/">html</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Linux-eventfd/">Linux, eventfd</a>
+  <span></span> <a href="/tags/html-link标签/">html, link标签</a>
   </div>
 
 </div>
@@ -135,7 +160,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2017/06/28/[Linux] Linux中eventfd的使用/" data-title="[Linux] Linux中eventfd的使用 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/06/28/[html] link标签/" data-title="[html] link标签 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -148,19 +173,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/06/28/[Linux] Linux网络编程/" title="[Linux] Linux网络编程">
-  <strong>上一篇：</strong><br/>
-  <span>
-  [Linux] Linux网络编程</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/06/28/[数据库] MySQL UPDATE查询/"  title="[数据库] MySQL UPDATE查询">
+<a href="/2017/06/28/[html] p标签/"  title="[html] p标签">
  <strong>下一篇：</strong><br/> 
- <span>[数据库] MySQL UPDATE查询
+ <span>[html] p标签
 </span>
 </a>
 </div>
@@ -169,7 +186,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2017/06/28/[Linux] Linux中eventfd的使用/" data-title="[Linux] Linux中eventfd的使用" data-url="http://yoursite.com/2017/06/28/[Linux] Linux中eventfd的使用/"></div>
+	<div class="ds-thread" data-thread-key="2017/06/28/[html] link标签/" data-title="[html] link标签" data-url="http://yoursite.com/2017/06/28/[html] link标签/"></div>
 </section>
 
 
@@ -180,7 +197,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux中eventfd的使用"><span class="toc-number">1.</span> <span class="toc-text">Linux中eventfd的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#eventfd简介"><span class="toc-number">1.1.</span> <span class="toc-text">eventfd简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#event的主要接口"><span class="toc-number">1.2.</span> <span class="toc-text">event的主要接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例"><span class="toc-number">1.3.</span> <span class="toc-text">实例</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#属性"><span class="toc-number">2.</span> <span class="toc-text">属性</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#rel属性"><span class="toc-number">2.0.1.</span> <span class="toc-text">rel属性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例"><span class="toc-number">3.</span> <span class="toc-text">实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义和用法"><span class="toc-number">4.</span> <span class="toc-text">定义和用法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提示和注释"><span class="toc-number">5.</span> <span class="toc-text">提示和注释</span></a></li></ol>
  
   </div>
 
