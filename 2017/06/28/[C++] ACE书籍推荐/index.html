@@ -4,35 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>[C++] C++11 bind 的用法 | Glemontree&#39;s blog</title>
+    <title>[C++] ACE书籍推荐 | Glemontree&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Glemontree">
     
 
     
-    <meta name="description" content="BindBind可用于绑定函数、成员函数、函数对象、成员变量，bind函数支持最多10个自定义参数
-1234int f(int a, int b) &amp;#123;	return a + b;&amp;#125;std::bind(f, 5, std::placeholders::_1)(x); // 相当于执行了f(5, x);
-在上面这段代码中：
-
-std::bind函数返回绑定对象，后面跟的(x)表示传">
+    <meta name="description" content="《ACE程序员指南：网络与系统编程的使用设计模式》（简称：APG）《C++网络编程：运用ACE和模式消除复杂性 卷1》（简称：C++NPv1）《C++网络编程：基于ACE和框架的系统化复用 卷2》（简称：C++NPv2）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[C++] C++11 bind 的用法">
-<meta property="og:url" content="http://yoursite.com/2017/06/28/[C++] C++11 bind 的用法/index.html">
+<meta property="og:title" content="[C++] ACE书籍推荐">
+<meta property="og:url" content="http://yoursite.com/2017/06/28/[C++] ACE书籍推荐/index.html">
 <meta property="og:site_name" content="Glemontree's blog">
-<meta property="og:description" content="BindBind可用于绑定函数、成员函数、函数对象、成员变量，bind函数支持最多10个自定义参数
-1234int f(int a, int b) &amp;#123;	return a + b;&amp;#125;std::bind(f, 5, std::placeholders::_1)(x); // 相当于执行了f(5, x);
-在上面这段代码中：
-
-std::bind函数返回绑定对象，后面跟的(x)表示传">
-<meta property="og:updated_time" content="2017-06-28T10:16:53.621Z">
+<meta property="og:description" content="《ACE程序员指南：网络与系统编程的使用设计模式》（简称：APG）《C++网络编程：运用ACE和模式消除复杂性 卷1》（简称：C++NPv1）《C++网络编程：基于ACE和框架的系统化复用 卷2》（简称：C++NPv2）">
+<meta property="og:updated_time" content="2017-06-28T10:26:45.088Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[C++] C++11 bind 的用法">
-<meta name="twitter:description" content="BindBind可用于绑定函数、成员函数、函数对象、成员变量，bind函数支持最多10个自定义参数
-1234int f(int a, int b) &amp;#123;	return a + b;&amp;#125;std::bind(f, 5, std::placeholders::_1)(x); // 相当于执行了f(5, x);
-在上面这段代码中：
-
-std::bind函数返回绑定对象，后面跟的(x)表示传">
+<meta name="twitter:title" content="[C++] ACE书籍推荐">
+<meta name="twitter:description" content="《ACE程序员指南：网络与系统编程的使用设计模式》（简称：APG）《C++网络编程：运用ACE和模式消除复杂性 卷1》（简称：C++NPv1）《C++网络编程：基于ACE和框架的系统化复用 卷2》（简称：C++NPv2）">
 
     
     <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
@@ -91,14 +79,14 @@ std::bind函数返回绑定对象，后面跟的(x)表示传">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/06/28/[C++] C++11 bind 的用法/" title="[C++] C++11 bind 的用法" itemprop="url">[C++] C++11 bind 的用法</a>
+      <a href="/2017/06/28/[C++] ACE书籍推荐/" title="[C++] ACE书籍推荐" itemprop="url">[C++] ACE书籍推荐</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-28T10:16:33.000Z" itemprop="datePublished"> Published 2017-06-28</time>
+    <time datetime="2017-06-28T10:26:30.000Z" itemprop="datePublished"> Published 2017-06-28</time>
     
   </p>
 </header>
@@ -107,25 +95,11 @@ std::bind函数返回绑定对象，后面跟的(x)表示传">
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Bind"><span class="toc-number">1.</span> <span class="toc-text">Bind</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Bind和类成员函数"><span class="toc-number">2.</span> <span class="toc-text">Bind和类成员函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#bind举例"><span class="toc-number">3.</span> <span class="toc-text">bind举例</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#《ACE程序员指南：网络与系统编程的使用设计模式》（简称：APG）"><span class="toc-number">1.</span> <span class="toc-text">《ACE程序员指南：网络与系统编程的使用设计模式》（简称：APG）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#《C-网络编程：运用ACE和模式消除复杂性-卷1》（简称：C-NPv1）"><span class="toc-number">2.</span> <span class="toc-text">《C++网络编程：运用ACE和模式消除复杂性 卷1》（简称：C++NPv1）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#《C-网络编程：基于ACE和框架的系统化复用-卷2》（简称：C-NPv2）"><span class="toc-number">3.</span> <span class="toc-text">《C++网络编程：基于ACE和框架的系统化复用 卷2》（简称：C++NPv2）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#"><span class="toc-number">4.</span> <span class="toc-text"> </span></a></li></ol>
 		
 		</div>
 		
-		<h1 id="Bind"><a href="#Bind" class="headerlink" title="Bind"></a>Bind</h1><p>Bind可用于绑定函数、成员函数、函数对象、成员变量，bind函数支持最多10个自定义参数</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</div><div class="line">	<span class="keyword">return</span> a + b;</div><div class="line">&#125;</div><div class="line"><span class="built_in">std</span>::bind(f, <span class="number">5</span>, <span class="built_in">std</span>::placeholders::_1)(x); <span class="comment">// 相当于执行了f(5, x);</span></div></pre></td></tr></table></figure>
-<p>在上面这段代码中：</p>
-<ul>
-<li>std::bind函数返回绑定对象，后面跟的(x)表示传参x并执行;</li>
-<li>std::placeholders::_1是占位符，表示调用时的第一个参数，这段代码里表示x;</li>
-<li>如果代码是std::bind(f, std::placeholders::_2, std::placeholders::_1)(x, y)则表示执行f(y, x)</li>
-<li>调用前传入的函数参数会被复制并保存在std::bind返回的对象中，比如之前的std::bind(f, 5, std::placeholders::_1)中的5就被存储在了返回的对象中，所以为了性能上考虑，建议传入的类型为引用或指针，避免结构复制</li>
-</ul>
-<h1 id="Bind和类成员函数"><a href="#Bind和类成员函数" class="headerlink" title="Bind和类成员函数"></a>Bind和类成员函数</h1><p>此时需要注意的是成员函数绑定的第二个参数必须是类实例：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> X &#123;</div><div class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> a)</span></span>;</div><div class="line">&#125;;</div><div class="line">X x;</div><div class="line"><span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;X&gt; p(<span class="keyword">new</span> X);</div><div class="line"><span class="keyword">int</span> i = <span class="number">5</span>;</div><div class="line"><span class="built_in">std</span>::bind(&amp;X::f, ref(x), <span class="built_in">std</span>::placeholders::_1)(i); <span class="comment">//相当于执行了x.f(i)</span></div><div class="line"><span class="built_in">std</span>::bind(&amp;X::f, &amp;x, <span class="built_in">std</span>::placeholders::_1)(i); <span class="comment">// 相当于执行了(&amp;x)-&gt;f(i)</span></div><div class="line"><span class="built_in">std</span>::bind(&amp;X::f, x, <span class="built_in">std</span>::placeholders::_1)(i); <span class="comment">// 复制x，并执行（复制的x）.f(i)</span></div><div class="line"><span class="built_in">std</span>::bind(&amp;X::f, p, <span class="built_in">std</span>::placeholders::_1)(i); <span class="comment">//复制智能指针p，并执行（复制的p）-&gt;f(i)</span></div></pre></td></tr></table></figure>
-<p>由于第二个参数的类实例的保存方式与参数一致，所以也建议传入类引用或类指针，或者智能指针</p>
-<h1 id="bind举例"><a href="#bind举例" class="headerlink" title="bind举例"></a>bind举例</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;memory&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;functional&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">class</span> Button &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">	<span class="built_in">std</span>::function&lt;<span class="keyword">void</span>(<span class="keyword">int</span>)&gt; onClick;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">class</span> Player&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">play</span><span class="params">(<span class="keyword">void</span>* sender, <span class="keyword">int</span> param)</span> </span>&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"Play: %d =&gt; %d\n"</span>, (<span class="keyword">int</span>)sender, param);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">stop</span><span class="params">(<span class="keyword">void</span>* sender, <span class="keyword">int</span> param)</span> </span>&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"Play: %d =&gt; %d\n"</span>, (<span class="keyword">int</span>)sender, param);</div><div class="line">	&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Button playButton, stopButton;</div><div class="line">Player thePlayer;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">connect</span><span class="params">()</span> </span>&#123;</div><div class="line">	playButton.onClick = <span class="built_in">std</span>::Bind(&amp;Player::play, &amp;thePlayer, &amp;playButton, <span class="built_in">std</span>::placeholders::_1);</div><div class="line">	stopButton.onClick = <span class="built_in">std</span>::Bind(&amp;Player::stop, &amp;thePlayer, &amp;stopButton, <span class="built_in">std</span>::placeholders::_1);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">	connect();</div><div class="line">	playButton.onClick(<span class="number">0</span>);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>上面这段程序其实就是bind在回调函数中的用法，Button类中有一个回调函数onClick()，需要根据不同的场合实现不同的功能，使用bind函数为playButton绑定了play()函数，而为stopButton绑定了stop()函数，这是bind()函数在回调这方面的一个典型用法。</p>
-  
+		<h3 id="《ACE程序员指南：网络与系统编程的使用设计模式》（简称：APG）"><a href="#《ACE程序员指南：网络与系统编程的使用设计模式》（简称：APG）" class="headerlink" title="《ACE程序员指南：网络与系统编程的使用设计模式》（简称：APG）"></a>《ACE程序员指南：网络与系统编程的使用设计模式》（简称：APG）</h3><h3 id="《C-网络编程：运用ACE和模式消除复杂性-卷1》（简称：C-NPv1）"><a href="#《C-网络编程：运用ACE和模式消除复杂性-卷1》（简称：C-NPv1）" class="headerlink" title="《C++网络编程：运用ACE和模式消除复杂性 卷1》（简称：C++NPv1）"></a>《C++网络编程：运用ACE和模式消除复杂性 卷1》（简称：C++NPv1）</h3><h3 id="《C-网络编程：基于ACE和框架的系统化复用-卷2》（简称：C-NPv2）"><a href="#《C-网络编程：基于ACE和框架的系统化复用-卷2》（简称：C-NPv2）" class="headerlink" title="《C++网络编程：基于ACE和框架的系统化复用 卷2》（简称：C++NPv2）"></a>《C++网络编程：基于ACE和框架的系统化复用 卷2》（简称：C++NPv2）</h3><h3 id=""><a href="#" class="headerlink" title=" "></a> </h3>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -138,7 +112,7 @@ std::bind函数返回绑定对象，后面跟的(x)表示传">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/C-11-Bind/">C++11, Bind</a>
+  <span></span> <a href="/tags/C-ACE-网络/">C++, ACE, 网络</a>
   </div>
 
 </div>
@@ -147,7 +121,7 @@ std::bind函数返回绑定对象，后面跟的(x)表示传">
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2017/06/28/[C++] C++11 bind 的用法/" data-title="[C++] C++11 bind 的用法 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/06/28/[C++] ACE书籍推荐/" data-title="[C++] ACE书籍推荐 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -160,19 +134,11 @@ std::bind函数返回绑定对象，后面跟的(x)表示传">
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/06/28/[C++] BOOST_STATIC_ASSERT和assert的区别/" title="[C++] BOOST_STATIC_ASSERT和assert的区别">
-  <strong>上一篇：</strong><br/>
-  <span>
-  [C++] BOOST_STATIC_ASSERT和assert的区别</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/06/28/[C++] C++中boostany的使用/"  title="[C++] C++中boost::any的使用">
+<a href="/2017/06/28/[android] android assets目录下资源使用/"  title="[android] android assets目录下资源使用">
  <strong>下一篇：</strong><br/> 
- <span>[C++] C++中boost::any的使用
+ <span>[android] android assets目录下资源使用
 </span>
 </a>
 </div>
@@ -181,7 +147,7 @@ std::bind函数返回绑定对象，后面跟的(x)表示传">
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2017/06/28/[C++] C++11 bind 的用法/" data-title="[C++] C++11 bind 的用法" data-url="http://yoursite.com/2017/06/28/[C++] C++11 bind 的用法/"></div>
+	<div class="ds-thread" data-thread-key="2017/06/28/[C++] ACE书籍推荐/" data-title="[C++] ACE书籍推荐" data-url="http://yoursite.com/2017/06/28/[C++] ACE书籍推荐/"></div>
 </section>
 
 
@@ -192,7 +158,7 @@ std::bind函数返回绑定对象，后面跟的(x)表示传">
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Bind"><span class="toc-number">1.</span> <span class="toc-text">Bind</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Bind和类成员函数"><span class="toc-number">2.</span> <span class="toc-text">Bind和类成员函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#bind举例"><span class="toc-number">3.</span> <span class="toc-text">bind举例</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#《ACE程序员指南：网络与系统编程的使用设计模式》（简称：APG）"><span class="toc-number">1.</span> <span class="toc-text">《ACE程序员指南：网络与系统编程的使用设计模式》（简称：APG）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#《C-网络编程：运用ACE和模式消除复杂性-卷1》（简称：C-NPv1）"><span class="toc-number">2.</span> <span class="toc-text">《C++网络编程：运用ACE和模式消除复杂性 卷1》（简称：C++NPv1）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#《C-网络编程：基于ACE和框架的系统化复用-卷2》（简称：C-NPv2）"><span class="toc-number">3.</span> <span class="toc-text">《C++网络编程：基于ACE和框架的系统化复用 卷2》（简称：C++NPv2）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#"><span class="toc-number">4.</span> <span class="toc-text"> </span></a></li></ol>
  
   </div>
 
