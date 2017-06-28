@@ -4,23 +4,26 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>[C++] 推荐一个在线编辑、编译、运行程序的网页 | Glemontree&#39;s blog</title>
+    <title>[Struts] Struts中OGNL | Glemontree&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Glemontree">
     
 
     
-    <meta name="description" content="记录我学习的每一步">
+    <meta name="description" content="Struts中OGNL一、OGNL概念OGNL（Object Graph Navigation Language），即对象图导航语言，是一种功能强大的表达式语言，可以任意存取对象的属性或者调用对象的方法。
+OGNL表达式的计算是围绕OGNL上下文进行的，OGNL上下文实际上是一个Map对象，由ognl.Context类来表示，它里面可以存放很多个JavaBean对象，它有一个上下文根对象，上下文中">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[C++] 推荐一个在线编辑、编译、运行程序的网页">
-<meta property="og:url" content="http://yoursite.com/2017/06/28/[C++] 推荐一个在线编辑、编译、运行程序的网页/index.html">
+<meta property="og:title" content="[Struts] Struts中OGNL">
+<meta property="og:url" content="http://yoursite.com/2017/06/28/[Struts] Struts中OGNL/index.html">
 <meta property="og:site_name" content="Glemontree's blog">
-<meta property="og:description" content="记录我学习的每一步">
-<meta property="og:updated_time" content="2017-06-28T09:21:53.603Z">
+<meta property="og:description" content="Struts中OGNL一、OGNL概念OGNL（Object Graph Navigation Language），即对象图导航语言，是一种功能强大的表达式语言，可以任意存取对象的属性或者调用对象的方法。
+OGNL表达式的计算是围绕OGNL上下文进行的，OGNL上下文实际上是一个Map对象，由ognl.Context类来表示，它里面可以存放很多个JavaBean对象，它有一个上下文根对象，上下文中">
+<meta property="og:updated_time" content="2017-06-28T09:50:44.519Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[C++] 推荐一个在线编辑、编译、运行程序的网页">
-<meta name="twitter:description" content="记录我学习的每一步">
+<meta name="twitter:title" content="[Struts] Struts中OGNL">
+<meta name="twitter:description" content="Struts中OGNL一、OGNL概念OGNL（Object Graph Navigation Language），即对象图导航语言，是一种功能强大的表达式语言，可以任意存取对象的属性或者调用对象的方法。
+OGNL表达式的计算是围绕OGNL上下文进行的，OGNL上下文实际上是一个Map对象，由ognl.Context类来表示，它里面可以存放很多个JavaBean对象，它有一个上下文根对象，上下文中">
 
     
     <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
@@ -79,14 +82,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/06/28/[C++] 推荐一个在线编辑、编译、运行程序的网页/" title="[C++] 推荐一个在线编辑、编译、运行程序的网页" itemprop="url">[C++] 推荐一个在线编辑、编译、运行程序的网页</a>
+      <a href="/2017/06/28/[Struts] Struts中OGNL/" title="[Struts] Struts中OGNL" itemprop="url">[Struts] Struts中OGNL</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-28T09:21:53.000Z" itemprop="datePublished"> 發表於 2017-06-28</time>
+    <time datetime="2017-06-28T09:50:24.000Z" itemprop="datePublished"> 發表於 2017-06-28</time>
     
   </p>
 </header>
@@ -95,15 +98,41 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Struts中OGNL"><span class="toc-number">1.</span> <span class="toc-text">Struts中OGNL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、OGNL概念"><span class="toc-number">1.1.</span> <span class="toc-text">一、OGNL概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、值栈"><span class="toc-number">1.2.</span> <span class="toc-text">二、值栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、OGNL中三个重要的符号：-、-、"><span class="toc-number">1.3.</span> <span class="toc-text">三、OGNL中三个重要的符号：#、%、$</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-符号"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 #符号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-符号"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.3 $符号</span></a></li></ol></li></ol></li></ol>
 		
 		</div>
 		
-		  
+		<h1 id="Struts中OGNL"><a href="#Struts中OGNL" class="headerlink" title="Struts中OGNL"></a>Struts中OGNL</h1><h2 id="一、OGNL概念"><a href="#一、OGNL概念" class="headerlink" title="一、OGNL概念"></a>一、OGNL概念</h2><p>OGNL（Object Graph Navigation Language），即对象图导航语言，是一种功能强大的表达式语言，可以任意存取对象的属性或者调用对象的方法。</p>
+<p>OGNL表达式的计算是围绕OGNL上下文进行的，OGNL上下文实际上是一个Map对象，由ognl.Context类来表示，它里面可以存放很多个JavaBean对象，它有一个上下文根对象，上下文中的根对象可以直接使用名来访问或直接使用它的属性名来访问它的属性值，否则要加前缀”#key”。</p>
+<p>Struts的标签库都是使用OGNL表达式来访问ActionContext中的对象数据的。</p>
+<p>Struts将ActionContext设置为OGNL上下文，并将值栈作为OGNL的根对象放置到ActionContext中。</p>
+<h2 id="二、值栈"><a href="#二、值栈" class="headerlink" title="二、值栈"></a>二、值栈</h2><p>访问值栈中的对象不用“#”，Struts总是将当前Action实例放置在栈顶，所以在OGNL中引用Action中的属性也不需要“#”。</p>
+<h2 id="三、OGNL中三个重要的符号：-、-、"><a href="#三、OGNL中三个重要的符号：-、-、" class="headerlink" title="三、OGNL中三个重要的符号：#、%、$"></a>三、OGNL中三个重要的符号：#、%、$</h2><h3 id="3-1-符号"><a href="#3-1-符号" class="headerlink" title="3.1 #符号"></a>3.1 #符号</h3><ul>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">- 访问非根对象属性，例如#session.msg表达式，由于Struts中值栈被视为根对象，所以访问其他非根对象时，需要加#前缀，实际上#相当于ActionContext.getContext()，#session.msg	表达式相当于ActionContext.getContext().getSession().getAttribute(&quot;msg&quot;)；</div><div class="line"></div><div class="line">- 用于过滤和投影集合，如persons.&#123;?#this.age&gt;25&#125;, persons.&#123;?#this.name==&quot;pla1&quot;&#125;.&#123;age&#125;[0]；</div><div class="line"></div><div class="line">- 用于构造map，例如#&#123;&apos;foo1&apos;:&apos;bar1&apos;, &apos;foo2&apos;:&apos;bar2&apos;&#125;。</div><div class="line"></div><div class="line">  | 名称          | 作用                                      | 例子                                       |</div><div class="line">  | ----------- | --------------------------------------- | ---------------------------------------- |</div><div class="line">  | parameters  | 包含当前HTTP请求的Map                          | ```#parameters.id[0]=request.getParameter(&quot;id&quot;)``` |</div><div class="line">  | request     | 包含当前HttpServletRequest属性的Map            | ```#request.username=request.getAttribute(&quot;username&quot;)``` |</div><div class="line">  | session     | 包含当前HttpSession属性的Map                   | ```#session.username=session.getAttribute(&quot;username&quot;)``` |</div><div class="line">  | application | 包含当前ServletContext属性的Map                | ```#application.username=application.getAttribute(&quot;username&quot;)``` |</div><div class="line">  | attr        | 用于按照request&gt;session&gt;application的顺序访问其属性 | ```#attr.username```相当于按照顺序在以上三个范围内读取username的属性，直到找到为止 |</div><div class="line"></div><div class="line">  注意：也可以写成#request[&apos;username&apos;] #session[&apos;username&apos;] #application[&apos;username&apos;]</div><div class="line"></div><div class="line">### 3.2 %符号</div><div class="line"></div><div class="line">%符号的用途是在标志的属性为字符串类型时，计算OGNL表达式的值，即在struts字符串中用%&#123;&#125;指出，其内部是一个OGNL表达式，需要解析，例如：</div><div class="line"></div><div class="line">```jsp</div><div class="line">&lt;h3&gt;构造Map&lt;/h3&gt;</div><div class="line">&lt;s:set name=&quot;foobar&quot; value=&quot;#&#123;&apos;foo1&apos;:&apos;bar1&apos;,&apos;foo2&apos;:&apos;bar2&apos;&#125;&quot;/&gt;</div><div class="line">&lt;p&gt;The value of key &quot;fool&quot; is &lt;s:property value=&quot;#foobar[&apos;foo1&apos;]&quot;/&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt;不使用%：&lt;s:url value=&quot;#foobar[&apos;foo1&apos;]&quot;/&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt;使用%：&lt;s:url value=&quot;%&#123;#foobar[&apos;foo1&apos;]&#125;&quot;/&gt;&lt;/p&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>运行结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">the value of key &quot;fool&quot; is bar1</div><div class="line">不使用%：#foobar[&apos;foo1&apos;]</div><div class="line">使用%：bar1</div></pre></td></tr></table></figure>
+<h3 id="3-3-符号"><a href="#3-3-符号" class="headerlink" title="3.3 $符号"></a>3.3 $符号</h3><p>$符号有两个用途：</p>
+<ul>
+<li>在国际化资源文件中，引用OGNL表达式，例如国际化资源文件中的代码：reg.agerange=国际化资源信息：年龄必须在<code>${min}</code>同<code>${max}</code>之间</li>
+<li>在Struts 框架的配置文件中引用OGNL表达式。</li>
+</ul>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Struts/">Struts</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Struts-OGNL/">Struts, OGNL</a>
+  </div>
 
 </div>
 
@@ -111,7 +140,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2017/06/28/[C++] 推荐一个在线编辑、编译、运行程序的网页/" data-title="[C++] 推荐一个在线编辑、编译、运行程序的网页 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/06/28/[Struts] Struts中OGNL/" data-title="[Struts] Struts中OGNL | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -124,19 +153,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/06/28/[DB] 数据库中%和_的用法/" title="[DB] 数据库中%和_的用法">
-  <strong>上一篇：</strong><br/>
-  <span>
-  [DB] 数据库中%和_的用法</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/06/28/[CMake] 推荐一个关于CMake的一个很详细的教程/"  title="[CMake] 推荐一个关于CMake的一个很详细的教程">
+<a href="/2017/06/28/[TCPIP] TCP与UDP不同的包处理方式/"  title="[TCP/IP] TCP与UDP不同的包处理方式">
  <strong>下一篇：</strong><br/> 
- <span>[CMake] 推荐一个关于CMake的一个很详细的教程
+ <span>[TCP/IP] TCP与UDP不同的包处理方式
 </span>
 </a>
 </div>
@@ -145,7 +166,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2017/06/28/[C++] 推荐一个在线编辑、编译、运行程序的网页/" data-title="[C++] 推荐一个在线编辑、编译、运行程序的网页" data-url="http://yoursite.com/2017/06/28/[C++] 推荐一个在线编辑、编译、运行程序的网页/"></div>
+	<div class="ds-thread" data-thread-key="2017/06/28/[Struts] Struts中OGNL/" data-title="[Struts] Struts中OGNL" data-url="http://yoursite.com/2017/06/28/[Struts] Struts中OGNL/"></div>
 </section>
 
 
@@ -156,7 +177,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目錄</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Struts中OGNL"><span class="toc-number">1.</span> <span class="toc-text">Struts中OGNL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、OGNL概念"><span class="toc-number">1.1.</span> <span class="toc-text">一、OGNL概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、值栈"><span class="toc-number">1.2.</span> <span class="toc-text">二、值栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、OGNL中三个重要的符号：-、-、"><span class="toc-number">1.3.</span> <span class="toc-text">三、OGNL中三个重要的符号：#、%、$</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-符号"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 #符号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-符号"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.3 $符号</span></a></li></ol></li></ol></li></ol>
  
   </div>
 
