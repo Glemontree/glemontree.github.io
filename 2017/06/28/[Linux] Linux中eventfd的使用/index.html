@@ -4,38 +4,29 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>[C++] 前置++和后置++的区别 | Glemontree&#39;s blog</title>
+    <title>[Linux] Linux中eventfd的使用 | Glemontree&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Glemontree">
     
 
     
-    <meta name="description" content="前置++和后置++的区别前置++和后置++在程序开发中使用十分频繁，那么你是否真正了解它们的区别呢？
-其实++i相当于下面的代码：
-12i += 1;return i;
-而i++则相当于下面的代码：
-123j = i;i += 1;return j;
-对于内建数据类型，其实前置++和后置++的效率相差不大，而对于自定义的数据类型，前置++返回对象的引用，而后置++则返回对象的值，所以导致在大对象的">
+    <meta name="description" content="Linux中eventfd的使用eventfd简介eventfd是用来实现多进程或多线程之间的事件通知的，常见的事件通知机制除了eventfd外，还有条件变量和管道等 方式。
+条件变量必须和互斥锁相结合使用，使用起来较麻烦，并且条件变量不能像eventfd一样为I/O事件驱动。
+管道可以和I/O复用很好的融合，但是管道比eventfd多用了一个文件描述符，而且 管道内核还得给其管理的缓冲区，eve">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[C++] 前置++和后置++的区别">
-<meta property="og:url" content="http://yoursite.com/2017/06/28/[C++] 前置++和后置++的区别/index.html">
+<meta property="og:title" content="[Linux] Linux中eventfd的使用">
+<meta property="og:url" content="http://yoursite.com/2017/06/28/[Linux] Linux中eventfd的使用/index.html">
 <meta property="og:site_name" content="Glemontree's blog">
-<meta property="og:description" content="前置++和后置++的区别前置++和后置++在程序开发中使用十分频繁，那么你是否真正了解它们的区别呢？
-其实++i相当于下面的代码：
-12i += 1;return i;
-而i++则相当于下面的代码：
-123j = i;i += 1;return j;
-对于内建数据类型，其实前置++和后置++的效率相差不大，而对于自定义的数据类型，前置++返回对象的引用，而后置++则返回对象的值，所以导致在大对象的">
-<meta property="og:updated_time" content="2017-06-28T09:28:19.200Z">
+<meta property="og:description" content="Linux中eventfd的使用eventfd简介eventfd是用来实现多进程或多线程之间的事件通知的，常见的事件通知机制除了eventfd外，还有条件变量和管道等 方式。
+条件变量必须和互斥锁相结合使用，使用起来较麻烦，并且条件变量不能像eventfd一样为I/O事件驱动。
+管道可以和I/O复用很好的融合，但是管道比eventfd多用了一个文件描述符，而且 管道内核还得给其管理的缓冲区，eve">
+<meta property="og:updated_time" content="2017-06-28T09:55:54.665Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[C++] 前置++和后置++的区别">
-<meta name="twitter:description" content="前置++和后置++的区别前置++和后置++在程序开发中使用十分频繁，那么你是否真正了解它们的区别呢？
-其实++i相当于下面的代码：
-12i += 1;return i;
-而i++则相当于下面的代码：
-123j = i;i += 1;return j;
-对于内建数据类型，其实前置++和后置++的效率相差不大，而对于自定义的数据类型，前置++返回对象的引用，而后置++则返回对象的值，所以导致在大对象的">
+<meta name="twitter:title" content="[Linux] Linux中eventfd的使用">
+<meta name="twitter:description" content="Linux中eventfd的使用eventfd简介eventfd是用来实现多进程或多线程之间的事件通知的，常见的事件通知机制除了eventfd外，还有条件变量和管道等 方式。
+条件变量必须和互斥锁相结合使用，使用起来较麻烦，并且条件变量不能像eventfd一样为I/O事件驱动。
+管道可以和I/O复用很好的融合，但是管道比eventfd多用了一个文件描述符，而且 管道内核还得给其管理的缓冲区，eve">
 
     
     <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
@@ -94,14 +85,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/06/28/[C++] 前置++和后置++的区别/" title="[C++] 前置++和后置++的区别" itemprop="url">[C++] 前置++和后置++的区别</a>
+      <a href="/2017/06/28/[Linux] Linux中eventfd的使用/" title="[Linux] Linux中eventfd的使用" itemprop="url">[Linux] Linux中eventfd的使用</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-28T09:27:34.000Z" itemprop="datePublished"> 發表於 2017-06-28</time>
+    <time datetime="2017-06-28T09:55:37.000Z" itemprop="datePublished"> 發表於 2017-06-28</time>
     
   </p>
 </header>
@@ -110,16 +101,18 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前置-和后置-的区别"><span class="toc-number">1.</span> <span class="toc-text">前置++和后置++的区别</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux中eventfd的使用"><span class="toc-number">1.</span> <span class="toc-text">Linux中eventfd的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#eventfd简介"><span class="toc-number">1.1.</span> <span class="toc-text">eventfd简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#event的主要接口"><span class="toc-number">1.2.</span> <span class="toc-text">event的主要接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例"><span class="toc-number">1.3.</span> <span class="toc-text">实例</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<h1 id="前置-和后置-的区别"><a href="#前置-和后置-的区别" class="headerlink" title="前置++和后置++的区别"></a>前置++和后置++的区别</h1><p>前置++和后置++在程序开发中使用十分频繁，那么你是否真正了解它们的区别呢？</p>
-<p>其实++i相当于下面的代码：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">i += <span class="number">1</span>;</div><div class="line"><span class="keyword">return</span> i;</div></pre></td></tr></table></figure>
-<p>而i++则相当于下面的代码：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">j = i;</div><div class="line">i += <span class="number">1</span>;</div><div class="line"><span class="keyword">return</span> j;</div></pre></td></tr></table></figure>
-<p>对于内建数据类型，其实前置++和后置++的效率相差不大，而对于自定义的数据类型，前置++返回对象的引用，而后置++则返回对象的值，所以导致在大对象的时候产生了较大的复制开销，引起效率降低。</p>
+		<h2 id="Linux中eventfd的使用"><a href="#Linux中eventfd的使用" class="headerlink" title="Linux中eventfd的使用"></a>Linux中eventfd的使用</h2><h3 id="eventfd简介"><a href="#eventfd简介" class="headerlink" title="eventfd简介"></a>eventfd简介</h3><p>eventfd是用来实现多进程或多线程之间的事件通知的，常见的事件通知机制除了eventfd外，还有条件变量和管道等 方式。</p>
+<p>条件变量必须和互斥锁相结合使用，使用起来较麻烦，并且条件变量不能像eventfd一样为I/O事件驱动。</p>
+<p>管道可以和I/O复用很好的融合，但是管道比eventfd多用了一个文件描述符，而且 管道内核还得给其管理的缓冲区，eventfd则不需要。</p>
+<h3 id="event的主要接口"><a href="#event的主要接口" class="headerlink" title="event的主要接口"></a>event的主要接口</h3><p> eventfd的接口形式如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">eventfd</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> initval, <span class="keyword">int</span> flags)</span></span>;</div></pre></td></tr></table></figure>
+<p>eventfd()创建一个文件描述符，这个文件描述符用户可以通过等待其可读来实现事件通知，该通知靠内核来响应用户空间的应用事件。上述接口的第一个参数是由内核来保持的64位计数器，这个计算器由参数initval来初始化，一般设为0。</p>
+<p>第二个参数flags可以为EFD_NONBLOCK或EFD_CLOEXEC。</p>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/eventfd.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pthread.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">int</span> fd;</div><div class="line"><span class="keyword">uint64_t</span> buffer;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">threadFunc</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</div><div class="line">  <span class="keyword">int</span> t;</div><div class="line">  <span class="keyword">while</span> (<span class="number">1</span>) &#123;</div><div class="line">    t = read(fd, &amp;buffer, <span class="keyword">sizeof</span>(buffer));</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">sizeof</span>(buffer) &lt; <span class="number">8</span>) &#123;</div><div class="line">      <span class="built_in">printf</span>(<span class="string">"buffer错误\n"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"t = %11u buffer = %11u\n"</span>, t, buffer);</div><div class="line">    <span class="keyword">if</span> (t == <span class="number">8</span>) &#123;</div><div class="line">      <span class="built_in">printf</span>(<span class="string">"唤醒成功\n"</span>);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">  <span class="keyword">uint64_t</span> buf = <span class="number">1</span>;</div><div class="line">  <span class="keyword">int</span> ret;</div><div class="line">  <span class="keyword">pthread_t</span> tid;</div><div class="line">  <span class="keyword">if</span> ((fd = eventfd(<span class="number">0</span>, <span class="number">0</span>)) == <span class="number">-1</span>) &#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"创建失败\n"</span>);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">if</span> (pthread_create(&amp;tid, <span class="literal">NULL</span>, threadFunc, <span class="literal">NULL</span>) &lt; <span class="number">0</span>) &#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"线程创建失败\n"</span>);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">while</span> (<span class="number">1</span>) &#123;</div><div class="line">    ret = write(fd, &amp;buf, <span class="keyword">sizeof</span>(buf));</div><div class="line">    <span class="keyword">if</span> (ret != <span class="number">8</span>) &#123;</div><div class="line">      <span class="built_in">printf</span>(<span class="string">"写错误\n"</span>);</div><div class="line">    &#125;</div><div class="line">    sleep(<span class="number">2</span>);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -127,13 +120,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/C/">C++</a>
+  <a class="article-category-link" href="/categories/Linux/">Linux</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/C/">C++</a><a href="/tags/前置/">前置++</a><a href="/tags/后置/">后置++</a>
+  <span></span> <a href="/tags/Linux-eventfd/">Linux, eventfd</a>
   </div>
 
 </div>
@@ -142,7 +135,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2017/06/28/[C++] 前置++和后置++的区别/" data-title="[C++] 前置++和后置++的区别 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/06/28/[Linux] Linux中eventfd的使用/" data-title="[Linux] Linux中eventfd的使用 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -155,19 +148,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/06/28/[C++] 零散知识点/" title="[C++] 零散知识点">
-  <strong>上一篇：</strong><br/>
-  <span>
-  [C++] 零散知识点</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/06/28/[设计模式] 适配器模式/"  title="[设计模式] 适配器模式">
+<a href="/2017/06/28/[数据库] MySQL UPDATE查询/"  title="[数据库] MySQL UPDATE查询">
  <strong>下一篇：</strong><br/> 
- <span>[设计模式] 适配器模式
+ <span>[数据库] MySQL UPDATE查询
 </span>
 </a>
 </div>
@@ -176,7 +161,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2017/06/28/[C++] 前置++和后置++的区别/" data-title="[C++] 前置++和后置++的区别" data-url="http://yoursite.com/2017/06/28/[C++] 前置++和后置++的区别/"></div>
+	<div class="ds-thread" data-thread-key="2017/06/28/[Linux] Linux中eventfd的使用/" data-title="[Linux] Linux中eventfd的使用" data-url="http://yoursite.com/2017/06/28/[Linux] Linux中eventfd的使用/"></div>
 </section>
 
 
@@ -187,7 +172,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目錄</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前置-和后置-的区别"><span class="toc-number">1.</span> <span class="toc-text">前置++和后置++的区别</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux中eventfd的使用"><span class="toc-number">1.</span> <span class="toc-text">Linux中eventfd的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#eventfd简介"><span class="toc-number">1.1.</span> <span class="toc-text">eventfd简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#event的主要接口"><span class="toc-number">1.2.</span> <span class="toc-text">event的主要接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例"><span class="toc-number">1.3.</span> <span class="toc-text">实例</span></a></li></ol></li></ol>
  
   </div>
 
