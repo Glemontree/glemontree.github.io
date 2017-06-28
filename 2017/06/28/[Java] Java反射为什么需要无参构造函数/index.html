@@ -4,44 +4,29 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>[DB] 数据库将一个表中数据插入到另外一张表中 | Glemontree&#39;s blog</title>
+    <title>[Java] Java反射为什么需要无参构造函数 | Glemontree&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Glemontree">
     
 
     
-    <meta name="description" content="两张表中的字段一致，并且希望插入全部数据：
-1INSERT INTO 目标表 SELECT * FROM 来源表;
-
-只导入指定字段：
-1INSERT INTO 目标表(字段1,字段2,...) SELECT 字段1,字段2,... FROM 来源表;
-
-只导入目标表中不存在的记录：
-1INSERT INTO 目标表(字段1,字段2,...) SELECT 字段1,字段2,... FROM 来源">
+    <meta name="description" content="Java反射为什么需要无参构造函数最近在学习Spring，Spring有个关键的技术就是IOC，即控制反转，其中用到得一个重要的技术就是反射，在学习的过程中发现如果不提供一个无参的构造函数程序会报错，查了一些资料后对Java反射为什么需要无参构造函数这一知识点进行记录。
+一般来说反射是这样实现的：
+12Class class = Class.forName(className);Object ob">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[DB] 数据库将一个表中数据插入到另外一张表中">
-<meta property="og:url" content="http://yoursite.com/2017/06/28/[DB] 数据库将一个表中数据插入到另外一张表中/index.html">
+<meta property="og:title" content="[Java] Java反射为什么需要无参构造函数">
+<meta property="og:url" content="http://yoursite.com/2017/06/28/[Java] Java反射为什么需要无参构造函数/index.html">
 <meta property="og:site_name" content="Glemontree's blog">
-<meta property="og:description" content="两张表中的字段一致，并且希望插入全部数据：
-1INSERT INTO 目标表 SELECT * FROM 来源表;
-
-只导入指定字段：
-1INSERT INTO 目标表(字段1,字段2,...) SELECT 字段1,字段2,... FROM 来源表;
-
-只导入目标表中不存在的记录：
-1INSERT INTO 目标表(字段1,字段2,...) SELECT 字段1,字段2,... FROM 来源">
-<meta property="og:updated_time" content="2017-06-28T09:25:11.567Z">
+<meta property="og:description" content="Java反射为什么需要无参构造函数最近在学习Spring，Spring有个关键的技术就是IOC，即控制反转，其中用到得一个重要的技术就是反射，在学习的过程中发现如果不提供一个无参的构造函数程序会报错，查了一些资料后对Java反射为什么需要无参构造函数这一知识点进行记录。
+一般来说反射是这样实现的：
+12Class class = Class.forName(className);Object ob">
+<meta property="og:updated_time" content="2017-06-28T09:59:44.110Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[DB] 数据库将一个表中数据插入到另外一张表中">
-<meta name="twitter:description" content="两张表中的字段一致，并且希望插入全部数据：
-1INSERT INTO 目标表 SELECT * FROM 来源表;
-
-只导入指定字段：
-1INSERT INTO 目标表(字段1,字段2,...) SELECT 字段1,字段2,... FROM 来源表;
-
-只导入目标表中不存在的记录：
-1INSERT INTO 目标表(字段1,字段2,...) SELECT 字段1,字段2,... FROM 来源">
+<meta name="twitter:title" content="[Java] Java反射为什么需要无参构造函数">
+<meta name="twitter:description" content="Java反射为什么需要无参构造函数最近在学习Spring，Spring有个关键的技术就是IOC，即控制反转，其中用到得一个重要的技术就是反射，在学习的过程中发现如果不提供一个无参的构造函数程序会报错，查了一些资料后对Java反射为什么需要无参构造函数这一知识点进行记录。
+一般来说反射是这样实现的：
+12Class class = Class.forName(className);Object ob">
 
     
     <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
@@ -100,14 +85,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/06/28/[DB] 数据库将一个表中数据插入到另外一张表中/" title="[DB] 数据库将一个表中数据插入到另外一张表中" itemprop="url">[DB] 数据库将一个表中数据插入到另外一张表中</a>
+      <a href="/2017/06/28/[Java] Java反射为什么需要无参构造函数/" title="[Java] Java反射为什么需要无参构造函数" itemprop="url">[Java] Java反射为什么需要无参构造函数</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-28T09:24:49.000Z" itemprop="datePublished"> Published 2017-06-28</time>
+    <time datetime="2017-06-28T09:59:14.000Z" itemprop="datePublished"> Published 2017-06-28</time>
     
   </p>
 </header>
@@ -116,22 +101,14 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java反射为什么需要无参构造函数"><span class="toc-number">1.</span> <span class="toc-text">Java反射为什么需要无参构造函数</span></a></li></ol>
 		
 		</div>
 		
-		<ul>
-<li><p>两张表中的字段一致，并且希望插入全部数据：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> 目标表 <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> 来源表;</div></pre></td></tr></table></figure>
-</li>
-<li><p>只导入指定字段：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> 目标表(字段<span class="number">1</span>,字段<span class="number">2</span>,...) <span class="keyword">SELECT</span> 字段<span class="number">1</span>,字段<span class="number">2</span>,... <span class="keyword">FROM</span> 来源表;</div></pre></td></tr></table></figure>
-</li>
-<li><p>只导入目标表中不存在的记录：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> 目标表(字段<span class="number">1</span>,字段<span class="number">2</span>,...) <span class="keyword">SELECT</span> 字段<span class="number">1</span>,字段<span class="number">2</span>,... <span class="keyword">FROM</span> 来源表 <span class="keyword">WHERE</span> <span class="keyword">not</span> <span class="keyword">exists</span> (<span class="keyword">SELECT</span> * <span class="keyword">from</span> 目标表 <span class="keyword">where</span> 目标表.比较字段=来源表.比较字段)</div></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-</ul>
+		<h1 id="Java反射为什么需要无参构造函数"><a href="#Java反射为什么需要无参构造函数" class="headerlink" title="Java反射为什么需要无参构造函数"></a>Java反射为什么需要无参构造函数</h1><p>最近在学习Spring，Spring有个关键的技术就是IOC，即控制反转，其中用到得一个重要的技术就是反射，在学习的过程中发现如果不提供一个无参的构造函数程序会报错，查了一些资料后对Java反射为什么需要无参构造函数这一知识点进行记录。</p>
+<p>一般来说反射是这样实现的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Class <span class="class"><span class="keyword">class</span> </span>= Class.forName(className);</div><div class="line">Object object = <span class="class"><span class="keyword">class</span>.<span class="title">newInstance</span>()</span>;</div></pre></td></tr></table></figure>
+<p>因此，需要一个无参的构造器来生成对象。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -139,13 +116,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/DB/">DB</a>
+  <a class="article-category-link" href="/categories/Java/">Java</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/DB/">DB</a><a href="/tags/INSERT/">INSERT</a>
+  <span></span> <a href="/tags/Java-反射-无参构造函数/">Java, 反射, 无参构造函数</a>
   </div>
 
 </div>
@@ -154,7 +131,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2017/06/28/[DB] 数据库将一个表中数据插入到另外一张表中/" data-title="[DB] 数据库将一个表中数据插入到另外一张表中 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/06/28/[Java] Java反射为什么需要无参构造函数/" data-title="[Java] Java反射为什么需要无参构造函数 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -167,19 +144,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/06/28/[设计模式] 适配器模式/" title="[设计模式] 适配器模式">
-  <strong>上一篇：</strong><br/>
-  <span>
-  [设计模式] 适配器模式</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/06/28/[DB] 数据库中%和_的用法/"  title="[DB] 数据库中%和_的用法">
+<a href="/2017/06/28/[Linux] Linux epoll的用法/"  title="[Linux] Linux epoll的用法">
  <strong>下一篇：</strong><br/> 
- <span>[DB] 数据库中%和_的用法
+ <span>[Linux] Linux epoll的用法
 </span>
 </a>
 </div>
@@ -188,7 +157,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2017/06/28/[DB] 数据库将一个表中数据插入到另外一张表中/" data-title="[DB] 数据库将一个表中数据插入到另外一张表中" data-url="http://yoursite.com/2017/06/28/[DB] 数据库将一个表中数据插入到另外一张表中/"></div>
+	<div class="ds-thread" data-thread-key="2017/06/28/[Java] Java反射为什么需要无参构造函数/" data-title="[Java] Java反射为什么需要无参构造函数" data-url="http://yoursite.com/2017/06/28/[Java] Java反射为什么需要无参构造函数/"></div>
 </section>
 
 
@@ -199,7 +168,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java反射为什么需要无参构造函数"><span class="toc-number">1.</span> <span class="toc-text">Java反射为什么需要无参构造函数</span></a></li></ol>
  
   </div>
 
