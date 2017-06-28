@@ -4,41 +4,29 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>[编程规范] 函数 | Glemontree&#39;s blog</title>
+    <title>[Linux] zsh corrupt | Glemontree&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Glemontree">
     
 
     
-    <meta name="description" content="对所调用函数的错误返回码需要仔细、全面的处理；
-
-明确函数功能，精确地实现函数设计；
-
-编写可重入函数时，应注意局部变量的使用，不应使用static局部变量，否则必须经过特殊处理，才能使函数具有可重入性；
-
-编写可重入函数时，若使用全局变量，则应通过关中断、信号量（即P、V操作）等手段加以保护，若对所使用的全局变量不加以保护，则此函数不具有可重入性，即当多个进程调用此函数时，很有可能使有关全局变">
+    <meta name="description" content="Linux中zsh遇到corrupt bug这几天打开ubuntu，出现zsh: corrupt history file /home/gtp/.zsh_history的错误，网上找到了解决方案，这里记录一下，以防以后遇到了又得花时间在网上搜索解决方案。
+解决方案如下：
+123mv .zsh_history .zsh_history_badstrings .zsh_history_bad &amp;gt;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[编程规范] 函数">
-<meta property="og:url" content="http://yoursite.com/2017/06/28/[编程规范] 函数/index.html">
+<meta property="og:title" content="[Linux] zsh corrupt">
+<meta property="og:url" content="http://yoursite.com/2017/06/28/[Linux] zsh corrupt/index.html">
 <meta property="og:site_name" content="Glemontree's blog">
-<meta property="og:description" content="对所调用函数的错误返回码需要仔细、全面的处理；
-
-明确函数功能，精确地实现函数设计；
-
-编写可重入函数时，应注意局部变量的使用，不应使用static局部变量，否则必须经过特殊处理，才能使函数具有可重入性；
-
-编写可重入函数时，若使用全局变量，则应通过关中断、信号量（即P、V操作）等手段加以保护，若对所使用的全局变量不加以保护，则此函数不具有可重入性，即当多个进程调用此函数时，很有可能使有关全局变">
-<meta property="og:updated_time" content="2017-06-28T09:36:39.439Z">
+<meta property="og:description" content="Linux中zsh遇到corrupt bug这几天打开ubuntu，出现zsh: corrupt history file /home/gtp/.zsh_history的错误，网上找到了解决方案，这里记录一下，以防以后遇到了又得花时间在网上搜索解决方案。
+解决方案如下：
+123mv .zsh_history .zsh_history_badstrings .zsh_history_bad &amp;gt;">
+<meta property="og:updated_time" content="2017-06-28T09:41:59.499Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[编程规范] 函数">
-<meta name="twitter:description" content="对所调用函数的错误返回码需要仔细、全面的处理；
-
-明确函数功能，精确地实现函数设计；
-
-编写可重入函数时，应注意局部变量的使用，不应使用static局部变量，否则必须经过特殊处理，才能使函数具有可重入性；
-
-编写可重入函数时，若使用全局变量，则应通过关中断、信号量（即P、V操作）等手段加以保护，若对所使用的全局变量不加以保护，则此函数不具有可重入性，即当多个进程调用此函数时，很有可能使有关全局变">
+<meta name="twitter:title" content="[Linux] zsh corrupt">
+<meta name="twitter:description" content="Linux中zsh遇到corrupt bug这几天打开ubuntu，出现zsh: corrupt history file /home/gtp/.zsh_history的错误，网上找到了解决方案，这里记录一下，以防以后遇到了又得花时间在网上搜索解决方案。
+解决方案如下：
+123mv .zsh_history .zsh_history_badstrings .zsh_history_bad &amp;gt;">
 
     
     <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
@@ -97,14 +85,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/06/28/[编程规范] 函数/" title="[编程规范] 函数" itemprop="url">[编程规范] 函数</a>
+      <a href="/2017/06/28/[Linux] zsh corrupt/" title="[Linux] zsh corrupt" itemprop="url">[Linux] zsh corrupt</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-28T09:36:14.000Z" itemprop="datePublished"> Published 2017-06-28</time>
+    <time datetime="2017-06-28T09:41:39.000Z" itemprop="datePublished"> Published 2017-06-28</time>
     
   </p>
 </header>
@@ -113,68 +101,14 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux中zsh遇到corrupt-bug"><span class="toc-number">1.</span> <span class="toc-text">Linux中zsh遇到corrupt bug</span></a></li></ol>
 		
 		</div>
 		
-		<ul>
-<li><p>对所调用函数的错误返回码需要仔细、全面的处理；</p>
-</li>
-<li><p>明确函数功能，精确地实现函数设计；</p>
-</li>
-<li><p>编写可重入函数时，应注意局部变量的使用，不应使用static局部变量，否则必须经过特殊处理，才能使函数具有可重入性；</p>
-</li>
-<li><p>编写可重入函数时，若使用全局变量，则应通过关中断、信号量（即P、V操作）等手段加以保护，若对所使用的全局变量不加以保护，则此函数不具有可重入性，即当多个进程调用此函数时，很有可能使有关全局变量变为不可知状态；</p>
-</li>
-<li><p>在同一项目组应明确规定对接口函数参数的合法性检查应由函数的调用者负责还是由接口函数本身负责，缺省是由函数调用者负责，<strong>注意函数参数检查的必要性，这对于减少代码错误很有帮助</strong>；</p>
-</li>
-<li><p>防止将函数的参数作为工作变量，最好先用局部变量代之，最后再将局部变量的内容赋值给该参数；</p>
-</li>
-<li><p><strong>一个函数仅完成一件功能</strong>；</p>
-</li>
-<li><p>为简单功能编写函数，虽然为仅用一两行就可完成的功能去编写函数好像没必要，但用函数可使功能明确化，增加程序可读性，举个例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">value = (a &gt; b) ? a : b; //该语句的功能不很明显</div></pre></td></tr></table></figure>
-<p>  修改如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">int max(int a, int b) &#123;</div><div class="line">    return ((a &gt; b) ? a : b);</div><div class="line">&#125;</div><div class="line">value = max(a, b);</div></pre></td></tr></table></figure>
-</li>
-<li><p>不要设计多用途面面俱到的函数；</p>
-</li>
-<li><p>函数的功能应该是可以预测的，也就是说只要输入数据相同就应产生同样的输出；</p>
-</li>
-<li><p>避免设计多参数函数，不使用的参数从接口中去掉，目的是减少函数间接口的复杂度；</p>
-</li>
-<li><p>检查函数所有参数输入的有效性；</p>
-</li>
-<li><p>检查函数所有非参数输入的有效性，如数据文件、公共变量等，函数在使用输入之前，应进行必要的检查；</p>
-</li>
-<li><p>函数名应准确描述函数的功能；</p>
-</li>
-<li><p>使用动宾词组为执行某操作的函数命名，如果是OOP方法，可以只有动词，名词是对象本身；</p>
-</li>
-<li><p>避免使用无意义或含义不清的动词为函数命名，如process、handle等为函数命名，因为这些动词并没有说明要具体做什么；</p>
-</li>
-<li><p>函数的返回值要清楚、明了，函数的每种出粗返回值的意义要清晰、明了、准确，防止使用者误用、理解错误；</p>
-</li>
-<li><p>防止把没有关联的语句放在一个函数中，防止函数或过程内出现随机内聚，随机内聚是指没有关联或关联很弱的语句放到同一个函数或过程中，随机内聚给函数或过程的维护、测试及以后的升级等造成了不便，同时也使函数或过程的功能不明确。在编程时，经常遇到在不同函数中使用相同的代码，许多开发人员都愿意把这些代码提取出来，并构成一个新的函数，若这些代码关联较大并且是完成一个功能的，那么这种构造是合理的，否则这种构造将产生随机内聚的函数，例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">void Init_Var(void) &#123;</div><div class="line">    Rect.length = 0;</div><div class="line">    Rect.width = 0;</div><div class="line">    Point.x = 10;</div><div class="line">    Point.y = 10;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>  矩形的长、宽与点的坐标基本没有任何关系，所以以上函数是随机内聚，应分成两个函数：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">void Init_Rect(void) &#123;</div><div class="line">    Rect.length = 0;</div><div class="line">    Rect.width = 0;</div><div class="line">&#125;</div><div class="line"></div><div class="line">void Init_Point(void) &#123;</div><div class="line">    Point.x = 10;</div><div class="line">    Point.y = 10;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>如果多段代码重复做同一件事情，那么在函数的划分上可能存在问题，可考虑把这段代码构造成一个新的函数；</p>
-</li>
-<li><p>功能不明确较小的函数，特别是仅有一个上级函数调用它时，应考虑把它合并到上级函数中，而不必单独存在；</p>
-</li>
-<li><p>设计高扇入、合理扇出的函数，扇出是指一个函数直接调用其他函数的数目，而扇入函数是指有多少上级函数调用它，扇出过大，表明函数过于复杂，需要控制和协调过多的下级函数，而扇出过小，如总是1，表明系统的调用层次可能过多，这样不利于程序阅读和函数结构的分析，函数较合理的扇出通常是3~5；</p>
-</li>
-<li><p>减少函数本身或函数间的递归调用；</p>
-</li>
-<li><p>改进模块中函数的结构，降低函数间的耦合度，并提高函数的独立性和代码可读性、效率和可维护性，应尽量提高函数的内聚性，单一功能的函数内聚性最高；</p>
-</li>
-<li><p>避免使用BOOL参数，其一是BOOL参数无意义，调用时很难知道该参数到底传达的是什么意思，其二是BOOL参数值不利于扩充；</p>
-</li>
-<li><p>当一个过程（函数）中对较长变量（一般是结构的成员）有较多引用时，可以用一个意义相当的宏代替；</p>
-</li>
-</ul>
+		<h1 id="Linux中zsh遇到corrupt-bug"><a href="#Linux中zsh遇到corrupt-bug" class="headerlink" title="Linux中zsh遇到corrupt bug"></a>Linux中zsh遇到corrupt bug</h1><p>这几天打开ubuntu，出现<strong>zsh: corrupt history file /home/gtp/.zsh_history</strong>的错误，网上找到了解决方案，这里记录一下，以防以后遇到了又得花时间在网上搜索解决方案。</p>
+<p>解决方案如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mv .zsh_history .zsh_history_bad</div><div class="line">strings .zsh_history_bad &gt; .zsh_history</div><div class="line">fc -R .zsh_history</div></pre></td></tr></table></figure>
+<p>感谢<a href="http://blog.csdn.net/zhangyuehuan/article/details/50930027" target="_blank" rel="external">HIT-Lori</a>提供的解决方案。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -182,13 +116,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/编程规范/">编程规范</a>
+  <a class="article-category-link" href="/categories/Linux/">Linux</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/C-编程规范/">C++, 编程规范</a>
+  <span></span> <a href="/tags/Linux-zsh/">Linux, zsh</a>
   </div>
 
 </div>
@@ -197,7 +131,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2017/06/28/[编程规范] 函数/" data-title="[编程规范] 函数 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/06/28/[Linux] zsh corrupt/" data-title="[Linux] zsh corrupt | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -210,19 +144,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/06/28/[多线程] 互斥量和临界区的区别/" title="[多线程] 互斥量和临界区的区别">
-  <strong>上一篇：</strong><br/>
-  <span>
-  [多线程] 互斥量和临界区的区别</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/06/28/[Spring] 基于注解来配置Bean/"  title="[Spring] 基于注解来配置Bean">
+<a href="/2017/06/28/[设计模式] 单例模式/"  title="[设计模式] 单例模式">
  <strong>下一篇：</strong><br/> 
- <span>[Spring] 基于注解来配置Bean
+ <span>[设计模式] 单例模式
 </span>
 </a>
 </div>
@@ -231,7 +157,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2017/06/28/[编程规范] 函数/" data-title="[编程规范] 函数" data-url="http://yoursite.com/2017/06/28/[编程规范] 函数/"></div>
+	<div class="ds-thread" data-thread-key="2017/06/28/[Linux] zsh corrupt/" data-title="[Linux] zsh corrupt" data-url="http://yoursite.com/2017/06/28/[Linux] zsh corrupt/"></div>
 </section>
 
 
@@ -242,7 +168,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux中zsh遇到corrupt-bug"><span class="toc-number">1.</span> <span class="toc-text">Linux中zsh遇到corrupt bug</span></a></li></ol>
  
   </div>
 
