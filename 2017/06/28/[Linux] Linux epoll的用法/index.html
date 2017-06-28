@@ -4,23 +4,26 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>[CMake] 推荐一个关于CMake的一个很详细的教程 | Glemontree&#39;s blog</title>
+    <title>[Linux] Linux epoll的用法 | Glemontree&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Glemontree">
     
 
     
-    <meta name="description" content="如果你对CMake也很感兴趣这篇文章你值得拥有： CMake。">
+    <meta name="description" content="Epoll的用法select与epoll在旧的Linux中，通常都在使用select来做事件触发，而在新的Linux内核中，开始使用epoll来代替。相比于select，epoll最大的好处就是不会随着监听fd数目的增长而降低效率。
+当使用select时，它是采用轮询来处理的，轮询的fd数目越多，耗时越长，而且select同时监听的fd数目有限，通常为1024个，当然，这可以通过修改相关头文件然后">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[CMake] 推荐一个关于CMake的一个很详细的教程">
-<meta property="og:url" content="http://yoursite.com/2017/06/28/[CMake] 推荐一个关于CMake的一个很详细的教程/index.html">
+<meta property="og:title" content="[Linux] Linux epoll的用法">
+<meta property="og:url" content="http://yoursite.com/2017/06/28/[Linux] Linux epoll的用法/index.html">
 <meta property="og:site_name" content="Glemontree's blog">
-<meta property="og:description" content="如果你对CMake也很感兴趣这篇文章你值得拥有： CMake。">
-<meta property="og:updated_time" content="2017-06-28T09:19:23.715Z">
+<meta property="og:description" content="Epoll的用法select与epoll在旧的Linux中，通常都在使用select来做事件触发，而在新的Linux内核中，开始使用epoll来代替。相比于select，epoll最大的好处就是不会随着监听fd数目的增长而降低效率。
+当使用select时，它是采用轮询来处理的，轮询的fd数目越多，耗时越长，而且select同时监听的fd数目有限，通常为1024个，当然，这可以通过修改相关头文件然后">
+<meta property="og:updated_time" content="2017-06-28T09:57:59.800Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[CMake] 推荐一个关于CMake的一个很详细的教程">
-<meta name="twitter:description" content="如果你对CMake也很感兴趣这篇文章你值得拥有： CMake。">
+<meta name="twitter:title" content="[Linux] Linux epoll的用法">
+<meta name="twitter:description" content="Epoll的用法select与epoll在旧的Linux中，通常都在使用select来做事件触发，而在新的Linux内核中，开始使用epoll来代替。相比于select，epoll最大的好处就是不会随着监听fd数目的增长而降低效率。
+当使用select时，它是采用轮询来处理的，轮询的fd数目越多，耗时越长，而且select同时监听的fd数目有限，通常为1024个，当然，这可以通过修改相关头文件然后">
 
     
     <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
@@ -79,14 +82,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/06/28/[CMake] 推荐一个关于CMake的一个很详细的教程/" title="[CMake] 推荐一个关于CMake的一个很详细的教程" itemprop="url">[CMake] 推荐一个关于CMake的一个很详细的教程</a>
+      <a href="/2017/06/28/[Linux] Linux epoll的用法/" title="[Linux] Linux epoll的用法" itemprop="url">[Linux] Linux epoll的用法</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-28T09:18:46.000Z" itemprop="datePublished"> Published 2017-06-28</time>
+    <time datetime="2017-06-28T09:57:39.000Z" itemprop="datePublished"> Published 2017-06-28</time>
     
   </p>
 </header>
@@ -95,11 +98,28 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Epoll的用法"><span class="toc-number">1.</span> <span class="toc-text">Epoll的用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#select与epoll"><span class="toc-number">1.1.</span> <span class="toc-text">select与epoll</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#epoll接口"><span class="toc-number">1.2.</span> <span class="toc-text">epoll接口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-创建epoll句柄"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. 创建epoll句柄</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-将被监听的描述符添加到epoll句柄或从epoll句柄中删除-或者对监听事件进行修改"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. 将被监听的描述符添加到epoll句柄或从epoll句柄中删除 或者对监听事件进行修改</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-等待事件触发，当超过timeout还没有事件触发时，就超时"><span class="toc-number">1.2.3.</span> <span class="toc-text">3. 等待事件触发，当超过timeout还没有事件触发时，就超时</span></a></li></ol></li></ol></li></ol>
 		
 		</div>
 		
-		<p>如果你对CMake也很感兴趣这篇文章你值得拥有： <a href="http://www.hahack.com/codes/cmake/" target="_blank" rel="external">CMake</a>。</p>
+		<h2 id="Epoll的用法"><a href="#Epoll的用法" class="headerlink" title="Epoll的用法"></a>Epoll的用法</h2><h3 id="select与epoll"><a href="#select与epoll" class="headerlink" title="select与epoll"></a>select与epoll</h3><p>在旧的Linux中，通常都在使用select来做事件触发，而在新的Linux内核中，开始使用epoll来代替。相比于select，epoll最大的好处就是不会随着监听fd数目的增长而降低效率。</p>
+<p>当使用select时，它是采用轮询来处理的，轮询的fd数目越多，耗时越长，而且select同时监听的fd数目有限，通常为1024个，当然，这可以通过修改相关头文件然后对内核进行重新编译来解决。</p>
+<h3 id="epoll接口"><a href="#epoll接口" class="headerlink" title="epoll接口"></a>epoll接口</h3><h4 id="1-创建epoll句柄"><a href="#1-创建epoll句柄" class="headerlink" title="1. 创建epoll句柄"></a>1. 创建epoll句柄</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> epfd = epoll_create(<span class="keyword">int</span> size);</div></pre></td></tr></table></figure>
+<p>创建一个epoll句柄，size用来告诉内核这个监听的数目一共多大。需要注意的是，当创建好epoll句柄后，它就是会占用一个fd值，在linux下如果查看/proc/进程ID/fd是能够看到这个fd的，所以在使用完epoll后，必须调用close()函数进行关闭，否则可能导致fd被耗尽。</p>
+<p>该函数生成一个epoll专用的文件描述符，它其实是在内核申请一空间，用来存放你想关注的socket fd上是否发生以及发生了什么事件，size就是你在这个epoll fd上能关注的最大socket fd数目。</p>
+<h4 id="2-将被监听的描述符添加到epoll句柄或从epoll句柄中删除-或者对监听事件进行修改"><a href="#2-将被监听的描述符添加到epoll句柄或从epoll句柄中删除-或者对监听事件进行修改" class="headerlink" title="2. 将被监听的描述符添加到epoll句柄或从epoll句柄中删除 或者对监听事件进行修改"></a>2. 将被监听的描述符添加到epoll句柄或从epoll句柄中删除 或者对监听事件进行修改</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">epoll_ctl</span><span class="params">(<span class="keyword">int</span> epfd, <span class="keyword">int</span> op, <span class="keyword">int</span> fd, <span class="keyword">struct</span> epoll_event* event)</span></span>;</div></pre></td></tr></table></figure>
+<p>该函数用来控制某个epoll文件描述符上的事件，可以注册事件、修改事件和删除事件。其中，epfd为由epoll_create生成的epoll专用的文件描述符；op为要进行的操作注册事件，可能的取值有EPOLL_CTL_ADD注册、EPOLL_CTL_MOD修改、EPOLL_CTL_DEL删除；fd为关联的文件描述符；event为指向epoll_event的指针。</p>
+<p>epoll和select的一个不同点就是select()是在监听事件时告诉内核要监听什么类型的事件，而epoll是先注册要监听的事件类型。</p>
+<p>这里epoll_ctl的第四个参数为epoll_event类型，其定义如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="keyword">union</span> epoll_data &#123;</div><div class="line">  <span class="keyword">void</span>* ptr;</div><div class="line">  <span class="keyword">int</span> fd;</div><div class="line">  <span class="keyword">__uint32_t</span> u32;</div><div class="line">  <span class="keyword">__uint64_t</span> u64;</div><div class="line">&#125; <span class="keyword">epoll_data_t</span>;</div><div class="line"></div><div class="line"><span class="keyword">struct</span> epoll_event &#123;</div><div class="line">  <span class="keyword">__uint32_t</span> events; <span class="comment">// Epoll events</span></div><div class="line">  <span class="keyword">epoll_data_t</span> data; <span class="comment">// User data variable</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>events可以是以下几个宏的集合：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">EPOLLIN				触发该事件，表示对应的文件描述符上有可读数据</div><div class="line">EPOLLOUT			触发该事件，表示对应的文件描述符上可以写数据</div><div class="line">EPOLLPRI			表示对应的文件描述符有紧急的数据可读</div><div class="line">EPOLLERR			表示对应的文件描述符发生错误</div><div class="line">EPOLLHUP			表示对应的文件描述符被挂断</div><div class="line">EPOLLET				将EPOLL设置为边缘触发模式（Edge Triggered）</div><div class="line">EPOLLONESHOT		只监听一次事件，当监听完这次事件之后，如果还需要监听这个socket的话，需要再把这个 socket加入到EPOLL队列里</div></pre></td></tr></table></figure>
+<p>举个例子：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> epoll_event ev;</div><div class="line">ev.data.fd = listenfd; <span class="comment">// 设置与要处理的事件相关的文件描述符</span></div><div class="line">ev.events = EPOLLIN | EPOLLET; <span class="comment">// 设置要处理的事件类型</span></div><div class="line">epoll_ctl(epfd, EPOLL_CTL_ADD, listenfd, &amp;ev); <span class="comment">// 注册epoll事件</span></div></pre></td></tr></table></figure>
+<h4 id="3-等待事件触发，当超过timeout还没有事件触发时，就超时"><a href="#3-等待事件触发，当超过timeout还没有事件触发时，就超时" class="headerlink" title="3. 等待事件触发，当超过timeout还没有事件触发时，就超时"></a>3. 等待事件触发，当超过timeout还没有事件触发时，就超时</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">epoll_wait</span><span class="params">(<span class="keyword">int</span> epfd, <span class="keyword">struct</span> epoll_event* events, <span class="keyword">int</span> maxevents, <span class="keyword">int</span> timeout)</span></span>;</div></pre></td></tr></table></figure>
+<p>等待事件的产生，类似于select()调用，参数events用来从内核得到事件的集合，maxevents告诉内核这个events有多大（数组成员的个数），这个maxevents的值不能大于创建epoll_create()时的size，参数timeout是超时时间（毫秒，0会立即返回，-1将不确定）。</p>
+<p>该函数返回需要处理的事件数目，如返回0表示已超时；返回的事件集合在events数组中，数组中实际存放的成员个数是函数的返回值。</p>
+<p>epoll_wait运行的原理是：等待注册在epfd上的socket fd事件的发生，如果发生则将发生的socket fd和事件类型放入到events数组中，并且将注册在epfd上的 socket fd的事件类型清空，所以如果下一个循环你还要关注这个socket fd的话，则需要使用epoll_ctl(epfd, EPOLL_CTL_MOD, listenfd, &amp;ev)来重新设置socket fd的事件类型，这时不用EPOLL_CTL_ADD，因为socket fd并未清空，只是事件类型清空。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -107,13 +127,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/CMake/">CMake</a>
+  <a class="article-category-link" href="/categories/Linux/">Linux</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/CMake/">CMake</a>
+  <span></span> <a href="/tags/Linux-EPoll/">Linux, EPoll</a>
   </div>
 
 </div>
@@ -122,7 +142,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2017/06/28/[CMake] 推荐一个关于CMake的一个很详细的教程/" data-title="[CMake] 推荐一个关于CMake的一个很详细的教程 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/06/28/[Linux] Linux epoll的用法/" data-title="[Linux] Linux epoll的用法 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -135,20 +155,20 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/06/28/[C++] 推荐一个在线编辑、编译、运行程序的网页/" title="[C++] 推荐一个在线编辑、编译、运行程序的网页">
-  <strong>上一篇：</strong><br/>
-  <span>
-  [C++] 推荐一个在线编辑、编译、运行程序的网页</span>
+
+<div class="next">
+<a href="/2017/06/28/[Linux] Linux网络编程/"  title="[Linux] Linux网络编程">
+ <strong>下一篇：</strong><br/> 
+ <span>[Linux] Linux网络编程
+</span>
 </a>
 </div>
-
 
 </nav>
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2017/06/28/[CMake] 推荐一个关于CMake的一个很详细的教程/" data-title="[CMake] 推荐一个关于CMake的一个很详细的教程" data-url="http://yoursite.com/2017/06/28/[CMake] 推荐一个关于CMake的一个很详细的教程/"></div>
+	<div class="ds-thread" data-thread-key="2017/06/28/[Linux] Linux epoll的用法/" data-title="[Linux] Linux epoll的用法" data-url="http://yoursite.com/2017/06/28/[Linux] Linux epoll的用法/"></div>
 </section>
 
 
@@ -159,7 +179,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Epoll的用法"><span class="toc-number">1.</span> <span class="toc-text">Epoll的用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#select与epoll"><span class="toc-number">1.1.</span> <span class="toc-text">select与epoll</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#epoll接口"><span class="toc-number">1.2.</span> <span class="toc-text">epoll接口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-创建epoll句柄"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. 创建epoll句柄</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-将被监听的描述符添加到epoll句柄或从epoll句柄中删除-或者对监听事件进行修改"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. 将被监听的描述符添加到epoll句柄或从epoll句柄中删除 或者对监听事件进行修改</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-等待事件触发，当超过timeout还没有事件触发时，就超时"><span class="toc-number">1.2.3.</span> <span class="toc-text">3. 等待事件触发，当超过timeout还没有事件触发时，就超时</span></a></li></ol></li></ol></li></ol>
  
   </div>
 
