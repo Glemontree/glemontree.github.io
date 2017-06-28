@@ -4,35 +4,38 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>[设计模式] 单例模式 | Glemontree&#39;s blog</title>
+    <title>[C++] effective_C++_条款02 | Glemontree&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Glemontree">
     
 
     
-    <meta name="description" content="懒汉模式即第一次调用该类实例的时候才产生一个新的该类实例，并在以后仅返回此实例。需要用锁，来保证其线程安全性。原因：多个线程可能进入判断是否已经存在实例的if语句，从而non thread safety。使用double-check来保证thread safety。但是如果处理大量数据时，该锁才成为严重的性能瓶颈。
+    <meta name="description" content="条款02：尽量用const, enum, inline代替#define
+该原则言下之意是说使用编译器替换预处理器
 
-静态成员实例的懒汉模式：
-
-12345678910111213141516171">
+假设你使用下面的表达式：
+1#define ASPECT_RATIO 1.653
+记号名称ASPECT_RATIO也许从未被编译器看到，也许在编译器开始处理源代码之前它就被预处理器移走了，于是ASPECT_RATIO可能从来没进入记号表中，于是当你运用此常量但获得一个编译错误信息时">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[设计模式] 单例模式">
-<meta property="og:url" content="http://yoursite.com/2017/06/28/[设计模式] 单例模式/index.html">
+<meta property="og:title" content="[C++] effective_C++_条款02">
+<meta property="og:url" content="http://yoursite.com/2017/06/28/[C++] effective_C++_条款02/index.html">
 <meta property="og:site_name" content="Glemontree's blog">
-<meta property="og:description" content="懒汉模式即第一次调用该类实例的时候才产生一个新的该类实例，并在以后仅返回此实例。需要用锁，来保证其线程安全性。原因：多个线程可能进入判断是否已经存在实例的if语句，从而non thread safety。使用double-check来保证thread safety。但是如果处理大量数据时，该锁才成为严重的性能瓶颈。
+<meta property="og:description" content="条款02：尽量用const, enum, inline代替#define
+该原则言下之意是说使用编译器替换预处理器
 
-静态成员实例的懒汉模式：
-
-12345678910111213141516171">
-<meta property="og:updated_time" content="2017-06-28T09:40:48.285Z">
+假设你使用下面的表达式：
+1#define ASPECT_RATIO 1.653
+记号名称ASPECT_RATIO也许从未被编译器看到，也许在编译器开始处理源代码之前它就被预处理器移走了，于是ASPECT_RATIO可能从来没进入记号表中，于是当你运用此常量但获得一个编译错误信息时">
+<meta property="og:updated_time" content="2017-06-28T10:13:31.810Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[设计模式] 单例模式">
-<meta name="twitter:description" content="懒汉模式即第一次调用该类实例的时候才产生一个新的该类实例，并在以后仅返回此实例。需要用锁，来保证其线程安全性。原因：多个线程可能进入判断是否已经存在实例的if语句，从而non thread safety。使用double-check来保证thread safety。但是如果处理大量数据时，该锁才成为严重的性能瓶颈。
+<meta name="twitter:title" content="[C++] effective_C++_条款02">
+<meta name="twitter:description" content="条款02：尽量用const, enum, inline代替#define
+该原则言下之意是说使用编译器替换预处理器
 
-静态成员实例的懒汉模式：
-
-12345678910111213141516171">
+假设你使用下面的表达式：
+1#define ASPECT_RATIO 1.653
+记号名称ASPECT_RATIO也许从未被编译器看到，也许在编译器开始处理源代码之前它就被预处理器移走了，于是ASPECT_RATIO可能从来没进入记号表中，于是当你运用此常量但获得一个编译错误信息时">
 
     
     <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
@@ -91,14 +94,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/06/28/[设计模式] 单例模式/" title="[设计模式] 单例模式" itemprop="url">[设计模式] 单例模式</a>
+      <a href="/2017/06/28/[C++] effective_C++_条款02/" title="[C++] effective_C++_条款02" itemprop="url">[C++] effective_C++_条款02</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-28T09:40:04.000Z" itemprop="datePublished"> Published 2017-06-28</time>
+    <time datetime="2017-06-28T10:13:17.000Z" itemprop="datePublished"> Published 2017-06-28</time>
     
   </p>
 </header>
@@ -107,23 +110,41 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#懒汉模式"><span class="toc-number">1.</span> <span class="toc-text">懒汉模式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#饿汉模式"><span class="toc-number">2.</span> <span class="toc-text">饿汉模式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考资料"><span class="toc-number">3.</span> <span class="toc-text">参考资料</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#条款02：尽量用const-enum-inline代替-define"><span class="toc-number">1.</span> <span class="toc-text">条款02：尽量用const, enum, inline代替#define</span></a></li></ol>
 		
 		</div>
 		
-		<h1 id="懒汉模式"><a href="#懒汉模式" class="headerlink" title="懒汉模式"></a>懒汉模式</h1><p>即第一次调用该类实例的时候才产生一个新的该类实例，并在以后仅返回此实例。需要用锁，来保证其线程安全性。原因：多个线程可能进入判断是否已经存在实例的if语句，从而non thread safety。使用double-check来保证thread safety。但是如果处理大量数据时，该锁才成为严重的性能瓶颈。</p>
+		<h2 id="条款02：尽量用const-enum-inline代替-define"><a href="#条款02：尽量用const-enum-inline代替-define" class="headerlink" title="条款02：尽量用const, enum, inline代替#define"></a>条款02：尽量用const, enum, inline代替#define</h2><ul>
+<li><p>该原则言下之意是说使用编译器替换预处理器</p>
+</li>
+<li><p>假设你使用下面的表达式：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> ASPECT_RATIO 1.653</span></div></pre></td></tr></table></figure>
+<p>记号名称ASPECT_RATIO也许从未被编译器看到，也许在编译器开始处理源代码之前它就被预处理器移走了，于是ASPECT_RATIO可能从来没进入记号表中，于是当你运用此常量但获得一个编译错误信息时，你可能不知道这个1.653是什么意思，这就是#define的坏处。</p>
+<p>因此你可以使用一个常量来替换上述的宏：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> <span class="keyword">double</span> AspectRatio = <span class="number">1.653</span>;</div></pre></td></tr></table></figure>
+<p>作为一个语言常量，AspectRatio肯定会被编译器看到，当然会进入记号表中</p>
+</li>
+<li><p>在定义常量指针时，由于常量定义通常被放在头文件中，以便被不同的源码包含，因此有必要将指针声明为const，例如若要在头文件内定义一个常量的char*字符串，需要些const两次：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> <span class="keyword">char</span>* <span class="keyword">const</span> authorName = <span class="string">"Scott Meyers"</span>;</div></pre></td></tr></table></figure>
+</li>
+<li><p>class专属常量。为了将常量的作用域限制于class内，你必须让它成为class的一个成员，而为确保此常量至多只有一份实体，必须让它成为一个static成员:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> GamePlayer &#123;</div><div class="line"><span class="keyword">private</span>:</div><div class="line">	<span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> NumTurns = <span class="number">5</span>; <span class="comment">// 常量声明式</span></div><div class="line">  	<span class="keyword">int</span> scores[NumTurns]; <span class="comment">// 使用该常量</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>通常C++要求所使用的任何变量均需提供定义式，但如果它是一个class专属常量又是static且为整数类型(integral types, ints, chars, bools)，则需特殊处理，只要不取它们的地址，可以只声明并使用它们而无需提供定义式；但如果你取某个class专属常量的地址，你就必须提供下面的定义式：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> GamePlayer::NumTurns; <span class="comment">// 定义</span></div></pre></td></tr></table></figure>
+<p>在C++中，在默认情况下，全局变量的链接性是外部的，但const全部变量的链接性是内部的，也就是说，在C++看来，全局const定义就像使用了static说明符一样。</p>
+</li>
+<li><p>全局变量在多线程中容易出问题， 一份优秀的代码是几乎不出现全局变量的</p>
+</li>
+<li><p>一个属于枚举类型的数值可当做ints使用，即”the enum hack”</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> GamePlayer&#123;</div><div class="line">	<span class="keyword">enum</span> &#123;NumTurns = <span class="number">5</span>&#125;;</div><div class="line">	<span class="keyword">int</span> scores[NumTurns];</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>the enum hack 技术的好处：</p>
 <ul>
-<li>静态成员实例的懒汉模式：</li>
+<li>当你不想让别人获得一个pointer或reference指向你的某个整数常量时，enum可以实现</li>
+<li>enum和#define不会导致非必要的内存分配</li>
 </ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"> <span class="number">1</span> <span class="keyword">class</span> Singleton</div><div class="line"> <span class="number">2</span> &#123;</div><div class="line"> <span class="number">3</span> <span class="keyword">private</span>:</div><div class="line"> <span class="number">4</span>     <span class="keyword">static</span> Singleton* m_instance;</div><div class="line"> <span class="number">5</span>     Singleton()&#123;&#125;</div><div class="line"> <span class="number">6</span> <span class="keyword">public</span>:</div><div class="line"> <span class="number">7</span>     <span class="function"><span class="keyword">static</span> Singleton* <span class="title">getInstance</span><span class="params">()</span></span>;</div><div class="line"> <span class="number">8</span> &#125;;</div><div class="line"> <span class="number">9</span> </div><div class="line"><span class="number">10</span> Singleton* Singleton::getInstance()</div><div class="line"><span class="number">11</span> &#123;</div><div class="line"><span class="number">12</span>     <span class="keyword">if</span>(<span class="literal">NULL</span> == m_instance)</div><div class="line"><span class="number">13</span>     &#123;</div><div class="line"><span class="number">14</span>         Lock();<span class="comment">//借用其它类来实现，如boost</span></div><div class="line"><span class="number">15</span>         <span class="keyword">if</span>(<span class="literal">NULL</span> == m_instance)</div><div class="line"><span class="number">16</span>         &#123;</div><div class="line"><span class="number">17</span>             m_instance = <span class="keyword">new</span> Singleton;</div><div class="line"><span class="number">18</span>         &#125;</div><div class="line"><span class="number">19</span>         UnLock();</div><div class="line"><span class="number">20</span>     &#125;</div><div class="line"><span class="number">21</span>     <span class="keyword">return</span> m_instance;</div><div class="line"><span class="number">22</span> &#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>内部静态实例的懒汉模式</li>
+</li>
 </ul>
-<p>这里需要注意的是，C++0X以后，要求编译器保证内部静态变量的线程安全性，可以不加锁。但C++ 0X以前，仍需要加锁。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"> <span class="number">1</span> <span class="keyword">class</span> SingletonInside</div><div class="line"> <span class="number">2</span> &#123;</div><div class="line"> <span class="number">3</span> <span class="keyword">private</span>:</div><div class="line"> <span class="number">4</span>     SingletonInside()&#123;&#125;</div><div class="line"> <span class="number">5</span> <span class="keyword">public</span>:</div><div class="line"> <span class="number">6</span>     <span class="function"><span class="keyword">static</span> SingletonInside* <span class="title">getInstance</span><span class="params">()</span></span></div><div class="line"> 7     &#123;</div><div class="line"> <span class="number">8</span>         Lock(); <span class="comment">// not needed after C++0x</span></div><div class="line"> <span class="number">9</span>         <span class="keyword">static</span> SingletonInside instance;</div><div class="line"><span class="number">10</span>         UnLock(); <span class="comment">// not needed after C++0x</span></div><div class="line"><span class="number">11</span>         <span class="keyword">return</span> instance; </div><div class="line"><span class="number">12</span>     &#125;</div><div class="line"><span class="number">13</span> &#125;;</div></pre></td></tr></table></figure>
-<h1 id="饿汉模式"><a href="#饿汉模式" class="headerlink" title="饿汉模式"></a>饿汉模式</h1><p>即无论是否调用该类的实例，在程序开始时就会产生一个该类的实例，并在以后仅返回此实例。由静态初始化实例保证其线程安全性，WHY？因为静态实例初始化在程序开始时<strong>进入主函数之前就由主线程以单线程方式完成了初始化</strong>，不必担心多线程问题。故在性能需求较高时，应使用这种模式，避免频繁的锁争夺。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"> <span class="number">1</span> <span class="keyword">class</span> SingletonStatic</div><div class="line"> <span class="number">2</span> &#123;</div><div class="line"> <span class="number">3</span> <span class="keyword">private</span>:</div><div class="line"> <span class="number">4</span>     <span class="keyword">static</span> <span class="keyword">const</span> SingletonStatic* m_instance;</div><div class="line"> <span class="number">5</span>     SingletonStatic()&#123;&#125;</div><div class="line"> <span class="number">6</span> <span class="keyword">public</span>:</div><div class="line"> <span class="number">7</span>     <span class="function"><span class="keyword">static</span> <span class="keyword">const</span> SingletonStatic* <span class="title">getInstance</span><span class="params">()</span></span></div><div class="line"> 8     &#123;</div><div class="line"> <span class="number">9</span>         <span class="keyword">return</span> m_instance;</div><div class="line"><span class="number">10</span>     &#125;</div><div class="line"><span class="number">11</span> &#125;;</div><div class="line"><span class="number">12</span> </div><div class="line"><span class="number">13</span> <span class="comment">//外部初始化 before invoke main</span></div><div class="line"><span class="number">14</span> <span class="keyword">const</span> SingletonStatic* SingletonStatic::m_instance = <span class="keyword">new</span> SingletonStatic;</div></pre></td></tr></table></figure>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>本文转载自<a href="http://www.cnblogs.com/ccdev/archive/2012/12/19/2825355.html" target="_blank" rel="external">C++线程安全的单例模式</a>。 </p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -131,13 +152,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
+  <a class="article-category-link" href="/categories/C/">C++</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/C-线程安全-单例模式/">C++, 线程安全, 单例模式</a>
+  <span></span> <a href="/tags/C/">C++</a>
   </div>
 
 </div>
@@ -146,7 +167,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2017/06/28/[设计模式] 单例模式/" data-title="[设计模式] 单例模式 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/06/28/[C++] effective_C++_条款02/" data-title="[C++] effective_C++_条款02 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -159,19 +180,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/06/28/[Linux] zsh corrupt/" title="[Linux] zsh corrupt">
-  <strong>上一篇：</strong><br/>
-  <span>
-  [Linux] zsh corrupt</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/06/28/[多线程] 互斥对象和锁/"  title="[多线程] 互斥对象和锁">
+<a href="/2017/06/28/[C++] effective_C++_条款03/"  title="[C++] effective_C++_条款03">
  <strong>下一篇：</strong><br/> 
- <span>[多线程] 互斥对象和锁
+ <span>[C++] effective_C++_条款03
 </span>
 </a>
 </div>
@@ -180,7 +193,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2017/06/28/[设计模式] 单例模式/" data-title="[设计模式] 单例模式" data-url="http://yoursite.com/2017/06/28/[设计模式] 单例模式/"></div>
+	<div class="ds-thread" data-thread-key="2017/06/28/[C++] effective_C++_条款02/" data-title="[C++] effective_C++_条款02" data-url="http://yoursite.com/2017/06/28/[C++] effective_C++_条款02/"></div>
 </section>
 
 
@@ -191,7 +204,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#懒汉模式"><span class="toc-number">1.</span> <span class="toc-text">懒汉模式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#饿汉模式"><span class="toc-number">2.</span> <span class="toc-text">饿汉模式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考资料"><span class="toc-number">3.</span> <span class="toc-text">参考资料</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#条款02：尽量用const-enum-inline代替-define"><span class="toc-number">1.</span> <span class="toc-text">条款02：尽量用const, enum, inline代替#define</span></a></li></ol>
  
   </div>
 
