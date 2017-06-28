@@ -1,0 +1,922 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>[git] 多人协作开发 | Glemontree&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Glemontree">
+    
+
+    
+    <meta name="description" content="Git可以完成两件事情：
+
+版本控制
+多人协作开发
+
+如今的项目，规模越来越大，功能越来越多，需要有一个团队进行开发。
+如果有多个开发人员共同开发一个项目，如何进行协作的呢。
+Git提供了一个非常好的解决方案 —- 多人协作开发。
+多人协作原理典型的做法是，首先创建一个git服务器，被多个人所操作。
+
+多人协作实现分为如下几个步骤：
+
+创建一个git裸服务器 （git init –bare）
+从裸">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[git] 多人协作开发">
+<meta property="og:url" content="http://yoursite.com/2017/06/28/[git] 多人协作开发/index.html">
+<meta property="og:site_name" content="Glemontree's blog">
+<meta property="og:description" content="Git可以完成两件事情：
+
+版本控制
+多人协作开发
+
+如今的项目，规模越来越大，功能越来越多，需要有一个团队进行开发。
+如果有多个开发人员共同开发一个项目，如何进行协作的呢。
+Git提供了一个非常好的解决方案 —- 多人协作开发。
+多人协作原理典型的做法是，首先创建一个git服务器，被多个人所操作。
+
+多人协作实现分为如下几个步骤：
+
+创建一个git裸服务器 （git init –bare）
+从裸">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmfAx1XUgx9D9EoNTyZowjdUGZ3hk4AIHmkbiamdPY7hxnNjpM4BPuPJQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmYEnhEZIgh03VGBicTjrLVzUok2LJey2nicVOC9Ges8Mf9tic8sGvr7C6w/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmXSlaRb97ceUfK7Cw5Js1kQYcib0fSbhk4icJN2kpEgxO4vATcuFTyzGA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmY2D1ko8ibUzU7cdJQrib5OkpjjHHncohyDEKKeymiaYjeCicCLH2ZcywkQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmFqwr21aRAqw5nun0t08KMQnSDEIM6Wy6wJxRKRPsfnzcwbiaBjO2DyA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibm1fVLDdElWBoWMPYCib1EibBEdNrT4wSYQsKv1pTatSgrqao1Nicx3qdCA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmPC1eGOYricrv8J4BmNQm8zZLvjmTDHicsogKI9tibI73JR5ZpdldaZh5g/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmrjibPmIiaGcoicxibtuyTialw7uxgJFOlWyCwEda5EYZb0x29c8MibRBcp1w/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmsuRnluJ2j6qvUvHdrSX3IQAUdib93Xy7L56ArODnbPqecUK3axtRORA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmkBKCwqWGS9tqYaxHyrfSw61GE1guvcMrCHPyemz0n4Otic9FXUf75qw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmzTA1JbyKsbj9knHc3Ea2yDD74hjhDdj7urIPSqLQiapGHMicicxNkyFiag/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmObqosT2XzgvfERTOlMejROcbLTWO6ssPUBE5UTng5PCbMFl73tuxyw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmxxWrHOlFZW2Rem2BoibfeUBicsbaqDZKibW1zpZXDpClI7oo0nk6Rhhibw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibm0NtBunSGC0Wyehnb9lm0oWEscUvFHRnx7Bia5KsO3LWNNY2mhqfYS0Q/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibm25bV9vpjGpFHLgEMQvOM0PCabt3BxnXew4dNRQfsczicmIiaotZpGzdQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmPoUS0rfe1l98J9uXQadibI9XzSUXWicibWDor5V8LIUZdchUJUU7jrfOA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmaoE8WpjBHrjvAlsJcbmlYWFa1HXibb8TibvU80gM4vdUbviaKjA8uYX9w/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmeRlSjOyMYE6hRdlNn7U9QDBpZY6xKbTvKyJcicJbRRp0KPVouHB35sg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmO769SvOAib2ue0nvylVhkn6GZFON59TJ3cSXdupChOeVPyuXZp321cg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmTibd7qz9Tibe4ibFkP7rtESnVD6kBtu48L2eY2ct0RLia9sbcvHWYA5klA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmtUkJic8JIZwbFsKnufhIXKXnSBxqWUgh8tmSumt23cjMcic5hzeShUhg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmEDICGpJdETOmrPNibZphPoBFdZQLy1rqqBSAicxFRwweqtKHLZ9oyicLw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmE6ibzrLAj4HbMMqNFXTKfs95boHibNeBibWnyzQktQlCexh7u8qMyh9xQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmQxPBSQib07yicYoNgdq9icuBziaSS3hMDiaO5OrxOASHsicrcibZk9PF4RwQg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmpLPibnicEdyofof9eicNO4vtLC8hekB2SvAQZtQ6MzViapypGQUWmpUNxQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmxsBiaUW6HCV84rDSckGAHEoqSgl1tgr89OjDicRYUJU2A8ibGtzIM9u9w/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmI1N1hCib8Az8qjLR4Qx0Q0o5icFGCDibmVMMHEJ3N2icxx0Z8SzIEMY3ibA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibm0lf1vQdiaEVk0iaT5t4vh17yjjLd56UlfuIglInEoMp6Ozw9jyNLERtA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibm8HWr5RFwe8cfqiaAoDYzz7YXo5j0TkyJ26iaFZF4ttKhmC1HfHEV3C8Q/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmde5D7esWgCNclMRusrBMEBYWR8mTsRrW6TgRXNoichs9ZwIjHQVDAIA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmLlRr1LX3zlmbqGtZicKulzNOyF9ibI7c6qibt6fmCVxVIEj7icUUbFWjpg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmxf9OY2AiaibOnk3licd2iaVtDqJcxnSM9aOLQSwoFiapnoTj80ARZ0AdUsg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmRaFVEU2WibEQ8WjnL6qSiaPtvXZz1K4jYoZGIsKGwVPSUric3kCdD0KJQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmtxdklFSA5krdqsN7l35tvs7QibywIRmx4icqfUpzQkGsJGhaCXUDt3xA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibm55TAibgvHs11C1jc56iadhfHKRFGiaqOrz4qia7bXV1L82pln6DNOE9wDg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmv8jibo6AqI4ic1l7FHwtJD44icOroUagwXue1SOickFH5G0oZoGHxl92fg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmP1FXJ6GUhibDdEEYia9UOByuU9OicicJ4XDV6HZEKdnEb5It3coAZcL52A/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmLrLG5tTgyrh2IiagYXXXy9ImJ9sgw2sicpHVM1PYAZmlCwR5bsvn6uRA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibm1Z2VPiaONHzDUOW5PS2fK6QkbicoCHc5CXCWsjicnapgVLElicjibBCWGuA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmdLTNzoWxw7drn8obRtKjibDiaEqibNZ1SwbpqbuJVPQCOBSnfIssyt87Q/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmibapSTovpJficR5ibibLCA0pjk2I7h9icBzdCkcKYnfVTg3O3NAJxfSsF1A/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:updated_time" content="2017-06-28T10:37:43.147Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[git] 多人协作开发">
+<meta name="twitter:description" content="Git可以完成两件事情：
+
+版本控制
+多人协作开发
+
+如今的项目，规模越来越大，功能越来越多，需要有一个团队进行开发。
+如果有多个开发人员共同开发一个项目，如何进行协作的呢。
+Git提供了一个非常好的解决方案 —- 多人协作开发。
+多人协作原理典型的做法是，首先创建一个git服务器，被多个人所操作。
+
+多人协作实现分为如下几个步骤：
+
+创建一个git裸服务器 （git init –bare）
+从裸">
+<meta name="twitter:image" content="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmfAx1XUgx9D9EoNTyZowjdUGZ3hk4AIHmkbiamdPY7hxnNjpM4BPuPJQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/favicon.ico" alt="Glemontree&#39;s blog" title="Glemontree&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Glemontree&#39;s blog">Glemontree&#39;s blog</a></h1>
+				<h2 class="blog-motto">day day up!</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="http://zhannei.baidu.com/cse/search" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/06/28/[git] 多人协作开发/" title="[git] 多人协作开发" itemprop="url">[git] 多人协作开发</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
+		
+  <p class="article-time">
+    <time datetime="2017-06-28T10:29:56.000Z" itemprop="datePublished"> 发表于 2017-06-28</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#多人协作原理"><span class="toc-number">1.</span> <span class="toc-text">多人协作原理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#多人协作实现"><span class="toc-number">2.</span> <span class="toc-text">多人协作实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#分支"><span class="toc-number">3.</span> <span class="toc-text">分支</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#声明"><span class="toc-number">4.</span> <span class="toc-text">声明</span></a></li></ol>
+		
+		</div>
+		
+		<p>Git可以完成两件事情：</p>
+<ul>
+<li>版本控制</li>
+<li>多人协作开发</li>
+</ul>
+<p>如今的项目，规模越来越大，功能越来越多，需要有一个团队进行开发。</p>
+<p>如果有多个开发人员共同开发一个项目，如何进行协作的呢。</p>
+<p>Git提供了一个非常好的解决方案 —- 多人协作开发。</p>
+<h1 id="多人协作原理"><a href="#多人协作原理" class="headerlink" title="多人协作原理"></a>多人协作原理</h1><p>典型的做法是，首先创建一个git服务器，被多个人所操作。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmfAx1XUgx9D9EoNTyZowjdUGZ3hk4AIHmkbiamdPY7hxnNjpM4BPuPJQ/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<h1 id="多人协作实现"><a href="#多人协作实现" class="headerlink" title="多人协作实现"></a>多人协作实现</h1><p>分为如下几个步骤：</p>
+<ul>
+<li>创建一个git裸服务器 （git init –bare）</li>
+<li>从裸服务器将版本库克隆至本地（git clone ）</li>
+<li>本地常规操作</li>
+<li>推送版本至服务器 （git remote +  git push origin master）</li>
+<li>从远程服务器拉取版本（git pull）</li>
+</ul>
+<p>一般而言，我们需要在Linux服务器上来搭建我们的git版本服务器，每个公司都会有。由项目负责人开始。我们现在是windows系统上模拟这个操作过程。</p>
+<ul>
+<li><p>创建一个git裸服务器 （git init –bare）</p>
+<p>由负责人来完成的。服务器新建一个项目目录，如git-server</p>
+<p> <img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmYEnhEZIgh03VGBicTjrLVzUok2LJey2nicVOC9Ges8Mf9tic8sGvr7C6w/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<p>创建完毕，我们发现git-server内容和上次的不太一样。</p>
+<p>上次使用git init 创建之后，会有一个隐藏的.git目录。目录中的才是现在看到的内容。</p>
+<p>也就是说，现在根本就没有.git目录了。</p>
+<p>这就意味着在这个目录中，不能做常规的开发。</p>
+</li>
+<li><p>从裸服务器将版本库克隆至本地（git clone ）</p>
+<p>在git版本服务器，一般是不做任何开发工作的。如果要开发项目，就需要将版本库从服务器克隆到本地。</p>
+<p>假设有一个程序员甲，开始自己的工作了。</p>
+<p>使用命令 <strong>git clone git版本服务器地址</strong></p>
+<p>在windows下面，就是使用绝对路径，如下：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmXSlaRb97ceUfK7Cw5Js1kQYcib0fSbhk4icJN2kpEgxO4vATcuFTyzGA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+</li>
+</ul>
+<p>  然后，甲就可以在这个目录下，进行常规开发。</p>
+<p>  <img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmY2D1ko8ibUzU7cdJQrib5OkpjjHHncohyDEKKeymiaYjeCicCLH2ZcywkQ/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<p>  我们可以在这个目录下，创建自己的工作区目录，完成常规开发。</p>
+<ul>
+<li><p>本地常规操作</p>
+<p>甲可以，在本地进行常规开发。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmFqwr21aRAqw5nun0t08KMQnSDEIM6Wy6wJxRKRPsfnzcwbiaBjO2DyA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibm1fVLDdElWBoWMPYCib1EibBEdNrT4wSYQsKv1pTatSgrqao1Nicx3qdCA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<p>这个过程，可以反复进行。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmPC1eGOYricrv8J4BmNQm8zZLvjmTDHicsogKI9tibI73JR5ZpdldaZh5g/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmrjibPmIiaGcoicxibtuyTialw7uxgJFOlWyCwEda5EYZb0x29c8MibRBcp1w/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<p>我的第一个模块（功能）开发完毕。需要将其推送到服务器。</p>
+</li>
+<li><p>推送版本至服务器 （git remote +  git push origin master）</p>
+<p>当在本地完成一个模块（功能），需要推送到服务器，供其他同事使用。</p>
+<p><strong>第一件事情，需要知道服务器在哪儿？</strong></p>
+<p>git remote</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmsuRnluJ2j6qvUvHdrSX3IQAUdib93Xy7L56ArODnbPqecUK3axtRORA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<p><strong>第二件事情，直接推送即可</strong></p>
+<p>git push origin master</p>
+<p>其中origin就是使用git remote得到的远程服务器的名称。</p>
+<p>master表示是主分支。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmkBKCwqWGS9tqYaxHyrfSw61GE1guvcMrCHPyemz0n4Otic9FXUf75qw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+</li>
+</ul>
+<p>  对于甲来说，它的工作已经告一段落了，该轮到乙程序员出场了。</p>
+<p>  乙程序员，首先将版本库从git服务器上克隆到本地。</p>
+<p>   <img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmzTA1JbyKsbj9knHc3Ea2yDD74hjhDdj7urIPSqLQiapGHMicicxNkyFiag/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<p>  打开这个目录，然后进可以看到最新新的内容，如下：</p>
+<p>  <img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmObqosT2XzgvfERTOlMejROcbLTWO6ssPUBE5UTng5PCbMFl73tuxyw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<p>  对于乙而言，可以在本地进行常规开发。与此同时，甲继续他的常规开发。</p>
+<p>  模拟乙程序员在本地的开发。</p>
+<p>  <img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmxxWrHOlFZW2Rem2BoibfeUBicsbaqDZKibW1zpZXDpClI7oo0nk6Rhhibw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<p>  <img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibm0NtBunSGC0Wyehnb9lm0oWEscUvFHRnx7Bia5KsO3LWNNY2mhqfYS0Q/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<p>  将完成的工作，推送到git服务器。</p>
+<p>  <img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibm25bV9vpjGpFHLgEMQvOM0PCabt3BxnXew4dNRQfsczicmIiaotZpGzdQ/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<p>  回头，再看看甲的开发。</p>
+<p>  <img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmPoUS0rfe1l98J9uXQadibI9XzSUXWicibWDor5V8LIUZdchUJUU7jrfOA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<p>  <img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmaoE8WpjBHrjvAlsJcbmlYWFa1HXibb8TibvU80gM4vdUbviaKjA8uYX9w/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<p>  <img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmeRlSjOyMYE6hRdlNn7U9QDBpZY6xKbTvKyJcicJbRRp0KPVouHB35sg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<p>  甲收工，准备下班了。在下班之前，需要将最新版本推送到git服务器。</p>
+<p>  开始使用命令，执行如下：</p>
+<p>  <img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmO769SvOAib2ue0nvylVhkn6GZFON59TJ3cSXdupChOeVPyuXZp321cg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<p>  结果出错了，why？</p>
+<p>  之所以会出错，原因在于：其他程序员已经将最新的一个版本提交到git服务器上，但是你在提交之前，已经不是最新的。</p>
+<p>  在这种情况下，甲，需要先从服务器拉取最新的版本。</p>
+<ul>
+<li><p>从远程服务器拉取版本（git pull）</p>
+<p>在多人协助开发时，每个开发人员在推送自己的最新版本时，都需要确保当前版本是最新的，所以就需要先获取最新版本，也就是说需要从服务器拉取最新版本到本地。</p>
+<p>需要使用 git pull命令</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmTibd7qz9Tibe4ibFkP7rtESnVD6kBtu48L2eY2ct0RLia9sbcvHWYA5klA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+</li>
+</ul>
+<p>  如此一来，甲当前就是最新的版本。</p>
+<p>  然后再次使用 git push 命令推送至服务器。</p>
+<p>  <img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmtUkJic8JIZwbFsKnufhIXKXnSBxqWUgh8tmSumt23cjMcic5hzeShUhg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<p>  接下来需要分两种情况：</p>
+<p>  如果有新的开发人员加入进来，重复2~5过程。</p>
+<p>  如果不是新的开发人员，重复3~5过程。</p>
+<p>  比如，对于乙而言，其实它现在已经不是最新的版本了，所以需要使用 git pull 拉取最新版本。</p>
+<p>  <img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmEDICGpJdETOmrPNibZphPoBFdZQLy1rqqBSAicxFRwweqtKHLZ9oyicLw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<p>  所以，对很多开发人员而言，一打开电脑，马上先git pull，拉取最新的。然后进行常规开发，</p>
+<p>  开发完毕之后，在git push之前，还需要使用git pull再拉取一遍。</p>
+<p>  如果还有一个新的程序员丙，加入了，怎么办呢？</p>
+<p>  需要先git clone</p>
+<p>  <img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmE6ibzrLAj4HbMMqNFXTKfs95boHibNeBibWnyzQktQlCexh7u8qMyh9xQ/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<p>  然后就进行常规开发，推送版本、拉取版本。</p>
+<p>  在整个协作开发时，有时候会出现冲突。通常都是由于开发人员分工不明确导致的，所以如果出现这种情况，需要两个程序员协商解决。</p>
+<h1 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h1><ul>
+<li><p>什么是分支</p>
+<p>在前面所有的操作当中，我们一直使用的是master主分支。以刚才的项目版本控制为例</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmQxPBSQib07yicYoNgdq9icuBziaSS3hMDiaO5OrxOASHsicrcibZk9PF4RwQg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<p>有四个版本，在我们的版本库中，都是存在于master主分支上的。</p>
+<p>图示如下：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmpLPibnicEdyofof9eicNO4vtLC8hekB2SvAQZtQ6MzViapypGQUWmpUNxQ/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<p>如果我们的项目本身比较简单，只需要有主分支master就够了。</p>
+<p>但是，实际上并不是这样的。</p>
+<p>在这个世界上，有一种软件叫做开源软件 – 源代码开发，所有的人都可以免费使用。</p>
+<p>开源软件是由世界上无数的程序员共同来开发。</p>
+<p>每个程序员都可以创建一个自己的分支，这个自己分支和主master完全独立的两个分支。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmxsBiaUW6HCV84rDSckGAHEoqSgl1tgr89OjDicRYUJU2A8ibGtzIM9u9w/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<p>相应的，每个程序员都可以拥有自己的分支，可以进行任何的开发，此时和master没有什么关系的。</p>
+<p>一旦开发完毕，就可以将你的分支合并到主分支上去。</p>
+<p><strong>什么时候会用到分支呢？</strong></p>
+<p>假设你准备开发一个新功能，但是需要两周才能完成，第一周你写了50%的代码，如果立刻提交，由于代码还没写完，不完整的代码库会导致别人不能干活了。如果等代码全部写完再一次提交，又存在丢失每天进度的巨大风险，怎么办？</p>
+<p>你可以创建一个属于自己的分支，别人看不见，还继续在原来的分支上工作，而你在自己的分支上进行开发，等开发完毕，合并即可。</p>
+<p>在开源世界中，需用大量的程序员共同维护一个项目。也是需要使用分支，如Jquery。</p>
+</li>
+<li><p>分支的基本操作</p>
+<p>基本操作有如下几个：</p>
+<ul>
+<li>查看当前分支 （git branch）</li>
+<li>创建分支 （git branch 分支名）</li>
+<li>切换分支（git checkout 分支名）</li>
+<li>分支上的常规操作</li>
+<li>分支的合并 （git checkout master + git merge 分支名）</li>
+<li>分支的删除（git branch -d 分支名）</li>
+</ul>
+<p><strong>查看当前分支 （git branch）</strong></p>
+<p> <img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmI1N1hCib8Az8qjLR4Qx0Q0o5icFGCDibmVMMHEJ3N2icxx0Z8SzIEMY3ibA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<p>其中的 * 表示 当前分支。</p>
+<p>默认情况下，只有一个master主分支。</p>
+</li>
+</ul>
+<p>  <strong>创建分支 （git branch 分支名）</strong></p>
+<p>  <strong><img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibm0lf1vQdiaEVk0iaT5t4vh17yjjLd56UlfuIglInEoMp6Ozw9jyNLERtA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></strong></p>
+<p>  <strong>切换分支（git checkout 分支名）</strong></p>
+<p>  创建完成之后，就有了一个新的分支，但是并没有立即切换到新的分支，需要使用命令切换一下。</p>
+<p>  <img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibm8HWr5RFwe8cfqiaAoDYzz7YXo5j0TkyJ26iaFZF4ttKhmC1HfHEV3C8Q/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<p>  <strong>分支上的常规操作</strong></p>
+<p>  已经切换到b1分支上，就可以在b1分支进行常规开发和操作。</p>
+<p>   <img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmde5D7esWgCNclMRusrBMEBYWR8mTsRrW6TgRXNoichs9ZwIjHQVDAIA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<p>  使用git add 和git commit提交。</p>
+<p>  使用git log查看即可：</p>
+<p>  <img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmLlRr1LX3zlmbqGtZicKulzNOyF9ibI7c6qibt6fmCVxVIEj7icUUbFWjpg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<p>  与之对应的，我们再次切换到master分支上看看是什么情况：</p>
+<p>  <img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmxf9OY2AiaibOnk3licd2iaVtDqJcxnSM9aOLQSwoFiapnoTj80ARZ0AdUsg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<p>  说明在master分支上，并没有新提交的内容。</p>
+<p>  <strong>分支的合并 （git checkout master + git merge 分支名）</strong></p>
+<p>  分支的合并，一定是在 主分支上进行的。</p>
+<p>  只能在主分支合并其它分支。</p>
+<p>  需要两步：</p>
+<p>  1） 切换到主分支</p>
+<p>  2） 使用git merge 分支名 进行合并</p>
+<p>  <img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmRaFVEU2WibEQ8WjnL6qSiaPtvXZz1K4jYoZGIsKGwVPSUric3kCdD0KJQ/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<p>  <img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmtxdklFSA5krdqsN7l35tvs7QibywIRmx4icqfUpzQkGsJGhaCXUDt3xA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<p>  再次查看master的一个log情况，如下：</p>
+<p>  <img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibm55TAibgvHs11C1jc56iadhfHKRFGiaqOrz4qia7bXV1L82pln6DNOE9wDg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<p>  <strong>分支的删除（git branch -d 分支名）</strong></p>
+<p>  使用命令git branch -d 分支名</p>
+<p>  <img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmv8jibo6AqI4ic1l7FHwtJD44icOroUagwXue1SOickFH5G0oZoGHxl92fg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<p>  如果你发现你的分支中所做的开发没有任何用处，也可以不合并直接删除。</p>
+<ul>
+<li><p>分支的原理</p>
+<p>分支的过程及原理如下：</p>
+<p>默认只有master的情况下，master总是指向最新的版本，而HEAD指针总是指向master的。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmP1FXJ6GUhibDdEEYia9UOByuU9OicicJ4XDV6HZEKdnEb5It3coAZcL52A/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+</li>
+</ul>
+<p>  现在，我创建了一个新的分支dev，将当前分支指定为dev，此时，master和dev都指向当前最新版本，但是HEAD指针已经指向了dev分支。</p>
+<p>  <img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmLrLG5tTgyrh2IiagYXXXy9ImJ9sgw2sicpHVM1PYAZmlCwR5bsvn6uRA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<p>  接下来，我们提交了新的版本，dev指向最新版本，而master则原地不动。</p>
+<p>  HEAD指向当前分支dev的。</p>
+<p>  <img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibm1Z2VPiaONHzDUOW5PS2fK6QkbicoCHc5CXCWsjicnapgVLElicjibBCWGuA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<p>  当在dev分支上完成开发之后，可以将它合并到主分支master上。</p>
+<p>  合并时，需要先切换到master，意味着HEAD指向了master，合并的时候其实就是将master和dev的最新版本同步。</p>
+<p>  <img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmdLTNzoWxw7drn8obRtKjibDiaEqibNZ1SwbpqbuJVPQCOBSnfIssyt87Q/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<p>  dev分支的使命已经完成，没有什么作用了，将其删除掉。只剩下一个主分支。</p>
+<p>  <img src="https://mmbiz.qpic.cn/mmbiz_png/XCETLoXzTr8rdvIU7edenvZEcfFQ23ibmibapSTovpJficR5ibibLCA0pjk2I7h9icBzdCkcKYnfVTg3O3NAJxfSsF1A/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<h1 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h1><p>本文转载自微信公众号：互联网后端架构</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/git/">git</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/git/">git</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2017/06/28/[git] 多人协作开发/" data-title="[git] 多人协作开发 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2017/06/28/[C++] ACE书籍推荐/"  title="[C++] ACE书籍推荐">
+ <strong>下一篇：</strong><br/> 
+ <span>[C++] ACE书籍推荐
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/06/28/[git] 多人协作开发/" data-title="[git] 多人协作开发" data-url="http://yoursite.com/2017/06/28/[git] 多人协作开发/"></div>
+</section>
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#多人协作原理"><span class="toc-number">1.</span> <span class="toc-text">多人协作原理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#多人协作实现"><span class="toc-number">2.</span> <span class="toc-text">多人协作实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#分支"><span class="toc-number">3.</span> <span class="toc-text">分支</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#声明"><span class="toc-number">4.</span> <span class="toc-text">声明</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="glemontree" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Boost/" title="Boost">Boost<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C/" title="C++">C++<sup>14</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CMake/" title="CMake">CMake<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/DB/" title="DB">DB<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Java/" title="Java">Java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Qt/" title="Qt">Qt<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Spring/" title="Spring">Spring<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Struts/" title="Struts">Struts<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/TCP-IP/" title="TCP/IP">TCP/IP<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows核心编程/" title="Windows核心编程">Windows核心编程<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/android/" title="android">android<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/git/" title="git">git<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/html/" title="html">html<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/多线程/" title="多线程">多线程<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/数据库/" title="数据库">数据库<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/编程规范/" title="编程规范">编程规范<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络编程/" title="网络编程">网络编程<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/C/" title="C++">C++<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-boost/" title="C++ boost">C++ boost<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DB/" title="DB">DB<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-Boost/" title="C++, Boost">C++, Boost<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-设计模式-适配器模式/" title="C++, 设计模式, 适配器模式">C++, 设计模式, 适配器模式<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-VS/" title="C++, VS">C++, VS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-assert/" title="C++, assert">C++, assert<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-bind-回调/" title="C++, bind, 回调">C++, bind, 回调<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前置/" title="前置++">前置++<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/后置/" title="后置++">后置++<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-继承-同名成员变量/" title="C++, 继承, 同名成员变量">C++, 继承, 同名成员变量<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CMake-VS/" title="CMake, VS">CMake, VS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CMake/" title="CMake">CMake<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-11-Bind/" title="C++11, Bind">C++11, Bind<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/通配符/" title="通配符">通配符<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/INSERT/" title="INSERT">INSERT<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo-主题/" title="Hexo, 主题">Hexo, 主题<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java-反射-无参构造函数/" title="Java, 反射, 无参构造函数">Java, 反射, 无参构造函数<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux-EPoll/" title="Linux, EPoll">Linux, EPoll<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux-eventfd/" title="Linux, eventfd">Linux, eventfd<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://github.com/glemontree" target="_blank" title="GitHub">GitHub</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/u010216743" target="_blank" title="CSDN">CSDN</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello World. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/glemontree" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:gtp0521@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Glemontree">Glemontree</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"glemontree"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'null'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
