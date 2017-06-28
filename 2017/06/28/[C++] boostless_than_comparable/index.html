@@ -4,23 +4,26 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>[CMake] 推荐一个关于CMake的一个很详细的教程 | Glemontree&#39;s blog</title>
+    <title>[C++] boost::less_than_comparable | Glemontree&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Glemontree">
     
 
     
-    <meta name="description" content="如果你对CMake也很感兴趣这篇文章你值得拥有： CMake。">
+    <meta name="description" content="boost::less_than_comparable前言很多操作符都是可以从其他操作符自动推导出来，例如a != b可以从!(a == b)推导出来，因此原则上只需要定义少量的基本操作符，其他的操作符就可以 通过逻辑组合推导出来。
+std::rel::ops在C++98标准的std::rel_ops中定义了四个模板比较操作符!=、&amp;gt;、&amp;lt;=、&amp;gt;=，只需要为类定义==和&amp;lt;操作">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[CMake] 推荐一个关于CMake的一个很详细的教程">
-<meta property="og:url" content="http://yoursite.com/2017/06/28/[CMake] 推荐一个关于CMake的一个很详细的教程/index.html">
+<meta property="og:title" content="[C++] boost::less_than_comparable">
+<meta property="og:url" content="http://yoursite.com/2017/06/28/[C++] boostless_than_comparable/index.html">
 <meta property="og:site_name" content="Glemontree's blog">
-<meta property="og:description" content="如果你对CMake也很感兴趣这篇文章你值得拥有： CMake。">
-<meta property="og:updated_time" content="2017-06-28T09:19:23.715Z">
+<meta property="og:description" content="boost::less_than_comparable前言很多操作符都是可以从其他操作符自动推导出来，例如a != b可以从!(a == b)推导出来，因此原则上只需要定义少量的基本操作符，其他的操作符就可以 通过逻辑组合推导出来。
+std::rel::ops在C++98标准的std::rel_ops中定义了四个模板比较操作符!=、&amp;gt;、&amp;lt;=、&amp;gt;=，只需要为类定义==和&amp;lt;操作">
+<meta property="og:updated_time" content="2017-06-28T10:19:08.309Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[CMake] 推荐一个关于CMake的一个很详细的教程">
-<meta name="twitter:description" content="如果你对CMake也很感兴趣这篇文章你值得拥有： CMake。">
+<meta name="twitter:title" content="[C++] boost::less_than_comparable">
+<meta name="twitter:description" content="boost::less_than_comparable前言很多操作符都是可以从其他操作符自动推导出来，例如a != b可以从!(a == b)推导出来，因此原则上只需要定义少量的基本操作符，其他的操作符就可以 通过逻辑组合推导出来。
+std::rel::ops在C++98标准的std::rel_ops中定义了四个模板比较操作符!=、&amp;gt;、&amp;lt;=、&amp;gt;=，只需要为类定义==和&amp;lt;操作">
 
     
     <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
@@ -79,14 +82,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/06/28/[CMake] 推荐一个关于CMake的一个很详细的教程/" title="[CMake] 推荐一个关于CMake的一个很详细的教程" itemprop="url">[CMake] 推荐一个关于CMake的一个很详细的教程</a>
+      <a href="/2017/06/28/[C++] boostless_than_comparable/" title="[C++] boost::less_than_comparable" itemprop="url">[C++] boost::less_than_comparable</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-28T09:18:46.000Z" itemprop="datePublished"> Published 2017-06-28</time>
+    <time datetime="2017-06-28T10:18:51.000Z" itemprop="datePublished"> Published 2017-06-28</time>
     
   </p>
 </header>
@@ -95,11 +98,28 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#boost-less-than-comparable"><span class="toc-number">1.</span> <span class="toc-text">boost::less_than_comparable</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#std-rel-ops"><span class="toc-number">1.2.</span> <span class="toc-text">std::rel::ops</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#boost-opeartors库"><span class="toc-number">1.3.</span> <span class="toc-text">boost.opeartors库</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<p>如果你对CMake也很感兴趣这篇文章你值得拥有： <a href="http://www.hahack.com/codes/cmake/" target="_blank" rel="external">CMake</a>。</p>
+		<h2 id="boost-less-than-comparable"><a href="#boost-less-than-comparable" class="headerlink" title="boost::less_than_comparable"></a>boost::less_than_comparable</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>很多操作符都是可以从其他操作符自动推导出来，例如a != b可以从!(a == b)推导出来，因此原则上只需要定义少量的基本操作符，其他的操作符就可以 通过逻辑组合推导出来。</p>
+<h3 id="std-rel-ops"><a href="#std-rel-ops" class="headerlink" title="std::rel::ops"></a>std::rel::ops</h3><p>在C++98标准的std::rel_ops中定义了四个模板比较操作符!=、&gt;、&lt;=、&gt;=，只需要为类定义==和&lt;操作符，那么这四个操作符就可以自动实现。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">#include &lt;iostream&gt;</div><div class="line">#include &lt;assert.h&gt;</div><div class="line">#include &lt;boost/logic/tribool.hpp&gt;</div><div class="line">#include &lt;boost/logic/tribool_io.hpp&gt;</div><div class="line">#include &lt;utility&gt;</div><div class="line"></div><div class="line">class demo_class &#123;</div><div class="line">public:</div><div class="line">	demo_class(int n) : x(n) &#123;</div><div class="line">      </div><div class="line">	&#125; </div><div class="line">private:</div><div class="line">  	int x;</div><div class="line">  	</div><div class="line">public:</div><div class="line">  	friend bool operator&lt;(const demo_class&amp; lhs, const demo_class&amp; rhs) &#123;</div><div class="line">    	return lhs.x &lt; rhs.x;</div><div class="line">  	&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">int main() &#123;</div><div class="line">  	demo_class a(10), b(20);</div><div class="line">  	using namespace std::rel_ops; // 打开命名空间</div><div class="line">  	std::cout &lt;&lt; (a &lt; b) &lt;&lt; std::endl;</div><div class="line">  	std::cout &lt;&lt; (b &gt;= a) &lt;&lt; std::endl;</div><div class="line">  	return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="boost-opeartors库"><a href="#boost-opeartors库" class="headerlink" title="boost.opeartors库"></a>boost.opeartors库</h3><p>同样地，boost.opeartors库允许用户在自己的类里仅定义少量的操作符（如&lt;）就可以方便的自动生成其他操作符重载。</p>
+<p>operators库由多个类组成，分别用来实现不同的运算概念，比如less_than_comparable定义了&lt;系列操作符，left_shiftable定义了&lt;&lt;系列操作符。</p>
+<ul>
+<li>equality_comparable： 要求提供==，可自动实现!=，相等语义；</li>
+<li>less_than_comparable：要求提供&lt;，可自动实现&gt;，&lt;=，&gt;=；</li>
+<li>addable：要求提供+=，自动实现+；</li>
+<li>subtractable：要求提供-=，可自动实现-；</li>
+<li>incrementable：要求提供前置++，可自动实现后置++；</li>
+<li>decrementable：要求提供前置–，可自动实现后置–；</li>
+<li>equivalent：要求提供&lt;，可自动实现==； </li>
+</ul>
+<p>这些概念在库中以同名类的形式提供，用户需要以继承的方式来使用它们，继承的修饰符并不重要(private，public都可以),因为operator库里的类都是空类，没有成员变量和成员函数，仅定义了数个友元操作符函数。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">#include &lt;iostream&gt;</div><div class="line">#include &lt;assert.h&gt;</div><div class="line">#include &lt;boost/operators.hpp&gt;</div><div class="line"></div><div class="line">class Point : public boost::less_than_comparable&lt;Point&gt; &#123;</div><div class="line">public:</div><div class="line">  	explicit Point(int a = 0, int b = 0, int c = 0)</div><div class="line">      	: x(a), y(b), z(c) &#123;</div><div class="line">    	      </div><div class="line">    &#125;</div><div class="line">public:</div><div class="line">  	void print() const &#123;</div><div class="line">      	std::cout &lt;&lt; x &lt;&lt; "," &lt;&lt; y &lt;&lt; "," &lt;&lt; z &lt;&lt; std::endl;</div><div class="line">  	&#125;</div><div class="line">  </div><div class="line">public:</div><div class="line">  	friend bool operator&lt;(const Point&amp; l, const Point&amp; r) &#123;</div><div class="line">      	return (l.x * l.x + l.y * l.y + l.z * l.z</div><div class="line">              &lt; r.x * r.x + r.y * r.y + r.z * r.z);</div><div class="line">  	&#125;</div><div class="line">private:</div><div class="line">	int x, y, z;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>在上面这段代码中，Point类中仅定义了一个友元operator&lt;函数，其余的&gt;、&lt;=、&gt;=均由less_than_comparable自动生成。</p>
+<p>在使用operators库时需要注意，模板类型参数必须是子类本身，，特别是当子类本身也是个模板类的时候，不要错写成子类的模板参数或者子类不带模板参数的名称，否则会造成编译错误。在上面代码中，less_than_comparable的模板类型参数必须是Point类。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -107,13 +127,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/CMake/">CMake</a>
+  <a class="article-category-link" href="/categories/C/">C++</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/CMake/">CMake</a>
+  <span></span> <a href="/tags/C-boost/">C++ boost</a>
   </div>
 
 </div>
@@ -122,7 +142,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2017/06/28/[CMake] 推荐一个关于CMake的一个很详细的教程/" data-title="[CMake] 推荐一个关于CMake的一个很详细的教程 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/06/28/[C++] boostless_than_comparable/" data-title="[C++] boost::less_than_comparable | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -135,20 +155,20 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/06/28/[C++] 推荐一个在线编辑、编译、运行程序的网页/" title="[C++] 推荐一个在线编辑、编译、运行程序的网页">
-  <strong>上一篇：</strong><br/>
-  <span>
-  [C++] 推荐一个在线编辑、编译、运行程序的网页</span>
+
+<div class="next">
+<a href="/2017/06/28/[C++] BOOST_STATIC_ASSERT和assert的区别/"  title="[C++] BOOST_STATIC_ASSERT和assert的区别">
+ <strong>下一篇：</strong><br/> 
+ <span>[C++] BOOST_STATIC_ASSERT和assert的区别
+</span>
 </a>
 </div>
-
 
 </nav>
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2017/06/28/[CMake] 推荐一个关于CMake的一个很详细的教程/" data-title="[CMake] 推荐一个关于CMake的一个很详细的教程" data-url="http://yoursite.com/2017/06/28/[CMake] 推荐一个关于CMake的一个很详细的教程/"></div>
+	<div class="ds-thread" data-thread-key="2017/06/28/[C++] boostless_than_comparable/" data-title="[C++] boost::less_than_comparable" data-url="http://yoursite.com/2017/06/28/[C++] boostless_than_comparable/"></div>
 </section>
 
 
@@ -159,7 +179,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#boost-less-than-comparable"><span class="toc-number">1.</span> <span class="toc-text">boost::less_than_comparable</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#std-rel-ops"><span class="toc-number">1.2.</span> <span class="toc-text">std::rel::ops</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#boost-opeartors库"><span class="toc-number">1.3.</span> <span class="toc-text">boost.opeartors库</span></a></li></ol></li></ol>
  
   </div>
 
