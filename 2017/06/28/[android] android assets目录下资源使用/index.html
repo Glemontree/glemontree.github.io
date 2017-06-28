@@ -4,29 +4,32 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>[多线程] 互斥对象和锁 | Glemontree&#39;s blog</title>
+    <title>[android] android assets目录下资源使用 | Glemontree&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Glemontree">
     
 
     
-    <meta name="description" content="互斥对象和锁锁互斥对象的主要操作有两个，即加锁(lock)和解锁(unlock)。当一个线程对互斥对象进行lock操作并成功获得这个互斥对象的所有权，在此线程对此对象unlock前，其他线程对这个互斥对象的lock操作都会被阻塞。
-多个互斥对象加锁有些倾向需要对多个互斥对象进行加锁，考虑下面的代码：
-12345678910std::mutex mt1, mt2;&amp;#123;	std::lock_g">
+    <meta name="description" content="第一种方法String path = &amp;quot;file:///android_assert/文件名&amp;quot;
+第二种方法​InputStream abPath = getClass().getResourceAsStream(&amp;quot;asserts/文件名&amp;quot;);
+若想要转换成String类型：
+123456789101112131415161718192021String pa">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[多线程] 互斥对象和锁">
-<meta property="og:url" content="http://yoursite.com/2017/06/28/[多线程] 互斥对象和锁/index.html">
+<meta property="og:title" content="[android] android assets目录下资源使用">
+<meta property="og:url" content="http://yoursite.com/2017/06/28/[android] android assets目录下资源使用/index.html">
 <meta property="og:site_name" content="Glemontree's blog">
-<meta property="og:description" content="互斥对象和锁锁互斥对象的主要操作有两个，即加锁(lock)和解锁(unlock)。当一个线程对互斥对象进行lock操作并成功获得这个互斥对象的所有权，在此线程对此对象unlock前，其他线程对这个互斥对象的lock操作都会被阻塞。
-多个互斥对象加锁有些倾向需要对多个互斥对象进行加锁，考虑下面的代码：
-12345678910std::mutex mt1, mt2;&amp;#123;	std::lock_g">
-<meta property="og:updated_time" content="2017-06-28T09:39:20.628Z">
+<meta property="og:description" content="第一种方法String path = &amp;quot;file:///android_assert/文件名&amp;quot;
+第二种方法​InputStream abPath = getClass().getResourceAsStream(&amp;quot;asserts/文件名&amp;quot;);
+若想要转换成String类型：
+123456789101112131415161718192021String pa">
+<meta property="og:updated_time" content="2017-06-28T10:25:39.251Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[多线程] 互斥对象和锁">
-<meta name="twitter:description" content="互斥对象和锁锁互斥对象的主要操作有两个，即加锁(lock)和解锁(unlock)。当一个线程对互斥对象进行lock操作并成功获得这个互斥对象的所有权，在此线程对此对象unlock前，其他线程对这个互斥对象的lock操作都会被阻塞。
-多个互斥对象加锁有些倾向需要对多个互斥对象进行加锁，考虑下面的代码：
-12345678910std::mutex mt1, mt2;&amp;#123;	std::lock_g">
+<meta name="twitter:title" content="[android] android assets目录下资源使用">
+<meta name="twitter:description" content="第一种方法String path = &amp;quot;file:///android_assert/文件名&amp;quot;
+第二种方法​InputStream abPath = getClass().getResourceAsStream(&amp;quot;asserts/文件名&amp;quot;);
+若想要转换成String类型：
+123456789101112131415161718192021String pa">
 
     
     <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
@@ -85,14 +88,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/06/28/[多线程] 互斥对象和锁/" title="[多线程] 互斥对象和锁" itemprop="url">[多线程] 互斥对象和锁</a>
+      <a href="/2017/06/28/[android] android assets目录下资源使用/" title="[android] android assets目录下资源使用" itemprop="url">[android] android assets目录下资源使用</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-28T09:38:55.000Z" itemprop="datePublished"> Published 2017-06-28</time>
+    <time datetime="2017-06-28T10:25:19.000Z" itemprop="datePublished"> Published 2017-06-28</time>
     
   </p>
 </header>
@@ -101,24 +104,14 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#互斥对象和锁"><span class="toc-number">1.</span> <span class="toc-text">互斥对象和锁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#锁"><span class="toc-number">1.1.</span> <span class="toc-text">锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多个互斥对象加锁"><span class="toc-number">1.2.</span> <span class="toc-text">多个互斥对象加锁</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第一种方法"><span class="toc-number">1.</span> <span class="toc-text">第一种方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第二种方法"><span class="toc-number">2.</span> <span class="toc-text">第二种方法</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="互斥对象和锁"><a href="#互斥对象和锁" class="headerlink" title="互斥对象和锁"></a>互斥对象和锁</h2><h3 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h3><p>互斥对象的主要操作有两个，即加锁(lock)和解锁(unlock)。当一个线程对互斥对象进行lock操作并成功获得这个互斥对象的所有权，在此线程对此对象unlock前，其他线程对这个互斥对象的lock操作都会被阻塞。</p>
-<h3 id="多个互斥对象加锁"><a href="#多个互斥对象加锁" class="headerlink" title="多个互斥对象加锁"></a>多个互斥对象加锁</h3><p>有些倾向需要对多个互斥对象进行加锁，考虑下面的代码：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">std</span>::mutex mt1, mt2;</div><div class="line">&#123;</div><div class="line">	<span class="built_in">std</span>::lock_guard&lt;<span class="built_in">std</span>::mutex&gt; lock1(mt1);</div><div class="line">  	<span class="built_in">std</span>::lock_guard&lt;<span class="built_in">std</span>::mutex&gt; lock2(mt2);</div><div class="line">&#125;</div><div class="line"></div><div class="line">&#123;</div><div class="line"> 	<span class="built_in">std</span>::lock_guard&lt;<span class="built_in">std</span>::mutex&gt; lock1(mt2);</div><div class="line">  	<span class="built_in">std</span>::lock_guard&lt;<span class="built_in">std</span>::mutex&gt; lock2(mt1);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>上面程序中，如果线程1执行到第4行的时候恰好线程2执行到第8行，那么就会出现下面的情况：</p>
-<ul>
-<li>线程1持有mt1，等待mt2</li>
-<li>线程2持有mt2，等待mt1</li>
-</ul>
-<p>线程1和线程2持有各自的mutex，互不松手，导致两个线程谁也运行不了，造成死锁现象。</p>
-<p>通常情况，要含有多个互斥对象时，为了避免死锁，要求在多个线程中进行加锁时应保证其先后顺序一致，如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">std</span>::mutex mt1, mt2;</div><div class="line">&#123;</div><div class="line">	<span class="built_in">std</span>::lock_guard&lt;<span class="built_in">std</span>::mutex&gt; lock1(mt1);</div><div class="line">  	<span class="built_in">std</span>::lock_guard&lt;<span class="built_in">std</span>::mutex&gt; lock2(mt2);</div><div class="line">&#125;</div><div class="line"></div><div class="line">&#123;</div><div class="line"> 	<span class="built_in">std</span>::lock_guard&lt;<span class="built_in">std</span>::mutex&gt; lock1(mt1);</div><div class="line">  	<span class="built_in">std</span>::lock_guard&lt;<span class="built_in">std</span>::mutex&gt; lock2(mt2);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这样的话，即使线程1执行到第4行的时候线程2执行到第8行，由于互斥对象mt1已经被上锁，线程2只能等待线程1释放mt1，因此也就不会出现前面例子所说的死锁现象。</p>
-<p>其实更好的做法是使用标准库中的std::lock和std::try_lock函数对多个互斥对象进行加锁，std::lock()可以对多个互斥对象一次性进行加锁。std::lock会使用一种避免死锁的算法对多个待加锁对象进行lock操作，当待加锁的对象中有不可用对象时std::lock会阻塞当前线程直到所有对象都可用。代码如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">std</span>::mutex mt1, mt2;</div><div class="line">&#123;</div><div class="line">	<span class="built_in">std</span>::unique_lock&lt;<span class="built_in">std</span>::mutex&gt; lock1(mt1, <span class="built_in">std</span>::defer_lock);</div><div class="line">  	<span class="built_in">std</span>::unique_lock&lt;<span class="built_in">std</span>::mutex&gt; lock2(mt2, <span class="built_in">std</span>::defer_lock);</div><div class="line">  	<span class="built_in">std</span>::lock(lck1, lck2);</div><div class="line">&#125;</div><div class="line"></div><div class="line">&#123;</div><div class="line">  	<span class="built_in">std</span>::unique_lock&lt;<span class="built_in">std</span>::mutex&gt; lock1(mt1, <span class="built_in">std</span>::defer_lock);</div><div class="line">  	<span class="built_in">std</span>::unique_lock&lt;<span class="built_in">std</span>::mutex&gt; lock2(mt2, <span class="built_in">std</span>::defer_lock);</div><div class="line">  	<span class="built_in">std</span>::lock(lck2, lck1);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+		<h1 id="第一种方法"><a href="#第一种方法" class="headerlink" title="第一种方法"></a>第一种方法</h1><p><code>String path = &quot;file:///android_assert/文件名&quot;</code></p>
+<h1 id="第二种方法"><a href="#第二种方法" class="headerlink" title="第二种方法"></a>第二种方法</h1><p>​<code>InputStream abPath = getClass().getResourceAsStream(&quot;asserts/文件名&quot;);</code></p>
+<p>若想要转换成String类型：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">String path = <span class="keyword">new</span> String (InputStreamToByte(abpath));</div><div class="line"></div><div class="line">	<span class="keyword">private</span> <span class="keyword">byte</span>[] InputStreamToByte(InputStream is) <span class="keyword">throws</span> IOException &#123;</div><div class="line"></div><div class="line">		ByteArrayOutputStream bytesStream = <span class="keyword">new</span> ByteArrayOutputStream();</div><div class="line"></div><div class="line">		<span class="keyword">int</span> ch;</div><div class="line"></div><div class="line">		<span class="keyword">while</span> ((ch = is.read()) != -<span class="number">1</span>) &#123;</div><div class="line"></div><div class="line">			byteStream.write(ch);</div><div class="line"></div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="keyword">byte</span>[] imgData = byteStream.toByteArray();</div><div class="line"></div><div class="line">		byteStream.close();</div><div class="line"></div><div class="line">		<span class="keyword">return</span> imgData;</div><div class="line"></div><div class="line">	&#125;</div></pre></td></tr></table></figure>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -126,13 +119,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/多线程/">多线程</a>
+  <a class="article-category-link" href="/categories/android/">android</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/C-多线程-互斥对象-锁/">C++, 多线程, 互斥对象, 锁</a>
+  <span></span> <a href="/tags/android-assets/">android, assets</a>
   </div>
 
 </div>
@@ -141,7 +134,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2017/06/28/[多线程] 互斥对象和锁/" data-title="[多线程] 互斥对象和锁 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/06/28/[android] android assets目录下资源使用/" data-title="[android] android assets目录下资源使用 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -154,19 +147,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/06/28/[设计模式] 单例模式/" title="[设计模式] 单例模式">
-  <strong>上一篇：</strong><br/>
-  <span>
-  [设计模式] 单例模式</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/06/28/[多线程] 互斥量和临界区的区别/"  title="[多线程] 互斥量和临界区的区别">
+<a href="/2017/06/28/[android] ProgressDialog与耗时操作/"  title="[android] ProgressDialog与耗时操作">
  <strong>下一篇：</strong><br/> 
- <span>[多线程] 互斥量和临界区的区别
+ <span>[android] ProgressDialog与耗时操作
 </span>
 </a>
 </div>
@@ -175,7 +160,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2017/06/28/[多线程] 互斥对象和锁/" data-title="[多线程] 互斥对象和锁" data-url="http://yoursite.com/2017/06/28/[多线程] 互斥对象和锁/"></div>
+	<div class="ds-thread" data-thread-key="2017/06/28/[android] android assets目录下资源使用/" data-title="[android] android assets目录下资源使用" data-url="http://yoursite.com/2017/06/28/[android] android assets目录下资源使用/"></div>
 </section>
 
 
@@ -186,7 +171,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#互斥对象和锁"><span class="toc-number">1.</span> <span class="toc-text">互斥对象和锁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#锁"><span class="toc-number">1.1.</span> <span class="toc-text">锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多个互斥对象加锁"><span class="toc-number">1.2.</span> <span class="toc-text">多个互斥对象加锁</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第一种方法"><span class="toc-number">1.</span> <span class="toc-text">第一种方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第二种方法"><span class="toc-number">2.</span> <span class="toc-text">第二种方法</span></a></li></ol>
  
   </div>
 
