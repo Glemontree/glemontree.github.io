@@ -4,56 +4,22 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>[多线程] 互斥量和临界区的区别 | Glemontree&#39;s blog</title>
+    <title>Glemontree&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Glemontree">
     
 
     
-    <meta name="description" content="互斥量和临界区的区别
-通常有4种进程或线程同步互斥的控制方法，它们是：
-
-临界区
-互斥量
-信号量
-事件
-
-其中临界区通过对多线程的串行化来访问公共资源或一段代码，速度快；互斥量为协调共同对一个共享资源的访问而设计的；信号量为控制一个具有有限数量用户资源而设计；事件则用来线程有一些事件已经发生，从而启动后继任务的开始。
-今天我们主要对临界区和互斥量的异同点进行介绍，因为这两个实在太像了。
-临界区
-临">
-<meta property="og:type" content="article">
-<meta property="og:title" content="[多线程] 互斥量和临界区的区别">
-<meta property="og:url" content="http://yoursite.com/2017/06/28/[多线程] 互斥量和临界区的区别/index.html">
+    <meta name="description" content="记录我学习的每一步">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Glemontree's blog">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
 <meta property="og:site_name" content="Glemontree's blog">
-<meta property="og:description" content="互斥量和临界区的区别
-通常有4种进程或线程同步互斥的控制方法，它们是：
-
-临界区
-互斥量
-信号量
-事件
-
-其中临界区通过对多线程的串行化来访问公共资源或一段代码，速度快；互斥量为协调共同对一个共享资源的访问而设计的；信号量为控制一个具有有限数量用户资源而设计；事件则用来线程有一些事件已经发生，从而启动后继任务的开始。
-今天我们主要对临界区和互斥量的异同点进行介绍，因为这两个实在太像了。
-临界区
-临">
-<meta property="og:updated_time" content="2017-06-28T09:37:59.109Z">
+<meta property="og:description" content="记录我学习的每一步">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[多线程] 互斥量和临界区的区别">
-<meta name="twitter:description" content="互斥量和临界区的区别
-通常有4种进程或线程同步互斥的控制方法，它们是：
-
-临界区
-互斥量
-信号量
-事件
-
-其中临界区通过对多线程的串行化来访问公共资源或一段代码，速度快；互斥量为协调共同对一个共享资源的访问而设计的；信号量为控制一个具有有限数量用户资源而设计；事件则用来线程有一些事件已经发生，从而启动后继任务的开始。
-今天我们主要对临界区和互斥量的异同点进行介绍，因为这两个实在太像了。
-临界区
-临">
+<meta name="twitter:title" content="Glemontree's blog">
+<meta name="twitter:description" content="记录我学习的每一步">
 
     
     <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
@@ -106,125 +72,35 @@
 </div>
     </header>
     <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
+      <div id="main">
+
   
-	<article itemprop="articleBody"> 
-		<header class="article-info clearfix">
-  <h1 itemprop="name">
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/06/28/[CMake] 推荐一个关于CMake的一个很详细的教程/" title="[CMake] 推荐一个关于CMake的一个很详细的教程" itemprop="url">
+  
+    <h1 itemprop="name">[CMake] 推荐一个关于CMake的一个很详细的教程</h1>
     
-      <a href="/2017/06/28/[多线程] 互斥量和临界区的区别/" title="[多线程] 互斥量和临界区的区别" itemprop="url">[多线程] 互斥量和临界区的区别</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
-		
-  <p class="article-time">
-    <time datetime="2017-06-28T09:37:33.000Z" itemprop="datePublished"> 发表于 2017-06-28</time>
+     
+           <p itemprop="description" >如果你对CMake也很感兴趣这篇文章你值得拥有： CMake。</p>
+        
     
-  </p>
-</header>
-	<div class="article-content">
-		
-		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
-		
-			
-		
-		</div>
-		
-		<p>互斥量和临界区的区别</p>
-<p>通常有4种进程或线程同步互斥的控制方法，它们是：</p>
-<ul>
-<li>临界区</li>
-<li>互斥量</li>
-<li>信号量</li>
-<li>事件</li>
-</ul>
-<p>其中临界区通过对多线程的串行化来访问公共资源或一段代码，速度快；互斥量为协调共同对一个共享资源的访问而设计的；信号量为控制一个具有有限数量用户资源而设计；事件则用来线程有一些事件已经发生，从而启动后继任务的开始。</p>
-<p>今天我们主要对临界区和互斥量的异同点进行介绍，因为这两个实在太像了。</p>
-<p>临界区</p>
-<p>临界区用来保证在同一时刻只有一个线程可以访问到资源，对于临界区进行操作的函数有两个：</p>
-<pre><code>EnterCriticalSection();
-LeaveCriticalSection();
-</code></pre><p>临界区最大的特色是其同步速度很快，但是其只能用来同步本进程内的线程，而不可用来同步多个进程中的线程。</p>
-<p>互斥量</p>
-<p>互斥量和临界区很相似，只有拥有互斥对象的线程才具有访问资源的权限，互斥量比临界区负责，并且互斥量是可以命名的，因此互斥量不仅仅可以用于同一应用程序不同线程中资源的同步，也可以用于不同应用程序的线程之间实现对资源的同步。</p>
-<p>因此互斥量可以在整个系统中被任意进程的任意线程访问到，但它严格限定只有获取了互斥量的线程才能释放该互斥量。</p>
-<p>参考资料</p>
-<ul>
-<li>临界区，互斥量，信号量，事件的区别</li>
-<li>信号量、互斥量和临界区访问范围上的差别</li>
-</ul>
-  
-	</div>
-		<footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/多线程/">多线程</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/多线程-互斥量-临界区/">多线程, 互斥量, 临界区</a>
-  </div>
-
-</div>
-
-
-
-	<div class="article-share" id="share">
-	
-	  <div data-url="http://yoursite.com/2017/06/28/[多线程] 互斥量和临界区的区别/" data-title="[多线程] 互斥量和临界区的区别 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
-	  </div>
-	
-	</div>
-
-
-</footer>
-
-   	       
-	</article>
-	
-<nav class="article-nav clearfix">
- 
- <div class="prev" >
- <a href="/2017/06/28/[多线程] 互斥对象和锁/" title="[多线程] 互斥对象和锁">
-  <strong>上一篇：</strong><br/>
-  <span>
-  [多线程] 互斥对象和锁</span>
-</a>
-</div>
-
-
-<div class="next">
-<a href="/2017/06/28/[编程规范] 函数/"  title="[编程规范] 函数">
- <strong>下一篇：</strong><br/> 
- <span>[编程规范] 函数
-</span>
-</a>
-</div>
-
-</nav>
-
-	
-<section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2017/06/28/[多线程] 互斥量和临界区的区别/" data-title="[多线程] 互斥量和临界区的区别" data-url="http://yoursite.com/2017/06/28/[多线程] 互斥量和临界区的区别/"></div>
+    <time datetime="2017-06-28T09:18:46.000Z" itemprop="datePublished">2017-06-28</time>
+  </a>
 </section>
 
 
 
-</div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
-  <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
- 
- 
- 
-  </div>
+
+
+
+  <nav id="page-nav" class="clearfix unexpand">
+    <a class="extend prev" rel="prev" href="/page/2/"><span></span>Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
+</div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
@@ -498,103 +374,14 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
-      
-      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
 });
 </script>
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  c.click(function(){
-    ta.css('display', 'block').addClass('fadeIn');
-  });
-  o.click(function(){
-    ta.css('display', 'none');
-  });
-  $(window).scroll(function(){
-    ta.css("top",Math.max(140,320-$(this).scrollTop()));
-  });
-});
-</script>
 
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var $this = $('.share'),
-      url = $this.attr('data-url'),
-      encodedUrl = encodeURIComponent(url),
-      title = $this.attr('data-title'),
-      tsina = $this.attr('data-tsina'),
-      description = $this.attr('description');
-  var html = [
-  '<div class="hoverqrcode clearfix"></div>',
-  '<a class="overlay" id="qrcode"></a>',
-  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
-  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
-  '<span title="Share to"></span>'
-  ].join('');
-  $this.append(html);
-
-  $('.hoverqrcode').hide();
-
-  var myWidth = 0;
-  function updatehoverqrcode(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-    var qrsize = myWidth > 1024 ? 200:100;
-    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
-    var p = $('.article-share-qrcode').position();
-    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
-                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
-                          .qrcode(options);
-  };
-  $(window).resize(function(){
-    $('.hoverqrcode').hide();
-  });
-  $('.article-share-qrcode').click(function(){
-    updatehoverqrcode();
-    $('.hoverqrcode').toggle();
-  });
-  $('.article-share-qrcode').hover(function(){}, function(){
-      $('.hoverqrcode').hide();
-  });
-});   
-</script>
-
-
-
-<script type="text/javascript">
-  var duoshuoQuery = {short_name:"glemontree"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
-    || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-</script> 
 
 
 
@@ -680,4 +467,4 @@ _ts(option);
 <!-- Tiny_search End -->
 
   </body>
-</html>
+ </html>
