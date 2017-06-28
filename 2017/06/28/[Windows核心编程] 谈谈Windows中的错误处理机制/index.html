@@ -4,44 +4,38 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>[C++] 零散知识点 | Glemontree&#39;s blog</title>
+    <title>[Windows核心编程] 谈谈Windows中的错误处理机制 | Glemontree&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Glemontree">
     
 
     
-    <meta name="description" content="time_t实际上是长整型long int，它用来 保存从1970年1月1日0时0分0秒到现在时刻的秒数，用time()这个函数获取
+    <meta name="description" content="谈谈Windows中的错误处理机制
+windows除了使用返回值标识函数执行情况，还引入了错误代码机制。返回值指示函数是否发生了错误，而要想知道究竟发生了什么错误，就得使用错误代码。
 
-gmtime
+windows将错误代码存储于独立于线程的，线程局部存储区中，也就是说这个区域时每个线程独有的其他线程无法更改，它存储着一些线程独有的东西。
 
-函数原型：struct tm gmtime(time_t time)
-函数功能：得到以结构tm表示的时间信息
-函数返回：以结构tm表示的时间信息指针
-所述文件：123456789101112```cpp#include &amp;lt;stdio.h&amp;g">
+在函数执行后，可通过GetLastError()函数来获得错误代码，并">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[C++] 零散知识点">
-<meta property="og:url" content="http://yoursite.com/2017/06/28/[C++] 零散知识点/index.html">
+<meta property="og:title" content="[Windows核心编程] 谈谈Windows中的错误处理机制">
+<meta property="og:url" content="http://yoursite.com/2017/06/28/[Windows核心编程] 谈谈Windows中的错误处理机制/index.html">
 <meta property="og:site_name" content="Glemontree's blog">
-<meta property="og:description" content="time_t实际上是长整型long int，它用来 保存从1970年1月1日0时0分0秒到现在时刻的秒数，用time()这个函数获取
+<meta property="og:description" content="谈谈Windows中的错误处理机制
+windows除了使用返回值标识函数执行情况，还引入了错误代码机制。返回值指示函数是否发生了错误，而要想知道究竟发生了什么错误，就得使用错误代码。
 
-gmtime
+windows将错误代码存储于独立于线程的，线程局部存储区中，也就是说这个区域时每个线程独有的其他线程无法更改，它存储着一些线程独有的东西。
 
-函数原型：struct tm gmtime(time_t time)
-函数功能：得到以结构tm表示的时间信息
-函数返回：以结构tm表示的时间信息指针
-所述文件：123456789101112```cpp#include &amp;lt;stdio.h&amp;g">
-<meta property="og:updated_time" content="2017-06-28T09:30:04.885Z">
+在函数执行后，可通过GetLastError()函数来获得错误代码，并">
+<meta property="og:updated_time" content="2017-06-28T09:44:04.330Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[C++] 零散知识点">
-<meta name="twitter:description" content="time_t实际上是长整型long int，它用来 保存从1970年1月1日0时0分0秒到现在时刻的秒数，用time()这个函数获取
+<meta name="twitter:title" content="[Windows核心编程] 谈谈Windows中的错误处理机制">
+<meta name="twitter:description" content="谈谈Windows中的错误处理机制
+windows除了使用返回值标识函数执行情况，还引入了错误代码机制。返回值指示函数是否发生了错误，而要想知道究竟发生了什么错误，就得使用错误代码。
 
-gmtime
+windows将错误代码存储于独立于线程的，线程局部存储区中，也就是说这个区域时每个线程独有的其他线程无法更改，它存储着一些线程独有的东西。
 
-函数原型：struct tm gmtime(time_t time)
-函数功能：得到以结构tm表示的时间信息
-函数返回：以结构tm表示的时间信息指针
-所述文件：123456789101112```cpp#include &amp;lt;stdio.h&amp;g">
+在函数执行后，可通过GetLastError()函数来获得错误代码，并">
 
     
     <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
@@ -100,14 +94,14 @@ gmtime
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/06/28/[C++] 零散知识点/" title="[C++] 零散知识点" itemprop="url">[C++] 零散知识点</a>
+      <a href="/2017/06/28/[Windows核心编程] 谈谈Windows中的错误处理机制/" title="[Windows核心编程] 谈谈Windows中的错误处理机制" itemprop="url">[Windows核心编程] 谈谈Windows中的错误处理机制</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-28T09:29:08.000Z" itemprop="datePublished"> Published 2017-06-28</time>
+    <time datetime="2017-06-28T09:43:44.000Z" itemprop="datePublished"> Published 2017-06-28</time>
     
   </p>
 </header>
@@ -116,65 +110,29 @@ gmtime
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#谈谈Windows中的错误处理机制"><span class="toc-number">1.</span> <span class="toc-text">谈谈Windows中的错误处理机制</span></a></li></ol>
 		
 		</div>
 		
-		<ul>
-<li><p>time_t实际上是长整型long int，它用来 保存从1970年1月1日0时0分0秒到现在时刻的秒数，用time()这个函数获取</p>
+		<h2 id="谈谈Windows中的错误处理机制"><a href="#谈谈Windows中的错误处理机制" class="headerlink" title="谈谈Windows中的错误处理机制"></a>谈谈Windows中的错误处理机制</h2><ul>
+<li><p>windows除了使用返回值标识函数执行情况，还引入了错误代码机制。返回值指示函数是否发生了错误，而要想知道究竟发生了什么错误，就得使用错误代码。</p>
 </li>
-<li><p>gmtime</p>
-<ul>
-<li>函数原型：struct tm<em> gmtime(time_t</em> time)</li>
-<li>函数功能：得到以结构tm表示的时间信息</li>
-<li>函数返回：以结构tm表示的时间信息指针</li>
-<li>所述文件：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">```cpp</div><div class="line">#include &lt;stdio.h&gt;</div><div class="line">#include &lt;stdlib.h&gt;</div><div class="line">#include &lt;time.h&gt;</div><div class="line">int main() &#123;</div><div class="line">  time_t t;</div><div class="line">  struct tm* gmt;</div><div class="line">  t = time(NULL);</div><div class="line">  gmt = gmtime(&amp;t);</div><div class="line">  return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
-</ul>
+<li><p>windows将错误代码存储于独立于线程的，线程局部存储区中，也就是说这个区域时每个线程独有的其他线程无法更改，它存储着一些线程独有的东西。</p>
 </li>
-<li><p>tm结构体</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> tm &#123;</div><div class="line">  <span class="keyword">int</span> tm_sec; <span class="comment">// seconds</span></div><div class="line">  <span class="keyword">int</span> tm_min; <span class="comment">// minutes</span></div><div class="line">  <span class="keyword">int</span> tm_hour; <span class="comment">// hours</span></div><div class="line">  <span class="keyword">int</span> tm_mday; <span class="comment">// day</span></div><div class="line">  <span class="keyword">int</span> tm_mon; <span class="comment">// month</span></div><div class="line">  <span class="keyword">int</span> tm_year; <span class="comment">// year-1900</span></div><div class="line">  <span class="keyword">int</span> tm_wday; <span class="comment">// day of week[0-6]</span></div><div class="line">  <span class="keyword">int</span> tm_yday; <span class="comment">// days in year[0-365]</span></div><div class="line">  <span class="keyword">int</span> tm_isdst; <span class="comment">// DST [-1/0/1]</span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __USE_BSD</span></div><div class="line">  <span class="keyword">long</span> <span class="keyword">int</span> tm_gmtoff; <span class="comment">// seconds east of UTC</span></div><div class="line">  __const <span class="keyword">char</span>* tm_zone; <span class="comment">// Timezone abbreviation</span></div><div class="line"><span class="meta">#<span class="meta-keyword">else</span></span></div><div class="line">  <span class="keyword">long</span> <span class="keyword">int</span> __tm_gmtoff; <span class="comment">// seconds east of UTC</span></div><div class="line">  __const <span class="keyword">char</span>* __tm_zone; <span class="comment">// Timezone abbreviation</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<li><p>在函数执行后，可通过<code>GetLastError()</code>函数来获得错误代码，并且这个代码永远反应的是上一个函数的执行情况，也就是说它的值是由上一个函数设置的，那么当调用一个函数后没有调用<code>GetLastError()</code>就调用其他函数，此时<code>GetLastError()</code>返回的就是第二个函数的执行情况。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">DWORD <span class="title">GetLastError</span><span class="params">()</span></span>;</div></pre></td></tr></table></figure>
 </li>
-<li><p>timeval结构体</p>
-<p>struct timeval结构体在time.h中定义：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> timeval &#123;</div><div class="line">  <span class="keyword">time_t</span> tv_sec; <span class="comment">// seconds</span></div><div class="line">  <span class="keyword">suseconds_t</span> tv_usec; <span class="comment">// Microseconds</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>其中，tv_sec为EPoch到创建struct timeval时的秒数，tv_usec为微秒数，即秒后面的零头，假如tv_sec为1244770435，tv_usec为442388，即当前时间距Epoch时间1244770435秒，442388微秒。</p>
+<li><p><code>GetLastError()</code>返回的是一个DWORD类型的数，我们无法直接从返回值得知具体的错误是什么，VS中给我们地提供了一个小工具可以将错误代码转换为相应的文本描述。在VS中你可以这样操作：工具-错误查找，只要输入相应的DWORD类型数就可以得到具体的错误信息。</p>
 </li>
-<li><p>gettimeofday()</p>
-<p>获取当前时间（保存在结构体timeval中）</p>
+<li><p>另外，windows提供了函数<code>FormatMessage()</code>可以将传入的错误代码转换为对应的字符串的首地址。</p>
 </li>
-<li><p>share_from_this</p>
-<p>当类对象被shared_ptr管理时，需要在类自己定义的函数里把当前对象作为参数传给其他函数时，这时需要传递一个shared_ptr，否则就不能保持shared_ptr管理这个类对象的语义（因为一个raw poiter指向这个类对象，而shared_ptr对类对象的这个引用没有计数，很可能shared_ptr已经把类对象资源释放了，而那个调用函数还在使用类对象）。</p>
-<p>对一个类 A ，当我们希望使用 shared_ptr 来管理其类对象时，而且需要在自己定义的函数里把类对象 shared_ptr （为什么不用普通指针，当我们使用智能指针管理资源时，必须统一使用智能指针，而不能在某些地方使用智能指针某些地方使用 raw pointer ，否则不能保持智能指针的语义，从而产生各种错误）传给其他函数时，可以让类 A 从 enable_shared_from_this 继承： </p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> A : <span class="keyword">public</span> boost::enable_shared_from_this&lt;A&gt; &#123;&#125;;</div></pre></td></tr></table></figure>
-<p>然后在类A中需要传递类对象本身shared_ptr的地方使用shared_from_this函数获得指向自身的shared_ptr。</p>
+<li><p>调用<code>GetLastError()</code>返回的是windows定义的错误代码，我们还可以将这种机制用于我们自己的函数中，比如现在写了一个函数，返回false表示调用失败，那么此时你还可以使用错误代码来提供更多的信息，通过使用<code>SetLastError()</code>可以设置我们想设置的值，它将线程局部存储区的错误代码设置为我们传递的值，此后调用<code>GetLastError()</code>返回的就是我们刚刚设置的值。</p>
 </li>
-<li><p>boost::shared_from_this值得注意的地方</p>
-<p>这个 函数仅在<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">- 如下代码是错误的</div><div class="line"></div><div class="line">  ```cpp</div><div class="line">  class D : public boost::enable_shared_from_this&lt;D&gt; &#123;</div><div class="line">  public:</div><div class="line">    D() &#123;</div><div class="line">      boost::shared_ptr&lt;D&gt; p = shared_from_this();</div><div class="line">    &#125;</div><div class="line">  &#125;;</div></pre></td></tr></table></figure></p>
-<p>  在D的构造函数中虽然可以保证<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">- 如下代码是错误的</div><div class="line"></div><div class="line">  ```cpp</div><div class="line">  class D : public boost::enable_shared_from_this&lt;D&gt; &#123;</div><div class="line">  public:</div><div class="line">    void func() &#123;</div><div class="line">      boost::shared_ptr&lt;D&gt; = shared_from_this();</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  void main() &#123;</div><div class="line">    D d;</div><div class="line">    d.func();</div><div class="line">  &#125;</div></pre></td></tr></table></figure></p>
-<p>  错误原因同上。</p>
-<ul>
-<li><p>如下代码是正确的</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">  boost::<span class="built_in">shared_ptr</span>&lt;D&gt; d(<span class="keyword">new</span> D);</div><div class="line">  d-&gt;func();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这里<code>boost::shared_ptr&lt;D&gt; d(new D)</code>实际上执行了3个动作：</p>
-<ul>
-<li>首先调用<code>enable_shared_from_this&lt;D&gt;</code>的构造函数；</li>
-<li>其次调用D的构造函数；</li>
-<li>最后调用<code>shared_ptr&lt;D&gt;</code>的构造函数。</li>
-</ul>
-<p>是第3个动作设置了<code>enable_shared_from_this&lt;D&gt;</code>的weak_ptr，而不是第1个动作。</p>
+<li><p>Windows.h中定义了256个错误代码用于标识256中错误情况，我们在使用<code>SetLastError()</code>时 ，可以传入windows定义过得大部分错误代码，如果所有这些均不能满足，你可以传入大于255的数作为错误代码。</p>
 </li>
-</ul>
+<li><p>调试程序时，可以在watch窗口中输入$err,hr，它会在value一列显示当前线程的上一个错误代码和该值对应的 文本描述。</p>
 </li>
-<li><p>shared_from_this使用场景</p>
-<p>需求：在类的内部需要自身的shared_ptr而不是this裸指针</p>
-<p>场景：在类中发起一个异步操作，callback回来要保证发起操作的对象仍然有效</p>
-<p>异步回调的时候对象可能已经销毁了，所以使用shared_ptr传出去就是保证最少还有一个引用计数维持对象的生命周期直至回调结束。</p>
-</li>
-<li><p>__thread</p>
-<p><code>__thread</code>是GCC内置的线程局部存储设施，存储效率可以和全局变量相比，<code>__thread</code>变量每一个线程有一份独立实体，各个线程的值互不干扰</p>
-</li>
-<li><p>getpid、SYS_gettid以及pthread_self</p>
-<p>getpid()得到的是进程的pid，在进程中，每个线程都有自己的pid，要得到线程的pid，必须用syscall(SYS_gettid)，其在系统内是唯一的，pthread_self函数获取的是线程ID，线程ID在某进程中是唯一的，在不同的进程中创建的线程可能会出现ID值相同的情况。</p>
+<li><p>本文参考ithzhang的博客，想知道更多的可以去阅读他的博客：<a href="http://blog.csdn.net/ithzhang/article/details/7912489" target="_blank" rel="external">ithzhang的博客</a></p>
 </li>
 </ul>
   
@@ -184,13 +142,13 @@ gmtime
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/C/">C++</a>
+  <a class="article-category-link" href="/categories/Windows核心编程/">Windows核心编程</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/C/">C++</a>
+  <span></span> <a href="/tags/C-错误处理/">C++, 错误处理</a>
   </div>
 
 </div>
@@ -199,7 +157,7 @@ gmtime
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2017/06/28/[C++] 零散知识点/" data-title="[C++] 零散知识点 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/06/28/[Windows核心编程] 谈谈Windows中的错误处理机制/" data-title="[Windows核心编程] 谈谈Windows中的错误处理机制 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -212,19 +170,11 @@ gmtime
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/06/28/[C++] 继承与同名成员变量/" title="[C++] 继承与同名成员变量">
-  <strong>上一篇：</strong><br/>
-  <span>
-  [C++] 继承与同名成员变量</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/06/28/[C++] 前置++和后置++的区别/"  title="[C++] 前置++和后置++的区别">
+<a href="/2017/06/28/[多线程] x=y的原子性/"  title="[多线程] x=y的原子性">
  <strong>下一篇：</strong><br/> 
- <span>[C++] 前置++和后置++的区别
+ <span>[多线程] x=y的原子性
 </span>
 </a>
 </div>
@@ -233,7 +183,7 @@ gmtime
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2017/06/28/[C++] 零散知识点/" data-title="[C++] 零散知识点" data-url="http://yoursite.com/2017/06/28/[C++] 零散知识点/"></div>
+	<div class="ds-thread" data-thread-key="2017/06/28/[Windows核心编程] 谈谈Windows中的错误处理机制/" data-title="[Windows核心编程] 谈谈Windows中的错误处理机制" data-url="http://yoursite.com/2017/06/28/[Windows核心编程] 谈谈Windows中的错误处理机制/"></div>
 </section>
 
 
@@ -244,7 +194,7 @@ gmtime
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#谈谈Windows中的错误处理机制"><span class="toc-number">1.</span> <span class="toc-text">谈谈Windows中的错误处理机制</span></a></li></ol>
  
   </div>
 
