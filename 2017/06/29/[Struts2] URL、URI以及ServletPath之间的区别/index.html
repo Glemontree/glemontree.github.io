@@ -4,22 +4,29 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Glemontree&#39;s blog</title>
+    <title>[Struts2] URL、URI以及ServletPath之间的区别 | Glemontree&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Glemontree">
     
 
     
-    <meta name="description" content="记录我学习的每一步">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Glemontree's blog">
-<meta property="og:url" content="http://yoursite.com/page/5/index.html">
+    <meta name="description" content="一直没弄明白URL、URI以及ServletPath之间的区别，今天看到了一篇博客，所以转载过来记录一下。
+假设现在有一个名为JavaWeb的项目，其中有一个名为TestServlet的serlvet，其doGet方法为：
+12345protected void doGet(HttpServletRequest request, HttpServletResponse response) thro">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Struts2] URL、URI以及ServletPath之间的区别">
+<meta property="og:url" content="http://yoursite.com/2017/06/29/[Struts2] URL、URI以及ServletPath之间的区别/index.html">
 <meta property="og:site_name" content="Glemontree's blog">
-<meta property="og:description" content="记录我学习的每一步">
+<meta property="og:description" content="一直没弄明白URL、URI以及ServletPath之间的区别，今天看到了一篇博客，所以转载过来记录一下。
+假设现在有一个名为JavaWeb的项目，其中有一个名为TestServlet的serlvet，其doGet方法为：
+12345protected void doGet(HttpServletRequest request, HttpServletResponse response) thro">
+<meta property="og:updated_time" content="2017-06-29T02:41:51.437Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Glemontree's blog">
-<meta name="twitter:description" content="记录我学习的每一步">
+<meta name="twitter:title" content="[Struts2] URL、URI以及ServletPath之间的区别">
+<meta name="twitter:description" content="一直没弄明白URL、URI以及ServletPath之间的区别，今天看到了一篇博客，所以转载过来记录一下。
+假设现在有一个名为JavaWeb的项目，其中有一个名为TestServlet的serlvet，其doGet方法为：
+12345protected void doGet(HttpServletRequest request, HttpServletResponse response) thro">
 
     
     <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
@@ -72,248 +79,100 @@
 </div>
     </header>
     <div id="container">
-      <div id="main">
-
+      <div id="main" class="post" itemscope itemprop="blogPost">
   
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[Windows核心编程] 如何编写Unicode源代码/" title="[Windows核心编程] 如何编写Unicode源代码" itemprop="url">
-  
-    <h1 itemprop="name">[Windows核心编程] 如何编写Unicode源代码</h1>
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
     
-     
-           <p itemprop="description" >如何编写Unicode源代码
-标准的C运行期字符串函数，如strcpy、strchr和strcat只能对ANSI字符串进行操作，不能正确的处理Unicode字符串，因此，ANSI C拥有一组补充函数，例如：
-12char* strcat(char*, const char*);w</p>
-        
+      <a href="/2017/06/29/[Struts2] URL、URI以及ServletPath之间的区别/" title="[Struts2] URL、URI以及ServletPath之间的区别" itemprop="url">[Struts2] URL、URI以及ServletPath之间的区别</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
+		
+  <p class="article-time">
+    <time datetime="2017-06-29T02:37:46.000Z" itemprop="datePublished"> Published 2017-06-29</time>
     
-    <time datetime="2017-06-28T09:44:40.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			
+		
+		</div>
+		
+		<p>一直没弄明白URL、URI以及ServletPath之间的区别，今天看到了一篇博客，所以转载过来记录一下。</p>
+<p>假设现在有一个名为JavaWeb的项目，其中有一个名为TestServlet的serlvet，其doGet方法为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123; </div><div class="line">  System.out.println(<span class="string">"URL:"</span>+request.getRequestURL().toString());  </div><div class="line">  System.out.println(<span class="string">"URI:"</span>+request.getRequestURI());  </div><div class="line">  System.out.println(<span class="string">"ServletPath:"</span>+request.getServletPath()); </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>现在在浏览器中发送到TestServlet的请求，发现控制台输出如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">URL: http://localhost:8080/JavaWeb/TestServlet</div><div class="line">URI: /JavaWeb/TestServlet</div><div class="line">ServletPath: /TestServlet</div></pre></td></tr></table></figure>
+<p>通过上面的三个输出相信你能理解三者的区别了！</p>
   
-<section class="post" itemscope itemprop="blogitem">
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Struts/">Struts</a>
+</div>
+
+
+  <div class="article-tags">
   
-    <a href="/2017/06/28/[Windows核心编程] 谈谈Windows中的错误处理机制/" title="[Windows核心编程] 谈谈Windows中的错误处理机制" itemprop="url">
-  
-    <h1 itemprop="name">[Windows核心编程] 谈谈Windows中的错误处理机制</h1>
-    
-     
-           <p itemprop="description" >谈谈Windows中的错误处理机制
-windows除了使用返回值标识函数执行情况，还引入了错误代码机制。返回值指示函数是否发生了错误，而要想知道究竟发生了什么错误，就得使用错误代码。
-
-windows将错误代码存储于独立于线程的，线程局部存储区中，也就是说这个区域时每个线程独有的</p>
-        
-    
-    <time datetime="2017-06-28T09:43:44.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[多线程] x=y的原子性/" title="[多线程] x=y的原子性" itemprop="url">
-  
-    <h1 itemprop="name">[多线程] x=y的原子性</h1>
-    
-     
-           <p itemprop="description" >x=y的原子性一、原子性介绍所谓的原子性是指该操作不能再继续划分为更小的操作，在多线程中原子操作是一个很重要的概念，决定了该操作是否需要同步机制来进行保护。
-二、x=y操作的原子性在X86中，x=y包含两个操作：读取y至寄存器，然后将该值写入x，其中读取y的值至寄存器中是原子的，</p>
-        
-    
-    <time datetime="2017-06-28T09:42:51.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[Linux] zsh corrupt/" title="[Linux] zsh corrupt" itemprop="url">
-  
-    <h1 itemprop="name">[Linux] zsh corrupt</h1>
-    
-     
-           <p itemprop="description" >Linux中zsh遇到corrupt bug这几天打开ubuntu，出现zsh: corrupt history file /home/gtp/.zsh_history的错误，网上找到了解决方案，这里记录一下，以防以后遇到了又得花时间在网上搜索解决方案。
-解决方案如下：
-123m</p>
-        
-    
-    <time datetime="2017-06-28T09:41:39.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[设计模式] 单例模式/" title="[设计模式] 单例模式" itemprop="url">
-  
-    <h1 itemprop="name">[设计模式] 单例模式</h1>
-    
-     
-           <p itemprop="description" >懒汉模式即第一次调用该类实例的时候才产生一个新的该类实例，并在以后仅返回此实例。需要用锁，来保证其线程安全性。原因：多个线程可能进入判断是否已经存在实例的if语句，从而non thread safety。使用double-check来保证thread safety。但是如果处理大</p>
-        
-    
-    <time datetime="2017-06-28T09:40:04.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[多线程] 互斥对象和锁/" title="[多线程] 互斥对象和锁" itemprop="url">
-  
-    <h1 itemprop="name">[多线程] 互斥对象和锁</h1>
-    
-     
-           <p itemprop="description" >互斥对象和锁锁互斥对象的主要操作有两个，即加锁(lock)和解锁(unlock)。当一个线程对互斥对象进行lock操作并成功获得这个互斥对象的所有权，在此线程对此对象unlock前，其他线程对这个互斥对象的lock操作都会被阻塞。
-多个互斥对象加锁有些倾向需要对多个互斥对象进行加</p>
-        
-    
-    <time datetime="2017-06-28T09:38:55.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[多线程] 互斥量和临界区的区别/" title="[多线程] 互斥量和临界区的区别" itemprop="url">
-  
-    <h1 itemprop="name">[多线程] 互斥量和临界区的区别</h1>
-    
-     
-           <p itemprop="description" >互斥量和临界区的区别
-通常有4种进程或线程同步互斥的控制方法，它们是：
-
-临界区
-互斥量
-信号量
-事件
-
-其中临界区通过对多线程的串行化来访问公共资源或一段代码，速度快；互斥量为协调共同对一个共享资源的访问而设计的；信号量为控制一个具有有限数量用户资源而设计；事件则用来线程有一些</p>
-        
-    
-    <time datetime="2017-06-28T09:37:33.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[编程规范] 函数/" title="[编程规范] 函数" itemprop="url">
-  
-    <h1 itemprop="name">[编程规范] 函数</h1>
-    
-     
-           <p itemprop="description" >对所调用函数的错误返回码需要仔细、全面的处理；
-
-明确函数功能，精确地实现函数设计；
-
-编写可重入函数时，应注意局部变量的使用，不应使用static局部变量，否则必须经过特殊处理，才能使函数具有可重入性；
-
-编写可重入函数时，若使用全局变量，则应通过关中断、信号量（即P、V操作）</p>
-        
-    
-    <time datetime="2017-06-28T09:36:14.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[Spring] 基于注解来配置Bean/" title="[Spring] 基于注解来配置Bean" itemprop="url">
-  
-    <h1 itemprop="name">[Spring] 基于注解来配置Bean</h1>
-    
-     
-           <p itemprop="description" >Bean的配置方式
-基于XML文件的方式
-基于注解的方式（基于注解配置Bean，基于注解来装配Bean的属性）
-
-在classpath中扫描组件
-组件扫描：Spring能够从classpath下自动扫描、侦测和实例化具有特定注解的组件
-
-特定组件包括：
-
-@component：基</p>
-        
-    
-    <time datetime="2017-06-28T09:32:52.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[C++] 继承与同名成员变量/" title="[C++] 继承与同名成员变量" itemprop="url">
-  
-    <h1 itemprop="name">[C++] 继承与同名成员变量</h1>
-    
-     
-           <p itemprop="description" >C++继承中子类与父类有同名成员变量的情况话不多说，先看下面这个例子：
-1234567891011121314151617181920212223242526272829303132333435#include &amp;lt;iostream&amp;gt;class Base &amp;#123;p</p>
-        
-    
-    <time datetime="2017-06-28T09:31:01.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-
-  <nav id="page-nav" class="clearfix unexpand">
-    <a class="extend prev" rel="prev" href="/page/4/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">Next<span></span></a>
-  </nav>
+  <span></span> <a href="/tags/Struts-ServletPath/">Struts, ServletPath</a>
+  </div>
 
 </div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2017/06/29/[Struts2] URL、URI以及ServletPath之间的区别/" data-title="[Struts2] URL、URI以及ServletPath之间的区别 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2017/06/28/[C++] ACE书籍推荐/"  title="[C++] ACE书籍推荐">
+ <strong>下一篇：</strong><br/> 
+ <span>[C++] ACE书籍推荐
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/06/29/[Struts2] URL、URI以及ServletPath之间的区别/" data-title="[Struts2] URL、URI以及ServletPath之间的区别" data-url="http://yoursite.com/2017/06/29/[Struts2] URL、URI以及ServletPath之间的区别/"></div>
+</section>
+
+
+
+</div>  
       <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ 
+ 
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
@@ -615,14 +474,103 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
 });
 </script>
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
 
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"glemontree"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
 
 
 
@@ -708,4 +656,4 @@ _ts(option);
 <!-- Tiny_search End -->
 
   </body>
- </html>
+</html>
