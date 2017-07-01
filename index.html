@@ -77,9 +77,101 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/06/29/[Struts2] URL、URI以及ServletPath之间的区别/" title="[Struts2] URL、URI以及ServletPath之间的区别" itemprop="url">
+    <a href="/2017/07/01/[Servlet] Java Web乱码/" title="[Servlet] Java Web乱码" itemprop="url">
   
-    <h1 itemprop="name">[Struts2] URL、URI以及ServletPath之间的区别</h1>
+    <h1 itemprop="name">[Servlet] Java Web乱码</h1>
+    
+     
+           <p itemprop="description" >乱码先看一个简单的例子：
+12345protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException &amp;#123;</p>
+        
+    
+    <time datetime="2017-07-01T06:21:31.000Z" itemprop="datePublished">2017-07-01</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/06/30/[Servlet] HttpServletRequest/" title="[Servlet] HttpServletRequest" itemprop="url">
+  
+    <h1 itemprop="name">[Servlet] HttpServletRequest</h1>
+    
+     
+           <p itemprop="description" >HTTP请求消息和HTTP响应消息一样，也分为三部分，分别是请求行、请求消息头、消息正文。
+获取请求行消息HTTP请求信息中的第一行为请求行，格式如下：
+GET /webdemo/servlet/HelloWorld?name=bill&amp;amp;age=52 HTTP/1/1
+上</p>
+        
+    
+    <time datetime="2017-06-30T12:39:30.000Z" itemprop="datePublished">2017-06-30</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/06/30/[Servlet] HttpServletResponse/" title="[Servlet] HttpServletResponse" itemprop="url">
+  
+    <h1 itemprop="name">[Servlet] HttpServletResponse</h1>
+    
+     
+           <p itemprop="description" >产生状态响应码当客户端浏览器请求服务器时，该服务器就会将返回消息封装到HttpServletResponse里进行响应，返回消息中的第一行为状态行：HTTP/1.1 200 OK。
+上面的状态行分为三部分，分别是HTTP版本（HTTP/1.1）、状态响应码（200）以及状态消息（</p>
+        
+    
+    <time datetime="2017-06-30T11:57:21.000Z" itemprop="datePublished">2017-06-30</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/06/29/[Struts] Struts配置文件/" title="[Struts] Action类" itemprop="url">
+  
+    <h1 itemprop="name">[Struts] Action类</h1>
+    
+     
+           <p itemprop="description" >action与Action类
+action
+代表一个Struts2请求
+
+Action类
+能够处理Struts2请求的类就是Action类，Action类具有以下特点：
+
+属性的名字必须遵守与JavaBean属性名相同的命名规则，属性的类型可以是任意类型，属性名字(get set</p>
+        
+    
+    <time datetime="2017-06-29T11:22:10.000Z" itemprop="datePublished">2017-06-29</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/06/29/[Struts2] URL、URI以及ServletPath之间的区别/" title="[Struts] URL、URI以及ServletPath之间的区别" itemprop="url">
+  
+    <h1 itemprop="name">[Struts] URL、URI以及ServletPath之间的区别</h1>
     
      
            <p itemprop="description" >一直没弄明白URL、URI以及ServletPath之间的区别，今天看到了一篇博客，所以转载过来记录一下。
@@ -201,95 +293,9 @@
 
 
 
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[C++] assert用法/" title="[C++] assert用法" itemprop="url">
-  
-    <h1 itemprop="name">[C++] assert用法</h1>
-    
-     
-           <p itemprop="description" >assert()函数用法总结
-assert宏的原型定义在&amp;lt;assert.h&amp;gt;中，如果它的条件返回错误，则终止程序执行：
-12#include &amp;lt;assert.h&amp;gt;void assert(int expression);
-assert的作用是计算表达式exp</p>
-        
-    
-    <time datetime="2017-06-28T10:21:09.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[C++] boostfunction boostbind 与 回调/" title="[C++] boost::function boost::bind 与 回调" itemprop="url">
-  
-    <h1 itemprop="name">[C++] boost::function boost::bind 与 回调</h1>
-    
-     
-           <p itemprop="description" >boost::function 和 boost::bindboost::function是对函数指针的对象化封装，是一个函数对象的容器，在概念上与回调函数类似，先看一个例子：
-1234567891011121314151617181920212223242526272829303</p>
-        
-    
-    <time datetime="2017-06-28T10:20:01.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[C++] boostless_than_comparable/" title="[C++] boost::less_than_comparable" itemprop="url">
-  
-    <h1 itemprop="name">[C++] boost::less_than_comparable</h1>
-    
-     
-           <p itemprop="description" >boost::less_than_comparable前言很多操作符都是可以从其他操作符自动推导出来，例如a != b可以从!(a == b)推导出来，因此原则上只需要定义少量的基本操作符，其他的操作符就可以 通过逻辑组合推导出来。
-std::rel::ops在C++98标准的s</p>
-        
-    
-    <time datetime="2017-06-28T10:18:51.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[C++] BOOST_STATIC_ASSERT和assert的区别/" title="[C++] BOOST_STATIC_ASSERT和assert的区别" itemprop="url">
-  
-    <h1 itemprop="name">[C++] BOOST_STATIC_ASSERT和assert的区别</h1>
-    
-     
-           <p itemprop="description" >BOOST_STATIC_ASSERT和assert的区别assert是运行期断言，也就是编译期出现的错误，它不会提示；相反，BOOST_STATIC_ASSERT是编译期的断言，在编译的时候就可以断言出错误。
-需要注意的是BOOST_STATIC_ASSERT是放在全局命名空间</p>
-        
-    
-    <time datetime="2017-06-28T10:17:37.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix unexpand">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
   </nav>
 
 </div>
@@ -346,11 +352,15 @@ std::rel::ops在C++98标准的s</p>
 		  
 		
 		  
+			<li><a href="/categories/Servlet/" title="Servlet">Servlet<sup>3</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/Spring/" title="Spring">Spring<sup>3</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/Struts/" title="Struts">Struts<sup>2</sup></a></li>
+			<li><a href="/categories/Struts/" title="Struts">Struts<sup>3</sup></a></li>
 		  
 		
 		  
@@ -399,19 +409,19 @@ std::rel::ops在C++98标准的s</p>
 			
 		
 			
-				<li><a href="/tags/DB/" title="DB">DB<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/C-boost/" title="C++ boost">C++ boost<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Struts-ServletPath/" title="Struts, ServletPath">Struts, ServletPath<sup>1</sup></a></li>
+				<li><a href="/tags/DB/" title="DB">DB<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-11-Bind/" title="C++11, Bind">C++11, Bind<sup>1</sup></a></li>
+				<li><a href="/tags/C-Boost/" title="C++, Boost">C++, Boost<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-assert/" title="C++, assert">C++, assert<sup>1</sup></a></li>
 			
 		
 			
@@ -419,7 +429,11 @@ std::rel::ops在C++98标准的s</p>
 			
 		
 			
-				<li><a href="/tags/C-Boost/" title="C++, Boost">C++, Boost<sup>1</sup></a></li>
+				<li><a href="/tags/C-多线程-互斥对象-锁/" title="C++, 多线程, 互斥对象, 锁">C++, 多线程, 互斥对象, 锁<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-VS/" title="C++, VS">C++, VS<sup>1</sup></a></li>
 			
 		
 			
@@ -431,11 +445,7 @@ std::rel::ops在C++98标准的s</p>
 			
 		
 			
-				<li><a href="/tags/C-assert/" title="C++, assert">C++, assert<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/CMake/" title="CMake">CMake<sup>1</sup></a></li>
+				<li><a href="/tags/CMake-VS/" title="CMake, VS">CMake, VS<sup>1</sup></a></li>
 			
 		
 			
@@ -443,15 +453,11 @@ std::rel::ops在C++98标准的s</p>
 			
 		
 			
-				<li><a href="/tags/CMake-VS/" title="CMake, VS">CMake, VS<sup>1</sup></a></li>
+				<li><a href="/tags/CMake/" title="CMake">CMake<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Hexo-主题/" title="Hexo, 主题">Hexo, 主题<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-ACE-网络/" title="C++, ACE, 网络">C++, ACE, 网络<sup>1</sup></a></li>
+				<li><a href="/tags/C-11-Bind/" title="C++11, Bind">C++11, Bind<sup>1</sup></a></li>
 			
 		
 			
@@ -467,11 +473,15 @@ std::rel::ops在C++98标准的s</p>
 			
 		
 			
-				<li><a href="/tags/Linux-网络编程-EPoll/" title="Linux, 网络编程, EPoll">Linux, 网络编程, EPoll<sup>1</sup></a></li>
+				<li><a href="/tags/Hexo-主题/" title="Hexo, 主题">Hexo, 主题<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/Java-反射-无参构造函数/" title="Java, 反射, 无参构造函数">Java, 反射, 无参构造函数<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux-eventfd/" title="Linux, eventfd">Linux, eventfd<sup>1</sup></a></li>
 			
 		
 		</ul>
