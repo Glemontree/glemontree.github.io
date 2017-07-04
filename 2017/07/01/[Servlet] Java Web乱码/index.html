@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://github.com/Glemontree/images/blob/master/images/e.JPG?raw=true">
 <meta property="og:image" content="https://github.com/Glemontree/images/blob/master/images/f.JPG?raw=true">
 <meta property="og:image" content="https://github.com/Glemontree/images/blob/master/images/g.JPG?raw=true">
-<meta property="og:updated_time" content="2017-07-01T08:55:07.830Z">
+<meta property="og:updated_time" content="2017-07-03T02:06:42.059Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Servlet] Java Web乱码">
 <meta name="twitter:description" content="乱码先看一个简单的例子：
@@ -59,7 +59,7 @@
 				<h1 class="site-name"><a href="/" title="Glemontree&#39;s blog">Glemontree&#39;s blog</a></h1>
 				<h2 class="blog-motto">day day up!</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -75,7 +75,7 @@
  					
 						<form class="search" action="http://zhannei.baidu.com/cse/search" target="_blank">
 							<label>Search</label>
-						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="搜索"><br>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="Search"><br>
 						</form>
 					
 					</li>
@@ -97,14 +97,14 @@
 		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
 		
   <p class="article-time">
-    <time datetime="2017-07-01T06:21:31.000Z" itemprop="datePublished"> 发表于 2017-07-01</time>
+    <time datetime="2017-07-01T06:21:31.000Z" itemprop="datePublished"> Published 2017-07-01</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
+			<strong class="toc-title">Contents</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#乱码"><span class="toc-number">1.</span> <span class="toc-text">乱码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#常见的编码"><span class="toc-number">2.</span> <span class="toc-text">常见的编码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#通过浏览器调用Servlet，页面显示乱码"><span class="toc-number">3.</span> <span class="toc-text">通过浏览器调用Servlet，页面显示乱码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#response乱码"><span class="toc-number">3.1.</span> <span class="toc-text">response乱码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#request乱码问题"><span class="toc-number">3.2.</span> <span class="toc-text">request乱码问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">3.3.</span> <span class="toc-text">参考</span></a></li></ol></li></ol>
 		
@@ -119,7 +119,7 @@
 <li>GBK：中文编码，是GB2312的扩展，除了兼容GB2312外，还能显示繁体中文、还有日文的假名</li>
 <li>ISO8859-1：tomcat默认，不支持中文</li>
 </ul>
-<h1 id="通过浏览器调用Servlet，页面显示乱码"><a href="#通过浏览器调用Servlet，页面显示乱码" class="headerlink" title="通过浏览器调用Servlet，页面显示乱码"></a>通过浏览器调用Servlet，页面显示乱码</h1><h2 id="response乱码"><a href="#response乱码" class="headerlink" title="response乱码"></a>response乱码</h2><p>解决方法：<code>response.setContentType(&quot;text/html;charset=utf-8&quot;);</code>或者response.setHeader(“content-type”, “text/html;charset=utf-8”);</p>
+<h1 id="通过浏览器调用Servlet，页面显示乱码"><a href="#通过浏览器调用Servlet，页面显示乱码" class="headerlink" title="通过浏览器调用Servlet，页面显示乱码"></a>通过浏览器调用Servlet，页面显示乱码</h1><h2 id="response乱码"><a href="#response乱码" class="headerlink" title="response乱码"></a>response乱码</h2><p>解决方法：<code>response.setContentType(&quot;text/html;charset=utf-8&quot;);</code>或者<code>response.setHeader(&quot;content-type&quot;, &quot;text/html;charset=utf-8&quot;);</code></p>
 <p>原理：告诉浏览器用utf-8进行解析。</p>
 <p>看下面两种情况：</p>
 <ul>
@@ -208,6 +208,14 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2017/07/04/[Struts2] OGNL siterator标签的使用/" title="[Struts2] OGNL s:iterator标签的使用">
+  <strong>上一篇：</strong><br/>
+  <span>
+  [Struts2] OGNL s:iterator标签的使用</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2017/06/30/[Servlet] HttpServletRequest/"  title="[Servlet] HttpServletRequest">
@@ -227,22 +235,22 @@
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
+  <strong class="toc-title">Contents</strong>
  
  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#乱码"><span class="toc-number">1.</span> <span class="toc-text">乱码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#常见的编码"><span class="toc-number">2.</span> <span class="toc-text">常见的编码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#通过浏览器调用Servlet，页面显示乱码"><span class="toc-number">3.</span> <span class="toc-text">通过浏览器调用Servlet，页面显示乱码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#response乱码"><span class="toc-number">3.1.</span> <span class="toc-text">response乱码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#request乱码问题"><span class="toc-number">3.2.</span> <span class="toc-text">request乱码问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">3.3.</span> <span class="toc-text">参考</span></a></li></ol></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
 <div class="github-card">
-<p class="asidetitle">Github 名片</p>
+<p class="asidetitle">Github Card</p>
 <div class="github-card" data-github="glemontree" data-theme="medium"></div>
 <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
 </div>
@@ -251,7 +259,7 @@
 
   
 <div class="categorieslist">
-	<p class="asidetitle">分类</p>
+	<p class="asidetitle">Categories</p>
 		<ul>
 		
 		  
@@ -295,7 +303,9 @@
 		  
 		
 		  
-			<li><a href="/categories/Struts/" title="Struts">Struts<sup>3</sup></a></li>
+		
+		  
+			<li><a href="/categories/Struts2/" title="Struts2">Struts2<sup>4</sup></a></li>
 		  
 		
 		  
@@ -336,11 +346,15 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">标签</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
 				<li><a href="/tags/C/" title="C++">C++<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Struts2-OGNL/" title="Struts2, OGNL">Struts2, OGNL<sup>2</sup></a></li>
 			
 		
 			
@@ -352,11 +366,7 @@
 			
 		
 			
-				<li><a href="/tags/Java-Servlet-乱码/" title="Java, Servlet, 乱码">Java, Servlet, 乱码<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-ACE-网络/" title="C++, ACE, 网络">C++, ACE, 网络<sup>1</sup></a></li>
+				<li><a href="/tags/Spring-JDBCTemplate/" title="Spring, JDBCTemplate">Spring, JDBCTemplate<sup>1</sup></a></li>
 			
 		
 			
@@ -364,27 +374,15 @@
 			
 		
 			
+				<li><a href="/tags/C-11-Bind/" title="C++11, Bind">C++11, Bind<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/C-assert/" title="C++, assert">C++, assert<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-bind-回调/" title="C++, bind, 回调">C++, bind, 回调<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前置/" title="前置++">前置++<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/后置/" title="后置++">后置++<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/C-继承-同名成员变量/" title="C++, 继承, 同名成员变量">C++, 继承, 同名成员变量<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/CMake-VS/" title="CMake, VS">CMake, VS<sup>1</sup></a></li>
 			
 		
 			
@@ -396,15 +394,7 @@
 			
 		
 			
-				<li><a href="/tags/C-11-Bind/" title="C++11, Bind">C++11, Bind<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/通配符/" title="通配符">通配符<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/INSERT/" title="INSERT">INSERT<sup>1</sup></a></li>
+				<li><a href="/tags/CMake-VS/" title="CMake, VS">CMake, VS<sup>1</sup></a></li>
 			
 		
 			
@@ -412,11 +402,31 @@
 			
 		
 			
-				<li><a href="/tags/Java-反射-无参构造函数/" title="Java, 反射, 无参构造函数">Java, 反射, 无参构造函数<sup>1</sup></a></li>
+				<li><a href="/tags/C-Boost/" title="C++, Boost">C++, Boost<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/通配符/" title="通配符">通配符<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前置/" title="前置++">前置++<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/后置/" title="后置++">后置++<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/Linux-EPoll/" title="Linux, EPoll">Linux, EPoll<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java-反射-无参构造函数/" title="Java, 反射, 无参构造函数">Java, 反射, 无参构造函数<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/INSERT/" title="INSERT">INSERT<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -424,7 +434,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
@@ -443,11 +453,11 @@
 </div>
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
   <div class="weiboshow">
-  <p class="asidetitle">新浪微博</p>
+  <p class="asidetitle">Weibo</p>
     <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
 </div>
 
@@ -688,7 +698,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 

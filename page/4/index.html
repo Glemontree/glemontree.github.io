@@ -47,7 +47,7 @@
 				<h1 class="site-name"><a href="/" title="Glemontree&#39;s blog">Glemontree&#39;s blog</a></h1>
 				<h2 class="blog-motto">day day up!</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -63,7 +63,7 @@
  					
 						<form class="search" action="http://zhannei.baidu.com/cse/search" target="_blank">
 							<label>Search</label>
-						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="搜索"><br>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="Search"><br>
 						</form>
 					
 					</li>
@@ -73,6 +73,27 @@
     </header>
     <div id="container">
       <div id="main">
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/06/28/[网络编程] IO多路复用/" title="[网络编程] IO多路复用" itemprop="url">
+  
+    <h1 itemprop="name">[网络编程] IO多路复用</h1>
+    
+     
+           <p itemprop="description" >阻塞IO和非阻塞IO常见的IO操作有read和write，通常IO操作都是阻塞I/O，即当前调用read时如果没有数据收到，那么线程或者进行就会被挂起，直到收到数据。
+对于非阻塞I/O，通过fcntl（POSIX）或ioctl（UNIX）设为非阻塞模式，这时当你调用read时，如</p>
+        
+    
+    <time datetime="2017-06-28T10:00:26.000Z" itemprop="datePublished">2017-06-28</time>
+  </a>
+</section>
+
+
+
+
+
 
   
 <section class="post" itemscope itemprop="blogitem">
@@ -254,9 +275,9 @@ EPoll的两种工作模式
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/06/28/[Struts] Struts中OGNL/" title="[Struts] Struts中OGNL" itemprop="url">
+    <a href="/2017/06/28/[Struts2] Struts中OGNL/" title="[Struts2] Struts中OGNL" itemprop="url">
   
-    <h1 itemprop="name">[Struts] Struts中OGNL</h1>
+    <h1 itemprop="name">[Struts2] Struts中OGNL</h1>
     
      
            <p itemprop="description" >Struts中OGNL一、OGNL概念OGNL（Object Graph Navigation Language），即对象图导航语言，是一种功能强大的表达式语言，可以任意存取对象的属性或者调用对象的方法。
@@ -272,45 +293,21 @@ OGNL表达式的计算是围绕OGNL上下文进行的，OGNL上下文实际上�
 
 
 
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[TCPIP] TCP与UDP不同的包处理方式/" title="[TCP/IP] TCP与UDP不同的包处理方式" itemprop="url">
-  
-    <h1 itemprop="name">[TCP/IP] TCP与UDP不同的包处理方式</h1>
-    
-     
-           <p itemprop="description" >TCP与UDP不同的包处理方式声明：本文转载自博客
-
-UDP发包的问题
-举个例子：udp发送两次数据，第一次发送100字节， 第二字发送200字节，接收方一次recvfrom(1000)，收到是100，还是200，还是300？
-UDP是数据报文协议，是以数据包形式，所以每次可以接</p>
-        
-    
-    <time datetime="2017-06-28T09:49:21.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix unexpand">
     <a class="extend prev" rel="prev" href="/page/3/"><span></span>Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/">Next<span></span></a>
   </nav>
 
 </div>
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
 <div class="github-card">
-<p class="asidetitle">Github 名片</p>
+<p class="asidetitle">Github Card</p>
 <div class="github-card" data-github="glemontree" data-theme="medium"></div>
 <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
 </div>
@@ -319,7 +316,7 @@ UDP是数据报文协议，是以数据包形式，所以每次可以接</p>
 
   
 <div class="categorieslist">
-	<p class="asidetitle">分类</p>
+	<p class="asidetitle">Categories</p>
 		<ul>
 		
 		  
@@ -363,7 +360,9 @@ UDP是数据报文协议，是以数据包形式，所以每次可以接</p>
 		  
 		
 		  
-			<li><a href="/categories/Struts/" title="Struts">Struts<sup>3</sup></a></li>
+		
+		  
+			<li><a href="/categories/Struts2/" title="Struts2">Struts2<sup>4</sup></a></li>
 		  
 		
 		  
@@ -404,11 +403,15 @@ UDP是数据报文协议，是以数据包形式，所以每次可以接</p>
 
   
 <div class="tagslist">
-	<p class="asidetitle">标签</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
 				<li><a href="/tags/C/" title="C++">C++<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Struts2-OGNL/" title="Struts2, OGNL">Struts2, OGNL<sup>2</sup></a></li>
 			
 		
 			
@@ -420,11 +423,7 @@ UDP是数据报文协议，是以数据包形式，所以每次可以接</p>
 			
 		
 			
-				<li><a href="/tags/Java-Servlet-乱码/" title="Java, Servlet, 乱码">Java, Servlet, 乱码<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-ACE-网络/" title="C++, ACE, 网络">C++, ACE, 网络<sup>1</sup></a></li>
+				<li><a href="/tags/Spring-JDBCTemplate/" title="Spring, JDBCTemplate">Spring, JDBCTemplate<sup>1</sup></a></li>
 			
 		
 			
@@ -432,27 +431,15 @@ UDP是数据报文协议，是以数据包形式，所以每次可以接</p>
 			
 		
 			
+				<li><a href="/tags/C-11-Bind/" title="C++11, Bind">C++11, Bind<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/C-assert/" title="C++, assert">C++, assert<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-bind-回调/" title="C++, bind, 回调">C++, bind, 回调<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前置/" title="前置++">前置++<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/后置/" title="后置++">后置++<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/C-继承-同名成员变量/" title="C++, 继承, 同名成员变量">C++, 继承, 同名成员变量<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/CMake-VS/" title="CMake, VS">CMake, VS<sup>1</sup></a></li>
 			
 		
 			
@@ -464,15 +451,7 @@ UDP是数据报文协议，是以数据包形式，所以每次可以接</p>
 			
 		
 			
-				<li><a href="/tags/C-11-Bind/" title="C++11, Bind">C++11, Bind<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/通配符/" title="通配符">通配符<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/INSERT/" title="INSERT">INSERT<sup>1</sup></a></li>
+				<li><a href="/tags/CMake-VS/" title="CMake, VS">CMake, VS<sup>1</sup></a></li>
 			
 		
 			
@@ -480,11 +459,31 @@ UDP是数据报文协议，是以数据包形式，所以每次可以接</p>
 			
 		
 			
-				<li><a href="/tags/Java-反射-无参构造函数/" title="Java, 反射, 无参构造函数">Java, 反射, 无参构造函数<sup>1</sup></a></li>
+				<li><a href="/tags/C-Boost/" title="C++, Boost">C++, Boost<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/通配符/" title="通配符">通配符<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前置/" title="前置++">前置++<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/后置/" title="后置++">后置++<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/Linux-EPoll/" title="Linux, EPoll">Linux, EPoll<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java-反射-无参构造函数/" title="Java, 反射, 无参构造函数">Java, 反射, 无参构造函数<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/INSERT/" title="INSERT">INSERT<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -492,7 +491,7 @@ UDP是数据报文协议，是以数据包形式，所以每次可以接</p>
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
@@ -511,11 +510,11 @@ UDP是数据报文协议，是以数据包形式，所以每次可以接</p>
 </div>
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
   <div class="weiboshow">
-  <p class="asidetitle">新浪微博</p>
+  <p class="asidetitle">Weibo</p>
     <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
 </div>
 
@@ -667,7 +666,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
