@@ -1,0 +1,760 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>[Android] 百度地图API android相关配置教程（包含获取包名、发布版SHA1和开发版SHA1） | Glemontree&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Glemontree">
+    
+
+    
+    <meta name="description" content="声明本篇文章转载自Moment__格调的博客，作者写的十分详细，对于进行Android的百度地图开发很有帮助，感谢作者的分享！
+本篇相较于当前（2017.6.18）百度地图开放平台上的开发指南更为全面
+本篇相较于当前（2017.6.18）百度地图开放平台上的开发指南更为全面
+新版百度地图API相较于旧版增加了发布版SHA1， 开发版SHA1按官方教程操作即可，本篇来仔细介绍一下发布版SHA1、开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Android] 百度地图API android相关配置教程（包含获取包名、发布版SHA1和开发版SHA1）">
+<meta property="og:url" content="http://yoursite.com/2017/07/10/[android] 百度地图API android相关配置教程（包含获取包名、发布版SHA1和 开发版SHA1）/index.html">
+<meta property="og:site_name" content="Glemontree's blog">
+<meta property="og:description" content="声明本篇文章转载自Moment__格调的博客，作者写的十分详细，对于进行Android的百度地图开发很有帮助，感谢作者的分享！
+本篇相较于当前（2017.6.18）百度地图开放平台上的开发指南更为全面
+本篇相较于当前（2017.6.18）百度地图开放平台上的开发指南更为全面
+新版百度地图API相较于旧版增加了发布版SHA1， 开发版SHA1按官方教程操作即可，本篇来仔细介绍一下发布版SHA1、开发">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1771334-4e7e1d3660198a5f.png?imageMogr2/auto-orient/strip%7CimageView2/2">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1771334-21acee2b315a64be.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1771334-9a667336c0dbe7e9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1771334-92d4749bbe15832c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1771334-29bb05a64b4683c7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1771334-a92e06ca736702e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1771334-f1f5f7e787e1c9dc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1771334-0db16a86d60919c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1771334-89d3f0e655c4b177.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1771334-427c18a641364a3e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1771334-650c9c78c2f0d705.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1771334-f5ec02fb882cf5fc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1771334-68429ee1656e86c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1771334-c694a938864d2939.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1771334-9d9fa3012d431c38.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1771334-aa37e7bbc09c7f1f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1771334-6b3ede07f2c03647.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1771334-687e13c4f0d10d80.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1771334-64569883f3f3a243.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1771334-9c3ab941b6d57410.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1771334-a19e23439d82d51b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1771334-4ba482ecd0b876f8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1771334-aaeb07ad0aeef4bb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1771334-498f566ead4ed901.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1771334-cfee63bb2a3a1576.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1771334-6bb9df41a909b854.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1771334-1f778a60a2932ab1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1771334-7f213d0c4e232cdf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1771334-21669a5b53c7bb98.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1771334-3ad8304426d49c88.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1771334-73b66e8ba3127003.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1771334-9a06ed6f7d779c3b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1771334-69f075a86f5bf228.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1771334-0657503cd23e5508.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-07-10T10:05:08.168Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Android] 百度地图API android相关配置教程（包含获取包名、发布版SHA1和开发版SHA1）">
+<meta name="twitter:description" content="声明本篇文章转载自Moment__格调的博客，作者写的十分详细，对于进行Android的百度地图开发很有帮助，感谢作者的分享！
+本篇相较于当前（2017.6.18）百度地图开放平台上的开发指南更为全面
+本篇相较于当前（2017.6.18）百度地图开放平台上的开发指南更为全面
+新版百度地图API相较于旧版增加了发布版SHA1， 开发版SHA1按官方教程操作即可，本篇来仔细介绍一下发布版SHA1、开发">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1771334-4e7e1d3660198a5f.png?imageMogr2/auto-orient/strip%7CimageView2/2">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/favicon.ico" alt="Glemontree&#39;s blog" title="Glemontree&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Glemontree&#39;s blog">Glemontree&#39;s blog</a></h1>
+				<h2 class="blog-motto">day day up!</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="http://zhannei.baidu.com/cse/search" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="Search"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/07/10/[android] 百度地图API android相关配置教程（包含获取包名、发布版SHA1和 开发版SHA1）/" title="[Android] 百度地图API android相关配置教程（包含获取包名、发布版SHA1和开发版SHA1）" itemprop="url">[Android] 百度地图API android相关配置教程（包含获取包名、发布版SHA1和开发版SHA1）</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
+		
+  <p class="article-time">
+    <time datetime="2017-07-10T09:51:38.000Z" itemprop="datePublished"> Published 2017-07-10</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#声明"><span class="toc-number">1.</span> <span class="toc-text">声明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#（填写方法）"><span class="toc-number">1.0.1.</span> <span class="toc-text">（填写方法）</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#上图中SHA1就是所有获取的发布版SHA1。"><span class="toc-number">1.0.1.0.0.1.</span> <span class="toc-text">上图中SHA1就是所有获取的发布版SHA1。</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Android签名证书的开发版sha1值获取方式有两种："><span class="toc-number">2.</span> <span class="toc-text">Android签名证书的开发版sha1值获取方式有两种：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#将以上获取到的“包名”、“开发版SHA1”、“发布版SHA1”填入百度开放平台就可以了"><span class="toc-number">3.</span> <span class="toc-text">将以上获取到的“包名”、“开发版SHA1”、“发布版SHA1”填入百度开放平台就可以了</span></a></li></ol>
+		
+		</div>
+		
+		<h1 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h1><p>本篇文章转载自<a href="http://www.jianshu.com/u/78a176df75a3" target="_blank" rel="external">Moment__格调的博客</a>，作者写的十分详细，对于进行Android的百度地图开发很有帮助，感谢作者的分享！</p>
+<p>本篇相较于当前（2017.6.18）百度地图开放平台上的开发指南更为全面</p>
+<p>本篇相较于当前（2017.6.18）百度地图开放平台上的开发指南更为全面</p>
+<p>新版百度地图API相较于旧版增加了发布版SHA1， 开发版SHA1按官方教程操作即可，本篇来仔细介绍一下发布版SHA1、开发版SHA1和包名的获取方法。<br>本文基于Android Studio来获取<br>登录百度账号<br>访问API控制台页面，若您未登录百度账号，将会进入百度账号登录页面，如下图：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1771334-4e7e1d3660198a5f.png?imageMogr2/auto-orient/strip%7CimageView2/2" alt=""></p>
+<p>登陆百度开发者平台后，点击页面上的”申请密钥”</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1771334-21acee2b315a64be.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>然后会跳转到API控制台服务，具体如下图：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1771334-9a667336c0dbe7e9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>创建应用<br>点击”创建应用”，进入创建AK页面，输入应用名称，将应用类型改为：“Android SDK”：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1771334-92d4749bbe15832c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1771334-29bb05a64b4683c7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>配置应用<br>在应用类型选为“Android SDK”后，需要配置应用的安全码，如下图所示：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1771334-a92e06ca736702e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>获取安全码<br>安全码的组成规则为：Android签名证书的sha1值+packagename例如：</p>
+<p>SHA1：BB:0D:AC:74:D3:21:E1:43:67:71:9B:62:91:AF:A1:66:6E:44:5D:75<br>包名：com.baidumap.demo<br><strong>Android应用获取包名packagename，根据开发工具不同，获取位置有所不同</strong><br>1、使用 eclipse 开发<br>包名是Android应用程序本身在AndroidManifest.xml 中定义的名称，例如：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1771334-f1f5f7e787e1c9dc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>2、使用 Android studio 创建一个新的包名<br>包名的获取<br>首先在存储盘中创建一个文件夹用来保存后面所要创建的相关内容</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1771334-0db16a86d60919c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>打开Android Studio软件，创建一个新的工程：File&gt;New&gt;New Project</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1771334-89d3f0e655c4b177.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1771334-427c18a641364a3e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>然后一直默认点击 Next ，最后是点击Fisish。点击完Fisish后等待两秒后会出现如下界面：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1771334-650c9c78c2f0d705.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>直接点击OK，应用就创建完成了，然后按下图来选择包名：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1771334-f5ec02fb882cf5fc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>复制所获取的包名到“百度地图开放平台”创建应用列表下的包名输入框内。</p>
+<p><strong>Android签名证书的发布版sha1值获取方式：</strong><br>（1）：为apk签名，生成keystore文件（如果已经有keystore文件，跳过此步骤）<br>第一步： Build —&gt;&gt; Generate Signed APK</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1771334-68429ee1656e86c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>第二步：Create New</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1771334-c694a938864d2939.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1771334-9d9fa3012d431c38.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>第三步：填写相关信息，里面内容什么含义自行Google</p>
+<h3 id="（填写方法）"><a href="#（填写方法）" class="headerlink" title="（填写方法）"></a>（填写方法）</h3><p><img src="http://upload-images.jianshu.io/upload_images/1771334-aa37e7bbc09c7f1f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>Paste_Image.png</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1771334-6b3ede07f2c03647.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1771334-687e13c4f0d10d80.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>填写完成后点击0K,然后就会发现如下图中Key store path已经选择完成：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1771334-64569883f3f3a243.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>然后按下图所示填写其他内容</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1771334-9c3ab941b6d57410.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1771334-a19e23439d82d51b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>第四步：输入密码</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1771334-4ba482ecd0b876f8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>第五步：选择发布app的路径默认即可 选择release方式发布<br>（其实这一步我没有完成，因为点击Build Type后下拉列表中什么选项都没有，所有没有办法点击Finish按钮,不过这没有什么影响，因为我们所要创建的.jks文件已经创建完成）</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1771334-aaeb07ad0aeef4bb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>以上步骤完成后，运行进入控制台程序</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1771334-498f566ead4ed901.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>输入cd .android，定位文件夹到.andorid下，默认路径是users/用户名/.[Android]</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1771334-cfee63bb2a3a1576.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>(<a href="http://lib.csdn.net/base/android" target="_blank" rel="external">http://lib.csdn.net/base/android</a>)<br>输入keytool -list -v -keystore <em>.jks，</em>.jks为keystore文件路径，例如我的keystore文件路径是H:\myTest\myText.jks，那么我输入的是keytool -list -v -keystore H:\myTest\myText.jks</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1771334-6bb9df41a909b854.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1771334-1f778a60a2932ab1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1771334-7f213d0c4e232cdf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h6 id="上图中SHA1就是所有获取的发布版SHA1。"><a href="#上图中SHA1就是所有获取的发布版SHA1。" class="headerlink" title="上图中SHA1就是所有获取的发布版SHA1。"></a>上图中SHA1就是所有获取的发布版SHA1。</h6><h1 id="Android签名证书的开发版sha1值获取方式有两种："><a href="#Android签名证书的开发版sha1值获取方式有两种：" class="headerlink" title="Android签名证书的开发版sha1值获取方式有两种："></a>Android签名证书的开发版sha1值获取方式有两种：</h1><p>第一种方法：使用keytool<br>第1步：运行进入控制台</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1771334-21669a5b53c7bb98.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1771334-3ad8304426d49c88.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>第2步：定位到.android文件夹下，输入cd .android</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1771334-73b66e8ba3127003.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>第3步：输入keytool -list -v -keystore debug.keystore，会得到三种指纹证书，选取SHA1类型的证书（密钥口令是android），例如：<br>其中keytool为jdk自带工具；keystorefile为Android 签名证书文件</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1771334-9a06ed6f7d779c3b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1771334-69f075a86f5bf228.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>第二种方法：在eclipse中，在adt 22中直接查看<br>如果使用adt 22，可以在eclipse中直接查看：windows -&gt; preferance -&gt; android -&gt; build。 如下图示：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1771334-0657503cd23e5508.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>其中“SHA1 fingerprint”值即为Android签名证书的开发版sha1值。</p>
+<h1 id="将以上获取到的“包名”、“开发版SHA1”、“发布版SHA1”填入百度开放平台就可以了"><a href="#将以上获取到的“包名”、“开发版SHA1”、“发布版SHA1”填入百度开放平台就可以了" class="headerlink" title="将以上获取到的“包名”、“开发版SHA1”、“发布版SHA1”填入百度开放平台就可以了"></a>将以上获取到的“包名”、“开发版SHA1”、“发布版SHA1”填入百度开放平台就可以了</h1>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/android/">android</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/android-百度地图/">android, 百度地图</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2017/07/10/[android] 百度地图API android相关配置教程（包含获取包名、发布版SHA1和 开发版SHA1）/" data-title="[Android] 百度地图API android相关配置教程（包含获取包名、发布版SHA1和开发版SHA1） | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2017/07/10/[Struts2] 值栈/"  title="[Struts2] 值栈">
+ <strong>下一篇：</strong><br/> 
+ <span>[Struts2] 值栈
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/07/10/[android] 百度地图API android相关配置教程（包含获取包名、发布版SHA1和 开发版SHA1）/" data-title="[Android] 百度地图API android相关配置教程（包含获取包名、发布版SHA1和开发版SHA1）" data-url="http://yoursite.com/2017/07/10/[android] 百度地图API android相关配置教程（包含获取包名、发布版SHA1和 开发版SHA1）/"></div>
+</section>
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#声明"><span class="toc-number">1.</span> <span class="toc-text">声明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#（填写方法）"><span class="toc-number">1.0.1.</span> <span class="toc-text">（填写方法）</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#上图中SHA1就是所有获取的发布版SHA1。"><span class="toc-number">1.0.1.0.0.1.</span> <span class="toc-text">上图中SHA1就是所有获取的发布版SHA1。</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Android签名证书的开发版sha1值获取方式有两种："><span class="toc-number">2.</span> <span class="toc-text">Android签名证书的开发版sha1值获取方式有两种：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#将以上获取到的“包名”、“开发版SHA1”、“发布版SHA1”填入百度开放平台就可以了"><span class="toc-number">3.</span> <span class="toc-text">将以上获取到的“包名”、“开发版SHA1”、“发布版SHA1”填入百度开放平台就可以了</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="glemontree" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Boost/" title="Boost">Boost<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C/" title="C++">C++<sup>14</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CMake/" title="CMake">CMake<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/DB/" title="DB">DB<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Java/" title="Java">Java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Qt/" title="Qt">Qt<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Servlet/" title="Servlet">Servlet<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Spring/" title="Spring">Spring<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Struts2/" title="Struts2">Struts2<sup>10</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/TCP-IP/" title="TCP/IP">TCP/IP<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows核心编程/" title="Windows核心编程">Windows核心编程<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/android/" title="android">android<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/html/" title="html">html<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/多线程/" title="多线程">多线程<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/编程规范/" title="编程规范">编程规范<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络编程/" title="网络编程">网络编程<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/C/" title="C++">C++<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DB/" title="DB">DB<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-boost/" title="C++ boost">C++ boost<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Struts2-OGNL/" title="Struts2, OGNL">Struts2, OGNL<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spring-注解-Bean/" title="Spring, 注解, Bean">Spring, 注解, Bean<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-VS/" title="C++, VS">C++, VS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-bind-回调/" title="C++, bind, 回调">C++, bind, 回调<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-assert/" title="C++, assert">C++, assert<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-继承-同名成员变量/" title="C++, 继承, 同名成员变量">C++, 继承, 同名成员变量<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MySQL-UPDATE/" title="MySQL UPDATE">MySQL UPDATE<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CMake/" title="CMake">CMake<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CMake-VS/" title="CMake, VS">CMake, VS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-Boost/" title="C++, Boost">C++, Boost<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/通配符/" title="通配符">通配符<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java-反射-无参构造函数/" title="Java, 反射, 无参构造函数">Java, 反射, 无参构造函数<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前置/" title="前置++">前置++<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/后置/" title="后置++">后置++<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo-主题/" title="Hexo, 主题">Hexo, 主题<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/INSERT/" title="INSERT">INSERT<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux-eventfd/" title="Linux, eventfd">Linux, eventfd<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://github.com/glemontree" target="_blank" title="GitHub">GitHub</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/u010216743" target="_blank" title="CSDN">CSDN</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">Weibo</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello World. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/glemontree" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:gtp0521@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Glemontree">Glemontree</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"glemontree"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'null'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
