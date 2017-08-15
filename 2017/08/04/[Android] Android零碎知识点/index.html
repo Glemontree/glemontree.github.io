@@ -25,7 +25,7 @@ overridePendi">
 
 overridePendingTransition
 overridePendi">
-<meta property="og:updated_time" content="2017-08-08T15:18:49.612Z">
+<meta property="og:updated_time" content="2017-08-15T03:15:06.407Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Android] Android零碎知识点">
 <meta name="twitter:description" content="?android:selectableItemBackground
@@ -345,6 +345,11 @@ overridePendi">
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line">    <span class="attr">android:orientation</span>=<span class="string">"vertical"</span> <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:fitsSystemWindows</span>=<span class="string">"true"</span>&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">android.support.v7.widget.Toolbar</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/tb_joke"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"?attr/actionBarSize"</span></div><div class="line">        <span class="attr">android:background</span>=<span class="string">"?attr/colorPrimary"</span></div><div class="line">        <span class="attr">android:fitsSystemWindows</span>=<span class="string">"true"</span></div><div class="line">        <span class="attr">android:titleTextColor</span>=<span class="string">"#fff"</span>&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">ImageView</span></span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">            <span class="attr">android:src</span>=<span class="string">"@drawable/ic_joke_title"</span>/&gt;</div><div class="line">    <span class="tag">&lt;/<span class="name">android.support.v7.widget.Toolbar</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">FrameLayout</span></span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">LinearLayout</span></span></div><div class="line">            <span class="attr">android:id</span>=<span class="string">"@+id/ll_loading"</span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">            <span class="attr">android:gravity</span>=<span class="string">"center"</span></div><div class="line">            <span class="attr">android:orientation</span>=<span class="string">"vertical"</span></div><div class="line">            <span class="attr">android:visibility</span>=<span class="string">"visible"</span>&gt;</div><div class="line">            <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">                <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">                <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">                <span class="attr">android:text</span>=<span class="string">"正在加载中"</span>/&gt;</div><div class="line">        <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">LinearLayout</span></span></div><div class="line">            <span class="attr">android:visibility</span>=<span class="string">"gone"</span></div><div class="line">            <span class="attr">android:id</span>=<span class="string">"@+id/ll_error"</span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">            <span class="attr">android:gravity</span>=<span class="string">"center"</span></div><div class="line">            <span class="attr">android:orientation</span>=<span class="string">"vertical"</span>&gt;</div><div class="line">            <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">                <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">                <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">                <span class="attr">android:text</span>=<span class="string">"加载失败"</span>/&gt;</div><div class="line">            <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">                <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">                <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">                <span class="attr">android:clickable</span>=<span class="string">"true"</span></div><div class="line">                <span class="attr">android:id</span>=<span class="string">"@+id/tv_joke_load_again"</span></div><div class="line">                <span class="attr">android:background</span>=<span class="string">"#d7d6d6"</span></div><div class="line">                <span class="attr">android:padding</span>=<span class="string">"10dp"</span></div><div class="line">                <span class="attr">android:text</span>=<span class="string">"重新加载"</span>/&gt;</div><div class="line">        <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">android.support.v4.widget.SwipeRefreshLayout</span></span></div><div class="line">            <span class="attr">android:id</span>=<span class="string">"@+id/srl_joke"</span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</div><div class="line">            <span class="tag">&lt;<span class="name">android.support.v7.widget.RecyclerView</span></span></div><div class="line">                <span class="attr">android:id</span>=<span class="string">"@+id/rv_joke"</span></div><div class="line">                <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">                <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</div><div class="line">            <span class="tag">&lt;/<span class="name">android.support.v7.widget.RecyclerView</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">android.support.v4.widget.SwipeRefreshLayout</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">FrameLayout</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>在FrameLayout中包含了3个子布局，即两个LinearLayout和一个SwipeRefreshLayout，三者会重叠显示，那么在代码中通过控制各个不同的布局在不同情况下的显示和消失就可以显示几种不同的布局。</p>
 </li>
+<li><p><code>android:imeOptions</code>属性</p>
+<p>默认情况下软键盘右下角按钮为“下一个”，点击会进入到下一个输入框，保持软键盘，设置<code>android:imeOptions=actionDone</code>，软键盘下方变成完成，点击后光标保持在原来的输入框中，并且软键盘关闭，设置<code>android:imeOptions=actionSend</code>软键盘下方变成“发送”，点击后光标移动到下一个，那么设置的imeOptions如何使用呢？一般情况下可以这样使用：让EditText实现<code>OnEditorActionListener</code>，在<code>onEditActin</code>方法中actionId就对应我们设置的imeOptions，系统默认的actionId有<code>EditorInfo.IME_NULL</code>、<code>EditorInfo.IME_ACTION_SEND</code>、<code>EditorInfo.IME_ACTION_DONE</code>，这样就可以根据不同的EditText实现不同的软键盘右下角功能键：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 设置软键盘的操作</span></div><div class="line">etInput.setImeOptions(EditorInfo.IME_ACTION_SEARCH);</div><div class="line">...</div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onEditorAction</span><span class="params">(TextView v, <span class="keyword">int</span> actionId, KeyEvent event)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (actionId == EditorInfo.IME_ACTION_SEND) &#123;</div><div class="line">      ...</div><div class="line">      <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      ...</div><div class="line">    &#125;</div><div class="line">    closeKeyBoard();</div><div class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
 </ul>
   
 	</div>
@@ -436,7 +441,7 @@ overridePendi">
 		<ul>
 		
 		  
-			<li><a href="/categories/Android/" title="Android">Android<sup>9</sup></a></li>
+			<li><a href="/categories/Android/" title="Android">Android<sup>10</sup></a></li>
 		  
 		
 		  
@@ -533,11 +538,15 @@ overridePendi">
 			
 		
 			
+				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Struts2-OGNL/" title="Struts2, OGNL">Struts2, OGNL<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Servlet-HttpServletResponse/" title="Servlet HttpServletResponse">Servlet HttpServletResponse<sup>1</sup></a></li>
+				<li><a href="/tags/Qt-processEvents/" title="Qt, processEvents">Qt, processEvents<sup>1</sup></a></li>
 			
 		
 			
@@ -545,27 +554,7 @@ overridePendi">
 			
 		
 			
-				<li><a href="/tags/C-ACE-网络/" title="C++, ACE, 网络">C++, ACE, 网络<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android-百度地图/" title="Android, 百度地图">Android, 百度地图<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-11-Bind/" title="C++11, Bind">C++11, Bind<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android/" title="Android">Android<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-Boost/" title="C++, Boost">C++, Boost<sup>1</sup></a></li>
+				<li><a href="/tags/Android-assets/" title="Android, assets">Android, assets<sup>1</sup></a></li>
 			
 		
 			
@@ -573,11 +562,15 @@ overridePendi">
 			
 		
 			
-				<li><a href="/tags/C-assert/" title="C++, assert">C++, assert<sup>1</sup></a></li>
+				<li><a href="/tags/C-ACE-网络/" title="C++, ACE, 网络">C++, ACE, 网络<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-bind-回调/" title="C++, bind, 回调">C++, bind, 回调<sup>1</sup></a></li>
+				<li><a href="/tags/Android-监听电池电量/" title="Android, 监听电池电量">Android, 监听电池电量<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>1</sup></a></li>
 			
 		
 			
@@ -585,7 +578,11 @@ overridePendi">
 			
 		
 			
-				<li><a href="/tags/Android-监听电池电量/" title="Android, 监听电池电量">Android, 监听电池电量<sup>1</sup></a></li>
+				<li><a href="/tags/C-bind-回调/" title="C++, bind, 回调">C++, bind, 回调<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-11-Bind/" title="C++11, Bind">C++11, Bind<sup>1</sup></a></li>
 			
 		
 			
@@ -594,6 +591,14 @@ overridePendi">
 		
 			
 				<li><a href="/tags/后置/" title="后置++">后置++<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-assert/" title="C++, assert">C++, assert<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-Boost/" title="C++, Boost">C++, Boost<sup>1</sup></a></li>
 			
 		
 			
