@@ -25,7 +25,9 @@ overridePendi">
 
 overridePendingTransition
 overridePendi">
-<meta property="og:updated_time" content="2017-08-15T03:15:06.407Z">
+<meta property="og:image" content="http://livesunhexo.oss-cn-shanghai.aliyuncs.com/hexo/clippadding1.gif">
+<meta property="og:image" content="http://livesunhexo.oss-cn-shanghai.aliyuncs.com/hexo/clippadding2.gif">
+<meta property="og:updated_time" content="2017-08-16T02:34:49.156Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Android] Android零碎知识点">
 <meta name="twitter:description" content="?android:selectableItemBackground
@@ -33,6 +35,7 @@ overridePendi">
 
 overridePendingTransition
 overridePendi">
+<meta name="twitter:image" content="http://livesunhexo.oss-cn-shanghai.aliyuncs.com/hexo/clippadding1.gif">
 
     
     <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
@@ -348,6 +351,19 @@ overridePendi">
 <li><p><code>android:imeOptions</code>属性</p>
 <p>默认情况下软键盘右下角按钮为“下一个”，点击会进入到下一个输入框，保持软键盘，设置<code>android:imeOptions=actionDone</code>，软键盘下方变成完成，点击后光标保持在原来的输入框中，并且软键盘关闭，设置<code>android:imeOptions=actionSend</code>软键盘下方变成“发送”，点击后光标移动到下一个，那么设置的imeOptions如何使用呢？一般情况下可以这样使用：让EditText实现<code>OnEditorActionListener</code>，在<code>onEditActin</code>方法中actionId就对应我们设置的imeOptions，系统默认的actionId有<code>EditorInfo.IME_NULL</code>、<code>EditorInfo.IME_ACTION_SEND</code>、<code>EditorInfo.IME_ACTION_DONE</code>，这样就可以根据不同的EditText实现不同的软键盘右下角功能键：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 设置软键盘的操作</span></div><div class="line">etInput.setImeOptions(EditorInfo.IME_ACTION_SEARCH);</div><div class="line">...</div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onEditorAction</span><span class="params">(TextView v, <span class="keyword">int</span> actionId, KeyEvent event)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (actionId == EditorInfo.IME_ACTION_SEND) &#123;</div><div class="line">      ...</div><div class="line">      <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      ...</div><div class="line">    &#125;</div><div class="line">    closeKeyBoard();</div><div class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>android:clipToPadding</code>的作用</p>
+<p>常常用于paddingTop的情况，并且默认情况下其值为true，当内部有个属性设置了paddingTop但是滑动的时候就忽视paddingTop则可以设置<code>android:clipToPadding=&quot;false&quot;</code>。</p>
+<p>大家可以参考 <a href="http://blog.csdn.net/hpu_zyh/article/details/44520949" target="_blank" rel="external">Padding与绘制区域–android:clipToPadding和android:clipChildren</a>这篇文章，看了图就懂了！</p>
+<p>另外再推荐一篇文章<a href="https://livesun.github.io/2017/06/14/clippaading/" target="_blank" rel="external">android:clipToPadding属性应用</a>，这篇文章讲的蛮好的，其效果图如下：</p>
+<ul>
+<li><p><code>android:clipToPadding=&quot;true&quot;</code></p>
+<p><img src="http://livesunhexo.oss-cn-shanghai.aliyuncs.com/hexo/clippadding1.gif" alt=""></p>
+</li>
+<li><p><code>android:clipToPadding=&quot;false&quot;</code></p>
+<p><img src="http://livesunhexo.oss-cn-shanghai.aliyuncs.com/hexo/clippadding2.gif" alt=""></p>
+</li>
+</ul>
 <p>​</p>
 </li>
 </ul>
@@ -441,7 +457,7 @@ overridePendi">
 		<ul>
 		
 		  
-			<li><a href="/categories/Android/" title="Android">Android<sup>10</sup></a></li>
+			<li><a href="/categories/Android/" title="Android">Android<sup>11</sup></a></li>
 		  
 		
 		  
@@ -546,15 +562,7 @@ overridePendi">
 			
 		
 			
-				<li><a href="/tags/Servlet-HttpServletRequest/" title="Servlet HttpServletRequest">Servlet HttpServletRequest<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android/" title="Android">Android<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/WebView-loadDataWithBaseUrl-loadUrl/" title="WebView, loadDataWithBaseUrl, loadUrl">WebView, loadDataWithBaseUrl, loadUrl<sup>1</sup></a></li>
+				<li><a href="/tags/VS-Qt-软件图标/" title="VS, Qt, 软件图标">VS, Qt, 软件图标<sup>1</sup></a></li>
 			
 		
 			
@@ -566,11 +574,7 @@ overridePendi">
 			
 		
 			
-				<li><a href="/tags/Android-xml-tools/" title="Android, xml-tools">Android, xml-tools<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-11-Bind/" title="C++11, Bind">C++11, Bind<sup>1</sup></a></li>
+				<li><a href="/tags/Android-assets/" title="Android, assets">Android, assets<sup>1</sup></a></li>
 			
 		
 			
@@ -578,7 +582,15 @@ overridePendi">
 			
 		
 			
-				<li><a href="/tags/Android-assets/" title="Android, assets">Android, assets<sup>1</sup></a></li>
+				<li><a href="/tags/Android/" title="Android">Android<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-11-Bind/" title="C++11, Bind">C++11, Bind<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/WebView-loadDataWithBaseUrl-loadUrl/" title="WebView, loadDataWithBaseUrl, loadUrl">WebView, loadDataWithBaseUrl, loadUrl<sup>1</sup></a></li>
 			
 		
 			
@@ -587,6 +599,14 @@ overridePendi">
 		
 			
 				<li><a href="/tags/C-assert/" title="C++, assert">C++, assert<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-ProgressDialog，-耗时操作/" title="Android, ProgressDialog， 耗时操作">Android, ProgressDialog， 耗时操作<sup>1</sup></a></li>
 			
 		
 			
@@ -599,10 +619,6 @@ overridePendi">
 		
 			
 				<li><a href="/tags/后置/" title="后置++">后置++<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-继承-同名成员变量/" title="C++, 继承, 同名成员变量">C++, 继承, 同名成员变量<sup>1</sup></a></li>
 			
 		
 		</ul>
