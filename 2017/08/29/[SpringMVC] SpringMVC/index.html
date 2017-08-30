@@ -31,7 +31,7 @@ SpringMVC使用@RequestMapping注解为控制器指定可以处理哪些URL请�
 
 
 Dispatch">
-<meta property="og:updated_time" content="2017-08-30T07:31:37.116Z">
+<meta property="og:updated_time" content="2017-08-30T14:48:57.298Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[SpringMVC] SpringMVC">
 <meta name="twitter:description" content="RequestMapping注解
@@ -69,7 +69,7 @@ Dispatch">
 				<h1 class="site-name"><a href="/" title="Glemontree&#39;s blog">Glemontree&#39;s blog</a></h1>
 				<h2 class="blog-motto">day day up!</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -85,7 +85,7 @@ Dispatch">
  					
 						<form class="search" action="http://zhannei.baidu.com/cse/search" target="_blank">
 							<label>Search</label>
-						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="Search"><br>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="搜索"><br>
 						</form>
 					
 					</li>
@@ -107,16 +107,16 @@ Dispatch">
 		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
 		
   <p class="article-time">
-    <time datetime="2017-08-29T13:03:47.000Z" itemprop="datePublished"> Published 2017-08-29</time>
+    <time datetime="2017-08-29T13:03:47.000Z" itemprop="datePublished"> 發表於 2017-08-29</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
+			<strong class="toc-title">文章目錄</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RequestMapping注解"><span class="toc-number">1.</span> <span class="toc-text">RequestMapping注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PathVariable注解"><span class="toc-number">2.</span> <span class="toc-text">@PathVariable注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#REST"><span class="toc-number">3.</span> <span class="toc-text">REST</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-RequestParam绑定请求参数值"><span class="toc-number">4.</span> <span class="toc-text">使用@RequestParam绑定请求参数值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用POJO对象绑定请求参数值"><span class="toc-number">5.</span> <span class="toc-text">使用POJO对象绑定请求参数值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用Servlet-API作为入参"><span class="toc-number">6.</span> <span class="toc-text">使用Servlet API作为入参</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#处理模型数据"><span class="toc-number">7.</span> <span class="toc-text">处理模型数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ModelAndView"><span class="toc-number">7.1.</span> <span class="toc-text">ModelAndView</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Map以及Model"><span class="toc-number">7.2.</span> <span class="toc-text">Map以及Model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SessionAttributes"><span class="toc-number">7.3.</span> <span class="toc-text">@SessionAttributes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ModelAttribute"><span class="toc-number">7.4.</span> <span class="toc-text">@ModelAttribute</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RequestMapping注解"><span class="toc-number">1.</span> <span class="toc-text">RequestMapping注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PathVariable注解"><span class="toc-number">2.</span> <span class="toc-text">@PathVariable注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#REST"><span class="toc-number">3.</span> <span class="toc-text">REST</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-RequestParam绑定请求参数值"><span class="toc-number">4.</span> <span class="toc-text">使用@RequestParam绑定请求参数值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用POJO对象绑定请求参数值"><span class="toc-number">5.</span> <span class="toc-text">使用POJO对象绑定请求参数值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用Servlet-API作为入参"><span class="toc-number">6.</span> <span class="toc-text">使用Servlet API作为入参</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#处理模型数据"><span class="toc-number">7.</span> <span class="toc-text">处理模型数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ModelAndView"><span class="toc-number">7.1.</span> <span class="toc-text">ModelAndView</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Map以及Model"><span class="toc-number">7.2.</span> <span class="toc-text">Map以及Model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SessionAttributes"><span class="toc-number">7.3.</span> <span class="toc-text">@SessionAttributes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ModelAttribute"><span class="toc-number">7.4.</span> <span class="toc-text">@ModelAttribute</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SpringMVC确定目标方法POJO类型入参的过程"><span class="toc-number">7.4.1.</span> <span class="toc-text">SpringMVC确定目标方法POJO类型入参的过程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#视图和视图解析器"><span class="toc-number">8.</span> <span class="toc-text">视图和视图解析器</span></a></li></ol>
 		
 		</div>
 		
@@ -224,7 +224,36 @@ Dispatch">
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/testSessionAttribute"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">testSessionAttribute</span><span class="params">(Map&lt;String, Object&gt; map)</span> </span>&#123;</div><div class="line">    User user = <span class="keyword">new</span> User(<span class="string">"Tom"</span>, <span class="string">"123456"</span>, <span class="string">"tom@gmail.com"</span>, <span class="number">15</span>);</div><div class="line">    map.put(<span class="string">"user"</span>, user);</div><div class="line">    map.put(<span class="string">"school"</span>, <span class="string">"initialsoft"</span>);</div><div class="line">    <span class="keyword">return</span> SUCCESS;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="ModelAttribute"><a href="#ModelAttribute" class="headerlink" title="@ModelAttribute"></a><code>@ModelAttribute</code></h3><p>先看下面这个例子：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 有<span class="doctag">@ModelAttribute</span>标记的方法会在每个目标方法执行之前被SpringMVC调用</div><div class="line"> * <span class="doctag">@param</span> id</div><div class="line"> * <span class="doctag">@param</span> map</div><div class="line"> */</div><div class="line"><span class="meta">@ModelAttribute</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getUser</span><span class="params">(@RequestParam(value = <span class="string">"id"</span>, required = <span class="keyword">false</span>)</span> Integer id, Map&lt;String, Object&gt; map) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (id != <span class="keyword">null</span>) &#123;</div><div class="line">      User user = <span class="keyword">new</span> User(<span class="number">1</span>, <span class="string">"Tom"</span>, <span class="string">"123456"</span>, <span class="string">"tom@gmail.com"</span>, <span class="number">12</span>);</div><div class="line">      map.put(<span class="string">"user"</span>, user);</div><div class="line">      System.out.println(<span class="string">"从数据库中获取一个对象: "</span> + user);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 1. 执行<span class="doctag">@ModelAttribue</span>注解修饰的方法：从数据库中取出对象，将对象放入到了Map中，键为user</div><div class="line"> * 2. SpringMVC从Map中取出User对象，并把表单的请求参数赋给该User对象的对应属性</div><div class="line"> * 3. SpringMVC把上述对象传入目标方法的参数</div><div class="line"> * 注意：在ModelAttribute修饰的方法中放入到Map时的键需要和目标方法入参类型的第一个字母小写的字符串一致</div><div class="line"> * <span class="doctag">@param</span> user</div><div class="line"> * <span class="doctag">@return</span></div><div class="line"> */</div><div class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/testModelAttribute"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">testModelAttribute</span><span class="params">(User user)</span> </span>&#123;</div><div class="line">    System.out.println(<span class="string">"修改： "</span> + user);</div><div class="line">    <span class="keyword">return</span> SUCCESS;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 1. 有<span class="doctag">@ModelAttribute</span>标记的方法会在每个目标方法执行之前被SpringMVC调用</div><div class="line"> * 2. <span class="doctag">@ModelAttribute</span>注解也可以修饰目标方法POJO类型的入参，其value属性值中具有如下作用：</div><div class="line"> * 1) SpringMVC会使用value属性值在implicitModel中查找对应的对象，若存在则会直接传入到目标方法的入参中</div><div class="line"> * 2）SpringMVC会以value为key，POJO类型的对象为value存入到request中</div><div class="line"> * <span class="doctag">@param</span> id</div><div class="line"> * <span class="doctag">@param</span> map</div><div class="line"> */</div><div class="line"><span class="meta">@ModelAttribute</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getUser</span><span class="params">(@RequestParam(value = <span class="string">"id"</span>, required = <span class="keyword">false</span>)</span> Integer id, Map&lt;String, Object&gt; map) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (id != <span class="keyword">null</span>) &#123;</div><div class="line">      User user = <span class="keyword">new</span> User(<span class="number">1</span>, <span class="string">"Tom"</span>, <span class="string">"123456"</span>, <span class="string">"tom@gmail.com"</span>, <span class="number">12</span>);</div><div class="line">      map.put(<span class="string">"user"</span>, user);</div><div class="line">      System.out.println(<span class="string">"从数据库中获取一个对象: "</span> + user);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 1. 执行<span class="doctag">@ModelAttribue</span>注解修饰的方法：从数据库中取出对象，将对象放入到了Map中，键为user</div><div class="line"> * 2. SpringMVC从Map中取出User对象，并把表单的请求参数赋给该User对象的对应属性</div><div class="line"> * 3. SpringMVC把上述对象传入目标方法的参数</div><div class="line"> * 注意：在ModelAttribute修饰的方法中放入到Map时的键需要和目标方法入参类型的第一个字母小写的字符串一致</div><div class="line"> *</div><div class="line"> * 源代码分析的流程：</div><div class="line"> * 1. 调用<span class="doctag">@ModelAttribute</span>注解修饰的方法，实际上把<span class="doctag">@ModelAttribute</span>修饰的方法中Map中的数据放到implicitModel中</div><div class="line"> * 2. 解析请求处理器的目标参数，实际上该目标参数来自于WebDataBinder的target属性</div><div class="line"> * 1）创建WebDataBinder对象：</div><div class="line"> * ①. 确定objectName属性：若传入的attrName属性值为空的话则objectName为类名第一个字母小写</div><div class="line"> * 注意：attrName，若目标方法的pojo属性使用了<span class="doctag">@ModelAttribute</span>来修饰，则attrName值即为<span class="doctag">@ModelAttribute</span>的value属性值</div><div class="line"> * ②. 确定target属性</div><div class="line"> * &gt; 在implicitModel中查找attrName对应的属性值，若存在，ok</div><div class="line"> * &gt; 若不存在，则验证当前Hadnler是否使用了<span class="doctag">@SessionAttributes</span>进行修饰，若使用了<span class="doctag">@SessionAttributes</span>修饰，则尝试从Session中获取attrName所对应的属性值</div><div class="line"> * 若Session中没有对应的属性值，则抛出了异常</div><div class="line"> * &gt; 若Handler没有使用<span class="doctag">@SessionAttribute</span>进行修饰，或<span class="doctag">@SessionAttribute</span>中没有attrName键则通过反射创建了pojo对象</div><div class="line"> * 2） SpringMVC把表单的请求参数赋给了WebDataBinder的target对应的属性</div><div class="line"> * 3） SpringMVC会把WebDataBinder的attrName和target给到implicitModel</div><div class="line"> * 4） 把WebDataBinder的target作为参数传递给目标方法的入参</div><div class="line"> * <span class="doctag">@param</span> user</div><div class="line"> * <span class="doctag">@return</span></div><div class="line"> */</div><div class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/testModelAttribute"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">testModelAttribute</span><span class="params">(User user)</span> </span>&#123;</div><div class="line">    System.out.println(<span class="string">"修改： "</span> + user);</div><div class="line">    <span class="keyword">return</span> SUCCESS;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="SpringMVC确定目标方法POJO类型入参的过程"><a href="#SpringMVC确定目标方法POJO类型入参的过程" class="headerlink" title="SpringMVC确定目标方法POJO类型入参的过程"></a>SpringMVC确定目标方法POJO类型入参的过程</h4><ul>
+<li>确定一个key<ul>
+<li>若目标方法的POJO类型的参数木有使用<code>@ModelAttribute</code>作为修饰，则key为POJO类名第一个字母小写</li>
+<li>若使用了<code>@ModelAttribute</code>来修饰，则key为<code>@ModelAttribute</code>注解的value属性值</li>
+</ul>
+</li>
+<li>在implicitModel中查找key对应的对象，若存在，则作为入参传入<ul>
+<li>若在<code>@ModelAttribute</code>标记的方法中在Map中保存过且key和第一步中确定的key一致则会获取到</li>
+</ul>
+</li>
+<li>若不存在key对应的对象则检查当前的Handler是否使用<code>@SessionAttributes</code>注解进行修饰，若使用了该注解，且<code>@SessionAttributes</code>注解的value属性值中包含了key则会从HttpSession中来获取key所对应的value值，若存在则直接传入到目标方法的入参中，若不存在则将抛出异常</li>
+<li>若Handler没有标识<code>@SessionAttributes</code>注解或<code>@SessionAttributes</code>注解的value值中不包含key，则会通过反射来创建POJO类型的参数，然后传入为目标方法的参数</li>
+<li>SpringMVC会把key和POJO类型的对象保存到implicitModel中进而会保存到request中</li>
+</ul>
+<h2 id="视图和视图解析器"><a href="#视图和视图解析器" class="headerlink" title="视图和视图解析器"></a>视图和视图解析器</h2><ul>
+<li><p>无论目标方法返回时String、ModelAndView或者View，SpringMVC都会转换成ModelAndView对象</p>
+</li>
+<li><p>SpringMVC借助视图解析器（ViewResolver）得到最终的视图对象（View），最终的视图可以是JSP，也可能是Excel、JFreeChart等各种表现形式的视图</p>
+</li>
+<li><p>若项目中使用了JSTL，则SpringMVC会自动把视图由InternalResourceView转为JstlView</p>
+</li>
+<li><p>若使用JSTL的fmt标签则需要在SpringMVC的配置文件中配置国际化资源文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"messageSource"</span> <span class="attr">class</span>=<span class="string">"org.springframework.context.support.ResourceBundleMessageSource"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"basename"</span> <span class="attr">value</span>=<span class="string">"i18n"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>若希望直接响应通过SpringMVC渲染的页面，不需要经过Handler，可以使用<code>mvc:view-controller</code>标签实现</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">mvc:view-controller</span> <span class="attr">path</span>=<span class="string">"testJstlView"</span> <span class="attr">view-name</span>=<span class="string">"success"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<p>但是这样配置之后，原来的那些需要经过Handler的链接就将失效，实际上在实际开发中通常需要配置<code>mvc:annotation-driven</code>：<code>&lt;mvc:annotation-driven/&gt;</code>，此时即可解决问题。</p>
+</li>
+</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -287,22 +316,22 @@ Dispatch">
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
+  <strong class="toc-title">文章目錄</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RequestMapping注解"><span class="toc-number">1.</span> <span class="toc-text">RequestMapping注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PathVariable注解"><span class="toc-number">2.</span> <span class="toc-text">@PathVariable注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#REST"><span class="toc-number">3.</span> <span class="toc-text">REST</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-RequestParam绑定请求参数值"><span class="toc-number">4.</span> <span class="toc-text">使用@RequestParam绑定请求参数值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用POJO对象绑定请求参数值"><span class="toc-number">5.</span> <span class="toc-text">使用POJO对象绑定请求参数值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用Servlet-API作为入参"><span class="toc-number">6.</span> <span class="toc-text">使用Servlet API作为入参</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#处理模型数据"><span class="toc-number">7.</span> <span class="toc-text">处理模型数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ModelAndView"><span class="toc-number">7.1.</span> <span class="toc-text">ModelAndView</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Map以及Model"><span class="toc-number">7.2.</span> <span class="toc-text">Map以及Model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SessionAttributes"><span class="toc-number">7.3.</span> <span class="toc-text">@SessionAttributes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ModelAttribute"><span class="toc-number">7.4.</span> <span class="toc-text">@ModelAttribute</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RequestMapping注解"><span class="toc-number">1.</span> <span class="toc-text">RequestMapping注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PathVariable注解"><span class="toc-number">2.</span> <span class="toc-text">@PathVariable注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#REST"><span class="toc-number">3.</span> <span class="toc-text">REST</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-RequestParam绑定请求参数值"><span class="toc-number">4.</span> <span class="toc-text">使用@RequestParam绑定请求参数值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用POJO对象绑定请求参数值"><span class="toc-number">5.</span> <span class="toc-text">使用POJO对象绑定请求参数值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用Servlet-API作为入参"><span class="toc-number">6.</span> <span class="toc-text">使用Servlet API作为入参</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#处理模型数据"><span class="toc-number">7.</span> <span class="toc-text">处理模型数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ModelAndView"><span class="toc-number">7.1.</span> <span class="toc-text">ModelAndView</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Map以及Model"><span class="toc-number">7.2.</span> <span class="toc-text">Map以及Model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SessionAttributes"><span class="toc-number">7.3.</span> <span class="toc-text">@SessionAttributes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ModelAttribute"><span class="toc-number">7.4.</span> <span class="toc-text">@ModelAttribute</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SpringMVC确定目标方法POJO类型入参的过程"><span class="toc-number">7.4.1.</span> <span class="toc-text">SpringMVC确定目标方法POJO类型入参的过程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#视图和视图解析器"><span class="toc-number">8.</span> <span class="toc-text">视图和视图解析器</span></a></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
 <aside class="clearfix">
 
   
 <div class="github-card">
-<p class="asidetitle">Github Card</p>
+<p class="asidetitle">Github 名片</p>
 <div class="github-card" data-github="glemontree" data-theme="medium"></div>
 <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
 </div>
@@ -311,7 +340,7 @@ Dispatch">
 
   
 <div class="categorieslist">
-	<p class="asidetitle">Categories</p>
+	<p class="asidetitle">分類</p>
 		<ul>
 		
 		  
@@ -404,7 +433,7 @@ Dispatch">
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">標簽</p>
 		<ul class="clearfix">
 		
 			
@@ -420,10 +449,6 @@ Dispatch">
 			
 		
 			
-				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
 			
 		
@@ -432,23 +457,31 @@ Dispatch">
 			
 		
 			
+				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Struts2-OGNL/" title="Struts2, OGNL">Struts2, OGNL<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Linux-eventfd/" title="Linux, eventfd">Linux, eventfd<sup>1</sup></a></li>
+				<li><a href="/tags/SpringMVC/" title="SpringMVC">SpringMVC<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android/" title="Android">Android<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android-百度地图/" title="Android, 百度地图">Android, 百度地图<sup>1</sup></a></li>
+				<li><a href="/tags/Android-xml-tools/" title="Android, xml-tools">Android, xml-tools<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/C-ACE-网络/" title="C++, ACE, 网络">C++, ACE, 网络<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-SDK版本号/" title="Android, SDK版本号">Android, SDK版本号<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-百度地图/" title="Android, 百度地图">Android, 百度地图<sup>1</sup></a></li>
 			
 		
 			
@@ -457,10 +490,6 @@ Dispatch">
 		
 			
 				<li><a href="/tags/C-11-Bind/" title="C++11, Bind">C++11, Bind<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android-assets/" title="Android, assets">Android, assets<sup>1</sup></a></li>
 			
 		
 			
@@ -484,7 +513,7 @@ Dispatch">
 			
 		
 			
-				<li><a href="/tags/C-继承-同名成员变量/" title="C++, 继承, 同名成员变量">C++, 继承, 同名成员变量<sup>1</sup></a></li>
+				<li><a href="/tags/CMake/" title="CMake">CMake<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -492,7 +521,7 @@ Dispatch">
 
 
   <div class="linkslist">
-  <p class="asidetitle">Links</p>
+  <p class="asidetitle">友情鏈接</p>
     <ul>
         
           <li>
@@ -511,11 +540,11 @@ Dispatch">
 </div>
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
 </div>
 
   <div class="weiboshow">
-  <p class="asidetitle">Weibo</p>
+  <p class="asidetitle">新浪微博</p>
     <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
 </div>
 
@@ -756,7 +785,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
