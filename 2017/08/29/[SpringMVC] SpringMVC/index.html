@@ -31,7 +31,7 @@ SpringMVC使用@RequestMapping注解为控制器指定可以处理哪些URL请�
 
 
 Dispatch">
-<meta property="og:updated_time" content="2017-08-30T07:24:31.632Z">
+<meta property="og:updated_time" content="2017-08-30T07:31:37.116Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[SpringMVC] SpringMVC">
 <meta name="twitter:description" content="RequestMapping注解
@@ -224,7 +224,7 @@ Dispatch">
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/testSessionAttribute"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">testSessionAttribute</span><span class="params">(Map&lt;String, Object&gt; map)</span> </span>&#123;</div><div class="line">    User user = <span class="keyword">new</span> User(<span class="string">"Tom"</span>, <span class="string">"123456"</span>, <span class="string">"tom@gmail.com"</span>, <span class="number">15</span>);</div><div class="line">    map.put(<span class="string">"user"</span>, user);</div><div class="line">    map.put(<span class="string">"school"</span>, <span class="string">"initialsoft"</span>);</div><div class="line">    <span class="keyword">return</span> SUCCESS;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="ModelAttribute"><a href="#ModelAttribute" class="headerlink" title="@ModelAttribute"></a><code>@ModelAttribute</code></h3><p>先看下面这个例子：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 有<span class="doctag">@ModelAttribute</span>标记的方法会在每个目标方法执行之前被SpringMVC调用</div><div class="line"> * <span class="doctag">@param</span> id</div><div class="line"> * <span class="doctag">@param</span> map</div><div class="line"> */</div><div class="line"><span class="meta">@ModelAttribute</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getUser</span><span class="params">(@RequestParam(value = <span class="string">"id"</span>, required = <span class="keyword">false</span>)</span> Integer id, Map&lt;String, Object&gt; map) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (id != <span class="keyword">null</span>) &#123;</div><div class="line">      User user = <span class="keyword">new</span> User(<span class="number">1</span>, <span class="string">"Tom"</span>, <span class="string">"123456"</span>, <span class="string">"tom@gmail.com"</span>, <span class="number">12</span>);</div><div class="line">      map.put(<span class="string">"user"</span>, user);</div><div class="line">      System.out.println(<span class="string">"从数据库中获取一个对象: "</span> + user);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/testModelAttribute"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">testModelAttribute</span><span class="params">(User user)</span> </span>&#123;</div><div class="line">    System.out.println(<span class="string">"修改： "</span> + user);</div><div class="line">    <span class="keyword">return</span> SUCCESS;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 有<span class="doctag">@ModelAttribute</span>标记的方法会在每个目标方法执行之前被SpringMVC调用</div><div class="line"> * <span class="doctag">@param</span> id</div><div class="line"> * <span class="doctag">@param</span> map</div><div class="line"> */</div><div class="line"><span class="meta">@ModelAttribute</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getUser</span><span class="params">(@RequestParam(value = <span class="string">"id"</span>, required = <span class="keyword">false</span>)</span> Integer id, Map&lt;String, Object&gt; map) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (id != <span class="keyword">null</span>) &#123;</div><div class="line">      User user = <span class="keyword">new</span> User(<span class="number">1</span>, <span class="string">"Tom"</span>, <span class="string">"123456"</span>, <span class="string">"tom@gmail.com"</span>, <span class="number">12</span>);</div><div class="line">      map.put(<span class="string">"user"</span>, user);</div><div class="line">      System.out.println(<span class="string">"从数据库中获取一个对象: "</span> + user);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 1. 执行<span class="doctag">@ModelAttribue</span>注解修饰的方法：从数据库中取出对象，将对象放入到了Map中，键为user</div><div class="line"> * 2. SpringMVC从Map中取出User对象，并把表单的请求参数赋给该User对象的对应属性</div><div class="line"> * 3. SpringMVC把上述对象传入目标方法的参数</div><div class="line"> * 注意：在ModelAttribute修饰的方法中放入到Map时的键需要和目标方法入参类型的第一个字母小写的字符串一致</div><div class="line"> * <span class="doctag">@param</span> user</div><div class="line"> * <span class="doctag">@return</span></div><div class="line"> */</div><div class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/testModelAttribute"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">testModelAttribute</span><span class="params">(User user)</span> </span>&#123;</div><div class="line">    System.out.println(<span class="string">"修改： "</span> + user);</div><div class="line">    <span class="keyword">return</span> SUCCESS;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -260,6 +260,14 @@ Dispatch">
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2017/08/30/[JQuery] JQuery第六课/" title="[JQuery] JQuery第六课">
+  <strong>上一篇：</strong><br/>
+  <span>
+  [JQuery] JQuery第六课</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2017/08/29/[JQuery] JQuery第五课/"  title="[JQuery] JQuery第五课">
@@ -331,7 +339,7 @@ Dispatch">
 		  
 		
 		  
-			<li><a href="/categories/JQuery/" title="JQuery">JQuery<sup>5</sup></a></li>
+			<li><a href="/categories/JQuery/" title="JQuery">JQuery<sup>6</sup></a></li>
 		  
 		
 		  
@@ -404,7 +412,7 @@ Dispatch">
 			
 		
 			
-				<li><a href="/tags/JQuery/" title="JQuery">JQuery<sup>5</sup></a></li>
+				<li><a href="/tags/JQuery/" title="JQuery">JQuery<sup>6</sup></a></li>
 			
 		
 			
@@ -428,19 +436,15 @@ Dispatch">
 			
 		
 			
-				<li><a href="/tags/Servlet-HttpServletResponse/" title="Servlet HttpServletResponse">Servlet HttpServletResponse<sup>1</sup></a></li>
+				<li><a href="/tags/Qt-file/" title="Qt, file:///">Qt, file:///<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-ACE-网络/" title="C++, ACE, 网络">C++, ACE, 网络<sup>1</sup></a></li>
+				<li><a href="/tags/Android-ProgressDialog，-耗时操作/" title="Android, ProgressDialog， 耗时操作">Android, ProgressDialog， 耗时操作<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android-assets/" title="Android, assets">Android, assets<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android-绘制文本/" title="Android, 绘制文本">Android, 绘制文本<sup>1</sup></a></li>
+				<li><a href="/tags/Android-百度地图/" title="Android, 百度地图">Android, 百度地图<sup>1</sup></a></li>
 			
 		
 			
@@ -448,11 +452,23 @@ Dispatch">
 			
 		
 			
+				<li><a href="/tags/C-ACE-网络/" title="C++, ACE, 网络">C++, ACE, 网络<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/C-11-Bind/" title="C++11, Bind">C++11, Bind<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android/" title="Android">Android<sup>1</sup></a></li>
+				<li><a href="/tags/Android-assets/" title="Android, assets">Android, assets<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-Boost/" title="C++, Boost">C++, Boost<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-绘制文本/" title="Android, 绘制文本">Android, 绘制文本<sup>1</sup></a></li>
 			
 		
 			
@@ -464,19 +480,11 @@ Dispatch">
 			
 		
 			
-				<li><a href="/tags/Android-ProgressDialog，-耗时操作/" title="Android, ProgressDialog， 耗时操作">Android, ProgressDialog， 耗时操作<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/C-bind-回调/" title="C++, bind, 回调">C++, bind, 回调<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-Boost/" title="C++, Boost">C++, Boost<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-继承-同名成员变量/" title="C++, 继承, 同名成员变量">C++, 继承, 同名成员变量<sup>1</sup></a></li>
+				<li><a href="/tags/前置/" title="前置++">前置++<sup>1</sup></a></li>
 			
 		
 		</ul>
