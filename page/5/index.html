@@ -47,7 +47,7 @@
 				<h1 class="site-name"><a href="/" title="Glemontree&#39;s blog">Glemontree&#39;s blog</a></h1>
 				<h2 class="blog-motto">day day up!</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -63,7 +63,7 @@
  					
 						<form class="search" action="http://zhannei.baidu.com/cse/search" target="_blank">
 							<label>Search</label>
-						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="Search"><br>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="搜索"><br>
 						</form>
 					
 					</li>
@@ -73,6 +73,136 @@
     </header>
     <div id="container">
       <div id="main">
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/06/28/[C++] boostless_than_comparable/" title="[C++] boost::less_than_comparable" itemprop="url">
+  
+    <h1 itemprop="name">[C++] boost::less_than_comparable</h1>
+    
+     
+           <p itemprop="description" >boost::less_than_comparable前言很多操作符都是可以从其他操作符自动推导出来，例如a != b可以从!(a == b)推导出来，因此原则上只需要定义少量的基本操作符，其他的操作符就可以 通过逻辑组合推导出来。
+std::rel::ops在C++98标准的s</p>
+        
+    
+    <time datetime="2017-06-28T10:18:51.000Z" itemprop="datePublished">2017-06-28</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/06/28/[C++] BOOST_STATIC_ASSERT和assert的区别/" title="[C++] BOOST_STATIC_ASSERT和assert的区别" itemprop="url">
+  
+    <h1 itemprop="name">[C++] BOOST_STATIC_ASSERT和assert的区别</h1>
+    
+     
+           <p itemprop="description" >BOOST_STATIC_ASSERT和assert的区别assert是运行期断言，也就是编译期出现的错误，它不会提示；相反，BOOST_STATIC_ASSERT是编译期的断言，在编译的时候就可以断言出错误。
+需要注意的是BOOST_STATIC_ASSERT是放在全局命名空间</p>
+        
+    
+    <time datetime="2017-06-28T10:17:37.000Z" itemprop="datePublished">2017-06-28</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/06/28/[C++] C++11 bind 的用法/" title="[C++] C++11 bind 的用法" itemprop="url">
+  
+    <h1 itemprop="name">[C++] C++11 bind 的用法</h1>
+    
+     
+           <p itemprop="description" >BindBind可用于绑定函数、成员函数、函数对象、成员变量，bind函数支持最多10个自定义参数
+1234int f(int a, int b) &amp;#123;	return a + b;&amp;#125;std::bind(f, 5, std::placeholders::_1)(x</p>
+        
+    
+    <time datetime="2017-06-28T10:16:33.000Z" itemprop="datePublished">2017-06-28</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/06/28/[C++] C++中boostany的使用/" title="[C++] C++中boost::any的使用" itemprop="url">
+  
+    <h1 itemprop="name">[C++] C++中boost::any的使用</h1>
+    
+     
+           <p itemprop="description" >boost::any库是个很短小的类，它的主要作用是定义一个变量来存放任意类型的数据，我们首先来看下boost::any的使用方法。
+boost::any最常见的用法12345678910111213141516171819202122232425#include &amp;lt;ios</p>
+        
+    
+    <time datetime="2017-06-28T10:15:17.000Z" itemprop="datePublished">2017-06-28</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/06/28/[CMake] CMake的使用/" title="[CMake] CMake的使用" itemprop="url">
+  
+    <h1 itemprop="name">[CMake] CMake的使用</h1>
+    
+     
+           <p itemprop="description" >VS环境下，CMake出来的ALL_BUILD项目和ZERO_CHECK项目的作用CMake是 跨平台软件开发和维护过程的 工程构建工具。“在每个系统构建你的工程，而无须关心创建可执行文件和动态库的具体方法”。
+CMake 相对于其他类似工具（shell脚本、Makefiles、</p>
+        
+    
+    <time datetime="2017-06-28T10:14:17.000Z" itemprop="datePublished">2017-06-28</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/06/28/[C++] effective_C++_条款02/" title="[C++] effective_C++_条款02" itemprop="url">
+  
+    <h1 itemprop="name">[C++] effective_C++_条款02</h1>
+    
+     
+           <p itemprop="description" >条款02：尽量用const, enum, inline代替#define
+该原则言下之意是说使用编译器替换预处理器
+
+假设你使用下面的表达式：
+1#define ASPECT_RATIO 1.653
+记号名称ASPECT_RATIO也许从未被编译器看到，也许在编译器开始处理源代码</p>
+        
+    
+    <time datetime="2017-06-28T10:13:17.000Z" itemprop="datePublished">2017-06-28</time>
+  </a>
+</section>
+
+
+
+
+
 
   
 <section class="post" itemscope itemprop="blogitem">
@@ -171,155 +301,21 @@
 
 
 
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[Hexo] Hexo更换主题/" title="[Hexo] Hexo更换主题" itemprop="url">
-  
-    <h1 itemprop="name">[Hexo] Hexo更换主题</h1>
-    
-     
-           <p itemprop="description" >当更换主题后，若想让更换后的主题生效，可以执行下面这条命令：hexo d -g。</p>
-        
-    
-    <time datetime="2017-06-28T10:07:25.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[html] div标签/" title="[html] div标签" itemprop="url">
-  
-    <h1 itemprop="name">[html] div标签</h1>
-    
-     
-           <p itemprop="description" >实例文档中的一个部分会显示绿色：
-1234&amp;lt;div style=&quot;color:#00FF00&quot;&amp;gt;  &amp;lt;h3&amp;gt;This is a header&amp;lt;/h3&amp;gt;  &amp;lt;p&amp;gt;This is a paragraph.&amp;lt;/p&amp;gt;&amp;lt;/d</p>
-        
-    
-    <time datetime="2017-06-28T10:06:31.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[html] h标签/" title="[html] h标签" itemprop="url">
-  
-    <h1 itemprop="name">[html] h标签</h1>
-    
-     
-           <p itemprop="description" >实例六个不同的HTML标题
-123456&amp;lt;h1&amp;gt;这是标题1&amp;lt;/h1&amp;gt;&amp;lt;h2&amp;gt;这是标题2&amp;lt;/h2&amp;gt;&amp;lt;h3&amp;gt;这是标题3&amp;lt;/h3&amp;gt;&amp;lt;h4&amp;gt;这是标题4&amp;lt;/h4&amp;gt;&amp;lt;h5&amp;gt;这是标题5&amp;</p>
-        
-    
-    <time datetime="2017-06-28T10:05:33.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[html] img标签的alt属性/" title="[html] img标签的alt属性" itemprop="url">
-  
-    <h1 itemprop="name">[html] img标签的alt属性</h1>
-    
-     
-           <p itemprop="description" >实例1&amp;lt;img src=&quot;/i/eg_tulip.jpg&quot; alt=&quot;上海郁金香 - 郁金香&quot;/&amp;gt;
-如果无法显示图像，浏览器将显示替代文本：
-
-此外，当用户把鼠标移到图像上方，最新的浏览器会在一个文本框中显示描述性文本。
-定义和用法alt 属性是一个必需的属性，它规定</p>
-        
-    
-    <time datetime="2017-06-28T10:04:39.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[html] link标签/" title="[html] link标签" itemprop="url">
-  
-    <h1 itemprop="name">[html] link标签</h1>
-    
-     
-           <p itemprop="description" >概述link标签，当在文档中声明使用外接资源（比如CSS）时使用此标签，link是单独出现的
-属性
-href – 指定需要加载的资源(CSS文件)的地址URI 
-media – 媒体类型
-rel – 指定链接类型,设定是指对象和链接目标的关系,可选值, link还可以用Short</p>
-        
-    
-    <time datetime="2017-06-28T10:03:18.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[html] p标签/" title="[html] p标签" itemprop="url">
-  
-    <h1 itemprop="name">[html] p标签</h1>
-    
-     
-           <p itemprop="description" >实例以下代码标记了一个段落：
-1&amp;lt;p&amp;gt;This is some text in a very short paragraph&amp;lt;/p&amp;gt;
-定义和用法&amp;lt;p&amp;gt;标签定义段落
-p元素会自动在其前后创建一些空白
-例子例子11234567891011&amp;lt;h</p>
-        
-    
-    <time datetime="2017-06-28T10:02:18.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix unexpand">
     <a class="extend prev" rel="prev" href="/page/4/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/6/">Next<span></span></a>
   </nav>
 
 </div>
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
 
   
 <div class="github-card">
-<p class="asidetitle">Github Card</p>
+<p class="asidetitle">Github 名片</p>
 <div class="github-card" data-github="glemontree" data-theme="medium"></div>
 <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
 </div>
@@ -328,7 +324,7 @@ p元素会自动在其前后创建一些空白
 
   
 <div class="categorieslist">
-	<p class="asidetitle">Categories</p>
+	<p class="asidetitle">分类</p>
 		<ul>
 		
 		  
@@ -356,6 +352,10 @@ p元素会自动在其前后创建一些空白
 		  
 		
 		  
+			<li><a href="/categories/JQuery/" title="JQuery">JQuery<sup>5</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/Java/" title="Java">Java<sup>2</sup></a></li>
 		  
 		
@@ -373,6 +373,10 @@ p元素会自动在其前后创建一些空白
 		
 		  
 			<li><a href="/categories/Spring/" title="Spring">Spring<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/SpringMVC/" title="SpringMVC">SpringMVC<sup>1</sup></a></li>
 		  
 		
 		  
@@ -413,7 +417,7 @@ p元素会自动在其前后创建一些空白
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
 			
@@ -421,15 +425,19 @@ p元素会自动在其前后创建一些空白
 			
 		
 			
+				<li><a href="/tags/JQuery/" title="JQuery">JQuery<sup>5</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/C-boost/" title="C++ boost">C++ boost<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
+				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
+				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
 			
 		
 			
@@ -441,7 +449,7 @@ p元素会自动在其前后创建一些空白
 			
 		
 			
-				<li><a href="/tags/Servlet-HttpServletResponse/" title="Servlet HttpServletResponse">Servlet HttpServletResponse<sup>1</sup></a></li>
+				<li><a href="/tags/Java-Servlet-乱码/" title="Java, Servlet, 乱码">Java, Servlet, 乱码<sup>1</sup></a></li>
 			
 		
 			
@@ -449,15 +457,7 @@ p元素会自动在其前后创建一些空白
 			
 		
 			
-				<li><a href="/tags/C-ACE-网络/" title="C++, ACE, 网络">C++, ACE, 网络<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android-绘制文本/" title="Android, 绘制文本">Android, 绘制文本<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android-SDK版本号/" title="Android, SDK版本号">Android, SDK版本号<sup>1</sup></a></li>
+				<li><a href="/tags/Android-assets/" title="Android, assets">Android, assets<sup>1</sup></a></li>
 			
 		
 			
@@ -465,15 +465,19 @@ p元素会自动在其前后创建一些空白
 			
 		
 			
+				<li><a href="/tags/C-assert/" title="C++, assert">C++, assert<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Android-百度地图/" title="Android, 百度地图">Android, 百度地图<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android/" title="Android">Android<sup>1</sup></a></li>
+				<li><a href="/tags/Android-监听电池电量/" title="Android, 监听电池电量">Android, 监听电池电量<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-VS/" title="C++, VS">C++, VS<sup>1</sup></a></li>
+				<li><a href="/tags/Android-SDK版本号/" title="Android, SDK版本号">Android, SDK版本号<sup>1</sup></a></li>
 			
 		
 			
@@ -481,7 +485,7 @@ p元素会自动在其前后创建一些空白
 			
 		
 			
-				<li><a href="/tags/C-assert/" title="C++, assert">C++, assert<sup>1</sup></a></li>
+				<li><a href="/tags/C-VS/" title="C++, VS">C++, VS<sup>1</sup></a></li>
 			
 		
 			
@@ -501,7 +505,7 @@ p元素会自动在其前后创建一些空白
 
 
   <div class="linkslist">
-  <p class="asidetitle">Links</p>
+  <p class="asidetitle">友情链接</p>
     <ul>
         
           <li>
@@ -520,11 +524,11 @@ p元素会自动在其前后创建一些空白
 </div>
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
 </div>
 
   <div class="weiboshow">
-  <p class="asidetitle">Weibo</p>
+  <p class="asidetitle">新浪微博</p>
     <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
 </div>
 
@@ -676,7 +680,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
