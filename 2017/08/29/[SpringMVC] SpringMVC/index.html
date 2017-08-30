@@ -31,7 +31,7 @@ SpringMVC使用@RequestMapping注解为控制器指定可以处理哪些URL请�
 
 
 Dispatch">
-<meta property="og:updated_time" content="2017-08-29T15:53:46.112Z">
+<meta property="og:updated_time" content="2017-08-30T03:40:52.357Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[SpringMVC] SpringMVC">
 <meta name="twitter:description" content="RequestMapping注解
@@ -116,7 +116,7 @@ Dispatch">
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RequestMapping注解"><span class="toc-number">1.</span> <span class="toc-text">RequestMapping注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PathVariable注解"><span class="toc-number">2.</span> <span class="toc-text">@PathVariable注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#REST"><span class="toc-number">3.</span> <span class="toc-text">REST</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RequestMapping注解"><span class="toc-number">1.</span> <span class="toc-text">RequestMapping注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PathVariable注解"><span class="toc-number">2.</span> <span class="toc-text">@PathVariable注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#REST"><span class="toc-number">3.</span> <span class="toc-text">REST</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-RequestParam绑定请求参数值"><span class="toc-number">4.</span> <span class="toc-text">使用@RequestParam绑定请求参数值</span></a></li></ol>
 		
 		</div>
 		
@@ -167,6 +167,8 @@ Dispatch">
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;form action="testRest/1" method="post"&gt;</div><div class="line">    &lt;input type="hidden" name="_method" value="PUT"/&gt;</div><div class="line">    &lt;input type="submit" value="TestRest PUT"/&gt;</div><div class="line">&lt;/form&gt;</div><div class="line">&lt;br&gt;&lt;br&gt;</div><div class="line">&lt;form action="testRest/1" method="post"&gt;</div><div class="line">    &lt;input type="hidden" name="_method" value="DELETE"/&gt;</div><div class="line">    &lt;input type="submit" value="TestRest DELETE"/&gt;</div><div class="line">&lt;/form&gt;</div><div class="line">&lt;br&gt;&lt;br&gt;</div><div class="line">&lt;form action="testRest" method="post"&gt;</div><div class="line">    &lt;input type="submit" value="TestRest POST"/&gt;</div><div class="line">&lt;/form&gt;</div><div class="line">&lt;br&gt;&lt;br&gt;</div><div class="line">&lt;a href="testRest/1"&gt;Test Rest GET&lt;/a&gt;</div><div class="line">&lt;br&gt;&lt;br&gt;</div></pre></td></tr></table></figure>
 <p>相应的处理器方法如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/testRest/&#123;id&#125;"</span>, method = RequestMethod.PUT)</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">testRestPut</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span> Integer id) </span>&#123;</div><div class="line">    System.out.println(<span class="string">"testRest PUT: "</span> + id);</div><div class="line">    <span class="keyword">return</span> SUCCESS;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/testRest/&#123;id&#125;"</span>, method = RequestMethod.DELETE)</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">testRestDELETE</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span> Integer id) </span>&#123;</div><div class="line">    System.out.println(<span class="string">"testRest DELETE: "</span> + id);</div><div class="line">    <span class="keyword">return</span> SUCCESS;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/testRest"</span>, method = RequestMethod.POST)</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">testRest</span><span class="params">()</span> </span>&#123;</div><div class="line">    System.out.println(<span class="string">"testRest POST"</span>);</div><div class="line">    <span class="keyword">return</span> SUCCESS;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/testRest/&#123;id&#125;"</span>, method = RequestMethod.GET)</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">testRest</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span> Integer id) </span>&#123;</div><div class="line">    System.out.println(<span class="string">"testRest GET: "</span> + id);</div><div class="line">    <span class="keyword">return</span> SUCCESS;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="使用-RequestParam绑定请求参数值"><a href="#使用-RequestParam绑定请求参数值" class="headerlink" title="使用@RequestParam绑定请求参数值"></a>使用<code>@RequestParam</code>绑定请求参数值</h2><p>在处理方法入参处使用<code>@RequestParam</code>可以把请求参数传递给请求方法，其具有两个属性：value表示参数名，required表示是否必须，默认为true，表示请求参数中必须包含对应的参数，若不存在，将抛出异常！</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/testRquestParam"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">testRquestParam</span><span class="params">(@RequestParam(value = <span class="string">"username"</span>)</span> String username, @<span class="title">RequestParam</span><span class="params">(value = <span class="string">"age"</span>)</span> Integer age) </span>&#123;</div><div class="line">    System.out.println(<span class="string">"testRquestParam, username: "</span> + username + <span class="string">" age: "</span> + age);</div><div class="line">    <span class="keyword">return</span> SUCCESS;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -226,7 +228,7 @@ Dispatch">
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RequestMapping注解"><span class="toc-number">1.</span> <span class="toc-text">RequestMapping注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PathVariable注解"><span class="toc-number">2.</span> <span class="toc-text">@PathVariable注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#REST"><span class="toc-number">3.</span> <span class="toc-text">REST</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RequestMapping注解"><span class="toc-number">1.</span> <span class="toc-text">RequestMapping注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PathVariable注解"><span class="toc-number">2.</span> <span class="toc-text">@PathVariable注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#REST"><span class="toc-number">3.</span> <span class="toc-text">REST</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-RequestParam绑定请求参数值"><span class="toc-number">4.</span> <span class="toc-text">使用@RequestParam绑定请求参数值</span></a></li></ol>
  
   </div>
 
@@ -370,23 +372,7 @@ Dispatch">
 			
 		
 			
-				<li><a href="/tags/Java-Servlet-乱码/" title="Java, Servlet, 乱码">Java, Servlet, 乱码<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/WebView-loadDataWithBaseUrl-loadUrl/" title="WebView, loadDataWithBaseUrl, loadUrl">WebView, loadDataWithBaseUrl, loadUrl<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android-assets/" title="Android, assets">Android, assets<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-11-Bind/" title="C++11, Bind">C++11, Bind<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-assert/" title="C++, assert">C++, assert<sup>1</sup></a></li>
+				<li><a href="/tags/Qt-QWebView-VS/" title="Qt, QWebView, VS">Qt, QWebView, VS<sup>1</sup></a></li>
 			
 		
 			
@@ -394,11 +380,19 @@ Dispatch">
 			
 		
 			
-				<li><a href="/tags/Android-监听电池电量/" title="Android, 监听电池电量">Android, 监听电池电量<sup>1</sup></a></li>
+				<li><a href="/tags/Android-绘制文本/" title="Android, 绘制文本">Android, 绘制文本<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/Android-SDK版本号/" title="Android, SDK版本号">Android, SDK版本号<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/WebView-loadDataWithBaseUrl-loadUrl/" title="WebView, loadDataWithBaseUrl, loadUrl">WebView, loadDataWithBaseUrl, loadUrl<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-11-Bind/" title="C++11, Bind">C++11, Bind<sup>1</sup></a></li>
 			
 		
 			
@@ -410,6 +404,14 @@ Dispatch">
 			
 		
 			
+				<li><a href="/tags/Android-监听电池电量/" title="Android, 监听电池电量">Android, 监听电池电量<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-assert/" title="C++, assert">C++, assert<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/C-bind-回调/" title="C++, bind, 回调">C++, bind, 回调<sup>1</sup></a></li>
 			
 		
@@ -418,7 +420,7 @@ Dispatch">
 			
 		
 			
-				<li><a href="/tags/C-继承-同名成员变量/" title="C++, 继承, 同名成员变量">C++, 继承, 同名成员变量<sup>1</sup></a></li>
+				<li><a href="/tags/CMake/" title="CMake">CMake<sup>1</sup></a></li>
 			
 		
 		</ul>
