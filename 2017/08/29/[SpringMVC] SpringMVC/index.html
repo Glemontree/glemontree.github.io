@@ -31,7 +31,8 @@ SpringMVC使用@RequestMapping注解为控制器指定可以处理哪些URL请�
 
 
 Dispatch">
-<meta property="og:updated_time" content="2017-08-30T14:48:57.298Z">
+<meta property="og:image" content="https://github.com/Glemontree/images/blob/master/images/data_bind.jpg?raw=true">
+<meta property="og:updated_time" content="2017-09-01T08:51:03.221Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[SpringMVC] SpringMVC">
 <meta name="twitter:description" content="RequestMapping注解
@@ -42,6 +43,7 @@ SpringMVC使用@RequestMapping注解为控制器指定可以处理哪些URL请�
 
 
 Dispatch">
+<meta name="twitter:image" content="https://github.com/Glemontree/images/blob/master/images/data_bind.jpg?raw=true">
 
     
     <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
@@ -69,7 +71,7 @@ Dispatch">
 				<h1 class="site-name"><a href="/" title="Glemontree&#39;s blog">Glemontree&#39;s blog</a></h1>
 				<h2 class="blog-motto">day day up!</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -85,7 +87,7 @@ Dispatch">
  					
 						<form class="search" action="http://zhannei.baidu.com/cse/search" target="_blank">
 							<label>Search</label>
-						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="搜索"><br>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="Search"><br>
 						</form>
 					
 					</li>
@@ -107,16 +109,16 @@ Dispatch">
 		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
 		
   <p class="article-time">
-    <time datetime="2017-08-29T13:03:47.000Z" itemprop="datePublished"> 发表于 2017-08-29</time>
+    <time datetime="2017-08-29T13:03:47.000Z" itemprop="datePublished"> Published 2017-08-29</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
+			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RequestMapping注解"><span class="toc-number">1.</span> <span class="toc-text">RequestMapping注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PathVariable注解"><span class="toc-number">2.</span> <span class="toc-text">@PathVariable注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#REST"><span class="toc-number">3.</span> <span class="toc-text">REST</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-RequestParam绑定请求参数值"><span class="toc-number">4.</span> <span class="toc-text">使用@RequestParam绑定请求参数值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用POJO对象绑定请求参数值"><span class="toc-number">5.</span> <span class="toc-text">使用POJO对象绑定请求参数值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用Servlet-API作为入参"><span class="toc-number">6.</span> <span class="toc-text">使用Servlet API作为入参</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#处理模型数据"><span class="toc-number">7.</span> <span class="toc-text">处理模型数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ModelAndView"><span class="toc-number">7.1.</span> <span class="toc-text">ModelAndView</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Map以及Model"><span class="toc-number">7.2.</span> <span class="toc-text">Map以及Model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SessionAttributes"><span class="toc-number">7.3.</span> <span class="toc-text">@SessionAttributes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ModelAttribute"><span class="toc-number">7.4.</span> <span class="toc-text">@ModelAttribute</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SpringMVC确定目标方法POJO类型入参的过程"><span class="toc-number">7.4.1.</span> <span class="toc-text">SpringMVC确定目标方法POJO类型入参的过程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#视图和视图解析器"><span class="toc-number">8.</span> <span class="toc-text">视图和视图解析器</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RequestMapping注解"><span class="toc-number">1.</span> <span class="toc-text">RequestMapping注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PathVariable注解"><span class="toc-number">2.</span> <span class="toc-text">@PathVariable注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#REST"><span class="toc-number">3.</span> <span class="toc-text">REST</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-RequestParam绑定请求参数值"><span class="toc-number">4.</span> <span class="toc-text">使用@RequestParam绑定请求参数值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用POJO对象绑定请求参数值"><span class="toc-number">5.</span> <span class="toc-text">使用POJO对象绑定请求参数值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用Servlet-API作为入参"><span class="toc-number">6.</span> <span class="toc-text">使用Servlet API作为入参</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#处理模型数据"><span class="toc-number">7.</span> <span class="toc-text">处理模型数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ModelAndView"><span class="toc-number">7.1.</span> <span class="toc-text">ModelAndView</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Map以及Model"><span class="toc-number">7.2.</span> <span class="toc-text">Map以及Model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SessionAttributes"><span class="toc-number">7.3.</span> <span class="toc-text">@SessionAttributes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ModelAttribute"><span class="toc-number">7.4.</span> <span class="toc-text">@ModelAttribute</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SpringMVC确定目标方法POJO类型入参的过程"><span class="toc-number">7.4.1.</span> <span class="toc-text">SpringMVC确定目标方法POJO类型入参的过程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#视图和视图解析器"><span class="toc-number">8.</span> <span class="toc-text">视图和视图解析器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义视图"><span class="toc-number">9.</span> <span class="toc-text">自定义视图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于重定向"><span class="toc-number">10.</span> <span class="toc-text">关于重定向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据绑定"><span class="toc-number">11.</span> <span class="toc-text">数据绑定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义类型转换器"><span class="toc-number">12.</span> <span class="toc-text">自定义类型转换器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#annotation-driven配置"><span class="toc-number">13.</span> <span class="toc-text">annotation-driven配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#InitBinder"><span class="toc-number">14.</span> <span class="toc-text">@InitBinder</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据的格式化"><span class="toc-number">15.</span> <span class="toc-text">数据的格式化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据校验"><span class="toc-number">16.</span> <span class="toc-text">数据校验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#错误消息"><span class="toc-number">17.</span> <span class="toc-text">错误消息</span></a></li></ol>
 		
 		</div>
 		
@@ -254,6 +256,134 @@ Dispatch">
 <p>但是这样配置之后，原来的那些需要经过Handler的链接就将失效，实际上在实际开发中通常需要配置<code>mvc:annotation-driven</code>：<code>&lt;mvc:annotation-driven/&gt;</code>，此时即可解决问题。</p>
 </li>
 </ul>
+<h2 id="自定义视图"><a href="#自定义视图" class="headerlink" title="自定义视图"></a>自定义视图</h2><p>自定义视图需要实现View接口，并且需要在Spring的配置文件中配置BeanNameViewResolver，如下：</p>
+<ul>
+<li><p>HelloView</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Component</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloView</span> <span class="keyword">implements</span> <span class="title">View</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getContentType</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"text/html"</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">render</span><span class="params">(Map&lt;String, ?&gt; model, HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        response.getWriter().print(<span class="string">"hello view, time: "</span> + <span class="keyword">new</span> Date());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>HelloView实现View接口，需要实现两个接口，HelloView需要加上<code>@Component</code>注解从而注入到IOC容器中，这是因为BeanNameViewResolver需要从IOC容器中获取该View。</p>
+</li>
+<li><p>配置文件的配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--配置视图解析器BeanNameViewResolver，使用视图的名字来解析视图--&gt;</span></div><div class="line"><span class="comment">&lt;!--通过order属性来定义视图解析器的优先级，order值越小，优先级越高--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.BeanNameViewResolver"</span>&gt;</span></div><div class="line">  	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"order"</span> <span class="attr">value</span>=<span class="string">"100"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/testView"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">testView</span><span class="params">()</span> </span>&#123;</div><div class="line">    System.out.println(<span class="string">"testView"</span>);</div><div class="line">    <span class="keyword">return</span> <span class="string">"helloView"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>需要注意的是testView()的返回值必须返回<code>&quot;helloView&quot;</code>，这是因为HelloView在IOC容器的ID为helloView，而BeanNameViewResolver正是通过testView()方法的返回值在IOC容器中查找自定义View的。</p>
+</li>
+</ul>
+<h2 id="关于重定向"><a href="#关于重定向" class="headerlink" title="关于重定向"></a>关于重定向</h2><ul>
+<li>一般情况下控制器方法的返回字符串类型的值会被当成逻辑视图名处理</li>
+<li>如果返回的字符串中带<code>forward:</code>或<code>redirect:</code>前缀时，SpringMVC会对他们进行特殊处理，将forward:和redirect:当成指示符，其后的字符串作为URL来处理。<ul>
+<li><code>redirect:success.jsp</code>：会完成一个到success.jsp的重定向的操作</li>
+<li><code>forward:success.jsp</code>：会完成一个到success.jsp的转发操作</li>
+</ul>
+</li>
+</ul>
+<h2 id="数据绑定"><a href="#数据绑定" class="headerlink" title="数据绑定"></a>数据绑定</h2><ul>
+<li><p>SpringMVC主框架将ServletRequest对象即目标方法的入参实例传递给WebDataBinderFactory实例，以创建DataBinder实例对象</p>
+</li>
+<li><p>DataBinder调用装配在SpringMVC上下文的ConversionService组件进行数据类型转换、数据格式化工作，将Servlet中的请求信息填充到入参对象中</p>
+</li>
+<li><p>调用Validator组件对已经绑定了请求消息的入参对象进行数据合法性校验，并最终生成数据绑定结果BingingData对象</p>
+</li>
+<li><p>SpringMVC抽取BindingResult中的入参对象和校验错误对象，将它们赋给处理方法的响应入参</p>
+</li>
+<li><p>SpringMVC通过反射机制对目标处理方法进行解析，将请求消息绑定到处理方法的入参中，数据绑定的核心是DataBinder，运行机制如下：</p>
+<p><img src="https://github.com/Glemontree/images/blob/master/images/data_bind.jpg?raw=true" alt=""></p>
+</li>
+</ul>
+<h2 id="自定义类型转换器"><a href="#自定义类型转换器" class="headerlink" title="自定义类型转换器"></a>自定义类型转换器</h2><p>ConversionService是Spring类型转换体系的核心接口，可以利用ConversionServiceFactoryBean在Spring的IOC容器中定义一个ConversionService，Spring将自动识别出IOC容器中的ConversionService，并在Bean属性配置及SpringMVC处理方法入参绑定等场合使用它进行数据的转换。</p>
+<p>可通过ConversionServiceFactoryBean的converters属性注册自定义的类型转换器。</p>
+<p>Spring定义了3种类型的转换器接口，实现任意一个转换器接口都可以作为自定义转换器注册到ConversionServiceFactoryBean中：</p>
+<ul>
+<li><code>Converter&lt;S,T&gt;</code>：将S类型对象转为T类型对象</li>
+<li><code>ConverterFactory</code>：将相同系列多个同质的Converter封装在一起，如果希望将一种类型的对象转换为另一种类型及其子类型的对象（例如将String转换为Number及Number子类）可使用转换器工厂类</li>
+<li><code>GenericConverter</code>：会根据源类对象及目标类对象所在的宿主类中的上下文信息进行类型转换</li>
+</ul>
+<p><code>&lt;mvc:annotation-driven conversion-service=&quot;conversionService&quot;/&gt;</code>会将自定义的ConversionService注册到SpringMVC的上下文中，例如：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">mvc:annotation-driven</span> <span class="attr">converson-service</span>=<span class="string">"conversionService"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"conversionService"</span> <span class="attr">class</span>=<span class="string">"org.springframework.context.support.ConversionServiceFactoryBean"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"converters"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">list</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">""</span><span class="attr">com.glemontree.springmvc.converters.UserConverter</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">list</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="annotation-driven配置"><a href="#annotation-driven配置" class="headerlink" title="annotation-driven配置"></a><code>annotation-driven</code>配置</h2><p>有下面几种情况需要使用<code>annotation-driven</code>：</p>
+<ul>
+<li>使用<code>&lt;mvc:view-controller/&gt;</code>配置直接转发的页面，无需经过Handler方法</li>
+<li>使用<code>&lt;mvc:default-servlet-handler/&gt;</code>配置访问静态资源文件</li>
+<li>在使用自定义类型转换器时使用<code>&lt;mvc:annotation-driven/&gt;</code>的<code>conversion-service</code>属性</li>
+</ul>
+<p>在开发过程中通常需要加入该配置。</p>
+<p><code>&lt;mvc:annotation-driven/&gt;</code>会自动注册RequestMappingHandlerMapping、RequestMappingHandlerAdapter以及ExceptionHandlerExceptionResoler三个bean，还提供以下支持：</p>
+<ul>
+<li>支持使用ConversionService实例对表单参数进行类型转换</li>
+<li>支持使用<code>@NumberFormat</code>annotaion、<code>@DateTimeFormat</code>注解完成数据类型的格式化</li>
+<li>支持使用<code>@Valid</code>注解对JavaBean实例进行JSR 303验证</li>
+<li>支持使用<code>@ResponseBody</code>和<code>@RequestBody</code>注解</li>
+</ul>
+<h2 id="InitBinder"><a href="#InitBinder" class="headerlink" title="@InitBinder"></a><code>@InitBinder</code></h2><ul>
+<li>由<code>@InitBinder</code>标识的方法，可以对WebDataBinder对象进行初始化，WebDataBinder是DataBinder的子类，用于完成由表单字段到JavaBean属性的绑定。</li>
+<li><code>@InitBinder</code>方法不能有返回值，它必须声明为void</li>
+<li><code>@InitBinder</code>方法的参数值通常是WebDataBinder</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 不能自动绑定对象中的roleSet属性，另行处理</span></div><div class="line"><span class="meta">@InitBinder</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initBinder</span><span class="params">(WebDataBinder dataBinder)</span> </span>&#123;</div><div class="line">  	dataBinder.setDisallowedFields(<span class="string">"roleSet"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="数据的格式化"><a href="#数据的格式化" class="headerlink" title="数据的格式化"></a>数据的格式化</h2><p>现在有这样一种情况，在Bean中有一个Date类型的对象，此时在表单中提交数据时会报错，因为SpringMVC无法知道你需要将什么样的数据转换为Date类型，此时需要在Bean的目标属性上面通过<code>@DateTimeFormat</code>注解声明日期的格式，例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@DateTimeFormat</span>(pattern=<span class="string">"yyyy-MM-dd"</span>)</div><div class="line"><span class="keyword">private</span> Date birth;</div></pre></td></tr></table></figure>
+<p>这个的前提是需要在SpringMVC的配置文件中配置：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">mvc:annotation-driven</span>/&gt;</span></div></pre></td></tr></table></figure>
+<p>另外一种情况，假设Bean中有一个float类型的属性：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">float</span> salary;</div></pre></td></tr></table></figure>
+<p>现在在表单中输入<code>1,234,567.8</code>，此时也会出错，所以此时也需要在目标属性上加注解：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 用#表示数值</span></div><div class="line"><span class="meta">@NumberFormat</span>(pattern=<span class="string">"#,###,###.#"</span>)</div><div class="line"><span class="keyword">private</span> <span class="keyword">float</span> salary;</div></pre></td></tr></table></figure>
+<p>Spring在格式化模块中定义了一个实现ConversionService接口的FormattingConversionService实现类，该实现类扩展了GenericConversionService，因此它既具有类型转换的功能，又具有格式化的功能。</p>
+<p>FormattingConversionService拥有一个FormattingConversionServiceFactoryBean工厂类，后者用于在Spring上下文中构造前者。</p>
+<p>FormattingConversionServiceFactoryBean内部已经注册了：</p>
+<ul>
+<li>NumberFormatAnnotationFormatterFactory：支持对数字类型的属性使用<code>@NumberFormat</code>注解</li>
+<li>JodaDateTimeFormatAnnotationFormatterFactory：支持对日期类型的属性<code>@DateTimeFormat</code>注解</li>
+</ul>
+<p>装配了FormattingConversionServiceFactoryBean后，就可以在Spring MVC入参绑定及模型数据输出时使用注解驱动了。</p>
+<p><code>&lt;mvc:annotation-driven/&gt;</code>默认创建的ConversionService实例即为FormattingConversionServiceFactoryBean。</p>
+<h2 id="数据校验"><a href="#数据校验" class="headerlink" title="数据校验"></a>数据校验</h2><ul>
+<li>JSR 303是Java为Bean数据合法性校验提供的标准框架，它已经包含在JavaEE6.0中</li>
+<li>JSR 303通过在Bean属性上标注类似于<code>@NotNull</code>、<code>@Max</code>等标准的注解指定校验规则，并通过标准的验证接口对Bean进行验证。</li>
+<li>Hibernate Validator是JSR 303的一个参考实现，除支持所有标准的校验注解外，它还支持以下的扩展注解：<ul>
+<li><code>@Email</code>             被注解的元素必须是电子邮件地址</li>
+<li><code>@Length</code>                被注解的字符串的大小必须在指定的范围内</li>
+<li><code>@NotEmpty</code>            被注解的字符串必须非空</li>
+<li><code>@Range</code>                  被注解的元素必须在合适的范围内</li>
+</ul>
+</li>
+<li>Spring4.0拥有自己的数据校验框架，同时支持JSR 303标准的校验框架</li>
+<li>Spring在进行数据绑定时，可同时调用校验框架完成数据校验工作，在SpringMVC中，可直接通过注解驱动的方式进行数据校验</li>
+<li>Spring的LocalValidatorFactoryBean既实现了Spring的Validator接口，也实现了JSR 303的Validator接口，只要在Spring容器里定义一个LocalValidatorFactoryBean，即可将其注入到需要数据校验的Bean中</li>
+<li>Spring本身并没有提供JSR 303的实现，所以需要将JSR 303的实现者的JAR包放在类路径下。</li>
+<li><code>&lt;mvc:annotation-driven&gt;</code>会默认装配一个LocalValidatorFactoryBean，通过在处理方法的入参上标注<code>@valid</code>注解即可让SpringMVC在完成数据绑定后进行数据的校验</li>
+<li>SpringMVC是通过对处理方法签名的规则来保存校验结果的：前一个表单/命令对象的校验结果保存在随后的入参中，这个保存校验结果的入参必须是BindingResult或Errors类型。</li>
+<li>整个校验的流程如下：<ul>
+<li>使用JSR 303验证标准</li>
+<li>加入hibernate validator验证框架的Jar包</li>
+<li>在SpringMVC配置文件中加入<code>&lt;mvc:annotation-driven/&gt;</code></li>
+<li>需要在bean的属性上添加对应的注解</li>
+<li>在目标方法bean类型的前面添加<code>@Valid</code>注解</li>
+</ul>
+</li>
+</ul>
+<h2 id="错误消息"><a href="#错误消息" class="headerlink" title="错误消息"></a>错误消息</h2><ul>
+<li><p>显示错误消息</p>
+<p>在jsp中通过<code>&lt;form:errors/&gt;</code>标签进行错误消息的显示，该标签有一个属性<code>path</code>，若设置为<code>*</code>，则显示所有的错误消息。</p>
+<p>当然我们可以将错误消息分别显示在对应字段的后面，此时在对应字段的后面加上<code>&lt;form:errors/&gt;</code>标签，其path属性写上对应字段的名字就可以了，例如：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">LastName: &lt;form:input path="lastName"/&gt;</div><div class="line">&lt;form-errors path="lastName"&gt;&lt;/form-errors&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>定制错误消息</p>
+<p>每个属性在数据绑定和数据校验发生错误时都会生成一个对应的FieldError对象。</p>
+<p>当一个属性校验失败后，校验框架会为该属性生成4和消息代码，这些代码以校验注解类名为前缀，结合modelAttribute、属性名和属性类型名生成多个对应的消息代码，例如User类中的password属性标注了一个<code>@Pattern</code>注解，当该属性不满足<code>@Pattern</code>所定义的规则时，就会产生下面4个消息代码：</p>
+<ul>
+<li>Pattern.user.password</li>
+<li>Pattern.password</li>
+<li>Pattern.java.lang.String</li>
+<li>Pattern</li>
+</ul>
+<p>当使用SpringMVC标签显示错误消息时，SpringMVC会查看WEB上下文是否装配了对应的国际化消息，如果没有，则显示默认的错误消息，否则使用国际化消息。</p>
+<p>​</p>
+<p>​</p>
+</li>
+</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -316,22 +446,22 @@ Dispatch">
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
+  <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RequestMapping注解"><span class="toc-number">1.</span> <span class="toc-text">RequestMapping注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PathVariable注解"><span class="toc-number">2.</span> <span class="toc-text">@PathVariable注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#REST"><span class="toc-number">3.</span> <span class="toc-text">REST</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-RequestParam绑定请求参数值"><span class="toc-number">4.</span> <span class="toc-text">使用@RequestParam绑定请求参数值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用POJO对象绑定请求参数值"><span class="toc-number">5.</span> <span class="toc-text">使用POJO对象绑定请求参数值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用Servlet-API作为入参"><span class="toc-number">6.</span> <span class="toc-text">使用Servlet API作为入参</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#处理模型数据"><span class="toc-number">7.</span> <span class="toc-text">处理模型数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ModelAndView"><span class="toc-number">7.1.</span> <span class="toc-text">ModelAndView</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Map以及Model"><span class="toc-number">7.2.</span> <span class="toc-text">Map以及Model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SessionAttributes"><span class="toc-number">7.3.</span> <span class="toc-text">@SessionAttributes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ModelAttribute"><span class="toc-number">7.4.</span> <span class="toc-text">@ModelAttribute</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SpringMVC确定目标方法POJO类型入参的过程"><span class="toc-number">7.4.1.</span> <span class="toc-text">SpringMVC确定目标方法POJO类型入参的过程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#视图和视图解析器"><span class="toc-number">8.</span> <span class="toc-text">视图和视图解析器</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RequestMapping注解"><span class="toc-number">1.</span> <span class="toc-text">RequestMapping注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PathVariable注解"><span class="toc-number">2.</span> <span class="toc-text">@PathVariable注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#REST"><span class="toc-number">3.</span> <span class="toc-text">REST</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-RequestParam绑定请求参数值"><span class="toc-number">4.</span> <span class="toc-text">使用@RequestParam绑定请求参数值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用POJO对象绑定请求参数值"><span class="toc-number">5.</span> <span class="toc-text">使用POJO对象绑定请求参数值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用Servlet-API作为入参"><span class="toc-number">6.</span> <span class="toc-text">使用Servlet API作为入参</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#处理模型数据"><span class="toc-number">7.</span> <span class="toc-text">处理模型数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ModelAndView"><span class="toc-number">7.1.</span> <span class="toc-text">ModelAndView</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Map以及Model"><span class="toc-number">7.2.</span> <span class="toc-text">Map以及Model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SessionAttributes"><span class="toc-number">7.3.</span> <span class="toc-text">@SessionAttributes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ModelAttribute"><span class="toc-number">7.4.</span> <span class="toc-text">@ModelAttribute</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SpringMVC确定目标方法POJO类型入参的过程"><span class="toc-number">7.4.1.</span> <span class="toc-text">SpringMVC确定目标方法POJO类型入参的过程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#视图和视图解析器"><span class="toc-number">8.</span> <span class="toc-text">视图和视图解析器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义视图"><span class="toc-number">9.</span> <span class="toc-text">自定义视图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于重定向"><span class="toc-number">10.</span> <span class="toc-text">关于重定向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据绑定"><span class="toc-number">11.</span> <span class="toc-text">数据绑定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义类型转换器"><span class="toc-number">12.</span> <span class="toc-text">自定义类型转换器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#annotation-driven配置"><span class="toc-number">13.</span> <span class="toc-text">annotation-driven配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#InitBinder"><span class="toc-number">14.</span> <span class="toc-text">@InitBinder</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据的格式化"><span class="toc-number">15.</span> <span class="toc-text">数据的格式化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据校验"><span class="toc-number">16.</span> <span class="toc-text">数据校验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#错误消息"><span class="toc-number">17.</span> <span class="toc-text">错误消息</span></a></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
 <div class="github-card">
-<p class="asidetitle">Github 名片</p>
+<p class="asidetitle">Github Card</p>
 <div class="github-card" data-github="glemontree" data-theme="medium"></div>
 <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
 </div>
@@ -340,7 +470,7 @@ Dispatch">
 
   
 <div class="categorieslist">
-	<p class="asidetitle">分类</p>
+	<p class="asidetitle">Categories</p>
 		<ul>
 		
 		  
@@ -369,6 +499,10 @@ Dispatch">
 		
 		  
 			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/IntelliJ-IDEA/" title="IntelliJ IDEA">IntelliJ IDEA<sup>1</sup></a></li>
 		  
 		
 		  
@@ -437,7 +571,7 @@ Dispatch">
 
   
 <div class="tagslist">
-	<p class="asidetitle">标签</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
@@ -469,11 +603,11 @@ Dispatch">
 			
 		
 			
-				<li><a href="/tags/Qt-QWebView-VS/" title="Qt, QWebView, VS">Qt, QWebView, VS<sup>1</sup></a></li>
+				<li><a href="/tags/Qt-file/" title="Qt, file:///">Qt, file:///<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android-ProgressDialog，-耗时操作/" title="Android, ProgressDialog， 耗时操作">Android, ProgressDialog， 耗时操作<sup>1</sup></a></li>
+				<li><a href="/tags/Android-SDK版本号/" title="Android, SDK版本号">Android, SDK版本号<sup>1</sup></a></li>
 			
 		
 			
@@ -485,19 +619,7 @@ Dispatch">
 			
 		
 			
-				<li><a href="/tags/WebView-loadDataWithBaseUrl-loadUrl/" title="WebView, loadDataWithBaseUrl, loadUrl">WebView, loadDataWithBaseUrl, loadUrl<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-11-Bind/" title="C++11, Bind">C++11, Bind<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Android-百度地图/" title="Android, 百度地图">Android, 百度地图<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-VS/" title="C++, VS">C++, VS<sup>1</sup></a></li>
 			
 		
 			
@@ -505,7 +627,15 @@ Dispatch">
 			
 		
 			
-				<li><a href="/tags/C-assert/" title="C++, assert">C++, assert<sup>1</sup></a></li>
+				<li><a href="/tags/Android-xml-tools/" title="Android, xml-tools">Android, xml-tools<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-VS/" title="C++, VS">C++, VS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-11-Bind/" title="C++11, Bind">C++11, Bind<sup>1</sup></a></li>
 			
 		
 			
@@ -517,6 +647,10 @@ Dispatch">
 			
 		
 			
+				<li><a href="/tags/C-assert/" title="C++, assert">C++, assert<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/C-继承-同名成员变量/" title="C++, 继承, 同名成员变量">C++, 继承, 同名成员变量<sup>1</sup></a></li>
 			
 		
@@ -525,7 +659,7 @@ Dispatch">
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
@@ -544,11 +678,11 @@ Dispatch">
 </div>
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
   <div class="weiboshow">
-  <p class="asidetitle">新浪微博</p>
+  <p class="asidetitle">Weibo</p>
     <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
 </div>
 
@@ -789,7 +923,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
