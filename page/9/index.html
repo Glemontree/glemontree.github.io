@@ -77,6 +77,50 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
+    <a href="/2017/06/28/[Windows核心编程] 谈谈Windows中的错误处理机制/" title="[Windows核心编程] 谈谈Windows中的错误处理机制" itemprop="url">
+  
+    <h1 itemprop="name">[Windows核心编程] 谈谈Windows中的错误处理机制</h1>
+    
+     
+           <p itemprop="description" >谈谈Windows中的错误处理机制
+windows除了使用返回值标识函数执行情况，还引入了错误代码机制。返回值指示函数是否发生了错误，而要想知道究竟发生了什么错误，就得使用错误代码。
+
+windows将错误代码存储于独立于线程的，线程局部存储区中，也就是说这个区域时每个线程独有的</p>
+        
+    
+    <time datetime="2017-06-28T09:43:44.000Z" itemprop="datePublished">2017-06-28</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/06/28/[多线程] x=y的原子性/" title="[多线程] x=y的原子性" itemprop="url">
+  
+    <h1 itemprop="name">[多线程] x=y的原子性</h1>
+    
+     
+           <p itemprop="description" >x=y的原子性一、原子性介绍所谓的原子性是指该操作不能再继续划分为更小的操作，在多线程中原子操作是一个很重要的概念，决定了该操作是否需要同步机制来进行保护。
+二、x=y操作的原子性在X86中，x=y包含两个操作：读取y至寄存器，然后将该值写入x，其中读取y的值至寄存器中是原子的，</p>
+        
+    
+    <time datetime="2017-06-28T09:42:51.000Z" itemprop="datePublished">2017-06-28</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
     <a href="/2017/06/28/[Linux] zsh corrupt/" title="[Linux] zsh corrupt" itemprop="url">
   
     <h1 itemprop="name">[Linux] zsh corrupt</h1>
@@ -267,53 +311,6 @@ gmtime
 
 
 
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[C++] 前置++和后置++的区别/" title="[C++] 前置++和后置++的区别" itemprop="url">
-  
-    <h1 itemprop="name">[C++] 前置++和后置++的区别</h1>
-    
-     
-           <p itemprop="description" >前置++和后置++的区别前置++和后置++在程序开发中使用十分频繁，那么你是否真正了解它们的区别呢？
-其实++i相当于下面的代码：
-12i += 1;return i;
-而i++则相当于下面的代码：
-123j = i;i += 1;return j;
-对于内建数据类型，其实前置+</p>
-        
-    
-    <time datetime="2017-06-28T09:27:34.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[设计模式] 适配器模式/" title="[设计模式] 适配器模式" itemprop="url">
-  
-    <h1 itemprop="name">[设计模式] 适配器模式</h1>
-    
-     
-           <p itemprop="description" >C++中的适配器模式一、为什么需要适配器模式当你想使用一格现存的类，但是它的方法和你的要求不相同时，此时就需要使用适配器模式。
-二、适配器的作用是什么适配器就是将一个类的接口转换成客户希望的另外一个接口，适配器模式使得原本由于接口不兼容而不能一起工作的类可以一起工作。
-三、适配器</p>
-        
-    
-    <time datetime="2017-06-28T09:26:13.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix unexpand">
     <a class="extend prev" rel="prev" href="/page/8/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/10/">Next<span></span></a>
@@ -389,6 +386,10 @@ gmtime
 		  
 		
 		  
+			<li><a href="/categories/Redis/" title="Redis">Redis<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/Servlet/" title="Servlet">Servlet<sup>3</sup></a></li>
 		  
 		
@@ -397,7 +398,7 @@ gmtime
 		  
 		
 		  
-			<li><a href="/categories/SpringMVC/" title="SpringMVC">SpringMVC<sup>1</sup></a></li>
+			<li><a href="/categories/SpringMVC/" title="SpringMVC">SpringMVC<sup>2</sup></a></li>
 		  
 		
 		  
@@ -466,31 +467,15 @@ gmtime
 			
 		
 			
+				<li><a href="/tags/SpringMVC/" title="SpringMVC">SpringMVC<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Struts2-OGNL/" title="Struts2, OGNL">Struts2, OGNL<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Qt-file/" title="Qt, file:///">Qt, file:///<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android-SDK版本号/" title="Android, SDK版本号">Android, SDK版本号<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-ACE-网络/" title="C++, ACE, 网络">C++, ACE, 网络<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android-assets/" title="Android, assets">Android, assets<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android-百度地图/" title="Android, 百度地图">Android, 百度地图<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android-绘制文本/" title="Android, 绘制文本">Android, 绘制文本<sup>1</sup></a></li>
+				<li><a href="/tags/Servlet-HttpServletRequest/" title="Servlet HttpServletRequest">Servlet HttpServletRequest<sup>1</sup></a></li>
 			
 		
 			
@@ -498,11 +483,23 @@ gmtime
 			
 		
 			
-				<li><a href="/tags/C-VS/" title="C++, VS">C++, VS<sup>1</sup></a></li>
+				<li><a href="/tags/Android-SDK版本号/" title="Android, SDK版本号">Android, SDK版本号<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-百度地图/" title="Android, 百度地图">Android, 百度地图<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/C-11-Bind/" title="C++11, Bind">C++11, Bind<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-assert/" title="C++, assert">C++, assert<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-ProgressDialog，-耗时操作/" title="Android, ProgressDialog， 耗时操作">Android, ProgressDialog， 耗时操作<sup>1</sup></a></li>
 			
 		
 			
@@ -514,7 +511,11 @@ gmtime
 			
 		
 			
-				<li><a href="/tags/C-assert/" title="C++, assert">C++, assert<sup>1</sup></a></li>
+				<li><a href="/tags/Android-绘制文本/" title="Android, 绘制文本">Android, 绘制文本<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-VS/" title="C++, VS">C++, VS<sup>1</sup></a></li>
 			
 		
 			
