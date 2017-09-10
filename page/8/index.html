@@ -47,7 +47,7 @@
 				<h1 class="site-name"><a href="/" title="Glemontree&#39;s blog">Glemontree&#39;s blog</a></h1>
 				<h2 class="blog-motto">day day up!</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -63,7 +63,7 @@
  					
 						<form class="search" action="http://zhannei.baidu.com/cse/search" target="_blank">
 							<label>Search</label>
-						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="Search"><br>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="搜索"><br>
 						</form>
 					
 					</li>
@@ -73,6 +73,99 @@
     </header>
     <div id="container">
       <div id="main">
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/06/28/[Linux] Linux epoll的用法/" title="[Linux] Linux epoll的用法" itemprop="url">
+  
+    <h1 itemprop="name">[Linux] Linux epoll的用法</h1>
+    
+     
+           <p itemprop="description" >Epoll的用法select与epoll在旧的Linux中，通常都在使用select来做事件触发，而在新的Linux内核中，开始使用epoll来代替。相比于select，epoll最大的好处就是不会随着监听fd数目的增长而降低效率。
+当使用select时，它是采用轮询来处理的，轮</p>
+        
+    
+    <time datetime="2017-06-28T09:57:39.000Z" itemprop="datePublished">2017-06-28</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/06/28/[Linux] Linux网络编程/" title="[Linux] Linux网络编程" itemprop="url">
+  
+    <h1 itemprop="name">[Linux] Linux网络编程</h1>
+    
+     
+           <p itemprop="description" >EPoll的两种工作模式本文主要包含两个方面：
+
+Linux中的EAGAIN错误码
+EPoll的两种工作模式
+
+一、EAGAIN从字面上来看，表示再试一次的意思，这个错误经常出现在当应用程序进行一些非阻塞操作（对文件或socket）的时候，例如以O_NONBLOCKING的标志打</p>
+        
+    
+    <time datetime="2017-06-28T09:56:40.000Z" itemprop="datePublished">2017-06-28</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/06/28/[Linux] Linux中eventfd的使用/" title="[Linux] Linux中eventfd的使用" itemprop="url">
+  
+    <h1 itemprop="name">[Linux] Linux中eventfd的使用</h1>
+    
+     
+           <p itemprop="description" >Linux中eventfd的使用eventfd简介eventfd是用来实现多进程或多线程之间的事件通知的，常见的事件通知机制除了eventfd外，还有条件变量和管道等 方式。
+条件变量必须和互斥锁相结合使用，使用起来较麻烦，并且条件变量不能像eventfd一样为I/O事件驱动。
+</p>
+        
+    
+    <time datetime="2017-06-28T09:55:37.000Z" itemprop="datePublished">2017-06-28</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/06/28/[DB] MySQL UPDATE查询/" title="[DB] MySQL UPDATE查询" itemprop="url">
+  
+    <h1 itemprop="name">[DB] MySQL UPDATE查询</h1>
+    
+     
+           <p itemprop="description" >语法1UPDATE table_name SET field1=new-value1, field2=new-value2 [WHERE Clause];
+
+可以同时更新一个或多个字段
+可以在WHERE字句中指定任何条件
+可以在一个单独表中同时更新数据
+当需要更新数据表中指定行的</p>
+        
+    
+    <time datetime="2017-06-28T09:54:26.000Z" itemprop="datePublished">2017-06-28</time>
+  </a>
+</section>
+
+
+
+
+
 
   
 <section class="post" itemscope itemprop="blogitem">
@@ -205,109 +298,21 @@ UDP是数据报文协议，是以数据包形式，所以每次可以接</p>
 
 
 
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[C++] VS中出现未将对象引用设置到对象的实例/" title="[C++] VS中出现未将对象引用设置到对象的实例" itemprop="url">
-  
-    <h1 itemprop="name">[C++] VS中出现未将对象引用设置到对象的实例</h1>
-    
-     
-           <p itemprop="description" >VS中出现未将对象引用设置到对象的实例具体什么原因我也不知道，在知乎上看到了有人回答了解决方案，依据他给的方法，成功解决：
-在window中打开功能里输入regedit，回车打开注册器。然后进入如下路径中HKEY_LOCAL_MACHINE\SYSTEM\CurrentContr</p>
-        
-    
-    <time datetime="2017-06-28T09:47:27.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[Qt] QWebView的使用/" title="[Qt] QWebView的使用" itemprop="url">
-  
-    <h1 itemprop="name">[Qt] QWebView的使用</h1>
-    
-     
-           <p itemprop="description" >Qt中使用QWebView在Qt中要使用QWebView必须经过一些配置，否则会出现error:C1083: 无法打开包括文件:”QWebView”这样的错误，这主要是因为QWebView、QWebFrame、QWebPage、QWebInspector等这些类被单独移到了QtW</p>
-        
-    
-    <time datetime="2017-06-28T09:46:34.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[Android] WebView之loadDataWithBaseUrl()和loadUrl()/" title="[Android] WebView之loadDataWithBaseUrl()和loadUrl()" itemprop="url">
-  
-    <h1 itemprop="name">[Android] WebView之loadDataWithBaseUrl()和loadUrl()</h1>
-    
-     
-           <p itemprop="description" >前言在写WebView的时候，经常会使用WebView，好处主要有两个：
-
-可以更改展现的内容（包括样式）
-可以实现部分功能的跨平台
-
-loadData()和loadDataWithBaseUrl()WebView使用比较简单，可以使用loadUrl()来加载一个Url地址，也可</p>
-        
-    
-    <time datetime="2017-06-28T09:45:34.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[Windows核心编程] 如何编写Unicode源代码/" title="[Windows核心编程] 如何编写Unicode源代码" itemprop="url">
-  
-    <h1 itemprop="name">[Windows核心编程] 如何编写Unicode源代码</h1>
-    
-     
-           <p itemprop="description" >如何编写Unicode源代码
-标准的C运行期字符串函数，如strcpy、strchr和strcat只能对ANSI字符串进行操作，不能正确的处理Unicode字符串，因此，ANSI C拥有一组补充函数，例如：
-12char* strcat(char*, const char*);w</p>
-        
-    
-    <time datetime="2017-06-28T09:44:40.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix unexpand">
     <a class="extend prev" rel="prev" href="/page/7/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/9/">Next<span></span></a>
   </nav>
 
 </div>
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
 <aside class="clearfix">
 
   
 <div class="github-card">
-<p class="asidetitle">Github Card</p>
+<p class="asidetitle">Github 名片</p>
 <div class="github-card" data-github="glemontree" data-theme="medium"></div>
 <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
 </div>
@@ -316,7 +321,7 @@ loadData()和loadDataWithBaseUrl()WebView使用比较简单，可以使用loadUr
 
   
 <div class="categorieslist">
-	<p class="asidetitle">Categories</p>
+	<p class="asidetitle">分類</p>
 		<ul>
 		
 		  
@@ -361,6 +366,10 @@ loadData()和loadDataWithBaseUrl()WebView使用比较简单，可以使用loadUr
 		
 		  
 			<li><a href="/categories/Linux/" title="Linux">Linux<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/MyBatis/" title="MyBatis">MyBatis<sup>4</sup></a></li>
 		  
 		
 		  
@@ -421,7 +430,7 @@ loadData()和loadDataWithBaseUrl()WebView使用比较简单，可以使用loadUr
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">標簽</p>
 		<ul class="clearfix">
 		
 			
@@ -434,6 +443,10 @@ loadData()和loadDataWithBaseUrl()WebView使用比较简单，可以使用loadUr
 		
 			
 				<li><a href="/tags/C-boost/" title="C++ boost">C++ boost<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MyBatis/" title="MyBatis">MyBatis<sup>3</sup></a></li>
 			
 		
 			
@@ -457,19 +470,15 @@ loadData()和loadDataWithBaseUrl()WebView使用比较简单，可以使用loadUr
 			
 		
 			
-				<li><a href="/tags/Servlet-HttpServletRequest/" title="Servlet HttpServletRequest">Servlet HttpServletRequest<sup>1</sup></a></li>
+				<li><a href="/tags/Qt-file/" title="Qt, file:///">Qt, file:///<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android-xml-tools/" title="Android, xml-tools">Android, xml-tools<sup>1</sup></a></li>
+				<li><a href="/tags/WebView-loadDataWithBaseUrl-loadUrl/" title="WebView, loadDataWithBaseUrl, loadUrl">WebView, loadDataWithBaseUrl, loadUrl<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android-SDK版本号/" title="Android, SDK版本号">Android, SDK版本号<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android-百度地图/" title="Android, 百度地图">Android, 百度地图<sup>1</sup></a></li>
+				<li><a href="/tags/Android-监听电池电量/" title="Android, 监听电池电量">Android, 监听电池电量<sup>1</sup></a></li>
 			
 		
 			
@@ -481,6 +490,10 @@ loadData()和loadDataWithBaseUrl()WebView使用比较简单，可以使用loadUr
 			
 		
 			
+				<li><a href="/tags/Android-assets/" title="Android, assets">Android, assets<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Android-ProgressDialog，-耗时操作/" title="Android, ProgressDialog， 耗时操作">Android, ProgressDialog， 耗时操作<sup>1</sup></a></li>
 			
 		
@@ -489,19 +502,15 @@ loadData()和loadDataWithBaseUrl()WebView使用比较简单，可以使用loadUr
 			
 		
 			
-				<li><a href="/tags/C-Boost/" title="C++, Boost">C++, Boost<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android-绘制文本/" title="Android, 绘制文本">Android, 绘制文本<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/C-VS/" title="C++, VS">C++, VS<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-继承-同名成员变量/" title="C++, 继承, 同名成员变量">C++, 继承, 同名成员变量<sup>1</sup></a></li>
+				<li><a href="/tags/C-Boost/" title="C++, Boost">C++, Boost<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前置/" title="前置++">前置++<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -509,7 +518,7 @@ loadData()和loadDataWithBaseUrl()WebView使用比较简单，可以使用loadUr
 
 
   <div class="linkslist">
-  <p class="asidetitle">Links</p>
+  <p class="asidetitle">友情鏈接</p>
     <ul>
         
           <li>
@@ -528,11 +537,11 @@ loadData()和loadDataWithBaseUrl()WebView使用比较简单，可以使用loadUr
 </div>
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
 </div>
 
   <div class="weiboshow">
-  <p class="asidetitle">Weibo</p>
+  <p class="asidetitle">新浪微博</p>
     <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
 </div>
 
@@ -684,7 +693,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
