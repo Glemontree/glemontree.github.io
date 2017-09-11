@@ -71,7 +71,7 @@ Dispatch">
 				<h1 class="site-name"><a href="/" title="Glemontree&#39;s blog">Glemontree&#39;s blog</a></h1>
 				<h2 class="blog-motto">day day up!</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -109,14 +109,14 @@ Dispatch">
 		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
 		
   <p class="article-time">
-    <time datetime="2017-08-29T13:03:47.000Z" itemprop="datePublished"> 發表於 2017-08-29</time>
+    <time datetime="2017-08-29T13:03:47.000Z" itemprop="datePublished"> 发表于 2017-08-29</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目錄</strong>
+			<strong class="toc-title">文章目录</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RequestMapping注解"><span class="toc-number">1.</span> <span class="toc-text">RequestMapping注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PathVariable注解"><span class="toc-number">2.</span> <span class="toc-text">@PathVariable注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#REST"><span class="toc-number">3.</span> <span class="toc-text">REST</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-RequestParam绑定请求参数值"><span class="toc-number">4.</span> <span class="toc-text">使用@RequestParam绑定请求参数值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用POJO对象绑定请求参数值"><span class="toc-number">5.</span> <span class="toc-text">使用POJO对象绑定请求参数值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用Servlet-API作为入参"><span class="toc-number">6.</span> <span class="toc-text">使用Servlet API作为入参</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#处理模型数据"><span class="toc-number">7.</span> <span class="toc-text">处理模型数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ModelAndView"><span class="toc-number">7.1.</span> <span class="toc-text">ModelAndView</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Map以及Model"><span class="toc-number">7.2.</span> <span class="toc-text">Map以及Model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SessionAttributes"><span class="toc-number">7.3.</span> <span class="toc-text">@SessionAttributes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ModelAttribute"><span class="toc-number">7.4.</span> <span class="toc-text">@ModelAttribute</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SpringMVC确定目标方法POJO类型入参的过程"><span class="toc-number">7.4.1.</span> <span class="toc-text">SpringMVC确定目标方法POJO类型入参的过程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#视图和视图解析器"><span class="toc-number">8.</span> <span class="toc-text">视图和视图解析器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义视图"><span class="toc-number">9.</span> <span class="toc-text">自定义视图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于重定向"><span class="toc-number">10.</span> <span class="toc-text">关于重定向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据绑定"><span class="toc-number">11.</span> <span class="toc-text">数据绑定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义类型转换器"><span class="toc-number">12.</span> <span class="toc-text">自定义类型转换器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#annotation-driven配置"><span class="toc-number">13.</span> <span class="toc-text">annotation-driven配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#InitBinder"><span class="toc-number">14.</span> <span class="toc-text">@InitBinder</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据的格式化"><span class="toc-number">15.</span> <span class="toc-text">数据的格式化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据校验"><span class="toc-number">16.</span> <span class="toc-text">数据校验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#错误消息"><span class="toc-number">17.</span> <span class="toc-text">错误消息</span></a></li></ol>
 		
@@ -446,17 +446,17 @@ Dispatch">
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目錄</strong>
+  <strong class="toc-title">文章目录</strong>
  
  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RequestMapping注解"><span class="toc-number">1.</span> <span class="toc-text">RequestMapping注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PathVariable注解"><span class="toc-number">2.</span> <span class="toc-text">@PathVariable注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#REST"><span class="toc-number">3.</span> <span class="toc-text">REST</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-RequestParam绑定请求参数值"><span class="toc-number">4.</span> <span class="toc-text">使用@RequestParam绑定请求参数值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用POJO对象绑定请求参数值"><span class="toc-number">5.</span> <span class="toc-text">使用POJO对象绑定请求参数值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用Servlet-API作为入参"><span class="toc-number">6.</span> <span class="toc-text">使用Servlet API作为入参</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#处理模型数据"><span class="toc-number">7.</span> <span class="toc-text">处理模型数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ModelAndView"><span class="toc-number">7.1.</span> <span class="toc-text">ModelAndView</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Map以及Model"><span class="toc-number">7.2.</span> <span class="toc-text">Map以及Model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SessionAttributes"><span class="toc-number">7.3.</span> <span class="toc-text">@SessionAttributes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ModelAttribute"><span class="toc-number">7.4.</span> <span class="toc-text">@ModelAttribute</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SpringMVC确定目标方法POJO类型入参的过程"><span class="toc-number">7.4.1.</span> <span class="toc-text">SpringMVC确定目标方法POJO类型入参的过程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#视图和视图解析器"><span class="toc-number">8.</span> <span class="toc-text">视图和视图解析器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义视图"><span class="toc-number">9.</span> <span class="toc-text">自定义视图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于重定向"><span class="toc-number">10.</span> <span class="toc-text">关于重定向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据绑定"><span class="toc-number">11.</span> <span class="toc-text">数据绑定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义类型转换器"><span class="toc-number">12.</span> <span class="toc-text">自定义类型转换器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#annotation-driven配置"><span class="toc-number">13.</span> <span class="toc-text">annotation-driven配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#InitBinder"><span class="toc-number">14.</span> <span class="toc-text">@InitBinder</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据的格式化"><span class="toc-number">15.</span> <span class="toc-text">数据的格式化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据校验"><span class="toc-number">16.</span> <span class="toc-text">数据校验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#错误消息"><span class="toc-number">17.</span> <span class="toc-text">错误消息</span></a></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
 
   
@@ -470,7 +470,7 @@ Dispatch">
 
   
 <div class="categorieslist">
-	<p class="asidetitle">分類</p>
+	<p class="asidetitle">分类</p>
 		<ul>
 		
 		  
@@ -510,7 +510,7 @@ Dispatch">
 		  
 		
 		  
-			<li><a href="/categories/Java/" title="Java">Java<sup>2</sup></a></li>
+			<li><a href="/categories/Java/" title="Java">Java<sup>4</sup></a></li>
 		  
 		
 		  
@@ -579,7 +579,7 @@ Dispatch">
 
   
 <div class="tagslist">
-	<p class="asidetitle">標簽</p>
+	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
 			
@@ -599,11 +599,11 @@ Dispatch">
 			
 		
 			
-				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
+				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
+				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
 			
 		
 			
@@ -619,27 +619,15 @@ Dispatch">
 			
 		
 			
-				<li><a href="/tags/Qt-file/" title="Qt, file:///">Qt, file:///<sup>1</sup></a></li>
+				<li><a href="/tags/Linux-网络编程-EPoll/" title="Linux, 网络编程, EPoll">Linux, 网络编程, EPoll<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/WebView-loadDataWithBaseUrl-loadUrl/" title="WebView, loadDataWithBaseUrl, loadUrl">WebView, loadDataWithBaseUrl, loadUrl<sup>1</sup></a></li>
+				<li><a href="/tags/Android-绘制文本/" title="Android, 绘制文本">Android, 绘制文本<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android-监听电池电量/" title="Android, 监听电池电量">Android, 监听电池电量<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-11-Bind/" title="C++11, Bind">C++11, Bind<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-assert/" title="C++, assert">C++, assert<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android-assets/" title="Android, assets">Android, assets<sup>1</sup></a></li>
+				<li><a href="/tags/Android-百度地图/" title="Android, 百度地图">Android, 百度地图<sup>1</sup></a></li>
 			
 		
 			
@@ -647,11 +635,19 @@ Dispatch">
 			
 		
 			
+				<li><a href="/tags/C-VS/" title="C++, VS">C++, VS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-assets/" title="Android, assets">Android, assets<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/C-bind-回调/" title="C++, bind, 回调">C++, bind, 回调<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-VS/" title="C++, VS">C++, VS<sup>1</sup></a></li>
+				<li><a href="/tags/C-assert/" title="C++, assert">C++, assert<sup>1</sup></a></li>
 			
 		
 			
@@ -659,7 +655,11 @@ Dispatch">
 			
 		
 			
-				<li><a href="/tags/前置/" title="前置++">前置++<sup>1</sup></a></li>
+				<li><a href="/tags/C-继承-同名成员变量/" title="C++, 继承, 同名成员变量">C++, 继承, 同名成员变量<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-11-Bind/" title="C++11, Bind">C++11, Bind<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -667,7 +667,7 @@ Dispatch">
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情鏈接</p>
+  <p class="asidetitle">友情链接</p>
     <ul>
         
           <li>
@@ -686,7 +686,7 @@ Dispatch">
 </div>
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
 </div>
 
   <div class="weiboshow">
@@ -931,7 +931,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
