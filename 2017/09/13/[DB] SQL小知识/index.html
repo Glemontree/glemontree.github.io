@@ -4,38 +4,38 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>[C++] 前置++和后置++的区别 | Glemontree&#39;s blog</title>
+    <title>[DB] SQL小知识 | Glemontree&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Glemontree">
     
 
     
-    <meta name="description" content="前置++和后置++的区别前置++和后置++在程序开发中使用十分频繁，那么你是否真正了解它们的区别呢？
-其实++i相当于下面的代码：
-12i += 1;return i;
-而i++则相当于下面的代码：
-123j = i;i += 1;return j;
-对于内建数据类型，其实前置++和后置++的效率相差不大，而对于自定义的数据类型，前置++返回对象的引用，而后置++则返回对象的值，所以导致在大对象的">
+    <meta name="description" content="使用sql语句desc table_name可以显示table_name表中的字段名以及Type等属性
+
+使用sql语句alter table employees modify email null修改email字段的属性为可以为null
+
+mysql中使用sql语句生成一张表并且同时指定表的编码：
+1234567CREATE TABLE USER(    id INT(11) PRIMARY">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[C++] 前置++和后置++的区别">
-<meta property="og:url" content="http://yoursite.com/2017/06/28/[C++] 前置++和后置++的区别/index.html">
+<meta property="og:title" content="[DB] SQL小知识">
+<meta property="og:url" content="http://yoursite.com/2017/09/13/[DB] SQL小知识/index.html">
 <meta property="og:site_name" content="Glemontree's blog">
-<meta property="og:description" content="前置++和后置++的区别前置++和后置++在程序开发中使用十分频繁，那么你是否真正了解它们的区别呢？
-其实++i相当于下面的代码：
-12i += 1;return i;
-而i++则相当于下面的代码：
-123j = i;i += 1;return j;
-对于内建数据类型，其实前置++和后置++的效率相差不大，而对于自定义的数据类型，前置++返回对象的引用，而后置++则返回对象的值，所以导致在大对象的">
-<meta property="og:updated_time" content="2017-06-28T09:28:19.200Z">
+<meta property="og:description" content="使用sql语句desc table_name可以显示table_name表中的字段名以及Type等属性
+
+使用sql语句alter table employees modify email null修改email字段的属性为可以为null
+
+mysql中使用sql语句生成一张表并且同时指定表的编码：
+1234567CREATE TABLE USER(    id INT(11) PRIMARY">
+<meta property="og:updated_time" content="2017-09-13T12:07:31.767Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[C++] 前置++和后置++的区别">
-<meta name="twitter:description" content="前置++和后置++的区别前置++和后置++在程序开发中使用十分频繁，那么你是否真正了解它们的区别呢？
-其实++i相当于下面的代码：
-12i += 1;return i;
-而i++则相当于下面的代码：
-123j = i;i += 1;return j;
-对于内建数据类型，其实前置++和后置++的效率相差不大，而对于自定义的数据类型，前置++返回对象的引用，而后置++则返回对象的值，所以导致在大对象的">
+<meta name="twitter:title" content="[DB] SQL小知识">
+<meta name="twitter:description" content="使用sql语句desc table_name可以显示table_name表中的字段名以及Type等属性
+
+使用sql语句alter table employees modify email null修改email字段的属性为可以为null
+
+mysql中使用sql语句生成一张表并且同时指定表的编码：
+1234567CREATE TABLE USER(    id INT(11) PRIMARY">
 
     
     <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
@@ -94,14 +94,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/06/28/[C++] 前置++和后置++的区别/" title="[C++] 前置++和后置++的区别" itemprop="url">[C++] 前置++和后置++的区别</a>
+      <a href="/2017/09/13/[DB] SQL小知识/" title="[DB] SQL小知识" itemprop="url">[DB] SQL小知识</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-28T09:27:34.000Z" itemprop="datePublished"> Published 2017-06-28</time>
+    <time datetime="2017-09-13T12:05:26.000Z" itemprop="datePublished"> Published 2017-09-13</time>
     
   </p>
 </header>
@@ -110,16 +110,39 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前置-和后置-的区别"><span class="toc-number">1.</span> <span class="toc-text">前置++和后置++的区别</span></a></li></ol>
+			
 		
 		</div>
 		
-		<h1 id="前置-和后置-的区别"><a href="#前置-和后置-的区别" class="headerlink" title="前置++和后置++的区别"></a>前置++和后置++的区别</h1><p>前置++和后置++在程序开发中使用十分频繁，那么你是否真正了解它们的区别呢？</p>
-<p>其实++i相当于下面的代码：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">i += <span class="number">1</span>;</div><div class="line"><span class="keyword">return</span> i;</div></pre></td></tr></table></figure>
-<p>而i++则相当于下面的代码：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">j = i;</div><div class="line">i += <span class="number">1</span>;</div><div class="line"><span class="keyword">return</span> j;</div></pre></td></tr></table></figure>
-<p>对于内建数据类型，其实前置++和后置++的效率相差不大，而对于自定义的数据类型，前置++返回对象的引用，而后置++则返回对象的值，所以导致在大对象的时候产生了较大的复制开销，引起效率降低。</p>
+		<ul>
+<li><p>使用sql语句<code>desc table_name</code>可以显示table_name表中的字段名以及Type等属性</p>
+</li>
+<li><p>使用sql语句<code>alter table employees modify email null</code>修改email字段的属性为可以为null</p>
+</li>
+<li><p>mysql中使用sql语句生成一张表并且同时指定表的编码：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">USER</span>(</div><div class="line">    <span class="keyword">id</span> <span class="built_in">INT</span>(<span class="number">11</span>) PRIMARY <span class="keyword">KEY</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</div><div class="line">    nickname <span class="built_in">VARCHAR</span>(<span class="number">45</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">    <span class="keyword">PASSWORD</span> <span class="built_in">VARCHAR</span>(<span class="number">45</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">    first_name <span class="built_in">VARCHAR</span>(<span class="number">45</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</div><div class="line">    last_name <span class="built_in">VARCHAR</span>(<span class="number">45</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span></div><div class="line">) <span class="built_in">CHARACTER</span> <span class="keyword">SET</span> utf8 <span class="keyword">COLLATE</span> utf8_general_ci;</div></pre></td></tr></table></figure>
+<p>注意<code>utf8</code>不能写成<code>utf-8</code>。</p>
+</li>
+</ul>
+<ul>
+<li><p>mysql中使用sql语句生成一张表并且同时指定外键：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> blog(</div><div class="line">    <span class="keyword">id</span> <span class="built_in">INT</span>(<span class="number">11</span>) PRIMARY <span class="keyword">KEY</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</div><div class="line">    title <span class="built_in">VARCHAR</span>(<span class="number">100</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">    <span class="keyword">content</span> <span class="built_in">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</div><div class="line">    user_id <span class="built_in">INT</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">    <span class="keyword">CONSTRAINT</span> FK_ID FOREIGN <span class="keyword">KEY</span>(user_id) <span class="keyword">REFERENCES</span> <span class="keyword">USER</span>(<span class="keyword">id</span>)</div><div class="line">) <span class="built_in">CHARACTER</span> <span class="keyword">SET</span> utf8 <span class="keyword">COLLATE</span> utf8_general_ci;</div></pre></td></tr></table></figure>
+</li>
+<li><p>如下方式可以在创建表的同时指定索引：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> seckill;</div><div class="line"><span class="keyword">USE</span> seckill;</div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> seckill(</div><div class="line">    <span class="string">`seckill_id`</span> <span class="built_in">BIGINT</span> PRIMARY <span class="keyword">KEY</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT <span class="keyword">COMMENT</span> <span class="string">'商品库存id'</span>,</div><div class="line">    <span class="string">`name`</span> <span class="built_in">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'商品名称'</span>,</div><div class="line">    <span class="string">`number`</span> <span class="built_in">INT</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'商品数量'</span>,</div><div class="line">    <span class="string">`create_time`</span> <span class="keyword">TIMESTAMP</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">COMMENT</span> <span class="string">'创建时间'</span>,</div><div class="line">    <span class="string">`start_time`</span> <span class="keyword">TIMESTAMP</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'秒杀开始时间'</span>,</div><div class="line">    <span class="string">`end_time`</span> <span class="keyword">TIMESTAMP</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'秒杀结束时间'</span>,</div><div class="line">    <span class="keyword">KEY</span> idx_start_time(start_time), // 指定索引，<span class="keyword">KEY</span>表示索引，idx_start_time为新建的索引的名字</div><div class="line">    <span class="keyword">KEY</span> idx_end_time(end_time),</div><div class="line">    <span class="keyword">KEY</span> idx_create_time(create_time)</div><div class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">INNODB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8 <span class="keyword">COLLATE</span>=utf8_unicode_ci <span class="keyword">COMMENT</span>=<span class="string">'秒杀库存表'</span>; // 指定字符集并且添加描述，注意和字段添加描述的不同</div></pre></td></tr></table></figure>
+</li>
+<li><p>对于自增主键，可以在创建数据库的时候指定自增主键的起始值：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> seckill() <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> AUTO_INCREMENT=<span class="number">1000</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8 <span class="keyword">COMMENT</span>=<span class="string">'秒杀库存表'</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>执行下面的语句可以查看表的创建过程：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">show</span> <span class="keyword">create</span> <span class="keyword">table</span> seckill\G;</div></pre></td></tr></table></figure>
+<p>  因此在创建数据库的时候通过<code>COMMENT</code>添加注释可以有助于理解。</p>
+</li>
+<li><p>修改表的某个字段的属性：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">alter</span> <span class="keyword">table</span> employees <span class="keyword">modify</span> email <span class="literal">null</span>;</div></pre></td></tr></table></figure>
+<p>​    </p>
+</li>
+</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -127,13 +150,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/C/">C++</a>
+  <a class="article-category-link" href="/categories/DB/">DB</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/C/">C++</a><a href="/tags/前置/">前置++</a><a href="/tags/后置/">后置++</a>
+  <span></span> <a href="/tags/DB/">DB</a>
   </div>
 
 </div>
@@ -142,7 +165,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2017/06/28/[C++] 前置++和后置++的区别/" data-title="[C++] 前置++和后置++的区别 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/09/13/[DB] SQL小知识/" data-title="[DB] SQL小知识 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -155,19 +178,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/06/28/[C++] 零散知识点/" title="[C++] 零散知识点">
-  <strong>上一篇：</strong><br/>
-  <span>
-  [C++] 零散知识点</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/06/28/[设计模式] 适配器模式/"  title="[设计模式] 适配器模式">
+<a href="/2017/09/13/[MyBatis] MyBatis第五课---MyBatis参数处理/"  title="[MyBatis] MyBatis第五课---MyBatis参数处理">
  <strong>下一篇：</strong><br/> 
- <span>[设计模式] 适配器模式
+ <span>[MyBatis] MyBatis第五课---MyBatis参数处理
 </span>
 </a>
 </div>
@@ -176,7 +191,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2017/06/28/[C++] 前置++和后置++的区别/" data-title="[C++] 前置++和后置++的区别" data-url="http://yoursite.com/2017/06/28/[C++] 前置++和后置++的区别/"></div>
+	<div class="ds-thread" data-thread-key="2017/09/13/[DB] SQL小知识/" data-title="[DB] SQL小知识" data-url="http://yoursite.com/2017/09/13/[DB] SQL小知识/"></div>
 </section>
 
 
@@ -187,7 +202,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前置-和后置-的区别"><span class="toc-number">1.</span> <span class="toc-text">前置++和后置++的区别</span></a></li></ol>
+ 
  
   </div>
 
