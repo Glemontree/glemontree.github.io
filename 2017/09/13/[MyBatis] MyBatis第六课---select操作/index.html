@@ -4,38 +4,29 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>[DB] SQL小知识 | Glemontree&#39;s blog</title>
+    <title>[MyBatis] MyBatis第六课---select操作 | Glemontree&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Glemontree">
     
 
     
-    <meta name="description" content="使用sql语句desc table_name可以显示table_name表中的字段名以及Type等属性
-
-使用sql语句alter table employees modify email null修改email字段的属性为可以为null
-
-mysql中使用sql语句生成一张表并且同时指定表的编码：
-1234567CREATE TABLE USER(    id INT(11) PRIMARY">
+    <meta name="description" content="select返回List如果返回的是一个集合，那么resultType应当为集合中元素的类型：
+1public List&amp;lt;Employee&amp;gt; getEmpsByLastNameLike(String lastName);
+123&amp;lt;select id=&quot;getEmpsByLastNameLike&quot; resultType=&quot;com.glemontree.mybatis.bean.Em">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[DB] SQL小知识">
-<meta property="og:url" content="http://yoursite.com/2017/09/13/[DB] SQL小知识/index.html">
+<meta property="og:title" content="[MyBatis] MyBatis第六课---select操作">
+<meta property="og:url" content="http://yoursite.com/2017/09/13/[MyBatis] MyBatis第六课---select操作/index.html">
 <meta property="og:site_name" content="Glemontree's blog">
-<meta property="og:description" content="使用sql语句desc table_name可以显示table_name表中的字段名以及Type等属性
-
-使用sql语句alter table employees modify email null修改email字段的属性为可以为null
-
-mysql中使用sql语句生成一张表并且同时指定表的编码：
-1234567CREATE TABLE USER(    id INT(11) PRIMARY">
-<meta property="og:updated_time" content="2017-09-13T12:07:31.767Z">
+<meta property="og:description" content="select返回List如果返回的是一个集合，那么resultType应当为集合中元素的类型：
+1public List&amp;lt;Employee&amp;gt; getEmpsByLastNameLike(String lastName);
+123&amp;lt;select id=&quot;getEmpsByLastNameLike&quot; resultType=&quot;com.glemontree.mybatis.bean.Em">
+<meta property="og:updated_time" content="2017-09-13T12:47:46.529Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[DB] SQL小知识">
-<meta name="twitter:description" content="使用sql语句desc table_name可以显示table_name表中的字段名以及Type等属性
-
-使用sql语句alter table employees modify email null修改email字段的属性为可以为null
-
-mysql中使用sql语句生成一张表并且同时指定表的编码：
-1234567CREATE TABLE USER(    id INT(11) PRIMARY">
+<meta name="twitter:title" content="[MyBatis] MyBatis第六课---select操作">
+<meta name="twitter:description" content="select返回List如果返回的是一个集合，那么resultType应当为集合中元素的类型：
+1public List&amp;lt;Employee&amp;gt; getEmpsByLastNameLike(String lastName);
+123&amp;lt;select id=&quot;getEmpsByLastNameLike&quot; resultType=&quot;com.glemontree.mybatis.bean.Em">
 
     
     <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
@@ -94,14 +85,14 @@ mysql中使用sql语句生成一张表并且同时指定表的编码：
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/09/13/[DB] SQL小知识/" title="[DB] SQL小知识" itemprop="url">[DB] SQL小知识</a>
+      <a href="/2017/09/13/[MyBatis] MyBatis第六课---select操作/" title="[MyBatis] MyBatis第六课---select操作" itemprop="url">[MyBatis] MyBatis第六课---select操作</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
 		
   <p class="article-time">
-    <time datetime="2017-09-13T12:05:26.000Z" itemprop="datePublished"> Published 2017-09-13</time>
+    <time datetime="2017-09-13T12:09:47.000Z" itemprop="datePublished"> Published 2017-09-13</time>
     
   </p>
 </header>
@@ -110,39 +101,22 @@ mysql中使用sql语句生成一张表并且同时指定表的编码：
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#select返回List"><span class="toc-number">1.</span> <span class="toc-text">select返回List</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#select返回记录封装成map"><span class="toc-number">2.</span> <span class="toc-text">select返回记录封装成map</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#返回一条记录的map，key就是列名，值就是对应的值："><span class="toc-number">2.1.</span> <span class="toc-text">返回一条记录的map，key就是列名，值就是对应的值：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多条记录封装一个map"><span class="toc-number">2.2.</span> <span class="toc-text">多条记录封装一个map</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<ul>
-<li><p>使用sql语句<code>desc table_name</code>可以显示table_name表中的字段名以及Type等属性</p>
-</li>
-<li><p>使用sql语句<code>alter table employees modify email null</code>修改email字段的属性为可以为null</p>
-</li>
-<li><p>mysql中使用sql语句生成一张表并且同时指定表的编码：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">USER</span>(</div><div class="line">    <span class="keyword">id</span> <span class="built_in">INT</span>(<span class="number">11</span>) PRIMARY <span class="keyword">KEY</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</div><div class="line">    nickname <span class="built_in">VARCHAR</span>(<span class="number">45</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">    <span class="keyword">PASSWORD</span> <span class="built_in">VARCHAR</span>(<span class="number">45</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">    first_name <span class="built_in">VARCHAR</span>(<span class="number">45</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</div><div class="line">    last_name <span class="built_in">VARCHAR</span>(<span class="number">45</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span></div><div class="line">) <span class="built_in">CHARACTER</span> <span class="keyword">SET</span> utf8 <span class="keyword">COLLATE</span> utf8_general_ci;</div></pre></td></tr></table></figure>
-<p>注意<code>utf8</code>不能写成<code>utf-8</code>。</p>
-</li>
-</ul>
-<ul>
-<li><p>mysql中使用sql语句生成一张表并且同时指定外键：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> blog(</div><div class="line">    <span class="keyword">id</span> <span class="built_in">INT</span>(<span class="number">11</span>) PRIMARY <span class="keyword">KEY</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</div><div class="line">    title <span class="built_in">VARCHAR</span>(<span class="number">100</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">    <span class="keyword">content</span> <span class="built_in">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</div><div class="line">    user_id <span class="built_in">INT</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">    <span class="keyword">CONSTRAINT</span> FK_ID FOREIGN <span class="keyword">KEY</span>(user_id) <span class="keyword">REFERENCES</span> <span class="keyword">USER</span>(<span class="keyword">id</span>)</div><div class="line">) <span class="built_in">CHARACTER</span> <span class="keyword">SET</span> utf8 <span class="keyword">COLLATE</span> utf8_general_ci;</div></pre></td></tr></table></figure>
-</li>
-<li><p>如下方式可以在创建表的同时指定索引：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> seckill;</div><div class="line"><span class="keyword">USE</span> seckill;</div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> seckill(</div><div class="line">    <span class="string">`seckill_id`</span> <span class="built_in">BIGINT</span> PRIMARY <span class="keyword">KEY</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT <span class="keyword">COMMENT</span> <span class="string">'商品库存id'</span>,</div><div class="line">    <span class="string">`name`</span> <span class="built_in">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'商品名称'</span>,</div><div class="line">    <span class="string">`number`</span> <span class="built_in">INT</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'商品数量'</span>,</div><div class="line">    <span class="string">`create_time`</span> <span class="keyword">TIMESTAMP</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">COMMENT</span> <span class="string">'创建时间'</span>,</div><div class="line">    <span class="string">`start_time`</span> <span class="keyword">TIMESTAMP</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'秒杀开始时间'</span>,</div><div class="line">    <span class="string">`end_time`</span> <span class="keyword">TIMESTAMP</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'秒杀结束时间'</span>,</div><div class="line">    <span class="keyword">KEY</span> idx_start_time(start_time), // 指定索引，<span class="keyword">KEY</span>表示索引，idx_start_time为新建的索引的名字</div><div class="line">    <span class="keyword">KEY</span> idx_end_time(end_time),</div><div class="line">    <span class="keyword">KEY</span> idx_create_time(create_time)</div><div class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">INNODB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8 <span class="keyword">COLLATE</span>=utf8_unicode_ci <span class="keyword">COMMENT</span>=<span class="string">'秒杀库存表'</span>; // 指定字符集并且添加描述，注意和字段添加描述的不同</div></pre></td></tr></table></figure>
-</li>
-<li><p>对于自增主键，可以在创建数据库的时候指定自增主键的起始值：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> seckill() <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> AUTO_INCREMENT=<span class="number">1000</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8 <span class="keyword">COMMENT</span>=<span class="string">'秒杀库存表'</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>执行下面的语句可以查看表的创建过程：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">show</span> <span class="keyword">create</span> <span class="keyword">table</span> seckill\G;</div></pre></td></tr></table></figure>
-<p>  因此在创建数据库的时候通过<code>COMMENT</code>添加注释可以有助于理解。</p>
-</li>
-<li><p>修改表的某个字段的属性：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">alter</span> <span class="keyword">table</span> employees <span class="keyword">modify</span> email <span class="literal">null</span>;</div></pre></td></tr></table></figure>
-<p>​    </p>
-</li>
-</ul>
+		<h2 id="select返回List"><a href="#select返回List" class="headerlink" title="select返回List"></a>select返回List</h2><p>如果返回的是一个集合，那么<code>resultType</code>应当为集合中元素的类型：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> List&lt;Employee&gt; <span class="title">getEmpsByLastNameLike</span><span class="params">(String lastName)</span></span>;</div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getEmpsByLastNameLike"</span> <span class="attr">resultType</span>=<span class="string">"com.glemontree.mybatis.bean.Employee"</span>&gt;</span></div><div class="line">  	select * from tbl_employee where last_name like #&#123;lastName&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="select返回记录封装成map"><a href="#select返回记录封装成map" class="headerlink" title="select返回记录封装成map"></a>select返回记录封装成map</h2><h3 id="返回一条记录的map，key就是列名，值就是对应的值："><a href="#返回一条记录的map，key就是列名，值就是对应的值：" class="headerlink" title="返回一条记录的map，key就是列名，值就是对应的值："></a>返回一条记录的map，key就是列名，值就是对应的值：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> Map&lt;String, Object&gt; <span class="title">getEmpByIdReturnMap</span><span class="params">(Integer id)</span></span>;</div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getEmpByIdReturnMap"</span> <span class="attr">resultType</span>=<span class="string">"map"</span>&gt;</span></div><div class="line"> 	 select * from tbl_employee where id = #&#123;id&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test05</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">    SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();</div><div class="line">    SqlSession openSession = sqlSessionFactory.openSession();</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        EmployeeMapper mapper = openSession.getMapper(EmployeeMapper.class);			</div><div class="line">        Map&lt;String, Object&gt; map = mapper.getEmpByIdReturnMap(<span class="number">1</span>);</div><div class="line">        System.out.println(map);</div><div class="line">    &#125; <span class="keyword">finally</span> &#123;</div><div class="line">      	openSession.close();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>最后的输出为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;gender=1, last_name=tom, id=1, email=tom@gmail.com&#125;</div></pre></td></tr></table></figure>
+<h3 id="多条记录封装一个map"><a href="#多条记录封装一个map" class="headerlink" title="多条记录封装一个map"></a>多条记录封装一个map</h3><p><code>Map&lt;Integer, Employee&gt;</code>：键是这条记录的主键，值是记录封装后的<code>JavaBean</code>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@MapKey</span>(<span class="string">"id"</span>) <span class="comment">// 告诉MyBatis封装Map时使用id这个属性作为key</span></div><div class="line"><span class="function"><span class="keyword">public</span> Map&lt;Integer, Employee&gt; <span class="title">getEmpByLastNameLikeReturnMap</span><span class="params">(String lastName)</span></span>;</div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getEmpByLastNameLikeReturnMap"</span> <span class="attr">resultType</span>=<span class="string">"com.glemontree.mybatis.bean.Employee"</span>&gt;</span></div><div class="line">  	select * from tbl_employee where last_name like #&#123;lastName&#125; </div><div class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>对于resultType属性，其实可以这样判断：我们查询出来的每条数据你希望是什么类型resultType就是什么类型，比如在上面一小节中返回一条记录的map，那么resultType就是map类型，而当多条记录封装一个map时，每条记录其实还是Employee，因此这里的resultType就是Employee。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -150,13 +124,13 @@ mysql中使用sql语句生成一张表并且同时指定表的编码：
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/DB/">DB</a>
+  <a class="article-category-link" href="/categories/MyBatis/">MyBatis</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/DB/">DB</a>
+  <span></span> <a href="/tags/MyBatis/">MyBatis</a>
   </div>
 
 </div>
@@ -165,7 +139,7 @@ mysql中使用sql语句生成一张表并且同时指定表的编码：
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2017/09/13/[DB] SQL小知识/" data-title="[DB] SQL小知识 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/09/13/[MyBatis] MyBatis第六课---select操作/" data-title="[MyBatis] MyBatis第六课---select操作 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -178,19 +152,11 @@ mysql中使用sql语句生成一张表并且同时指定表的编码：
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/09/13/[MyBatis] MyBatis第六课---select操作/" title="[MyBatis] MyBatis第六课---select操作">
-  <strong>上一篇：</strong><br/>
-  <span>
-  [MyBatis] MyBatis第六课---select操作</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/09/13/[MyBatis] MyBatis第五课---MyBatis参数处理/"  title="[MyBatis] MyBatis第五课---MyBatis参数处理">
+<a href="/2017/09/13/[DB] SQL小知识/"  title="[DB] SQL小知识">
  <strong>下一篇：</strong><br/> 
- <span>[MyBatis] MyBatis第五课---MyBatis参数处理
+ <span>[DB] SQL小知识
 </span>
 </a>
 </div>
@@ -199,7 +165,7 @@ mysql中使用sql语句生成一张表并且同时指定表的编码：
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2017/09/13/[DB] SQL小知识/" data-title="[DB] SQL小知识" data-url="http://yoursite.com/2017/09/13/[DB] SQL小知识/"></div>
+	<div class="ds-thread" data-thread-key="2017/09/13/[MyBatis] MyBatis第六课---select操作/" data-title="[MyBatis] MyBatis第六课---select操作" data-url="http://yoursite.com/2017/09/13/[MyBatis] MyBatis第六课---select操作/"></div>
 </section>
 
 
@@ -210,7 +176,7 @@ mysql中使用sql语句生成一张表并且同时指定表的编码：
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#select返回List"><span class="toc-number">1.</span> <span class="toc-text">select返回List</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#select返回记录封装成map"><span class="toc-number">2.</span> <span class="toc-text">select返回记录封装成map</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#返回一条记录的map，key就是列名，值就是对应的值："><span class="toc-number">2.1.</span> <span class="toc-text">返回一条记录的map，key就是列名，值就是对应的值：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多条记录封装一个map"><span class="toc-number">2.2.</span> <span class="toc-text">多条记录封装一个map</span></a></li></ol></li></ol>
  
   </div>
 
