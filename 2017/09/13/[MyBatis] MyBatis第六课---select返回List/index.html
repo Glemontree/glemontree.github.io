@@ -4,23 +4,29 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>[算法] 海量数据处理 | Glemontree&#39;s blog</title>
+    <title>[MyBatis] select操作 | Glemontree&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Glemontree">
     
 
     
-    <meta name="description" content="海量数据处理.">
+    <meta name="description" content="select返回List如果返回的是一个集合，那么resultType应当为集合中元素的类型：
+1public List&amp;lt;Employee&amp;gt; getEmpsByLastNameLike(String lastName);
+123&amp;lt;select id=&quot;getEmpsByLastNameLike&quot; resultType=&quot;com.glemontree.mybatis.bean.Em">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[算法] 海量数据处理">
-<meta property="og:url" content="http://yoursite.com/2017/07/23/[算法] 海量数据处理/index.html">
+<meta property="og:title" content="[MyBatis] select操作">
+<meta property="og:url" content="http://yoursite.com/2017/09/13/[MyBatis] MyBatis第六课---select返回List/index.html">
 <meta property="og:site_name" content="Glemontree's blog">
-<meta property="og:description" content="海量数据处理.">
-<meta property="og:updated_time" content="2017-07-23T08:51:26.877Z">
+<meta property="og:description" content="select返回List如果返回的是一个集合，那么resultType应当为集合中元素的类型：
+1public List&amp;lt;Employee&amp;gt; getEmpsByLastNameLike(String lastName);
+123&amp;lt;select id=&quot;getEmpsByLastNameLike&quot; resultType=&quot;com.glemontree.mybatis.bean.Em">
+<meta property="og:updated_time" content="2017-09-13T12:45:02.105Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[算法] 海量数据处理">
-<meta name="twitter:description" content="海量数据处理.">
+<meta name="twitter:title" content="[MyBatis] select操作">
+<meta name="twitter:description" content="select返回List如果返回的是一个集合，那么resultType应当为集合中元素的类型：
+1public List&amp;lt;Employee&amp;gt; getEmpsByLastNameLike(String lastName);
+123&amp;lt;select id=&quot;getEmpsByLastNameLike&quot; resultType=&quot;com.glemontree.mybatis.bean.Em">
 
     
     <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
@@ -79,14 +85,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/07/23/[算法] 海量数据处理/" title="[算法] 海量数据处理" itemprop="url">[算法] 海量数据处理</a>
+      <a href="/2017/09/13/[MyBatis] MyBatis第六课---select返回List/" title="[MyBatis] select操作" itemprop="url">[MyBatis] select操作</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
 		
   <p class="article-time">
-    <time datetime="2017-07-23T08:50:24.000Z" itemprop="datePublished"> Published 2017-07-23</time>
+    <time datetime="2017-09-13T12:09:47.000Z" itemprop="datePublished"> Published 2017-09-13</time>
     
   </p>
 </header>
@@ -95,11 +101,22 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#select返回List"><span class="toc-number">1.</span> <span class="toc-text">select返回List</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#select返回记录封装成map"><span class="toc-number">2.</span> <span class="toc-text">select返回记录封装成map</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#返回一条记录的map，key就是列名，值就是对应的值："><span class="toc-number">2.1.</span> <span class="toc-text">返回一条记录的map，key就是列名，值就是对应的值：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多条记录封装一个map"><span class="toc-number">2.2.</span> <span class="toc-text">多条记录封装一个map</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<p><a href="https://wenku.baidu.com/view/9f10c70e581b6bd97e19ea07.html" target="_blank" rel="external">海量数据处理</a>.</p>
+		<h2 id="select返回List"><a href="#select返回List" class="headerlink" title="select返回List"></a>select返回List</h2><p>如果返回的是一个集合，那么<code>resultType</code>应当为集合中元素的类型：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> List&lt;Employee&gt; <span class="title">getEmpsByLastNameLike</span><span class="params">(String lastName)</span></span>;</div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getEmpsByLastNameLike"</span> <span class="attr">resultType</span>=<span class="string">"com.glemontree.mybatis.bean.Employee"</span>&gt;</span></div><div class="line">  	select * from tbl_employee where last_name like #&#123;lastName&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="select返回记录封装成map"><a href="#select返回记录封装成map" class="headerlink" title="select返回记录封装成map"></a>select返回记录封装成map</h2><h3 id="返回一条记录的map，key就是列名，值就是对应的值："><a href="#返回一条记录的map，key就是列名，值就是对应的值：" class="headerlink" title="返回一条记录的map，key就是列名，值就是对应的值："></a>返回一条记录的map，key就是列名，值就是对应的值：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> Map&lt;String, Object&gt; <span class="title">getEmpByIdReturnMap</span><span class="params">(Integer id)</span></span>;</div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getEmpByIdReturnMap"</span> <span class="attr">resultType</span>=<span class="string">"map"</span>&gt;</span></div><div class="line"> 	 select * from tbl_employee where id = #&#123;id&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test05</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">    SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();</div><div class="line">    SqlSession openSession = sqlSessionFactory.openSession();</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        EmployeeMapper mapper = openSession.getMapper(EmployeeMapper.class);			</div><div class="line">        Map&lt;String, Object&gt; map = mapper.getEmpByIdReturnMap(<span class="number">1</span>);</div><div class="line">        System.out.println(map);</div><div class="line">    &#125; <span class="keyword">finally</span> &#123;</div><div class="line">      	openSession.close();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>最后的输出为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;gender=1, last_name=tom, id=1, email=tom@gmail.com&#125;</div></pre></td></tr></table></figure>
+<h3 id="多条记录封装一个map"><a href="#多条记录封装一个map" class="headerlink" title="多条记录封装一个map"></a>多条记录封装一个map</h3><p><code>Map&lt;Integer, Employee&gt;</code>：键是这条记录的主键，值是记录封装后的<code>JavaBean</code>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@MapKey</span>(<span class="string">"id"</span>) <span class="comment">// 告诉MyBatis封装Map时使用id这个属性作为key</span></div><div class="line"><span class="function"><span class="keyword">public</span> Map&lt;Integer, Employee&gt; <span class="title">getEmpByLastNameLikeReturnMap</span><span class="params">(String lastName)</span></span>;</div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getEmpByLastNameLikeReturnMap"</span> <span class="attr">resultType</span>=<span class="string">"com.glemontree.mybatis.bean.Employee"</span>&gt;</span></div><div class="line">  	select * from tbl_employee where last_name like #&#123;lastName&#125; </div><div class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>对于resultType属性，其实可以这样判断：我们查询出来的每条数据你希望是什么类型resultType就是什么类型，比如在上面一小节中返回一条记录的map，那么resultType就是map类型，而当多条记录封装一个map时，每条记录其实还是Employee，因此这里的resultType就是Employee。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -107,13 +124,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/C/">C++</a>
+  <a class="article-category-link" href="/categories/MyBatis/">MyBatis</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/C-boost/">C++ boost</a>
+  <span></span> <a href="/tags/MyBatis/">MyBatis</a>
   </div>
 
 </div>
@@ -122,7 +139,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2017/07/23/[算法] 海量数据处理/" data-title="[算法] 海量数据处理 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/09/13/[MyBatis] MyBatis第六课---select返回List/" data-title="[MyBatis] select操作 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -135,19 +152,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/08/03/[Android] Build.VERSION_CODES类下面的版本信息/" title="[Android] Build.VERSION_CODES类下面的版本信息">
-  <strong>上一篇：</strong><br/>
-  <span>
-  [Android] Build.VERSION_CODES类下面的版本信息</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/07/22/[Java] 内部类访问外部类的变量为什么外部类的变量一定得是final类型/"  title="[Java] 匿名内部类访问外部类的局部变量为什么一定得是final类型">
+<a href="/2017/09/13/[DB] SQL小知识/"  title="[DB] SQL小知识">
  <strong>下一篇：</strong><br/> 
- <span>[Java] 匿名内部类访问外部类的局部变量为什么一定得是final类型
+ <span>[DB] SQL小知识
 </span>
 </a>
 </div>
@@ -156,7 +165,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2017/07/23/[算法] 海量数据处理/" data-title="[算法] 海量数据处理" data-url="http://yoursite.com/2017/07/23/[算法] 海量数据处理/"></div>
+	<div class="ds-thread" data-thread-key="2017/09/13/[MyBatis] MyBatis第六课---select返回List/" data-title="[MyBatis] select操作" data-url="http://yoursite.com/2017/09/13/[MyBatis] MyBatis第六课---select返回List/"></div>
 </section>
 
 
@@ -167,7 +176,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#select返回List"><span class="toc-number">1.</span> <span class="toc-text">select返回List</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#select返回记录封装成map"><span class="toc-number">2.</span> <span class="toc-text">select返回记录封装成map</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#返回一条记录的map，key就是列名，值就是对应的值："><span class="toc-number">2.1.</span> <span class="toc-text">返回一条记录的map，key就是列名，值就是对应的值：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多条记录封装一个map"><span class="toc-number">2.2.</span> <span class="toc-text">多条记录封装一个map</span></a></li></ol></li></ol>
  
   </div>
 
