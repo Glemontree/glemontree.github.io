@@ -27,7 +27,7 @@ mysql中使用sql语句生成一张表并且同时指定表的编码：
 
 mysql中使用sql语句生成一张表并且同时指定表的编码：
 1234567CREATE TABLE USER(    id INT(11) PRIMARY">
-<meta property="og:updated_time" content="2017-09-13T12:07:31.767Z">
+<meta property="og:updated_time" content="2017-09-19T14:11:30.342Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[DB] SQL小知识">
 <meta name="twitter:description" content="使用sql语句desc table_name可以显示table_name表中的字段名以及Type等属性
@@ -140,7 +140,16 @@ mysql中使用sql语句生成一张表并且同时指定表的编码：
 </li>
 <li><p>修改表的某个字段的属性：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">alter</span> <span class="keyword">table</span> employees <span class="keyword">modify</span> email <span class="literal">null</span>;</div></pre></td></tr></table></figure>
-<p>​    </p>
+</li>
+<li><p>给某个表添加一列：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tbl_employee <span class="keyword">ADD</span> <span class="keyword">COLUMN</span> d_id <span class="built_in">INT</span>(<span class="number">11</span>);</div></pre></td></tr></table></figure>
+</li>
+<li><p>给某个表添加外键</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tbl_employee <span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> fk_emp_dept FOREIGN <span class="keyword">KEY</span>(d_id) <span class="keyword">REFERENCES</span> tbl_dept(<span class="keyword">id</span>);</div></pre></td></tr></table></figure>
+</li>
+<li><p>联合主键及索引</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`appointment`</span> (</div><div class="line">	<span class="string">`book_id`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'图书ID'</span>,</div><div class="line">  	<span class="string">`student_id`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'学号'</span>,</div><div class="line">  	<span class="string">`appoint_name`</span> <span class="keyword">timestamp</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">ON</span> <span class="keyword">UPDATE</span> CURRENT_STAMP <span class="keyword">COMMENT</span> <span class="string">'预约时间'</span>, <span class="comment">-- 当执行update操作时，并且字段有ON UPDATE CURRENT_STAMP属性，则字段无论值有没有变化，它的值也会跟着更新为当前UPDATE操作时的时间</span></div><div class="line">  	PRIMARY <span class="keyword">KEY</span> (<span class="string">`book_id`</span>, <span class="string">`student_id`</span>),</div><div class="line">  	<span class="keyword">INDEX</span> <span class="string">`idx_appoint_time`</span> (<span class="string">`appoint_time`</span>)</div><div class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8 <span class="keyword">COMMENT</span>=<span class="string">'预约图书表'</span></div></pre></td></tr></table></figure>
+<p>​</p>
 </li>
 </ul>
   
@@ -277,7 +286,7 @@ mysql中使用sql语句生成一张表并且同时指定表的编码：
 		  
 		
 		  
-			<li><a href="/categories/MyBatis/" title="MyBatis">MyBatis<sup>6</sup></a></li>
+			<li><a href="/categories/MyBatis/" title="MyBatis">MyBatis<sup>7</sup></a></li>
 		  
 		
 		  
@@ -285,7 +294,7 @@ mysql中使用sql语句生成一张表并且同时指定表的编码：
 		  
 		
 		  
-			<li><a href="/categories/Redis/" title="Redis">Redis<sup>1</sup></a></li>
+			<li><a href="/categories/Redis/" title="Redis">Redis<sup>2</sup></a></li>
 		  
 		
 		  
@@ -354,11 +363,11 @@ mysql中使用sql语句生成一张表并且同时指定表的编码：
 			
 		
 			
-				<li><a href="/tags/C-boost/" title="C++ boost">C++ boost<sup>3</sup></a></li>
+				<li><a href="/tags/DB/" title="DB">DB<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/DB/" title="DB">DB<sup>3</sup></a></li>
+				<li><a href="/tags/C-boost/" title="C++ boost">C++ boost<sup>3</sup></a></li>
 			
 		
 			
@@ -366,7 +375,15 @@ mysql中使用sql语句生成一张表并且同时指定表的编码：
 			
 		
 			
+				<li><a href="/tags/Struts2-OGNL/" title="Struts2, OGNL">Struts2, OGNL<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Redis/" title="Redis">Redis<sup>2</sup></a></li>
 			
 		
 			
@@ -374,19 +391,11 @@ mysql中使用sql语句生成一张表并且同时指定表的编码：
 			
 		
 			
-				<li><a href="/tags/Struts2-OGNL/" title="Struts2, OGNL">Struts2, OGNL<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/MyBatis-SQL映射文件/" title="MyBatis, SQL映射文件">MyBatis, SQL映射文件<sup>1</sup></a></li>
+				<li><a href="/tags/VS-Qt-软件图标/" title="VS, Qt, 软件图标">VS, Qt, 软件图标<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/Android-APT、编译时注解/" title="Android, APT、编译时注解">Android, APT、编译时注解<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android-百度地图/" title="Android, 百度地图">Android, 百度地图<sup>1</sup></a></li>
 			
 		
 			
@@ -398,19 +407,7 @@ mysql中使用sql语句生成一张表并且同时指定表的编码：
 			
 		
 			
-				<li><a href="/tags/C-11-Bind/" title="C++11, Bind">C++11, Bind<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-Boost/" title="C++, Boost">C++, Boost<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android-绘制文本/" title="Android, 绘制文本">Android, 绘制文本<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-VS/" title="C++, VS">C++, VS<sup>1</sup></a></li>
+				<li><a href="/tags/Android-ProgressDialog，-耗时操作/" title="Android, ProgressDialog， 耗时操作">Android, ProgressDialog， 耗时操作<sup>1</sup></a></li>
 			
 		
 			
@@ -418,7 +415,19 @@ mysql中使用sql语句生成一张表并且同时指定表的编码：
 			
 		
 			
+				<li><a href="/tags/C-11-Bind/" title="C++11, Bind">C++11, Bind<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/C-bind-回调/" title="C++, bind, 回调">C++, bind, 回调<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-VS/" title="C++, VS">C++, VS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前置/" title="前置++">前置++<sup>1</sup></a></li>
 			
 		
 		</ul>
