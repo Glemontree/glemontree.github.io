@@ -28,7 +28,7 @@ overridePendingTransition
 <meta property="og:image" content="http://livesunhexo.oss-cn-shanghai.aliyuncs.com/hexo/clippadding1.gif">
 <meta property="og:image" content="http://livesunhexo.oss-cn-shanghai.aliyuncs.com/hexo/clippadding2.gif">
 <meta property="og:image" content="http://img.blog.csdn.net/20141120171342412?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYWlnZXN0dWRpbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:updated_time" content="2017-09-09T13:23:58.401Z">
+<meta property="og:updated_time" content="2017-09-21T14:18:00.633Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Android] Android零碎知识点">
 <meta name="twitter:description" content="?android:selectableItemBackground
@@ -64,7 +64,7 @@ overridePendingTransition
 				<h1 class="site-name"><a href="/" title="Glemontree&#39;s blog">Glemontree&#39;s blog</a></h1>
 				<h2 class="blog-motto">day day up!</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -80,7 +80,7 @@ overridePendingTransition
  					
 						<form class="search" action="http://zhannei.baidu.com/cse/search" target="_blank">
 							<label>Search</label>
-						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="Search"><br>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="搜索"><br>
 						</form>
 					
 					</li>
@@ -102,14 +102,14 @@ overridePendingTransition
 		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
 		
   <p class="article-time">
-    <time datetime="2017-08-04T13:56:59.000Z" itemprop="datePublished"> Published 2017-08-04</time>
+    <time datetime="2017-08-04T13:56:59.000Z" itemprop="datePublished"> 发表于 2017-08-04</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
+			<strong class="toc-title">文章目录</strong>
 		
 			
 		
@@ -154,27 +154,32 @@ overridePendingTransition
 <li><p>选择图片、拍照以及图片裁剪</p>
 </li>
 <li><p>拍照</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">takePhoto</span><span class="params">()</span> </span>&#123;</div><div class="line">  File outputImage = <span class="keyword">new</span> File(Environment.getExternalStorageDirectory(), <span class="string">"tmp.jpg"</span>);</div><div class="line">  <span class="keyword">try</span> &#123;</div><div class="line">    <span class="keyword">if</span> (outputImage.exists()) &#123;</div><div class="line">      outputImage.delete();</div><div class="line">    &#125;</div><div class="line">    outputImage.createNewFile();</div><div class="line">  &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">    e.printStackTrace();</div><div class="line">  &#125;</div><div class="line">  imageUri = Uri.fromFile(outputImage);</div><div class="line">  Intent intent = <span class="keyword">new</span> Intent(<span class="string">"android.media.action.IMAGE_CAPTURE"</span>);</div><div class="line">  intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);</div><div class="line">  startActivityForResult(intent, TAKE_PHOTO);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">takePhoto</span><span class="params">()</span> </span>&#123;</div><div class="line">  File outputImage = <span class="keyword">new</span> File(Environment.getExternalStorageDirectory(), <span class="string">"tmp.jpg"</span>);</div><div class="line">  <span class="keyword">try</span> &#123;</div><div class="line">    <span class="keyword">if</span> (outputImage.exists()) &#123;</div><div class="line">      outputImage.delete();</div><div class="line">    &#125;</div><div class="line">    outputImage.createNewFile();</div><div class="line">  &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">    e.printStackTrace();</div><div class="line">  &#125;</div><div class="line">  imageUri = Uri.fromFile(outputImage);</div><div class="line">  Intent intent = <span class="keyword">new</span> Intent(<span class="string">"android.media.action.IMAGE_CAPTURE"</span>);</div><div class="line">  intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);</div><div class="line">  startActivityForResult(intent, TAKE_PHOTO);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
 <li><p>从相册选择照片</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">gotoPickImage</span><span class="params">()</span> </span>&#123;</div><div class="line">  Intent intent = <span class="keyword">new</span> Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);</div><div class="line">  startActivityForResult(intent, REQUEST_PICK_IMAGE);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 <li><p>选择一张图片并裁剪获得一个小图</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">gotoPickAndCropSmallBitmap</span><span class="params">()</span> </span>&#123;</div><div class="line">  Intent intent = <span class="keyword">new</span> Intent(Intent.ACTION_GET_CONTENT);</div><div class="line">  intent.setType(<span class="string">"image/*"</span>);</div><div class="line">  intent.putExtra(<span class="string">"crop"</span>, <span class="string">"true"</span>);</div><div class="line">  intent.putExtra(<span class="string">"aspectX"</span>, <span class="number">1</span>);</div><div class="line">  intent.putExtra(<span class="string">"aspectY"</span>, <span class="number">1</span>);</div><div class="line">  intent.putExtra(<span class="string">"outputX"</span>, <span class="number">300</span>);</div><div class="line">  intent.putExtra(<span class="string">"outputY"</span>, <span class="number">300</span>);</div><div class="line">  intent.putExtra(<span class="string">"scale"</span>, <span class="keyword">true</span>);</div><div class="line">  intent.putExtra(<span class="string">"return-data"</span>, <span class="keyword">true</span>);</div><div class="line">  intent.putExtra(<span class="string">"outputFormat"</span>, Bitmap.CompressFormat.JPEG.toString());</div><div class="line">  intent.putExtra(<span class="string">"noFaceDetection"</span>, <span class="keyword">true</span>); <span class="comment">// no face detection</span></div><div class="line">  startActivityForResult(intent, REQUEST_CROP_IMAGE_SMALL);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>在将<code>return-data</code>设为<code>true</code>的时候，在<code>onActivityForResult()</code>中可以直接通过<code>data.getParcelableExtra(&quot;data&quot;)</code>得到裁剪后的Bitmap对象，但是当Bitmap过大时，就不能使用这种方式了，得使用下面这种方式。</p>
-<p><code>MediaStore.EXTRA_OUTPUT</code>设置裁剪图片的输入Uri，可以通过<code>Uri.formFile(tmpFile)</code>获得。</p>
 </li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">gotoPickAndCropSmallBitmap</span><span class="params">()</span> </span>&#123;</div><div class="line">  Intent intent = <span class="keyword">new</span> Intent(Intent.ACTION_GET_CONTENT);</div><div class="line">  intent.setType(<span class="string">"image/*"</span>);</div><div class="line">  intent.putExtra(<span class="string">"crop"</span>, <span class="string">"true"</span>);</div><div class="line">  intent.putExtra(<span class="string">"aspectX"</span>, <span class="number">1</span>);</div><div class="line">  intent.putExtra(<span class="string">"aspectY"</span>, <span class="number">1</span>);</div><div class="line">  intent.putExtra(<span class="string">"outputX"</span>, <span class="number">300</span>);</div><div class="line">  intent.putExtra(<span class="string">"outputY"</span>, <span class="number">300</span>);</div><div class="line">  intent.putExtra(<span class="string">"scale"</span>, <span class="keyword">true</span>);</div><div class="line">  intent.putExtra(<span class="string">"return-data"</span>, <span class="keyword">true</span>);</div><div class="line">  intent.putExtra(<span class="string">"outputFormat"</span>, Bitmap.CompressFormat.JPEG.toString());</div><div class="line">  intent.putExtra(<span class="string">"noFaceDetection"</span>, <span class="keyword">true</span>); <span class="comment">// no face detection</span></div><div class="line">  startActivityForResult(intent, REQUEST_CROP_IMAGE_SMALL);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>  在将<code>return-data</code>设为<code>true</code>的时候，在<code>onActivityForResult()</code>中可以直接通过<code>data.getParcelableExtra(&quot;data&quot;)</code>得到裁剪后的Bitmap对象，但是当Bitmap过大时，就不能使用这种方式了，得使用下面这种方式。</p>
+<p>  <code>MediaStore.EXTRA_OUTPUT</code>设置裁剪图片的输入Uri，可以通过<code>Uri.formFile(tmpFile)</code>获得。</p>
+<ul>
 <li><p>选择一张图片并裁剪获得一个大图</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">gotoPickAndCropBigBitmap</span><span class="params">()</span> </span>&#123;</div><div class="line">  imageUri = getTmpUri();</div><div class="line">  Intent intent = <span class="keyword">new</span> Intent(Intent.ACTION_GET_CONTENT, <span class="keyword">null</span>);</div><div class="line">  intent.setType(<span class="string">"image/*"</span>);</div><div class="line">  intent.putExtra(<span class="string">"crop"</span>, <span class="string">"true"</span>);</div><div class="line">  intent.putExtra(<span class="string">"aspectX"</span>, <span class="number">1</span>);</div><div class="line">  intent.putExtra(<span class="string">"aspectY"</span>, <span class="number">1</span>);</div><div class="line">  intent.putExtra(<span class="string">"outputX"</span>, <span class="number">2000</span>);</div><div class="line">  intent.putExtra(<span class="string">"outputY"</span>, <span class="number">2000</span>);</div><div class="line">  intent.putExtra(<span class="string">"scale"</span>, <span class="keyword">true</span>);</div><div class="line">  intent.putExtra(<span class="string">"return-data"</span>, <span class="keyword">false</span>);</div><div class="line">  intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);</div><div class="line">  intent.putExtra(<span class="string">"outputFormat"</span>, Bitmap.CompressFormat.JPEG.toString());</div><div class="line">  intent.putExtra(<span class="string">"noFaceDetection"</span>, <span class="keyword">true</span>); <span class="comment">// no face detection</span></div><div class="line">  startActivityForResult(intent, REQUEST_CROP_IMAGE_BIG);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这里把<code>return-data</code>设为<code>false</code>，同时向<code>MediaStore.EXTRA_OUTPUT</code>设置一个临时构造的<code>Uri</code>，这个<code>Uri</code>用来保存裁剪后的大图，裁剪之后，在<code>onActivityForResult()</code>中就可以通过<code>MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri)</code>得到裁剪后的Bitmap大图。</p>
 </li>
 <li><p>拍照并裁剪</p>
+</li>
+</ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">startImageCapture</span><span class="params">()</span> </span>&#123;</div><div class="line">  String IMAGE_FILE_LOCATION = Environment.getExternalStorageDirectory() + <span class="string">"/"</span> + <span class="string">"posprint"</span> + <span class="string">"/tmp.jpg"</span>;<span class="comment">//temp file</span></div><div class="line"></div><div class="line">  imageUri = Uri.fromFile(<span class="keyword">new</span> File(IMAGE_FILE_LOCATION));<span class="comment">//The Uri to store the big bitmap</span></div><div class="line">  Intent intent = <span class="keyword">new</span> Intent(MediaStore.ACTION_IMAGE_CAPTURE);</div><div class="line">  intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);</div><div class="line">  startActivityForResult(intent, REQUEST_CAPTURE_AND_CROP);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//获得临时保存图片的Uri，用当前的毫秒值作为文件名</span></div><div class="line"><span class="function"><span class="keyword">private</span> Uri <span class="title">getTmpUri</span><span class="params">()</span> </span>&#123;</div><div class="line">  String IMAGE_FILE_DIR = Environment.getExternalStorageDirectory() + <span class="string">"/"</span> + <span class="string">"app_name"</span>;</div><div class="line">  File dir = <span class="keyword">new</span> File(IMAGE_FILE_DIR);</div><div class="line">  File file = <span class="keyword">new</span> File(IMAGE_FILE_DIR, Long.toString(System.currentTimeMillis()));</div><div class="line">  <span class="comment">//非常重要！！！如果文件夹不存在必须先手动创建</span></div><div class="line">  <span class="keyword">if</span> (!dir.exists()) &#123;</div><div class="line">    dir.mkdirs();</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> Uri.fromFile(file);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onActivityResult</span><span class="params">(<span class="keyword">int</span> requestCode, <span class="keyword">int</span> resultCode, Intent data)</span> </span>&#123;</div><div class="line">  <span class="keyword">if</span> (resultCode == Activity.RESULT_OK) &#123;</div><div class="line">    Bitmap bitmap = <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">      <span class="keyword">switch</span> (requestCode) &#123;</div><div class="line">        <span class="keyword">case</span> REQUEST_PICK_IMAGE:</div><div class="line">          <span class="comment">//选择的图片的Uri</span></div><div class="line">          imageUri = data.getData(); </div><div class="line">          bitmap = MediaStore.Images.Media.getBitmap(</div><div class="line">            getContentResolver(), imageUri);</div><div class="line">        <span class="keyword">case</span> REQUEST_CROP_IMAGE_SMALL:</div><div class="line">          <span class="comment">//裁剪后的小图</span></div><div class="line">          bitmap = data.getParcelableExtra(<span class="string">"data"</span>);  </div><div class="line">          <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> REQUEST_CROP_IMAGE_BIG:</div><div class="line">          <span class="comment">//裁剪后的大图</span></div><div class="line">          bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);</div><div class="line">          <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> REQUEST_CAPTURE_AND_CROP:</div><div class="line">          <span class="comment">//得到拍照后的图片并裁剪</span></div><div class="line">          cropImageUri(imageUri, REQUEST_CROP_IMAGE_BIG);</div><div class="line">          <span class="keyword">break</span>;</div><div class="line">      &#125;</div><div class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">      e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  doSomething(bitmap);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//裁剪拍照后得到的图片</span></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">cropImageUri</span><span class="params">(Uri uri, <span class="keyword">int</span> requestCode)</span> </span>&#123;</div><div class="line">  Intent intent = <span class="keyword">new</span> Intent(<span class="string">"com.android.camera.action.CROP"</span>);</div><div class="line">  intent.setDataAndType(uri, <span class="string">"image/*"</span>);</div><div class="line">  <span class="comment">//intent.putExtra("crop", "true");</span></div><div class="line">  intent.putExtra(<span class="string">"aspectX"</span>, <span class="number">1</span>);</div><div class="line">  intent.putExtra(<span class="string">"aspectY"</span>, <span class="number">1</span>);</div><div class="line">  intent.putExtra(<span class="string">"outputX"</span>, <span class="number">500</span>);</div><div class="line">  intent.putExtra(<span class="string">"outputY"</span>, <span class="number">500</span>);</div><div class="line">  intent.putExtra(<span class="string">"scale"</span>, <span class="keyword">true</span>);</div><div class="line">  intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);</div><div class="line">  intent.putExtra(<span class="string">"return-data"</span>, <span class="keyword">false</span>);</div><div class="line">  intent.putExtra(<span class="string">"outputFormat"</span>, Bitmap.CompressFormat.JPEG.toString());</div><div class="line">  intent.putExtra(<span class="string">"noFaceDetection"</span>, <span class="keyword">true</span>); <span class="comment">// no face detection</span></div><div class="line">  intent = Intent.createChooser(intent, <span class="string">"裁剪图片"</span>);</div><div class="line">  startActivityForResult(intent, requestCode);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这一部分其实分为了两步，第一步拍照得到图片的Uri，第二步把该图片的Uri传给裁剪图片的程序处理：</p>
+<p>  这一部分其实分为了两步，第一步拍照得到图片的Uri，第二步把该图片的Uri传给裁剪图片的程序处理：</p>
 <ul>
 <li>这里的action变成了<code>com.android.camera.action.CROP</code>，并且不需要设置<code>extra</code>字段`crop``</li>
-<li><code>`intent.setDataAndType(uri, &quot;image/*&quot;)</code>，这里的uri指向拍照后得到的原图，<code>intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)</code>将裁剪后的图片也保存在这个uri，所以原图就被覆盖了</li>
-</ul>
+<li><p><code>`intent.setDataAndType(uri, &quot;image/*&quot;)</code>，这里的uri指向拍照后得到的原图，<code>intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)</code>将裁剪后的图片也保存在这个uri，所以原图就被覆盖了</p>
 </li>
 <li><p>本章节转载自<a href="http://www.jianshu.com/p/b1fd66721b48" target="_blank" rel="external">文章</a>。</p>
 </li>
@@ -218,8 +223,10 @@ overridePendingTransition
 </li>
 <li><p>浮动操作按钮</p>
 <p>CoordinatorLayout可以用来配合浮动操作按钮的<code>layout_anchor</code>和<code>layout_gravity</code>属性制造出浮动效果，<code>layout_anchor</code>指定参照物，<code>anchorGravity</code>指定相对于参照物的位置，设置为bottom | right则表示将FloatingActionButton放置于参照物的右下角：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">android.support.design.widget.CoordinatorLayout</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/main_content"</span></div><div class="line">        <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></div><div class="line">        <span class="attr">xmlns:app</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</div><div class="line"> </div><div class="line">   <span class="tag">&lt;<span class="name">android.support.v7.widget.RecyclerView</span></span></div><div class="line">         <span class="attr">android:id</span>=<span class="string">"@+id/rvToDoList"</span></div><div class="line">         <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">         <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</div><div class="line">   <span class="tag">&lt;/<span class="name">android.support.v7.widget.RecyclerView</span>&gt;</span></div><div class="line"> </div><div class="line">   <span class="tag">&lt;<span class="name">android.support.design.widget.FloatingActionButton</span></span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_gravity</span>=<span class="string">"bottom|right"</span></div><div class="line">        <span class="attr">android:layout_margin</span>=<span class="string">"16dp"</span></div><div class="line">        <span class="attr">android:src</span>=<span class="string">"@mipmap/ic_launcher"</span></div><div class="line">        <span class="attr">app:layout_anchor</span>=<span class="string">"@id/rvToDoList"</span></div><div class="line">        <span class="attr">app:layout_anchorGravity</span>=<span class="string">"bottom|right|end"</span>/&gt;</div><div class="line"> <span class="tag">&lt;/<span class="name">android.support.design.widget.CoordinatorLayout</span>&gt;</span></div></pre></td></tr></table></figure>
 </li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">android.support.design.widget.CoordinatorLayout</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/main_content"</span></div><div class="line">        <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></div><div class="line">        <span class="attr">xmlns:app</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</div><div class="line"> </div><div class="line">   <span class="tag">&lt;<span class="name">android.support.v7.widget.RecyclerView</span></span></div><div class="line">         <span class="attr">android:id</span>=<span class="string">"@+id/rvToDoList"</span></div><div class="line">         <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">         <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</div><div class="line">   <span class="tag">&lt;/<span class="name">android.support.v7.widget.RecyclerView</span>&gt;</span></div><div class="line"> </div><div class="line">   <span class="tag">&lt;<span class="name">android.support.design.widget.FloatingActionButton</span></span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:layout_gravity</span>=<span class="string">"bottom|right"</span></div><div class="line">        <span class="attr">android:layout_margin</span>=<span class="string">"16dp"</span></div><div class="line">        <span class="attr">android:src</span>=<span class="string">"@mipmap/ic_launcher"</span></div><div class="line">        <span class="attr">app:layout_anchor</span>=<span class="string">"@id/rvToDoList"</span></div><div class="line">        <span class="attr">app:layout_anchorGravity</span>=<span class="string">"bottom|right|end"</span>/&gt;</div><div class="line"> <span class="tag">&lt;/<span class="name">android.support.design.widget.CoordinatorLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
 <li><p>Toolbar的扩展和收缩</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">android.support.design.widget.CoordinatorLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line"> <span class="attr">xmlns:app</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span></div><div class="line">    <span class="attr">android:id</span>=<span class="string">"@+id/main_content"</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">    <span class="attr">android:fitsSystemWindows</span>=<span class="string">"true"</span>&gt;</div><div class="line">  </div><div class="line">  	  <span class="tag">&lt;<span class="name">android.support.design.widget.AppBarLayout</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/appbar"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"@dimen/detail_backdrop_height"</span></div><div class="line">        <span class="attr">android:theme</span>=<span class="string">"@style/ThemeOverlay.AppCompat.Dark.ActionBar"</span></div><div class="line">        <span class="attr">android:fitsSystemWindows</span>=<span class="string">"true"</span>&gt;</div><div class="line"> </div><div class="line">        <span class="tag">&lt;<span class="name">android.support.v7.widget.Toolbar</span></span></div><div class="line">                  <span class="attr">android:id</span>=<span class="string">"@+id/toolbar"</span></div><div class="line">                  <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">                  <span class="attr">android:layout_height</span>=<span class="string">"?attr/actionBarSize"</span></div><div class="line">                  <span class="attr">app:popupTheme</span>=<span class="string">"@style/ThemeOverlay.AppCompat.Light"</span> /&gt;</div><div class="line">      <span class="tag">&lt;/<span class="name">android.support.design.widget.AppBarLayout</span>&gt;</span></div><div class="line"> </div><div class="line"><span class="tag">&lt;/<span class="name">android.support.design.widget.CoordinatorLayout</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>需要注意的是AppBarLayout目前必须是第一个嵌套在CoordinatorLayout里面的子View。</p>
@@ -237,10 +244,12 @@ overridePendingTransition
 </li>
 <li><p>制造折叠效果</p>
 <p>如果想制造Toolbar的折叠效果，必须把ToolBar放在CollapsingToolbarLayout中：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">android.support.design.widget.CollapsingToolbarLayout</span></span></div><div class="line">   <span class="attr">android:id</span>=<span class="string">"@+id/collapsing_toolbar"</span></div><div class="line">   <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">   <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">   <span class="attr">android:fitsSystemWindows</span>=<span class="string">"true"</span></div><div class="line">   <span class="attr">app:contentScrim</span>=<span class="string">"?attr/colorPrimary"</span></div><div class="line">   <span class="attr">app:expandedTitleMarginEnd</span>=<span class="string">"64dp"</span></div><div class="line">   <span class="attr">app:expandedTitleMarginStart</span>=<span class="string">"48dp"</span></div><div class="line">   <span class="attr">app:layout_scrollFlags</span>=<span class="string">"scroll|exitUntilCollapsed"</span>&gt;       </div><div class="line">   <span class="tag">&lt;<span class="name">android.support.v7.widget.Toolbar</span></span></div><div class="line">      <span class="attr">android:id</span>=<span class="string">"@+id/toolbar"</span></div><div class="line">      <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">      <span class="attr">android:layout_height</span>=<span class="string">"?attr/actionBarSize"</span></div><div class="line">      <span class="attr">app:layout_scrollFlags</span>=<span class="string">"scroll|enterAlways"</span>/&gt;<span class="tag">&lt;/<span class="name">android.support.design.widget.CollapsingToolbarLayout</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>需要注意的是通常我们都是设置ToolBar的Title，而现在，需要将title设置在CollapsingToolbarLayout上，而不是ToolBar：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">CollapsingToolbarLayout collapsingToolbar =</div><div class="line">  (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);</div><div class="line">collapsingToolbar.setTitle(<span class="string">"Title"</span>);</div></pre></td></tr></table></figure>
 </li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">android.support.design.widget.CollapsingToolbarLayout</span></span></div><div class="line">   <span class="attr">android:id</span>=<span class="string">"@+id/collapsing_toolbar"</span></div><div class="line">   <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">   <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">   <span class="attr">android:fitsSystemWindows</span>=<span class="string">"true"</span></div><div class="line">   <span class="attr">app:contentScrim</span>=<span class="string">"?attr/colorPrimary"</span></div><div class="line">   <span class="attr">app:expandedTitleMarginEnd</span>=<span class="string">"64dp"</span></div><div class="line">   <span class="attr">app:expandedTitleMarginStart</span>=<span class="string">"48dp"</span></div><div class="line">   <span class="attr">app:layout_scrollFlags</span>=<span class="string">"scroll|exitUntilCollapsed"</span>&gt;       </div><div class="line">   <span class="tag">&lt;<span class="name">android.support.v7.widget.Toolbar</span></span></div><div class="line">      <span class="attr">android:id</span>=<span class="string">"@+id/toolbar"</span></div><div class="line">      <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">      <span class="attr">android:layout_height</span>=<span class="string">"?attr/actionBarSize"</span></div><div class="line">      <span class="attr">app:layout_scrollFlags</span>=<span class="string">"scroll|enterAlways"</span>/&gt;<span class="tag">&lt;/<span class="name">android.support.design.widget.CollapsingToolbarLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>  需要注意的是通常我们都是设置ToolBar的Title，而现在，需要将title设置在CollapsingToolbarLayout上，而不是ToolBar：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">CollapsingToolbarLayout collapsingToolbar =</div><div class="line">  (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);</div><div class="line">collapsingToolbar.setTitle(<span class="string">"Title"</span>);</div></pre></td></tr></table></figure>
+<ul>
 <li><p>制造视觉效果</p>
 <p>CollapsingToolbarLayout还能让我们做出更高级的动画，比如在里面放一个ImageView，然后在它折叠的时候渐渐淡出。同时在用户滚动的时候title的高度也会随着改变。</p>
 <p>为了制造出这种效果，我们添加一个定义了app:layout_collapseMode=”parallax” 属性的ImageView。</p>
@@ -298,8 +307,10 @@ overridePendingTransition
 <li><p><code>setHomeButtonEnabled</code>和<code>setDisplayShowHomeEnabled(true)</code>共同起作用，如果<code>setHomeButtonEnabled</code>设为false，即使<code>setDisplayShowHomeEnabled(true)</code>设为true，图标也不能点击</p>
 </li>
 <li><p>如果希望点击图标左侧箭头返回上一页，需要加载选项菜单后，对于菜单项的点击事项调用如下方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onOptionsItemSelected</span><span class="params">(MenuItem item)</span> </span>&#123;</div><div class="line">  <span class="keyword">if</span> (item.getItemId() == android.R.id.home) &#123;</div><div class="line">    finish();</div><div class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">super</span>.onOptionsItemSelected(item);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onOptionsItemSelected</span><span class="params">(MenuItem item)</span> </span>&#123;</div><div class="line">  <span class="keyword">if</span> (item.getItemId() == android.R.id.home) &#123;</div><div class="line">    finish();</div><div class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">super</span>.onOptionsItemSelected(item);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
 <li><p>本章节转载自文章 <a href="http://blog.csdn.net/andygo_520/article/details/51439688" target="_blank" rel="external">关于ActionBar中setDisplayHomeAsUpEnabled(true)等方法的问题</a></p>
 </li>
 <li><p>在实际项目开发过程中，通常为所有的<code>Activity</code>定义一个<code>BaseActivity</code>，可以在<code>BaseActivity</code>中定义：<code>private Activity mActivity;</code>，这样在<code>onCreate()</code>方法中定义<code>mActivity= this</code>，那么子类在继承BaseActivity时在<code>onCreate()</code>方法中通过<code>super.onCreate()</code>方法可以执行BaseActivity的<code>onCreate()</code>方法中的代码，即执行了<code>mActivity = this</code>，那么此时的<code>mActivity</code>也就代表了当前的<code>Activity</code>。</p>
@@ -406,6 +417,39 @@ overridePendingTransition
 <li><p><code>ViewConfiguration.getScaledTouchSlop()</code></p>
 <p><code>getScaledTouchSlop</code>是一个距离，表示滑动的时候，手的移动要大于这个距离才开始移动控件。如果小于这个距离就不触发移动控件，如viewpager就是用这个距离来判断用户是否翻页</p>
 </li>
+<li><p>Android中全局Application的onCreate()方法多次调用问题</p>
+<p>通常，一个应用的所有组件都运行在系统为这个应用所创建的默认进程中，这个默认进程是用这个应用的包名来命名的，如果声明文件中的组件或应用没有指定这个属性则默认应用和其组件将相应运行在以其包名命名的进程中。</p>
+<p>一般来说，Application的onCreate()方法只会执行一次，如果应用中采用多进程方式，onCreate()方法会执行多次，根据不同的进程名字进行不同的初始化。</p>
+<p>一般情况下一个服务没有自己独立的进程，它一般是作为一个线程运行于它所在的应用的进程中，但是也有例外，Android声明文件中的<code>android:process</code>属性却可以为任意组件包括应用指定进程，即通过在声明文件中设置<code>android:process</code>属性，我们可以让组件（例如Activity、Service）和应用（Application）创建并运行于我们指定的进程中，冒号（”:”）这个前缀将把这个名字附加到你的包所运行的标准进程名字的后面作为新的进程名称：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">service</span> <span class="attr">android:name</span>=<span class="string">"com.baidu.location.f"</span></span></div><div class="line">         <span class="attr">android:enabled</span>=<span class="string">"true"</span></div><div class="line">         <span class="attr">android:process</span>=<span class="string">":baiduMap"</span>&gt;<span class="tag">&lt;/<span class="name">service</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>那么在DDMS中就可以看到这个进程：<code>com.example.hello:baiduMap</code>。</p>
+<p>解决方法是在自定义的Application的onCreate方法中控制不同进程的初始化：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">String processName = getProcessName(<span class="keyword">this</span>, android.os.Process.myPid());  </div><div class="line"><span class="keyword">if</span> (processName != <span class="keyword">null</span>) &#123;  </div><div class="line">    <span class="keyword">boolean</span> defaultProcess = processName.equals(Constants.REAL_PACKAGE_NAME);  </div><div class="line">    <span class="comment">// 默认的主进程启动时初始化应用  </span></div><div class="line">    <span class="keyword">if</span> (defaultProcess) &#123;  </div><div class="line">      	initAppForMainProcess();  </div><div class="line">    &#125;   </div><div class="line">    <span class="comment">// 其他进程启动时初始化对应内容  </span></div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (processName.contains(<span class="string">":webbrowser"</span>)) &#123;  </div><div class="line"></div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (processName.contains(<span class="string">":wallet"</span>)) &#123;  </div><div class="line"></div><div class="line">    &#125;  </div><div class="line">&#125; </div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getProcessName</span><span class="params">(Context cxt, <span class="keyword">int</span> pid)</span> </span>&#123;  </div><div class="line">    ActivityManager am = (ActivityManager) cxt.getSystemService(Context.ACTIVITY_SERVICE);  </div><div class="line">    List&lt;RunningAppP.rocessInfo&gt; runningApps = am.getRunningAppProcesses();  </div><div class="line">    <span class="keyword">if</span> (runningApps == <span class="keyword">null</span>) &#123;  </div><div class="line">      	<span class="keyword">return</span> <span class="keyword">null</span>;  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">for</span> (RunningAppProcessInfo procInfo : runningApps) &#123;  </div><div class="line">        <span class="keyword">if</span> (procInfo.pid == pid) &#123;  </div><div class="line">         	<span class="keyword">return</span> procInfo.processName;  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>本小节转载自文章<a href="http://blog.csdn.net/xiaoxuanfeng1986/article/details/49490909" target="_blank" rel="external">Android中全局Application的onCreate多次调用问题</a>。</p>
+</li>
+<li><p>Java静态方法可以被重写吗？</p>
+<p>非静态方法属于类的实例，是可以被子类重写从而达到多态的效果，静态方法属于类，是不能被重写，故而不能实现多态。</p>
+</li>
+<li><p>compileSdkVersion</p>
+<p>表示编译版本，就是运行我们这个项目的SDK版本号，也就是API Level，例如API-19、API-20等</p>
+</li>
+<li><p>buildToolVersion</p>
+<p>表示构建工具的版本，其中包含了打包工具aapt、dx等等，这个工具的目录位于..your_sdk_path/build_tools/xx.xx.xx</p>
+</li>
+<li><p>minSdkVersion</p>
+<p>指定应用程序所需的最小API Level，如果不指明的话默认为1，也就是说该应用兼容所有的android版本，我们应该总是声明这个属性。</p>
+<p>如果系统的API Level低于minSdkVersion，那么android系统会阻止用户安装这个应用。</p>
+<p>如果指明了这个属性，并且在项目中使用了高于这个API Levle的API，那么在编译时就会报错。</p>
+<p>因此，minSdkVersion不仅在安装程序时起作用，也会在项目构建时起作用。</p>
+</li>
+<li><p>targetSdkVersion</p>
+<p>targetSdkVersion是Android系统提供向前兼容的主要手段，随着Android系统的升级，某个系统的API或者模块的行为可能会发生变化，但是为了保证老APK的行为还是和以前兼容，只要targetSdkVersion不变，即使这个APK安装在新Android系统上，其行为还是保持老的系统上的行为，这样就保证了系统对老应用的向前兼容性。</p>
+<p>在 Android 4.4 (API 19）以后，AlarmManager 的 set() 和 setRepeat() 这两个 API 的行为发生了变化。在 Android 4.4 以前，这两个 API 设置的都是精确的时间，系统能保证在 API 设置的时间点上唤醒 Alarm。因为省电原因 Android 4.4 系统实现了 AlarmManager 的对齐唤醒，这两个 API 设置唤醒的时间，系统都对待成不精确的时间，系统只能保证在你设置的时间点之后某个时间唤醒。</p>
+<p>这时，虽然 API 没有任何变化，但是实际上 API 的行为却发生了变化，如果老的 APK 中使用了此 API，并且在应用中的行为非常依赖 AlarmManager 在精确的时间唤醒，例如闹钟应用。如果 Android 系统不能保证兼容，老的 APK 安装在新的系统上，就会出现问题。</p>
+<p>Android 系统是怎么保证这种兼容性的呢？这时候 targetSdkVersion 就起作用了。APK 在调用系统 AlarmManager 的 set() 或者 setRepeat() 的时候，系统首先会查一下调用的 APK 的 targetSdkVersion 信息，如果小于 19，就还是按照老的行为，即精确设置唤醒时间，否者执行新的行为。</p>
+<p>本小节转载自文章<a href="http://blog.csdn.net/zzf112/article/details/53127515" target="_blank" rel="external">Android targetSdkVersion 原理</a>。</p>
+<p>​</p>
+</li>
 </ul>
   
 	</div>
@@ -469,22 +513,22 @@ overridePendingTransition
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
+  <strong class="toc-title">文章目录</strong>
  
  
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
 
   
 <div class="github-card">
-<p class="asidetitle">Github Card</p>
+<p class="asidetitle">Github 名片</p>
 <div class="github-card" data-github="glemontree" data-theme="medium"></div>
 <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
 </div>
@@ -493,7 +537,7 @@ overridePendingTransition
 
   
 <div class="categorieslist">
-	<p class="asidetitle">Categories</p>
+	<p class="asidetitle">分类</p>
 		<ul>
 		
 		  
@@ -561,7 +605,7 @@ overridePendingTransition
 		  
 		
 		  
-			<li><a href="/categories/SpringMVC/" title="SpringMVC">SpringMVC<sup>2</sup></a></li>
+			<li><a href="/categories/SpringMVC/" title="SpringMVC">SpringMVC<sup>3</sup></a></li>
 		  
 		
 		  
@@ -602,7 +646,7 @@ overridePendingTransition
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
 			
@@ -618,15 +662,15 @@ overridePendingTransition
 			
 		
 			
-				<li><a href="/tags/DB/" title="DB">DB<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/C-boost/" title="C++ boost">C++ boost<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
+				<li><a href="/tags/DB/" title="DB">DB<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
 			
 		
 			
@@ -634,7 +678,7 @@ overridePendingTransition
 			
 		
 			
-				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
+				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
 			
 		
 			
@@ -646,7 +690,11 @@ overridePendingTransition
 			
 		
 			
-				<li><a href="/tags/VS-Qt-软件图标/" title="VS, Qt, 软件图标">VS, Qt, 软件图标<sup>1</sup></a></li>
+				<li><a href="/tags/MyBatis-SQL映射文件/" title="MyBatis, SQL映射文件">MyBatis, SQL映射文件<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-百度地图/" title="Android, 百度地图">Android, 百度地图<sup>1</sup></a></li>
 			
 		
 			
@@ -654,19 +702,7 @@ overridePendingTransition
 			
 		
 			
-				<li><a href="/tags/C-ACE-网络/" title="C++, ACE, 网络">C++, ACE, 网络<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android-监听电池电量/" title="Android, 监听电池电量">Android, 监听电池电量<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Android-ProgressDialog，-耗时操作/" title="Android, ProgressDialog， 耗时操作">Android, ProgressDialog， 耗时操作<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-assert/" title="C++, assert">C++, assert<sup>1</sup></a></li>
 			
 		
 			
@@ -674,15 +710,23 @@ overridePendingTransition
 			
 		
 			
-				<li><a href="/tags/C-bind-回调/" title="C++, bind, 回调">C++, bind, 回调<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/C-VS/" title="C++, VS">C++, VS<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/前置/" title="前置++">前置++<sup>1</sup></a></li>
+				<li><a href="/tags/C-bind-回调/" title="C++, bind, 回调">C++, bind, 回调<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-assets/" title="Android, assets">Android, assets<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-Boost/" title="C++, Boost">C++, Boost<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-继承-同名成员变量/" title="C++, 继承, 同名成员变量">C++, 继承, 同名成员变量<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -690,7 +734,7 @@ overridePendingTransition
 
 
   <div class="linkslist">
-  <p class="asidetitle">Links</p>
+  <p class="asidetitle">友情链接</p>
     <ul>
         
           <li>
@@ -709,11 +753,11 @@ overridePendingTransition
 </div>
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
 </div>
 
   <div class="weiboshow">
-  <p class="asidetitle">Weibo</p>
+  <p class="asidetitle">新浪微博</p>
     <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
 </div>
 
@@ -954,7 +998,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
