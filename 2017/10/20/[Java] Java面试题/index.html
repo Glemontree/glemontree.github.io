@@ -1,0 +1,827 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>[Java] Java面试题 | Glemontree&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Glemontree">
+    
+
+    
+    <meta name="description" content="String类为什么是final的？
+
+从设计安全上讲，确保不会在子类中改变语义，String类是final类，这意味着不允许任何人定义String的子类，也就是说，如果有一个String的引用，它引用的一定是String对象，而不可能是其他类的对象
+从效率上讲，设计成final，JVM才不用对相关方法在虚函数表中查询，而直接定位到String类的相关方法上，提高了执行效率
+
+
+HashMap和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Java] Java面试题">
+<meta property="og:url" content="http://yoursite.com/2017/10/20/[Java] Java面试题/index.html">
+<meta property="og:site_name" content="Glemontree's blog">
+<meta property="og:description" content="String类为什么是final的？
+
+从设计安全上讲，确保不会在子类中改变语义，String类是final类，这意味着不允许任何人定义String的子类，也就是说，如果有一个String的引用，它引用的一定是String对象，而不可能是其他类的对象
+从效率上讲，设计成final，JVM才不用对相关方法在虚函数表中查询，而直接定位到String类的相关方法上，提高了执行效率
+
+
+HashMap和">
+<meta property="og:updated_time" content="2017-10-22T07:20:32.026Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Java] Java面试题">
+<meta name="twitter:description" content="String类为什么是final的？
+
+从设计安全上讲，确保不会在子类中改变语义，String类是final类，这意味着不允许任何人定义String的子类，也就是说，如果有一个String的引用，它引用的一定是String对象，而不可能是其他类的对象
+从效率上讲，设计成final，JVM才不用对相关方法在虚函数表中查询，而直接定位到String类的相关方法上，提高了执行效率
+
+
+HashMap和">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/favicon.ico" alt="Glemontree&#39;s blog" title="Glemontree&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Glemontree&#39;s blog">Glemontree&#39;s blog</a></h1>
+				<h2 class="blog-motto">day day up!</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="http://zhannei.baidu.com/cse/search" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="Search"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/10/20/[Java] Java面试题/" title="[Java] Java面试题" itemprop="url">[Java] Java面试题</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
+		
+  <p class="article-time">
+    <time datetime="2017-10-20T09:54:39.000Z" itemprop="datePublished"> Published 2017-10-20</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			
+		
+		</div>
+		
+		<ul>
+<li><p>String类为什么是final的？</p>
+<ul>
+<li>从设计安全上讲，确保不会在子类中改变语义，String类是final类，这意味着不允许任何人定义String的子类，也就是说，如果有一个String的引用，它引用的一定是String对象，而不可能是其他类的对象</li>
+<li>从效率上讲，设计成final，JVM才不用对相关方法在虚函数表中查询，而直接定位到String类的相关方法上，提高了执行效率</li>
+</ul>
+</li>
+<li><p>HashMap和Hashtable的区别</p>
+<ul>
+<li><p>两者最主要的区别是Hashtable是线程安全的，而HashMap是非线程安全的</p>
+<p>Hashtable的实现方法里都添加了synchronized关键字来确保线程同步，因此相对而言HashMap性能会高一些，平时使用时若无特殊需求建议使用HashMap，在多线程环境下若使用HashMap需要使用<code>Collections.synchronizedMap()</code>方法来获取一个线程安全的集合</p>
+</li>
+<li><p>HashMap可以使用null作为key，而Hashtable则不允许使用null作为key</p>
+</li>
+<li><p>HashMap的初始容量是16，Hashtable的初始容量是11，两者的填充因子默认是0.75，HashMap扩容时是当前容量翻倍即<code>capacity*2</code>，而Hashtable扩容时是容量翻倍+1即<code>capacity*2 + 1</code></p>
+</li>
+</ul>
+</li>
+<li><p>HashMap和Hashtable的实现原理</p>
+<p>HashMap和Hashtable的底层实现都是数组+链表结构实现的，添加、删除、获取元素时都是先计算hash，根据hash和table.length计算index也就是table数组的下标，然后进行相应操作</p>
+</li>
+<li><p>class.forName()和classLoader的区别</p>
+<p>class.forName()除了将类的.class文件加载到jvm中之外，还会对类就行解释，执行类中的static块，而classLoader只干一件事情，就是将.class文件加载到jvm中，不会指定static中的内容，只有在newInstance才会去执行static块</p>
+</li>
+<li><p>Session和Cookie的区别和联系</p>
+<p>Cookie实际上是一小段的文本信息，客户端请求服务器，如果服务器需要记录该用户状态，就使用response向客户端浏览器颁发一个Cookie，客户端会把Cookie保存起来。</p>
+<p>当浏览器再次请求该网站时，浏览器把请求的网址连同该Cookie一同提交给服务器，服务器检查该Cookie，以此来辨认用户状态，服务器还可以根据需要修改Cookie的内容。</p>
+<p>Session是另一种记录客户状态的机制，不同的是Cookie保存在客户端浏览器上，而Session保存在服务器上，客户端浏览器访问服务器的时候，服务器把客户信息以某种形式记录在服务器上，这就是Session，客户端浏览器再次访问时只需要从该Session中查找该客户的状态即可。每个用户访问服务器都会建立一个Session，用户和服务器建立连接的同时，服务器会自动会其分配一个SessionId。</p>
+<p>什么东西可以让你每次请求都把SessionId自动带到服务器呢？显然是Cookie。当程序需要为某个客户端的请求创建一个Session时，服务器会首先检查这个客户端的请求中是否已经包含了sessionId，如果已包含则说明以前已经为此客户端创建过session，服务器就按照sessionId把这个session检索出来使用（检索不到，会新建一个），如果客户端请求不包含sessionId，则为此客户端创建一个session并且生成一个与此session相关联的sessionId，这个sessionId将被在本次响应中返回给客户端保存。</p>
+<p>如果客户端禁用了cookie，通常有两种方法实现session而不依赖cookie：</p>
+<ul>
+<li>URL重写，就是把sessionId直接附加到URL路径的后面</li>
+<li>表单隐藏字段，就是服务器会自动修改表单，添加一个隐藏字段，以便在表单提交时能够把sessionId床底回服务器。</li>
+</ul>
+</li>
+<li><p>Session的生命周期</p>
+<p>Session存储在服务端，一般放置在服务器的内存中（为了高速存取），Session在用户第一次访问服务器时创建，需要注意的是只有访问JSP、Servlet等程序时才会创建Session，只访问HTML、IMAGE等静态资源并不会创建Session。</p>
+<p>服务器会把长时间没有活动的Session从服务器内存中移除，此时Session失效，Tomcat中Session的默认失效时间是20分钟，当然你也可以调用Session的invalidate方法。</p>
+</li>
+<li><p>Session对浏览器的要求</p>
+<p>虽然Session保存在服务端，对客户端是透明的，它的正常运行仍然需要客户端浏览器的支持，这是因为Session需要时会用Cookie作为识别标志。Http协议是无状态的，Session不能依据HTTP连接来判断是否为同一客户，因此服务器向客户端浏览器发送一个名为JSESSIONID的Cookie，它的值为该Session的Id，Session一看该Cookie来识别是否为同一用户。</p>
+<p>该Cookie是服务器自动生成的，它的maxAge属性为-1，表示仅当前浏览器内有效，并且各浏览器窗口间不共享，关闭浏览器会失效，因此同一机器的两个浏览器窗口访问服务器时会生成两个不同的Session，但是由浏览器窗口内的链接、脚本打开的新窗口（也就是说不是双击桌面浏览器图标等打开的窗口）除外，这类子窗口会共享父窗口的Cookie，因此会共享一个Session。</p>
+<p>新开的浏览器窗口会生成新的Session，但子窗口除外，子窗口会共用父窗口的Session，例如，在链接上右击，在弹出的快捷菜单上选择在“新窗口中打开”时，子窗口便可以访问父窗口的Session。</p>
+</li>
+<li><p>Struts2和SpringMVC</p>
+<ul>
+<li>Struts2是类级别的拦截，一个类对应一个request上下文，SpringMVC是方法级别的拦截，一个方法对应一个request上下文</li>
+<li>SpringMVC的方法之间基本上是独立的，独享request response数据，请求数据通过参数获取，处理结果通过ModelMap交回给框架，方法之间不共享变量</li>
+<li>SpringMVC的入口是Servlet，而Struts2是filter</li>
+<li>Struts2需要定义属性来获取请求中参数的数据，而属性在一个类的方法间是共享的（方法间不能独享request、response数据），而SpringMVC中请求参数与Controller中方法的形参自动配对，方法间可以独享request、response数据</li>
+<li>SpringMVC集成了Ajax，使用非常方便，只需一个注解<code>@ResponseBody</code>就可以实现，然后直接返回响应文本即可，而Struts2拦截器集成了Ajax，在Action中处理一般需要安装插件或者自己写代码集成进去。</li>
+</ul>
+</li>
+<li><p>Spring中BeanFactory和ApplicationContext的区别</p>
+<ul>
+<li>BeanFactory采用的是延迟加载的方式来注入Bean的，而ApplicationContext是在容器启动时一次性创建所有的Bean</li>
+<li>BeanFactory和ApplicationContext都支持BeanPostProcessor、BeanFactoryPostProcessor的使用，但两者的区别是BeanFactory需要手动注册，而ApplicationContext则是自动注册</li>
+<li>BeanFactory是Spring中比较原始的Factory，如XMLBeanFactory就是一种典型的BeanFactory，原始的BeanFactory无法支持Spring的许多插件，如AOP功能、WEB应用等</li>
+<li>ApplicationContext接口由BeanFactory接口派生而来，因而提供BeanFactory所有的功能</li>
+</ul>
+</li>
+<li><p>Spring循环注入</p>
+<ul>
+<li><p>构造器循环依赖</p>
+<p>表示通过构造器注入构成的循环依赖，此依赖是无法解决的，只能抛出BeanCurrentlyInCreationException异常表示循环依赖。</p>
+<p>Spring容器将每一个正在创建的Bean标识符放在一个“当前创建bean池”中，bean标识符在创建过程中将一直保持在这个池中，因此如果在创建bean过程中发现自己已经在“当前创建bean池”里时，将抛出BeanCurrentlyInCreationException异常表示循环依赖，而对于创建完毕的bean将从“当前创建bean池”中清除掉。</p>
+</li>
+<li><p>setter循环依赖</p>
+<p>表示通过setter注入方式构成的循环依赖，对于setter注入造成的依赖是通过Spring容器提前暴露刚完成构造器注入但未完成其他步骤（如setter注入）的bean来完成的，而且只能解决单例作用域的bean循环依赖</p>
+</li>
+<li><p>prototype范围的依赖处理</p>
+<p>对于prototype作用域bean，Spring容器无法完成循环依赖注入，因为Spring容器不进行缓存prototype作用域的bean，因此无法提前暴露一个创建中的bean</p>
+</li>
+</ul>
+</li>
+<li><p>Spring事务管理</p>
+<p>Spring并不直接管理事务，而是提供了多种事务管理器，他们将事务管理的职责委托给Hibernate或者JTA等持久化机制所提供的相关平台框架的事务来实现。</p>
+<p>Spring事务管理器的接口是<code>org.springframework.transaction.PlatformTransactionManager</code>，通过这个接口Spring为各个平台如JDBC、Hibernate等都提供了对应的事务管理器，但是具体的实现就是各个平台自己的事情了：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function">Public interface <span class="title">PlatformTransactionManager</span><span class="params">()</span>...</span>&#123;  </div><div class="line">    <span class="comment">// 由TransactionDefinition得到TransactionStatus对象</span></div><div class="line">    <span class="function">TransactionStatus <span class="title">getTransaction</span><span class="params">(TransactionDefinition definition)</span> <span class="keyword">throws</span> TransactionException</span>; </div><div class="line">    <span class="comment">// 提交</span></div><div class="line">    <span class="function">Void <span class="title">commit</span><span class="params">(TransactionStatus status)</span> <span class="keyword">throws</span> TransactionException</span>;  </div><div class="line">    <span class="comment">// 回滚</span></div><div class="line">    <span class="function">Void <span class="title">rollback</span><span class="params">(TransactionStatus status)</span> <span class="keyword">throws</span> TransactionException</span>;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>JDBC事务</p>
+<p>如果应用程序中直接使用JDBC来进行持久化，DataSourceTransactionManager会为你处理事务边界，为了使用DataSourceTransactionManager，你需要使用如下的XML将其装配到应用程序的上下文定义中：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"transactionManager"</span> <span class="attr">class</span>=<span class="string">"org.springframework.jdbc.datasource.DataSourceTransactionManager"</span>&gt;</span></div><div class="line">  	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>Hibernate事务</p>
+<p>如果应用程序的持久化是通过Hibernate实现的，那么你需要使用HibernateTransactionManager，对于Hibernate3，需要在Spring上下文定义中添加如下的声明：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"transactionManager"</span> <span class="attr">class</span>=<span class="string">"org.springframework.orm.hibernate3.HibernateTransactionManager"</span>&gt;</span></div><div class="line">  	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"sessionFactory"</span> <span class="attr">ref</span>=<span class="string">"sessionFactory"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>Java持久化API事务（JPA）</p>
+<p>如果你需要使用JpaTransactionManager来处理事务，你需要在Spring中这样配置：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"transactionManager"</span> <span class="attr">class</span>=<span class="string">"org.springframework.orm.jpa.JpaTransactionManager"</span>&gt;</span></div><div class="line">  	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"sessionFactory"</span> <span class="attr">ref</span>=<span class="string">"sessionFactory"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>Java原生API事务</p>
+<p>如果你没有使用以上所述的事务管理，或者是跨越了多个事务管理源（比如两个或者是多个不同的数据源），你就需要使用JtaTransactionManager：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"transactionManager"</span> <span class="attr">class</span>=<span class="string">"org.springframework.transaction.jta.JtaTransactionManager"</span>&gt;</span></div><div class="line">  	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"transactionManagerName"</span> <span class="attr">value</span>=<span class="string">"java:/TransactionManager"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>Java创建线程之后，直接调用start()方法和run()的区别</p>
+<p>start与run方法的主要区别在于当程序调用start方法一个新线程将会被创建，并且在run方法中的代码将会在线程上执行，然而如果你直接调用run方法，程序并不会创建新线程，run方法内部的代码将在当前线程上运行</p>
+</li>
+<li><p>Java中的线程池</p>
+<ul>
+<li>new Thread的弊端<ul>
+<li>每次new Thread新建对象性能差</li>
+<li>线程缺少统一管理，可能无限制创建线程，相互之间竞争</li>
+<li>缺乏更多功能，如定时执行、定期执行、线程中断</li>
+</ul>
+</li>
+<li>使用线程池的好处<ul>
+<li>重用存在的线程，减少对象的创建、消亡的开销，性能佳</li>
+<li>可有效控制最大并发线程数，提高系统资源的使用率</li>
+<li>提供定时执行、定期执行、单线程、并发数控制等功能</li>
+</ul>
+</li>
+<li>Java通过Executors提供四种线程池：<ul>
+<li>newCachedThreadPool创建一个可缓存线程池，如果线程池长度超过处理需要，可灵活回收空闲线程，如无可回收，则新建线程</li>
+<li>newFixedThreadPool创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待</li>
+<li>newScheduledThreadPool创建一个定长线程池，支持定时及周期性任务执行</li>
+<li>newSingleThreadExecutor创建一个单线程化的线程池，它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序（FIFO、LIFO、优先级）执行。</li>
+</ul>
+</li>
+</ul>
+<p>​</p>
+</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Java/">Java</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Java-面试/">Java 面试</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2017/10/20/[Java] Java面试题/" data-title="[Java] Java面试题 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/10/22/[Java] Java并发编程之volatile关键字/" title="[Java] Java并发编程之volatile关键字">
+  <strong>上一篇：</strong><br/>
+  <span>
+  [Java] Java并发编程之volatile关键字</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/10/07/[SpringMVC] 解决The resource identified by this request is only capable of generating responses with characteristics not acceptable according to the request accept headers/"  title="[SpringMVC] 解决The resource identified by this request is only capable of generating responses with characteristics not acceptable according to the request accept headers.">
+ <strong>下一篇：</strong><br/> 
+ <span>[SpringMVC] 解决The resource identified by this request is only capable of generating responses with characteristics not acceptable according to the request accept headers.
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/10/20/[Java] Java面试题/" data-title="[Java] Java面试题" data-url="http://yoursite.com/2017/10/20/[Java] Java面试题/"></div>
+</section>
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ 
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="glemontree" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android/" title="Android">Android<sup>14</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Boost/" title="Boost">Boost<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C/" title="C++">C++<sup>15</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CMake/" title="CMake">CMake<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/DB/" title="DB">DB<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/HTTPS/" title="HTTPS">HTTPS<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/IntelliJ-IDEA/" title="IntelliJ IDEA">IntelliJ IDEA<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/JQuery/" title="JQuery">JQuery<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Java/" title="Java">Java<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/MyBatis/" title="MyBatis">MyBatis<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Qt/" title="Qt">Qt<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Redis/" title="Redis">Redis<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Servlet/" title="Servlet">Servlet<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Spring/" title="Spring">Spring<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/SpringMVC/" title="SpringMVC">SpringMVC<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Struts2/" title="Struts2">Struts2<sup>14</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/TCP-IP/" title="TCP/IP">TCP/IP<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows核心编程/" title="Windows核心编程">Windows核心编程<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/html/" title="html">html<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/多线程/" title="多线程">多线程<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/编程规范/" title="编程规范">编程规范<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络编程/" title="网络编程">网络编程<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/JQuery/" title="JQuery">JQuery<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C++">C++<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MyBatis/" title="MyBatis">MyBatis<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-boost/" title="C++ boost">C++ boost<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DB/" title="DB">DB<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Struts2-OGNL/" title="Struts2, OGNL">Struts2, OGNL<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Redis/" title="Redis">Redis<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SpringMVC/" title="SpringMVC">SpringMVC<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Qt-QWebView-VS/" title="Qt, QWebView, VS">Qt, QWebView, VS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-APT、编译时注解/" title="Android, APT、编译时注解">Android, APT、编译时注解<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-ACE-网络/" title="C++, ACE, 网络">C++, ACE, 网络<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-11-Bind/" title="C++11, Bind">C++11, Bind<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-百度地图/" title="Android, 百度地图">Android, 百度地图<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-assert/" title="C++, assert">C++, assert<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-Boost/" title="C++, Boost">C++, Boost<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-bind-回调/" title="C++, bind, 回调">C++, bind, 回调<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-VS/" title="C++, VS">C++, VS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-继承-同名成员变量/" title="C++, 继承, 同名成员变量">C++, 继承, 同名成员变量<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://github.com/glemontree" target="_blank" title="GitHub">GitHub</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/u010216743" target="_blank" title="CSDN">CSDN</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">Weibo</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello World. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/glemontree" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:gtp0521@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Glemontree">Glemontree</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"glemontree"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'null'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
