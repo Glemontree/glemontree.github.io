@@ -29,7 +29,7 @@ HashMap和">
 
 
 HashMap和">
-<meta property="og:updated_time" content="2017-10-22T07:20:32.026Z">
+<meta property="og:updated_time" content="2017-10-22T14:49:51.097Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Java] Java面试题">
 <meta name="twitter:description" content="String类为什么是final的？
@@ -240,6 +240,45 @@ HashMap和">
 </ul>
 </li>
 </ul>
+</li>
+<li><p>Spring中controller默认是单例！</p>
+<p>Spring的controller为什么默认是单例呢？原因有二：</p>
+<ul>
+<li>为了性能</li>
+<li>不需要多例</li>
+</ul>
+<p>单例不需要每次都new，自然性能要高，对于第二个原因，如果你给controller中定义了很多的属性，那么单例肯定会出现竞争访问，因此，只要在controller中不定义属性，那么单例就是安全的</p>
+</li>
+<li><p>synchronized和Lock</p>
+<ul>
+<li><p>synchronized</p>
+<p>需要对一个方法进行同步，那么只需在方法的签名添加一个synchronized关键字：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</div><div class="line">  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>synchronized也可以用在一个代码块上：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</div><div class="line">  	<span class="keyword">synchronized</span>(obj) &#123;</div><div class="line">      	...</div><div class="line">  	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>synchronized用在方法和代码块上有什么区别呢？</p>
+<p>synchronized用在方法签名上，当某个线程调用此方法时，会获取该实例的对象锁，方法未结束之前，其他线程只能去等待，当这个方法执行完后，才会释放对象锁，其他线程才有机会去抢占这把锁，但是发生这一切的基础应当是所有线程使用的同一个对象实例，才能实现互斥的现象。</p>
+<p>但是如果该方法为类方法，即其修饰符为static，那么synchronized意味着某个调用此方法的线程当前会拥有该类的锁，只要该线程持续在当前方法内运行，其他线程依然无法获取方法的使用权。</p>
+<p>而当synchronized用在代码块上时，就会拥有obj对象的对象锁，如果多个线程共享同一个Object对象，那么此时就会产生互斥，特别的，当obj == this时，表示当前调用该方法的实例对象，即：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</div><div class="line">  	...</div><div class="line">    <span class="keyword">synchronized</span>(<span class="keyword">this</span>) &#123;</div><div class="line">      	...</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>此时，其效果等同于：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</div><div class="line">  	...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使用synchronized代码块，可以只对需要同步的代码进行同步，这样可以大大提高效率。</p>
+</li>
+<li><p>ReentrantLock </p>
+<p>ReentrantLock 与synchronized有相同的并发性和内存语义，还包含了中断锁等候和定时锁等候，意味着线程A如果先获得了对象obj的锁，那么线程B可以在等待指定时间内依然无法获取锁，那么就会自动放弃该锁。</p>
+<p>但是由于synchronized是在JVM层面实现的，因此系统可以监控锁的释放与否，而ReentrantLock使用代码实现的，系统无法自动释放锁，需要在代码中finally子句中显式释放锁lock.unlock()；</p>
+</li>
+<li><p>使用建议</p>
+<p>在并发量比较小的情况下使用synchronized是个不错的选择，但是在并发量比较高的情况下其性能下降很严重，此时ReentrantLock是个不错的选择。</p>
+</li>
+</ul>
+</li>
+<li><p>wait()与notify()、notifyAll()</p>
+<p>这三个方法都是Object的方法，并不是线程的方法。</p>
+<p>wait()：释放占用的对象锁，线程进入等待池，释放CPU，而其他正在等待的线程即可抢占此锁，获得锁的线程即可运行程序。而sleep()不同的是线程调用此方法后会休眠一段时间，休眠期间会暂时释放CPU，但不释放对象锁，也就是说，在休眠期间，其他线程依然无法进入此代码内部，休眠结束，线程重新获得CPU，执行代码。<strong><em>wait()和sleep()最大的不同在于wait()会释放对象锁，而sleep()不会</em></strong>。</p>
+<p>notify()：该方法会唤醒因为调用对象的wait()而等待的线程，其实就是对对象锁的唤醒，从而使得wait()的线程可以有机会获取对象锁。调用notify()后，并不会立即释放锁，而是继续执行当前代码，直到synchronized中的代码执行完毕，才会释放对象锁，JVM会在等待的线程中调用一个线程去获取对象锁，执行代码，<strong><em>需要注意的是，wait()和notify()必须在synchronized代码块中调用</em></strong>。</p>
+<p>​</p>
 <p>​</p>
 </li>
 </ul>
@@ -341,7 +380,7 @@ HashMap和">
 		  
 		
 		  
-			<li><a href="/categories/C/" title="C++">C++<sup>15</sup></a></li>
+			<li><a href="/categories/C/" title="C++">C++<sup>17</sup></a></li>
 		  
 		
 		  
@@ -373,7 +412,7 @@ HashMap和">
 		  
 		
 		  
-			<li><a href="/categories/Linux/" title="Linux">Linux<sup>4</sup></a></li>
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>5</sup></a></li>
 		  
 		
 		  
@@ -446,7 +485,7 @@ HashMap和">
 			
 		
 			
-				<li><a href="/tags/C/" title="C++">C++<sup>6</sup></a></li>
+				<li><a href="/tags/C/" title="C++">C++<sup>7</sup></a></li>
 			
 		
 			
@@ -454,15 +493,15 @@ HashMap和">
 			
 		
 			
-				<li><a href="/tags/C-boost/" title="C++ boost">C++ boost<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/DB/" title="DB">DB<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
+				<li><a href="/tags/C-boost/" title="C++ boost">C++ boost<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
 			
 		
 			
@@ -470,7 +509,7 @@ HashMap和">
 			
 		
 			
-				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
+				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
 			
 		
 			
@@ -482,19 +521,11 @@ HashMap和">
 			
 		
 			
-				<li><a href="/tags/Qt-QWebView-VS/" title="Qt, QWebView, VS">Qt, QWebView, VS<sup>1</sup></a></li>
+				<li><a href="/tags/MyBatis-resultMap/" title="MyBatis, resultMap">MyBatis, resultMap<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android-APT、编译时注解/" title="Android, APT、编译时注解">Android, APT、编译时注解<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-ACE-网络/" title="C++, ACE, 网络">C++, ACE, 网络<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-11-Bind/" title="C++11, Bind">C++11, Bind<sup>1</sup></a></li>
+				<li><a href="/tags/Android-绘制文本/" title="Android, 绘制文本">Android, 绘制文本<sup>1</sup></a></li>
 			
 		
 			
@@ -502,11 +533,19 @@ HashMap和">
 			
 		
 			
-				<li><a href="/tags/C-assert/" title="C++, assert">C++, assert<sup>1</sup></a></li>
+				<li><a href="/tags/C-Boost/" title="C++, Boost">C++, Boost<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-Boost/" title="C++, Boost">C++, Boost<sup>1</sup></a></li>
+				<li><a href="/tags/Android-xml-tools/" title="Android, xml-tools">Android, xml-tools<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-ProgressDialog，-耗时操作/" title="Android, ProgressDialog， 耗时操作">Android, ProgressDialog， 耗时操作<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-监听电池电量/" title="Android, 监听电池电量">Android, 监听电池电量<sup>1</sup></a></li>
 			
 		
 			
@@ -518,7 +557,7 @@ HashMap和">
 			
 		
 			
-				<li><a href="/tags/C-继承-同名成员变量/" title="C++, 继承, 同名成员变量">C++, 继承, 同名成员变量<sup>1</sup></a></li>
+				<li><a href="/tags/C-assert/" title="C++, assert">C++, assert<sup>1</sup></a></li>
 			
 		
 		</ul>
