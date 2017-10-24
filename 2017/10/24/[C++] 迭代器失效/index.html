@@ -4,44 +4,29 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>[DB] MySQL UPDATE查询 | Glemontree&#39;s blog</title>
+    <title>[C++] 迭代器失效 | Glemontree&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Glemontree">
     
 
     
-    <meta name="description" content="语法1UPDATE table_name SET field1=new-value1, field2=new-value2 [WHERE Clause];
-
-可以同时更新一个或多个字段
-可以在WHERE字句中指定任何条件
-可以在一个单独表中同时更新数据
-当需要更新数据表中指定行的数据时，WHERE字句是很有用的
-
-实例1UPDATE runoob_tbl SET runoob_title=&amp;apo">
+    <meta name="description" content="迭代器失效当使用一个容器的insert或者erase函数通过迭代器插入或删除元素可能会导致迭代器失效，因此很多建议都是让我们获取insert或者erase返回的迭代器，以便用重新获取新的有效的迭代器进行正确的操作。
+12iter = vec.insert(iter);iter = vec.erase(iter);
+迭代器失效的原因以vector为例，当我们插入一个元素时它的预分配空间不够时，它会重">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[DB] MySQL UPDATE查询">
-<meta property="og:url" content="http://yoursite.com/2017/06/28/[DB] MySQL UPDATE查询/index.html">
+<meta property="og:title" content="[C++] 迭代器失效">
+<meta property="og:url" content="http://yoursite.com/2017/10/24/[C++] 迭代器失效/index.html">
 <meta property="og:site_name" content="Glemontree's blog">
-<meta property="og:description" content="语法1UPDATE table_name SET field1=new-value1, field2=new-value2 [WHERE Clause];
-
-可以同时更新一个或多个字段
-可以在WHERE字句中指定任何条件
-可以在一个单独表中同时更新数据
-当需要更新数据表中指定行的数据时，WHERE字句是很有用的
-
-实例1UPDATE runoob_tbl SET runoob_title=&amp;apo">
-<meta property="og:updated_time" content="2017-06-28T10:39:47.754Z">
+<meta property="og:description" content="迭代器失效当使用一个容器的insert或者erase函数通过迭代器插入或删除元素可能会导致迭代器失效，因此很多建议都是让我们获取insert或者erase返回的迭代器，以便用重新获取新的有效的迭代器进行正确的操作。
+12iter = vec.insert(iter);iter = vec.erase(iter);
+迭代器失效的原因以vector为例，当我们插入一个元素时它的预分配空间不够时，它会重">
+<meta property="og:updated_time" content="2017-10-24T14:41:23.981Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[DB] MySQL UPDATE查询">
-<meta name="twitter:description" content="语法1UPDATE table_name SET field1=new-value1, field2=new-value2 [WHERE Clause];
-
-可以同时更新一个或多个字段
-可以在WHERE字句中指定任何条件
-可以在一个单独表中同时更新数据
-当需要更新数据表中指定行的数据时，WHERE字句是很有用的
-
-实例1UPDATE runoob_tbl SET runoob_title=&amp;apo">
+<meta name="twitter:title" content="[C++] 迭代器失效">
+<meta name="twitter:description" content="迭代器失效当使用一个容器的insert或者erase函数通过迭代器插入或删除元素可能会导致迭代器失效，因此很多建议都是让我们获取insert或者erase返回的迭代器，以便用重新获取新的有效的迭代器进行正确的操作。
+12iter = vec.insert(iter);iter = vec.erase(iter);
+迭代器失效的原因以vector为例，当我们插入一个元素时它的预分配空间不够时，它会重">
 
     
     <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
@@ -100,14 +85,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/06/28/[DB] MySQL UPDATE查询/" title="[DB] MySQL UPDATE查询" itemprop="url">[DB] MySQL UPDATE查询</a>
+      <a href="/2017/10/24/[C++] 迭代器失效/" title="[C++] 迭代器失效" itemprop="url">[C++] 迭代器失效</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-28T09:54:26.000Z" itemprop="datePublished"> Published 2017-06-28</time>
+    <time datetime="2017-10-24T13:56:42.000Z" itemprop="datePublished"> Published 2017-10-24</time>
     
   </p>
 </header>
@@ -116,18 +101,41 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#语法"><span class="toc-number">1.</span> <span class="toc-text">语法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实例"><span class="toc-number">2.</span> <span class="toc-text">实例</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#迭代器失效"><span class="toc-number">1.</span> <span class="toc-text">迭代器失效</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#迭代器失效的原因"><span class="toc-number">2.</span> <span class="toc-text">迭代器失效的原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#迭代器失效分类"><span class="toc-number">3.</span> <span class="toc-text">迭代器失效分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#说明"><span class="toc-number">4.</span> <span class="toc-text">说明</span></a></li></ol>
 		
 		</div>
 		
-		<h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">UPDATE table_name SET field1=new-value1, field2=new-value2 [WHERE Clause];</div></pre></td></tr></table></figure>
+		<h2 id="迭代器失效"><a href="#迭代器失效" class="headerlink" title="迭代器失效"></a>迭代器失效</h2><p>当使用一个容器的insert或者erase函数通过迭代器插入或删除元素可能会导致迭代器失效，因此很多建议都是让我们获取insert或者erase返回的迭代器，以便用重新获取新的有效的迭代器进行正确的操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">iter = vec.insert(iter);</div><div class="line">iter = vec.erase(iter);</div></pre></td></tr></table></figure>
+<h2 id="迭代器失效的原因"><a href="#迭代器失效的原因" class="headerlink" title="迭代器失效的原因"></a>迭代器失效的原因</h2><p>以vector为例，当我们插入一个元素时它的预分配空间不够时，它会重新分配一段新空间，将原空间上的元素复制到新空间上，然后再把新加入的元素放到新空间的尾部，以满足vector元素要求连续存储的目的。而后原空间会被系统撤销或者征作他用，于是指向原空间的迭代器类似于“悬垂指针”一样的东西，指向了一片非法区域。</p>
+<h2 id="迭代器失效分类"><a href="#迭代器失效分类" class="headerlink" title="迭代器失效分类"></a>迭代器失效分类</h2><ul>
+<li><p>vector</p>
 <ul>
-<li>可以同时更新一个或多个字段</li>
-<li>可以在WHERE字句中指定任何条件</li>
-<li>可以在一个单独表中同时更新数据</li>
-<li>当需要更新数据表中指定行的数据时，WHERE字句是很有用的</li>
+<li>vector的push_back操作可能没事，但是一旦引发内存重分配，所有迭代器都会失效</li>
+<li>vector的insert操作插入点之后的所有迭代器失效，但一旦发生内存重分配，所有迭代器都会失效</li>
+<li>vector的erase操作插入点之后的所有迭代器失效</li>
+<li>vector的reserve操作所有迭代器失效（导致内存重分配）</li>
 </ul>
-<h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">UPDATE runoob_tbl SET runoob_title=&apos;学习 C++&apos; WHERE runoob_id=3;</div></pre></td></tr></table></figure>
+</li>
+<li><p>list/map</p>
+<p>插入不会使得任何迭代器失效，删除运算使指向删除位置的迭代器失效，但是不会失效其他迭代器</p>
+</li>
+<li><p>deque</p>
+<ul>
+<li>insert操作会使所有迭代器失效</li>
+<li>erase操作会使所有迭代器失效</li>
+</ul>
+</li>
+<li><p>对于关联容器（map、set、multimap、multiset），删除当前的iterator，仅仅会使当前的iterator失效，只要在erase时，递增当前iterator即可。这是因为map之类的容器使用了红黑树来实现，插入、删除一个结点不会对其他结点产生影响。erase迭代器只是被删元素的迭代器失效，但是因为erase()函数返回为void类型，所以要采用erase(iter++)的方式删除迭代器：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (iter = cont.begin(); it != cont.end();)</div><div class="line">&#123;</div><div class="line">   (*iter)-&gt;doSomething();</div><div class="line">   <span class="keyword">if</span> (shouldDelete(*iter))</div><div class="line">      cont.erase(iter++);</div><div class="line">   <span class="keyword">else</span></div><div class="line">      ++iter;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>对于序列式容器（vector、deque），删除当前的iterator会使后面所有元素的iterator失效，这是因为vector、deque使用了连续分配的内存，删除一个元素会导致后面所有元素向前移动一个位置，所以不能使用erase(iter++)的方式，不过erase()方法返回了下一个有效的iterator</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (iter = cont.begin(); iter != cont.end();)</div><div class="line">&#123;</div><div class="line">   (*it)-&gt;doSomething();</div><div class="line">   <span class="keyword">if</span> (shouldDelete(*iter))</div><div class="line">      iter = cont.erase(iter); </div><div class="line">   <span class="keyword">else</span></div><div class="line">      ++iter;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>对于list来说，它使用了不连续分配的内存，并且它的erase方法也会返回下一个有效的iterator，因此上面两种方法都可以使用。</p>
+</li>
+</ul>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>本文转载自文章 <a href="http://blog.csdn.net/heyutao007/article/details/6937236" target="_blank" rel="external">失效迭代器（Invalidating Iterators）</a>。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -135,13 +143,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/DB/">DB</a>
+  <a class="article-category-link" href="/categories/C/">C++</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/MySQL-UPDATE/">MySQL UPDATE</a>
+  <span></span> <a href="/tags/C-11-迭代器/">C++11, 迭代器</a>
   </div>
 
 </div>
@@ -150,7 +158,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2017/06/28/[DB] MySQL UPDATE查询/" data-title="[DB] MySQL UPDATE查询 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/10/24/[C++] 迭代器失效/" data-title="[C++] 迭代器失效 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -163,19 +171,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/06/28/[Linux] Linux中eventfd的使用/" title="[Linux] Linux中eventfd的使用">
-  <strong>上一篇：</strong><br/>
-  <span>
-  [Linux] Linux中eventfd的使用</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/06/28/[Qt] Qt中processEvents函数/"  title="[Qt] Qt中processEvents函数">
+<a href="/2017/10/23/[C++] C++中的new、operator new和placement new/"  title="[C++] C++中的new、operator new和placement new">
  <strong>下一篇：</strong><br/> 
- <span>[Qt] Qt中processEvents函数
+ <span>[C++] C++中的new、operator new和placement new
 </span>
 </a>
 </div>
@@ -184,7 +184,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2017/06/28/[DB] MySQL UPDATE查询/" data-title="[DB] MySQL UPDATE查询" data-url="http://yoursite.com/2017/06/28/[DB] MySQL UPDATE查询/"></div>
+	<div class="ds-thread" data-thread-key="2017/10/24/[C++] 迭代器失效/" data-title="[C++] 迭代器失效" data-url="http://yoursite.com/2017/10/24/[C++] 迭代器失效/"></div>
 </section>
 
 
@@ -195,7 +195,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#语法"><span class="toc-number">1.</span> <span class="toc-text">语法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实例"><span class="toc-number">2.</span> <span class="toc-text">实例</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#迭代器失效"><span class="toc-number">1.</span> <span class="toc-text">迭代器失效</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#迭代器失效的原因"><span class="toc-number">2.</span> <span class="toc-text">迭代器失效的原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#迭代器失效分类"><span class="toc-number">3.</span> <span class="toc-text">迭代器失效分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#说明"><span class="toc-number">4.</span> <span class="toc-text">说明</span></a></li></ol>
  
   </div>
 
