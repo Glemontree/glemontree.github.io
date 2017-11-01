@@ -77,6 +77,123 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
+    <a href="/2017/06/28/[C++] effective_C++_条款03/" title="[C++] effective_C++_条款03" itemprop="url">
+  
+    <h1 itemprop="name">[C++] effective_C++_条款03</h1>
+    
+     
+           <p itemprop="description" >条款03：尽可能使用const
+修饰变量，使其不可改变
+1const int var = 3;
+此时var的值就不能改变了，因为这个特性，所以在声明的时候就要初始化，这样是不行的：
+1const int var;
+
+修饰指针
+可分为两种情况，指向常量的指针和常量指针
+1const</p>
+        
+    
+    <time datetime="2017-06-28T10:12:05.000Z" itemprop="datePublished">2017-06-28</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/06/28/[C++] effective_C++_条款05/" title="[C++] effective_C++_条款05" itemprop="url">
+  
+    <h1 itemprop="name">[C++] effective_C++_条款05</h1>
+    
+     
+           <p itemprop="description" >条款05：了解C++默默编写并调用哪些函数
+一个空类为了区分不同的对象，其通占有1个字节
+编译器为空类默认生成拷贝函数、析构函数、拷贝构造函数以及赋值运算符
+假设有下面这个空类：
+123class EmptyClass &amp;#123;  	&amp;#125;;
+编译器会为EmptyCla</p>
+        
+    
+    <time datetime="2017-06-28T10:10:57.000Z" itemprop="datePublished">2017-06-28</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/06/28/[C++] Effective_C++_条款06/" title="[C++] Effective_C++_条款06" itemprop="url">
+  
+    <h1 itemprop="name">[C++] Effective_C++_条款06</h1>
+    
+     
+           <p itemprop="description" >条款06：若不想使用编译器自动生成的函数，就应该明确拒绝
+总有些情况，我们不希望编译器为我们生成拷贝构造函数和赋值函数，这时候我们就应该明确告诉编译器不要生成。
+
+为了解决这个问题，我们可以自己写拷贝构造函数和赋值函数，这样编译器就不会为我们生成，但不能写在public里，因为p</p>
+        
+    
+    <time datetime="2017-06-28T10:09:52.000Z" itemprop="datePublished">2017-06-28</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/06/28/[Qt] file的作用/" title="[Qt] file:///的作用" itemprop="url">
+  
+    <h1 itemprop="name">[Qt] file:///的作用</h1>
+    
+     
+           <p itemprop="description" >本地文件传输协议，File协议主要用于访问本地计算机上的的文件，就如同在Windows资源管理器中打开文件一样。
+要使用File协议，基本的格式如下：file:///文件路径。</p>
+        
+    
+    <time datetime="2017-06-28T10:08:22.000Z" itemprop="datePublished">2017-06-28</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/06/28/[Hexo] Hexo更换主题/" title="[Hexo] Hexo更换主题" itemprop="url">
+  
+    <h1 itemprop="name">[Hexo] Hexo更换主题</h1>
+    
+     
+           <p itemprop="description" >当更换主题后，若想让更换后的主题生效，可以执行下面这条命令：hexo d -g。</p>
+        
+    
+    <time datetime="2017-06-28T10:07:25.000Z" itemprop="datePublished">2017-06-28</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
     <a href="/2017/06/28/[html] div标签/" title="[html] div标签" itemprop="url">
   
     <h1 itemprop="name">[html] div标签</h1>
@@ -188,119 +305,9 @@ p元素会自动在其前后创建一些空白
 
 
 
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[html] span元素/" title="[html] span元素" itemprop="url">
-  
-    <h1 itemprop="name">[html] span元素</h1>
-    
-     
-           <p itemprop="description" >实例使用&amp;lt;span&amp;gt;元素对文本中的一部分进行着色：
-1&amp;lt;p&amp;gt;我的母亲有&amp;lt;span style=&quot;color:blue&quot;&amp;gt;蓝色&amp;lt;/span&amp;gt;的眼睛。&amp;lt;/p&amp;gt;
-标签定义及使用说明&amp;lt;span&amp;gt;用于对文档中的行内元素</p>
-        
-    
-    <time datetime="2017-06-28T10:01:27.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[网络编程] IO多路复用/" title="[网络编程] IO多路复用" itemprop="url">
-  
-    <h1 itemprop="name">[网络编程] IO多路复用</h1>
-    
-     
-           <p itemprop="description" >阻塞IO和非阻塞IO常见的IO操作有read和write，通常IO操作都是阻塞I/O，即当前调用read时如果没有数据收到，那么线程或者进行就会被挂起，直到收到数据。
-对于非阻塞I/O，通过fcntl（POSIX）或ioctl（UNIX）设为非阻塞模式，这时当你调用read时，如</p>
-        
-    
-    <time datetime="2017-06-28T10:00:26.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[Java] Java反射为什么需要无参构造函数/" title="[Java] Java反射为什么需要无参构造函数" itemprop="url">
-  
-    <h1 itemprop="name">[Java] Java反射为什么需要无参构造函数</h1>
-    
-     
-           <p itemprop="description" >Java反射为什么需要无参构造函数最近在学习Spring，Spring有个关键的技术就是IOC，即控制反转，其中用到得一个重要的技术就是反射，在学习的过程中发现如果不提供一个无参的构造函数程序会报错，查了一些资料后对Java反射为什么需要无参构造函数这一知识点进行记录。
-一般来说</p>
-        
-    
-    <time datetime="2017-06-28T09:59:14.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[Linux] Linux epoll的用法/" title="[Linux] Linux epoll的用法" itemprop="url">
-  
-    <h1 itemprop="name">[Linux] Linux epoll的用法</h1>
-    
-     
-           <p itemprop="description" >Epoll的用法select与epoll在旧的Linux中，通常都在使用select来做事件触发，而在新的Linux内核中，开始使用epoll来代替。相比于select，epoll最大的好处就是不会随着监听fd数目的增长而降低效率。
-当使用select时，它是采用轮询来处理的，轮</p>
-        
-    
-    <time datetime="2017-06-28T09:57:39.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[Linux] Linux网络编程/" title="[Linux] Linux网络编程" itemprop="url">
-  
-    <h1 itemprop="name">[Linux] Linux网络编程</h1>
-    
-     
-           <p itemprop="description" >EPoll的两种工作模式本文主要包含两个方面：
-
-Linux中的EAGAIN错误码
-EPoll的两种工作模式
-
-一、EAGAIN从字面上来看，表示再试一次的意思，这个错误经常出现在当应用程序进行一些非阻塞操作（对文件或socket）的时候，例如以O_NONBLOCKING的标志打</p>
-        
-    
-    <time datetime="2017-06-28T09:56:40.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix unexpand">
-    <a class="extend prev" rel="prev" href="/page/8/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/10/">Next<span></span></a>
+    <a class="extend prev" rel="prev" href="/page/8/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/10/">Next<span></span></a>
   </nav>
 
 </div>
@@ -333,7 +340,7 @@ EPoll的两种工作模式
 		  
 		
 		  
-			<li><a href="/categories/C/" title="C++">C++<sup>21</sup></a></li>
+			<li><a href="/categories/C/" title="C++">C++<sup>23</sup></a></li>
 		  
 		
 		  
@@ -361,7 +368,7 @@ EPoll的两种工作模式
 		  
 		
 		  
-			<li><a href="/categories/Java/" title="Java">Java<sup>6</sup></a></li>
+			<li><a href="/categories/Java/" title="Java">Java<sup>7</sup></a></li>
 		  
 		
 		  
@@ -385,7 +392,7 @@ EPoll的两种工作模式
 		  
 		
 		  
-			<li><a href="/categories/Spring/" title="Spring">Spring<sup>4</sup></a></li>
+			<li><a href="/categories/Spring/" title="Spring">Spring<sup>5</sup></a></li>
 		  
 		
 		  
@@ -393,7 +400,7 @@ EPoll的两种工作模式
 		  
 		
 		  
-			<li><a href="/categories/Struts2/" title="Struts2">Struts2<sup>14</sup></a></li>
+			<li><a href="/categories/Struts2/" title="Struts2">Struts2<sup>15</sup></a></li>
 		  
 		
 		  
@@ -454,6 +461,10 @@ EPoll的两种工作模式
 			
 		
 			
+				<li><a href="/tags/Struts2-OGNL/" title="Struts2, OGNL">Struts2, OGNL<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
 			
 		
@@ -470,7 +481,11 @@ EPoll的两种工作模式
 			
 		
 			
-				<li><a href="/tags/Struts2-OGNL/" title="Struts2, OGNL">Struts2, OGNL<sup>2</sup></a></li>
+				<li><a href="/tags/Spring-AOP/" title="Spring, AOP">Spring, AOP<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux-zsh/" title="Linux, zsh">Linux, zsh<sup>1</sup></a></li>
 			
 		
 			
@@ -478,23 +493,15 @@ EPoll的两种工作模式
 			
 		
 			
-				<li><a href="/tags/Android-监听电池电量/" title="Android, 监听电池电量">Android, 监听电池电量<sup>1</sup></a></li>
+				<li><a href="/tags/C-11-Bind/" title="C++11, Bind">C++11, Bind<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
+				<li><a href="/tags/Android-assets/" title="Android, assets">Android, assets<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android-SDK版本号/" title="Android, SDK版本号">Android, SDK版本号<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android-ProgressDialog，-耗时操作/" title="Android, ProgressDialog， 耗时操作">Android, ProgressDialog， 耗时操作<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-面试/" title="C++ 面试">C++ 面试<sup>1</sup></a></li>
+				<li><a href="/tags/C-Boost/" title="C++, Boost">C++, Boost<sup>1</sup></a></li>
 			
 		
 			
@@ -502,15 +509,15 @@ EPoll的两种工作模式
 			
 		
 			
-				<li><a href="/tags/C-11-Bind/" title="C++11, Bind">C++11, Bind<sup>1</sup></a></li>
+				<li><a href="/tags/C-回调/" title="C++ 回调">C++ 回调<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android/" title="Android">Android<sup>1</sup></a></li>
+				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-Boost/" title="C++, Boost">C++, Boost<sup>1</sup></a></li>
+				<li><a href="/tags/C-泛型/" title="C++ 泛型">C++ 泛型<sup>1</sup></a></li>
 			
 		
 		</ul>

@@ -29,7 +29,7 @@ HashMap和">
 
 
 HashMap和">
-<meta property="og:updated_time" content="2017-10-22T14:49:51.097Z">
+<meta property="og:updated_time" content="2017-10-28T08:03:31.844Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Java] Java面试题">
 <meta name="twitter:description" content="String类为什么是final的？
@@ -278,6 +278,32 @@ HashMap和">
 <p>这三个方法都是Object的方法，并不是线程的方法。</p>
 <p>wait()：释放占用的对象锁，线程进入等待池，释放CPU，而其他正在等待的线程即可抢占此锁，获得锁的线程即可运行程序。而sleep()不同的是线程调用此方法后会休眠一段时间，休眠期间会暂时释放CPU，但不释放对象锁，也就是说，在休眠期间，其他线程依然无法进入此代码内部，休眠结束，线程重新获得CPU，执行代码。<strong><em>wait()和sleep()最大的不同在于wait()会释放对象锁，而sleep()不会</em></strong>。</p>
 <p>notify()：该方法会唤醒因为调用对象的wait()而等待的线程，其实就是对对象锁的唤醒，从而使得wait()的线程可以有机会获取对象锁。调用notify()后，并不会立即释放锁，而是继续执行当前代码，直到synchronized中的代码执行完毕，才会释放对象锁，JVM会在等待的线程中调用一个线程去获取对象锁，执行代码，<strong><em>需要注意的是，wait()和notify()必须在synchronized代码块中调用</em></strong>。</p>
+</li>
+<li><p>如何通过反射来创建对象？</p>
+<ul>
+<li><p>通过类对象调用newInstance()方法，适用于无参构造方法，例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String.class.newInstance();</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line"></div><div class="line">        Solution solution = Solution.class.newInstance();</div><div class="line"></div><div class="line">        Solution solution2 = solution.getClass().newInstance();</div><div class="line"></div><div class="line">        Class solutionClass = Class.forName(<span class="string">"Solution"</span>);</div><div class="line">        Solution solution3 = (Solution) solutionClass.newInstance();</div><div class="line"></div><div class="line">        System.out.println(solution <span class="keyword">instanceof</span> Solution); <span class="comment">//true</span></div><div class="line">        System.out.println(solution2 <span class="keyword">instanceof</span> Solution); <span class="comment">//true</span></div><div class="line">        System.out.println(solution3 <span class="keyword">instanceof</span> Solution); <span class="comment">//true</span></div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>通过类对象的getConstructor()或getDeclaredConstructor()方法获得构造器对象并调用其newInstance()方法来创建对象，适用于无参和有参的构造方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> String str;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> num;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Solution</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Solution</span><span class="params">(String str, <span class="keyword">int</span> num)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.str = str;</div><div class="line">        <span class="keyword">this</span>.num = num;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Solution</span><span class="params">(String str)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.str = str;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line"></div><div class="line">        Class[] classes = <span class="keyword">new</span> Class[] &#123; String.class, <span class="keyword">int</span>.class &#125;;</div><div class="line">        Solution solution = Solution.class.getConstructor(classes).newInstance(<span class="string">"hello1"</span>, <span class="number">10</span>);</div><div class="line">        System.out.println(solution.str); <span class="comment">// hello1</span></div><div class="line"></div><div class="line">        Solution solution2 = solution.getClass().getDeclaredConstructor(String.class).newInstance(<span class="string">"hello2"</span>);</div><div class="line">        System.out.println(solution2.str); <span class="comment">// hello2</span></div><div class="line"></div><div class="line">        Solution solution3 = (Solution) Class.forName(<span class="string">"Solution"</span>).getConstructor().newInstance(); <span class="comment">// 无参也可用getConstructor()</span></div><div class="line">        System.out.println(solution3 <span class="keyword">instanceof</span> Solution); <span class="comment">// true</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>getConstructor()和getDeclaredConstructor()区别：</strong></p>
+<blockquote>
+<p>getDeclaredConstructor(Class&lt;?&gt;… parameterTypes)<br>这个方法会返回制定参数类型的所有构造器，<strong>包括public的和非public的，</strong>当然也包括private的。<br>getDeclaredConstructors()的返回结果就没有参数类型的过滤了。</p>
+<p>再来看getConstructor(Class&lt;?&gt;… parameterTypes)<br>这个方法返回的是上面那个方法返回结果的子集，<strong>只返回制定参数类型访问权限是public的</strong>构造器。getConstructors()的返回结果同样也没有参数类型的过滤。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>CountDownLatch</p>
+<p>现有一个任务A，它要等待其他4个任务执行完毕后才能执行，此时就可以使用CountDownLatch来实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">CountDonwLatch</span><span class="params">(<span class="keyword">int</span> count)</span></span>; <span class="comment">// 构造方法</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">await</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException</span>; <span class="comment">// 调用await()方法的线程将会被挂起，它会等到直到count值为0才继续执行</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">await</span><span class="params">(<span class="keyword">long</span> timeout, TimeUnit unit)</span> <span class="keyword">throws</span> InterruptedException</span>; <span class="comment">// 和await()相似，但是只不过等待一定的时间后count值还没变0的话会继续执行</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">countDown</span><span class="params">()</span></span>; <span class="comment">// 将count值减1</span></div></pre></td></tr></table></figure>
+<p>例子如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</div><div class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;   </div><div class="line">         <span class="keyword">final</span> CountDownLatch latch = <span class="keyword">new</span> CountDownLatch(<span class="number">2</span>);</div><div class="line"> </div><div class="line">         <span class="keyword">new</span> Thread()&#123;</div><div class="line">             <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">                 <span class="keyword">try</span> &#123;</div><div class="line">                     System.out.println(<span class="string">"子线程"</span>+Thread.currentThread().getName()+<span class="string">"正在执行"</span>);</div><div class="line">                    Thread.sleep(<span class="number">3000</span>);</div><div class="line">                    System.out.println(<span class="string">"子线程"</span>+Thread.currentThread().getName()+<span class="string">"执行完毕"</span>);</div><div class="line">                    latch.countDown();</div><div class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">                    e.printStackTrace();</div><div class="line">                &#125;</div><div class="line">             &#125;;</div><div class="line">         &#125;.start();</div><div class="line"> </div><div class="line">         <span class="keyword">new</span> Thread()&#123;</div><div class="line">             <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">                 <span class="keyword">try</span> &#123;</div><div class="line">                     System.out.println(<span class="string">"子线程"</span>+Thread.currentThread().getName()+<span class="string">"正在执行"</span>);</div><div class="line">                     Thread.sleep(<span class="number">3000</span>);</div><div class="line">                     System.out.println(<span class="string">"子线程"</span>+Thread.currentThread().getName()+<span class="string">"执行完毕"</span>);</div><div class="line">                     latch.countDown();</div><div class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">                    e.printStackTrace();</div><div class="line">                &#125;</div><div class="line">             &#125;;</div><div class="line">         &#125;.start();</div><div class="line"> </div><div class="line">         <span class="keyword">try</span> &#123;</div><div class="line">            System.out.println(<span class="string">"等待2个子线程执行完毕..."</span>);</div><div class="line">            latch.await();</div><div class="line">            System.out.println(<span class="string">"2个子线程已经执行完毕"</span>);</div><div class="line">            System.out.println(<span class="string">"继续执行主线程"</span>);</div><div class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">     &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>执行结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">线程Thread-0正在执行</div><div class="line">线程Thread-1正在执行</div><div class="line">等待2个子线程执行完毕...</div><div class="line">线程Thread-0执行完毕</div><div class="line">线程Thread-1执行完毕</div><div class="line">2个子线程已经执行完毕</div><div class="line">继续执行主线程</div></pre></td></tr></table></figure>
+<p>​</p>
+<p>​</p>
 <p>​</p>
 <p>​</p>
 </li>
@@ -380,7 +406,7 @@ HashMap和">
 		  
 		
 		  
-			<li><a href="/categories/C/" title="C++">C++<sup>21</sup></a></li>
+			<li><a href="/categories/C/" title="C++">C++<sup>23</sup></a></li>
 		  
 		
 		  
@@ -408,7 +434,7 @@ HashMap和">
 		  
 		
 		  
-			<li><a href="/categories/Java/" title="Java">Java<sup>6</sup></a></li>
+			<li><a href="/categories/Java/" title="Java">Java<sup>7</sup></a></li>
 		  
 		
 		  
@@ -432,7 +458,7 @@ HashMap和">
 		  
 		
 		  
-			<li><a href="/categories/Spring/" title="Spring">Spring<sup>4</sup></a></li>
+			<li><a href="/categories/Spring/" title="Spring">Spring<sup>5</sup></a></li>
 		  
 		
 		  
@@ -440,7 +466,7 @@ HashMap和">
 		  
 		
 		  
-			<li><a href="/categories/Struts2/" title="Struts2">Struts2<sup>14</sup></a></li>
+			<li><a href="/categories/Struts2/" title="Struts2">Struts2<sup>15</sup></a></li>
 		  
 		
 		  
@@ -501,6 +527,10 @@ HashMap和">
 			
 		
 			
+				<li><a href="/tags/Struts2-OGNL/" title="Struts2, OGNL">Struts2, OGNL<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
 			
 		
@@ -517,7 +547,11 @@ HashMap和">
 			
 		
 			
-				<li><a href="/tags/Struts2-OGNL/" title="Struts2, OGNL">Struts2, OGNL<sup>2</sup></a></li>
+				<li><a href="/tags/Spring-AOP/" title="Spring, AOP">Spring, AOP<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux-zsh/" title="Linux, zsh">Linux, zsh<sup>1</sup></a></li>
 			
 		
 			
@@ -525,23 +559,15 @@ HashMap和">
 			
 		
 			
-				<li><a href="/tags/Android-监听电池电量/" title="Android, 监听电池电量">Android, 监听电池电量<sup>1</sup></a></li>
+				<li><a href="/tags/C-11-Bind/" title="C++11, Bind">C++11, Bind<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
+				<li><a href="/tags/Android-assets/" title="Android, assets">Android, assets<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android-SDK版本号/" title="Android, SDK版本号">Android, SDK版本号<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android-ProgressDialog，-耗时操作/" title="Android, ProgressDialog， 耗时操作">Android, ProgressDialog， 耗时操作<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-面试/" title="C++ 面试">C++ 面试<sup>1</sup></a></li>
+				<li><a href="/tags/C-Boost/" title="C++, Boost">C++, Boost<sup>1</sup></a></li>
 			
 		
 			
@@ -549,15 +575,15 @@ HashMap和">
 			
 		
 			
-				<li><a href="/tags/C-11-Bind/" title="C++11, Bind">C++11, Bind<sup>1</sup></a></li>
+				<li><a href="/tags/C-回调/" title="C++ 回调">C++ 回调<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android/" title="Android">Android<sup>1</sup></a></li>
+				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-Boost/" title="C++, Boost">C++, Boost<sup>1</sup></a></li>
+				<li><a href="/tags/C-泛型/" title="C++ 泛型">C++ 泛型<sup>1</sup></a></li>
 			
 		
 		</ul>
