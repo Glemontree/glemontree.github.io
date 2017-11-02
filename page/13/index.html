@@ -77,6 +77,196 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
+    <a href="/2017/06/28/[Windows核心编程] 谈谈Windows中的错误处理机制/" title="[Windows核心编程] 谈谈Windows中的错误处理机制" itemprop="url">
+  
+    <h1 itemprop="name">[Windows核心编程] 谈谈Windows中的错误处理机制</h1>
+    
+     
+           <p itemprop="description" >谈谈Windows中的错误处理机制
+windows除了使用返回值标识函数执行情况，还引入了错误代码机制。返回值指示函数是否发生了错误，而要想知道究竟发生了什么错误，就得使用错误代码。
+
+windows将错误代码存储于独立于线程的，线程局部存储区中，也就是说这个区域时每个线程独有的</p>
+        
+    
+    <time datetime="2017-06-28T09:43:44.000Z" itemprop="datePublished">2017-06-28</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/06/28/[多线程] x=y的原子性/" title="[多线程] x=y的原子性" itemprop="url">
+  
+    <h1 itemprop="name">[多线程] x=y的原子性</h1>
+    
+     
+           <p itemprop="description" >x=y的原子性一、原子性介绍所谓的原子性是指该操作不能再继续划分为更小的操作，在多线程中原子操作是一个很重要的概念，决定了该操作是否需要同步机制来进行保护。
+二、x=y操作的原子性在X86中，x=y包含两个操作：读取y至寄存器，然后将该值写入x，其中读取y的值至寄存器中是原子的，</p>
+        
+    
+    <time datetime="2017-06-28T09:42:51.000Z" itemprop="datePublished">2017-06-28</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/06/28/[Linux] zsh corrupt/" title="[Linux] zsh corrupt" itemprop="url">
+  
+    <h1 itemprop="name">[Linux] zsh corrupt</h1>
+    
+     
+           <p itemprop="description" >Linux中zsh遇到corrupt bug这几天打开ubuntu，出现zsh: corrupt history file /home/gtp/.zsh_history的错误，网上找到了解决方案，这里记录一下，以防以后遇到了又得花时间在网上搜索解决方案。
+解决方案如下：
+123m</p>
+        
+    
+    <time datetime="2017-06-28T09:41:39.000Z" itemprop="datePublished">2017-06-28</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/06/28/[设计模式] 单例模式/" title="[设计模式] 单例模式" itemprop="url">
+  
+    <h1 itemprop="name">[设计模式] 单例模式</h1>
+    
+     
+           <p itemprop="description" >懒汉模式即第一次调用该类实例的时候才产生一个新的该类实例，并在以后仅返回此实例。需要用锁，来保证其线程安全性。原因：多个线程可能进入判断是否已经存在实例的if语句，从而non thread safety。使用double-check来保证thread safety。但是如果处理大</p>
+        
+    
+    <time datetime="2017-06-28T09:40:04.000Z" itemprop="datePublished">2017-06-28</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/06/28/[多线程] 互斥对象和锁/" title="[多线程] 互斥对象和锁" itemprop="url">
+  
+    <h1 itemprop="name">[多线程] 互斥对象和锁</h1>
+    
+     
+           <p itemprop="description" >互斥对象和锁锁互斥对象的主要操作有两个，即加锁(lock)和解锁(unlock)。当一个线程对互斥对象进行lock操作并成功获得这个互斥对象的所有权，在此线程对此对象unlock前，其他线程对这个互斥对象的lock操作都会被阻塞。
+多个互斥对象加锁有些倾向需要对多个互斥对象进行加</p>
+        
+    
+    <time datetime="2017-06-28T09:38:55.000Z" itemprop="datePublished">2017-06-28</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/06/28/[多线程] 互斥量和临界区的区别/" title="[多线程] 互斥量和临界区的区别" itemprop="url">
+  
+    <h1 itemprop="name">[多线程] 互斥量和临界区的区别</h1>
+    
+     
+           <p itemprop="description" >互斥量和临界区的区别
+通常有4种进程或线程同步互斥的控制方法，它们是：
+
+临界区
+互斥量
+信号量
+事件
+
+其中临界区通过对多线程的串行化来访问公共资源或一段代码，速度快；互斥量为协调共同对一个共享资源的访问而设计的；信号量为控制一个具有有限数量用户资源而设计；事件则用来线程有一些</p>
+        
+    
+    <time datetime="2017-06-28T09:37:33.000Z" itemprop="datePublished">2017-06-28</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/06/28/[编程规范] 函数/" title="[编程规范] 函数" itemprop="url">
+  
+    <h1 itemprop="name">[编程规范] 函数</h1>
+    
+     
+           <p itemprop="description" >对所调用函数的错误返回码需要仔细、全面的处理；
+
+明确函数功能，精确地实现函数设计；
+
+编写可重入函数时，应注意局部变量的使用，不应使用static局部变量，否则必须经过特殊处理，才能使函数具有可重入性；
+
+编写可重入函数时，若使用全局变量，则应通过关中断、信号量（即P、V操作）</p>
+        
+    
+    <time datetime="2017-06-28T09:36:14.000Z" itemprop="datePublished">2017-06-28</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/06/28/[Spring] 基于注解来配置Bean/" title="[Spring] 基于注解来配置Bean" itemprop="url">
+  
+    <h1 itemprop="name">[Spring] 基于注解来配置Bean</h1>
+    
+     
+           <p itemprop="description" >Bean的配置方式
+基于XML文件的方式
+基于注解的方式（基于注解配置Bean，基于注解来装配Bean的属性）
+
+在classpath中扫描组件
+组件扫描：Spring能够从classpath下自动扫描、侦测和实例化具有特定注解的组件
+
+特定组件包括：
+
+@component：基</p>
+        
+    
+    <time datetime="2017-06-28T09:32:52.000Z" itemprop="datePublished">2017-06-28</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
     <a href="/2017/06/28/[C++] 继承与同名成员变量/" title="[C++] 继承与同名成员变量" itemprop="url">
   
     <h1 itemprop="name">[C++] 继承与同名成员变量</h1>
@@ -121,148 +311,9 @@ gmtime
 
 
 
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[C++] 前置++和后置++的区别/" title="[C++] 前置++和后置++的区别" itemprop="url">
-  
-    <h1 itemprop="name">[C++] 前置++和后置++的区别</h1>
-    
-     
-           <p itemprop="description" >前置++和后置++的区别前置++和后置++在程序开发中使用十分频繁，那么你是否真正了解它们的区别呢？
-其实++i相当于下面的代码：
-12i += 1;return i;
-而i++则相当于下面的代码：
-123j = i;i += 1;return j;
-对于内建数据类型，其实前置+</p>
-        
-    
-    <time datetime="2017-06-28T09:27:34.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[设计模式] 适配器模式/" title="[设计模式] 适配器模式" itemprop="url">
-  
-    <h1 itemprop="name">[设计模式] 适配器模式</h1>
-    
-     
-           <p itemprop="description" >C++中的适配器模式一、为什么需要适配器模式当你想使用一格现存的类，但是它的方法和你的要求不相同时，此时就需要使用适配器模式。
-二、适配器的作用是什么适配器就是将一个类的接口转换成客户希望的另外一个接口，适配器模式使得原本由于接口不兼容而不能一起工作的类可以一起工作。
-三、适配器</p>
-        
-    
-    <time datetime="2017-06-28T09:26:13.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[DB] 数据库将一个表中数据插入到另外一张表中/" title="[DB] 数据库将一个表中数据插入到另外一张表中" itemprop="url">
-  
-    <h1 itemprop="name">[DB] 数据库将一个表中数据插入到另外一张表中</h1>
-    
-     
-           <p itemprop="description" >两张表中的字段一致，并且希望插入全部数据：
-1INSERT INTO 目标表 SELECT * FROM 来源表;
-
-只导入指定字段：
-1INSERT INTO 目标表(字段1,字段2,...) SELECT 字段1,字段2,... FROM 来源表;
-
-只导入目标表中不存在的记</p>
-        
-    
-    <time datetime="2017-06-28T09:24:49.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[DB] 数据库中%和_的用法/" title="[DB] 数据库中%和_的用法" itemprop="url">
-  
-    <h1 itemprop="name">[DB] 数据库中%和_的用法</h1>
-    
-     
-           <p itemprop="description" >数据库中模糊查询命令like有两个通配符”%”和”_”，其中：
-
-%匹配0或多个字符
-_匹配任意1个字符（必须有一个）
-
-举例如下：
-12345678SQL&amp;gt;  create table tt ( name char(10) );SQL&amp;gt;  insert into t</p>
-        
-    
-    <time datetime="2017-06-28T09:23:09.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[C++] 推荐一个在线编辑、编译、运行程序的网页/" title="[C++] 推荐一个在线编辑、编译、运行程序的网页" itemprop="url">
-  
-    <h1 itemprop="name">[C++] 推荐一个在线编辑、编译、运行程序的网页</h1>
-    
-     
-           <p itemprop="description" ></p>
-        
-    
-    <time datetime="2017-06-28T09:21:53.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[CMake] 推荐一个关于CMake的一个很详细的教程/" title="[CMake] 推荐一个关于CMake的一个很详细的教程" itemprop="url">
-  
-    <h1 itemprop="name">[CMake] 推荐一个关于CMake的一个很详细的教程</h1>
-    
-     
-           <p itemprop="description" >如果你对CMake也很感兴趣这篇文章你值得拥有： CMake。</p>
-        
-    
-    <time datetime="2017-06-28T09:18:46.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix unexpand">
-    <a class="extend prev" rel="prev" href="/page/12/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span>
+    <a class="extend prev" rel="prev" href="/page/12/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/14/">Next<span></span></a>
   </nav>
 
 </div>
@@ -331,7 +382,7 @@ _匹配任意1个字符（必须有一个）
 		  
 		
 		  
-			<li><a href="/categories/MyBatis/" title="MyBatis">MyBatis<sup>7</sup></a></li>
+			<li><a href="/categories/MyBatis/" title="MyBatis">MyBatis<sup>8</sup></a></li>
 		  
 		
 		  
@@ -359,7 +410,7 @@ _匹配任意1个字符（必须有一个）
 		  
 		
 		  
-			<li><a href="/categories/TCP-IP/" title="TCP/IP">TCP/IP<sup>1</sup></a></li>
+			<li><a href="/categories/TCP-IP/" title="TCP/IP">TCP/IP<sup>8</sup></a></li>
 		  
 		
 		  
@@ -448,15 +499,7 @@ _匹配任意1个字符（必须有一个）
 			
 		
 			
-				<li><a href="/tags/Linux-zsh/" title="Linux, zsh">Linux, zsh<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-11-Bind/" title="C++11, Bind">C++11, Bind<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-Boost/" title="C++, Boost">C++, Boost<sup>1</sup></a></li>
+				<li><a href="/tags/Qt-QWebView-VS/" title="Qt, QWebView, VS">Qt, QWebView, VS<sup>1</sup></a></li>
 			
 		
 			
@@ -464,7 +507,7 @@ _匹配任意1个字符（必须有一个）
 			
 		
 			
-				<li><a href="/tags/C-new-operator-new-placement-new/" title="C++, new, operator new, placement new">C++, new, operator new, placement new<sup>1</sup></a></li>
+				<li><a href="/tags/C-泛型/" title="C++ 泛型">C++ 泛型<sup>1</sup></a></li>
 			
 		
 			
@@ -472,7 +515,15 @@ _匹配任意1个字符（必须有一个）
 			
 		
 			
-				<li><a href="/tags/C-泛型/" title="C++ 泛型">C++ 泛型<sup>1</sup></a></li>
+				<li><a href="/tags/Android-ProgressDialog，-耗时操作/" title="Android, ProgressDialog， 耗时操作">Android, ProgressDialog， 耗时操作<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-new-operator-new-placement-new/" title="C++, new, operator new, placement new">C++, new, operator new, placement new<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-面试/" title="C++ 面试">C++ 面试<sup>1</sup></a></li>
 			
 		
 		</ul>
