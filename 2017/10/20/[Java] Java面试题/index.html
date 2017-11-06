@@ -29,7 +29,7 @@ HashMap和">
 
 
 HashMap和">
-<meta property="og:updated_time" content="2017-10-28T08:03:31.844Z">
+<meta property="og:updated_time" content="2017-11-06T09:31:41.558Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Java] Java面试题">
 <meta name="twitter:description" content="String类为什么是final的？
@@ -302,10 +302,114 @@ HashMap和">
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</div><div class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;   </div><div class="line">         <span class="keyword">final</span> CountDownLatch latch = <span class="keyword">new</span> CountDownLatch(<span class="number">2</span>);</div><div class="line"> </div><div class="line">         <span class="keyword">new</span> Thread()&#123;</div><div class="line">             <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">                 <span class="keyword">try</span> &#123;</div><div class="line">                     System.out.println(<span class="string">"子线程"</span>+Thread.currentThread().getName()+<span class="string">"正在执行"</span>);</div><div class="line">                    Thread.sleep(<span class="number">3000</span>);</div><div class="line">                    System.out.println(<span class="string">"子线程"</span>+Thread.currentThread().getName()+<span class="string">"执行完毕"</span>);</div><div class="line">                    latch.countDown();</div><div class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">                    e.printStackTrace();</div><div class="line">                &#125;</div><div class="line">             &#125;;</div><div class="line">         &#125;.start();</div><div class="line"> </div><div class="line">         <span class="keyword">new</span> Thread()&#123;</div><div class="line">             <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">                 <span class="keyword">try</span> &#123;</div><div class="line">                     System.out.println(<span class="string">"子线程"</span>+Thread.currentThread().getName()+<span class="string">"正在执行"</span>);</div><div class="line">                     Thread.sleep(<span class="number">3000</span>);</div><div class="line">                     System.out.println(<span class="string">"子线程"</span>+Thread.currentThread().getName()+<span class="string">"执行完毕"</span>);</div><div class="line">                     latch.countDown();</div><div class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">                    e.printStackTrace();</div><div class="line">                &#125;</div><div class="line">             &#125;;</div><div class="line">         &#125;.start();</div><div class="line"> </div><div class="line">         <span class="keyword">try</span> &#123;</div><div class="line">            System.out.println(<span class="string">"等待2个子线程执行完毕..."</span>);</div><div class="line">            latch.await();</div><div class="line">            System.out.println(<span class="string">"2个子线程已经执行完毕"</span>);</div><div class="line">            System.out.println(<span class="string">"继续执行主线程"</span>);</div><div class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">     &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>执行结果如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">线程Thread-0正在执行</div><div class="line">线程Thread-1正在执行</div><div class="line">等待2个子线程执行完毕...</div><div class="line">线程Thread-0执行完毕</div><div class="line">线程Thread-1执行完毕</div><div class="line">2个子线程已经执行完毕</div><div class="line">继续执行主线程</div></pre></td></tr></table></figure>
-<p>​</p>
-<p>​</p>
-<p>​</p>
-<p>​</p>
+</li>
+<li><p><a href="http://blog.csdn.net/sinat_35512245/article/details/59056120" target="_blank" rel="external">各大公司Java后端开发面试题总结</a></p>
+</li>
+<li><p>String、StringBuffer和StringBuilder的区别</p>
+<ul>
+<li><p>String</p>
+<p>String为字符串常量，字符串长度不可变</p>
+</li>
+<li><p>StringBuffer</p>
+<p>字符串变量，其为线程安全的，如果要频繁对字符串内容进行修改，出于效率考虑最好使用StringBuffer，如果要转成String类型，可以调用StringBuffer的toString()方法</p>
+</li>
+<li><p>StringBuilder</p>
+<p>字符串变量，非线程安全</p>
+</li>
+</ul>
+<p>因此，如果要操作少量的数据，用String，单线程操作大量数据，用StringBuilder，多线程操作大量数据，用StringBuffer。</p>
+</li>
+<li><p>TreeMap的内部实现原理</p>
+<p>TreeMap的结构是红黑树，</p>
+</li>
+<li><p>SpringMVC的controller是单例吗？</p>
+<p>尽量不要在Controller里面去定义属性，如果在特殊情况下需要定义属性的话，那么就在类上面加上注解<code>@Scope(&quot;prototype&quot;)</code>改为多例的模式，以前Struts2是基于类的属性进行开发的，定义属性可以整个类通用，所以默认是多例，不然多线程访问肯定是不安全的。但是SpringMVC是基于方法的开发，都是用形参接收值，一个方法结束参数就销毁了，多线程访问都会有一些内存空间产生，里面的参数是不会共有的，所以SpringMVC默认使用了单例所以controller里面不适合在类里面定义属性，只要controller中不定义属性，那么单例完全是安全的。springmvc这样设计主要的原因也是为了提高程序的性能和以后程序的维护只针对业务的维护就行，要是struts的属性定义多了，都不知道哪个方法用了这个属性，对以后程序的维护还是很麻烦的。</p>
+</li>
+<li><p>classpath</p>
+<p>JDK安装完后如果没有设置环境变量CLASSPATH，则系统默认的类路径包括java系统类路径和当前目录。比如你的当前工作目录是E:\，在此目录下有class1.class，你可以直接使用”java class1”运行这个类。但是如果切换到别的目录，再使用”java class1”会出现NoClassDefFoundError，此时需要指定运行参数classpath。使用”java -classpath E:\ class1”运行class1.class。</p>
+<p>如果class1引用了其他的类，那么被引用的类也需要在E:\目录下，否则应该在classpath参数中指定被引用类所在的目录，比如class1引用了class2.class，class2.class位于F:\目录下，使用”java -classpath E:\;F:\ class1”来运行class1。</p>
+<p>如果被引用的是一个jar文件，那么在classpath中需要指明具体的jar文件，而不能只包括jar文件所在的目录。比如，class1引用了jar1.jar，这个jar文件位于C:\目录下，则使用”java -classpath E:\;C:\jar1.jar class1”来运行class1。</p>
+<p>在非class1.class所在的目录下运行class时，classpath参数需要指明class1以及class1所引用的类的路径，如果在class1.class所在目录运行该类，同样需要在classpath中包括当前目录，因为使用-classpath时不再会默认当前目录为类路径。比如在E:\下要使用”java -classpath .;F:\ class1”来运行class1。</p>
+<p>“java -classpath e:\ class1”不能写成”java class1 -classpath e:\”。</p>
+<p>使用javac编译java文件时，可以使用-classpath指定class1.class所引用的类文件所在的目录。在D:\目录下编译class1.java使用”javac E:\class1.java -classpath F:\”如果引用的是jar文件，同样需要指明jar文件。”javac E:\class1.java -classpath C:\jar1.jar”。</p>
+<p>javac -classpath F:\ E:\class1.java可以写成javac E:\class1.java -classpath F:\。</p>
+</li>
+<li><p>类的实例化顺序</p>
+<ul>
+<li>执行父类的静态变量赋值和静态代码块</li>
+<li>执行子类的静态变量赋值和静态代码块</li>
+<li>执行父类的成员变量赋值语句</li>
+<li>执行父类构造方法</li>
+<li>执行子类的成员变量赋值语句</li>
+<li>执行子类构造方法</li>
+</ul>
+</li>
+<li><p>索引失效的情况</p>
+<ul>
+<li>如果条件中有or，即使其中有条件带索引也不会使用，要想使用or，又想让索引生效，只能将or条件中的每个列都加上索引</li>
+<li>对于多列索引，不是使用的第一部分，则不会使用索引</li>
+<li>like查询是以%开头</li>
+<li>如果列类型是字符串，那一定要在条件中将数据使用引号引用起来，否则不使用索引</li>
+<li>如果mysql估计使用全表扫描比使用索引快，则不使用索引</li>
+</ul>
+</li>
+<li><p>受检异常和运行时异常</p>
+<p>运行时异常是运行时才会发生的异常，而受检异常是编译时异常。</p>
+<p>除了runtimeException以外的异常都属于checkedException，Java编译器要求程序必须捕获或声明受检异常。</p>
+</li>
+<li><p>Session</p>
+<p>Session的典型应用是存放用户的Login信息，如用户名、密码、权限角色等信息。</p>
+<ul>
+<li>Session对象在浏览器中的有效范围<ul>
+<li>Session对象只在建立Session对象的窗口中有效</li>
+<li>在建立Session对象的窗口中新开链接的窗口也有效</li>
+</ul>
+</li>
+<li>Cookie是在服务器给客户端一个命令后在客户端产生并保存的，它可以存放用户信息，存在客户端硬盘上</li>
+<li>Session和Cookie是不同的，但它们却是相关的，当打开浏览器登入后，会向服务器发出一个命令请求SESSIONID以及页面内容，服务器会返回页面内容和一个没有被使用的SESSIONID让此浏览器使用，当时浏览器就会对返回的SESSIONID进行存储，而当此浏览器再访问任何这个站点的JSP的时候都会给服务器这个SESSIONID，来确认客户端的身份。</li>
+</ul>
+</li>
+<li><p>Linux中查看某个端口是否被占用</p>
+<ul>
+<li><p>lsof</p>
+<p>使用命令<code>lsof -i:端口号</code>可以查看某个端口是否被占用</p>
+</li>
+<li><p>netstat</p>
+<p>使用命令<code>netstat -anp | grep 端口号</code></p>
+</li>
+</ul>
+</li>
+<li><p>Spring的事务隔离级别</p>
+<ul>
+<li><p>ISOLATION_DEFAULT（一般情况下使用这种配置即可）</p>
+</li>
+<li><p>ISOLATION_READ_UNCOMMITTED</p>
+<p>这是事务最低的隔离级别，它允许另外一个事务可以看到这个事务未提交的数据，这种隔离级别会产生脏读、不可重复读以及幻象读</p>
+</li>
+<li><p>ISOLATION_READ_COMMITTED</p>
+<p>保证一个事务修改的数据提交后才能被另外一个事务读取，另外一个事务不能读取该事务未提交的数据，这种事务隔离级别可以避免脏读出现，但是可能会出现不可重复读和幻象读</p>
+</li>
+<li><p>ISOLATION_REPEATABLE_READ</p>
+<p>这种事务隔离级别可以防止脏读、不可重复读，但是可能出现幻象读。</p>
+<p>什么是不可重复读？（修改引起）</p>
+<p>例如：<br>在事务A中，读取到张三的工资为5000，操作没有完成，事务还没提交。<br>与此同时，事务B把张三的工资改为8000，并提交了事务。随后，在事务A中，再次读取张三的工资，此时工资变为8000。在一个事务中前后两次读取的结果并不致，导致了不可重复读。<br>(大部分数据库缺省的事物隔离级别都不会出现这种状况) 。</p>
+</li>
+<li><p>ISOLATION_SERIALIZABLE </p>
+<p>这是花费最高代价但是最可靠的事务隔离级别，事务被处理为顺序执行，除了防止脏读、不可重复读外，还避免了幻读。</p>
+<p>什么是幻读？（添加新纪录引起）</p>
+<p>例如:<br>A目前工资为5000的员工有10人，事务A读取所有工资为5000的人数为10人。此时，事务B插入一条工资也为5000的记录。这是，事务A再次读取工资为5000的员工，记录为11人。此时产生了幻读。<br>大部分数据库缺省的事物隔离级别都会出现这种状况，此种事物隔离级别将带来表级锁) </p>
+</li>
+</ul>
+</li>
+<li><p>Iterator遍历Collection时，是fail-fast机制的，即当某一个线程A通过iterator去遍历某集合的过程中，若该集合的内容被其他线程改变了，那么线程A访问集合时，就会抛出ConcurrentModificationException异常，产生fail-fast事件。</p>
+</li>
+<li><p>ArrayList的操作不是线程安全的，所以，建议在单线程中使用ArrayList，而在多线程中可以选择Vector或者CopyOnWriteArrayList。</p>
+</li>
+<li><p>ArrayList实际上是通过一个数组去保存数据的，当我们构造ArrayList时，若使用默认构造函数，则ArrayList的默认容量大小是10；当ArrayList容量不足时，ArrayList会重新设置容量：<code>新的容量=（原始容量×3）/2 + 1</code>；ArrayList的克隆函数，即是将全部元素克隆到一个数组中；ArrayList实现java.io.Serializable的方式即是当写入到输出流时，先写入容量，再依次写入每一个元素，当读出输入流时，先读取容量，再依次读取每一个元素</p>
+</li>
+<li><p>遍历ArrayList时，使用随机访问（通过索引号访问）效率最高，其次是for循环遍历，使用迭代器的效率最低</p>
+</li>
+<li><p>​</p>
 </li>
 </ul>
   
@@ -563,7 +667,15 @@ HashMap和">
 			
 		
 			
-				<li><a href="/tags/Qt-processEvents/" title="Qt, processEvents">Qt, processEvents<sup>1</sup></a></li>
+				<li><a href="/tags/MyBatis-SQL映射文件/" title="MyBatis, SQL映射文件">MyBatis, SQL映射文件<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-APT、编译时注解/" title="Android, APT、编译时注解">Android, APT、编译时注解<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-回调/" title="C++ 回调">C++ 回调<sup>1</sup></a></li>
 			
 		
 			
@@ -575,19 +687,11 @@ HashMap和">
 			
 		
 			
-				<li><a href="/tags/Android-ProgressDialog，-耗时操作/" title="Android, ProgressDialog， 耗时操作">Android, ProgressDialog， 耗时操作<sup>1</sup></a></li>
+				<li><a href="/tags/C-面试/" title="C++ 面试">C++ 面试<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/C-new-operator-new-placement-new/" title="C++, new, operator new, placement new">C++, new, operator new, placement new<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android-监听电池电量/" title="Android, 监听电池电量">Android, 监听电池电量<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-VS/" title="C++, VS">C++, VS<sup>1</sup></a></li>
 			
 		
 		</ul>
