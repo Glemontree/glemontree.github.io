@@ -29,7 +29,7 @@ HashMap和">
 
 
 HashMap和">
-<meta property="og:updated_time" content="2017-11-06T09:31:41.558Z">
+<meta property="og:updated_time" content="2017-11-13T05:10:25.670Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Java] Java面试题">
 <meta name="twitter:description" content="String类为什么是final的？
@@ -409,6 +409,181 @@ HashMap和">
 </li>
 <li><p>遍历ArrayList时，使用随机访问（通过索引号访问）效率最高，其次是for循环遍历，使用迭代器的效率最低</p>
 </li>
+<li><p>组合索引</p>
+<p>组合索引即为由多个列构成的索引，创建组合索引<code>create index idx_detp on detp(col1, col2, col3, ...)</code>，则我们称idx_detp索引为组合索引。</p>
+<p><strong>在组合索引中有一个重要的概念就是引导列</strong>， 在上面的例子中col1即为引导列，当我们进行查询时where限制条件必须有引导列。</p>
+<ul>
+<li><p>使用组合索引的情况（where条件中有引导列）</p>
+<ul>
+<li>where col1 = </li>
+<li>where col1 = and col2 = </li>
+<li>where col2 = and col1 = </li>
+</ul>
+</li>
+<li><p>不会使用索引（where条件中没有引导列）</p>
+<p>where col2 = ，这种查询因为没有引导列所以不会使用组合索引。</p>
+</li>
+</ul>
+</li>
+<li><p>普通索引</p>
+<p>其sql格式是：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">INDEX</span> IndexName <span class="keyword">ON</span> <span class="string">`TableName`</span>(<span class="string">`字段名(length)`</span>)</div></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> TableName <span class="keyword">ADD</span> <span class="keyword">INDEX</span> IndexName(<span class="string">`字段名(length)`</span>)</div></pre></td></tr></table></figure>
+</li>
+<li><p>唯一索引</p>
+<p>与普通索引类似，但是不同的是唯一索引要求所有的类的值是唯一的，这一点和主键索引一样，但是它允许有空值，其sql语句格式是：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span> IndexName <span class="keyword">ON</span> <span class="string">`TableName`</span>(<span class="string">`字段名(length)`</span>)</div></pre></td></tr></table></figure>
+</li>
+<li><p>主键索引</p>
+<p>不允许有空值（在B+TREE的InnoDB引擎中，主键索引起到了至关重要的地位）。主键索引的建立规则是int优于varchar，一般在建表的时候创建，最好是与表的其他字段不相关的列或者是业务不相关的列，一般会设为int，而且是AUTO_INCREMENT自增类型的。</p>
+</li>
+<li><p>Struts2中action默认是非线程安全的，每次请求在heap中new新的action实例，所以在Struts2中action可以用实例成员变量。</p>
+</li>
+<li><p>ThreadLocal</p>
+<p>ThreadLocal为变量在每个线程中创建了一个副本，那么每个线程都可以访问自己内部的副本变量。</p>
+<p>ThreadLocal具有以下一些方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> T <span class="title">get</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(T value)</span> </span>&#123;&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line"><span class="function"><span class="keyword">protected</span> T <span class="title">initialValue</span><span class="params">()</span> </span>&#123;&#125;</div></pre></td></tr></table></figure>
+<p>get()方法用来获取ThreadLocal在当前线程中保存的变量副本，set()方法用来设置当前线程中变量的副本，remove()用来移除当前线程中变量的副本。</p>
+</li>
+<li><p>String是最基本的数据类型吗？</p>
+<p>不是，Java中的基本数据类型有：byte、short、int、long、float、double、char、boolean，其他都是引用类型。</p>
+</li>
+<li><p>int和Integer的区别</p>
+<p>Java为每一个基本数据类型都引入了对应的包装类型，int的包装类型就是Integer，从Java5开始引入了自动装箱/拆箱机制，使得两者可以相互转换。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AutoUnboxingTest</span> </span>&#123;</div><div class="line">  Integer a = <span class="keyword">new</span> Integer(<span class="number">3</span>);</div><div class="line">  Integer b = <span class="number">3</span>; <span class="comment">// 将3自动装箱成Integer类型</span></div><div class="line">  <span class="keyword">int</span> c = <span class="number">3</span>;</div><div class="line">  System.out.println(a == b); <span class="comment">// false 两个引用没有引用同一对象</span></div><div class="line">  System.out.println(a == c); <span class="comment">// true a自动拆箱成int类型再和c比较</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>再看下面这个例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test03</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    Integer f1 = <span class="number">100</span>, f2 = <span class="number">100</span>, f3 = <span class="number">150</span>, f4 = <span class="number">150</span>;</div><div class="line">    System.out.println(f1 == f2);</div><div class="line">    System.out.println(f3 == f4);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>首先需要注意的是f1、f2、f3、f4四个变量都是Integer对象引用，所以下面的==运算比较的不是值而是引用。装箱的本质是什么呢？当我们给一个Integer对象赋一个int值的时候，会调用Integer类的静态方法valueOf，如果看看valueOf的源代码就知道发生了什么。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Integer <span class="title">valueOf</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</div><div class="line">  <span class="keyword">if</span> (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)</div><div class="line">    <span class="keyword">return</span> IntegerCache.cache[i + (-IntegerCache.low)];</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> Integer(i);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>IntegerCache是Integer的内部类，其代码如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">IntegerCache</span> </span>&#123;</div><div class="line">  <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> low = -<span class="number">128</span>;</div><div class="line">  <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> high;</div><div class="line">  <span class="keyword">static</span> <span class="keyword">final</span> Integer cache[];</div><div class="line"></div><div class="line">  <span class="keyword">static</span> &#123;</div><div class="line">    <span class="comment">// high value may be configured by property</span></div><div class="line">    <span class="keyword">int</span> h = <span class="number">127</span>;</div><div class="line">    String integerCacheHighPropValue =</div><div class="line">      sun.misc.VM.getSavedProperty(<span class="string">"java.lang.Integer.IntegerCache.high"</span>);</div><div class="line">    <span class="keyword">if</span> (integerCacheHighPropValue != <span class="keyword">null</span>) &#123;</div><div class="line">      <span class="keyword">try</span> &#123;</div><div class="line">        <span class="keyword">int</span> i = parseInt(integerCacheHighPropValue);</div><div class="line">        i = Math.max(i, <span class="number">127</span>);</div><div class="line">        <span class="comment">// Maximum array size is Integer.MAX_VALUE</span></div><div class="line">        h = Math.min(i, Integer.MAX_VALUE - (-low) -<span class="number">1</span>);</div><div class="line">      &#125; <span class="keyword">catch</span>( NumberFormatException nfe) &#123;</div><div class="line">        <span class="comment">// If the property cannot be parsed into an int, ignore it.</span></div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    high = h;</div><div class="line"></div><div class="line">    cache = <span class="keyword">new</span> Integer[(high - low) + <span class="number">1</span>];</div><div class="line">    <span class="keyword">int</span> j = low;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; cache.length; k++)</div><div class="line">      cache[k] = <span class="keyword">new</span> Integer(j++);</div><div class="line"></div><div class="line">    <span class="comment">// range [-128, 127] must be interned (JLS7 5.1.7)</span></div><div class="line">    <span class="keyword">assert</span> IntegerCache.high &gt;= <span class="number">127</span>;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="title">IntegerCache</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>简单的说，如果整型字面量的值在-128到127之间，那么不会new新的Integer对象，而是直接引用常量池中的Integer对象，所以上面的面试题中f1==f2的结果是true，而f3==f4的结果是false。</p>
+</li>
+<li><p>方法区和堆是各个线程共享的内存区域，用于存储已经被JVM加载的类信息，常量，静态变量，JIT编译器编译后的代码等数据。程序中的字面量和常量都是放在常量池中的，常量池是方法区的一部分。</p>
+</li>
+<li><p>Collection是一个接口，它是Set、List等容器的父接口，Collections是一个工具类，提供了一系列的静态方法来辅助容器操作，这些方法包括对容器的搜索、排序、线程安全化等等。</p>
+</li>
+<li><p>List、Set、Map是否继承自Collection接口？</p>
+<p>List、Set是，Map不是，Map是键值对映射容器，与List和Set有明显的区别，而Set存储的是零散的元素且不允许有重复的元素。</p>
+</li>
+<li><p>怎样将GB2312编码的字符串转换为ISO-8859-1编码的字符串？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">String s1 = <span class="string">"你好"</span>!;</div><div class="line">String s2 = <span class="keyword">new</span> String(s1.getBytes(<span class="string">"GB2312"</span>), <span class="string">"ISO-8859-1"</span>);</div></pre></td></tr></table></figure>
+</li>
+<li><p>如何将字符串类型转换为基本数据类型？</p>
+<p>调用基本数据类型对应的包装类中的方法parseXXX(String)或valueOf(String)即可返回相应基本类型</p>
+</li>
+<li><p>如何将基本数据类型转换为字符串？</p>
+<ul>
+<li>将基本数据类型和空字符串（””）连接（+）即可</li>
+<li>调用String类中的valueOf方法返回相应字符串</li>
+</ul>
+</li>
+<li><p>接口可以继承接口，而且支持多重继承</p>
+</li>
+<li><p>抽象方法是否可同时是静态的、是否可同时是本地方法、是否可同时被<strong>synchronized</strong>修饰？</p>
+<p>都不能，抽象方法需要子类去重写，而静态的方法是属于类的，因此不能被重写，所以抽象方法不能是静态的；本地方法是由本地代码（C代码）实现的方法，而抽象方法是没有实现的，所以也不行；synchronized和方法的实现细节有关，抽象方法不涉及实现细节，因此也是不行的！</p>
+</li>
+<li><p>Java IO流</p>
+<ul>
+<li><p>字符流（读取和存储纯文本文件）</p>
+<p>Java API提供了FileWriter和FileReader类来进行字符流的读写：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">package</span> org.example.io;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.io.File;</div><div class="line"><span class="keyword">import</span> java.io.FileNotFoundException;</div><div class="line"><span class="keyword">import</span> java.io.FileReader;</div><div class="line"><span class="keyword">import</span> java.io.FileWriter;</div><div class="line"><span class="keyword">import</span> java.io.IOException;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestFileWriter</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">    writeToFile();</div><div class="line">    readFromFile();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">   <span class="comment">/**</span></div><div class="line">     * DOC 从文件里读取数据.</div><div class="line">     * </div><div class="line">     * <span class="doctag">@throws</span> FileNotFoundException</div><div class="line">     * <span class="doctag">@throws</span> IOException</div><div class="line">     */</div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">readFromFile</span><span class="params">()</span> <span class="keyword">throws</span> FileNotFoundException, IOException </span>&#123;</div><div class="line">    File file = <span class="keyword">new</span> File(<span class="string">"E:\\helloworld.txt"</span>);<span class="comment">// 指定要读取的文件</span></div><div class="line">    FileReader reader = <span class="keyword">new</span> FileReader(file);<span class="comment">// 获取该文件的输入流</span></div><div class="line">    <span class="keyword">char</span>[] bb = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">1024</span>];<span class="comment">// 用来保存每次读取到的字符</span></div><div class="line">    String str = <span class="string">""</span>;<span class="comment">// 用来将每次读取到的字符拼接，当然使用StringBuffer类更好</span></div><div class="line">    <span class="keyword">int</span> n;<span class="comment">// 每次读取到的字符长度</span></div><div class="line">    <span class="keyword">while</span> ((n = reader.read(bb)) != -<span class="number">1</span>) &#123;</div><div class="line">      str += <span class="keyword">new</span> String(bb, <span class="number">0</span>, n);</div><div class="line">    &#125;</div><div class="line">    reader.close();<span class="comment">// 关闭输入流，释放连接</span></div><div class="line">    System.out.println(str);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">   <span class="comment">/**</span></div><div class="line">     * DOC 往文件里写入数据.</div><div class="line">     * </div><div class="line">     * <span class="doctag">@throws</span> IOException</div><div class="line">     */</div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">writeToFile</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">    String writerContent = <span class="string">"hello world,你好世界"</span>;<span class="comment">// 要写入的文本</span></div><div class="line">    File file = <span class="keyword">new</span> File(<span class="string">"E:\\helloworld.txt"</span>);<span class="comment">// 要写入的文本文件</span></div><div class="line">    <span class="keyword">if</span> (!file.exists()) &#123;<span class="comment">// 如果文件不存在，则创建该文件</span></div><div class="line">      file.createNewFile();</div><div class="line">    &#125;</div><div class="line">    FileWriter writer = <span class="keyword">new</span> FileWriter(file);<span class="comment">// 获取该文件的输出流</span></div><div class="line">    writer.write(writerContent);<span class="comment">// 写内容</span></div><div class="line">    writer.flush();<span class="comment">// 清空缓冲区，立即将输出流里的内容写到文件里</span></div><div class="line">    writer.close();<span class="comment">// 关闭输出流，施放资源</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>字节流（读取和存储图片）</p>
+<p>Java API提供了FileInputStream和FileOutputStream来完成字节流的读写：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">package</span> org.example.io;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.io.File;</div><div class="line"><span class="keyword">import</span> java.io.FileInputStream;</div><div class="line"><span class="keyword">import</span> java.io.FileOutputStream;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestIOStream</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="comment">/**</span></div><div class="line">     * </div><div class="line">     * DOC 将F盘下的test.jpg文件，读取后，再存到E盘下面.</div><div class="line">     * </div><div class="line">     * <span class="doctag">@param</span> args</div><div class="line">     * <span class="doctag">@throws</span> Exception</div><div class="line">     */</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">    FileInputStream in = <span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(<span class="string">"F:\\test.jpg"</span>));<span class="comment">// 指定要读取的图片</span></div><div class="line">    File file = <span class="keyword">new</span> File(<span class="string">"E:\\test.jpg"</span>);</div><div class="line">    <span class="keyword">if</span> (!file.exists()) &#123;<span class="comment">// 如果文件不存在，则创建该文件</span></div><div class="line">      file.createNewFile();</div><div class="line">    &#125;</div><div class="line">    FileOutputStream out = <span class="keyword">new</span> FileOutputStream(<span class="keyword">new</span> File(<span class="string">"E:\\test.jpg"</span>));<span class="comment">// 指定要写入的图片</span></div><div class="line">    <span class="keyword">int</span> n = <span class="number">0</span>;<span class="comment">// 每次读取的字节长度</span></div><div class="line">    <span class="keyword">byte</span>[] bb = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];<span class="comment">// 存储每次读取的内容</span></div><div class="line">    <span class="keyword">while</span> ((n = in.read(bb)) != -<span class="number">1</span>) &#123;</div><div class="line">      out.write(bb, <span class="number">0</span>, n);<span class="comment">// 将读取的内容，写入到输出流当中</span></div><div class="line">    &#125;</div><div class="line">    out.close();<span class="comment">// 关闭输入输出流</span></div><div class="line">    in.close();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>字节流和字符流</p>
+<p>首先明确字节和字符的大小：</p>
+<ul>
+<li>1byte = 8bit</li>
+<li>1char = 2byte = 16bit（Java默认UTF-16编码）</li>
+</ul>
+<p>下面让看下具体看下字节流和字符流：</p>
+<ul>
+<li><p>字节流</p>
+<p>Java中的字节流处理的最基本单位是单个字节，它通常用来处理二进制数据，Java中最基本的两个字节流是InputStream和OutputStream，它们分别代表了最基本的输入字节流和输出字节流。InputStream和OutputStream均为抽象类。</p>
+<p>InputStream类中定义了一个基本的用于从字节流中读取字节的方法read，这个方法的定义如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>;</div></pre></td></tr></table></figure>
+<p>这是一个抽象方法，其功能是从字节流中读取一个字节，若到了末尾则返回-1，否则返回读入的字节。</p>
+</li>
+<li><p>字符流</p>
+<p>Java中字符流处理的最基本的单元是Unicode码元（大小2字节），它通常用来处理文本数据。所谓Unicode码元，也就是一个Unicode代码单元，范围是0x0000~0xFFFF，在以上范围内的每个数字都与一个字符相对应，Java的String类型默认就把字符以Unicode规则编码而后保存在内存中，然而与存储在内存中不同，存储在硬盘上的数据通常有着各种各样的编码方式，使用不同的编码方式，相同的字符会有不同的二进制表示，实际上字符流是这样工作的：</p>
+<ul>
+<li>输出字符流：把要写入文件的字符序列（实际上是Unicode码元序列）转为指定编码方式下的字节序列，然后再写入到文件中</li>
+<li>输入字符流：把要读取的字节序列按指定编码方式解码为相应字符序列从而可以存在内存中</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>编码问题</p>
+<ul>
+<li><p>ASCII</p>
+<p>原本对于西方世界来说，1个字节足矣，因为1个字节最多256个符号编码，而英文26个字母再加几个常用符号、标点，256个符号编码足够了，这就是ASCII编码</p>
+</li>
+<li><p>ISO 8859-1</p>
+<p>ISO 8859-1是国际标准化组织定义的法语、芬兰语所用的西欧字符集，也是每个字母或者符号用1个字节表示</p>
+</li>
+<li><p>中文编码</p>
+<p>如果说一个汉字表示一个字符，那么收到的每一个字节不能简单的解码成一个字母了，而是需要好几个字节组成一个汉字，我国的汉字编码现行标准是GB18030，每个字可以由1个、2个或4个字节组成，编码空间161万个字符</p>
+</li>
+<li><p>Unicode</p>
+<p>在出现Unicode之前，几乎每一种文字都有一套自己的编码方式，同一段字节流，在美国是”hello world”，到了国内可能就变成”烫烫烫”了，Unicode的理论就是全世界每个不同语言的不同字符都统一编码，全球通行。最初每个字符占用2个字节，总共65536个字符空间，从第四版开始加入的“扩展字符集”开始使用4个字节编码。</p>
+</li>
+<li><p>UTF-16</p>
+<p>Unicode只是一套符号的编码，但计算机具体怎么读取这套编码呢？比如既然Unicode常规字符集占用2个字节，系统可以每次老老实实的读取两个字节，然后用一个特殊符号告诉系统某个字符属于附加字符集，需要再往后读2个字节，比如说Java系统默认的UTF-16就是这样编码解码的</p>
+</li>
+<li><p>UTF-8</p>
+<p>UTF-16存在的问题就是所有英语字符也被迫使用2个字节来编码，那么就得使用可变长编码UTF-8，其用几位冗余信息告诉系统，当前字符有没有结束，是不是还需要继续往下读下一个字节。</p>
+<p>如果一个字节是以“0”开头的，说明是一个ASCII字符，只占用一个字节，如果是“11”开头的，说明这个字符占用多个字节，后续每个“10”打头的字节都是这个字符的一部分。</p>
+</li>
+</ul>
+<p>本小节摘录自<a href="https://www.zhihu.com/question/39262026" target="_blank" rel="external">Java 中字节流与字符流的区别?</a>。</p>
+</li>
+<li><p>Java中char默认采用Unicode编码，所以Java中char占2个字节</p>
+</li>
+<li><p>Java文件的编码可能有多种多样，但Java编译器会自动将这些编码按照Java文件的编码格式正确读取后产生class文件，这里的class文件编码是Unicode编码（具体来说是UTF-16编码）。</p>
+<p>因此，在Java代码中定义了一个字符串：</p>
+<p>String s = “汉字”</p>
+<p>不管在编译前java文件使用何种编码，在编译成class后，它们都是一样的，即Unicode编码表示。</p>
+<p>JVM加载class文件读取时候使用Unicode编码方式正确读取class文件，那么原来定义的String s = “汉字”在内存中的表现形式是Unicode编码。</p>
+</li>
+<li><p>利用序列化实现深复制</p>
+<p>把对象写到流里的过程是序列化过程，而把对象从流中读取出来的过程则叫做反序列化过程。</p>
+<p>需要注意的是：<strong>写在流里的是对象的一个拷贝，而原对象仍然在JVM中</strong>。</p>
+<p>在Java中深复制一个对象，常常可以先使对象实现Serializable接口，然后把对象（对象的一个拷贝）写到一个流里，再从流里读出来，便可以重建对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</div><div class="line"><span class="keyword">import</span> java.io.ByteArrayOutputStream;</div><div class="line"><span class="keyword">import</span> java.io.ObjectInputStream;</div><div class="line"><span class="keyword">import</span> java.io.ObjectOutputStream;</div><div class="line"><span class="keyword">import</span> java.io.Serializable;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CloneTest3</span></span></div><div class="line">&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span></div><div class="line">  &#123;</div><div class="line">    Teacher3 t = <span class="keyword">new</span> Teacher3();</div><div class="line">    t.setName(<span class="string">"Teacher Wang"</span>);</div><div class="line">    t.setAge(<span class="number">50</span>);</div><div class="line"></div><div class="line">    Student3 s1 = <span class="keyword">new</span> Student3();</div><div class="line">    s1.setAge(<span class="number">20</span>);</div><div class="line">    s1.setName(<span class="string">"ZhangSan"</span>);</div><div class="line">    s1.setTeacher(t);</div><div class="line"></div><div class="line">    Student3 s2 = (Student3) s1.deepClone();</div><div class="line"></div><div class="line">    System.out.println(<span class="string">"拷贝得到的信息:"</span>);</div><div class="line">    System.out.println(s2.getName());</div><div class="line">    System.out.println(s2.getAge());</div><div class="line">    System.out.println(s2.getTeacher().getName());</div><div class="line">    System.out.println(s2.getTeacher().getAge());</div><div class="line">    System.out.println(<span class="string">"---------------------------"</span>);</div><div class="line"></div><div class="line">    <span class="comment">// 将复制后的对象的老师信息修改一下：</span></div><div class="line">    s2.getTeacher().setName(<span class="string">"New Teacher Wang"</span>);</div><div class="line">    s2.getTeacher().setAge(<span class="number">28</span>);</div><div class="line"></div><div class="line">    System.out.println(<span class="string">"修改了拷贝对象的教师后："</span>);</div><div class="line">    System.out.println(<span class="string">"拷贝对象的教师："</span>);</div><div class="line">    System.out.println(s2.getTeacher().getName());</div><div class="line">    System.out.println(s2.getTeacher().getAge());</div><div class="line">    System.out.println(<span class="string">"原来对象的教师："</span>);</div><div class="line">    System.out.println(s1.getTeacher().getName());</div><div class="line">    System.out.println(s1.getTeacher().getAge());</div><div class="line"></div><div class="line">    <span class="comment">// 由此证明序列化的方式实现了对象的深拷贝</span></div><div class="line"></div><div class="line">  &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Teacher3</span> <span class="keyword">implements</span> <span class="title">Serializable</span></span></div><div class="line">&#123;</div><div class="line">  <span class="keyword">private</span> String name;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">int</span> age;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span></span></div><div class="line">  &#123;</div><div class="line">    <span class="keyword">return</span> name;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span></span></div><div class="line">  &#123;</div><div class="line">    <span class="keyword">this</span>.name = name;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span></span></div><div class="line">  &#123;</div><div class="line">    <span class="keyword">return</span> age;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span></span></div><div class="line">  &#123;</div><div class="line">    <span class="keyword">this</span>.age = age;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student3</span> <span class="keyword">implements</span> <span class="title">Serializable</span></span></div><div class="line">&#123;</div><div class="line">  <span class="keyword">private</span> String name;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">int</span> age;</div><div class="line">  <span class="keyword">private</span> Teacher3 teacher;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span></span></div><div class="line">  &#123;</div><div class="line">    <span class="keyword">return</span> name;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span></span></div><div class="line">  &#123;</div><div class="line">    <span class="keyword">this</span>.name = name;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span></span></div><div class="line">  &#123;</div><div class="line">    <span class="keyword">return</span> age;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span></span></div><div class="line">  &#123;</div><div class="line">    <span class="keyword">this</span>.age = age;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> Teacher3 <span class="title">getTeacher</span><span class="params">()</span></span></div><div class="line">  &#123;</div><div class="line">    <span class="keyword">return</span> teacher;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTeacher</span><span class="params">(Teacher3 teacher)</span></span></div><div class="line">  &#123;</div><div class="line">    <span class="keyword">this</span>.teacher = teacher;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> Object <span class="title">deepClone</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span></div><div class="line">  &#123;</div><div class="line">    <span class="comment">// 序列化</span></div><div class="line">    ByteArrayOutputStream bos = <span class="keyword">new</span> ByteArrayOutputStream();</div><div class="line">    ObjectOutputStream oos = <span class="keyword">new</span> ObjectOutputStream(bos);</div><div class="line"></div><div class="line">    oos.writeObject(<span class="keyword">this</span>);</div><div class="line"></div><div class="line">    <span class="comment">// 反序列化</span></div><div class="line">    ByteArrayInputStream bis = <span class="keyword">new</span> ByteArrayInputStream(bos.toByteArray());</div><div class="line">    ObjectInputStream ois = <span class="keyword">new</span> ObjectInputStream(bis);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> ois.readObject();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Java中非静态内部类对象的创建要依赖外部类对象，对于静态方法，静态方法中没有this，也就是说没有外部类对象，因此无法创建内部类对象。</p>
+</li>
+<li><p>Spring声明式事务管理默认对运行时异常进行事务管理，而对检查型异常不进行回滚操作，如果异常被try{}catch{}了，事务就不回滚了，如果想让事务回滚必须再往外抛try{}catch{throw Exception}</p>
+</li>
+<li><p>如果在函数体内用throw抛出了某种异常，最好要在函数名中加throws抛异常声明，然后交给调用它的上层函数进行处理</p>
+</li>
+<li><p>如果SELECT后面若要UPDATE同一个表单，最好使用SELECT…UPDATE，举个例子：</p>
+<p>假设商品表单products 内有一个存放商品数量的quantity ，在订单成立之前必须先确定quantity 商品数量是否足够(quantity&gt;0) ，然后才把数量更新为1。代码如下:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> quantity <span class="keyword">FROM</span> products <span class="keyword">WHERE</span> <span class="keyword">id</span>=<span class="number">3</span>; <span class="keyword">UPDATE</span> products <span class="keyword">SET</span> quantity = <span class="number">1</span> <span class="keyword">WHERE</span> <span class="keyword">id</span>=<span class="number">3</span>;</div></pre></td></tr></table></figure>
+<p><strong>为什么不安全呢?</strong><br>少量的状况下或许不会有问题，但是大量的数据存取「铁定」会出问题。如果我们需要在quantity&gt;0 的情况下才能扣库存，假设程序在第一行SELECT 读到的quantity 是2 ，看起来数字没有错，但<br>是当MySQL 正准备要UPDATE 的时候，可能已经有人把库存扣成0 了，但是程序却浑然不知，将错就错的UPDATE 下去了。因此必须透过的事务机制来确保读取及提交的数据都是正确的。</p>
+<p>FOR UPDATE仅适用于InnoDB，且必须在事务区块（BEGIN/COMMIT）中才能生效：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">BEGIN</span></div><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="string">`table_name`</span> <span class="keyword">WHERE</span> xxx <span class="keyword">FOR</span> <span class="keyword">UPDATE</span></div><div class="line"><span class="keyword">COMMIT</span></div></pre></td></tr></table></figure>
+<p>使用SELECT… FOR UPDATE会把数据给锁住，但是需要注意的是，MySQL InnoDB默认为Row-Level Lock，所以只有明确的指定主键，MySQL才会执行Row Lock（只锁住被选取的数据），否则MySQL将会执行Table Lock（将整个数据表单给锁住）。</p>
+<p>本小节内容摘录自<a href="http://blog.csdn.net/heyutao007/article/details/51729456" target="_blank" rel="external">mysql select for update</a>。</p>
+</li>
+<li><p>向枚举中添加新方法</p>
+<p>如果打算自定义自己的方法，那么必须在enum实例序列的最后添加一个分号，而且Java要求必须先定义enum实例。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Color &#123;</div><div class="line">  RED(<span class="string">"红色"</span>, <span class="number">1</span>), GREEN(<span class="string">"绿色"</span>, <span class="number">2</span>), BLANK(<span class="string">"白色"</span>, <span class="number">3</span>), YELLO(<span class="string">"黄色"</span>, <span class="number">4</span>); <span class="comment">// enum实例序列</span></div><div class="line">  <span class="keyword">private</span> String name;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">int</span> index;</div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="title">Color</span><span class="params">(String name, <span class="keyword">int</span> index)</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.name = name;</div><div class="line">    <span class="keyword">this</span>.index = index;</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getName</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</div><div class="line">    <span class="keyword">for</span> (Color c : Color.values()) &#123;</div><div class="line">      <span class="keyword">if</span> (c.getIndex() == index) &#123;</div><div class="line">        <span class="keyword">return</span> c.name;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> name;</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.name = name;</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getIndex</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> index;</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setIndex</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.index = index;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>QPS：每秒查询率（Query Per Second）</p>
+</li>
+<li><p>MySQL中delimiter的作用：</p>
+<p>其实就是告诉MySQL解释器，该段命令是否已经结束了，MySQL数据库是否可以执行了，默认情况下delimiter是分号，在命令行客户端中，如果有一行命令以分号结束，那么回车后，MySQL将会执行该命令。</p>
+<p>在为可能输入较多的语句，且语句中包含有分号时，默认情况下，不可能等到用户把语句全部输入完成之后再执行整段语句，因为MySQL一遇到分号，它就要自动执行，这种情况下，就需要事先把delimiter换成其他符号，如//或$$。</p>
+</li>
+<li><p>MySQL命令行中可以使用<code>system clear;</code>命令进行清屏</p>
+</li>
 <li><p>​</p>
 </li>
 </ul>
@@ -667,19 +842,11 @@ HashMap和">
 			
 		
 			
-				<li><a href="/tags/MyBatis-SQL映射文件/" title="MyBatis, SQL映射文件">MyBatis, SQL映射文件<sup>1</sup></a></li>
+				<li><a href="/tags/MyBatis-参数处理/" title="MyBatis, 参数处理">MyBatis, 参数处理<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android-APT、编译时注解/" title="Android, APT、编译时注解">Android, APT、编译时注解<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-回调/" title="C++ 回调">C++ 回调<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-Boost/" title="C++, Boost">C++, Boost<sup>1</sup></a></li>
+				<li><a href="/tags/C-ACE-网络/" title="C++, ACE, 网络">C++, ACE, 网络<sup>1</sup></a></li>
 			
 		
 			
@@ -687,11 +854,19 @@ HashMap和">
 			
 		
 			
-				<li><a href="/tags/C-面试/" title="C++ 面试">C++ 面试<sup>1</sup></a></li>
+				<li><a href="/tags/C-11-Bind/" title="C++11, Bind">C++11, Bind<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-new-operator-new-placement-new/" title="C++, new, operator new, placement new">C++, new, operator new, placement new<sup>1</sup></a></li>
+				<li><a href="/tags/C-泛型/" title="C++ 泛型">C++ 泛型<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-xml-tools/" title="Android, xml-tools">Android, xml-tools<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-回调/" title="C++ 回调">C++ 回调<sup>1</sup></a></li>
 			
 		
 		</ul>
