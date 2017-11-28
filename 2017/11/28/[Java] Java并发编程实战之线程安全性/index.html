@@ -4,26 +4,47 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>[CMake] CMake的使用 | Glemontree&#39;s blog</title>
+    <title>[Java] Java并发编程实战之线程安全性 | Glemontree&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Glemontree">
     
 
     
-    <meta name="description" content="VS环境下，CMake出来的ALL_BUILD项目和ZERO_CHECK项目的作用CMake是 跨平台软件开发和维护过程的 工程构建工具。“在每个系统构建你的工程，而无须关心创建可执行文件和动态库的具体方法”。
-CMake 相对于其他类似工具（shell脚本、Makefiles、Jam文件、基于复杂的脚本的工程像Autoconf和Automake），CMake 对底层系统做更少的假设。CMake使">
+    <meta name="description" content="一个对象是否是线程安全的，取决于它是否被多个线程访问，要使得对象是线程安全的，需要采用同步机制来协同对可变状态的访问
+
+在线程安全类中封装了必要的同步机制，因此客户端无需进一步采用同步措施
+
+无状态对象一定是线程安全的，大多数Servlet都是无状态的，从而极大的降低了在实现Servlet线程安全性时的复杂性
+
+为了确保线程安全性，先检查后执行和读取-修改-写入等操作必须是原子性的
+
+先检查后执">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[CMake] CMake的使用">
-<meta property="og:url" content="http://yoursite.com/2017/06/28/[CMake] CMake的使用/index.html">
+<meta property="og:title" content="[Java] Java并发编程实战之线程安全性">
+<meta property="og:url" content="http://yoursite.com/2017/11/28/[Java] Java并发编程实战之线程安全性/index.html">
 <meta property="og:site_name" content="Glemontree's blog">
-<meta property="og:description" content="VS环境下，CMake出来的ALL_BUILD项目和ZERO_CHECK项目的作用CMake是 跨平台软件开发和维护过程的 工程构建工具。“在每个系统构建你的工程，而无须关心创建可执行文件和动态库的具体方法”。
-CMake 相对于其他类似工具（shell脚本、Makefiles、Jam文件、基于复杂的脚本的工程像Autoconf和Automake），CMake 对底层系统做更少的假设。CMake使">
-<meta property="og:updated_time" content="2017-06-28T10:14:32.595Z">
+<meta property="og:description" content="一个对象是否是线程安全的，取决于它是否被多个线程访问，要使得对象是线程安全的，需要采用同步机制来协同对可变状态的访问
+
+在线程安全类中封装了必要的同步机制，因此客户端无需进一步采用同步措施
+
+无状态对象一定是线程安全的，大多数Servlet都是无状态的，从而极大的降低了在实现Servlet线程安全性时的复杂性
+
+为了确保线程安全性，先检查后执行和读取-修改-写入等操作必须是原子性的
+
+先检查后执">
+<meta property="og:updated_time" content="2017-11-28T14:51:15.468Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[CMake] CMake的使用">
-<meta name="twitter:description" content="VS环境下，CMake出来的ALL_BUILD项目和ZERO_CHECK项目的作用CMake是 跨平台软件开发和维护过程的 工程构建工具。“在每个系统构建你的工程，而无须关心创建可执行文件和动态库的具体方法”。
-CMake 相对于其他类似工具（shell脚本、Makefiles、Jam文件、基于复杂的脚本的工程像Autoconf和Automake），CMake 对底层系统做更少的假设。CMake使">
+<meta name="twitter:title" content="[Java] Java并发编程实战之线程安全性">
+<meta name="twitter:description" content="一个对象是否是线程安全的，取决于它是否被多个线程访问，要使得对象是线程安全的，需要采用同步机制来协同对可变状态的访问
+
+在线程安全类中封装了必要的同步机制，因此客户端无需进一步采用同步措施
+
+无状态对象一定是线程安全的，大多数Servlet都是无状态的，从而极大的降低了在实现Servlet线程安全性时的复杂性
+
+为了确保线程安全性，先检查后执行和读取-修改-写入等操作必须是原子性的
+
+先检查后执">
 
     
     <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
@@ -82,14 +103,14 @@ CMake 相对于其他类似工具（shell脚本、Makefiles、Jam文件、基于
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/06/28/[CMake] CMake的使用/" title="[CMake] CMake的使用" itemprop="url">[CMake] CMake的使用</a>
+      <a href="/2017/11/28/[Java] Java并发编程实战之线程安全性/" title="[Java] Java并发编程实战之线程安全性" itemprop="url">[Java] Java并发编程实战之线程安全性</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-28T10:14:17.000Z" itemprop="datePublished"> Published 2017-06-28</time>
+    <time datetime="2017-11-28T11:43:21.000Z" itemprop="datePublished"> Published 2017-11-28</time>
     
   </p>
 </header>
@@ -98,14 +119,51 @@ CMake 相对于其他类似工具（shell脚本、Makefiles、Jam文件、基于
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#VS环境下，CMake出来的ALL-BUILD项目和ZERO-CHECK项目的作用"><span class="toc-number">1.</span> <span class="toc-text">VS环境下，CMake出来的ALL_BUILD项目和ZERO_CHECK项目的作用</span></a></li></ol>
+			
 		
 		</div>
 		
-		<h1 id="VS环境下，CMake出来的ALL-BUILD项目和ZERO-CHECK项目的作用"><a href="#VS环境下，CMake出来的ALL-BUILD项目和ZERO-CHECK项目的作用" class="headerlink" title="VS环境下，CMake出来的ALL_BUILD项目和ZERO_CHECK项目的作用"></a>VS环境下，CMake出来的ALL_BUILD项目和ZERO_CHECK项目的作用</h1><p>CMake是 跨平台软件开发和维护过程的 工程构建工具。“在每个系统构建你的工程，而无须关心创建可执行文件和动态库的具体方法”。</p>
-<p>CMake 相对于其他类似工具（shell脚本、Makefiles、Jam文件、基于复杂的脚本的工程像Autoconf和Automake），CMake 对底层系统做更少的假设。CMake使用标准C++实现，所以他可以在大多数现代操作系统上运行。它不使用除了系统的本地构建工具外的其他的工具。</p>
-<p> 一般CMake 在Vision studio2008 上 构建的工程（.sln “solution”）包含 三个工程（project），分别是：ALL_BUILD； 工程本身如：HelloCMake；ZERO_CHECK。HelloCMake就不用说了，自己要建立的那个工程；ALL_BUILD是管理整个项目的工程；ZERO_CHECK是实时监视CMakeLists.txt文件变化的工程，一旦CMakeLists.txt里的内容发生了任何变化，ZERO_CHECK就会告诉编译器要重新构建整个工程环境。</p>
-<p>本文转载自<a href="http://blog.csdn.net/jtop0/article/details/6167432" target="_blank" rel="external">文章</a>。</p>
+		<ul>
+<li><p>一个对象是否是线程安全的，取决于它是否被多个线程访问，要使得对象是线程安全的，需要采用同步机制来协同对可变状态的访问</p>
+</li>
+<li><p>在线程安全类中封装了必要的同步机制，因此客户端无需进一步采用同步措施</p>
+</li>
+<li><p>无状态对象一定是线程安全的，大多数Servlet都是无状态的，从而极大的降低了在实现Servlet线程安全性时的复杂性</p>
+</li>
+<li><p>为了确保线程安全性，先检查后执行和读取-修改-写入等操作必须是原子性的</p>
+<ul>
+<li><p>先检查后执行（延迟初始化）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LazyInitRace</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> ExpensiveObject instance = <span class="keyword">null</span>;</div><div class="line">  </div><div class="line">  <span class="function"><span class="keyword">public</span> ExpensiveObject <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</div><div class="line">      instance = <span class="keyword">new</span> ExpensiveObject();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> instance;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>假设线程A和线程B同时执行getInstance()方法，A看到instance为空，因而创建一个新的ExpensiveObject实例，B同样需要判断instance是否为空，此时的instance是否为空，要取决于不可预测的时序，包括线程的调度方式，以及A需要花多长时间来初始化ExpensiveObject并设置instance，如果当B检查时，instance为空，那么在两次调用getInstance()时可能会得到不同的结果</p>
+</li>
+<li><p>读取-修改-写入</p>
+</li>
+</ul>
+</li>
+<li><p>当在无状态的类中添加一个状态时，如果该状态完全由线程安全的对象来管理，那么这个类仍然是线程安全的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CountingFactorizer</span> <span class="keyword">implements</span> <span class="title">Servlet</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">final</span> AtomicLong count = <span class="keyword">new</span> AtomicLong(<span class="number">0</span>);</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getCount</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> count.get();</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">service</span><span class="params">(ServletRequest request, ServletResponse response)</span> </span>&#123;</div><div class="line">    BigInteger i = extarctFromRequest(request);</div><div class="line">    BigInteger[] factors = factor(i);</div><div class="line">    count.incrementAndGet();</div><div class="line">    encodeIntoResponse(response, factors);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>内置锁是可重入的，如果某个线程试图获得一个由它自己持有的锁，那么这个请求就会成功。在下面的代码中，子类改写了父类的synchronized方法，然后调用父类中的方法，如果此时没有可重入的锁，那么这段代码就会产生死锁，由于Widget和LoggingWidget中doSomething方法都是synchronized方法，因此每个doSomething方法在执行前都会获取Widget上的锁，然而如果内置锁是不可重入的，那么在调用super.doSomething()时将无法获得Widget上的锁，因为这个锁已经被持有，从而线程将永远停顿下去。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Widget</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span> </span>&#123;</div><div class="line">    </div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoggingWidget</span> <span class="keyword">extends</span> <span class="title">Widget</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.doSomething();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>如果用同步来协调对某个变量的访问，那么在访问这个变量的所有位置都需要使用同步，而且，当使用锁来协调对某个变量的访问时，在访问变量的所有位置上都需要使用同一个锁。<strong>一种常见的错误是只有在写入共享变量时才需要使用同步，然而事实并非如此</strong>。</p>
+<blockquote>
+<p>  对于可能被多个线程同时访问的可变状态变量，在访问它时都需要持有同一个锁。</p>
+</blockquote>
+</li>
+<li><p>对象的域并不一定要通过内置锁来保护，当获取与对象关联的锁时，并不能阻止另外一个线程访问该对象，某个线程在获得对象的锁之后，只能阻止其他线程获得同一个锁（其他的线程仍然可以访问该对象中未使用对象锁保护的代码）。</p>
+</li>
+<li><p>并非所有的数据都需要使用锁进行保护，只有被多个线程同时访问的可变数据才需要使用锁来保护。</p>
+</li>
+<li><p>尽量将不影响共享状态且执行时间较长的操作从同步代码块中分离出去。</p>
+</li>
+<li><p>看下面这段代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CacheFactorizer</span> <span class="keyword">implements</span> <span class="title">Servlet</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> BigInteger lastNumber;</div><div class="line">  <span class="keyword">private</span> BitInteger[] lastFactors;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">long</span> hits;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">long</span> cacheHits;</div><div class="line">  </div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">long</span> <span class="title">getHits</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> hits;</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">double</span> <span class="title">getCacheHitRatio</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> (<span class="keyword">double</span>) cacheHits / (<span class="keyword">double</span>) hits;</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">service</span><span class="params">(ServletRequest request, ServletResponse response)</span> </span>&#123;</div><div class="line">    BigInteger i = extarctFromRequest(request);</div><div class="line">    BigInteger[] factors = <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">synchronized</span>(<span class="keyword">this</span>) &#123;</div><div class="line">      ++hits;</div><div class="line">      <span class="keyword">if</span> (i.equals(lastNumber)) &#123;</div><div class="line">        ++cacheHits;</div><div class="line">        factors = lastFactors.clone();</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> (factors == <span class="keyword">null</span>) &#123;</div><div class="line">      factors = factor(i); <span class="comment">// 将耗时操作从同步代码中分离出来</span></div><div class="line">      <span class="keyword">synchronized</span>(<span class="keyword">this</span>) &#123;</div><div class="line">        lastNumber = i;</div><div class="line">        lastFactors = factors.clone();</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    encodeIntoResponse(response, factors);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>重新构造后的CacheFactorizer实现了在简单性与并发性之间的平衡。在获取和释放锁等操作上都需要一定的开销，因此如果将同步代码块分解的过细，那么通常并不好，尽管这样做并不会破坏原子性。当访问状态变量或者在复合操作的执行期间，CacheFactorizer需要持有锁，但在执行时间较长的因数分解运算之前需要释放锁，这样既确保了线程安全性，也不会过多的影响并发性，而且在每个同步代码块中的代码路径都足够短。</p>
+</li>
+<li><p><strong>当执行时间较长的或者可能无法快速完成的操作时（网络IO或控制台IO），一定不要持有锁</strong></p>
+</li>
+</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -113,13 +171,13 @@ CMake 相对于其他类似工具（shell脚本、Makefiles、Jam文件、基于
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/CMake/">CMake</a>
+  <a class="article-category-link" href="/categories/Java/">Java</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/CMake-VS/">CMake, VS</a>
+  <span></span> <a href="/tags/Java-并发/">Java 并发</a>
   </div>
 
 </div>
@@ -128,7 +186,7 @@ CMake 相对于其他类似工具（shell脚本、Makefiles、Jam文件、基于
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2017/06/28/[CMake] CMake的使用/" data-title="[CMake] CMake的使用 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/11/28/[Java] Java并发编程实战之线程安全性/" data-title="[Java] Java并发编程实战之线程安全性 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -141,19 +199,11 @@ CMake 相对于其他类似工具（shell脚本、Makefiles、Jam文件、基于
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/06/28/[C++] C++中boostany的使用/" title="[C++] C++中boost::any的使用">
-  <strong>上一篇：</strong><br/>
-  <span>
-  [C++] C++中boost::any的使用</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/06/28/[C++] effective_C++_条款02/"  title="[C++] effective_C++_条款02">
+<a href="/2017/11/28/[Java] ClassLoader机制/"  title="[Java] ClassLoader机制">
  <strong>下一篇：</strong><br/> 
- <span>[C++] effective_C++_条款02
+ <span>[Java] ClassLoader机制
 </span>
 </a>
 </div>
@@ -162,7 +212,7 @@ CMake 相对于其他类似工具（shell脚本、Makefiles、Jam文件、基于
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2017/06/28/[CMake] CMake的使用/" data-title="[CMake] CMake的使用" data-url="http://yoursite.com/2017/06/28/[CMake] CMake的使用/"></div>
+	<div class="ds-thread" data-thread-key="2017/11/28/[Java] Java并发编程实战之线程安全性/" data-title="[Java] Java并发编程实战之线程安全性" data-url="http://yoursite.com/2017/11/28/[Java] Java并发编程实战之线程安全性/"></div>
 </section>
 
 
@@ -173,7 +223,7 @@ CMake 相对于其他类似工具（shell脚本、Makefiles、Jam文件、基于
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#VS环境下，CMake出来的ALL-BUILD项目和ZERO-CHECK项目的作用"><span class="toc-number">1.</span> <span class="toc-text">VS环境下，CMake出来的ALL_BUILD项目和ZERO_CHECK项目的作用</span></a></li></ol>
+ 
  
   </div>
 
