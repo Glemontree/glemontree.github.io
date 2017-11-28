@@ -4,44 +4,32 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>[DB] 数据库将一个表中数据插入到另外一张表中 | Glemontree&#39;s blog</title>
+    <title>[Java] ClassLoader机制 | Glemontree&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Glemontree">
     
 
     
-    <meta name="description" content="两张表中的字段一致，并且希望插入全部数据：
-1INSERT INTO 目标表 SELECT * FROM 来源表;
-
-只导入指定字段：
-1INSERT INTO 目标表(字段1,字段2,...) SELECT 字段1,字段2,... FROM 来源表;
-
-只导入目标表中不存在的记录：
-1INSERT INTO 目标表(字段1,字段2,...) SELECT 字段1,字段2,... FROM 来源">
+    <meta name="description" content="什么是ClassLoader在程序启动的时候，并不会一次性加载程序所要用的所有class文件，而是根据程序的需要，通过Java的类加载机制（ClassLoader）来动态加载某个class文件到内存当中，只有当class文件被载入了内存之后，才能被其他的class所引用。
+Java默认提供的三个ClassLoader
+BootStrap ClassLoader
+启动类加载器，是Java类加载层次中">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[DB] 数据库将一个表中数据插入到另外一张表中">
-<meta property="og:url" content="http://yoursite.com/2017/06/28/[DB] 数据库将一个表中数据插入到另外一张表中/index.html">
+<meta property="og:title" content="[Java] ClassLoader机制">
+<meta property="og:url" content="http://yoursite.com/2017/11/28/[Java] ClassLoader机制/index.html">
 <meta property="og:site_name" content="Glemontree's blog">
-<meta property="og:description" content="两张表中的字段一致，并且希望插入全部数据：
-1INSERT INTO 目标表 SELECT * FROM 来源表;
-
-只导入指定字段：
-1INSERT INTO 目标表(字段1,字段2,...) SELECT 字段1,字段2,... FROM 来源表;
-
-只导入目标表中不存在的记录：
-1INSERT INTO 目标表(字段1,字段2,...) SELECT 字段1,字段2,... FROM 来源">
-<meta property="og:updated_time" content="2017-06-28T09:25:11.567Z">
+<meta property="og:description" content="什么是ClassLoader在程序启动的时候，并不会一次性加载程序所要用的所有class文件，而是根据程序的需要，通过Java的类加载机制（ClassLoader）来动态加载某个class文件到内存当中，只有当class文件被载入了内存之后，才能被其他的class所引用。
+Java默认提供的三个ClassLoader
+BootStrap ClassLoader
+启动类加载器，是Java类加载层次中">
+<meta property="og:updated_time" content="2017-11-28T11:09:28.888Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[DB] 数据库将一个表中数据插入到另外一张表中">
-<meta name="twitter:description" content="两张表中的字段一致，并且希望插入全部数据：
-1INSERT INTO 目标表 SELECT * FROM 来源表;
-
-只导入指定字段：
-1INSERT INTO 目标表(字段1,字段2,...) SELECT 字段1,字段2,... FROM 来源表;
-
-只导入目标表中不存在的记录：
-1INSERT INTO 目标表(字段1,字段2,...) SELECT 字段1,字段2,... FROM 来源">
+<meta name="twitter:title" content="[Java] ClassLoader机制">
+<meta name="twitter:description" content="什么是ClassLoader在程序启动的时候，并不会一次性加载程序所要用的所有class文件，而是根据程序的需要，通过Java的类加载机制（ClassLoader）来动态加载某个class文件到内存当中，只有当class文件被载入了内存之后，才能被其他的class所引用。
+Java默认提供的三个ClassLoader
+BootStrap ClassLoader
+启动类加载器，是Java类加载层次中">
 
     
     <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
@@ -100,14 +88,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/06/28/[DB] 数据库将一个表中数据插入到另外一张表中/" title="[DB] 数据库将一个表中数据插入到另外一张表中" itemprop="url">[DB] 数据库将一个表中数据插入到另外一张表中</a>
+      <a href="/2017/11/28/[Java] ClassLoader机制/" title="[Java] ClassLoader机制" itemprop="url">[Java] ClassLoader机制</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-28T09:24:49.000Z" itemprop="datePublished"> Published 2017-06-28</time>
+    <time datetime="2017-11-28T10:38:02.000Z" itemprop="datePublished"> Published 2017-11-28</time>
     
   </p>
 </header>
@@ -116,22 +104,34 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是ClassLoader"><span class="toc-number">1.</span> <span class="toc-text">什么是ClassLoader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java默认提供的三个ClassLoader"><span class="toc-number">2.</span> <span class="toc-text">Java默认提供的三个ClassLoader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ClassLoader加载类的原理"><span class="toc-number">3.</span> <span class="toc-text">ClassLoader加载类的原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原理"><span class="toc-number">3.1.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么要使用双亲委托模型？"><span class="toc-number">3.2.</span> <span class="toc-text">为什么要使用双亲委托模型？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM在搜索类的时候，如何判断两个class是相同的呢？"><span class="toc-number">3.3.</span> <span class="toc-text">JVM在搜索类的时候，如何判断两个class是相同的呢？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定义自己的ClassLoader"><span class="toc-number">4.</span> <span class="toc-text">定义自己的ClassLoader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#说明"><span class="toc-number">5.</span> <span class="toc-text">说明</span></a></li></ol>
 		
 		</div>
 		
-		<ul>
-<li><p>两张表中的字段一致，并且希望插入全部数据：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> 目标表 <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> 来源表;</div></pre></td></tr></table></figure>
+		<h2 id="什么是ClassLoader"><a href="#什么是ClassLoader" class="headerlink" title="什么是ClassLoader"></a>什么是ClassLoader</h2><p>在程序启动的时候，并不会一次性加载程序所要用的所有class文件，而是根据程序的需要，通过Java的类加载机制（ClassLoader）来动态加载某个class文件到内存当中，只有当class文件被载入了内存之后，才能被其他的class所引用。</p>
+<h2 id="Java默认提供的三个ClassLoader"><a href="#Java默认提供的三个ClassLoader" class="headerlink" title="Java默认提供的三个ClassLoader"></a>Java默认提供的三个ClassLoader</h2><ul>
+<li><p>BootStrap ClassLoader</p>
+<p>启动类加载器，是Java类加载层次中最顶层的类加载器，负责加载JDK中的核心库，如rt.jar、resources.jar、charsets.jar等。</p>
 </li>
-<li><p>只导入指定字段：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> 目标表(字段<span class="number">1</span>,字段<span class="number">2</span>,...) <span class="keyword">SELECT</span> 字段<span class="number">1</span>,字段<span class="number">2</span>,... <span class="keyword">FROM</span> 来源表;</div></pre></td></tr></table></figure>
+<li><p>Extension ClassLoader</p>
+<p>扩展类加载器，负责加载Java的扩展类库，默认加载JAVA_HOME/jre/lib/ext/目录下的所有jar。</p>
 </li>
-<li><p>只导入目标表中不存在的记录：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> 目标表(字段<span class="number">1</span>,字段<span class="number">2</span>,...) <span class="keyword">SELECT</span> 字段<span class="number">1</span>,字段<span class="number">2</span>,... <span class="keyword">FROM</span> 来源表 <span class="keyword">WHERE</span> <span class="keyword">not</span> <span class="keyword">exists</span> (<span class="keyword">SELECT</span> * <span class="keyword">from</span> 目标表 <span class="keyword">where</span> 目标表.比较字段=来源表.比较字段)</div></pre></td></tr></table></figure>
-<p>​</p>
+<li><p>App ClassLoader</p>
+<p>系统类加载器，负责加载应用程序classpath目录下的所有jar和class文件</p>
 </li>
 </ul>
+<p>当然，用户可以根据需要进行自定义ClassLoader，自定义的ClassLoader必须继承自java.lang.ClassLoader类，也包括Java提供的另外两个ClassLoader（Extension ClassLoader和App ClassLoader），但是BootStrap ClassLoader不继承自ClassLoader，因为它不是一个普通的Java类，底层由C++编写，已嵌入到了JVM内核当中，当JVM启动后，BootStrap ClassLoader也随着启动，负责加载核心库后，并构造Extension ClassLoader和App ClassLoader。</p>
+<h2 id="ClassLoader加载类的原理"><a href="#ClassLoader加载类的原理" class="headerlink" title="ClassLoader加载类的原理"></a>ClassLoader加载类的原理</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>ClassLoader使用的是双亲委托模型来搜索类，每个ClassLoader实例都有一个父类加载器的引用，虚拟机内置的类加载器（BootStrap ClassLoader）本身没有父加载器，但可以作为其他ClassLoader实例的父类加载器。当一个ClassLoader实例需要加载某个类时，它会试图亲自搜索某个类之前，先把这个任务委托给它的父类类加载器，这个过程是由上往下依次检查的，首先由最顶层的类加载器BootStrap ClassLoader试图加载，如果没有加载到，则把任务转交给Extension ClassLoader试图加载，如果也没有加载到，则转交给App ClassLoader进行加载，如果它也没有加载的到的话，则返回给委托的发起者，由它到指定的文件系统或网络等URL中加载该类，如果它们都没有加载到这个类的话，则抛出ClassNotFoundException异常，否则将这个找到的类生成一个类的定义，并将它加载到内存当中，最后返回这个类在内存中的Class实例对象。</p>
+<h3 id="为什么要使用双亲委托模型？"><a href="#为什么要使用双亲委托模型？" class="headerlink" title="为什么要使用双亲委托模型？"></a>为什么要使用双亲委托模型？</h3><p>因为这样可以避免重复加载，当父类加载了该类的时候，就没有必要子ClassLoader再加载一次，考虑到安全因素，试想一下，如果不使用双亲委托模式，那我们就可以随时使用自定义的String来动态替代Java核心api中定义的类型，这样会存在很大的安全隐患，而双亲委托模式就可以避免这种情况，因为String已经在启动时被引导类加载器（BootStrap ClassLoader）加载，所以使用自定义的ClassLoader永远无法也无法加载一个自己写的String。</p>
+<h3 id="JVM在搜索类的时候，如何判断两个class是相同的呢？"><a href="#JVM在搜索类的时候，如何判断两个class是相同的呢？" class="headerlink" title="JVM在搜索类的时候，如何判断两个class是相同的呢？"></a>JVM在搜索类的时候，如何判断两个class是相同的呢？</h3><p>JVM在判定两个class是否相同时，不仅要判断两个类名是否相同，而且要判断是否由同一个类加载器实例加载的，只有两者同时满足的情况下，JVM才会认为这两个class是相同的。就算两个class是同一份class字节码，如果被两个不同的ClassLoader实例所加载，JVM也会认为它们是两个不同class。</p>
+<h2 id="定义自己的ClassLoader"><a href="#定义自己的ClassLoader" class="headerlink" title="定义自己的ClassLoader"></a>定义自己的ClassLoader</h2><p>既然JVM已经提供了默认的类加载器，为什么还要定义自已的类加载器呢？因为Java中提供的默认ClassLoader，只加载指定目录下的jar和class，如果我们想加载其它位置的类或jar时，比如：我要加载网络上的一个class文件，通过动态加载到内存之后，要调用这个类中的方法实现我的业务逻辑。在这样的情况下，默认的ClassLoader就不能满足我们的需求了，所以需要定义自己的ClassLoader。</p>
+<p>定义自已的类加载器分为两步：</p>
+<ul>
+<li>继承java.lang.ClassLoader</li>
+<li>重写父类的findClass方法</li>
+</ul>
+<p>JDK已经在loadClass方法中帮我们实现了ClassLoader搜索类的算法，当在loadClass方法中搜索不到类时，loadClass方法就会调用findClass方法来搜索类，所以我们只需重写该方法即可。如没有特殊的要求，一般不建议重写loadClass搜索类的算法。</p>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>本文转载自<a href="http://blog.csdn.net/xyang81/article/details/7292380" target="_blank" rel="external">深入分析Java ClassLoader原理</a>。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -139,13 +139,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/DB/">DB</a>
+  <a class="article-category-link" href="/categories/Java/">Java</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/DB/">DB</a><a href="/tags/INSERT/">INSERT</a>
+  <span></span> <a href="/tags/Java-ClassLoader/">Java ClassLoader</a>
   </div>
 
 </div>
@@ -154,7 +154,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2017/06/28/[DB] 数据库将一个表中数据插入到另外一张表中/" data-title="[DB] 数据库将一个表中数据插入到另外一张表中 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/11/28/[Java] ClassLoader机制/" data-title="[Java] ClassLoader机制 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -167,19 +167,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/06/28/[设计模式] 适配器模式/" title="[设计模式] 适配器模式">
-  <strong>上一篇：</strong><br/>
-  <span>
-  [设计模式] 适配器模式</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/06/28/[DB] 数据库中%和_的用法/"  title="[DB] 数据库中%和_的用法">
+<a href="/2017/11/02/[Effective Java] 考虑用静态工厂方法代替构造器/"  title="[Effective Java] 创建和销毁对象">
  <strong>下一篇：</strong><br/> 
- <span>[DB] 数据库中%和_的用法
+ <span>[Effective Java] 创建和销毁对象
 </span>
 </a>
 </div>
@@ -188,7 +180,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2017/06/28/[DB] 数据库将一个表中数据插入到另外一张表中/" data-title="[DB] 数据库将一个表中数据插入到另外一张表中" data-url="http://yoursite.com/2017/06/28/[DB] 数据库将一个表中数据插入到另外一张表中/"></div>
+	<div class="ds-thread" data-thread-key="2017/11/28/[Java] ClassLoader机制/" data-title="[Java] ClassLoader机制" data-url="http://yoursite.com/2017/11/28/[Java] ClassLoader机制/"></div>
 </section>
 
 
@@ -199,7 +191,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是ClassLoader"><span class="toc-number">1.</span> <span class="toc-text">什么是ClassLoader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java默认提供的三个ClassLoader"><span class="toc-number">2.</span> <span class="toc-text">Java默认提供的三个ClassLoader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ClassLoader加载类的原理"><span class="toc-number">3.</span> <span class="toc-text">ClassLoader加载类的原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原理"><span class="toc-number">3.1.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么要使用双亲委托模型？"><span class="toc-number">3.2.</span> <span class="toc-text">为什么要使用双亲委托模型？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM在搜索类的时候，如何判断两个class是相同的呢？"><span class="toc-number">3.3.</span> <span class="toc-text">JVM在搜索类的时候，如何判断两个class是相同的呢？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定义自己的ClassLoader"><span class="toc-number">4.</span> <span class="toc-text">定义自己的ClassLoader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#说明"><span class="toc-number">5.</span> <span class="toc-text">说明</span></a></li></ol>
  
   </div>
 
