@@ -29,7 +29,7 @@ HashMap和">
 
 
 HashMap和">
-<meta property="og:updated_time" content="2017-11-23T15:20:06.296Z">
+<meta property="og:updated_time" content="2017-11-30T04:32:18.897Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Java] Java面试题">
 <meta name="twitter:description" content="String类为什么是final的？
@@ -624,6 +624,18 @@ HashMap和">
 <p>BeanFactory：工厂类，用于管理Bean的工厂</p>
 <p>FactoryBean：一个Bean，不同于普通的Bean的是，它实现了<code>FactoryBean&lt;T&gt;</code>接口，根据该Bean的id从BeanFactory中获取的实际上是FactoryBean的getObject()返回的对象。</p>
 </li>
+<li><p>在使用Arrays.asList()方法需要注意以下两点：</p>
+<ul>
+<li><p>避免使用基本数据类型数组转换为列表</p>
+<p>asList()方法接收的参数是一个泛型的变长参数，但是基本数据类型是无法泛型化的，此时会将基本数据类型的数组当做其参数，而在Java中数组是一个对象，它是可以泛型化的。</p>
+</li>
+<li><p>asList()方法产生的列表不可操作，不要试图去改变asList()返回的列表</p>
+</li>
+</ul>
+<p>详细请参看博客<a href="http://blog.csdn.net/chenssy/article/details/38373877" target="_blank" rel="external">Java提高篇（三六）—–java集合细节（二）：asList的缺陷</a>。</p>
+</li>
+<li><p>​</p>
+</li>
 </ul>
   
 	</div>
@@ -755,7 +767,7 @@ HashMap和">
 		  
 		
 		  
-			<li><a href="/categories/Java/" title="Java">Java<sup>9</sup></a></li>
+			<li><a href="/categories/Java/" title="Java">Java<sup>11</sup></a></li>
 		  
 		
 		  
@@ -848,7 +860,7 @@ HashMap和">
 			
 		
 			
-				<li><a href="/tags/html/" title="html">html<sup>2</sup></a></li>
+				<li><a href="/tags/Java-并发/" title="Java 并发">Java 并发<sup>3</sup></a></li>
 			
 		
 			
@@ -856,11 +868,15 @@ HashMap和">
 			
 		
 			
-				<li><a href="/tags/Android/" title="Android">Android<sup>2</sup></a></li>
+				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
+				<li><a href="/tags/html/" title="html">html<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>2</sup></a></li>
 			
 		
 			
@@ -880,15 +896,7 @@ HashMap和">
 			
 		
 			
-				<li><a href="/tags/MyBatis-参数处理/" title="MyBatis, 参数处理">MyBatis, 参数处理<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android-xml-tools/" title="Android, xml-tools">Android, xml-tools<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-Boost/" title="C++, Boost">C++, Boost<sup>1</sup></a></li>
+				<li><a href="/tags/MyBatis-SQL映射文件/" title="MyBatis, SQL映射文件">MyBatis, SQL映射文件<sup>1</sup></a></li>
 			
 		
 			
@@ -896,15 +904,19 @@ HashMap和">
 			
 		
 			
-				<li><a href="/tags/C-new-operator-new-placement-new/" title="C++, new, operator new, placement new">C++, new, operator new, placement new<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
+				<li><a href="/tags/C-11-Bind/" title="C++11, Bind">C++11, Bind<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/C-泛型/" title="C++ 泛型">C++ 泛型<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-面试/" title="C++ 面试">C++ 面试<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-assert/" title="C++, assert">C++, assert<sup>1</sup></a></li>
 			
 		
 		</ul>
