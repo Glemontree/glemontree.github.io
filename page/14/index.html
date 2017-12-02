@@ -77,6 +77,47 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
+    <a href="/2017/06/28/[设计模式] 单例模式/" title="[设计模式] 单例模式" itemprop="url">
+  
+    <h1 itemprop="name">[设计模式] 单例模式</h1>
+    
+     
+           <p itemprop="description" >懒汉模式即第一次调用该类实例的时候才产生一个新的该类实例，并在以后仅返回此实例。需要用锁，来保证其线程安全性。原因：多个线程可能进入判断是否已经存在实例的if语句，从而non thread safety。使用double-check来保证thread safety。但是如果处理大</p>
+        
+    
+    <time datetime="2017-06-28T09:40:04.000Z" itemprop="datePublished">2017-06-28</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/06/28/[多线程] 互斥对象和锁/" title="[多线程] 互斥对象和锁" itemprop="url">
+  
+    <h1 itemprop="name">[多线程] 互斥对象和锁</h1>
+    
+     
+           <p itemprop="description" >互斥对象和锁锁互斥对象的主要操作有两个，即加锁(lock)和解锁(unlock)。当一个线程对互斥对象进行lock操作并成功获得这个互斥对象的所有权，在此线程对此对象unlock前，其他线程对这个互斥对象的lock操作都会被阻塞。
+多个互斥对象加锁有些倾向需要对多个互斥对象进行加</p>
+        
+    
+    <time datetime="2017-06-28T09:38:55.000Z" itemprop="datePublished">2017-06-28</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
     <a href="/2017/06/28/[多线程] 互斥量和临界区的区别/" title="[多线程] 互斥量和临界区的区别" itemprop="url">
   
     <h1 itemprop="name">[多线程] 互斥量和临界区的区别</h1>
@@ -277,52 +318,6 @@ gmtime
 
 
 
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[DB] 数据库中%和_的用法/" title="[DB] 数据库中%和_的用法" itemprop="url">
-  
-    <h1 itemprop="name">[DB] 数据库中%和_的用法</h1>
-    
-     
-           <p itemprop="description" >数据库中模糊查询命令like有两个通配符”%”和”_”，其中：
-
-%匹配0或多个字符
-_匹配任意1个字符（必须有一个）
-
-举例如下：
-12345678SQL&amp;gt;  create table tt ( name char(10) );SQL&amp;gt;  insert into t</p>
-        
-    
-    <time datetime="2017-06-28T09:23:09.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/28/[C++] 推荐一个在线编辑、编译、运行程序的网页/" title="[C++] 推荐一个在线编辑、编译、运行程序的网页" itemprop="url">
-  
-    <h1 itemprop="name">[C++] 推荐一个在线编辑、编译、运行程序的网页</h1>
-    
-     
-           <p itemprop="description" ></p>
-        
-    
-    <time datetime="2017-06-28T09:21:53.000Z" itemprop="datePublished">2017-06-28</time>
-  </a>
-</section>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix unexpand">
     <a class="extend prev" rel="prev" href="/page/13/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/15/">Next<span></span></a>
@@ -390,7 +385,7 @@ _匹配任意1个字符（必须有一个）
 		  
 		
 		  
-			<li><a href="/categories/Java/" title="Java">Java<sup>11</sup></a></li>
+			<li><a href="/categories/Java/" title="Java">Java<sup>13</sup></a></li>
 		  
 		
 		  
@@ -471,6 +466,10 @@ _匹配任意1个字符（必须有一个）
 			
 		
 			
+				<li><a href="/tags/Java-并发/" title="Java 并发">Java 并发<sup>5</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/MyBatis/" title="MyBatis">MyBatis<sup>4</sup></a></li>
 			
 		
@@ -483,15 +482,11 @@ _匹配任意1个字符（必须有一个）
 			
 		
 			
-				<li><a href="/tags/Java-并发/" title="Java 并发">Java 并发<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
+				<li><a href="/tags/Android/" title="Android">Android<sup>2</sup></a></li>
 			
 		
 			
@@ -499,7 +494,7 @@ _匹配任意1个字符（必须有一个）
 			
 		
 			
-				<li><a href="/tags/Android/" title="Android">Android<sup>2</sup></a></li>
+				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
 			
 		
 			
@@ -519,27 +514,27 @@ _匹配任意1个字符（必须有一个）
 			
 		
 			
-				<li><a href="/tags/MyBatis-SQL映射文件/" title="MyBatis, SQL映射文件">MyBatis, SQL映射文件<sup>1</sup></a></li>
+				<li><a href="/tags/Qt-processEvents/" title="Qt, processEvents">Qt, processEvents<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-回调/" title="C++ 回调">C++ 回调<sup>1</sup></a></li>
+				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-11-Bind/" title="C++11, Bind">C++11, Bind<sup>1</sup></a></li>
+				<li><a href="/tags/Android-ProgressDialog，-耗时操作/" title="Android, ProgressDialog， 耗时操作">Android, ProgressDialog， 耗时操作<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-泛型/" title="C++ 泛型">C++ 泛型<sup>1</sup></a></li>
+				<li><a href="/tags/C-new-operator-new-placement-new/" title="C++, new, operator new, placement new">C++, new, operator new, placement new<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-assets/" title="Android, assets">Android, assets<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/C-面试/" title="C++ 面试">C++ 面试<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-assert/" title="C++, assert">C++, assert<sup>1</sup></a></li>
 			
 		
 		</ul>

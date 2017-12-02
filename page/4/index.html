@@ -77,6 +77,49 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
+    <a href="/2017/10/23/[C++] static void ( __set_malloc_handler(void (__f)()))()/" title="[C++] static void (* __set_malloc_handler(void (*__f)()))()" itemprop="url">
+  
+    <h1 itemprop="name">[C++] static void (* __set_malloc_handler(void (*__f)()))()</h1>
+    
+     
+           <p itemprop="description" >1static void (* __set_malloc_handler(void (*__f)()))()
+拆开一层一层的分析，最内部的__f是一个函数指针，其参数为void，返回值为void。
+对于__set_malloc_handler，首先它是一个函数，其参数为形如__f</p>
+        
+    
+    <time datetime="2017-10-23T09:49:12.000Z" itemprop="datePublished">2017-10-23</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/10/23/[Linux] Linux中的伙伴系统和slab机制/" title="[Linux] Linux中的伙伴系统和slab机制" itemprop="url">
+  
+    <h1 itemprop="name">[Linux] Linux中的伙伴系统和slab机制</h1>
+    
+     
+           <p itemprop="description" >伙伴系统Linux中采用4KB大小的页框作为标准的内存分配单元，在实际应用中，经常需要分配一组连续的页框，而频繁的申请和释放不同大小的连续页框，必然导致在已分配页框的内存块中分散了许多小块的空闲页框，这样，即使这些页框是空闲的，其他需要分配连续页框的应用也很难得到满足。
+Linu</p>
+        
+    
+    <time datetime="2017-10-23T08:34:00.000Z" itemprop="datePublished">2017-10-23</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
     <a href="/2017/10/22/[Java] Java并发编程之volatile关键字/" title="[Java] Java并发编程之volatile关键字" itemprop="url">
   
     <h1 itemprop="name">[Java] Java并发编程之volatile关键字</h1>
@@ -253,48 +296,6 @@ mysql中使用sql语句生成一张表并</p>
 
 
 
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/09/12/[Android] 利用APT实现Android编译时注解/" title="[Android] 利用APT实现Android编译时注解" itemprop="url">
-  
-    <h1 itemprop="name">[Android] 利用APT实现Android编译时注解</h1>
-    
-     
-           <p itemprop="description" >说在前面本文转载自文章利用APT实现Android编译时注解，文章对实现编译时注解讲解很详细！
-APT概述我们在前面的java注解详解一文中已经讲过，可以在运行时利用反射机制运行处理注解。其实，我们还可以在编译时处理注解，这就是不得不说官方为我们提供的注解处理工具APT (Ann</p>
-        
-    
-    <time datetime="2017-09-12T03:40:15.000Z" itemprop="datePublished">2017-09-12</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/09/11/[Java] Java反射/" title="[Java] Java反射" itemprop="url">
-  
-    <h1 itemprop="name">[Java] Java反射</h1>
-    
-     
-           <p itemprop="description" >声明本篇文章转载自JAVA反射与注解，作者先讲解了Java反射，然后在Java反射的基础上又对Java注解进行了讲解，我主要是对其中Java反射部分进行摘录。
-什么是Java反射主要是指程序可以访问，检测和修改它本身状态或行为的一种能力，并能根据自身行为的状态和结果，调整或修改应</p>
-        
-    
-    <time datetime="2017-09-11T12:00:00.000Z" itemprop="datePublished">2017-09-11</time>
-  </a>
-</section>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix unexpand">
     <a class="extend prev" rel="prev" href="/page/3/"><span></span>Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/5/">Next<span></span></a>
@@ -362,7 +363,7 @@ APT概述我们在前面的java注解详解一文中已经讲过，可以在运�
 		  
 		
 		  
-			<li><a href="/categories/Java/" title="Java">Java<sup>11</sup></a></li>
+			<li><a href="/categories/Java/" title="Java">Java<sup>13</sup></a></li>
 		  
 		
 		  
@@ -443,6 +444,10 @@ APT概述我们在前面的java注解详解一文中已经讲过，可以在运�
 			
 		
 			
+				<li><a href="/tags/Java-并发/" title="Java 并发">Java 并发<sup>5</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/MyBatis/" title="MyBatis">MyBatis<sup>4</sup></a></li>
 			
 		
@@ -455,15 +460,11 @@ APT概述我们在前面的java注解详解一文中已经讲过，可以在运�
 			
 		
 			
-				<li><a href="/tags/Java-并发/" title="Java 并发">Java 并发<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
+				<li><a href="/tags/Android/" title="Android">Android<sup>2</sup></a></li>
 			
 		
 			
@@ -471,7 +472,7 @@ APT概述我们在前面的java注解详解一文中已经讲过，可以在运�
 			
 		
 			
-				<li><a href="/tags/Android/" title="Android">Android<sup>2</sup></a></li>
+				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
 			
 		
 			
@@ -491,27 +492,27 @@ APT概述我们在前面的java注解详解一文中已经讲过，可以在运�
 			
 		
 			
-				<li><a href="/tags/MyBatis-SQL映射文件/" title="MyBatis, SQL映射文件">MyBatis, SQL映射文件<sup>1</sup></a></li>
+				<li><a href="/tags/Qt-processEvents/" title="Qt, processEvents">Qt, processEvents<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-回调/" title="C++ 回调">C++ 回调<sup>1</sup></a></li>
+				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-11-Bind/" title="C++11, Bind">C++11, Bind<sup>1</sup></a></li>
+				<li><a href="/tags/Android-ProgressDialog，-耗时操作/" title="Android, ProgressDialog， 耗时操作">Android, ProgressDialog， 耗时操作<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-泛型/" title="C++ 泛型">C++ 泛型<sup>1</sup></a></li>
+				<li><a href="/tags/C-new-operator-new-placement-new/" title="C++, new, operator new, placement new">C++, new, operator new, placement new<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-assets/" title="Android, assets">Android, assets<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/C-面试/" title="C++ 面试">C++ 面试<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-assert/" title="C++, assert">C++, assert<sup>1</sup></a></li>
 			
 		
 		</ul>
