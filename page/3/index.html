@@ -77,16 +77,15 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/11/01/[Struts2] Cookie/" title="[Struts2] Cookie" itemprop="url">
+    <a href="/2017/11/29/[Java] Java并发编程实战之对象的共享/" title="[Java] Java并发编程实战之对象的共享" itemprop="url">
   
-    <h1 itemprop="name">[Struts2] Cookie</h1>
+    <h1 itemprop="name">[Java] Java并发编程实战之对象的共享</h1>
     
      
-           <p itemprop="description" >什么是CookieCookie是在浏览器访问某个Web资源时，由Web服务器在HTTP响应消息头中通过Set-Cookie字段发送给浏览器的一组消息。
-浏览器会根据Set-Cookie字段中的Cookie数据决定是否保存这些Cookie，当浏览器下次访问这个资源时，会自动读取这些</p>
+           <p itemprop="description" >对于非volatile类型的64位数值变量（double和long），JVM允许将64位的读操作和写操作分解为两个32位的操作。当读取一个非volatile类型的long变量时，如果对变量的读操作和写操作在不同的线程中执行，那么很可能会读取到某个值的高32位和另一个值的低32位。</p>
         
     
-    <time datetime="2017-11-01T06:27:23.000Z" itemprop="datePublished">2017-11-01</time>
+    <time datetime="2017-11-29T05:05:03.000Z" itemprop="datePublished">2017-11-29</time>
   </a>
 </section>
 
@@ -98,16 +97,19 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/11/01/[C++] C++中实现回调/" title="[C++] C++中实现回调" itemprop="url">
+    <a href="/2017/11/28/[Java] Java并发编程实战之线程安全性/" title="[Java] Java并发编程实战之线程安全性" itemprop="url">
   
-    <h1 itemprop="name">[C++] C++中实现回调</h1>
+    <h1 itemprop="name">[Java] Java并发编程实战之线程安全性</h1>
     
      
-           <p itemprop="description" >一、 使用全局函数作为回调在C++中可以使用类似于C语言方式的回调函数，也就是将全局函数定义为回调函数：
-12345678910typedef void(*pCalledFun)(int*);void GetCallBack(pCalledFun parafun) &amp;#123; </p>
+           <p itemprop="description" >一个对象是否是线程安全的，取决于它是否被多个线程访问，要使得对象是线程安全的，需要采用同步机制来协同对可变状态的访问
+
+在线程安全类中封装了必要的同步机制，因此客户端无需进一步采用同步措施
+
+无状态对象一定是线程安全的，大多数Servlet都是无状态的，从而极大的降低了在实现Se</p>
         
     
-    <time datetime="2017-11-01T06:24:25.000Z" itemprop="datePublished">2017-11-01</time>
+    <time datetime="2017-11-28T11:43:21.000Z" itemprop="datePublished">2017-11-28</time>
   </a>
 </section>
 
@@ -119,17 +121,16 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/11/01/[C++] C++泛型/" title="[C++] C++泛型" itemprop="url">
+    <a href="/2017/11/28/[Java] ClassLoader机制/" title="[Java] ClassLoader机制" itemprop="url">
   
-    <h1 itemprop="name">[C++] C++泛型</h1>
+    <h1 itemprop="name">[Java] ClassLoader机制</h1>
     
      
-           <p itemprop="description" >函数模板的定义：
-1template&amp;lt;TYPE_LIST, ARG_LIST&amp;gt;Function_Definition
-其中，Function_Definition为函数定义：TYPE_LIST被称为类型参数表，是由一系列代表类型的标识符组成的，其间用逗号分隔，这些标识</p>
+           <p itemprop="description" >什么是ClassLoader在程序启动的时候，并不会一次性加载程序所要用的所有class文件，而是根据程序的需要，通过Java的类加载机制（ClassLoader）来动态加载某个class文件到内存当中，只有当class文件被载入了内存之后，才能被其他的class所引用。
+Jav</p>
         
     
-    <time datetime="2017-11-01T06:12:17.000Z" itemprop="datePublished">2017-11-01</time>
+    <time datetime="2017-11-28T10:38:02.000Z" itemprop="datePublished">2017-11-28</time>
   </a>
 </section>
 
@@ -141,18 +142,21 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/11/01/[Spring] AOP/" title="[Spring] AOP" itemprop="url">
+    <a href="/2017/11/02/[Effective Java] 考虑用静态工厂方法代替构造器/" title="[Effective Java] 创建和销毁对象" itemprop="url">
   
-    <h1 itemprop="name">[Spring] AOP</h1>
+    <h1 itemprop="name">[Effective Java] 创建和销毁对象</h1>
     
      
-           <p itemprop="description" >动态代理代理设计模式的原理使用一个代理对象包装起来，然后用该代理对象取代原始对象，任何对原始对象的调用都要通过代理，代理对象决定是否以及何时将方法调用转到原始对象上。
-动态代理的实现
-ArithmeticCalculator.java
-12345678package com.gl</p>
+           <p itemprop="description" >考虑用静态工厂方法代替构造器创建类实例的方法
+公有构造器
+公有静态工厂方法
+
+静态工厂方法与构造器相比的优势
+静态工厂方法有名称
+如果构造器的参数本身没有确切的描述正被返回的对象，那么具有适当名称的静态工厂会更容易使用，举个例子，构造器BigInteger(int, int, R</p>
         
     
-    <time datetime="2017-11-01T05:42:47.000Z" itemprop="datePublished">2017-11-01</time>
+    <time datetime="2017-11-02T07:47:21.000Z" itemprop="datePublished">2017-11-02</time>
   </a>
 </section>
 
@@ -164,15 +168,20 @@ ArithmeticCalculator.java
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/10/31/[Java] 分布式和集群的区别/" title="[Java] 分布式和集群的区别" itemprop="url">
+    <a href="/2017/11/02/[MyBatis] mybatis/" title="[MyBatis] mybatis" itemprop="url">
   
-    <h1 itemprop="name">[Java] 分布式和集群的区别</h1>
+    <h1 itemprop="name">[MyBatis] mybatis</h1>
     
      
-           <p itemprop="description" >对于集群，不是n个服务器做同一个任务，而是与n个任务分布在n台机器上同时处理，比如，你前台页面有n个用户，分别发送一个请求，那么如果不是集群的话，那这n个请求需要并行在一台机器上处理，如果每个请求都是1秒钟，那么就会有1个人等待n秒钟，有一个人等待n-1秒钟，以此类推。那么现在在</p>
+           <p itemprop="description" >动态sql
+
+if标签
+根据查询条件来动态拼装sql语句，其格式如下：
+1&amp;lt;if test=&amp;quot;&amp;quot;&amp;gt;&amp;lt;/if&amp;gt;
+其中test表示判断表达式（使用OGNL），其从参数中取值进行判断，当然遇见特殊符号需要些转义字符，比如&amp;amp;&amp;amp;，</p>
         
     
-    <time datetime="2017-10-31T05:22:40.000Z" itemprop="datePublished">2017-10-31</time>
+    <time datetime="2017-11-02T03:30:32.000Z" itemprop="datePublished">2017-11-02</time>
   </a>
 </section>
 
@@ -184,22 +193,15 @@ ArithmeticCalculator.java
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/10/28/[C++] C++面试/" title="[C++] C++面试" itemprop="url">
+    <a href="/2017/11/02/[TCPIP] 动态主机配置/" title="[TCP/IP] 动态主机配置" itemprop="url">
   
-    <h1 itemprop="name">[C++] C++面试</h1>
+    <h1 itemprop="name">[TCP/IP] 动态主机配置</h1>
     
      
-           <p itemprop="description" >智能指针- shared_ptr ref_count
-
-自旋锁
-
-enable_share_from_this 是什么意思，请举一个场景说明
-
-需求：在类的内部需要自身的shared_ptr而不是this裸指针
-场景：在类中发起一个异步操作，callback回来要保证发起操作的对</p>
+           <p itemprop="description" >DHCP协议通过同DHCP服务器的交互，设备可以获得一个有效的IP地址，使得它可以在特定网络环境下运行。DHCP服务器一般有两个数据库，一个数据库维护静态分配的物理地址和IP地址地址绑定，它记录了特定客户端主机将被分配的特定IP地址，客户主机可以永久使用这些IP地址；第二个数据库</p>
         
     
-    <time datetime="2017-10-28T05:08:43.000Z" itemprop="datePublished">2017-10-28</time>
+    <time datetime="2017-11-02T03:27:58.000Z" itemprop="datePublished">2017-11-02</time>
   </a>
 </section>
 
@@ -211,16 +213,16 @@ enable_share_from_this 是什么意思，请举一个场景说明
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/10/24/[C++] 迭代器失效/" title="[C++] 迭代器失效" itemprop="url">
+    <a href="/2017/11/02/[TCPIP] TCP封包解包与大小端问题/" title="[TCP/IP] TCP封包解包与大小端问题" itemprop="url">
   
-    <h1 itemprop="name">[C++] 迭代器失效</h1>
+    <h1 itemprop="name">[TCP/IP] TCP封包解包与大小端问题</h1>
     
      
-           <p itemprop="description" >迭代器失效当使用一个容器的insert或者erase函数通过迭代器插入或删除元素可能会导致迭代器失效，因此很多建议都是让我们获取insert或者erase返回的迭代器，以便用重新获取新的有效的迭代器进行正确的操作。
-12iter = vec.insert(iter);iter =</p>
+           <p itemprop="description" >建立统一成小端，虽然网络字节序是大端，但是目前主流的设备也就是X86是小端的，那些大端的机器同时也支持小端，像ARM、POWERPC都是支持小端的；
+字节序一般是对数字而言的，要处理数字字节序的问题也很简单，不要使用系统默认的数字读入或读取方式读取数据（因为这样采用的是默认的字节</p>
         
     
-    <time datetime="2017-10-24T13:56:42.000Z" itemprop="datePublished">2017-10-24</time>
+    <time datetime="2017-11-02T03:26:19.000Z" itemprop="datePublished">2017-11-02</time>
   </a>
 </section>
 
@@ -232,18 +234,19 @@ enable_share_from_this 是什么意思，请举一个场景说明
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/10/23/[C++] C++中的new、operator new和placement new/" title="[C++] C++中的new、operator new和placement new" itemprop="url">
+    <a href="/2017/11/02/[TCPIP] 网络接口管理/" title="[TCP/IP] 网络接口管理" itemprop="url">
   
-    <h1 itemprop="name">[C++] C++中的new、operator new和placement new</h1>
+    <h1 itemprop="name">[TCP/IP] 网络接口管理</h1>
     
      
-           <p itemprop="description" >new/delete和operator new/operator deletenew operator/delete operator就是new和delete操作符，而operator new/operator delete是函数。
-new operator：
+           <p itemprop="description" >LwIP在逻辑上分为4个层次：链路层、网络层、传输层、应用层
 
-调用operat</p>
+LwIP协议栈内部使用了一个名为netif的网络接口结构来描述各种网络设备
+
+LwIP为每个接口分配一个netif结构，用这个结构来描述每种接口的特性，如接口IP地址、接口状态等，同时在该结构中为每个接口注册对应的操</p>
         
     
-    <time datetime="2017-10-23T14:38:12.000Z" itemprop="datePublished">2017-10-23</time>
+    <time datetime="2017-11-02T03:24:48.000Z" itemprop="datePublished">2017-11-02</time>
   </a>
 </section>
 
@@ -255,15 +258,18 @@ new operator：
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/10/23/[C++] allocator原理/" title="[C++] allocator原理" itemprop="url">
+    <a href="/2017/11/02/[TCPIP] 网际协议IP/" title="[TCP/IP] 网际协议IP" itemprop="url">
   
-    <h1 itemprop="name">[C++] allocator原理</h1>
+    <h1 itemprop="name">[TCP/IP] 网际协议IP</h1>
     
      
-           <p itemprop="description" >allocator原理介绍考虑到小型区域可能造成内存破碎问题，SGI STL设计了双层级配置器，第一层配置器直接使用malloc()和free()，第二层配置器则视情况采用不同的策略：当配置区块超过128bytes时，调用第一层级配置器，当配置区块小于128bytes时，采用复杂</p>
+           <p itemprop="description" >IP是整个TCP/IP协议的核心，TCP、UDP、ICMP、IGMP等协议都基于IP来传送协议数据，常见的广域网路由器就工作在IP层，它们负责将IP数据报从源主机送至目的主机。
+
+网络相关知识
+IP是一种不可靠的无连接数据报协议，它提供尽量最大努力交付服务，但是并不保证每个分组都</p>
         
     
-    <time datetime="2017-10-23T11:57:49.000Z" itemprop="datePublished">2017-10-23</time>
+    <time datetime="2017-11-02T03:23:02.000Z" itemprop="datePublished">2017-11-02</time>
   </a>
 </section>
 
@@ -275,16 +281,15 @@ new operator：
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/10/23/[C++] C++中的模板/" title="[C++] C++中的模板" itemprop="url">
+    <a href="/2017/11/02/[TCPIP] 数据包管理/" title="[TCP/IP] 数据包管理" itemprop="url">
   
-    <h1 itemprop="name">[C++] C++中的模板</h1>
+    <h1 itemprop="name">[TCP/IP] 数据包管理</h1>
     
      
-           <p itemprop="description" >非类型模板参数非类型模板参数可以使用整型类型、指针或引用。绑定非类型整型形参的实参必须是常量表达式，不能把普通的局部变量或者动态对象绑定指针或引用的非类型，可以使用全局类型进行绑定。
-123456template &amp;lt;const char* C&amp;gt;void pointer</p>
+           <p itemprop="description" >数据包处理过程链路层判断收到的数据包类型，提取数据包中的数据字段，记录主机物理地址信息；IP层根据数据包中的IP地址实现数据的存储和转发，根据数据包编号实现数据包的重装，提取数据包中关于传输层的信息，向上层递交数据包并记录递交结果；TCP使用数据包中的信息更新TCP状态机并向应用</p>
         
     
-    <time datetime="2017-10-23T10:07:40.000Z" itemprop="datePublished">2017-10-23</time>
+    <time datetime="2017-11-02T03:19:55.000Z" itemprop="datePublished">2017-11-02</time>
   </a>
 </section>
 
@@ -295,7 +300,7 @@ new operator：
 
 
   <nav id="page-nav" class="clearfix unexpand">
-    <a class="extend prev" rel="prev" href="/page/2/"><span></span>Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/4/">Next<span></span></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><span></span>Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/4/">Next<span></span></a>
   </nav>
 
 </div>
@@ -364,7 +369,7 @@ new operator：
 		  
 		
 		  
-			<li><a href="/categories/Linux/" title="Linux">Linux<sup>5</sup></a></li>
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>21</sup></a></li>
 		  
 		
 		  
@@ -433,6 +438,10 @@ new operator：
 		<ul class="clearfix">
 		
 			
+				<li><a href="/tags/Linux-Shell/" title="Linux, Shell">Linux, Shell<sup>16</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/JQuery/" title="JQuery">JQuery<sup>8</sup></a></li>
 			
 		
@@ -457,7 +466,11 @@ new operator：
 			
 		
 			
-				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
+				<li><a href="/tags/html/" title="html">html<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
 			
 		
 			
@@ -465,11 +478,7 @@ new operator：
 			
 		
 			
-				<li><a href="/tags/html/" title="html">html<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
+				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
 			
 		
 			
@@ -489,15 +498,11 @@ new operator：
 			
 		
 			
-				<li><a href="/tags/Qt-processEvents/" title="Qt, processEvents">Qt, processEvents<sup>1</sup></a></li>
+				<li><a href="/tags/MyBatis-参数处理/" title="MyBatis, 参数处理">MyBatis, 参数处理<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android-ProgressDialog，-耗时操作/" title="Android, ProgressDialog， 耗时操作">Android, ProgressDialog， 耗时操作<sup>1</sup></a></li>
+				<li><a href="/tags/C-回调/" title="C++ 回调">C++ 回调<sup>1</sup></a></li>
 			
 		
 			
@@ -505,11 +510,11 @@ new operator：
 			
 		
 			
-				<li><a href="/tags/Android-assets/" title="Android, assets">Android, assets<sup>1</sup></a></li>
+				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-面试/" title="C++ 面试">C++ 面试<sup>1</sup></a></li>
+				<li><a href="/tags/C-泛型/" title="C++ 泛型">C++ 泛型<sup>1</sup></a></li>
 			
 		
 		</ul>

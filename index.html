@@ -77,17 +77,16 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/12/02/[Java] Java并发编程实战之任务执行/" title="[Java] Java并发编程实战之任务执行" itemprop="url">
+    <a href="/2017/12/03/[Linux] Shell编程第十一课/" title="[Linux] Shell编程第十一课" itemprop="url">
   
-    <h1 itemprop="name">[Java] Java并发编程实战之任务执行</h1>
+    <h1 itemprop="name">[Linux] Shell编程第十一课</h1>
     
      
-           <p itemprop="description" >任务是一组逻辑工作单元，而线程则是使任务异步执行的机制
-
-Executor提供了一种标准的方法将任务的提交过程和执行过程解耦开来，并用Runnable表示任务，Executor基于生产者-消费者模式，提交任务的操作相当于生产者（生产待完成的工作单元），执行任务的线程则相当于消费者</p>
+           <p itemprop="description" >bash shell会将一些称为位置参数的特殊变量分配给输入到命令行中的所有参数，其中$0是程序名，$1是第一个参数，$2是第二个参数…
+1234567#!/bin/bashfactorial=1for (( number = 1; number &amp;lt;= $1 ; numbe</p>
         
     
-    <time datetime="2017-12-02T10:37:09.000Z" itemprop="datePublished">2017-12-02</time>
+    <time datetime="2017-12-03T12:18:59.000Z" itemprop="datePublished">2017-12-03</time>
   </a>
 </section>
 
@@ -99,17 +98,17 @@ Executor提供了一种标准的方法将任务的提交过程和执行过程解
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/11/30/[Java] Java并发编程实战之基础构建模块/" title="[Java] Java并发编程实战之基础构建模块" itemprop="url">
+    <a href="/2017/12/03/[Linux] Shell编程第十七课/" title="[Linux] Shell编程第十七课" itemprop="url">
   
-    <h1 itemprop="name">[Java] Java并发编程实战之基础构建模块</h1>
+    <h1 itemprop="name">[Linux] Shell编程第十七课</h1>
     
      
-           <p itemprop="description" >同步容器类包括Vector和Hashtable以及Collections.synchronizedXxx等工厂方法创建的，这些类实现线程安全的方式是：将它们的状态封装起来，并对每个公有方法都进行同步，使得每次只有一个线程能访问容器的状态。
-
-同步容器类通过其自身的锁来保护它的每一</p>
+           <p itemprop="description" >监测磁盘空间du命令能够显示单个文件和目录的磁盘使用情况，-s选项用来总结目录一级的整体使用情况，这在计算单个用户使用的总体磁盘空间时很方便，下面的例子是使用du命令总结/home目录下每个用户的$HOME目录的磁盘占用情况：
+1$ sudo du -s /home/*
+du还有</p>
         
     
-    <time datetime="2017-11-30T13:37:18.000Z" itemprop="datePublished">2017-11-30</time>
+    <time datetime="2017-12-03T12:01:30.000Z" itemprop="datePublished">2017-12-03</time>
   </a>
 </section>
 
@@ -121,17 +120,21 @@ Executor提供了一种标准的方法将任务的提交过程和执行过程解
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/11/30/[Java] Java并发编程实战之对象的组合/" title="[Java] Java并发编程实战之对象的组合" itemprop="url">
+    <a href="/2017/12/03/[Linux] Shell编程第十六课/" title="[Linux] Shell编程第十六课" itemprop="url">
   
-    <h1 itemprop="name">[Java] Java并发编程实战之对象的组合</h1>
+    <h1 itemprop="name">[Linux] Shell编程第十六课</h1>
     
      
-           <p itemprop="description" >将数据封装在对象内部，可以将数据的访问限制在对象的方法上，从而更容易确保线程在访问数据时总能持有正确的锁。
-看下面的例子：
-1234567891011121314public class PersonSet &amp;#123;  private final Set&amp;lt;Person&amp;</p>
+           <p itemprop="description" >N: 将数据流中的下一行加进来创建一个多行组来处理
+D: 删除多行组中的一行
+P: 打印多行组中的一行
+
+
+
+小写的n命令告诉sed编辑器移动到数据流中的下一文本行，而不用重新回到命令的最开始再执行一遍，通常sed编辑器在移动到数据流的下一文本行之前，会在当前行上执行完所有定义好</p>
         
     
-    <time datetime="2017-11-30T09:02:06.000Z" itemprop="datePublished">2017-11-30</time>
+    <time datetime="2017-12-03T12:00:48.000Z" itemprop="datePublished">2017-12-03</time>
   </a>
 </section>
 
@@ -143,15 +146,25 @@ Executor提供了一种标准的方法将任务的提交过程和执行过程解
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/11/29/[Java] Java并发编程实战之对象的共享/" title="[Java] Java并发编程实战之对象的共享" itemprop="url">
+    <a href="/2017/12/03/[Linux] Shell编程第十五课/" title="[Linux] Shell编程第十五课" itemprop="url">
   
-    <h1 itemprop="name">[Java] Java并发编程实战之对象的共享</h1>
+    <h1 itemprop="name">[Linux] Shell编程第十五课</h1>
     
      
-           <p itemprop="description" >对于非volatile类型的64位数值变量（double和long），JVM允许将64位的读操作和写操作分解为两个32位的操作。当读取一个非volatile类型的long变量时，如果对变量的读操作和写操作在不同的线程中执行，那么很可能会读取到某个值的高32位和另一个值的低32位。</p>
+           <p itemprop="description" >在gawk编程语言中，你可以做下面的事情：
+定义变量来保存数据
+使用算术和字符串操作符来处理数据
+使用结构化编程概念（比如if-then语句和循环）来为数据处理增加处理逻辑
+通过提取数据文件中的数据元素，将其重新排列或格式化，生成格式化报告
+
+
+
+
+gawk程序的基本格式如下：
+</p>
         
     
-    <time datetime="2017-11-29T05:05:03.000Z" itemprop="datePublished">2017-11-29</time>
+    <time datetime="2017-12-03T11:59:52.000Z" itemprop="datePublished">2017-12-03</time>
   </a>
 </section>
 
@@ -163,19 +176,21 @@ Executor提供了一种标准的方法将任务的提交过程和执行过程解
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/11/28/[Java] Java并发编程实战之线程安全性/" title="[Java] Java并发编程实战之线程安全性" itemprop="url">
+    <a href="/2017/12/03/[Linux] Shell编程第十四课/" title="[Linux] Shell编程第十四课" itemprop="url">
   
-    <h1 itemprop="name">[Java] Java并发编程实战之线程安全性</h1>
+    <h1 itemprop="name">[Linux] Shell编程第十四课</h1>
     
      
-           <p itemprop="description" >一个对象是否是线程安全的，取决于它是否被多个线程访问，要使得对象是线程安全的，需要采用同步机制来协同对可变状态的访问
+           <p itemprop="description" >有两种格式可以在shell中创建函数：
 
-在线程安全类中封装了必要的同步机制，因此客户端无需进一步采用同步措施
+采用关键字function，后跟分配给该代码块的函数名：
+123function name &amp;#123;    commands&amp;#125;
 
-无状态对象一定是线程安全的，大多数Servlet都是无状态的，从而极大的降低了在实现Se</p>
+更加接近于其他编程语言中定义函数的方式：
+123name() &amp;#123;  	command</p>
         
     
-    <time datetime="2017-11-28T11:43:21.000Z" itemprop="datePublished">2017-11-28</time>
+    <time datetime="2017-12-03T11:57:31.000Z" itemprop="datePublished">2017-12-03</time>
   </a>
 </section>
 
@@ -187,16 +202,15 @@ Executor提供了一种标准的方法将任务的提交过程和执行过程解
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/11/28/[Java] ClassLoader机制/" title="[Java] ClassLoader机制" itemprop="url">
+    <a href="/2017/12/03/[Linux] Shell编程第十三课/" title="[Linux] Shell编程第十三课" itemprop="url">
   
-    <h1 itemprop="name">[Java] ClassLoader机制</h1>
+    <h1 itemprop="name">[Linux] Shell编程第十三课</h1>
     
      
-           <p itemprop="description" >什么是ClassLoader在程序启动的时候，并不会一次性加载程序所要用的所有class文件，而是根据程序的需要，通过Java的类加载机制（ClassLoader）来动态加载某个class文件到内存当中，只有当class文件被载入了内存之后，才能被其他的class所引用。
-Jav</p>
+           <p itemprop="description" >默认情况下，bash shell会忽略收到的任何SIGQUIT（3）和SIGTERM（5）信号，但是bash shell会处理收到的SIGHUP（1）和SIGINT（2）信号，如果bash shell收到了SIGHUP信号，它就会退出，但在退出之前，它会将SIGHUP信号传给所有</p>
         
     
-    <time datetime="2017-11-28T10:38:02.000Z" itemprop="datePublished">2017-11-28</time>
+    <time datetime="2017-12-03T11:55:01.000Z" itemprop="datePublished">2017-12-03</time>
   </a>
 </section>
 
@@ -208,21 +222,20 @@ Jav</p>
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/11/02/[Effective Java] 考虑用静态工厂方法代替构造器/" title="[Effective Java] 创建和销毁对象" itemprop="url">
+    <a href="/2017/12/03/[Linux] Shell编程第十二课/" title="[Linux] Shell编程第十二课" itemprop="url">
   
-    <h1 itemprop="name">[Effective Java] 创建和销毁对象</h1>
+    <h1 itemprop="name">[Linux] Shell编程第十二课</h1>
     
      
-           <p itemprop="description" >考虑用静态工厂方法代替构造器创建类实例的方法
-公有构造器
-公有静态工厂方法
+           <p itemprop="description" >每个进程一次最多可以有9个文件描述符
 
-静态工厂方法与构造器相比的优势
-静态工厂方法有名称
-如果构造器的参数本身没有确切的描述正被返回的对象，那么具有适当名称的静态工厂会更容易使用，举个例子，构造器BigInteger(int, int, R</p>
+
+重定向错误：STDERR文件描述符被设为2，可以选择只重定向错误消息，将该文件描述符放在重定向符号前，该值必须紧紧地放在重定向符号前，否则不会工作：
+1ls -al badfile 2&amp;gt; test4
+12$cat test4ls: </p>
         
     
-    <time datetime="2017-11-02T07:47:21.000Z" itemprop="datePublished">2017-11-02</time>
+    <time datetime="2017-12-03T11:54:12.000Z" itemprop="datePublished">2017-12-03</time>
   </a>
 </section>
 
@@ -234,20 +247,18 @@ Jav</p>
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/11/02/[MyBatis] mybatis/" title="[MyBatis] mybatis" itemprop="url">
+    <a href="/2017/12/03/[Linux] Shell编程第十课/" title="[Linux] Shell编程第十课" itemprop="url">
   
-    <h1 itemprop="name">[MyBatis] mybatis</h1>
+    <h1 itemprop="name">[Linux] Shell编程第十课</h1>
     
      
-           <p itemprop="description" >动态sql
-
-if标签
-根据查询条件来动态拼装sql语句，其格式如下：
-1&amp;lt;if test=&amp;quot;&amp;quot;&amp;gt;&amp;lt;/if&amp;gt;
-其中test表示判断表达式（使用OGNL），其从参数中取值进行判断，当然遇见特殊符号需要些转义字符，比如&amp;amp;&amp;amp;，</p>
+           <p itemprop="description" >bash中for命令的基本格式如下：
+1234for var in listdo	commandsdone
+例如：
+123456#!/bin/bash# basic for commandfor test in Alabama Alaska Arizona Arkansas Ca</p>
         
     
-    <time datetime="2017-11-02T03:30:32.000Z" itemprop="datePublished">2017-11-02</time>
+    <time datetime="2017-12-03T11:50:53.000Z" itemprop="datePublished">2017-12-03</time>
   </a>
 </section>
 
@@ -259,15 +270,22 @@ if标签
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/11/02/[TCPIP] 动态主机配置/" title="[TCP/IP] 动态主机配置" itemprop="url">
+    <a href="/2017/12/03/[Linux] Shell编程第九课/" title="[Linux] Shell编程第九课" itemprop="url">
   
-    <h1 itemprop="name">[TCP/IP] 动态主机配置</h1>
+    <h1 itemprop="name">[Linux] Shell编程第九课</h1>
     
      
-           <p itemprop="description" >DHCP协议通过同DHCP服务器的交互，设备可以获得一个有效的IP地址，使得它可以在特定网络环境下运行。DHCP服务器一般有两个数据库，一个数据库维护静态分配的物理地址和IP地址地址绑定，它记录了特定客户端主机将被分配的特定IP地址，客户主机可以永久使用这些IP地址；第二个数据库</p>
+           <p itemprop="description" >sed编辑器可以根据命令来处理数据流中的数据，这些命令要么从命令行中输入，要么存储在一个命令文本文件中，sed编辑器会执行下列操作：
+
+一次从输入中读取一行数据
+根据所提供的编辑器命令匹配数据
+按照命令修改流中的数据
+将新的数据输出到STDOUT
+
+在流编辑器将所有命令与一行数据</p>
         
     
-    <time datetime="2017-11-02T03:27:58.000Z" itemprop="datePublished">2017-11-02</time>
+    <time datetime="2017-12-03T11:48:07.000Z" itemprop="datePublished">2017-12-03</time>
   </a>
 </section>
 
@@ -279,16 +297,17 @@ if标签
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/11/02/[TCPIP] TCP封包解包与大小端问题/" title="[TCP/IP] TCP封包解包与大小端问题" itemprop="url">
+    <a href="/2017/12/03/[Linux] Shell编程第八课/" title="[Linux] Shell编程第八课" itemprop="url">
   
-    <h1 itemprop="name">[TCP/IP] TCP封包解包与大小端问题</h1>
+    <h1 itemprop="name">[Linux] Shell编程第八课</h1>
     
      
-           <p itemprop="description" >建立统一成小端，虽然网络字节序是大端，但是目前主流的设备也就是X86是小端的，那些大端的机器同时也支持小端，像ARM、POWERPC都是支持小端的；
-字节序一般是对数字而言的，要处理数字字节序的问题也很简单，不要使用系统默认的数字读入或读取方式读取数据（因为这样采用的是默认的字节</p>
+           <p itemprop="description" >if-then语句，其格式如下：
+1234if commandthen    commandsfi
+bash shell的if语句会运行if后面的那个命令，如果该命令的退出状态码是0（该命令成功运行），位于then部分的命令就会被执行，如果该命令的退出状态码是其他值，then部分</p>
         
     
-    <time datetime="2017-11-02T03:26:19.000Z" itemprop="datePublished">2017-11-02</time>
+    <time datetime="2017-12-03T11:47:18.000Z" itemprop="datePublished">2017-12-03</time>
   </a>
 </section>
 
@@ -299,7 +318,7 @@ if标签
 
 
   <nav id="page-nav" class="clearfix unexpand">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
   </nav>
 
 </div>
@@ -368,7 +387,7 @@ if标签
 		  
 		
 		  
-			<li><a href="/categories/Linux/" title="Linux">Linux<sup>5</sup></a></li>
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>21</sup></a></li>
 		  
 		
 		  
@@ -437,6 +456,10 @@ if标签
 		<ul class="clearfix">
 		
 			
+				<li><a href="/tags/Linux-Shell/" title="Linux, Shell">Linux, Shell<sup>16</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/JQuery/" title="JQuery">JQuery<sup>8</sup></a></li>
 			
 		
@@ -461,7 +484,11 @@ if标签
 			
 		
 			
-				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
+				<li><a href="/tags/html/" title="html">html<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
 			
 		
 			
@@ -469,11 +496,7 @@ if标签
 			
 		
 			
-				<li><a href="/tags/html/" title="html">html<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
+				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
 			
 		
 			
@@ -493,15 +516,11 @@ if标签
 			
 		
 			
-				<li><a href="/tags/Qt-processEvents/" title="Qt, processEvents">Qt, processEvents<sup>1</sup></a></li>
+				<li><a href="/tags/MyBatis-参数处理/" title="MyBatis, 参数处理">MyBatis, 参数处理<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android-ProgressDialog，-耗时操作/" title="Android, ProgressDialog， 耗时操作">Android, ProgressDialog， 耗时操作<sup>1</sup></a></li>
+				<li><a href="/tags/C-回调/" title="C++ 回调">C++ 回调<sup>1</sup></a></li>
 			
 		
 			
@@ -509,11 +528,11 @@ if标签
 			
 		
 			
-				<li><a href="/tags/Android-assets/" title="Android, assets">Android, assets<sup>1</sup></a></li>
+				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-面试/" title="C++ 面试">C++ 面试<sup>1</sup></a></li>
+				<li><a href="/tags/C-泛型/" title="C++ 泛型">C++ 泛型<sup>1</sup></a></li>
 			
 		
 		</ul>

@@ -77,17 +77,16 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/06/28/[html] span元素/" title="[html] span元素" itemprop="url">
+    <a href="/2017/06/28/[C++] boostfunction boostbind 与 回调/" title="[C++] boost::function boost::bind 与 回调" itemprop="url">
   
-    <h1 itemprop="name">[html] span元素</h1>
+    <h1 itemprop="name">[C++] boost::function boost::bind 与 回调</h1>
     
      
-           <p itemprop="description" >实例使用&amp;lt;span&amp;gt;元素对文本中的一部分进行着色：
-1&amp;lt;p&amp;gt;我的母亲有&amp;lt;span style=&quot;color:blue&quot;&amp;gt;蓝色&amp;lt;/span&amp;gt;的眼睛。&amp;lt;/p&amp;gt;
-标签定义及使用说明&amp;lt;span&amp;gt;用于对文档中的行内元素</p>
+           <p itemprop="description" >boost::function 和 boost::bindboost::function是对函数指针的对象化封装，是一个函数对象的容器，在概念上与回调函数类似，先看一个例子：
+1234567891011121314151617181920212223242526272829303</p>
         
     
-    <time datetime="2017-06-28T10:01:27.000Z" itemprop="datePublished">2017-06-28</time>
+    <time datetime="2017-06-28T10:20:01.000Z" itemprop="datePublished">2017-06-28</time>
   </a>
 </section>
 
@@ -99,16 +98,16 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/06/28/[网络编程] IO多路复用/" title="[网络编程] IO多路复用" itemprop="url">
+    <a href="/2017/06/28/[C++] boostless_than_comparable/" title="[C++] boost::less_than_comparable" itemprop="url">
   
-    <h1 itemprop="name">[网络编程] IO多路复用</h1>
+    <h1 itemprop="name">[C++] boost::less_than_comparable</h1>
     
      
-           <p itemprop="description" >阻塞IO和非阻塞IO常见的IO操作有read和write，通常IO操作都是阻塞I/O，即当前调用read时如果没有数据收到，那么线程或者进行就会被挂起，直到收到数据。
-对于非阻塞I/O，通过fcntl（POSIX）或ioctl（UNIX）设为非阻塞模式，这时当你调用read时，如</p>
+           <p itemprop="description" >boost::less_than_comparable前言很多操作符都是可以从其他操作符自动推导出来，例如a != b可以从!(a == b)推导出来，因此原则上只需要定义少量的基本操作符，其他的操作符就可以 通过逻辑组合推导出来。
+std::rel::ops在C++98标准的s</p>
         
     
-    <time datetime="2017-06-28T10:00:26.000Z" itemprop="datePublished">2017-06-28</time>
+    <time datetime="2017-06-28T10:18:51.000Z" itemprop="datePublished">2017-06-28</time>
   </a>
 </section>
 
@@ -120,16 +119,16 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/06/28/[Java] Java反射为什么需要无参构造函数/" title="[Java] Java反射为什么需要无参构造函数" itemprop="url">
+    <a href="/2017/06/28/[C++] BOOST_STATIC_ASSERT和assert的区别/" title="[C++] BOOST_STATIC_ASSERT和assert的区别" itemprop="url">
   
-    <h1 itemprop="name">[Java] Java反射为什么需要无参构造函数</h1>
+    <h1 itemprop="name">[C++] BOOST_STATIC_ASSERT和assert的区别</h1>
     
      
-           <p itemprop="description" >Java反射为什么需要无参构造函数最近在学习Spring，Spring有个关键的技术就是IOC，即控制反转，其中用到得一个重要的技术就是反射，在学习的过程中发现如果不提供一个无参的构造函数程序会报错，查了一些资料后对Java反射为什么需要无参构造函数这一知识点进行记录。
-一般来说</p>
+           <p itemprop="description" >BOOST_STATIC_ASSERT和assert的区别assert是运行期断言，也就是编译期出现的错误，它不会提示；相反，BOOST_STATIC_ASSERT是编译期的断言，在编译的时候就可以断言出错误。
+需要注意的是BOOST_STATIC_ASSERT是放在全局命名空间</p>
         
     
-    <time datetime="2017-06-28T09:59:14.000Z" itemprop="datePublished">2017-06-28</time>
+    <time datetime="2017-06-28T10:17:37.000Z" itemprop="datePublished">2017-06-28</time>
   </a>
 </section>
 
@@ -141,16 +140,16 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/06/28/[Linux] Linux epoll的用法/" title="[Linux] Linux epoll的用法" itemprop="url">
+    <a href="/2017/06/28/[C++] C++11 bind 的用法/" title="[C++] C++11 bind 的用法" itemprop="url">
   
-    <h1 itemprop="name">[Linux] Linux epoll的用法</h1>
+    <h1 itemprop="name">[C++] C++11 bind 的用法</h1>
     
      
-           <p itemprop="description" >Epoll的用法select与epoll在旧的Linux中，通常都在使用select来做事件触发，而在新的Linux内核中，开始使用epoll来代替。相比于select，epoll最大的好处就是不会随着监听fd数目的增长而降低效率。
-当使用select时，它是采用轮询来处理的，轮</p>
+           <p itemprop="description" >BindBind可用于绑定函数、成员函数、函数对象、成员变量，bind函数支持最多10个自定义参数
+1234int f(int a, int b) &amp;#123;	return a + b;&amp;#125;std::bind(f, 5, std::placeholders::_1)(x</p>
         
     
-    <time datetime="2017-06-28T09:57:39.000Z" itemprop="datePublished">2017-06-28</time>
+    <time datetime="2017-06-28T10:16:33.000Z" itemprop="datePublished">2017-06-28</time>
   </a>
 </section>
 
@@ -162,20 +161,16 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/06/28/[Linux] Linux网络编程/" title="[Linux] Linux网络编程" itemprop="url">
+    <a href="/2017/06/28/[C++] C++中boostany的使用/" title="[C++] C++中boost::any的使用" itemprop="url">
   
-    <h1 itemprop="name">[Linux] Linux网络编程</h1>
+    <h1 itemprop="name">[C++] C++中boost::any的使用</h1>
     
      
-           <p itemprop="description" >EPoll的两种工作模式本文主要包含两个方面：
-
-Linux中的EAGAIN错误码
-EPoll的两种工作模式
-
-一、EAGAIN从字面上来看，表示再试一次的意思，这个错误经常出现在当应用程序进行一些非阻塞操作（对文件或socket）的时候，例如以O_NONBLOCKING的标志打</p>
+           <p itemprop="description" >boost::any库是个很短小的类，它的主要作用是定义一个变量来存放任意类型的数据，我们首先来看下boost::any的使用方法。
+boost::any最常见的用法12345678910111213141516171819202122232425#include &amp;lt;ios</p>
         
     
-    <time datetime="2017-06-28T09:56:40.000Z" itemprop="datePublished">2017-06-28</time>
+    <time datetime="2017-06-28T10:15:17.000Z" itemprop="datePublished">2017-06-28</time>
   </a>
 </section>
 
@@ -187,17 +182,16 @@ EPoll的两种工作模式
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/06/28/[Linux] Linux中eventfd的使用/" title="[Linux] Linux中eventfd的使用" itemprop="url">
+    <a href="/2017/06/28/[CMake] CMake的使用/" title="[CMake] CMake的使用" itemprop="url">
   
-    <h1 itemprop="name">[Linux] Linux中eventfd的使用</h1>
+    <h1 itemprop="name">[CMake] CMake的使用</h1>
     
      
-           <p itemprop="description" >Linux中eventfd的使用eventfd简介eventfd是用来实现多进程或多线程之间的事件通知的，常见的事件通知机制除了eventfd外，还有条件变量和管道等 方式。
-条件变量必须和互斥锁相结合使用，使用起来较麻烦，并且条件变量不能像eventfd一样为I/O事件驱动。
-</p>
+           <p itemprop="description" >VS环境下，CMake出来的ALL_BUILD项目和ZERO_CHECK项目的作用CMake是 跨平台软件开发和维护过程的 工程构建工具。“在每个系统构建你的工程，而无须关心创建可执行文件和动态库的具体方法”。
+CMake 相对于其他类似工具（shell脚本、Makefiles、</p>
         
     
-    <time datetime="2017-06-28T09:55:37.000Z" itemprop="datePublished">2017-06-28</time>
+    <time datetime="2017-06-28T10:14:17.000Z" itemprop="datePublished">2017-06-28</time>
   </a>
 </section>
 
@@ -209,20 +203,20 @@ EPoll的两种工作模式
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/06/28/[DB] MySQL UPDATE查询/" title="[DB] MySQL UPDATE查询" itemprop="url">
+    <a href="/2017/06/28/[C++] effective_C++_条款02/" title="[C++] effective_C++_条款02" itemprop="url">
   
-    <h1 itemprop="name">[DB] MySQL UPDATE查询</h1>
+    <h1 itemprop="name">[C++] effective_C++_条款02</h1>
     
      
-           <p itemprop="description" >语法1UPDATE table_name SET field1=new-value1, field2=new-value2 [WHERE Clause];
+           <p itemprop="description" >条款02：尽量用const, enum, inline代替#define
+该原则言下之意是说使用编译器替换预处理器
 
-可以同时更新一个或多个字段
-可以在WHERE字句中指定任何条件
-可以在一个单独表中同时更新数据
-当需要更新数据表中指定行的</p>
+假设你使用下面的表达式：
+1#define ASPECT_RATIO 1.653
+记号名称ASPECT_RATIO也许从未被编译器看到，也许在编译器开始处理源代码</p>
         
     
-    <time datetime="2017-06-28T09:54:26.000Z" itemprop="datePublished">2017-06-28</time>
+    <time datetime="2017-06-28T10:13:17.000Z" itemprop="datePublished">2017-06-28</time>
   </a>
 </section>
 
@@ -234,15 +228,23 @@ EPoll的两种工作模式
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/06/28/[Qt] Qt中processEvents函数/" title="[Qt] Qt中processEvents函数" itemprop="url">
+    <a href="/2017/06/28/[C++] effective_C++_条款03/" title="[C++] effective_C++_条款03" itemprop="url">
   
-    <h1 itemprop="name">[Qt] Qt中processEvents函数</h1>
+    <h1 itemprop="name">[C++] effective_C++_条款03</h1>
     
      
-           <p itemprop="description" >什么情况下需要使用processEvents函数当我们在同一个线程中同时处理界面以及一些非常耗时的操作时，可能会出现界面无法响应，处于”假死“状态。通常解决这种现象的一种方法就是使用多线程，主线程专门负责界面，另开线程处理耗时的操作。在Qt中还有一种方法就是在耗时操作执行的过程中</p>
+           <p itemprop="description" >条款03：尽可能使用const
+修饰变量，使其不可改变
+1const int var = 3;
+此时var的值就不能改变了，因为这个特性，所以在声明的时候就要初始化，这样是不行的：
+1const int var;
+
+修饰指针
+可分为两种情况，指向常量的指针和常量指针
+1const</p>
         
     
-    <time datetime="2017-06-28T09:53:28.000Z" itemprop="datePublished">2017-06-28</time>
+    <time datetime="2017-06-28T10:12:05.000Z" itemprop="datePublished">2017-06-28</time>
   </a>
 </section>
 
@@ -254,16 +256,20 @@ EPoll的两种工作模式
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/06/28/[Spring] Spring AOP编程理解/" title="[Spring] Spring AOP编程理解" itemprop="url">
+    <a href="/2017/06/28/[C++] effective_C++_条款05/" title="[C++] effective_C++_条款05" itemprop="url">
   
-    <h1 itemprop="name">[Spring] Spring AOP编程理解</h1>
+    <h1 itemprop="name">[C++] effective_C++_条款05</h1>
     
      
-           <p itemprop="description" >Spring AOP 编程理解一、AOP的理解最近在学习Spring，理解涉及到Spring的两大核心部分，一个是IOC（控制反转），另一个就是AOP（面向切面编程），今天主要讲一下什么是面向切面编程？
-在知乎上看到别人的回答，有句话觉得特别的有道理，“这种在运行时，动态地将代码</p>
+           <p itemprop="description" >条款05：了解C++默默编写并调用哪些函数
+一个空类为了区分不同的对象，其通占有1个字节
+编译器为空类默认生成拷贝函数、析构函数、拷贝构造函数以及赋值运算符
+假设有下面这个空类：
+123class EmptyClass &amp;#123;  	&amp;#125;;
+编译器会为EmptyCla</p>
         
     
-    <time datetime="2017-06-28T09:52:20.000Z" itemprop="datePublished">2017-06-28</time>
+    <time datetime="2017-06-28T10:10:57.000Z" itemprop="datePublished">2017-06-28</time>
   </a>
 </section>
 
@@ -275,17 +281,18 @@ EPoll的两种工作模式
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/06/28/[Spring] Spring JDBCTemplate/" title="[Spring] Spring JDBCTemplate" itemprop="url">
+    <a href="/2017/06/28/[C++] Effective_C++_条款06/" title="[C++] Effective_C++_条款06" itemprop="url">
   
-    <h1 itemprop="name">[Spring] Spring JDBCTemplate</h1>
+    <h1 itemprop="name">[C++] Effective_C++_条款06</h1>
     
      
-           <p itemprop="description" >JdbcTemplate简介
-为了使JDBC更加易于使用，Spring在JDBC API定义了一个抽象层，以此建立一个JDBC存取框架
-作为Spring JDBC框架的核心，JDBC模板的设计目的是为不同类型的JDBC操作提供模板方法，每个模板方法都能控制整个过程，并允许覆盖过程</p>
+           <p itemprop="description" >条款06：若不想使用编译器自动生成的函数，就应该明确拒绝
+总有些情况，我们不希望编译器为我们生成拷贝构造函数和赋值函数，这时候我们就应该明确告诉编译器不要生成。
+
+为了解决这个问题，我们可以自己写拷贝构造函数和赋值函数，这样编译器就不会为我们生成，但不能写在public里，因为p</p>
         
     
-    <time datetime="2017-06-28T09:51:21.000Z" itemprop="datePublished">2017-06-28</time>
+    <time datetime="2017-06-28T10:09:52.000Z" itemprop="datePublished">2017-06-28</time>
   </a>
 </section>
 
@@ -296,7 +303,7 @@ EPoll的两种工作模式
 
 
   <nav id="page-nav" class="clearfix unexpand">
-    <a class="extend prev" rel="prev" href="/page/11/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/13/">Next<span></span></a>
+    <a class="extend prev" rel="prev" href="/page/11/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/13/">Next<span></span></a>
   </nav>
 
 </div>
@@ -365,7 +372,7 @@ EPoll的两种工作模式
 		  
 		
 		  
-			<li><a href="/categories/Linux/" title="Linux">Linux<sup>5</sup></a></li>
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>21</sup></a></li>
 		  
 		
 		  
@@ -434,6 +441,10 @@ EPoll的两种工作模式
 		<ul class="clearfix">
 		
 			
+				<li><a href="/tags/Linux-Shell/" title="Linux, Shell">Linux, Shell<sup>16</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/JQuery/" title="JQuery">JQuery<sup>8</sup></a></li>
 			
 		
@@ -458,7 +469,11 @@ EPoll的两种工作模式
 			
 		
 			
-				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
+				<li><a href="/tags/html/" title="html">html<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
 			
 		
 			
@@ -466,11 +481,7 @@ EPoll的两种工作模式
 			
 		
 			
-				<li><a href="/tags/html/" title="html">html<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
+				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
 			
 		
 			
@@ -490,15 +501,11 @@ EPoll的两种工作模式
 			
 		
 			
-				<li><a href="/tags/Qt-processEvents/" title="Qt, processEvents">Qt, processEvents<sup>1</sup></a></li>
+				<li><a href="/tags/MyBatis-参数处理/" title="MyBatis, 参数处理">MyBatis, 参数处理<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android-ProgressDialog，-耗时操作/" title="Android, ProgressDialog， 耗时操作">Android, ProgressDialog， 耗时操作<sup>1</sup></a></li>
+				<li><a href="/tags/C-回调/" title="C++ 回调">C++ 回调<sup>1</sup></a></li>
 			
 		
 			
@@ -506,11 +513,11 @@ EPoll的两种工作模式
 			
 		
 			
-				<li><a href="/tags/Android-assets/" title="Android, assets">Android, assets<sup>1</sup></a></li>
+				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-面试/" title="C++ 面试">C++ 面试<sup>1</sup></a></li>
+				<li><a href="/tags/C-泛型/" title="C++ 泛型">C++ 泛型<sup>1</sup></a></li>
 			
 		
 		</ul>

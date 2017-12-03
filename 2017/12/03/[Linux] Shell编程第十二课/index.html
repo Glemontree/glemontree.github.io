@@ -1,0 +1,812 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>[Linux] Shell编程第十二课 | Glemontree&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Glemontree">
+    
+
+    
+    <meta name="description" content="每个进程一次最多可以有9个文件描述符
+
+
+重定向错误：STDERR文件描述符被设为2，可以选择只重定向错误消息，将该文件描述符放在重定向符号前，该值必须紧紧地放在重定向符号前，否则不会工作：
+1ls -al badfile 2&amp;gt; test4
+12$cat test4ls: cannot access badfile: No such file or directory
+
+如果想重定向错误和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Linux] Shell编程第十二课">
+<meta property="og:url" content="http://yoursite.com/2017/12/03/[Linux] Shell编程第十二课/index.html">
+<meta property="og:site_name" content="Glemontree's blog">
+<meta property="og:description" content="每个进程一次最多可以有9个文件描述符
+
+
+重定向错误：STDERR文件描述符被设为2，可以选择只重定向错误消息，将该文件描述符放在重定向符号前，该值必须紧紧地放在重定向符号前，否则不会工作：
+1ls -al badfile 2&amp;gt; test4
+12$cat test4ls: cannot access badfile: No such file or directory
+
+如果想重定向错误和">
+<meta property="og:updated_time" content="2017-12-03T11:54:51.580Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Linux] Shell编程第十二课">
+<meta name="twitter:description" content="每个进程一次最多可以有9个文件描述符
+
+
+重定向错误：STDERR文件描述符被设为2，可以选择只重定向错误消息，将该文件描述符放在重定向符号前，该值必须紧紧地放在重定向符号前，否则不会工作：
+1ls -al badfile 2&amp;gt; test4
+12$cat test4ls: cannot access badfile: No such file or directory
+
+如果想重定向错误和">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/favicon.ico" alt="Glemontree&#39;s blog" title="Glemontree&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Glemontree&#39;s blog">Glemontree&#39;s blog</a></h1>
+				<h2 class="blog-motto">day day up!</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="http://zhannei.baidu.com/cse/search" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="Search"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/12/03/[Linux] Shell编程第十二课/" title="[Linux] Shell编程第十二课" itemprop="url">[Linux] Shell编程第十二课</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
+		
+  <p class="article-time">
+    <time datetime="2017-12-03T11:54:12.000Z" itemprop="datePublished"> Published 2017-12-03</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			
+		
+		</div>
+		
+		<ul>
+<li>每个进程一次最多可以有9个文件描述符</li>
+</ul>
+<ul>
+<li><p>重定向错误：STDERR文件描述符被设为2，可以选择只重定向错误消息，将该文件描述符放在重定向符号前，该值必须紧紧地放在重定向符号前，否则不会工作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ls -al badfile 2&gt; test4</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$cat test4</div><div class="line">ls: cannot access badfile: No such file or directory</div></pre></td></tr></table></figure>
+</li>
+<li><p>如果想重定向错误和正常输出，必须用两个重定向符号，需要在符号前面放上待重定向数据所对应的文件描述符，然后指向用于保存数据的输出文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ls -al test test2 test3 badtest 2&gt; test6 1&gt; test7</div></pre></td></tr></table></figure>
+</li>
+<li><p>也可以将STDERR和STDOUT的输出重定向到同一个输出文件中，可以使用特殊的重定向符号<code>&amp;&gt;</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ls -al test test2 test3 badtest &amp;&gt; test7</div></pre></td></tr></table></figure>
+</li>
+<li><p>如果有意在脚本中生成错误消息，可以将单独的一行输出重定向到STDERR，你需要做的就是使用输出重定向符来将输出消息重定向到STDERR文件描述符，在重定向到文件描述符时，必须在文件描述符数字之前加一个<code>&amp;</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">echo &quot;This is an error message&quot; &gt;&amp;2</div></pre></td></tr></table></figure>
+<p>这样会在脚本的STDERR文件描述符所指向的位置显示文本，而不是通常的STDOUT：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">echo &quot;This is an error&quot; &gt;&amp;2</div><div class="line">echo &quot;This is normal output&quot;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ ./test.sh</div><div class="line">This is an error</div><div class="line">This is normal output</div></pre></td></tr></table></figure>
+<p> 默认情况下，Linux会将STDERR导向STDOUT，但是如果你在运行脚本时重定向了STDERR，脚本中所有导向STDERR的文本都会被重定向：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ./test.sh 2&gt; test9</div></pre></td></tr></table></figure>
+<p>此时错误信息就会被重定向到test9文件中，而正常信息还是会显示在显示器上</p>
+</li>
+</ul>
+<ul>
+<li><p>如果脚本中有大量数据需要重定向，那重定向每个echo语句就会很繁琐，你可以用exec命令告诉shell脚本执行期间重定向某个特定文件描述符：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">exec 1&gt;testout</div><div class="line">echo &quot;This is a test of redirecting all output&quot;</div><div class="line">echo &quot;from a script to another file&quot;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$./test.sh</div></pre></td></tr></table></figure>
+<p>exec命令会启动一个新的shell并将STDOUT文件描述符重定向到文件，脚本中发给STDOUT的所有输出会被重定向到文件</p>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">exec 2&gt;testerror</div><div class="line">echo &quot;This is the start of the script&quot;</div><div class="line">echo &quot;now redirecting all output to another location&quot;</div><div class="line">exec 1&gt;testout</div><div class="line">echo &quot;This output should go to the testout file&quot;</div><div class="line"> echo &quot;but this should go to the testerror file&quot; &gt;&amp;2</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ ./test.sh</div><div class="line">This is the start of the script</div><div class="line">now redirecting all output to another location</div><div class="line">$ cat testout</div><div class="line">This output should go to the testout file</div><div class="line">$ cat testerror</div><div class="line">but this should go to the testerror file</div></pre></td></tr></table></figure>
+</li>
+<li><p>可以将STDIN从键盘重定向到其他位置，exec命令允许你将STDIN重定向到Linux系统上的文件中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">exec 0&lt; testfile</div></pre></td></tr></table></figure>
+<p>这个命令会告诉shell从文件中获取输入而不是STDIN：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">echo 0&lt; testfile</div><div class="line">count=1</div><div class="line">while read line</div><div class="line">do</div><div class="line">   echo &quot;Line #count: line&quot;</div><div class="line">   count=[ count + 1 ]</div><div class="line">done</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ./test.sh</div></pre></td></tr></table></figure>
+</li>
+<li><p>一个进程最多可以使用9个文件描述符，除了0、1、2外另外6个都可以在shell脚本中使用，用作输入和输出重定向：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">exec 3&gt;testout</div><div class="line">echo &quot;This should display on the monitor&quot;</div><div class="line">echo &quot;and this should be stored in the file&quot; &gt;&amp;3</div><div class="line">echo &quot;Then this should be back on the monitor&quot;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ ./test</div><div class="line">This should display on the monitor</div><div class="line">Then this should be back on the monitor</div><div class="line">$ cat testout</div><div class="line">and this should be stored in the file</div></pre></td></tr></table></figure>
+</li>
+<li><p>恢复重定向的文件描述符：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">exec 3&gt;&amp;1</div><div class="line">exec 1&gt;testout</div><div class="line">echo &quot;This should store in the output file&quot;</div><div class="line">echo &quot;along with this line&quot;</div><div class="line">echo 1&gt;&amp;3</div><div class="line">echo &quot;Now things should be back to normal&quot;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ ./test.sh</div><div class="line">Now things should be back to normal </div><div class="line">$ cat testout</div><div class="line">This should store in the output file</div><div class="line">along with this line</div></pre></td></tr></table></figure>
+<p>上面这段代码中首先将文件描述符3重定向到文件描述符1的当前位置，也就是STDOUT，这意味着任何发送给文件描述符3的输出都将显示在显示器上。</p>
+<p>第二个exec命令将STDOUT重定向到文件，shell现在将发送给STDOUT的输出直接重定向到输出文件中，但是文件描述符3仍然会指向STDOUT原来的位置，也就是显示器，如果此时将输出数据发送到文件描述符3，它仍然会显示在显示器上，尽管STDOUT已经被重定向了。</p>
+<p>在向STDOUT（现在指向一个文件）发送一些输出后，脚本将STDOUT重定向到文件描述符3的当前位置（现在仍然是显示器），这意味着现在STDOUT又指向了它原来的位置：显示器。</p>
+</li>
+</ul>
+<ul>
+<li><p>创建读写文件描述符，可以用一个文件描述符对同一个文件进行读写，对同一个文件进行读写，shell会维护一个内部指针， 指明在文件中的当前位置，任何读写都会从文件指针上次的位置开始：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">exec 3&lt;&gt;testfile</div><div class="line">read line &lt;&amp;3</div><div class="line">echo &quot;Read: $line&quot;</div><div class="line">echo &quot;This is a test line&quot; &gt;&amp;3</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ cat testfile</div><div class="line">This is the first line.</div><div class="line">This is the second line.</div><div class="line">This is the third line.</div><div class="line">$ ./test.sh</div><div class="line">cat testfile</div><div class="line">This is the first line.</div><div class="line">This is a test line </div><div class="line">ine.</div><div class="line">This is the third line.</div></pre></td></tr></table></figure>
+<p>当脚本向文件中写入数据时，它会从文件指针所处的位置开始，read命令读取了第一行数据，所以它使得文件指针指向了第二行数据的第一个字符，在echo语句将数据输出到文件时，它会将数据放到文件指针的当前位置，覆盖了该位置的已有数据。</p>
+</li>
+</ul>
+<ul>
+<li><p>关闭文件描述符：要关闭文件描述符，将它重定向到特殊符号<code>&amp;-</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">exec 3&gt;&amp;-</div></pre></td></tr></table></figure>
+</li>
+<li><p>列出打开的文件描述符：</p>
+<p>lsof命令会列出整个Linux系统打开的所有文件描述符，lsof命令位于<code>/usr/sbin</code>命令，要想以普通用户账户来运行它，必须通过全路径来引用:<code>/usr/sbin/lsof</code>。</p>
+<p>lsof有几个常用的命令行选项，<code>-p</code>选项允许指定进程ID（PID），<code>-d</code>选项允许指定要显示的文件描述符编号，要想知道进程的当前PID，可以用特殊环境变量<code>$$</code>（shell会将它设为当前PID），<code>-a</code>选项用来对其他两个选项的结果进行AND运算</p>
+</li>
+</ul>
+<ul>
+<li><p>阻止命令输出：</p>
+<p>通过将STDERR重定向到null文件中将全部消息删除，shell输出到null文件的任何数据都不会保存，更不会显示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ls -al &gt; /dev/null</div><div class="line">ls -al badfile test16 2&gt; /dev/null</div></pre></td></tr></table></figure>
+<p>也可以在输入重定向中将<code>/dev/null</code>作为输入文件，由于<code>/dev/null</code>中不含有任何内容，因此通常可以用它来快速清除现有文件中的数据，而不用先删除文件再重新创建，这是清除日志文件的一个常用方法。</p>
+</li>
+</ul>
+<ul>
+<li>大多数Linux发行版配置了在启动时自动删除/tmp目录的所有文件，mktemp命令可以在/tmp目录中创建一个唯一的临时文件，shell会创建这个文件，但不用默认的umask值，它会将文件的读和写权限分配给文件的属主，并将你设为文件的属主，一旦创建了文件，你就在脚本中有了完整的读写权限，但其他人无法访问（root用户除外）</li>
+</ul>
+<ul>
+<li><p>默认情况下，mktemp命令会在本地目录中创建一个文件，要用mktemp命令在本地目录中创建一个临时文件，你只要指定一个文件名模板就醒了，模板可以包含任意文本文件名，在文件名末尾加上6个X就行了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ mktemp testing.XXXXXX</div></pre></td></tr></table></figure>
+<p>mktmp命令会用6个字符码替换这6个X，从而保证文件名在目录中是唯一的，你可以创建多个临时文件，他可以保证每个文件是唯一的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">tempfile=$(mktemp test.XXXXXX)</div><div class="line">exec 3&gt;$temp</div><div class="line">echo &quot;This script writes to temp file $tempfile&quot;</div><div class="line">echo &quot;This is the first line&quot; &gt;&amp;3</div><div class="line">echo &quot;This is the second line&quot; &gt;&amp;3</div><div class="line">echo &quot;This is the last line&quot; &gt;&amp;3</div><div class="line">exec 3&gt;&amp;-</div><div class="line">echo &quot;Done creating temp file. The contents are:&quot;</div><div class="line">cat $tempfile</div><div class="line">rm -f $tempfile 2&gt; /dev/null</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ ./test</div><div class="line">This script writes to temp file test19.vCHoya</div><div class="line">Done creating temp file. The contents are:</div><div class="line">This is the first line</div><div class="line">This is the second line.</div><div class="line">This is the last line.</div></pre></td></tr></table></figure>
+</li>
+<li><p>-t选项会强制mktemp命令在系统的临时目录创建该文件，此时mktemp命令会返回用来创建临时文件的全路径，而不是只有文件名</p>
+</li>
+</ul>
+<ul>
+<li><p>-d选项会使得mktemp命令来创建一个临时目录而不是临时文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">tempdir=$(mktemp -d dir.XXXXXX)</div><div class="line">cd $tempdir</div><div class="line">tempfile1=$(mktemp temp.XXXXXX)</div><div class="line">tempfile2=$(mktemp temp.XXXXXX)</div><div class="line">exec 7&gt; $tempfile1</div><div class="line">exec 8&gt; $tempfile2</div><div class="line">echo &quot;Sending data to directory $tempdir&quot;</div><div class="line">echo &quot;This is a test line of data for $tempfile1&quot; &gt;&amp;7</div><div class="line">echo &quot;This is a test line of data for $tempfile2&quot; &gt;&amp;8</div></pre></td></tr></table></figure>
+</li>
+<li><p>tee命令相当于管道的一个T型接头，它将从STDIN过来的数据同时发往两处，一处是STDOUT，另一处是tee命令行所指定的文件名：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tee filename</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ date | tee testfile</div></pre></td></tr></table></figure>
+<p>默认情况下，tee命令会在每次使用时覆盖输出文件内容，如果想将数据追加到文件中，必须使用-a选项：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ date | tee -a testfile</div></pre></td></tr></table></figure>
+</li>
+<li><p>举例：读取csv格式的数据文件，输出SQL INSERT语句来将数据插入数据库：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">outfile=members.sql</div><div class="line">IFS=,</div><div class="line">while read lname fname address city state zip</div><div class="line">do</div><div class="line">    cat &gt;&gt; $outfile &lt;&lt; EOF</div><div class="line">    INSERT INTO members (lname, fname, address, city, state, zip) VALUES</div><div class="line">		(&apos;lname&apos;, &apos;fname&apos;, &apos;address&apos;, &apos;city&apos;, &apos;state&apos;, &apos;zip&apos;);</div><div class="line">	EOF</div><div class="line">done &lt; $&#123;1&#125;</div></pre></td></tr></table></figure>
+<p>脚本中使用了3处重定向，while循环使用read语句来从数据文件中读取文本，这是通过在done语句中出现的重定向符号来实现的，命令行的第一个参数即members.csv文件会作为待读取数据的文件。脚本中另外两处重定向操作出现在同一条语句中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat &gt;&gt; $outfile &lt;&lt; EOF</div></pre></td></tr></table></figure>
+<p>这条语句中包含一个输出追加重定向和一个输入追加重定向，输出重定向将cat命令的输出追加到<code>$outfile</code>变量指定的文件中，cat命令的输入不再取自标准输入，而是被重定向到脚本中存储的数据，EOF符号标记了追加到文件中的数据的起止（内联输入重定向）。</p>
+</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Linux/">Linux</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Linux-Shell/">Linux, Shell</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2017/12/03/[Linux] Shell编程第十二课/" data-title="[Linux] Shell编程第十二课 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/12/03/[Linux] Shell编程第十三课/" title="[Linux] Shell编程第十三课">
+  <strong>上一篇：</strong><br/>
+  <span>
+  [Linux] Shell编程第十三课</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/12/03/[Linux] Shell编程第十课/"  title="[Linux] Shell编程第十课">
+ <strong>下一篇：</strong><br/> 
+ <span>[Linux] Shell编程第十课
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/12/03/[Linux] Shell编程第十二课/" data-title="[Linux] Shell编程第十二课" data-url="http://yoursite.com/2017/12/03/[Linux] Shell编程第十二课/"></div>
+</section>
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ 
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="glemontree" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android/" title="Android">Android<sup>15</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Boost/" title="Boost">Boost<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C/" title="C++">C++<sup>23</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CMake/" title="CMake">CMake<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/DB/" title="DB">DB<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Effective-Java/" title="Effective Java">Effective Java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/HTTPS/" title="HTTPS">HTTPS<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/IntelliJ-IDEA/" title="IntelliJ IDEA">IntelliJ IDEA<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/JQuery/" title="JQuery">JQuery<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Java/" title="Java">Java<sup>13</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>21</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/MyBatis/" title="MyBatis">MyBatis<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Qt/" title="Qt">Qt<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Redis/" title="Redis">Redis<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Servlet/" title="Servlet">Servlet<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Spring/" title="Spring">Spring<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/SpringMVC/" title="SpringMVC">SpringMVC<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Struts2/" title="Struts2">Struts2<sup>18</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/TCP-IP/" title="TCP/IP">TCP/IP<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows核心编程/" title="Windows核心编程">Windows核心编程<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/html/" title="html">html<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/多线程/" title="多线程">多线程<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/编程规范/" title="编程规范">编程规范<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络编程/" title="网络编程">网络编程<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Linux-Shell/" title="Linux, Shell">Linux, Shell<sup>16</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JQuery/" title="JQuery">JQuery<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C++">C++<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java-并发/" title="Java 并发">Java 并发<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MyBatis/" title="MyBatis">MyBatis<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-boost/" title="C++ boost">C++ boost<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DB/" title="DB">DB<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html/" title="html">html<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Redis/" title="Redis">Redis<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SpringMVC/" title="SpringMVC">SpringMVC<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spring-AOP/" title="Spring, AOP">Spring, AOP<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Struts2-OGNL/" title="Struts2, OGNL">Struts2, OGNL<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MyBatis-参数处理/" title="MyBatis, 参数处理">MyBatis, 参数处理<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-回调/" title="C++ 回调">C++ 回调<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-new-operator-new-placement-new/" title="C++, new, operator new, placement new">C++, new, operator new, placement new<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-泛型/" title="C++ 泛型">C++ 泛型<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://github.com/glemontree" target="_blank" title="GitHub">GitHub</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/u010216743" target="_blank" title="CSDN">CSDN</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">Weibo</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello World. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/glemontree" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:gtp0521@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Glemontree">Glemontree</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"glemontree"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'null'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

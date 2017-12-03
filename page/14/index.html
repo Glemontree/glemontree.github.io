@@ -77,15 +77,16 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/06/28/[设计模式] 单例模式/" title="[设计模式] 单例模式" itemprop="url">
+    <a href="/2017/06/28/[Linux] Linux epoll的用法/" title="[Linux] Linux epoll的用法" itemprop="url">
   
-    <h1 itemprop="name">[设计模式] 单例模式</h1>
+    <h1 itemprop="name">[Linux] Linux epoll的用法</h1>
     
      
-           <p itemprop="description" >懒汉模式即第一次调用该类实例的时候才产生一个新的该类实例，并在以后仅返回此实例。需要用锁，来保证其线程安全性。原因：多个线程可能进入判断是否已经存在实例的if语句，从而non thread safety。使用double-check来保证thread safety。但是如果处理大</p>
+           <p itemprop="description" >Epoll的用法select与epoll在旧的Linux中，通常都在使用select来做事件触发，而在新的Linux内核中，开始使用epoll来代替。相比于select，epoll最大的好处就是不会随着监听fd数目的增长而降低效率。
+当使用select时，它是采用轮询来处理的，轮</p>
         
     
-    <time datetime="2017-06-28T09:40:04.000Z" itemprop="datePublished">2017-06-28</time>
+    <time datetime="2017-06-28T09:57:39.000Z" itemprop="datePublished">2017-06-28</time>
   </a>
 </section>
 
@@ -97,16 +98,20 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/06/28/[多线程] 互斥对象和锁/" title="[多线程] 互斥对象和锁" itemprop="url">
+    <a href="/2017/06/28/[Linux] Linux网络编程/" title="[Linux] Linux网络编程" itemprop="url">
   
-    <h1 itemprop="name">[多线程] 互斥对象和锁</h1>
+    <h1 itemprop="name">[Linux] Linux网络编程</h1>
     
      
-           <p itemprop="description" >互斥对象和锁锁互斥对象的主要操作有两个，即加锁(lock)和解锁(unlock)。当一个线程对互斥对象进行lock操作并成功获得这个互斥对象的所有权，在此线程对此对象unlock前，其他线程对这个互斥对象的lock操作都会被阻塞。
-多个互斥对象加锁有些倾向需要对多个互斥对象进行加</p>
+           <p itemprop="description" >EPoll的两种工作模式本文主要包含两个方面：
+
+Linux中的EAGAIN错误码
+EPoll的两种工作模式
+
+一、EAGAIN从字面上来看，表示再试一次的意思，这个错误经常出现在当应用程序进行一些非阻塞操作（对文件或socket）的时候，例如以O_NONBLOCKING的标志打</p>
         
     
-    <time datetime="2017-06-28T09:38:55.000Z" itemprop="datePublished">2017-06-28</time>
+    <time datetime="2017-06-28T09:56:40.000Z" itemprop="datePublished">2017-06-28</time>
   </a>
 </section>
 
@@ -118,23 +123,17 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/06/28/[多线程] 互斥量和临界区的区别/" title="[多线程] 互斥量和临界区的区别" itemprop="url">
+    <a href="/2017/06/28/[Linux] Linux中eventfd的使用/" title="[Linux] Linux中eventfd的使用" itemprop="url">
   
-    <h1 itemprop="name">[多线程] 互斥量和临界区的区别</h1>
+    <h1 itemprop="name">[Linux] Linux中eventfd的使用</h1>
     
      
-           <p itemprop="description" >互斥量和临界区的区别
-通常有4种进程或线程同步互斥的控制方法，它们是：
-
-临界区
-互斥量
-信号量
-事件
-
-其中临界区通过对多线程的串行化来访问公共资源或一段代码，速度快；互斥量为协调共同对一个共享资源的访问而设计的；信号量为控制一个具有有限数量用户资源而设计；事件则用来线程有一些</p>
+           <p itemprop="description" >Linux中eventfd的使用eventfd简介eventfd是用来实现多进程或多线程之间的事件通知的，常见的事件通知机制除了eventfd外，还有条件变量和管道等 方式。
+条件变量必须和互斥锁相结合使用，使用起来较麻烦，并且条件变量不能像eventfd一样为I/O事件驱动。
+</p>
         
     
-    <time datetime="2017-06-28T09:37:33.000Z" itemprop="datePublished">2017-06-28</time>
+    <time datetime="2017-06-28T09:55:37.000Z" itemprop="datePublished">2017-06-28</time>
   </a>
 </section>
 
@@ -146,21 +145,20 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/06/28/[编程规范] 函数/" title="[编程规范] 函数" itemprop="url">
+    <a href="/2017/06/28/[DB] MySQL UPDATE查询/" title="[DB] MySQL UPDATE查询" itemprop="url">
   
-    <h1 itemprop="name">[编程规范] 函数</h1>
+    <h1 itemprop="name">[DB] MySQL UPDATE查询</h1>
     
      
-           <p itemprop="description" >对所调用函数的错误返回码需要仔细、全面的处理；
+           <p itemprop="description" >语法1UPDATE table_name SET field1=new-value1, field2=new-value2 [WHERE Clause];
 
-明确函数功能，精确地实现函数设计；
-
-编写可重入函数时，应注意局部变量的使用，不应使用static局部变量，否则必须经过特殊处理，才能使函数具有可重入性；
-
-编写可重入函数时，若使用全局变量，则应通过关中断、信号量（即P、V操作）</p>
+可以同时更新一个或多个字段
+可以在WHERE字句中指定任何条件
+可以在一个单独表中同时更新数据
+当需要更新数据表中指定行的</p>
         
     
-    <time datetime="2017-06-28T09:36:14.000Z" itemprop="datePublished">2017-06-28</time>
+    <time datetime="2017-06-28T09:54:26.000Z" itemprop="datePublished">2017-06-28</time>
   </a>
 </section>
 
@@ -172,24 +170,15 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/06/28/[Spring] 基于注解来配置Bean/" title="[Spring] 基于注解来配置Bean" itemprop="url">
+    <a href="/2017/06/28/[Qt] Qt中processEvents函数/" title="[Qt] Qt中processEvents函数" itemprop="url">
   
-    <h1 itemprop="name">[Spring] 基于注解来配置Bean</h1>
+    <h1 itemprop="name">[Qt] Qt中processEvents函数</h1>
     
      
-           <p itemprop="description" >Bean的配置方式
-基于XML文件的方式
-基于注解的方式（基于注解配置Bean，基于注解来装配Bean的属性）
-
-在classpath中扫描组件
-组件扫描：Spring能够从classpath下自动扫描、侦测和实例化具有特定注解的组件
-
-特定组件包括：
-
-@component：基</p>
+           <p itemprop="description" >什么情况下需要使用processEvents函数当我们在同一个线程中同时处理界面以及一些非常耗时的操作时，可能会出现界面无法响应，处于”假死“状态。通常解决这种现象的一种方法就是使用多线程，主线程专门负责界面，另开线程处理耗时的操作。在Qt中还有一种方法就是在耗时操作执行的过程中</p>
         
     
-    <time datetime="2017-06-28T09:32:52.000Z" itemprop="datePublished">2017-06-28</time>
+    <time datetime="2017-06-28T09:53:28.000Z" itemprop="datePublished">2017-06-28</time>
   </a>
 </section>
 
@@ -201,16 +190,16 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/06/28/[C++] 继承与同名成员变量/" title="[C++] 继承与同名成员变量" itemprop="url">
+    <a href="/2017/06/28/[Spring] Spring AOP编程理解/" title="[Spring] Spring AOP编程理解" itemprop="url">
   
-    <h1 itemprop="name">[C++] 继承与同名成员变量</h1>
+    <h1 itemprop="name">[Spring] Spring AOP编程理解</h1>
     
      
-           <p itemprop="description" >C++继承中子类与父类有同名成员变量的情况话不多说，先看下面这个例子：
-1234567891011121314151617181920212223242526272829303132333435#include &amp;lt;iostream&amp;gt;class Base &amp;#123;p</p>
+           <p itemprop="description" >Spring AOP 编程理解一、AOP的理解最近在学习Spring，理解涉及到Spring的两大核心部分，一个是IOC（控制反转），另一个就是AOP（面向切面编程），今天主要讲一下什么是面向切面编程？
+在知乎上看到别人的回答，有句话觉得特别的有道理，“这种在运行时，动态地将代码</p>
         
     
-    <time datetime="2017-06-28T09:31:01.000Z" itemprop="datePublished">2017-06-28</time>
+    <time datetime="2017-06-28T09:52:20.000Z" itemprop="datePublished">2017-06-28</time>
   </a>
 </section>
 
@@ -222,21 +211,17 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/06/28/[C++] 零散知识点/" title="[C++] 零散知识点" itemprop="url">
+    <a href="/2017/06/28/[Spring] Spring JDBCTemplate/" title="[Spring] Spring JDBCTemplate" itemprop="url">
   
-    <h1 itemprop="name">[C++] 零散知识点</h1>
+    <h1 itemprop="name">[Spring] Spring JDBCTemplate</h1>
     
      
-           <p itemprop="description" >time_t实际上是长整型long int，它用来 保存从1970年1月1日0时0分0秒到现在时刻的秒数，用time()这个函数获取
-
-gmtime
-
-函数原型：struct tm gmtime(time_t time)
-函数功能：得到以结构tm表示的时间信息
-函数返回：以结构t</p>
+           <p itemprop="description" >JdbcTemplate简介
+为了使JDBC更加易于使用，Spring在JDBC API定义了一个抽象层，以此建立一个JDBC存取框架
+作为Spring JDBC框架的核心，JDBC模板的设计目的是为不同类型的JDBC操作提供模板方法，每个模板方法都能控制整个过程，并允许覆盖过程</p>
         
     
-    <time datetime="2017-06-28T09:29:08.000Z" itemprop="datePublished">2017-06-28</time>
+    <time datetime="2017-06-28T09:51:21.000Z" itemprop="datePublished">2017-06-28</time>
   </a>
 </section>
 
@@ -248,20 +233,16 @@ gmtime
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/06/28/[C++] 前置++和后置++的区别/" title="[C++] 前置++和后置++的区别" itemprop="url">
+    <a href="/2017/06/28/[Struts2] Struts中OGNL/" title="[Struts2] Struts中OGNL" itemprop="url">
   
-    <h1 itemprop="name">[C++] 前置++和后置++的区别</h1>
+    <h1 itemprop="name">[Struts2] Struts中OGNL</h1>
     
      
-           <p itemprop="description" >前置++和后置++的区别前置++和后置++在程序开发中使用十分频繁，那么你是否真正了解它们的区别呢？
-其实++i相当于下面的代码：
-12i += 1;return i;
-而i++则相当于下面的代码：
-123j = i;i += 1;return j;
-对于内建数据类型，其实前置+</p>
+           <p itemprop="description" >Struts中OGNL一、OGNL概念OGNL（Object Graph Navigation Language），即对象图导航语言，是一种功能强大的表达式语言，可以任意存取对象的属性或者调用对象的方法。
+OGNL表达式的计算是围绕OGNL上下文进行的，OGNL上下文实际上是一个</p>
         
     
-    <time datetime="2017-06-28T09:27:34.000Z" itemprop="datePublished">2017-06-28</time>
+    <time datetime="2017-06-28T09:50:24.000Z" itemprop="datePublished">2017-06-28</time>
   </a>
 </section>
 
@@ -273,17 +254,19 @@ gmtime
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/06/28/[设计模式] 适配器模式/" title="[设计模式] 适配器模式" itemprop="url">
+    <a href="/2017/06/28/[TCPIP] TCP与UDP不同的包处理方式/" title="[TCP/IP] TCP与UDP不同的包处理方式" itemprop="url">
   
-    <h1 itemprop="name">[设计模式] 适配器模式</h1>
+    <h1 itemprop="name">[TCP/IP] TCP与UDP不同的包处理方式</h1>
     
      
-           <p itemprop="description" >C++中的适配器模式一、为什么需要适配器模式当你想使用一格现存的类，但是它的方法和你的要求不相同时，此时就需要使用适配器模式。
-二、适配器的作用是什么适配器就是将一个类的接口转换成客户希望的另外一个接口，适配器模式使得原本由于接口不兼容而不能一起工作的类可以一起工作。
-三、适配器</p>
+           <p itemprop="description" >TCP与UDP不同的包处理方式声明：本文转载自博客
+
+UDP发包的问题
+举个例子：udp发送两次数据，第一次发送100字节， 第二字发送200字节，接收方一次recvfrom(1000)，收到是100，还是200，还是300？
+UDP是数据报文协议，是以数据包形式，所以每次可以接</p>
         
     
-    <time datetime="2017-06-28T09:26:13.000Z" itemprop="datePublished">2017-06-28</time>
+    <time datetime="2017-06-28T09:49:21.000Z" itemprop="datePublished">2017-06-28</time>
   </a>
 </section>
 
@@ -295,21 +278,18 @@ gmtime
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/06/28/[DB] 数据库将一个表中数据插入到另外一张表中/" title="[DB] 数据库将一个表中数据插入到另外一张表中" itemprop="url">
+    <a href="/2017/06/28/[Qt] VS+Qt生成软件图标/" title="[Qt] VS+Qt生成软件图标" itemprop="url">
   
-    <h1 itemprop="name">[DB] 数据库将一个表中数据插入到另外一张表中</h1>
+    <h1 itemprop="name">[Qt] VS+Qt生成软件图标</h1>
     
      
-           <p itemprop="description" >两张表中的字段一致，并且希望插入全部数据：
-1INSERT INTO 目标表 SELECT * FROM 来源表;
-
-只导入指定字段：
-1INSERT INTO 目标表(字段1,字段2,...) SELECT 字段1,字段2,... FROM 来源表;
-
-只导入目标表中不存在的记</p>
+           <p itemprop="description" >在项目文件夹里创建名为*.rc的文件，如myapp.rc;
+文件中写入IDI_ICON1 ICON DISCARDABLE “myapp.ico，其中，myapp.ico为图标的文件名；
+将文件myapp.ico拷贝到项目文件夹内；
+在解决方案资源管理器中，右键点击项目，添加my</p>
         
     
-    <time datetime="2017-06-28T09:24:49.000Z" itemprop="datePublished">2017-06-28</time>
+    <time datetime="2017-06-28T09:48:17.000Z" itemprop="datePublished">2017-06-28</time>
   </a>
 </section>
 
@@ -320,7 +300,7 @@ gmtime
 
 
   <nav id="page-nav" class="clearfix unexpand">
-    <a class="extend prev" rel="prev" href="/page/13/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/15/">Next<span></span></a>
+    <a class="extend prev" rel="prev" href="/page/13/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/15/">Next<span></span></a>
   </nav>
 
 </div>
@@ -389,7 +369,7 @@ gmtime
 		  
 		
 		  
-			<li><a href="/categories/Linux/" title="Linux">Linux<sup>5</sup></a></li>
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>21</sup></a></li>
 		  
 		
 		  
@@ -458,6 +438,10 @@ gmtime
 		<ul class="clearfix">
 		
 			
+				<li><a href="/tags/Linux-Shell/" title="Linux, Shell">Linux, Shell<sup>16</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/JQuery/" title="JQuery">JQuery<sup>8</sup></a></li>
 			
 		
@@ -482,7 +466,11 @@ gmtime
 			
 		
 			
-				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
+				<li><a href="/tags/html/" title="html">html<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
 			
 		
 			
@@ -490,11 +478,7 @@ gmtime
 			
 		
 			
-				<li><a href="/tags/html/" title="html">html<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
+				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
 			
 		
 			
@@ -514,15 +498,11 @@ gmtime
 			
 		
 			
-				<li><a href="/tags/Qt-processEvents/" title="Qt, processEvents">Qt, processEvents<sup>1</sup></a></li>
+				<li><a href="/tags/MyBatis-参数处理/" title="MyBatis, 参数处理">MyBatis, 参数处理<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android-ProgressDialog，-耗时操作/" title="Android, ProgressDialog， 耗时操作">Android, ProgressDialog， 耗时操作<sup>1</sup></a></li>
+				<li><a href="/tags/C-回调/" title="C++ 回调">C++ 回调<sup>1</sup></a></li>
 			
 		
 			
@@ -530,11 +510,11 @@ gmtime
 			
 		
 			
-				<li><a href="/tags/Android-assets/" title="Android, assets">Android, assets<sup>1</sup></a></li>
+				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-面试/" title="C++ 面试">C++ 面试<sup>1</sup></a></li>
+				<li><a href="/tags/C-泛型/" title="C++ 泛型">C++ 泛型<sup>1</sup></a></li>
 			
 		
 		</ul>

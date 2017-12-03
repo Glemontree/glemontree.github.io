@@ -77,19 +77,19 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/11/02/[TCPIP] 网络接口管理/" title="[TCP/IP] 网络接口管理" itemprop="url">
+    <a href="/2017/12/03/[Linux] Shell编程第七课/" title="[Linux] Shell编程第七课" itemprop="url">
   
-    <h1 itemprop="name">[TCP/IP] 网络接口管理</h1>
+    <h1 itemprop="name">[Linux] Shell编程第七课</h1>
     
      
-           <p itemprop="description" >LwIP在逻辑上分为4个层次：链路层、网络层、传输层、应用层
+           <p itemprop="description" >在创建shell脚本文件时必须在文件的第一行指定要使用的shell，其格式为：#!/bin/bash，
+在通常的shell脚本中，井号（#）用作注释行，shell脚本不会处理shell脚本中的注释行，但是第一行是个例外，后面的！号会告诉shell用哪个shell来运行脚本。
 
-LwIP协议栈内部使用了一个名为netif的网络接口结构来描述各种网络设备
 
-LwIP为每个接口分配一个netif结构，用这个结构来描述每种接口的特性，如接口IP地址、接口状态等，同时在该结构中为每个接口注册对应的操</p>
+</p>
         
     
-    <time datetime="2017-11-02T03:24:48.000Z" itemprop="datePublished">2017-11-02</time>
+    <time datetime="2017-12-03T11:45:42.000Z" itemprop="datePublished">2017-12-03</time>
   </a>
 </section>
 
@@ -101,18 +101,18 @@ LwIP为每个接口分配一个netif结构，用这个结构来描述每种接�
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/11/02/[TCPIP] 网际协议IP/" title="[TCP/IP] 网际协议IP" itemprop="url">
+    <a href="/2017/12/03/[Linux] Shell编程第六课/" title="[Linux] Shell编程第六课" itemprop="url">
   
-    <h1 itemprop="name">[TCP/IP] 网际协议IP</h1>
+    <h1 itemprop="name">[Linux] Shell编程第六课</h1>
     
      
-           <p itemprop="description" >IP是整个TCP/IP协议的核心，TCP、UDP、ICMP、IGMP等协议都基于IP来传送协议数据，常见的广域网路由器就工作在IP层，它们负责将IP数据报从源主机送至目的主机。
+           <p itemprop="description" >必须在存储设备上创建分区来容纳文件系统，分区可以是整个硬盘，也可以是部分硬盘，以容纳虚拟目录的一部分
 
-网络相关知识
-IP是一种不可靠的无连接数据报协议，它提供尽量最大努力交付服务，但是并不保证每个分组都</p>
+
+fdisk工具用来帮助管理安装在系统上的任何存储设备上的分区，要启动fdisk命令，必须指定要分区的存储设备的设备名，另外还得有超级用户权限，你应该这样使用fdisk工具：s</p>
         
     
-    <time datetime="2017-11-02T03:23:02.000Z" itemprop="datePublished">2017-11-02</time>
+    <time datetime="2017-12-03T11:45:01.000Z" itemprop="datePublished">2017-12-03</time>
   </a>
 </section>
 
@@ -124,15 +124,15 @@ IP是一种不可靠的无连接数据报协议，它提供尽量最大努力交
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/11/02/[TCPIP] 数据包管理/" title="[TCP/IP] 数据包管理" itemprop="url">
+    <a href="/2017/12/03/[Linux] Shell编程第五课/" title="[Linux] Shell编程第五课" itemprop="url">
   
-    <h1 itemprop="name">[TCP/IP] 数据包管理</h1>
+    <h1 itemprop="name">[Linux] Shell编程第五课</h1>
     
      
-           <p itemprop="description" >数据包处理过程链路层判断收到的数据包类型，提取数据包中的数据字段，记录主机物理地址信息；IP层根据数据包中的IP地址实现数据的存储和转发，根据数据包编号实现数据包的重装，提取数据包中关于传输层的信息，向上层递交数据包并记录递交结果；TCP使用数据包中的信息更新TCP状态机并向应用</p>
+           <p itemprop="description" >Linux中广泛使用的两种主要的PMS（Package management system, PMS）基础工具是dpkg和rpm，基于debian的发行版（如Ubuntu和Mint）使用的是dpkg命令，这些发行版的PMS工具也是以该命令为基础的，dpkg会直接和Linux系统上</p>
         
     
-    <time datetime="2017-11-02T03:19:55.000Z" itemprop="datePublished">2017-11-02</time>
+    <time datetime="2017-12-03T11:44:05.000Z" itemprop="datePublished">2017-12-03</time>
   </a>
 </section>
 
@@ -144,17 +144,18 @@ IP是一种不可靠的无连接数据报协议，它提供尽量最大努力交
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/11/02/[TCPIP] 服务器程序示例/" title="[TCP/IP] 服务器程序示例" itemprop="url">
+    <a href="/2017/12/03/[Linux] Shell编程第四课/" title="[Linux] Shell编程第四课" itemprop="url">
   
-    <h1 itemprop="name">[TCP/IP] 服务器程序示例</h1>
+    <h1 itemprop="name">[Linux] Shell编程第四课</h1>
     
      
-           <p itemprop="description" >信号处理函数
-signal函数每次设置的信号处理函数只能生效一次，每次在进程响应处理信号时，随即将信号处理函数恢复为默认处理方式，所以如果想多次相同方式处理某个信号，通常的做法是在响应函数开始时，再次调用signal设置
-而对于sigaction函数，在信号处理程序调用时，系统建</p>
+           <p itemprop="description" >Linux系统会为各种功能创建不同的用户账户，而这些账户并不是真的用户，这些账户叫做系统账户，是系统上运行的各种服务进程访问资源用的特殊账户，所有运行在后台的服务都需要一个系统用户账户登录到Linux系统上
+
+
+Linux为系统账户预留了500以下的UID值，为普通用户创建账户时</p>
         
     
-    <time datetime="2017-11-02T03:17:22.000Z" itemprop="datePublished">2017-11-02</time>
+    <time datetime="2017-12-03T11:43:24.000Z" itemprop="datePublished">2017-12-03</time>
   </a>
 </section>
 
@@ -166,17 +167,18 @@ signal函数每次设置的信号处理函数只能生效一次，每次在进�
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/11/02/[TCPIP] 基本TCP套接字编程/" title="[TCP/IP] 基本TCP套接字编程" itemprop="url">
+    <a href="/2017/12/03/[Linux] Shell编程第三课/" title="[Linux] Shell编程第三课" itemprop="url">
   
-    <h1 itemprop="name">[TCP/IP] 基本TCP套接字编程</h1>
+    <h1 itemprop="name">[Linux] Shell编程第三课</h1>
     
      
-           <p itemprop="description" >socket函数12#include &amp;lt;sys/socket.h&amp;gt;int socket(int family, int type, int protocol);
-socket函数在成功时返回一个小的非负整数值，称为套接字描述符，简称sockfd。
-connect函数1</p>
+           <p itemprop="description" >全局环境变量对于shell会话和所有生成的子shell都是可见的，局部环境变量则只对创建他们的shell可见，系统环境变量基本上都是使用全大写字母，以区别于普通用户的环境变量。
+
+
+要查看环境变量，可以使用env命令或者printenv命令，要显示个别环境变量的值可以使用prin</p>
         
     
-    <time datetime="2017-11-02T03:15:22.000Z" itemprop="datePublished">2017-11-02</time>
+    <time datetime="2017-12-03T11:42:36.000Z" itemprop="datePublished">2017-12-03</time>
   </a>
 </section>
 
@@ -188,19 +190,17 @@ connect函数1</p>
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/11/01/[Struts2] EL表达式/" title="[Struts2] EL表达式" itemprop="url">
+    <a href="/2017/12/03/[Linux] Shell编程第二课/" title="[Linux] Shell编程第二课" itemprop="url">
   
-    <h1 itemprop="name">[Struts2] EL表达式</h1>
+    <h1 itemprop="name">[Linux] Shell编程第二课</h1>
     
      
-           <p itemprop="description" >EL表达式语法结构
-${expression}
-
-EL存取变量
-EL存取变量数据的方法很简单，例如：${username}，它的意思是取出某一范围中名称为username的变量。如果没有指定哪一个范围的username，那么它会依序从Page、Request、Seesion、Ap</p>
+           <p itemprop="description" >top命令能够实时显示进程信息：
+输出的第一部分显示的系统的概况：第一行显示了当前时间、系统的运行时间、登录的用户数以及系统的平均负载 
+平均负载有三个值，最近1分钟的、最近5分钟的和最近15分钟的平均负载，值越大说明系统的负载越高，如果近15分钟的平均负载都很高，说明系统有问题</p>
         
     
-    <time datetime="2017-11-01T07:33:19.000Z" itemprop="datePublished">2017-11-01</time>
+    <time datetime="2017-12-03T11:41:45.000Z" itemprop="datePublished">2017-12-03</time>
   </a>
 </section>
 
@@ -212,16 +212,21 @@ EL存取变量数据的方法很简单，例如：${username}，它的意思是�
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/11/01/[html] html/" title="[html] html" itemprop="url">
+    <a href="/2017/12/03/[Linux] Shell编程第一课/" title="[Linux] Shell编程第一课" itemprop="url">
   
-    <h1 itemprop="name">[html] html</h1>
+    <h1 itemprop="name">[Linux] Shell编程第一课</h1>
     
      
-           <p itemprop="description" >一、HTML简介HTML的全称为Hypertext Markup Language，中文意思是超文本标签语言，是一种用来制作超文本文档的简单标签语言，其主要应用就是对网页内容的排版。
-二、HTML基本组成所谓超文本是因为其可以加入图片、声音、动画、影视等非单一文本内容。一个简单的</p>
+           <p itemprop="description" >当使用man命令查看命令手册时，这些手册页是由分页程序来显示的，可以通过点击空格进行翻页，或者使用回车逐行查看。
+
+
+如果不记得命令名怎么办？可以使用关键字搜索手册页，语法是：man -k 关键字，例如要查找和终端相关的命令，可以输入man -k terminal
+
+
+Linux</p>
         
     
-    <time datetime="2017-11-01T07:28:37.000Z" itemprop="datePublished">2017-11-01</time>
+    <time datetime="2017-12-03T11:40:27.000Z" itemprop="datePublished">2017-12-03</time>
   </a>
 </section>
 
@@ -233,18 +238,17 @@ EL存取变量数据的方法很简单，例如：${username}，它的意思是�
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/11/01/[Struts2] CSS/" title="[Struts2] CSS" itemprop="url">
+    <a href="/2017/12/02/[Java] Java并发编程实战之任务执行/" title="[Java] Java并发编程实战之任务执行" itemprop="url">
   
-    <h1 itemprop="name">[Struts2] CSS</h1>
+    <h1 itemprop="name">[Java] Java并发编程实战之任务执行</h1>
     
      
-           <p itemprop="description" >CSS是Cascading Style Sheet（层叠样式化表单）的简称，是一种格式化网页的语言，它专门用于网页的样式设置，使网页内容和样式分开。
-了解CSSCSS的基本语法格式如下：
-1H3&amp;#123;color:red&amp;#125;
-其格式分两部分，选择器（selector）</p>
+           <p itemprop="description" >任务是一组逻辑工作单元，而线程则是使任务异步执行的机制
+
+Executor提供了一种标准的方法将任务的提交过程和执行过程解耦开来，并用Runnable表示任务，Executor基于生产者-消费者模式，提交任务的操作相当于生产者（生产待完成的工作单元），执行任务的线程则相当于消费者</p>
         
     
-    <time datetime="2017-11-01T06:53:35.000Z" itemprop="datePublished">2017-11-01</time>
+    <time datetime="2017-12-02T10:37:09.000Z" itemprop="datePublished">2017-12-02</time>
   </a>
 </section>
 
@@ -256,19 +260,17 @@ EL存取变量数据的方法很简单，例如：${username}，它的意思是�
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/11/01/[Android] Android的4种文件类型Java、class、dex、apk/" title="[Android] Android的4种文件类型Java、class、dex、apk" itemprop="url">
+    <a href="/2017/11/30/[Java] Java并发编程实战之基础构建模块/" title="[Java] Java并发编程实战之基础构建模块" itemprop="url">
   
-    <h1 itemprop="name">[Android] Android的4种文件类型Java、class、dex、apk</h1>
+    <h1 itemprop="name">[Java] Java并发编程实战之基础构建模块</h1>
     
      
-           <p itemprop="description" >Java文件：应用程序源文件
-Android是采用Java进行开发的（当然，现在Google开发推荐使用kotlin来进行开发）。
+           <p itemprop="description" >同步容器类包括Vector和Hashtable以及Collections.synchronizedXxx等工厂方法创建的，这些类实现线程安全的方式是：将它们的状态封装起来，并对每个公有方法都进行同步，使得每次只有一个线程能访问容器的状态。
 
-class文件：Java编译后的目标文件
-android平台上class文件不能直接在android上运行，由于Google使用了自己的自己的Da</p>
+同步容器类通过其自身的锁来保护它的每一</p>
         
     
-    <time datetime="2017-11-01T06:51:02.000Z" itemprop="datePublished">2017-11-01</time>
+    <time datetime="2017-11-30T13:37:18.000Z" itemprop="datePublished">2017-11-30</time>
   </a>
 </section>
 
@@ -280,15 +282,17 @@ android平台上class文件不能直接在android上运行，由于Google使用�
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/11/01/[Struts2] Ajax/" title="[Struts2] Ajax" itemprop="url">
+    <a href="/2017/11/30/[Java] Java并发编程实战之对象的组合/" title="[Java] Java并发编程实战之对象的组合" itemprop="url">
   
-    <h1 itemprop="name">[Struts2] Ajax</h1>
+    <h1 itemprop="name">[Java] Java并发编程实战之对象的组合</h1>
     
      
-           <p itemprop="description" >AJAX通过AJAX技术，可以实现以无刷新的方式更新HTML元素中的内容。AJAX并不是一种新的技术，其为4种技术的结合，分别是JavaScript、CSS、DOM和XMLHttpRequest，前三种技术都是客户端技术，它们和服务器一点关系都没有，而XMLHttpRequest</p>
+           <p itemprop="description" >将数据封装在对象内部，可以将数据的访问限制在对象的方法上，从而更容易确保线程在访问数据时总能持有正确的锁。
+看下面的例子：
+1234567891011121314public class PersonSet &amp;#123;  private final Set&amp;lt;Person&amp;</p>
         
     
-    <time datetime="2017-11-01T06:41:18.000Z" itemprop="datePublished">2017-11-01</time>
+    <time datetime="2017-11-30T09:02:06.000Z" itemprop="datePublished">2017-11-30</time>
   </a>
 </section>
 
@@ -299,7 +303,7 @@ android平台上class文件不能直接在android上运行，由于Google使用�
 
 
   <nav id="page-nav" class="clearfix unexpand">
-    <a class="extend prev" rel="prev" href="/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/3/">Next<span></span></a>
+    <a class="extend prev" rel="prev" href="/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/3/">Next<span></span></a>
   </nav>
 
 </div>
@@ -368,7 +372,7 @@ android平台上class文件不能直接在android上运行，由于Google使用�
 		  
 		
 		  
-			<li><a href="/categories/Linux/" title="Linux">Linux<sup>5</sup></a></li>
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>21</sup></a></li>
 		  
 		
 		  
@@ -437,6 +441,10 @@ android平台上class文件不能直接在android上运行，由于Google使用�
 		<ul class="clearfix">
 		
 			
+				<li><a href="/tags/Linux-Shell/" title="Linux, Shell">Linux, Shell<sup>16</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/JQuery/" title="JQuery">JQuery<sup>8</sup></a></li>
 			
 		
@@ -461,7 +469,11 @@ android平台上class文件不能直接在android上运行，由于Google使用�
 			
 		
 			
-				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
+				<li><a href="/tags/html/" title="html">html<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
 			
 		
 			
@@ -469,11 +481,7 @@ android平台上class文件不能直接在android上运行，由于Google使用�
 			
 		
 			
-				<li><a href="/tags/html/" title="html">html<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
+				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
 			
 		
 			
@@ -493,15 +501,11 @@ android平台上class文件不能直接在android上运行，由于Google使用�
 			
 		
 			
-				<li><a href="/tags/Qt-processEvents/" title="Qt, processEvents">Qt, processEvents<sup>1</sup></a></li>
+				<li><a href="/tags/MyBatis-参数处理/" title="MyBatis, 参数处理">MyBatis, 参数处理<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android-ProgressDialog，-耗时操作/" title="Android, ProgressDialog， 耗时操作">Android, ProgressDialog， 耗时操作<sup>1</sup></a></li>
+				<li><a href="/tags/C-回调/" title="C++ 回调">C++ 回调<sup>1</sup></a></li>
 			
 		
 			
@@ -509,11 +513,11 @@ android平台上class文件不能直接在android上运行，由于Google使用�
 			
 		
 			
-				<li><a href="/tags/Android-assets/" title="Android, assets">Android, assets<sup>1</sup></a></li>
+				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-面试/" title="C++ 面试">C++ 面试<sup>1</sup></a></li>
+				<li><a href="/tags/C-泛型/" title="C++ 泛型">C++ 泛型<sup>1</sup></a></li>
 			
 		
 		</ul>

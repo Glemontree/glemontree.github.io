@@ -1,0 +1,807 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>[Linux] Shell编程第十课 | Glemontree&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Glemontree">
+    
+
+    
+    <meta name="description" content="bash中for命令的基本格式如下：
+1234for var in listdo	commandsdone
+例如：
+123456#!/bin/bash# basic for commandfor test in Alabama Alaska Arizona Arkansas California Coloradodo	echo The next state is $testdone
+123456">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Linux] Shell编程第十课">
+<meta property="og:url" content="http://yoursite.com/2017/12/03/[Linux] Shell编程第十课/index.html">
+<meta property="og:site_name" content="Glemontree's blog">
+<meta property="og:description" content="bash中for命令的基本格式如下：
+1234for var in listdo	commandsdone
+例如：
+123456#!/bin/bash# basic for commandfor test in Alabama Alaska Arizona Arkansas California Coloradodo	echo The next state is $testdone
+123456">
+<meta property="og:updated_time" content="2017-12-03T11:52:29.841Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Linux] Shell编程第十课">
+<meta name="twitter:description" content="bash中for命令的基本格式如下：
+1234for var in listdo	commandsdone
+例如：
+123456#!/bin/bash# basic for commandfor test in Alabama Alaska Arizona Arkansas California Coloradodo	echo The next state is $testdone
+123456">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/favicon.ico" alt="Glemontree&#39;s blog" title="Glemontree&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Glemontree&#39;s blog">Glemontree&#39;s blog</a></h1>
+				<h2 class="blog-motto">day day up!</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="http://zhannei.baidu.com/cse/search" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="Search"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/12/03/[Linux] Shell编程第十课/" title="[Linux] Shell编程第十课" itemprop="url">[Linux] Shell编程第十课</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
+		
+  <p class="article-time">
+    <time datetime="2017-12-03T11:50:53.000Z" itemprop="datePublished"> Published 2017-12-03</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			
+		
+		</div>
+		
+		<ul>
+<li><p>bash中for命令的基本格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">for var in list</div><div class="line">do</div><div class="line">	commands</div><div class="line">done</div></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line"># basic for command</div><div class="line">for test in Alabama Alaska Arizona Arkansas California Colorado</div><div class="line">do</div><div class="line">	echo The next state is $test</div><div class="line">done</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ ./test1</div><div class="line">The next state is Alabama</div><div class="line">The next state is Alaska</div><div class="line">The next state is Arizona</div><div class="line">The next state is Arkansas</div><div class="line">The next state is California</div><div class="line">The next state is Colorado</div></pre></td></tr></table></figure>
+<p>在最后一次迭代后，$test变量的值会在shell脚本的剩余部分一直保持有效，它会一直保持最后一次迭代的值</p>
+</li>
+</ul>
+<ul>
+<li>当list列表中含有单引号时，可以使用下面两种方法中的其中一种：<ul>
+<li>使用转义字符（反斜线）来将单引号转义</li>
+<li>使用双引号来定义用到单引号的值</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>for循环假定每个值是用空格进行分隔的，此时如果单独的数据中含有空格，就必须用双引号将这些值圈起来</li>
+</ul>
+<ul>
+<li><p>从变量读取列表，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ cat test4.sh</div><div class="line">#!/bin/bash</div><div class="line"># using a variable to hold the list</div><div class="line">list=&quot;Alabama Alaska Arizona Arkansas Colorado&quot; </div><div class="line">list=$list&quot; Connecticut&quot; </div><div class="line">for state in $list</div><div class="line">do</div><div class="line">	echo &quot;Have you ever visited $state?&quot;</div><div class="line">done</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ ./test4.sh</div><div class="line">Have you ever visited Alabama?</div><div class="line">Have you ever visited Alaska?</div><div class="line">Have you ever visited Arizona?</div><div class="line">Have you ever visited Arkansas?</div><div class="line">Have you ever visited Colorado?</div><div class="line">Have you ever visited Connecticut?</div></pre></td></tr></table></figure>
+<p>注意第五行的向变量中存储的已有文本字符串尾部添加文本的一个常用方法</p>
+</li>
+</ul>
+<ul>
+<li><p>生成列表中所需值的另外一种方法是使用命令的输出，可以用命令替换来执行任何能产生输出的命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">file=&quot;states&quot;</div><div class="line">for state in $(cat file)</div><div class="line">do</div><div class="line">    echo &quot;Visit beautiful $state&quot;</div><div class="line">done</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ ./test5</div><div class="line">Visit beautiful Alabama</div><div class="line">Visit beautiful Alaska</div><div class="line">Visit beautiful Arizona</div><div class="line">Visit beautiful Arkansas</div><div class="line">Visit beautiful Colorado</div><div class="line">Visit beautiful Connecticut</div><div class="line">Visit beautiful Delaware</div><div class="line">Visit beautiful Florida</div></pre></td></tr></table></figure>
+<p>上面的这个例子中将各个地名放在了单独的一行，for命令会以每次一行的方式遍历cat命令的输出，但这并没有解决数据中有空格的问题，如果你列出的一行中有空格，for命令仍然会将每个单词当作单独的值。</p>
+</li>
+</ul>
+<ul>
+<li><p>造成这个问题的根本原因是特殊的环境变量IFS，叫做内部字段分隔符（internal field separator），IFS环境变量定义了bash shell用作字段分隔符的一系列字符，默认情况下，bash shell会将下面的字符当作字段分隔符：</p>
+<ul>
+<li>空格</li>
+<li>制表符</li>
+<li>换行符</li>
+</ul>
+<p>如果bash shell在数据中看到了这些字符中的任意一个，他就会假定这表明了列表中一个新数据字段的开始。当然你可以修改IFS的值，例如你可以在shell脚本中临时更改IFS环境变量的值：<code>IFS=$&#39;\n&#39;</code>，这样就只能识别换行符</p>
+</li>
+</ul>
+<ul>
+<li><p>在处理代码量较大的脚本时，可能需要在一个地方修改IFS的值，然后忽略这次修改，在脚本的其他地方继续沿用IFS的默认值，可以这样实现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">IFS.OLD=$IFS</div><div class="line">IFS=$&apos;\n&apos;</div><div class="line">&lt;在代码中使用新的IFS值&gt;</div><div class="line">IFS=$IFS.OLD</div></pre></td></tr></table></figure>
+</li>
+<li><p>如果要指定多个IFS字符，只要将它们在赋值行串联起来即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">IFS=$&apos;\n&apos;:;&quot;</div></pre></td></tr></table></figure>
+<p>这个赋值会将换行符、冒号、分号和双引号作为字段分隔符</p>
+</li>
+</ul>
+<ul>
+<li><p>用通配符读取目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">for file in /home/rich/test/*</div><div class="line">do</div><div class="line">	if [ -d &quot;$file&quot; ]</div><div class="line">	then</div><div class="line"> 		echo &quot;$file is a directory&quot;</div><div class="line">    elif [ -f &quot;$file&quot; ]</div><div class="line">    then</div><div class="line">        echo &quot;$file is a file&quot;</div><div class="line">    fi</div><div class="line">done</div></pre></td></tr></table></figure>
+<p>该代码用test命令测试了每个条目（使用方括号方法），以查看它的目录（通过-d参数）还是文件（通过-f参数）。需要注意的是，在Linux中目录名和文件名是可以包含空格的，所以需要将<code>$file</code>使用双引号圈起来，否则会出错，在test命令中，bash shell会将额外的单词当作参数，进而造成错误。</p>
+</li>
+</ul>
+<ul>
+<li>bash中C语言风格的循环语句：for ((variable assignment; condition; iteration process))，例如：<code>for (( a = 1; a &lt; 10; a++ ))</code>，有以下几点需要注意：<ul>
+<li>变量赋值可以有空格</li>
+<li>条件中的变量不以美元符开头</li>
+<li>迭代过程中的算式未用expr命令格式</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>while命令的基本格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">while test command</div><div class="line">do</div><div class="line">done</div></pre></td></tr></table></figure>
+<p>最常见的test command的用法是用方括号来检查循环命令中用到的shell变量的值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">var1=10;</div><div class="line">while [ $var1 -gt 10 ] </div><div class="line">do</div><div class="line">    echo $var1</div><div class="line">    var1=$[$var1 - 1]</div><div class="line">done</div></pre></td></tr></table></figure>
+</li>
+<li><p>while命令允许你在while语句定义多个测试命令，只有最后一个测试命令的退出状态码会被用来决定什么时候结束循环。</p>
+</li>
+</ul>
+<ul>
+<li><p>循环处理文件数据，通常必须遍历存储在文本中的数据，这需要使用到两种技术：</p>
+<ul>
+<li>使用嵌套循环</li>
+<li>修改IFS环境变量</li>
+</ul>
+<p>通过修改IFS环境变量，就能强制for命令将文件中的每一行都当作单独的一个条目来进行处理，即使数据中有空格也是如此，一旦从文件中提取出了单独的行，可能需要再次利用循环来提取行中的数据。典型的例子就是处理/etc/passwd文件中的数据，首先需要遍历/etc/passwd文件，并将IFS变量的值改成冒号：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">IFS.OLD=$IFS</div><div class="line">IFS=$&apos;\n&apos;</div><div class="line">for entry in $(cat /etc/passwd)</div><div class="line">do</div><div class="line">    echo &quot;Values in $entry -&quot; </div><div class="line">    IFS=:</div><div class="line">    for value in $entry</div><div class="line">    do </div><div class="line">        echo &quot;	$value&quot;</div><div class="line">    done</div><div class="line">done</div></pre></td></tr></table></figure>
+</li>
+<li><p>熟悉C语言的都知道break命令可以用于退出当前的循环，有时你在内部循环，但需要停止外部循环，break命令可以接受单个命令行参数值：<code>break n</code>，其中n指定了要跳出的循环层级，默认情况下n为1，表明跳出的是当前循环，如果将n设为2，break命令会停止下一级的外部循环。</p>
+<p>注意：for循环的循环条件((xxx;xxx;xxx))表达式和括号之前的空格是可有可无的，但是对于if命令的test条件判断（[]）方括号和表达式之间必须有空格</p>
+</li>
+</ul>
+<ul>
+<li><p>在shell脚本中，可以对循环的输出使用管道或进行重定向，这可以在done命令之后添加一个处理命令来实现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">for file in /home/gtp/*</div><div class="line">do</div><div class="line">    if [ -d &quot;$file&quot; ]</div><div class="line">    then</div><div class="line">        echo &quot;$file is a directory&quot;</div><div class="line">    elif</div><div class="line">        echo &quot;$file is a file&quot;</div><div class="line">    fi</div><div class="line">done &gt; output.txt</div></pre></td></tr></table></figure>
+<p>shell会将for命令的输出重定向到文件output.txt中，而不是在屏幕上。当然这种方法同样适用于将循环的结果管接到另一个命令，此时需要使用 | 符号，而不是 &gt; 符号</p>
+</li>
+</ul>
+<ul>
+<li><p>查找可执行文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">IFS=:</div><div class="line">for folder in $PATH</div><div class="line">do </div><div class="line">    echo &quot;$folder:&quot;</div><div class="line">    for file in $folder/*</div><div class="line">    do</div><div class="line">        if [ -x $file ]</div><div class="line">        then</div><div class="line">            echo &quot;    $file&quot;</div><div class="line">        fi</div><div class="line">    done</div><div class="line">done</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建多个用户帐户：</p>
+<p>不用为每个需要创建的新用户账户手动输入useradd命令， 而是可以将需要添加的新用户账户放在一个文件中，然后创建一个脚本来实现，这个文本文件的格式如下：<code>userid,user name</code>，两个值之间用<code>,</code>分隔，这样就形成了一种名为逗号分隔符的文件格式（或者是.csv），这种文件格式在电子表格中极其常见，所以你可以轻松的在电子表格程序中创建用户账户列表，然后将其保存成.csv格式，以备shell脚本读取并处理。</p>
+<p>要读取文件中的数据，首先将IFS分隔符设置为逗号，并将其放入while语句的条件测试部分，然后使用read命令读取文件中的各行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">while IFS=&apos;,&apos; read -r userid name</div></pre></td></tr></table></figure>
+<p>read命令会自动读取.csv文本文件中的下一行内容，当read命令返回false时，即文件读取完毕，循环结束。</p>
+<p>要想把数据从文件中送入while命令， 只需在while命令尾部使用一个重定向就可以了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">input=&quot;users.csv&quot;</div><div class="line">while IFS=&apos;,&apos; read -r userid name</div><div class="line">do</div><div class="line">     echo &quot;adding $userid&quot;</div><div class="line">     useradd -c &quot;$name&quot; -m $userid</div><div class="line">done &lt; &quot;$input&quot;</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Linux/">Linux</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Linux-Shell/">Linux, Shell</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2017/12/03/[Linux] Shell编程第十课/" data-title="[Linux] Shell编程第十课 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/12/03/[Linux] Shell编程第十二课/" title="[Linux] Shell编程第十二课">
+  <strong>上一篇：</strong><br/>
+  <span>
+  [Linux] Shell编程第十二课</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/12/03/[Linux] Shell编程第九课/"  title="[Linux] Shell编程第九课">
+ <strong>下一篇：</strong><br/> 
+ <span>[Linux] Shell编程第九课
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/12/03/[Linux] Shell编程第十课/" data-title="[Linux] Shell编程第十课" data-url="http://yoursite.com/2017/12/03/[Linux] Shell编程第十课/"></div>
+</section>
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ 
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="glemontree" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android/" title="Android">Android<sup>15</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Boost/" title="Boost">Boost<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C/" title="C++">C++<sup>23</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CMake/" title="CMake">CMake<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/DB/" title="DB">DB<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Effective-Java/" title="Effective Java">Effective Java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/HTTPS/" title="HTTPS">HTTPS<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/IntelliJ-IDEA/" title="IntelliJ IDEA">IntelliJ IDEA<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/JQuery/" title="JQuery">JQuery<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Java/" title="Java">Java<sup>13</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>21</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/MyBatis/" title="MyBatis">MyBatis<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Qt/" title="Qt">Qt<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Redis/" title="Redis">Redis<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Servlet/" title="Servlet">Servlet<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Spring/" title="Spring">Spring<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/SpringMVC/" title="SpringMVC">SpringMVC<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Struts2/" title="Struts2">Struts2<sup>18</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/TCP-IP/" title="TCP/IP">TCP/IP<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows核心编程/" title="Windows核心编程">Windows核心编程<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/html/" title="html">html<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/多线程/" title="多线程">多线程<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/编程规范/" title="编程规范">编程规范<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络编程/" title="网络编程">网络编程<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Linux-Shell/" title="Linux, Shell">Linux, Shell<sup>16</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JQuery/" title="JQuery">JQuery<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C++">C++<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java-并发/" title="Java 并发">Java 并发<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MyBatis/" title="MyBatis">MyBatis<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-boost/" title="C++ boost">C++ boost<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DB/" title="DB">DB<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html/" title="html">html<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Redis/" title="Redis">Redis<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SpringMVC/" title="SpringMVC">SpringMVC<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spring-AOP/" title="Spring, AOP">Spring, AOP<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Struts2-OGNL/" title="Struts2, OGNL">Struts2, OGNL<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MyBatis-参数处理/" title="MyBatis, 参数处理">MyBatis, 参数处理<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-回调/" title="C++ 回调">C++ 回调<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-new-operator-new-placement-new/" title="C++, new, operator new, placement new">C++, new, operator new, placement new<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-泛型/" title="C++ 泛型">C++ 泛型<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://github.com/glemontree" target="_blank" title="GitHub">GitHub</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/u010216743" target="_blank" title="CSDN">CSDN</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">Weibo</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello World. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/glemontree" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:gtp0521@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Glemontree">Glemontree</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"glemontree"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'null'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
