@@ -4,22 +4,35 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Glemontree&#39;s blog</title>
+    <title>[Linux] vmware中启动ubuntu蓝屏 | Glemontree&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Glemontree">
     
 
     
-    <meta name="description" content="记录我学习的每一步">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Glemontree's blog">
-<meta property="og:url" content="http://yoursite.com/page/5/index.html">
+    <meta name="description" content="先进入字符界面：Ctrl + Alt + F4
+然后安装相应服务，然后重置它！
+123sudo apt-get install xserver-xorg-lts-utopic sudo dpkg-reconfigure xserver-xorg-lts-utopic reboot
+如果前面第一个操作有问题，需要重置 dpkg 后再试，总之按提示操作就好了。
+1sudo dpkg --configu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Linux] vmware中启动ubuntu蓝屏">
+<meta property="og:url" content="http://yoursite.com/2017/12/10/[Linux] vmware中启动ubuntu蓝屏/index.html">
 <meta property="og:site_name" content="Glemontree's blog">
-<meta property="og:description" content="记录我学习的每一步">
+<meta property="og:description" content="先进入字符界面：Ctrl + Alt + F4
+然后安装相应服务，然后重置它！
+123sudo apt-get install xserver-xorg-lts-utopic sudo dpkg-reconfigure xserver-xorg-lts-utopic reboot
+如果前面第一个操作有问题，需要重置 dpkg 后再试，总之按提示操作就好了。
+1sudo dpkg --configu">
+<meta property="og:updated_time" content="2017-12-10T14:21:08.698Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Glemontree's blog">
-<meta name="twitter:description" content="记录我学习的每一步">
+<meta name="twitter:title" content="[Linux] vmware中启动ubuntu蓝屏">
+<meta name="twitter:description" content="先进入字符界面：Ctrl + Alt + F4
+然后安装相应服务，然后重置它！
+123sudo apt-get install xserver-xorg-lts-utopic sudo dpkg-reconfigure xserver-xorg-lts-utopic reboot
+如果前面第一个操作有问题，需要重置 dpkg 后再试，总之按提示操作就好了。
+1sudo dpkg --configu">
 
     
     <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
@@ -72,235 +85,102 @@
 </div>
     </header>
     <div id="container">
-      <div id="main">
-
+      <div id="main" class="post" itemscope itemprop="blogPost">
   
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/11/01/[C++] C++中实现回调/" title="[C++] C++中实现回调" itemprop="url">
-  
-    <h1 itemprop="name">[C++] C++中实现回调</h1>
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
     
-     
-           <p itemprop="description" >一、 使用全局函数作为回调在C++中可以使用类似于C语言方式的回调函数，也就是将全局函数定义为回调函数：
-12345678910typedef void(*pCalledFun)(int*);void GetCallBack(pCalledFun parafun) &amp;#123; </p>
-        
+      <a href="/2017/12/10/[Linux] vmware中启动ubuntu蓝屏/" title="[Linux] vmware中启动ubuntu蓝屏" itemprop="url">[Linux] vmware中启动ubuntu蓝屏</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
+		
+  <p class="article-time">
+    <time datetime="2017-12-10T14:18:34.000Z" itemprop="datePublished"> Published 2017-12-10</time>
     
-    <time datetime="2017-11-01T06:24:25.000Z" itemprop="datePublished">2017-11-01</time>
-  </a>
-</section>
-
-
-
-
-
-
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			
+		
+		</div>
+		
+		<p>先进入字符界面：<strong>Ctrl + Alt + F4</strong></p>
+<p>然后安装相应服务，然后重置它！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install xserver-xorg-lts-utopic </div><div class="line">sudo dpkg-reconfigure xserver-xorg-lts-utopic </div><div class="line">reboot</div></pre></td></tr></table></figure>
+<p>如果前面第一个操作有问题，需要重置 dpkg 后再试，总之按提示操作就好了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo dpkg --configure -a</div></pre></td></tr></table></figure>
+<p>有看到其他人不是安装 xserver-xorg-lts-utopic，而是 xserver-xorg-lts-quantal 。估计是版本问题。</p>
+<p>reboot 系统后，亲切的图形界面终于回来了！</p>
+<p>本文转载自文章<a href="http://www.cnblogs.com/liaojieliang/p/ubuntu-blue.html" target="_blank" rel="external">VMware 虚拟机 Ubuntu 登录后蓝屏问题</a>。</p>
   
-<section class="post" itemscope itemprop="blogitem">
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Linux/">Linux</a>
+</div>
+
+
+  <div class="article-tags">
   
-    <a href="/2017/11/01/[C++] C++泛型/" title="[C++] C++泛型" itemprop="url">
-  
-    <h1 itemprop="name">[C++] C++泛型</h1>
-    
-     
-           <p itemprop="description" >函数模板的定义：
-1template&amp;lt;TYPE_LIST, ARG_LIST&amp;gt;Function_Definition
-其中，Function_Definition为函数定义：TYPE_LIST被称为类型参数表，是由一系列代表类型的标识符组成的，其间用逗号分隔，这些标识</p>
-        
-    
-    <time datetime="2017-11-01T06:12:17.000Z" itemprop="datePublished">2017-11-01</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/11/01/[Spring] AOP/" title="[Spring] AOP" itemprop="url">
-  
-    <h1 itemprop="name">[Spring] AOP</h1>
-    
-     
-           <p itemprop="description" >动态代理代理设计模式的原理使用一个代理对象包装起来，然后用该代理对象取代原始对象，任何对原始对象的调用都要通过代理，代理对象决定是否以及何时将方法调用转到原始对象上。
-动态代理的实现
-ArithmeticCalculator.java
-12345678package com.gl</p>
-        
-    
-    <time datetime="2017-11-01T05:42:47.000Z" itemprop="datePublished">2017-11-01</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/10/31/[Java] 分布式和集群的区别/" title="[Java] 分布式和集群的区别" itemprop="url">
-  
-    <h1 itemprop="name">[Java] 分布式和集群的区别</h1>
-    
-     
-           <p itemprop="description" >对于集群，不是n个服务器做同一个任务，而是与n个任务分布在n台机器上同时处理，比如，你前台页面有n个用户，分别发送一个请求，那么如果不是集群的话，那这n个请求需要并行在一台机器上处理，如果每个请求都是1秒钟，那么就会有1个人等待n秒钟，有一个人等待n-1秒钟，以此类推。那么现在在</p>
-        
-    
-    <time datetime="2017-10-31T05:22:40.000Z" itemprop="datePublished">2017-10-31</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/10/28/[C++] C++面试/" title="[C++] C++面试" itemprop="url">
-  
-    <h1 itemprop="name">[C++] C++面试</h1>
-    
-     
-           <p itemprop="description" >智能指针- shared_ptr ref_count
-
-自旋锁
-
-enable_share_from_this 是什么意思，请举一个场景说明
-
-需求：在类的内部需要自身的shared_ptr而不是this裸指针
-场景：在类中发起一个异步操作，callback回来要保证发起操作的对</p>
-        
-    
-    <time datetime="2017-10-28T05:08:43.000Z" itemprop="datePublished">2017-10-28</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/10/24/[C++] 迭代器失效/" title="[C++] 迭代器失效" itemprop="url">
-  
-    <h1 itemprop="name">[C++] 迭代器失效</h1>
-    
-     
-           <p itemprop="description" >迭代器失效当使用一个容器的insert或者erase函数通过迭代器插入或删除元素可能会导致迭代器失效，因此很多建议都是让我们获取insert或者erase返回的迭代器，以便用重新获取新的有效的迭代器进行正确的操作。
-12iter = vec.insert(iter);iter =</p>
-        
-    
-    <time datetime="2017-10-24T13:56:42.000Z" itemprop="datePublished">2017-10-24</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/10/23/[C++] C++中的new、operator new和placement new/" title="[C++] C++中的new、operator new和placement new" itemprop="url">
-  
-    <h1 itemprop="name">[C++] C++中的new、operator new和placement new</h1>
-    
-     
-           <p itemprop="description" >new/delete和operator new/operator deletenew operator/delete operator就是new和delete操作符，而operator new/operator delete是函数。
-new operator：
-
-调用operat</p>
-        
-    
-    <time datetime="2017-10-23T14:38:12.000Z" itemprop="datePublished">2017-10-23</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/10/23/[C++] allocator原理/" title="[C++] allocator原理" itemprop="url">
-  
-    <h1 itemprop="name">[C++] allocator原理</h1>
-    
-     
-           <p itemprop="description" >allocator原理介绍考虑到小型区域可能造成内存破碎问题，SGI STL设计了双层级配置器，第一层配置器直接使用malloc()和free()，第二层配置器则视情况采用不同的策略：当配置区块超过128bytes时，调用第一层级配置器，当配置区块小于128bytes时，采用复杂</p>
-        
-    
-    <time datetime="2017-10-23T11:57:49.000Z" itemprop="datePublished">2017-10-23</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/10/23/[C++] C++中的模板/" title="[C++] C++中的模板" itemprop="url">
-  
-    <h1 itemprop="name">[C++] C++中的模板</h1>
-    
-     
-           <p itemprop="description" >非类型模板参数非类型模板参数可以使用整型类型、指针或引用。绑定非类型整型形参的实参必须是常量表达式，不能把普通的局部变量或者动态对象绑定指针或引用的非类型，可以使用全局类型进行绑定。
-123456template &amp;lt;const char* C&amp;gt;void pointer</p>
-        
-    
-    <time datetime="2017-10-23T10:07:40.000Z" itemprop="datePublished">2017-10-23</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/10/23/[C++] static void ( __set_malloc_handler(void (__f)()))()/" title="[C++] static void (* __set_malloc_handler(void (*__f)()))()" itemprop="url">
-  
-    <h1 itemprop="name">[C++] static void (* __set_malloc_handler(void (*__f)()))()</h1>
-    
-     
-           <p itemprop="description" >1static void (* __set_malloc_handler(void (*__f)()))()
-拆开一层一层的分析，最内部的__f是一个函数指针，其参数为void，返回值为void。
-对于__set_malloc_handler，首先它是一个函数，其参数为形如__f</p>
-        
-    
-    <time datetime="2017-10-23T09:49:12.000Z" itemprop="datePublished">2017-10-23</time>
-  </a>
-</section>
-
-
-
-
-
-
-
-  <nav id="page-nav" class="clearfix unexpand">
-    <a class="extend prev" rel="prev" href="/page/4/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/6/">Next<span></span></a>
-  </nav>
+  <span></span> <a href="/tags/Linux-vmware-ubuntu-蓝屏/">Linux, vmware, ubuntu, 蓝屏</a>
+  </div>
 
 </div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2017/12/10/[Linux] vmware中启动ubuntu蓝屏/" data-title="[Linux] vmware中启动ubuntu蓝屏 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2017/12/10/[DB] mysql的最左前缀匹配原则/"  title="[DB] mysql的最左前缀匹配原则">
+ <strong>下一篇：</strong><br/> 
+ <span>[DB] mysql的最左前缀匹配原则
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/12/10/[Linux] vmware中启动ubuntu蓝屏/" data-title="[Linux] vmware中启动ubuntu蓝屏" data-url="http://yoursite.com/2017/12/10/[Linux] vmware中启动ubuntu蓝屏/"></div>
+</section>
+
+
+
+</div>  
       <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ 
+ 
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
@@ -634,14 +514,103 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
 });
 </script>
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
 
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"glemontree"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
 
 
 
@@ -727,4 +696,4 @@ _ts(option);
 <!-- Tiny_search End -->
 
   </body>
- </html>
+</html>
