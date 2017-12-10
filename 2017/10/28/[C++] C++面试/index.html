@@ -37,7 +37,7 @@ enable_share_from_this 是什么意思，请举一个场景说明
 
 使用boost库时，经常会看到这样的类：
 1class A : public enable_share_">
-<meta property="og:updated_time" content="2017-10-28T05:09:28.650Z">
+<meta property="og:updated_time" content="2017-12-10T09:19:57.733Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[C++] C++面试">
 <meta name="twitter:description" content="智能指针- shared_ptr ref_count
@@ -210,10 +210,89 @@ enable_share_from_this 是什么意思，请举一个场景说明
 <li><p>使用复制构造函数后者重载=构造</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">shared_ptr</span>&lt;T&gt; ptr1(<span class="keyword">new</span> T());</div><div class="line"><span class="built_in">shared_ptr</span>&lt;T&gt; ptr2(ptr1);</div></pre></td></tr></table></figure>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">shared_ptr</span>&lt;T&gt; ptr1(<span class="keyword">new</span> T());</div><div class="line"><span class="built_in">shared_ptr</span>&lt;T&gt; ptr2;</div><div class="line">ptr2 = ptr1;</div></pre></td></tr></table></figure>
-<p>​</p>
-<p>​</p>
 </li>
 </ul>
+</li>
+<li><p>当表达式中存在有符号数和无符号数所有的操作数都要转换为<strong>无符号数</strong>，所以从这个意义上讲，无符号数的运算优先级要高于有符号数。</p>
+<p>有符号数转换为无符号数，负数转换为大的正数，相当于在原值上加上2的n次方，而正数保持不变。</p>
+<p>无符号数转换为有符号数，对于小的数将保持原值，对于大的数将转换为负数，相当于原值减去2的n次方。</p>
+</li>
+<li><p>用const修饰的符号常量的区别：</p>
+<blockquote>
+<p>const位于<code>*</code>的左边，表示被指物是常量，const位于<code>*</code>的右边，表示指针自身是常量（常量指针）。</p>
+</blockquote>
+</li>
+<li><p>在C++中只使用const常量而不使用宏常量。</p>
+</li>
+<li><p>用运算符sizeof可以计算出数组的容量（字节数），sizeof(p)，p为指针，得到的是一个指针变量的字节数，而不是p所指的内存容量，C/C++语言没有办法知道指针所指的内存容量，除非在申请内存时记住它。</p>
+</li>
+<li><p>为了节省内存，C/C++语言将常量字符串放到单独的一个内存区域，当几个指针赋值给相同的常量字符串时，它们实际上会指向相同的内存地址，但用常量内存初始化数组时，情况有些不同：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">char</span> str1[] = <span class="string">"helloworld"</span>;</div><div class="line"><span class="keyword">char</span> str2[] = <span class="string">"helloworld"</span>;</div><div class="line"><span class="keyword">char</span>* str3 = <span class="string">"helloworld"</span>;</div><div class="line"><span class="keyword">char</span>* str4 = <span class="string">"helloworld"</span></div></pre></td></tr></table></figure>
+<p>其中，str1和str2会为它们分配两个长度相同的空间，并把”helloworld”的内容复制到数组中去，这是两个初始地址不同的数组（在栈中分配内存）。</p>
+<p>str3和str4是两个指针，我们无需为它们分配内存以存储字符串的内容，而只需要将它们指向”helloworld”在内存中的地址即可，由于”helloworld”是常量字符串，它在内存中只有一个拷贝，因此str3和str4指向的是同一个地址。</p>
+</li>
+<li><p>sizeof是C语言的一个单目操作符，它并不是函数，操作数可以是一个表达式或类型名，数据类型必须用括号括住：<code>sizeof(int)</code>，变量名可以不用括号括住。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> a[<span class="number">50</span>]; <span class="comment">// sizeof(a) = 200;</span></div><div class="line"><span class="keyword">int</span>* a = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">50</span>]; <span class="comment">// sizeof(a) = 4;</span></div><div class="line"><span class="keyword">class</span> Test &#123;<span class="keyword">int</span> a; <span class="keyword">static</span> <span class="keyword">double</span> c&#125;; <span class="comment">// sizeof(Test) = 4;</span></div><div class="line">Test* s; <span class="comment">// sizeof(s) = 4;</span></div><div class="line"><span class="keyword">class</span> Test &#123;&#125;; <span class="comment">// sizeof(Test) = 1;</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">func</span><span class="params">(<span class="keyword">char</span> s[<span class="number">5</span>])</span></span>; <span class="comment">// sizeof(s) = 4;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>数组类型：其结果是数组的总字节数</li>
+<li>指向数组的指针：其结果是该指针的字节数</li>
+<li>函数中的数组形参或函数类型的形参：其结果是指针的字节数</li>
+<li>类中的静态成员不会结果产生影响，因为静态变量的存储位置与结构或者类的实例地址无关</li>
+<li>没有成员变量的类的大小为1，因为必须保证类的每一个实例在内存中都有一个唯一的地址</li>
+<li>有虚函数的类都会建立一张虚函数表，表中存放的是虚函数的函数指针，这个表的地址存放在类中，所以不管有几个虚函数，都只占据一个指针大小。</li>
+</ul>
+</li>
+<li><p>在32位系统中：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">char</span> arr[] = &#123;<span class="number">4</span>, <span class="number">3</span>, <span class="number">9</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">5</span>&#125;;</div><div class="line"><span class="keyword">char</span>* str = arr;</div><div class="line"><span class="keyword">sizeof</span>(arr) = <span class="number">8</span>;</div><div class="line"><span class="keyword">sizeof</span>(str) = <span class="number">4</span>;</div><div class="line"><span class="built_in">strlen</span>(str) = <span class="number">5</span>;</div></pre></td></tr></table></figure>
+<ul>
+<li>sizeof(arr)：arr是一个数组，sizeof(arr)表示数组所占用的字节数</li>
+<li>sizeof(str)：str为一个指针，sizeof(str)表示指针所占用的字节数</li>
+<li>strlen(str)：strlen函数求取字符串长度以ASCII值为0为止</li>
+</ul>
+</li>
+<li><p>dynamic_cast：主要用于执行安全向下转型，也就是用来决定某对象是否归属继承体系中的某个类型，主要用于多态类之间的转换。</p>
+<ul>
+<li>安全的基类和子类之间进行转换</li>
+<li>必须要有虚函数</li>
+<li>相同基类不同子类之间的交叉转换，但结果是NULL</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Base &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">  <span class="keyword">int</span> m_iNum;</div><div class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span> </span>&#123;&#125;; <span class="comment">// 基类必须有虚函数，保持多态性才能使用dynamic_cast</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">class</span> Derive: <span class="keyword">public</span> Base &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line"><span class="keyword">char</span>*m_szName[<span class="number">100</span>];</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">bar</span><span class="params">()</span></span>&#123;&#125;;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Base* pb =<span class="keyword">new</span> Derive();</div><div class="line">Derive *pd1 = <span class="keyword">static_cast</span>&lt;Derive *&gt;(pb); <span class="comment">//子类-&gt;父类，静态类型转换，正确但不推荐</span></div><div class="line">Derive *pd2 = <span class="keyword">dynamic_cast</span>&lt;Derive *&gt;(pb); <span class="comment">//子类-&gt;父类，动态类型转换，正确</span></div><div class="line"></div><div class="line">Base* pb2 =<span class="keyword">new</span> Base();</div><div class="line">Derive *pd21 = <span class="keyword">static_cast</span>&lt;Derive *&gt;(pb2); <span class="comment">//父类-&gt;子类，静态类型转换，危险！访问子类m_szName成员越界</span></div><div class="line">Derive *pd22 = <span class="keyword">dynamic_cast</span>&lt;Derive *&gt;(pb2); <span class="comment">//父类-&gt;子类，动态类型转换，安全的。结果是NULL</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>const_cast：能够改变表达式的常量属性：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> <span class="keyword">char</span> c = <span class="string">'a'</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">char</span>* pc = &amp;c;</div><div class="line"><span class="keyword">char</span>* cp = <span class="keyword">const_cast</span>&lt;<span class="keyword">char</span>*&gt;(pc);</div><div class="line">*cp = <span class="string">'c'</span>;</div></pre></td></tr></table></figure>
+</li>
+<li><p>reinterpret_cast：常用于函数指针之间的转换：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">doSomething</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> <span class="number">0</span>;&#125;</div><div class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span><span class="params">(*FuncPtr)</span><span class="params">()</span></span>;</div><div class="line">FuncPtr funcPtrArray[<span class="number">10</span>];</div><div class="line">funcPtrArray[<span class="number">0</span>] = &amp;doSomething; <span class="comment">//编译错误，类型不匹配</span></div><div class="line">funcPtrArray[<span class="number">0</span>] = <span class="keyword">reinterpret_cast</span>&lt;FuncPtr&gt;(&amp;doSomething); <span class="comment">// 不同函数指针类型之间进行转换</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>static_cast：任何具有明确定义的类型转换，只要不包含底层const，都可以使用static_cast</p>
+</li>
+<li><p>静态成员函数不能为虚函数，静态成员函数是以类为单位的函数，与具体对象无关，虚函数是与对象动态绑定的</p>
+</li>
+<li><p>内联函数不能成为虚函数，内联函数需要在编译阶段展开，而虚函数是在运行时动态绑定的，编译时无法展开</p>
+</li>
+<li><p>虚拟继承是多重继承中特有的概念，虚拟继承是为解决多重继承而出现的，如类D继承自类B1、B2，而类B1、B2都继承自类A，因此在类D中两次出现类A中的变量和函数，为了节省内存空间，可以将B1和B2对A的继承定义为虚拟继承，而A就成了虚拟基类。</p>
+</li>
+<li><p>Linux进程地址空间布局：</p>
+<ul>
+<li>代码段（.text）：用来存放可执行文件的机器指令，存放在只读区域，以防止被修改</li>
+<li>只读数据段（.rodata）：用来存放常量，存放在只读区域，如字符串常量、全局const常量</li>
+<li>可读写数据段（.data）：用来存放可执行文件中已初始化全局变量，即静态分配的变量和全局变量</li>
+<li>BSS段（.bss）：未初始化的全局变量和局部静态变量一般放在.bss段里，以节省内存空间</li>
+<li>堆：用来容纳应用程序动态分配的内存区域。当程序使用malloc或new分配内存时，得到的内存来自堆。堆通常位于栈的下方。</li>
+<li>用于维护函数调用的上下文。栈通常分配在用户空间的最高地址处分配。</li>
+<li>动态链接库映射区：如果程序调用了动态链接库，则会有这一部分。该区域是用于映射装载的动态链接库。</li>
+<li>保留区：内存中受到保护而禁止访问的内存区域。</li>
+</ul>
+</li>
+<li><p>栈：栈是向低地址扩展的数据结构，是一块连续的内存区域，栈顶的地址和栈的最大容量是系统预先规定好的，栈的大小为1M，如果申请的空间超过栈的剩余空间时，将提示overflow</p>
+</li>
+<li><p>堆：堆是向高地址扩展的数据结构，是不连续的内存区域</p>
+</li>
+<li><p>智能指针的设计思想是将基本类型指针封装为类对象指针（这个类肯定是个模板，以适应不同基本类型的需求），并在析构函数里编写delete语句删除指针指向的内存空间</p>
+</li>
+<li><p>shared_ptr采用引用计数的智能指针，主要用于将一个指针分配给多个所有者的情况，其大小为两个指针：一个用于对象，另一个用于包含引用计数的共享控制块。</p>
+</li>
+<li><p>在C++对象模型中，非静态数据成员被配置于每一个类的对象之中，静态数据成员则被存放在所有的类对象之外，静态及非静态成员函数也被放在类对象之外。</p>
 </li>
 </ul>
   
@@ -322,7 +401,7 @@ enable_share_from_this 是什么意思，请举一个场景说明
 		  
 		
 		  
-			<li><a href="/categories/DB/" title="DB">DB<sup>4</sup></a></li>
+			<li><a href="/categories/DB/" title="DB">DB<sup>5</sup></a></li>
 		  
 		
 		  
@@ -467,11 +546,11 @@ enable_share_from_this 是什么意思，请举一个场景说明
 			
 		
 			
-				<li><a href="/tags/SpringMVC/" title="SpringMVC">SpringMVC<sup>2</sup></a></li>
+				<li><a href="/tags/Spring-AOP/" title="Spring, AOP">Spring, AOP<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Spring-AOP/" title="Spring, AOP">Spring, AOP<sup>2</sup></a></li>
+				<li><a href="/tags/SpringMVC/" title="SpringMVC">SpringMVC<sup>2</sup></a></li>
 			
 		
 			
@@ -483,19 +562,19 @@ enable_share_from_this 是什么意思，请举一个场景说明
 			
 		
 			
-				<li><a href="/tags/C-回调/" title="C++ 回调">C++ 回调<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-new-operator-new-placement-new/" title="C++, new, operator new, placement new">C++, new, operator new, placement new<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-泛型/" title="C++ 泛型">C++ 泛型<sup>1</sup></a></li>
+				<li><a href="/tags/C-面试/" title="C++ 面试">C++ 面试<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-assert/" title="C++, assert">C++, assert<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-Boost/" title="C++, Boost">C++, Boost<sup>1</sup></a></li>
 			
 		
 		</ul>
