@@ -1,0 +1,819 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>[Java] Java虚拟机 | Glemontree&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Glemontree">
+    
+
+    
+    <meta name="description" content="JVM物理结构：
+
+Java编译器只面向JVM，生成JVM能理解的代码或字节码文件，Java源文件经编译器，编译成字节码程序，通过JVM将每一条指令翻译成不同平台机器码，通过特定平台运行！
+
+Java代码编译和执行的整个过程包含三个重要的机制：
+
+Java源码编译机制
+类加载机制
+类执行机制
+
+
+Java源码编译机制由三个过程组成：
+
+分析和输入到符号表
+注解处理
+语义分析和生成class文件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Java] Java虚拟机">
+<meta property="og:url" content="http://yoursite.com/2017/12/14/[Java] Java虚拟机/index.html">
+<meta property="og:site_name" content="Glemontree's blog">
+<meta property="og:description" content="JVM物理结构：
+
+Java编译器只面向JVM，生成JVM能理解的代码或字节码文件，Java源文件经编译器，编译成字节码程序，通过JVM将每一条指令翻译成不同平台机器码，通过特定平台运行！
+
+Java代码编译和执行的整个过程包含三个重要的机制：
+
+Java源码编译机制
+类加载机制
+类执行机制
+
+
+Java源码编译机制由三个过程组成：
+
+分析和输入到符号表
+注解处理
+语义分析和生成class文件">
+<meta property="og:image" content="http://wiki.jikexueyuan.com/project/java-vm/images/jvm.gif">
+<meta property="og:updated_time" content="2017-12-14T14:07:27.242Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Java] Java虚拟机">
+<meta name="twitter:description" content="JVM物理结构：
+
+Java编译器只面向JVM，生成JVM能理解的代码或字节码文件，Java源文件经编译器，编译成字节码程序，通过JVM将每一条指令翻译成不同平台机器码，通过特定平台运行！
+
+Java代码编译和执行的整个过程包含三个重要的机制：
+
+Java源码编译机制
+类加载机制
+类执行机制
+
+
+Java源码编译机制由三个过程组成：
+
+分析和输入到符号表
+注解处理
+语义分析和生成class文件">
+<meta name="twitter:image" content="http://wiki.jikexueyuan.com/project/java-vm/images/jvm.gif">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/favicon.ico" alt="Glemontree&#39;s blog" title="Glemontree&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Glemontree&#39;s blog">Glemontree&#39;s blog</a></h1>
+				<h2 class="blog-motto">day day up!</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="http://zhannei.baidu.com/cse/search" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/12/14/[Java] Java虚拟机/" title="[Java] Java虚拟机" itemprop="url">[Java] Java虚拟机</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
+		
+  <p class="article-time">
+    <time datetime="2017-12-14T09:22:58.000Z" itemprop="datePublished"> 发表于 2017-12-14</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			
+		
+		</div>
+		
+		<ul>
+<li><p>JVM物理结构：</p>
+<p><img src="http://wiki.jikexueyuan.com/project/java-vm/images/jvm.gif" alt=""></p>
+<p>Java编译器只面向JVM，生成JVM能理解的代码或字节码文件，Java源文件经编译器，编译成字节码程序，通过JVM将每一条指令翻译成不同平台机器码，通过特定平台运行！</p>
+</li>
+<li><p>Java代码编译和执行的整个过程包含三个重要的机制：</p>
+<ul>
+<li>Java源码编译机制</li>
+<li>类加载机制</li>
+<li>类执行机制</li>
+</ul>
+</li>
+<li><p>Java源码编译机制由三个过程组成：</p>
+<ul>
+<li>分析和输入到符号表</li>
+<li>注解处理</li>
+<li>语义分析和生成class文件</li>
+</ul>
+</li>
+<li><p>类加载过程中会先检查类是否已被加载，检查顺序是自底向上，从Custom ClassLoader到BootStrap ClassLoader逐层检查，只要某个ClassLoader已加载就视为已加载该类，保证此类只被加载一次，而加载的顺序是自顶向下的，也就是由上层来逐层尝试加载此类。</p>
+</li>
+<li><p>JVM是基于栈的体系结构来执行class字节码文件的，线程创建后，都会产生程序计数器（PC）和栈（Stack），程序计数器存放下一条要执行的指令在方法内的偏移量，栈中存放一个个栈帧，每个栈帧对应着每个方法的每次调用，而栈帧又是由局部变量区和操作数栈两部分组成，局部变量区用于存放方法中的局部变量和参数，操作数栈中用于存放方法执行过程中产生的中间结果。</p>
+</li>
+<li><p>Java虚拟机规范将JVM所管理的内存分为以下几个运行时数据区：程序计数器、Java虚拟机栈、本地方法栈、Java堆、方法区。</p>
+<p>其中，Java堆和方法区是线程共享内存区，而虚拟机栈、本地方法栈和程序计数器则是线程私有内存区。</p>
+<ul>
+<li><p>程序计数器</p>
+<p>每条线程都有一个独立的程序计数器，各线程间的计数器互不影响，因此该区域是线程私有的。当程序执行一个Java方法时，该计数器记录的是正在执行的虚拟机字节码指令的地址，当线程在执行的是Native方法时，该计数器的值为空。另外，该内存区是唯一一个在Java虚拟机规范中没有规定任何OOM情况的区域。</p>
+</li>
+<li><p>Java虚拟机栈</p>
+<p>该区域是线程私有的，它的生命周期和线程相同</p>
+</li>
+<li><p>本地方法栈</p>
+<p>虚拟机栈为虚拟机执行Java方法服务，而本地方法栈则为使用到的本地操作系统方法服务。</p>
+</li>
+<li><p>Java堆</p>
+<p>Java堆是所有线程共享的一块内存区域，几乎所有的对象实例和数组都在这类分配内存，Java Heap是垃圾收集器管理的主要区域，因此很多时候称为GC堆。</p>
+</li>
+<li><p>方法区</p>
+<p>方法区是各个线程共享的内存区域，它用于存储已经被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。方法区又被称为永久代，但这仅仅对于Sun HotSpot来说。Java虚拟机规范把方法区描述为Java堆的一个逻辑部分，另外，虚拟机规范允许该区域可以选择不实现垃圾回收，相对而言，垃圾收集行为在这个区域比较少出现，该区域的内存回收目标主要是针对废弃常量和无用类的回收。运行时常量池是方法区的一部分，Class文件中除了有类的版本、字段、方法、接口等信息之外，还有一项就是常量池，用于存放编译器生成的各种字面量和符号引用，这部分内容将在类加载后存放到方法区的运行时常量池中。运行时常量池相对于Class文件常量池的另一个重要特性就是具备动态性，Java语言并不要求常量一定只能在编译器产生，也就是并非预置于Class文件中的常量池中的内容才能进入方法区的运行时常量池，运行期间也可能将新的常量放入池中，这种特性被开发人员利用较多的是String类的intern()方法。</p>
+<p>当方法区无法满足内存分配需求时，将抛出OutOfMemoryError异常。</p>
+</li>
+<li><p>​</p>
+<p>直接内存并不是虚拟机运行时数据区的一部分，也不是 Java 虚拟机规范中定义的内存区域，它直接从操作系统中分配，因此不受 Java 堆大小的限制，但是会受到本机总内存的大小及处理器寻址空间的限制，因此它也可能导致 OutOfMemoryError 异常出现。在 JDK1.4 中新引入了 NIO 机制，它是一种基于通道与缓冲区的新 I/O 方式，可以直接从操作系统中分配直接内存，即在堆外分配内存，这样能在一些场景中提高性能，因为避免了在 Java 堆和 Native 堆中来回复制数据。</p>
+</li>
+</ul>
+</li>
+<li><p>类初始化是类加载过程的最后一个阶段，到初始化阶段，才真正开始执行类中的Java程序代码，虚拟机规范严格规定了有且只有四种情况必须立即对类进行初始化：</p>
+<ul>
+<li>遇到new、getstatic、putstatic、invokestatic这四条字节码指定时，如果类还没有进行初始化，则需要触发其初始化，生成这四条指令最常见的Java代码场景是：使用new关键字实例化对象时、读取或设置一个类的静态字段（static）时（被static修饰又被final修饰的，已在编译期把结果放入常量池的静态字段除外）以及调用一个类的静态方法时；</li>
+<li>使用java.lang.refect包的方法对类进行反射调用时，如果类还没有进行初始化，则需要触发其初始化；</li>
+<li>当初始化一个类的时候，如果发现其父类还没有进行初始化，则需要先触发其父类的初始化；</li>
+<li>当虚拟机启动时，用户需要指定一个要执行的主类，虚拟机会先执行该主类。</li>
+</ul>
+<p>虚拟机只有这四种情况才会触发类的初始化，称为对一个类进行主动引用，除此之外所有引用类的方式都不会触发其初始化，称为被动引用，下面举一些例子来说明被动引用：</p>
+<p>通过子类引用父类中的静态字段，这时对子类的引用为被动引用，因此不会初始化子类，只会初始化父类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Father</span> </span>&#123;</div><div class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> m = <span class="number">33</span>;</div><div class="line">  <span class="keyword">static</span> &#123;</div><div class="line">    System.out.println(<span class="string">"父类被初始化"</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Father</span> </span>&#123;</div><div class="line">  <span class="keyword">static</span> &#123;</div><div class="line">    System.out.println(<span class="string">"子类被初始化"</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StaticTest</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    System.out.println(Child.m);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>执行结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">父类被初始化</div><div class="line">33</div></pre></td></tr></table></figure>
+<p>对于静态字段，只有直接定义这个字段的类才会被初始化，因此，通过子类来引用父类中定义的静态字段，只会触发父类的初始化而不会触发子类的初始化。</p>
+<p>常量在编译阶段会被存入调用它的类的常量池中，本质上没有直接引用到定义该常量的类，因此不会触发定义常量的类的初始化：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Const</span> </span>&#123;</div><div class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String NAME = <span class="string">"我是常量"</span>;</div><div class="line">  <span class="keyword">static</span> &#123;</div><div class="line">    System.out.println(<span class="string">"初始化Const类"</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FinalTest</span></span>&#123;  </div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;  </div><div class="line">    System.out.println(Const.NAME);  </div><div class="line">  &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>执行后输出的结果为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">我是常量</div></pre></td></tr></table></figure>
+<p>虽然程序中引用了 const 类的常量 NAME，但是在编译阶段将此常量的值“我是常量”存储到了调用它的类 FinalTest 的常量池中，对常量 Const.NAME 的引用实际上转化为了 FinalTest 类对自身常量池的引用。也就是说，实际上 FinalTest 的 Class 文件之中并没有 Const 类的符号引用入口，这两个类在编译成 Class 文件后就不存在任何联系了。</p>
+<p>通过数组定义来引用类，不会触发类的初始化：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Const</span></span>&#123;  </div><div class="line">  <span class="keyword">static</span>&#123;  </div><div class="line">    System.out.println(<span class="string">"初始化Const类"</span>);  </div><div class="line">  &#125;  </div><div class="line">&#125;  </div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayTest</span></span>&#123;  </div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;  </div><div class="line">    Const[] con = <span class="keyword">new</span> Const[<span class="number">5</span>];  </div><div class="line">  &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>执行后不输出任何信息，说明 Const 类并没有被初始化。</p>
+</li>
+<li><p>Java程序最初是仅仅通过解释器进行执行的，即对字节码逐条解释执行，这种方式的执行速度相对会比较慢，尤其是当某个方法或代码块运行的特别频繁的时候，这种方式的执行效率就显得很低，于是后来在虚拟机中引入了JIT编译器（即时编译器），当虚拟机发现某个方法或代码块执行比较频繁的时候，就会把这些代码认定为“Hot Spot Code”（热点代码），为了提高热点代码的执行效率，在运行时，虚拟机将会把这些代码编译成与本地平台相关的机器码，并进行各层次的优化，完成这项任务的正是JIT编译器。</p>
+<p>当程序需要迅速启动和执行时，解释器可以首先发挥作用，省去编译的时间，立即执行；当程序运行后，随着时间的推移，编译器会逐渐发挥作用，把越来越多的代码编译成本地代码后，可以获得更高的执行效率。</p>
+<p>解释执行可以节约内存，而编译执行可以提升效率。</p>
+<p>运行过程中会被即时编译器编译的“热点代码”有两类：</p>
+<ul>
+<li>被多次调用的方法</li>
+<li>被多次调用的循环体</li>
+</ul>
+</li>
+<li><p>本文参考自<a href="http://wiki.jikexueyuan.com/project/java-vm/" target="_blank" rel="external">深入理解 Java 虚拟机</a>。</p>
+</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Java/">Java</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Java-虚拟机-类加载/">Java, 虚拟机, 类加载</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2017/12/14/[Java] Java虚拟机/" data-title="[Java] Java虚拟机 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/12/14/[TCPIP] 三次握手和四次挥手/" title="[TCPIP] 三次握手和四次挥手">
+  <strong>上一篇：</strong><br/>
+  <span>
+  [TCPIP] 三次握手和四次挥手</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/12/13/[DB] JDBC知识点/"  title="[DB] JDBC知识点">
+ <strong>下一篇：</strong><br/> 
+ <span>[DB] JDBC知识点
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/12/14/[Java] Java虚拟机/" data-title="[Java] Java虚拟机" data-url="http://yoursite.com/2017/12/14/[Java] Java虚拟机/"></div>
+</section>
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ 
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="glemontree" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android/" title="Android">Android<sup>15</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Boost/" title="Boost">Boost<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C/" title="C++">C++<sup>23</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CMake/" title="CMake">CMake<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/DB/" title="DB">DB<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Effective-Java/" title="Effective Java">Effective Java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/HTTPS/" title="HTTPS">HTTPS<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/IntelliJ-IDEA/" title="IntelliJ IDEA">IntelliJ IDEA<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/JQuery/" title="JQuery">JQuery<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Java/" title="Java">Java<sup>14</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>22</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/MyBatis/" title="MyBatis">MyBatis<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Qt/" title="Qt">Qt<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Redis/" title="Redis">Redis<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Servlet/" title="Servlet">Servlet<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Spring/" title="Spring">Spring<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/SpringMVC/" title="SpringMVC">SpringMVC<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Struts2/" title="Struts2">Struts2<sup>18</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/TCP-IP/" title="TCP/IP">TCP/IP<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/TCPIP/" title="TCPIP">TCPIP<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows核心编程/" title="Windows核心编程">Windows核心编程<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/html/" title="html">html<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/多线程/" title="多线程">多线程<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/编程规范/" title="编程规范">编程规范<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络编程/" title="网络编程">网络编程<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Linux-Shell/" title="Linux, Shell">Linux, Shell<sup>16</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JQuery/" title="JQuery">JQuery<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C++">C++<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java-并发/" title="Java 并发">Java 并发<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MyBatis/" title="MyBatis">MyBatis<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-boost/" title="C++ boost">C++ boost<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DB/" title="DB">DB<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Redis/" title="Redis">Redis<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SpringMVC/" title="SpringMVC">SpringMVC<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spring-AOP/" title="Spring, AOP">Spring, AOP<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Struts2-OGNL/" title="Struts2, OGNL">Struts2, OGNL<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html/" title="html">html<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-ProgressDialog，-耗时操作/" title="Android, ProgressDialog， 耗时操作">Android, ProgressDialog， 耗时操作<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-泛型/" title="C++ 泛型">C++ 泛型<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-回调/" title="C++ 回调">C++ 回调<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-面试/" title="C++ 面试">C++ 面试<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://github.com/glemontree" target="_blank" title="GitHub">GitHub</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/u010216743" target="_blank" title="CSDN">CSDN</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello World. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/glemontree" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:gtp0521@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Glemontree">Glemontree</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"glemontree"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'null'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

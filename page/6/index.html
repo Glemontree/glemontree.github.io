@@ -77,6 +77,47 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
+    <a href="/2017/10/23/[C++] allocator原理/" title="[C++] allocator原理" itemprop="url">
+  
+    <h1 itemprop="name">[C++] allocator原理</h1>
+    
+     
+           <p itemprop="description" >allocator原理介绍考虑到小型区域可能造成内存破碎问题，SGI STL设计了双层级配置器，第一层配置器直接使用malloc()和free()，第二层配置器则视情况采用不同的策略：当配置区块超过128bytes时，调用第一层级配置器，当配置区块小于128bytes时，采用复杂</p>
+        
+    
+    <time datetime="2017-10-23T11:57:49.000Z" itemprop="datePublished">2017-10-23</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/10/23/[C++] C++中的模板/" title="[C++] C++中的模板" itemprop="url">
+  
+    <h1 itemprop="name">[C++] C++中的模板</h1>
+    
+     
+           <p itemprop="description" >非类型模板参数非类型模板参数可以使用整型类型、指针或引用。绑定非类型整型形参的实参必须是常量表达式，不能把普通的局部变量或者动态对象绑定指针或引用的非类型，可以使用全局类型进行绑定。
+123456template &amp;lt;const char* C&amp;gt;void pointer</p>
+        
+    
+    <time datetime="2017-10-23T10:07:40.000Z" itemprop="datePublished">2017-10-23</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
     <a href="/2017/10/23/[C++] static void ( __set_malloc_handler(void (__f)()))()/" title="[C++] static void (* __set_malloc_handler(void (*__f)()))()" itemprop="url">
   
     <h1 itemprop="name">[C++] static void (* __set_malloc_handler(void (*__f)()))()</h1>
@@ -251,51 +292,6 @@ autoMappingBehavior默认是PARTIAL，开启自动映射的功能，唯一的要
 
 
 
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/09/13/[DB] SQL小知识/" title="[DB] SQL小知识" itemprop="url">
-  
-    <h1 itemprop="name">[DB] SQL小知识</h1>
-    
-     
-           <p itemprop="description" >使用sql语句desc table_name可以显示table_name表中的字段名以及Type等属性
-
-使用sql语句alter table employees modify email null修改email字段的属性为可以为null
-
-mysql中使用sql语句生成一张表并</p>
-        
-    
-    <time datetime="2017-09-13T12:05:26.000Z" itemprop="datePublished">2017-09-13</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/09/13/[MyBatis] MyBatis第五课---MyBatis参数处理/" title="[MyBatis] MyBatis第五课---MyBatis参数处理" itemprop="url">
-  
-    <h1 itemprop="name">[MyBatis] MyBatis第五课---MyBatis参数处理</h1>
-    
-     
-           <p itemprop="description" >单个参数的传递通过#{参数名}取出参数值，实际上在传递单个参数的时候，MyBatis不会做特殊处理，实际上#{}内部的参数名你可以任意取值，但还是建议和接口中参数的名字保持一致。
-多个参数的传递MyBatis遇见多个参数时会进行特殊处理，多个参数会被封装成一个Map，#{}就是从</p>
-        
-    
-    <time datetime="2017-09-13T08:38:13.000Z" itemprop="datePublished">2017-09-13</time>
-  </a>
-</section>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix unexpand">
     <a class="extend prev" rel="prev" href="/page/5/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/7/">Next<span></span></a>
@@ -363,7 +359,7 @@ mysql中使用sql语句生成一张表并</p>
 		  
 		
 		  
-			<li><a href="/categories/Java/" title="Java">Java<sup>13</sup></a></li>
+			<li><a href="/categories/Java/" title="Java">Java<sup>14</sup></a></li>
 		  
 		
 		  
@@ -400,6 +396,10 @@ mysql中使用sql语句生成一张表并</p>
 		
 		  
 			<li><a href="/categories/TCP-IP/" title="TCP/IP">TCP/IP<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/TCPIP/" title="TCPIP">TCPIP<sup>1</sup></a></li>
 		  
 		
 		  
@@ -464,19 +464,15 @@ mysql中使用sql语句生成一张表并</p>
 			
 		
 			
-				<li><a href="/tags/html/" title="html">html<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android/" title="Android">Android<sup>2</sup></a></li>
+				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
+				<li><a href="/tags/Android/" title="Android">Android<sup>2</sup></a></li>
 			
 		
 			
@@ -496,11 +492,11 @@ mysql中使用sql语句生成一张表并</p>
 			
 		
 			
-				<li><a href="/tags/MyBatis-resultMap/" title="MyBatis, resultMap">MyBatis, resultMap<sup>1</sup></a></li>
+				<li><a href="/tags/html/" title="html">html<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-new-operator-new-placement-new/" title="C++, new, operator new, placement new">C++, new, operator new, placement new<sup>1</sup></a></li>
+				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
 			
 		
 			
@@ -508,11 +504,15 @@ mysql中使用sql语句生成一张表并</p>
 			
 		
 			
-				<li><a href="/tags/C-Boost/" title="C++, Boost">C++, Boost<sup>1</sup></a></li>
+				<li><a href="/tags/C-泛型/" title="C++ 泛型">C++ 泛型<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-VS/" title="C++, VS">C++, VS<sup>1</sup></a></li>
+				<li><a href="/tags/C-回调/" title="C++ 回调">C++ 回调<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-面试/" title="C++ 面试">C++ 面试<sup>1</sup></a></li>
 			
 		
 		</ul>
