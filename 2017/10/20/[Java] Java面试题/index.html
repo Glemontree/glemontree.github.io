@@ -29,7 +29,12 @@ HashMap和">
 
 
 HashMap和">
-<meta property="og:updated_time" content="2017-11-30T04:32:18.897Z">
+<meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/theory-of-mysql-index/1.png">
+<meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/theory-of-mysql-index/8.png">
+<meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/theory-of-mysql-index/9.png">
+<meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/theory-of-mysql-index/10.png">
+<meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/theory-of-mysql-index/11.png">
+<meta property="og:updated_time" content="2017-12-16T12:46:34.284Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Java] Java面试题">
 <meta name="twitter:description" content="String类为什么是final的？
@@ -39,6 +44,7 @@ HashMap和">
 
 
 HashMap和">
+<meta name="twitter:image" content="http://blog.codinglabs.org/uploads/pictures/theory-of-mysql-index/1.png">
 
     
     <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
@@ -66,7 +72,7 @@ HashMap和">
 				<h1 class="site-name"><a href="/" title="Glemontree&#39;s blog">Glemontree&#39;s blog</a></h1>
 				<h2 class="blog-motto">day day up!</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -82,7 +88,7 @@ HashMap和">
  					
 						<form class="search" action="http://zhannei.baidu.com/cse/search" target="_blank">
 							<label>Search</label>
-						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="Search"><br>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="搜索"><br>
 						</form>
 					
 					</li>
@@ -104,14 +110,14 @@ HashMap和">
 		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
 		
   <p class="article-time">
-    <time datetime="2017-10-20T09:54:39.000Z" itemprop="datePublished"> Published 2017-10-20</time>
+    <time datetime="2017-10-20T09:54:39.000Z" itemprop="datePublished"> 发表于 2017-10-20</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
+			<strong class="toc-title">文章目录</strong>
 		
 			
 		
@@ -634,7 +640,105 @@ HashMap和">
 </ul>
 <p>详细请参看博客<a href="http://blog.csdn.net/chenssy/article/details/38373877" target="_blank" rel="external">Java提高篇（三六）—–java集合细节（二）：asList的缺陷</a>。</p>
 </li>
-<li><p>​</p>
+<li><p>ReentrantLock拥有Synchronized相同的并发性和内存语义，此时还多了锁投票、定时锁等候和中断锁等候，线程A和B都要获取对象O的锁定，假设A获取了对象O的锁，B将等待A释放对O的锁定，如果使用Synchronized，如果A不释放，B将一直等待下去，不能被中断；如果使用ReentrantLock，如果A不释放，可以使B在等待了足够长的时候后，中断等待，而干别的事情。</p>
+<p>Synchronized是在JVM层面上实现的，不但可以通过一些监控工具监控Synchronized的锁定，而且在代码出现异常时，JVM会自动释放锁，但是使用Lock则不行，Lock是通过代码实现的，要保证锁定一定会释放，就必须将unLock()放到finally{}中。</p>
+<p>在资源竞争不是很激烈的情况下，Synchronized的性能要高于ReentrantLock，但是在资源竞争激烈的情况下，Synchronized的性能会下降几十倍，但是ReentrantLock的性能能维持常态。</p>
+</li>
+<li><p>分布式Session</p>
+<p>Web应用在单机部署的情况下，Session是被单个应用服务器存储并管理的，由于只有一个应用服务器，用户的所有请求都是通过它进行响应处理的，所以能够很容易实现会话跟踪和保持。随着业务量的增加，系统架构需要作出调整以适应发展的需要，所以会将应用系统部署到多台引用服务器上，用户的请求也会通过负载均衡转发到某个具体的应用服务器上执行，可能会出现在A1系统登录后创建并保存Session，再次发起请求，请求被转发到A2系统上显示未登录的情况，此时单机部署模式下的Session机制已不能满足需求。</p>
+<p><strong>所以，在分布式架构或微服务架构下，必须保证一个应用服务器上保存Session后，其他应用服务器可以同步或共享这个Session。</strong></p>
+<p>分布式Session管理有以下几种实现方式：</p>
+<ul>
+<li><p>Session复制</p>
+<p>在支持Session复制的Web服务器上，通过修改Web服务器的配置，可以实现将Session同步到其他Web服务器上，达到每个Web服务器上都保存一致的Session。</p>
+<p>优点：代码上不需要修改</p>
+<p>缺点：需要依赖支持的Web服务器，一旦更改成不支持的Web服务器就不能使用了，在数据量很大的情况下不仅占用网络资源，而且会导致延迟。</p>
+<p>适用场景：只适用于Web服务器比较少且Session数据量少的情况</p>
+<p>可用方案：开源方案tomcat-redis-session-manager，暂不支持Tomcat8。</p>
+</li>
+<li><p>Session粘带</p>
+<p>将用户的每次请求都通过某种方法强制分发到某一个Web服务器上，只要这个Web服务器上存储了对应的Session数据，就可以实现会话跟踪。</p>
+</li>
+<li><p>Session集中管理</p>
+<p>在单独的服务器或者服务器集群上使用缓存技术，如Redis存储Session数据，集中管理所有的Session，所有的Web服务器都从这个存储介质中存取对应的Session，实现Session共享。</p>
+<p>优点：可靠性高，减少Web服务器的资源开销</p>
+<p>缺点：实现上有些复杂，配置较多</p>
+<p>适用场景：Web服务器较多，要求高可用性的情况</p>
+<p>可用方案：开源方案Spring Session</p>
+</li>
+<li><p>基于Cookie管理</p>
+<p>这种方式每次发起请求的时候都需要将Session数据放到Cookie中传递给服务端。</p>
+<p>优点：不需要依赖额外外部存储，不需要额外配置</p>
+<p>缺点：不安全，易被盗取或篡改，Cookie数量和长度有限制，需要消耗更多网络带宽</p>
+</li>
+</ul>
+<blockquote>
+<p>这四种方式，Session集中管理更加可靠，使用也是最多的。</p>
+</blockquote>
+<p>本小节转自<a href="http://www.jianshu.com/p/3dd4e06bdfa4" target="_blank" rel="external">细说分布式Session管理</a>。</p>
+</li>
+<li><p>MySQL索引</p>
+<ul>
+<li><p>索引的本质</p>
+<p>在数据之外，数据库系统还维护着满足特定查找算法的数据结构，这些数据结构以某种方式引用（指向）数据，这样就可以在这些数据结构上实现高效查找算法，这种数据结构就是索引。</p>
+<p>看下面这个例子：</p>
+<p><img src="http://blog.codinglabs.org/uploads/pictures/theory-of-mysql-index/1.png" alt=""></p>
+<p>左边是数据表，一共有两列七条记录，最左边的是数据记录的物理地址（注意逻辑上相邻的记录在磁盘上并不一定是物理相邻的）。为了加快Col2的查找，可以维护一个右边所示的二叉查找树，每个节点包含索引键值和一个指向对应数据记录物理地址的指针，这样就可以运用二叉查找在O(log2n)的复杂度内获取到相应数据。</p>
+<blockquote>
+<p>  实际的数据库系统几乎没有使用二叉查找树或红黑树实现的。</p>
+</blockquote>
+</li>
+<li><p>目前大部分数据库系统及文件系统使用B-树或其变种B+树作为索引结构。</p>
+</li>
+<li><p>MyISAM引擎使用B+树作为索引结构，叶节点的data域存放的是数据记录的地址：</p>
+<p><img src="http://blog.codinglabs.org/uploads/pictures/theory-of-mysql-index/8.png" alt=""></p>
+<p>从上图可以看出，MyISAM的索引文件仅仅保存数据记录的地址，在MyISAM中，主索引和辅助索引（Secondary Key）在结构上没有任何区别，只是主索引要求key是唯一的，而辅助索引的key可以是重复的。</p>
+<p><img src="http://blog.codinglabs.org/uploads/pictures/theory-of-mysql-index/9.png" alt=""></p>
+</li>
+<li><p>InnoDB也是使用B+树作为索引结构，但是InnoDB的数据文件本身就是索引文件，从上文可知，MyISAM索引文件和数据文件是分离的，索引文件仅保存数据记录的地址，而在InnoDB中，表数据文件本身就是按照B+树组织的一个索引结构，这棵树的叶节点data域保存了完整的数据记录，这个索引的key是数据表的主键，因此InnoDB表数据文件本身就是主索引。</p>
+<p><img src="http://blog.codinglabs.org/uploads/pictures/theory-of-mysql-index/10.png" alt=""></p>
+<p>从上图可以看出，叶节点包含了完整的数据记录，这种索引叫做聚集索引，因为InnoDB的数据文件本身就是按主键索引，所以InnoDB要求表必须有主键（MyISAM可以没有），如果没有显式指定，则MySQL系统会自动选择一个可以唯一标识数据记录的列作为主键，如果不存在这种列，则MySQL自动为InnoDB表生成一个隐含字段作为主键，这个字段长度为6个字节，类型为长整形。</p>
+<p>InnoDB引擎与MyISAM引擎另一个不同点在于InnoDB的辅助索引data域存储相应记录主键的值而不是地址，也就是说，InnoDB的所有辅助索引都引用主键作为data域：</p>
+<p><img src="http://blog.codinglabs.org/uploads/pictures/theory-of-mysql-index/11.png" alt=""></p>
+<p>上图中叶子结点的data域存放的都是主键值。这里以英文字符的ASCII码作为比较准则。聚集索引这种实现方式使得按主键的搜索十分高效，但是辅助索引搜索需要检索两遍索引：首先检索辅助索引获得主键，然后用主键到主索引中检索获得记录。</p>
+</li>
+<li><p>了解不同存储引擎的索引实现方式对于正确使用和优化索引都非常有帮助，例如知道了InnoDB的索引实现后，就很容易明白为什么不建议使用过长的字段作为主键，因为所有辅助索引都引用主索引，过长的主索引会令辅助索引变得过大。再例如，用非单调的字段作为主键在InnoDB中不是个好主意，因为InnoDB数据文件本身是一颗B+Tree，非单调的主键会造成在插入新记录时数据文件为了维持B+Tree的特性而频繁的分裂调整，十分低效，而使用自增字段作为主键则是一个很好的选择。</p>
+</li>
+<li><p>使用<code>SHOW INDEX FROM TABLE_NAME</code>命令可以查看表上建立了哪些索引。</p>
+</li>
+<li><p>MySQL的查询优化器会自动调整where字句的条件顺序以使用适合的索引。</p>
+</li>
+<li><p>使用<code>SELECT DISTINCT(col_name) FROM table_name</code>可以查看col_name列共有几种不同的取值</p>
+</li>
+<li><p>在使用InnoDB存储引擎时，如果没有特别的必要，请永远使用一个与业务无关的自增字段作为主键。</p>
+</li>
+<li><p>本小结转自<a href="http://blog.codinglabs.org/articles/theory-of-mysql-index.html" target="_blank" rel="external">MySQL索引背后的数据结构及算法原理</a>。</p>
+</li>
+</ul>
+</li>
+<li><p>数据库三大范式：</p>
+<ul>
+<li>强调的是列的原子性，即列不能再分成其他几列</li>
+<li>一个表必须有一个主键，并且没有包含在主键中的列必须完全依赖于主键，而不能只依赖于主键的一部分</li>
+<li>不能存在非主键列A依赖于非主键列B，非主键列B依赖于主键的情况，即非主键列必须直接依赖于主键，不能存在传递依赖</li>
+</ul>
+</li>
+<li><p>ArrayList初始化的默认长度是10</p>
+</li>
+<li><p>JDK和CGLIB</p>
+<ul>
+<li>JDK动态代理只能针对实现了接口的类生成代理（实例化一个类），此时代理对象和目标对象实现了相同的接口，目标对象作为代理对象的一个属性，具体接口实现中，可以在调用目标对象相应方法前后加上其他业务处理逻辑</li>
+<li>CGLIB是针对类实现代理，主要是对指定的类生成一个子类（没有实例化一个类），覆盖其中的方法</li>
+</ul>
+</li>
+<li><p>新生代由Eden区和Survivor区（S0、S1）组成，大小通过-Xmn参数指定，Eden与Survivor区的内存大小比例默认是8:1，可以通过-XX:SurvivorRatio参数指定</p>
+<p>大多数情况下，对象在Eden中分配，当Eden没有足够空间时，会触发一次Minor GC，虚拟机提供了-XX:PintGCDetails参数，告诉虚拟机在发生垃圾回收时打印内存回收日志。</p>
+<p>Survivor区是新生代和老年代之间的缓冲区域，当新生代发生Minor GC时，会将存活的对象移动到S0内存区域，并清空Eden区，当再次发生Minor GC时，将Eden和S0中存活的对象移动到S1内存区域。</p>
+<p>存活对象会反复在S0和S1之间移动，当对象从Eden移动到Survivor或者在Survivior之间移动时，对象的GC年龄会自动累加，当GC年龄超过默认阈值15时，会将该对象移动到老年代，可以通过-XX:MaxTenuringThreshold对GC年龄的阈值进行设置。</p>
+</li>
+<li><p>老年代的空间大小即-Xmx和-Xmn两个参数之差，用于存放经过几次Minor GC之后依旧存活的对象。当老年代的空间不足时，将会触发Major GC，速度一般比Minor GC慢10倍以上。</p>
+</li>
+<li><p>类的元数据、方法信息（字节码、栈和变量大小）、运行时常量池、已确定的符号引用和虚方法表等被保存在永久代中，32位默认永久代的大小为64M，64位默认为85M，可以通过-XX:MaxPermSize进行设置，一旦类的元数据超过了永久代大小，就会跑出OOM异常。</p>
 </li>
 </ul>
   
@@ -699,22 +803,22 @@ HashMap和">
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
+  <strong class="toc-title">文章目录</strong>
  
  
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
 
   
 <div class="github-card">
-<p class="asidetitle">Github Card</p>
+<p class="asidetitle">Github 名片</p>
 <div class="github-card" data-github="glemontree" data-theme="medium"></div>
 <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
 </div>
@@ -723,7 +827,7 @@ HashMap和">
 
   
 <div class="categorieslist">
-	<p class="asidetitle">Categories</p>
+	<p class="asidetitle">分类</p>
 		<ul>
 		
 		  
@@ -840,7 +944,7 @@ HashMap和">
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
 			
@@ -912,15 +1016,15 @@ HashMap和">
 			
 		
 			
-				<li><a href="/tags/C-Boost/" title="C++, Boost">C++, Boost<sup>1</sup></a></li>
+				<li><a href="/tags/C-泛型/" title="C++ 泛型">C++ 泛型<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-面试/" title="C++ 面试">C++ 面试<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/C-new-operator-new-placement-new/" title="C++, new, operator new, placement new">C++, new, operator new, placement new<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -928,7 +1032,7 @@ HashMap和">
 
 
   <div class="linkslist">
-  <p class="asidetitle">Links</p>
+  <p class="asidetitle">友情链接</p>
     <ul>
         
           <li>
@@ -947,11 +1051,11 @@ HashMap和">
 </div>
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
 </div>
 
   <div class="weiboshow">
-  <p class="asidetitle">Weibo</p>
+  <p class="asidetitle">新浪微博</p>
     <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
 </div>
 
@@ -1192,7 +1296,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
