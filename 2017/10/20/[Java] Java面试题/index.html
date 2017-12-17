@@ -34,7 +34,7 @@ HashMap和">
 <meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/theory-of-mysql-index/9.png">
 <meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/theory-of-mysql-index/10.png">
 <meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/theory-of-mysql-index/11.png">
-<meta property="og:updated_time" content="2017-12-16T14:58:58.413Z">
+<meta property="og:updated_time" content="2017-12-17T13:28:29.517Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Java] Java面试题">
 <meta name="twitter:description" content="String类为什么是final的？
@@ -744,7 +744,25 @@ HashMap和">
 </li>
 <li><p>高并发秒杀系统<a href="http://blog.csdn.net/CSDN_Terence/article/details/77744042" target="_blank" rel="external">Java开发面试：高并发秒杀系统如何设计与优化</a>。</p>
 </li>
-<li><p>​</p>
+<li><p><a href="http://www.cnblogs.com/chenyangyao/p/5300958.html" target="_blank" rel="external">为何JAVA虚函数（虚方法）会造成父类可以”访问”子类的假象？</a></p>
+</li>
+<li><p>SQL语句优化：</p>
+<ul>
+<li><p>尽量避免在where字句中使用!=或&lt;&gt;操作符，否则引擎将放弃使用索引而进行全表扫描</p>
+</li>
+<li><p>尽量避免在where字句中对字段进行null值判断，否则将导致引擎放弃使用索引而进行全表扫描，如：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> t <span class="keyword">where</span> <span class="keyword">num</span> <span class="keyword">is</span> <span class="literal">null</span></div></pre></td></tr></table></figure>
+<p>可以在num上设置默认值0，确保表中num列没有null值，然后这样查询：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> t <span class="keyword">where</span> <span class="keyword">num</span> = <span class="number">0</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>使用exists代替in</p>
+</li>
+<li><p>用where代替having</p>
+</li>
+</ul>
+</li>
+<li><p>drop、delete和truncate的区别</p>
+<p>drop直接删除表，truncate删除表中数据，再插入时自增长id又从1开始，delete删除表中数据，可以加where字句。</p>
 </li>
 </ul>
   
@@ -986,11 +1004,11 @@ HashMap和">
 			
 		
 			
-				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
+				<li><a href="/tags/Android/" title="Android">Android<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android/" title="Android">Android<sup>2</sup></a></li>
+				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
 			
 		
 			
@@ -1014,23 +1032,23 @@ HashMap和">
 			
 		
 			
-				<li><a href="/tags/MyBatis-resultMap/" title="MyBatis, resultMap">MyBatis, resultMap<sup>1</sup></a></li>
+				<li><a href="/tags/MyBatis-SQL映射文件/" title="MyBatis, SQL映射文件">MyBatis, SQL映射文件<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
+				<li><a href="/tags/C-泛型/" title="C++ 泛型">C++ 泛型<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-Boost/" title="C++, Boost">C++, Boost<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-VS/" title="C++, VS">C++, VS<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/C-面试/" title="C++ 面试">C++ 面试<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-new-operator-new-placement-new/" title="C++, new, operator new, placement new">C++, new, operator new, placement new<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android-SDK版本号/" title="Android, SDK版本号">Android, SDK版本号<sup>1</sup></a></li>
 			
 		
 		</ul>
