@@ -34,7 +34,7 @@ HashMap和">
 <meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/theory-of-mysql-index/9.png">
 <meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/theory-of-mysql-index/10.png">
 <meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/theory-of-mysql-index/11.png">
-<meta property="og:updated_time" content="2017-12-17T13:28:29.517Z">
+<meta property="og:updated_time" content="2017-12-19T06:39:49.273Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Java] Java面试题">
 <meta name="twitter:description" content="String类为什么是final的？
@@ -72,7 +72,7 @@ HashMap和">
 				<h1 class="site-name"><a href="/" title="Glemontree&#39;s blog">Glemontree&#39;s blog</a></h1>
 				<h2 class="blog-motto">day day up!</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -88,7 +88,7 @@ HashMap和">
  					
 						<form class="search" action="http://zhannei.baidu.com/cse/search" target="_blank">
 							<label>Search</label>
-						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="Search"><br>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="搜索"><br>
 						</form>
 					
 					</li>
@@ -110,14 +110,14 @@ HashMap和">
 		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
 		
   <p class="article-time">
-    <time datetime="2017-10-20T09:54:39.000Z" itemprop="datePublished"> Published 2017-10-20</time>
+    <time datetime="2017-10-20T09:54:39.000Z" itemprop="datePublished"> 发表于 2017-10-20</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
+			<strong class="toc-title">文章目录</strong>
 		
 			
 		
@@ -764,6 +764,18 @@ HashMap和">
 <li><p>drop、delete和truncate的区别</p>
 <p>drop直接删除表，truncate删除表中数据，再插入时自增长id又从1开始，delete删除表中数据，可以加where字句。</p>
 </li>
+<li><p>对互斥锁加锁后，任何其他试图再对该互斥锁加锁的线程都会被阻塞直到当前持有锁的线程释放锁</p>
+</li>
+<li><p>当读写锁是写加锁时，在这个锁被解锁之前，所有试图对这个锁加锁的线程都会被阻塞；当读写锁是读加锁时，所有试图以读模式对它进行加锁的线程都可以得到访问权</p>
+</li>
+<li><p>Struts2中Filter和Inteceptor的区别：</p>
+<ul>
+<li>filter是依赖于Servlet容器的，没有Servlet容器就没法回调doFilter方法，而Interceptor与Servlet无关</li>
+<li>Filter的过滤范围比Interceptor大，Filter除了过滤请求外通过通配符还可以保护页面、图片、文件等，而Interceptor只能过滤请求，只对action起作用</li>
+<li>Interceptor可以访问action上下文、值栈中的对象，而Filter不能</li>
+<li>在action的生命周期中，拦截器可以被多次调用，而过滤器只能在容器初始化时被调用一次</li>
+</ul>
+</li>
 </ul>
   
 	</div>
@@ -827,22 +839,22 @@ HashMap和">
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
+  <strong class="toc-title">文章目录</strong>
  
  
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
 
   
 <div class="github-card">
-<p class="asidetitle">Github Card</p>
+<p class="asidetitle">Github 名片</p>
 <div class="github-card" data-github="glemontree" data-theme="medium"></div>
 <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
 </div>
@@ -851,7 +863,7 @@ HashMap和">
 
   
 <div class="categorieslist">
-	<p class="asidetitle">Categories</p>
+	<p class="asidetitle">分类</p>
 		<ul>
 		
 		  
@@ -931,7 +943,7 @@ HashMap和">
 		  
 		
 		  
-			<li><a href="/categories/TCP-IP/" title="TCP/IP">TCP/IP<sup>8</sup></a></li>
+			<li><a href="/categories/TCP-IP/" title="TCP/IP">TCP/IP<sup>9</sup></a></li>
 		  
 		
 		  
@@ -968,7 +980,7 @@ HashMap和">
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
 			
@@ -1004,11 +1016,11 @@ HashMap和">
 			
 		
 			
-				<li><a href="/tags/Android/" title="Android">Android<sup>2</sup></a></li>
+				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
+				<li><a href="/tags/Android/" title="Android">Android<sup>2</sup></a></li>
 			
 		
 			
@@ -1032,7 +1044,7 @@ HashMap和">
 			
 		
 			
-				<li><a href="/tags/MyBatis-SQL映射文件/" title="MyBatis, SQL映射文件">MyBatis, SQL映射文件<sup>1</sup></a></li>
+				<li><a href="/tags/MyBatis-参数处理/" title="MyBatis, 参数处理">MyBatis, 参数处理<sup>1</sup></a></li>
 			
 		
 			
@@ -1040,15 +1052,15 @@ HashMap和">
 			
 		
 			
-				<li><a href="/tags/C-Boost/" title="C++, Boost">C++, Boost<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-VS/" title="C++, VS">C++, VS<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/C-面试/" title="C++ 面试">C++ 面试<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-new-operator-new-placement-new/" title="C++, new, operator new, placement new">C++, new, operator new, placement new<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -1056,7 +1068,7 @@ HashMap和">
 
 
   <div class="linkslist">
-  <p class="asidetitle">Links</p>
+  <p class="asidetitle">友情链接</p>
     <ul>
         
           <li>
@@ -1075,11 +1087,11 @@ HashMap和">
 </div>
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
 </div>
 
   <div class="weiboshow">
-  <p class="asidetitle">Weibo</p>
+  <p class="asidetitle">新浪微博</p>
     <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
 </div>
 
@@ -1320,7 +1332,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
