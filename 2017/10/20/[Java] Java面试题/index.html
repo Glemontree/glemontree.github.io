@@ -34,7 +34,7 @@ HashMap和">
 <meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/theory-of-mysql-index/9.png">
 <meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/theory-of-mysql-index/10.png">
 <meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/theory-of-mysql-index/11.png">
-<meta property="og:updated_time" content="2017-12-19T06:39:49.273Z">
+<meta property="og:updated_time" content="2017-12-27T07:18:50.551Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Java] Java面试题">
 <meta name="twitter:description" content="String类为什么是final的？
@@ -72,7 +72,7 @@ HashMap和">
 				<h1 class="site-name"><a href="/" title="Glemontree&#39;s blog">Glemontree&#39;s blog</a></h1>
 				<h2 class="blog-motto">day day up!</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -88,7 +88,7 @@ HashMap和">
  					
 						<form class="search" action="http://zhannei.baidu.com/cse/search" target="_blank">
 							<label>Search</label>
-						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="搜索"><br>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="Search"><br>
 						</form>
 					
 					</li>
@@ -110,14 +110,14 @@ HashMap和">
 		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
 		
   <p class="article-time">
-    <time datetime="2017-10-20T09:54:39.000Z" itemprop="datePublished"> 发表于 2017-10-20</time>
+    <time datetime="2017-10-20T09:54:39.000Z" itemprop="datePublished"> Published 2017-10-20</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
+			<strong class="toc-title">Contents</strong>
 		
 			
 		
@@ -776,6 +776,43 @@ HashMap和">
 <li>在action的生命周期中，拦截器可以被多次调用，而过滤器只能在容器初始化时被调用一次</li>
 </ul>
 </li>
+<li><p>假设有多台memcached服务器，编号分别为m0、m1、m2…，对于一个key，由客户端来决定存放到哪台机器，那最简单的hash公式就是key%N，其中N就是机器的总数。但这有个问题，一旦机器数变少，或者增加机器，N发生变化，那之前存放的数据就全部无效了，因为你按照新的N值取模计算出的计算编号，和当时按照旧的取模算出的机器编号肯定是不等的，也就意味着绝不部分缓存会失效。</p>
+<p>这个问题的解决方法就是用1种特别的Hash函数，尽可能使得，增加机器/减少机器时，缓存失效的数目降到最低，这就是Hash环，或者叫一致性Hash。</p>
+<p>上面说的Hash函数，只经历了一次hash，即把key hash到对应的机器编号，而hash环有两次hash：</p>
+<ul>
+<li>把所有机器编号hash到这个环上</li>
+<li>把key也hash到这个环上，然后在这个环上进行匹配，看这个key和哪台机器匹配</li>
+</ul>
+<p>具体来说，假设有这样一个hash函数，其值空间为0~2^32-1，也就是说，其hash值是个32位无符号整型数字，这些数字形成一个环。</p>
+<p>然后，先对机器进行hash（比如根据机器的IP），算出每台机器在这个环上的位置，再对key进行hash，算出该key在环上的位置，然后从这个位置走，遇到的第一台机器就是该key对应的机器，就把该（key, value）存储到该机器上。</p>
+<p>首先计算出每台Cache服务器在环上的位置（图中的大圆圈）；然后每来一个(key, value)，计算出在环上的位置（图中的小圆圈），然后顺时针走，遇到的第1个机器，就是其要存储的机器。</p>
+<p>这里的关键点是：当你增加/减少机器时，其他机器在环上的位置并不会发生改变。这样只有增加的那台机器、或者减少的那台机器附近的数据会失效，其他机器上的数据都还是有效的。</p>
+</li>
+<li><p>分布式锁</p>
+<ul>
+<li><p>基于缓存实现分布式锁</p>
+<p>使用缓存实现一方面性能较好，另一方面很多缓存是可以集群部署的，可以解决单点问题。</p>
+</li>
+<li><p>使用Zookeeper实现分布式锁</p>
+<p>基于zookeeper临时有序节点实现分布式锁。每个客户端在对方法加锁时，在zookeeper上的与该方法对应的指定结点的目录下，生成一个唯一的瞬时有序结点，判断是否获取锁的方式很简单，只需要判断有序节点中序号最小的一个。 当释放锁的时候，只需将这个瞬时节点删除即可。同时，其可以避免服务宕机导致的锁无法释放，而产生的死锁问题。</p>
+<ul>
+<li>锁无法释放？使用Zookeeper可以有效的解决锁无法释放的问题，因为在创建锁的时候，客户端会在ZK中创建一个临时节点，一旦客户端获取到锁之后突然挂掉（Session连接断开），那么这个临时节点就会自动删除掉。其他客户端就可以再次获得锁。</li>
+<li>不可重入？使用Zookeeper也可以有效的解决不可重入的问题，客户端在创建节点的时候，把当前客户端的主机信息和线程信息直接写入到节点中，下次想要获取锁的时候和当前最小的节点中的数据比对一下就可以了。如果和自己的信息一样，那么自己直接获取到锁，如果不一样就再创建一个临时的顺序节点，参与排队。</li>
+<li>单点问题？使用Zookeeper可以有效的解决单点问题，ZK是集群部署的，只要集群中有半数以上的机器存活，就可以对外提供服务。</li>
+</ul>
+</li>
+</ul>
+<p>本小节参考<a href="http://blog.csdn.net/zxp_cpinfo/article/details/53692922" target="_blank" rel="external">分布式锁原理及实现方式</a>。</p>
+</li>
+<li><p><a href="http://www.cnblogs.com/donfly/p/8124583.html" target="_blank" rel="external">JAVA软件面试之杭州</a>。</p>
+</li>
+<li><p>分布式锁</p>
+<ul>
+<li>当在分布式模型下，数据只有一份（或有限制），此时需要利用锁的技术控制某一时刻修改数据的进程数。</li>
+<li>与单机模式下的锁不仅需要保证进程可见，还需要考虑进程与锁之间的网络问题。（我觉得分布式情况下之所以问题变得复杂，主要就是需要考虑到网络的延时和不可靠。。。一个大坑）</li>
+<li>分布式锁还是可以将标记存在内存，只是该内存不是某个进程分配的内存而是公共内存如Redis、Memcache。至于利用数据库、文件等做锁与单机的实现是一样的，只要保证标记能互斥就行。</li>
+</ul>
+</li>
 </ul>
   
 	</div>
@@ -839,22 +876,22 @@ HashMap和">
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
+  <strong class="toc-title">Contents</strong>
  
  
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
 <div class="github-card">
-<p class="asidetitle">Github 名片</p>
+<p class="asidetitle">Github Card</p>
 <div class="github-card" data-github="glemontree" data-theme="medium"></div>
 <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
 </div>
@@ -863,7 +900,7 @@ HashMap和">
 
   
 <div class="categorieslist">
-	<p class="asidetitle">分类</p>
+	<p class="asidetitle">Categories</p>
 		<ul>
 		
 		  
@@ -980,7 +1017,7 @@ HashMap和">
 
   
 <div class="tagslist">
-	<p class="asidetitle">标签</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
@@ -1012,19 +1049,15 @@ HashMap和">
 			
 		
 			
-				<li><a href="/tags/html/" title="html">html<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Android/" title="Android">Android<sup>2</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
 			
 		
 			
@@ -1044,7 +1077,15 @@ HashMap和">
 			
 		
 			
-				<li><a href="/tags/MyBatis-参数处理/" title="MyBatis, 参数处理">MyBatis, 参数处理<sup>1</sup></a></li>
+				<li><a href="/tags/html/" title="html">html<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-new-operator-new-placement-new/" title="C++, new, operator new, placement new">C++, new, operator new, placement new<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-ProgressDialog，-耗时操作/" title="Android, ProgressDialog， 耗时操作">Android, ProgressDialog， 耗时操作<sup>1</sup></a></li>
 			
 		
 			
@@ -1052,15 +1093,11 @@ HashMap和">
 			
 		
 			
+				<li><a href="/tags/C-回调/" title="C++ 回调">C++ 回调<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/C-面试/" title="C++ 面试">C++ 面试<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-new-operator-new-placement-new/" title="C++, new, operator new, placement new">C++, new, operator new, placement new<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -1068,7 +1105,7 @@ HashMap和">
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
@@ -1087,11 +1124,11 @@ HashMap和">
 </div>
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
   <div class="weiboshow">
-  <p class="asidetitle">新浪微博</p>
+  <p class="asidetitle">Weibo</p>
     <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
 </div>
 
@@ -1332,7 +1369,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
