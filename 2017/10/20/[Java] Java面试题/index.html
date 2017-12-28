@@ -34,7 +34,8 @@ HashMap和">
 <meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/theory-of-mysql-index/9.png">
 <meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/theory-of-mysql-index/10.png">
 <meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/theory-of-mysql-index/11.png">
-<meta property="og:updated_time" content="2017-12-27T07:18:50.551Z">
+<meta property="og:image" content="http://xiaorui.cc/wp-content/uploads/2016/02/20160225170734_38211.jpg">
+<meta property="og:updated_time" content="2017-12-28T12:50:49.889Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Java] Java面试题">
 <meta name="twitter:description" content="String类为什么是final的？
@@ -813,6 +814,65 @@ HashMap和">
 <li>分布式锁还是可以将标记存在内存，只是该内存不是某个进程分配的内存而是公共内存如Redis、Memcache。至于利用数据库、文件等做锁与单机的实现是一样的，只要保证标记能互斥就行。</li>
 </ul>
 </li>
+<li><p>redis的SETNX操作</p>
+<p>其格式为：<code>SETNX key value</code></p>
+<p>将key的值设为value，当且仅当key不存在；若给定的key已经存在，则SETNX不做任何动作。</p>
+<p><strong>使用SETNX实现分布式锁</strong></p>
+<p>多个进程执行以下Redis命令：<code>SETNX lock.foo &lt;current Unix time + lock timeout + 1&gt;</code></p>
+<p>如果SETNX返回1，说明该进程获得锁，SETNX将键lock.foo的值设置为锁的超时时间（当前时间+锁的有效时间）；</p>
+<p>如果SETNX返回0，说明其他进程获得锁，进程不能进入临界区，进程可以在一个循环中不断的尝试SETNX操作，以获得锁。</p>
+</li>
+<li><p>两阶段提交（Two-phase Commit, 2PC）</p>
+<p>两阶段提交协议经常被用来实现分布式事务，一般分为协调器和若干事务执行者两种角色，这里的事务执行者就是具体的数据库，协调者可以和事务执行器在一台机器上。</p>
+<p>在分布式系统中，每个节点虽然可以知晓自己的操作是成功或者失败，却无法知道其他节点的操作的成功或失败。当一个事务跨越多个节点时，为了保持事务的ACID特性，需要引入一个作为协调者的组件来统一掌控所有节点（称作参与者）。</p>
+<p><img src="http://xiaorui.cc/wp-content/uploads/2016/02/20160225170734_38211.jpg" alt=""></p>
+<p>我们设想从支付宝里转10000元到余额宝的场景：</p>
+<ul>
+<li><p>首先我们的应用程序发起一个请求到协调器，然后由控制器来保证分布式事务</p>
+</li>
+<li><p>准备凭证阶段</p>
+<ul>
+<li><p>协调器先将<code>&lt;prepare&gt;</code>消息写到本地日志</p>
+</li>
+<li><p>向所有的参与者发起<code>&lt;prepare&gt;</code>消息，以支付宝转账到余额宝为例，协调器给A的prepare消息是通知支付宝数据库相应账目扣款10000，协调器给B的prepare消息是通知余额宝数据库相应账目增加10000。</p>
+<blockquote>
+<p>  注:<br>  为什么在执行任务前需要先写本地日志，主要是为了故障后恢复用，本地日志起到现实生活中凭证 的效果，如果没有本地日志（凭证），出问题容易死无对证</p>
+</blockquote>
+<p>参与者收到<code>&lt;prepare&gt;</code>消息后，执行具体本机事务，但不会进行commit，如果成功返回<code>&lt;yes&gt;</code>，不成功返回<code>&lt;no&gt;</code>。同理，返回前都应把要返回的消息写到日志里，当作凭证。</p>
+<p>支付宝：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">BEGIN</span> <span class="keyword">WORK</span></div><div class="line">    <span class="keyword">select</span> money <span class="keyword">from</span> zhifubao <span class="keyword">where</span> <span class="keyword">user</span>=<span class="string">'xiaorui'</span> <span class="keyword">for</span> <span class="keyword">update</span>;</div><div class="line">    <span class="keyword">update</span> zhifubao <span class="keyword">set</span> money=money<span class="number">-10000</span> <span class="keyword">where</span> <span class="keyword">user</span>=<span class="string">'xiaorui'</span>;</div><div class="line">    ...</div><div class="line">    Operation N</div><div class="line"> </div><div class="line"> 向协调者发送YES或者NO !</div><div class="line"> </div><div class="line"> 等待协调者的指令过来 !</div></pre></td></tr></table></figure>
+<p>余额宝：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">BEGIN</span> <span class="keyword">WORK</span></div><div class="line">    <span class="keyword">select</span> money <span class="keyword">from</span> yuebao <span class="keyword">where</span> <span class="keyword">user</span>=<span class="string">'xiaorui'</span> <span class="keyword">for</span> <span class="keyword">update</span>;</div><div class="line">    <span class="keyword">update</span> yuebao <span class="keyword">set</span> money=money+<span class="number">10000</span> <span class="keyword">where</span> <span class="keyword">user</span>=<span class="string">'xiaorui'</span>;</div><div class="line">    ...</div><div class="line">    Operation N</div><div class="line"> </div><div class="line">根据状态向协调者发送YES或者NO !</div><div class="line"> </div><div class="line">然后等待协调者的指令过来 ... ....</div></pre></td></tr></table></figure>
+</li>
+<li><p>协调器收集所有执行器返回的消息，如果所有执行器都返回yes，那么给所有执行器发生送commit消息，执行器收到commit后执行本地事务的commit操作；如果有任一个执行器返回no，那么给所有执行器发送abort消息，执行器收到abort消息后执行事务abort操作。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">#blog: xiaorui.cc</div><div class="line"> </div><div class="line">if 协调者指令 == "to_commit":</div><div class="line">    commit work  #提交事务</div><div class="line">else:</div><div class="line">    ROLLBACK #回滚</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>  协调器或参与者把发送或接收到的消息先写到日志里，主要是为了故障后恢复用。举个例子，比如某个参与者从故障中恢复后，先检查本机的日志，如果已收到<code>&lt;commit &gt;</code>，则提交，如果<code>&lt;abort &gt;</code>则回滚。如果是<code>&lt;yes&gt;</code>，则再向控制器询问一下，确定下一步。如果什么都没有，则很可能在<code>&lt;prepare&gt;</code>阶段Si就崩溃了，因此需要回滚。</p>
+</blockquote>
+</li>
+</ul>
+<p>二阶段协议存在的问题是：</p>
+<ul>
+<li>同步阻塞问题：执行过程中，所有参与节点都是事务阻塞型的，当参与者占有公共资源时，其他第三方节点访问公共资源不得不处于阻塞状态</li>
+<li>单点故障：由于协调者的重要性，一旦协调者发生故障，参与者将会一直阻塞下去，尤其在第二阶段，协调者发生故障，那么所有的参与者还都处于锁定事务资源的状态中，而无法继续完成事务操作</li>
+<li>数据不一致：在二阶段提交的阶段二中，当协调者向参与者发送commit请求之后，发生了局部网络异常或者在发送commit请求过程中协调者发生了故障，这会导致只有一部分参与者接受到了commit请求，而这部分参与者接到commit请求之后就会执行commit操作，但是其他部分未收到commit请求的机器则无法执行事务提交，于是出现数据不一致的现象</li>
+</ul>
+<p>本文转载自<a href="http://xiaorui.cc/2016/02/25/%e7%90%86%e8%a7%a3%e5%88%86%e5%b8%83%e5%bc%8f%e4%ba%8b%e5%8a%a1%e7%9a%84%e4%b8%a4%e9%98%b6%e6%ae%b5%e6%8f%90%e4%ba%a42pc/" target="_blank" rel="external">理解分布式事务的两阶段提交2pc</a>。</p>
+</li>
+<li><p>RocketMQ事务消息实现分布式事务</p>
+<p>和两阶段提交不同，RocketMQ事务消息实现分布式事务主要包含下面几个步骤：</p>
+<ul>
+<li>发送Prepared消息</li>
+<li>update DB</li>
+<li>根据update DB结果成功或失败，Confirm或者取消Prepared消息</li>
+</ul>
+<p>如果前两步执行成功了，最后1步失败了怎么办？这里就涉及到RocketMQ的关键点：RocketMQ会定期（默认是1分钟）扫描所有的Prepared消息，询问发送方，到底是要确认这条消息发出去？还是取消此条消息？</p>
+<p>具体实现如下：</p>
+<p>也就是定义了一个checkListener，RocketMQ会回调此Listener，从而实现上面所述的方案。</p>
+<p>​</p>
+</li>
 </ul>
   
 	</div>
@@ -1053,11 +1113,11 @@ HashMap和">
 			
 		
 			
-				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
+				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
+				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
 			
 		
 			
@@ -1081,7 +1141,7 @@ HashMap和">
 			
 		
 			
-				<li><a href="/tags/C-new-operator-new-placement-new/" title="C++, new, operator new, placement new">C++, new, operator new, placement new<sup>1</sup></a></li>
+				<li><a href="/tags/C-面试/" title="C++ 面试">C++ 面试<sup>1</sup></a></li>
 			
 		
 			
@@ -1089,15 +1149,15 @@ HashMap和">
 			
 		
 			
+				<li><a href="/tags/C-Boost/" title="C++, Boost">C++, Boost<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/C-泛型/" title="C++ 泛型">C++ 泛型<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-回调/" title="C++ 回调">C++ 回调<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-面试/" title="C++ 面试">C++ 面试<sup>1</sup></a></li>
+				<li><a href="/tags/C-VS/" title="C++, VS">C++, VS<sup>1</sup></a></li>
 			
 		
 		</ul>
