@@ -54,7 +54,7 @@ connect函数12#include &amp;lt;sys/socket.h&amp;gt;int connect(int sockfd, cons
 				<h1 class="site-name"><a href="/" title="Glemontree&#39;s blog">Glemontree&#39;s blog</a></h1>
 				<h2 class="blog-motto">day day up!</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -70,7 +70,7 @@ connect函数12#include &amp;lt;sys/socket.h&amp;gt;int connect(int sockfd, cons
  					
 						<form class="search" action="http://zhannei.baidu.com/cse/search" target="_blank">
 							<label>Search</label>
-						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="搜索"><br>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="Search"><br>
 						</form>
 					
 					</li>
@@ -92,14 +92,14 @@ connect函数12#include &amp;lt;sys/socket.h&amp;gt;int connect(int sockfd, cons
 		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
 		
   <p class="article-time">
-    <time datetime="2017-11-02T03:15:22.000Z" itemprop="datePublished"> 發表於 2017-11-02</time>
+    <time datetime="2017-11-02T03:15:22.000Z" itemprop="datePublished"> Published 2017-11-02</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目錄</strong>
+			<strong class="toc-title">Contents</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#socket函数"><span class="toc-number">1.</span> <span class="toc-text">socket函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#connect函数"><span class="toc-number">2.</span> <span class="toc-text">connect函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bind函数"><span class="toc-number">3.</span> <span class="toc-text">bind函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#listen函数"><span class="toc-number">4.</span> <span class="toc-text">listen函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#accept函数"><span class="toc-number">5.</span> <span class="toc-text">accept函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fork和exec函数"><span class="toc-number">6.</span> <span class="toc-text">fork和exec函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#并发服务器"><span class="toc-number">7.</span> <span class="toc-text">并发服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#close函数"><span class="toc-number">8.</span> <span class="toc-text">close函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#getsockname和getpeername函数"><span class="toc-number">9.</span> <span class="toc-text">getsockname和getpeername函数</span></a></li></ol>
 		
@@ -236,22 +236,22 @@ connect函数12#include &amp;lt;sys/socket.h&amp;gt;int connect(int sockfd, cons
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目錄</strong>
+  <strong class="toc-title">Contents</strong>
  
  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#socket函数"><span class="toc-number">1.</span> <span class="toc-text">socket函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#connect函数"><span class="toc-number">2.</span> <span class="toc-text">connect函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bind函数"><span class="toc-number">3.</span> <span class="toc-text">bind函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#listen函数"><span class="toc-number">4.</span> <span class="toc-text">listen函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#accept函数"><span class="toc-number">5.</span> <span class="toc-text">accept函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fork和exec函数"><span class="toc-number">6.</span> <span class="toc-text">fork和exec函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#并发服务器"><span class="toc-number">7.</span> <span class="toc-text">并发服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#close函数"><span class="toc-number">8.</span> <span class="toc-text">close函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#getsockname和getpeername函数"><span class="toc-number">9.</span> <span class="toc-text">getsockname和getpeername函数</span></a></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
 <div class="github-card">
-<p class="asidetitle">Github 名片</p>
+<p class="asidetitle">Github Card</p>
 <div class="github-card" data-github="glemontree" data-theme="medium"></div>
 <script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
 </div>
@@ -260,7 +260,7 @@ connect函数12#include &amp;lt;sys/socket.h&amp;gt;int connect(int sockfd, cons
 
   
 <div class="categorieslist">
-	<p class="asidetitle">分類</p>
+	<p class="asidetitle">Categories</p>
 		<ul>
 		
 		  
@@ -360,6 +360,10 @@ connect函数12#include &amp;lt;sys/socket.h&amp;gt;int connect(int sockfd, cons
 		  
 		
 		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/编程规范/" title="编程规范">编程规范<sup>1</sup></a></li>
 		  
 		
@@ -377,7 +381,7 @@ connect函数12#include &amp;lt;sys/socket.h&amp;gt;int connect(int sockfd, cons
 
   
 <div class="tagslist">
-	<p class="asidetitle">標簽</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
@@ -441,23 +445,23 @@ connect函数12#include &amp;lt;sys/socket.h&amp;gt;int connect(int sockfd, cons
 			
 		
 			
-				<li><a href="/tags/MyBatis-参数处理/" title="MyBatis, 参数处理">MyBatis, 参数处理<sup>1</sup></a></li>
+				<li><a href="/tags/Linux-zsh/" title="Linux, zsh">Linux, zsh<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-Boost/" title="C++, Boost">C++, Boost<sup>1</sup></a></li>
+				<li><a href="/tags/Android-xml-tools/" title="Android, xml-tools">Android, xml-tools<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/C-面试/" title="C++ 面试">C++ 面试<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C-new-operator-new-placement-new/" title="C++, new, operator new, placement new">C++, new, operator new, placement new<sup>1</sup></a></li>
+				<li><a href="/tags/C-泛型/" title="C++ 泛型">C++ 泛型<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/C-VS/" title="C++, VS">C++, VS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-new-operator-new-placement-new/" title="C++, new, operator new, placement new">C++, new, operator new, placement new<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -465,7 +469,7 @@ connect函数12#include &amp;lt;sys/socket.h&amp;gt;int connect(int sockfd, cons
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情鏈接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
@@ -484,11 +488,11 @@ connect函数12#include &amp;lt;sys/socket.h&amp;gt;int connect(int sockfd, cons
 </div>
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
   <div class="weiboshow">
-  <p class="asidetitle">新浪微博</p>
+  <p class="asidetitle">Weibo</p>
     <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
 </div>
 
@@ -729,7 +733,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
