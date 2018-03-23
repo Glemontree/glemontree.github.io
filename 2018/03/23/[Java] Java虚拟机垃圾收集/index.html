@@ -4,34 +4,73 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>[Servlet] Java Web乱码 | Glemontree&#39;s blog</title>
+    <title>[Java] Java虚拟机垃圾收集 | Glemontree&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Glemontree">
     
 
     
-    <meta name="description" content="乱码先看一个简单的例子：
-12345protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException &amp;#123;  OutputStream out = response.getOutputStream();  String dat">
+    <meta name="description" content="垃圾收集算法
+  可作为GC Roots的对象包括：
+
+虚拟机栈（栈帧中的本地变量表）中的引用对象
+方法区中的类静态属性引用的对象
+方法区中的常量引用的对象
+本地方法栈中JNI的引用对象
+
+
+标记-清除算法其缺点为：
+
+效率不高
+标记清除之后会产生大量不连续的内存碎片
+
+
+复制算法它将可用内存容量划分为大小相等的两块，每次只使用其中的一块，当这一块用完之后，就将还存活的对象复制到另外一块上面，然后">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[Servlet] Java Web乱码">
-<meta property="og:url" content="http://yoursite.com/2017/07/01/[Servlet] Java Web乱码/index.html">
+<meta property="og:title" content="[Java] Java虚拟机垃圾收集">
+<meta property="og:url" content="http://yoursite.com/2018/03/23/[Java] Java虚拟机垃圾收集/index.html">
 <meta property="og:site_name" content="Glemontree's blog">
-<meta property="og:description" content="乱码先看一个简单的例子：
-12345protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException &amp;#123;  OutputStream out = response.getOutputStream();  String dat">
-<meta property="og:image" content="https://github.com/Glemontree/images/blob/master/images/a.jpg?raw=true">
-<meta property="og:image" content="https://github.com/Glemontree/images/blob/master/images/b.JPG?raw=true">
-<meta property="og:image" content="https://github.com/Glemontree/images/blob/master/images/c.JPG?raw=true">
-<meta property="og:image" content="https://github.com/Glemontree/images/blob/master/images/d.JPG?raw=true">
-<meta property="og:image" content="https://github.com/Glemontree/images/blob/master/images/e.JPG?raw=true">
-<meta property="og:image" content="https://github.com/Glemontree/images/blob/master/images/f.JPG?raw=true">
-<meta property="og:image" content="https://github.com/Glemontree/images/blob/master/images/g.JPG?raw=true">
-<meta property="og:updated_time" content="2017-07-03T02:06:42.059Z">
+<meta property="og:description" content="垃圾收集算法
+  可作为GC Roots的对象包括：
+
+虚拟机栈（栈帧中的本地变量表）中的引用对象
+方法区中的类静态属性引用的对象
+方法区中的常量引用的对象
+本地方法栈中JNI的引用对象
+
+
+标记-清除算法其缺点为：
+
+效率不高
+标记清除之后会产生大量不连续的内存碎片
+
+
+复制算法它将可用内存容量划分为大小相等的两块，每次只使用其中的一块，当这一块用完之后，就将还存活的对象复制到另外一块上面，然后">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/811915/201702/811915-20170228163546813-591415562.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/811915/201702/811915-20170228164403782-1128832964.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/811915/201702/811915-20170228164444782-56804909.png">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201210/03/1349278110_8410.jpg">
+<meta property="og:updated_time" content="2018-03-23T13:10:17.699Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[Servlet] Java Web乱码">
-<meta name="twitter:description" content="乱码先看一个简单的例子：
-12345protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException &amp;#123;  OutputStream out = response.getOutputStream();  String dat">
-<meta name="twitter:image" content="https://github.com/Glemontree/images/blob/master/images/a.jpg?raw=true">
+<meta name="twitter:title" content="[Java] Java虚拟机垃圾收集">
+<meta name="twitter:description" content="垃圾收集算法
+  可作为GC Roots的对象包括：
+
+虚拟机栈（栈帧中的本地变量表）中的引用对象
+方法区中的类静态属性引用的对象
+方法区中的常量引用的对象
+本地方法栈中JNI的引用对象
+
+
+标记-清除算法其缺点为：
+
+效率不高
+标记清除之后会产生大量不连续的内存碎片
+
+
+复制算法它将可用内存容量划分为大小相等的两块，每次只使用其中的一块，当这一块用完之后，就将还存活的对象复制到另外一块上面，然后">
+<meta name="twitter:image" content="https://images2015.cnblogs.com/blog/811915/201702/811915-20170228163546813-591415562.png">
 
     
     <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
@@ -90,14 +129,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/07/01/[Servlet] Java Web乱码/" title="[Servlet] Java Web乱码" itemprop="url">[Servlet] Java Web乱码</a>
+      <a href="/2018/03/23/[Java] Java虚拟机垃圾收集/" title="[Java] Java虚拟机垃圾收集" itemprop="url">[Java] Java虚拟机垃圾收集</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
 		
   <p class="article-time">
-    <time datetime="2017-07-01T06:21:31.000Z" itemprop="datePublished"> Published 2017-07-01</time>
+    <time datetime="2018-03-23T09:08:56.000Z" itemprop="datePublished"> Published 2018-03-23</time>
     
   </p>
 </header>
@@ -106,88 +145,54 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#乱码"><span class="toc-number">1.</span> <span class="toc-text">乱码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#常见的编码"><span class="toc-number">2.</span> <span class="toc-text">常见的编码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#通过浏览器调用Servlet，页面显示乱码"><span class="toc-number">3.</span> <span class="toc-text">通过浏览器调用Servlet，页面显示乱码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#response乱码"><span class="toc-number">3.1.</span> <span class="toc-text">response乱码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#request乱码问题"><span class="toc-number">3.2.</span> <span class="toc-text">request乱码问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">3.3.</span> <span class="toc-text">参考</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#垃圾收集算法"><span class="toc-number">1.</span> <span class="toc-text">垃圾收集算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#标记-清除算法"><span class="toc-number">1.1.</span> <span class="toc-text">标记-清除算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复制算法"><span class="toc-number">1.2.</span> <span class="toc-text">复制算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标记-清理算法"><span class="toc-number">1.3.</span> <span class="toc-text">标记-清理算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#垃圾收集器"><span class="toc-number">2.</span> <span class="toc-text">垃圾收集器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Serial-串行GC-收集器"><span class="toc-number">2.1.</span> <span class="toc-text">Serial(串行GC)收集器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ParNew-并行-收集器"><span class="toc-number">2.2.</span> <span class="toc-text">ParNew(并行)收集器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Parallel-Scavenge-并行回收GC-收集器"><span class="toc-number">2.3.</span> <span class="toc-text">Parallel Scavenge(并行回收GC)收集器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Serial-Old-串行GC-收集器"><span class="toc-number">2.4.</span> <span class="toc-text">Serial Old(串行GC)收集器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Parallel-Old-并行GC-收集器"><span class="toc-number">2.5.</span> <span class="toc-text">Parallel Old(并行GC)收集器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CMS-并发GC-收集器"><span class="toc-number">2.6.</span> <span class="toc-text">CMS(并发GC)收集器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#G1收集器"><span class="toc-number">2.7.</span> <span class="toc-text">G1收集器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#说明"><span class="toc-number">3.</span> <span class="toc-text">说明</span></a></li></ol>
 		
 		</div>
 		
-		<h1 id="乱码"><a href="#乱码" class="headerlink" title="乱码"></a>乱码</h1><p>先看一个简单的例子：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</div><div class="line">  OutputStream out = response.getOutputStream();</div><div class="line">  String data = <span class="string">"中文"</span>;</div><div class="line">  out.write(data.getBytes(<span class="string">"utf-8"</span>));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>当访问时界面输出乱码，这主要是因为程序用UTF-8编码，而浏览器默认采用GBK解码。</p>
-<p>其实乱码问题出现的根本原因也就是编码和解码不一致产生的。</p>
-<h1 id="常见的编码"><a href="#常见的编码" class="headerlink" title="常见的编码"></a>常见的编码</h1><ul>
-<li>UTF-8：国际编码</li>
-<li>GBK：中文编码，是GB2312的扩展，除了兼容GB2312外，还能显示繁体中文、还有日文的假名</li>
-<li>ISO8859-1：tomcat默认，不支持中文</li>
-</ul>
-<h1 id="通过浏览器调用Servlet，页面显示乱码"><a href="#通过浏览器调用Servlet，页面显示乱码" class="headerlink" title="通过浏览器调用Servlet，页面显示乱码"></a>通过浏览器调用Servlet，页面显示乱码</h1><h2 id="response乱码"><a href="#response乱码" class="headerlink" title="response乱码"></a>response乱码</h2><p>解决方法：<code>response.setContentType(&quot;text/html;charset=utf-8&quot;);</code>或者<code>response.setHeader(&quot;content-type&quot;, &quot;text/html;charset=utf-8&quot;);</code></p>
-<p>原理：告诉浏览器用utf-8进行解析。</p>
-<p>看下面两种情况：</p>
+		<h2 id="垃圾收集算法"><a href="#垃圾收集算法" class="headerlink" title="垃圾收集算法"></a>垃圾收集算法</h2><blockquote>
+<p>  可作为GC Roots的对象包括：</p>
 <ul>
-<li><p>情况一</p>
-<p>问题代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">OutputStream out = response.getOutputStream();</div><div class="line">String data = <span class="string">"博客"</span>;</div><div class="line">out.write(data.getBytes(<span class="string">"UTF-8"</span>));</div></pre></td></tr></table></figure>
+<li>虚拟机栈（栈帧中的本地变量表）中的引用对象</li>
+<li>方法区中的类静态属性引用的对象</li>
+<li>方法区中的常量引用的对象</li>
+<li>本地方法栈中JNI的引用对象</li>
+</ul>
+</blockquote>
+<h3 id="标记-清除算法"><a href="#标记-清除算法" class="headerlink" title="标记-清除算法"></a>标记-清除算法</h3><p>其缺点为：</p>
 <ul>
-<li><p>乱码流程图</p>
-<p><img src="https://github.com/Glemontree/images/blob/master/images/a.jpg?raw=true" alt="乱码流程图"></p>
-</li>
-<li><p>解决方案流程图</p>
-<p><img src="https://github.com/Glemontree/images/blob/master/images/b.JPG?raw=true" alt=""></p>
-</li>
+<li>效率不高</li>
+<li>标记清除之后会产生大量不连续的内存碎片</li>
 </ul>
-</li>
-<li><p>情况二</p>
-<p>问题代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</div><div class="line">  PrintWriter out = response.getWriter();</div><div class="line">  String data = <span class="string">"博客"</span>;</div><div class="line">  out.println(data);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>浏览器输出的结果为？？</p>
-<p>这是因为“博客”首先被封装在response对象中，因为IE和WEB服务器之间不能传输文本，然后就通过ISO-8859-1编码进行编码，但是ISO-8859-1中没有“博客”的编码，因此输出“？？”，表示没有编码。</p>
+<p><img src="https://images2015.cnblogs.com/blog/811915/201702/811915-20170228163546813-591415562.png" alt=""></p>
+<h3 id="复制算法"><a href="#复制算法" class="headerlink" title="复制算法"></a>复制算法</h3><p>它将可用内存容量划分为大小相等的两块，每次只使用其中的一块，当这一块用完之后，就将还存活的对象复制到另外一块上面，然后再把已使用过的内存空间一次清理掉，这样使得每次都是对其中一块内存进行回收，不会产生碎片等情况。其缺点是内存缩小为原来的一半。</p>
+<p><img src="https://images2015.cnblogs.com/blog/811915/201702/811915-20170228164403782-1128832964.png" alt=""></p>
+<h3 id="标记-清理算法"><a href="#标记-清理算法" class="headerlink" title="标记-清理算法"></a>标记-清理算法</h3><p>其缺点为在标记-清除的基础上还需进行对象的移动，成本相对较高，好处就是不会产生内存碎片。</p>
+<p><img src="https://images2015.cnblogs.com/blog/811915/201702/811915-20170228164444782-56804909.png" alt=""></p>
+<h2 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h2><p><img src="http://img.my.csdn.net/uploads/201210/03/1349278110_8410.jpg" alt=""></p>
+<p>如上图所示，有7种收集器，分为两块，上面为新生代收集器，下面为老年代收集器，如果两个收集器之间存在连线，就说明它们可以搭配使用。</p>
+<h3 id="Serial-串行GC-收集器"><a href="#Serial-串行GC-收集器" class="headerlink" title="Serial(串行GC)收集器"></a>Serial(串行GC)收集器</h3><p>其为一个新生代的收集器，单线程执行，使用复制算法，它在进行垃圾回收的时候，必须暂停其他所有的工作线程（用户线程），对于限定单个CPU的环境来说，Serial收集器由于没有线程交互的开销，专心做垃圾收集自然可以获得最高的单线程手机效率。</p>
+<h3 id="ParNew-并行-收集器"><a href="#ParNew-并行-收集器" class="headerlink" title="ParNew(并行)收集器"></a>ParNew(并行)收集器</h3><p>ParNew收集器就是Serial收集器的多线程版本。</p>
+<h3 id="Parallel-Scavenge-并行回收GC-收集器"><a href="#Parallel-Scavenge-并行回收GC-收集器" class="headerlink" title="Parallel Scavenge(并行回收GC)收集器"></a>Parallel Scavenge(并行回收GC)收集器</h3><p>Parallel Scavenge收集器也是一个新生代收集器，它也是使用复制算法的收集器，又是并行多线程收集器， Parallel Scavenge收集器的特点是它的关注点与其他收集器不同，CMS等收集器的关注点是尽可能缩短垃圾收集时用户线程的停顿时间，而Parallel Scavenge收集器的目标则是达到一个可控制的吞吐量，吞吐量 = 程序运行时间 / （程序运行时间 + 垃圾收集时间）。</p>
+<h3 id="Serial-Old-串行GC-收集器"><a href="#Serial-Old-串行GC-收集器" class="headerlink" title="Serial Old(串行GC)收集器"></a>Serial Old(串行GC)收集器</h3><p>其为Serial收集器的老年代版本，它同样使用一个单线程执行收集，使用“标记-整理”算法。</p>
+<h3 id="Parallel-Old-并行GC-收集器"><a href="#Parallel-Old-并行GC-收集器" class="headerlink" title="Parallel Old(并行GC)收集器"></a>Parallel Old(并行GC)收集器</h3><p>Parallel Old是Parallel Scavenge收集器的老年代版本，使用多线程和“标记-整理”算法。</p>
+<h3 id="CMS-并发GC-收集器"><a href="#CMS-并发GC-收集器" class="headerlink" title="CMS(并发GC)收集器"></a>CMS(并发GC)收集器</h3><p>CMS（Concurrent Mark Sweep）收集器是一种以获取最短回收停顿时间为目标的收集器，CMS收集器是基于“标记-清除”算法实现的，整个收集过程分为4个步骤：</p>
 <ul>
-<li><p>错误代码流程图</p>
-<p><img src="https://github.com/Glemontree/images/blob/master/images/c.JPG?raw=true" alt=""></p>
-</li>
-<li><p>解决方案流程图</p>
-<p><img src="https://github.com/Glemontree/images/blob/master/images/d.JPG?raw=true" alt=""></p>
-</li>
+<li>初始标记</li>
+<li>并发标记</li>
+<li>重新标记</li>
+<li>并发清除</li>
 </ul>
-</li>
-</ul>
-<h2 id="request乱码问题"><a href="#request乱码问题" class="headerlink" title="request乱码问题"></a>request乱码问题</h2><ul>
-<li><p>POST请求</p>
-<ul>
-<li><p>乱码流程图</p>
-<p><img src="https://github.com/Glemontree/images/blob/master/images/e.JPG?raw=true" alt=""></p>
-</li>
-<li><p>解决方案</p>
-<p>​</p>
-</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://github.com/Glemontree/images/blob/master/images/f.JPG?raw=true" alt=""></p>
-<ul>
-<li><p>GET请求</p>
-<p>问题本质是get方式传递的参数内容默认编码方式为ISO-8895-1，而且使用request.setCharacterEncoding(“utf-8”)也无法解决问题，现提供一种解决方法如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String usernameString = <span class="keyword">new</span> String(username.getBytes(<span class="string">"ISO-8859-1"</span>),<span class="string">"UTF-8"</span>);</div></pre></td></tr></table></figure>
-<p>即先将字符串用ISO-8859-1编码成字节数组，然后用UTF-8编码将字节数组转换成字符串输出。</p>
-<p>流程图如下：</p>
-<p><img src="https://github.com/Glemontree/images/blob/master/images/g.JPG?raw=true" alt=""></p>
-</li>
-</ul>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>本文主要图片和内容来自<a href="http://www.cnblogs.com/oldinaction/p/5167481.html" target="_blank" rel="external">博客</a>。</p>
+<p>其中初始标记、重新标记这两个步骤任然需要停顿其他用户线程。初始标记仅仅只是标记出GC ROOTS能直接关联到的对象，速度很快，并发标记阶段是进行GC ROOTS 根搜索算法阶段，会判定对象是否存活。而重新标记阶段则是为了修正并发标记期间，因用户程序继续运行而导致标记产生变动的那一部分对象的标记记录，这个阶段的停顿时间会被初始标记阶段稍长，但比并发标记  阶段要短。</p>
+<p>由于整个过程中耗时最长的并发标记和并发清除过程中，收集器线程都可以与用户线程一起工作，所以整体来说，CMS收集器的内存回收过程是与用户线程一起并发执行的。</p>
+<p>CMS收集器的优点：并发收集、低停顿，但是CMS还远远达不到完美，器主要有三个显著缺点：</p>
+<p>CMS收集器对CPU资源非常敏感。在并发阶段，虽然不会导致用户线程停顿，但是会占用CPU资源而导致引用程序变慢，总吞吐量下降。CMS默认启动的回收线程数是：(CPU数量+3) / 4。</p>
+<h3 id="G1收集器"><a href="#G1收集器" class="headerlink" title="G1收集器"></a>G1收集器</h3><p>G1（Garbage First）收集器是JDK1.7提供的一个新收集器，G1收集器基于“标记-整理”算法实现，不会产生内存碎片，还有一个特点就是G1将整个Java堆（包括新生代和老年代）。</p>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>本文转载自<a href="http://www.cnblogs.com/shanheyongmu/p/6484158.html" target="_blank" rel="external">Java虚拟机学习 - 垃圾收集器 （4）</a>。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Servlet/">Servlet</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Java-Servlet-乱码/">Java, Servlet, 乱码</a>
-  </div>
 
 </div>
 
@@ -195,7 +200,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2017/07/01/[Servlet] Java Web乱码/" data-title="[Servlet] Java Web乱码 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2018/03/23/[Java] Java虚拟机垃圾收集/" data-title="[Java] Java虚拟机垃圾收集 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -208,19 +213,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/07/04/[Struts2] OGNL siterator标签的使用/" title="[Struts2] OGNL s:iterator标签的使用">
-  <strong>上一篇：</strong><br/>
-  <span>
-  [Struts2] OGNL s:iterator标签的使用</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/06/30/[Servlet] HttpServletRequest/"  title="[Servlet] HttpServletRequest">
+<a href="/2018/03/20/[SpringMVC] HTTP协议中GET、PUT、DELETE、POST与幂等性/"  title="[SpringMVC] HTTP协议中GET、PUT、DELETE、POST与幂等性">
  <strong>下一篇：</strong><br/> 
- <span>[Servlet] HttpServletRequest
+ <span>[SpringMVC] HTTP协议中GET、PUT、DELETE、POST与幂等性
 </span>
 </a>
 </div>
@@ -229,7 +226,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2017/07/01/[Servlet] Java Web乱码/" data-title="[Servlet] Java Web乱码" data-url="http://yoursite.com/2017/07/01/[Servlet] Java Web乱码/"></div>
+	<div class="ds-thread" data-thread-key="2018/03/23/[Java] Java虚拟机垃圾收集/" data-title="[Java] Java虚拟机垃圾收集" data-url="http://yoursite.com/2018/03/23/[Java] Java虚拟机垃圾收集/"></div>
 </section>
 
 
@@ -240,7 +237,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#乱码"><span class="toc-number">1.</span> <span class="toc-text">乱码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#常见的编码"><span class="toc-number">2.</span> <span class="toc-text">常见的编码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#通过浏览器调用Servlet，页面显示乱码"><span class="toc-number">3.</span> <span class="toc-text">通过浏览器调用Servlet，页面显示乱码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#response乱码"><span class="toc-number">3.1.</span> <span class="toc-text">response乱码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#request乱码问题"><span class="toc-number">3.2.</span> <span class="toc-text">request乱码问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">3.3.</span> <span class="toc-text">参考</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#垃圾收集算法"><span class="toc-number">1.</span> <span class="toc-text">垃圾收集算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#标记-清除算法"><span class="toc-number">1.1.</span> <span class="toc-text">标记-清除算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复制算法"><span class="toc-number">1.2.</span> <span class="toc-text">复制算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标记-清理算法"><span class="toc-number">1.3.</span> <span class="toc-text">标记-清理算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#垃圾收集器"><span class="toc-number">2.</span> <span class="toc-text">垃圾收集器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Serial-串行GC-收集器"><span class="toc-number">2.1.</span> <span class="toc-text">Serial(串行GC)收集器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ParNew-并行-收集器"><span class="toc-number">2.2.</span> <span class="toc-text">ParNew(并行)收集器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Parallel-Scavenge-并行回收GC-收集器"><span class="toc-number">2.3.</span> <span class="toc-text">Parallel Scavenge(并行回收GC)收集器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Serial-Old-串行GC-收集器"><span class="toc-number">2.4.</span> <span class="toc-text">Serial Old(串行GC)收集器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Parallel-Old-并行GC-收集器"><span class="toc-number">2.5.</span> <span class="toc-text">Parallel Old(并行GC)收集器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CMS-并发GC-收集器"><span class="toc-number">2.6.</span> <span class="toc-text">CMS(并发GC)收集器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#G1收集器"><span class="toc-number">2.7.</span> <span class="toc-text">G1收集器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#说明"><span class="toc-number">3.</span> <span class="toc-text">说明</span></a></li></ol>
  
   </div>
 
