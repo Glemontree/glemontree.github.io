@@ -4,29 +4,34 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>[Java] Java反射为什么需要无参构造函数 | Glemontree&#39;s blog</title>
+    <title>[Redis] Redis数据类型 | Glemontree&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Glemontree">
     
 
     
-    <meta name="description" content="Java反射为什么需要无参构造函数最近在学习Spring，Spring有个关键的技术就是IOC，即控制反转，其中用到得一个重要的技术就是反射，在学习的过程中发现如果不提供一个无参的构造函数程序会报错，查了一些资料后对Java反射为什么需要无参构造函数这一知识点进行记录。
-一般来说反射是这样实现的：
-12Class class = Class.forName(className);Object ob">
+    <meta name="description" content="Redis数据类型与Memcached仅支持简单的key-value结构的数据记录不同，Redis支持的数据类型有String、List、Hash、Set和Sorted Set。
+
+Redis内部使用一个redisObject对象来表示所有的key和value，在上图中，type代表一个value对象具体是何种数据类型，encoding是不同数据类型在redis内部的存储方式，比如：type=st">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[Java] Java反射为什么需要无参构造函数">
-<meta property="og:url" content="http://yoursite.com/2017/06/28/[Java] Java反射为什么需要无参构造函数/index.html">
+<meta property="og:title" content="[Redis] Redis数据类型">
+<meta property="og:url" content="http://yoursite.com/2018/03/23/[Redis] Redis原理/index.html">
 <meta property="og:site_name" content="Glemontree's blog">
-<meta property="og:description" content="Java反射为什么需要无参构造函数最近在学习Spring，Spring有个关键的技术就是IOC，即控制反转，其中用到得一个重要的技术就是反射，在学习的过程中发现如果不提供一个无参的构造函数程序会报错，查了一些资料后对Java反射为什么需要无参构造函数这一知识点进行记录。
-一般来说反射是这样实现的：
-12Class class = Class.forName(className);Object ob">
-<meta property="og:updated_time" content="2017-06-28T09:59:44.110Z">
+<meta property="og:description" content="Redis数据类型与Memcached仅支持简单的key-value结构的数据记录不同，Redis支持的数据类型有String、List、Hash、Set和Sorted Set。
+
+Redis内部使用一个redisObject对象来表示所有的key和value，在上图中，type代表一个value对象具体是何种数据类型，encoding是不同数据类型在redis内部的存储方式，比如：type=st">
+<meta property="og:image" content="http://s3.51cto.com/wyfs02/M01/58/5C/wKiom1SvUaiAGz1-AADTt6pnZyY572.jpg">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/811915/201701/811915-20170113135937838-1351764137.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/811915/201701/811915-20170113140412463-693350201.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/811915/201701/811915-20170113141353041-1553936162.png">
+<meta property="og:updated_time" content="2018-03-23T13:40:30.922Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[Java] Java反射为什么需要无参构造函数">
-<meta name="twitter:description" content="Java反射为什么需要无参构造函数最近在学习Spring，Spring有个关键的技术就是IOC，即控制反转，其中用到得一个重要的技术就是反射，在学习的过程中发现如果不提供一个无参的构造函数程序会报错，查了一些资料后对Java反射为什么需要无参构造函数这一知识点进行记录。
-一般来说反射是这样实现的：
-12Class class = Class.forName(className);Object ob">
+<meta name="twitter:title" content="[Redis] Redis数据类型">
+<meta name="twitter:description" content="Redis数据类型与Memcached仅支持简单的key-value结构的数据记录不同，Redis支持的数据类型有String、List、Hash、Set和Sorted Set。
+
+Redis内部使用一个redisObject对象来表示所有的key和value，在上图中，type代表一个value对象具体是何种数据类型，encoding是不同数据类型在redis内部的存储方式，比如：type=st">
+<meta name="twitter:image" content="http://s3.51cto.com/wyfs02/M01/58/5C/wKiom1SvUaiAGz1-AADTt6pnZyY572.jpg">
 
     
     <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
@@ -85,14 +90,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/06/28/[Java] Java反射为什么需要无参构造函数/" title="[Java] Java反射为什么需要无参构造函数" itemprop="url">[Java] Java反射为什么需要无参构造函数</a>
+      <a href="/2018/03/23/[Redis] Redis原理/" title="[Redis] Redis数据类型" itemprop="url">[Redis] Redis数据类型</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-28T09:59:14.000Z" itemprop="datePublished"> Published 2017-06-28</time>
+    <time datetime="2018-03-23T13:16:39.000Z" itemprop="datePublished"> Published 2018-03-23</time>
     
   </p>
 </header>
@@ -101,14 +106,26 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java反射为什么需要无参构造函数"><span class="toc-number">1.</span> <span class="toc-text">Java反射为什么需要无参构造函数</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis数据类型"><span class="toc-number">1.</span> <span class="toc-text">Redis数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#String类型"><span class="toc-number">1.1.</span> <span class="toc-text">String类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hash类型"><span class="toc-number">1.2.</span> <span class="toc-text">Hash类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#List类型"><span class="toc-number">1.3.</span> <span class="toc-text">List类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Set类型"><span class="toc-number">1.4.</span> <span class="toc-text">Set类型</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<h1 id="Java反射为什么需要无参构造函数"><a href="#Java反射为什么需要无参构造函数" class="headerlink" title="Java反射为什么需要无参构造函数"></a>Java反射为什么需要无参构造函数</h1><p>最近在学习Spring，Spring有个关键的技术就是IOC，即控制反转，其中用到得一个重要的技术就是反射，在学习的过程中发现如果不提供一个无参的构造函数程序会报错，查了一些资料后对Java反射为什么需要无参构造函数这一知识点进行记录。</p>
-<p>一般来说反射是这样实现的：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Class <span class="class"><span class="keyword">class</span> </span>= Class.forName(className);</div><div class="line">Object object = <span class="class"><span class="keyword">class</span>.<span class="title">newInstance</span>()</span>;</div></pre></td></tr></table></figure>
-<p>因此，需要一个无参的构造器来生成对象。</p>
+		<h2 id="Redis数据类型"><a href="#Redis数据类型" class="headerlink" title="Redis数据类型"></a>Redis数据类型</h2><p>与Memcached仅支持简单的key-value结构的数据记录不同，Redis支持的数据类型有String、List、Hash、Set和Sorted Set。</p>
+<p><img src="http://s3.51cto.com/wyfs02/M01/58/5C/wKiom1SvUaiAGz1-AADTt6pnZyY572.jpg" alt=""></p>
+<p>Redis内部使用一个redisObject对象来表示所有的key和value，在上图中，type代表一个value对象具体是何种数据类型，encoding是不同数据类型在redis内部的存储方式，比如：type=string代表value存储的是一个普通的字符串，那么对应的encoding可以是raw或者int，如果是int则代表实际redis内部是按数值类型存储和表示这个字符串的，当然前提是这个字符串本身可以用数值表示。</p>
+<p>上图中vm字段只有打开了Redis的虚拟内存功能，此字段才会真正的分配内存，该功能默认是关闭状态的。</p>
+<h3 id="String类型"><a href="#String类型" class="headerlink" title="String类型"></a>String类型</h3><p>字符串是Redis的最基础的类型，Redis中使用的字符串是通过包装的，基于C语言字符数组实现的简单动态字符串（Simple Dynamic String, sds）一个抽象数据结构。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> sdshdr &#123;</div><div class="line">  <span class="keyword">int</span> len; <span class="comment">// len表示buf中存储的字符串的长度</span></div><div class="line">  <span class="keyword">int</span> <span class="built_in">free</span>; <span class="comment">// free表示buf中空闲空间的长度</span></div><div class="line">  <span class="keyword">char</span> buf[]; <span class="comment">// buf用来存储字符串内容</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>String是最常用的数据类型，普通的key-value都可以归为此类。</p>
+<h3 id="Hash类型"><a href="#Hash类型" class="headerlink" title="Hash类型"></a>Hash类型</h3><p>Hash是一个String类型的field和value之间的映射表，即Redis的Hash数据类型的key对应的value实际的内部存储结构是一个HashMap，因此Hash特别适合存储对象。</p>
+<p><img src="https://images2015.cnblogs.com/blog/811915/201701/811915-20170113135937838-1351764137.png" alt=""></p>
+<p>Hash类型通常用一个对象存储用户信息、商品信息、订单信息等。</p>
+<h3 id="List类型"><a href="#List类型" class="headerlink" title="List类型"></a>List类型</h3><p>Redis的List类型其实就是每一个元素都是String类型的双向链表，可以从链表的头部和尾部添加或者删除元素，因此，其既可以作为栈，也可以作为队列来使用。</p>
+<p><img src="https://images2015.cnblogs.com/blog/811915/201701/811915-20170113140412463-693350201.png" alt=""></p>
+<p>List类型通常用在好友列表、粉丝列表、消息队列、最新消息排行等场合。</p>
+<h3 id="Set类型"><a href="#Set类型" class="headerlink" title="Set类型"></a>Set类型</h3><p>Redis的Set类型是一个无序的String类型数据的集合，与List不同的是Set不能有重复的数据。实际上，Set内部是用HashMap实现的，Set只用了HashMap的key列来存储对象。</p>
+<p><img src="https://images2015.cnblogs.com/blog/811915/201701/811915-20170113141353041-1553936162.png" alt=""></p>
+<p>Set类型有取交集、并集、差集等操作，通常用在求共同好友、共同兴趣、分类标签等。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -116,13 +133,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Java/">Java</a>
+  <a class="article-category-link" href="/categories/Redis/">Redis</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Java-反射-无参构造函数/">Java, 反射, 无参构造函数</a>
+  <span></span> <a href="/tags/Redis/">Redis</a>
   </div>
 
 </div>
@@ -131,7 +148,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2017/06/28/[Java] Java反射为什么需要无参构造函数/" data-title="[Java] Java反射为什么需要无参构造函数 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2018/03/23/[Redis] Redis原理/" data-title="[Redis] Redis数据类型 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -144,19 +161,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/06/28/[网络编程] IO多路复用/" title="[网络编程] IO多路复用">
-  <strong>上一篇：</strong><br/>
-  <span>
-  [网络编程] IO多路复用</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/06/28/[Linux] Linux epoll的用法/"  title="[Linux] Linux epoll的用法">
+<a href="/2018/03/23/[Java] Java虚拟机垃圾收集/"  title="[Java] Java虚拟机垃圾收集">
  <strong>下一篇：</strong><br/> 
- <span>[Linux] Linux epoll的用法
+ <span>[Java] Java虚拟机垃圾收集
 </span>
 </a>
 </div>
@@ -165,7 +174,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2017/06/28/[Java] Java反射为什么需要无参构造函数/" data-title="[Java] Java反射为什么需要无参构造函数" data-url="http://yoursite.com/2017/06/28/[Java] Java反射为什么需要无参构造函数/"></div>
+	<div class="ds-thread" data-thread-key="2018/03/23/[Redis] Redis原理/" data-title="[Redis] Redis数据类型" data-url="http://yoursite.com/2018/03/23/[Redis] Redis原理/"></div>
 </section>
 
 
@@ -176,7 +185,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java反射为什么需要无参构造函数"><span class="toc-number">1.</span> <span class="toc-text">Java反射为什么需要无参构造函数</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis数据类型"><span class="toc-number">1.</span> <span class="toc-text">Redis数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#String类型"><span class="toc-number">1.1.</span> <span class="toc-text">String类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hash类型"><span class="toc-number">1.2.</span> <span class="toc-text">Hash类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#List类型"><span class="toc-number">1.3.</span> <span class="toc-text">List类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Set类型"><span class="toc-number">1.4.</span> <span class="toc-text">Set类型</span></a></li></ol></li></ol>
  
   </div>
 
