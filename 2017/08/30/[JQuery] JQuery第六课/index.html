@@ -1,0 +1,820 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>[JQuery] JQuery第六课 | Glemontree&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Glemontree">
+    
+
+    
+    <meta name="description" content="说明本文转自菜鸟教程。
+JQuery获取内容和属性获得内容三个简单实用的用于DOM操作的JQuery方法：
+
+text()：设置或返回所选元素的文本内容
+html()：设置或返回所选元素的内容（包括HTML标记）
+val()：设置或返回表单字段的值
+
+例如：
+123456$(&quot;#btn1&quot;).click(function()&amp;#123;  	alert(&quot;Text: &quot; + $(&quot;#test&quot;).">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[JQuery] JQuery第六课">
+<meta property="og:url" content="http://yoursite.com/2017/08/30/[JQuery] JQuery第六课/index.html">
+<meta property="og:site_name" content="Glemontree's blog">
+<meta property="og:description" content="说明本文转自菜鸟教程。
+JQuery获取内容和属性获得内容三个简单实用的用于DOM操作的JQuery方法：
+
+text()：设置或返回所选元素的文本内容
+html()：设置或返回所选元素的内容（包括HTML标记）
+val()：设置或返回表单字段的值
+
+例如：
+123456$(&quot;#btn1&quot;).click(function()&amp;#123;  	alert(&quot;Text: &quot; + $(&quot;#test&quot;).">
+<meta property="og:image" content="http://www.runoob.com/images/img_jquerydim.gif">
+<meta property="og:updated_time" content="2017-08-31T02:39:27.499Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[JQuery] JQuery第六课">
+<meta name="twitter:description" content="说明本文转自菜鸟教程。
+JQuery获取内容和属性获得内容三个简单实用的用于DOM操作的JQuery方法：
+
+text()：设置或返回所选元素的文本内容
+html()：设置或返回所选元素的内容（包括HTML标记）
+val()：设置或返回表单字段的值
+
+例如：
+123456$(&quot;#btn1&quot;).click(function()&amp;#123;  	alert(&quot;Text: &quot; + $(&quot;#test&quot;).">
+<meta name="twitter:image" content="http://www.runoob.com/images/img_jquerydim.gif">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/favicon.ico" alt="Glemontree&#39;s blog" title="Glemontree&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Glemontree&#39;s blog">Glemontree&#39;s blog</a></h1>
+				<h2 class="blog-motto">day day up!</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="http://zhannei.baidu.com/cse/search" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="Search"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/08/30/[JQuery] JQuery第六课/" title="[JQuery] JQuery第六课" itemprop="url">[JQuery] JQuery第六课</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
+		
+  <p class="article-time">
+    <time datetime="2017-08-30T07:39:34.000Z" itemprop="datePublished"> Published 2017-08-30</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#说明"><span class="toc-number">1.</span> <span class="toc-text">说明</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#JQuery获取内容和属性"><span class="toc-number">1.1.</span> <span class="toc-text">JQuery获取内容和属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#获得内容"><span class="toc-number">1.1.1.</span> <span class="toc-text">获得内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#获取属性-attr"><span class="toc-number">1.1.2.</span> <span class="toc-text">获取属性-attr()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JQuery设置内容和属性"><span class="toc-number">1.2.</span> <span class="toc-text">JQuery设置内容和属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#设置内容-text-、html-以及val"><span class="toc-number">1.2.1.</span> <span class="toc-text">设置内容-text()、html()以及val()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#text-、html-以及val-的回调函数"><span class="toc-number">1.2.2.</span> <span class="toc-text">text()、html()以及val()的回调函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置属性-attr"><span class="toc-number">1.2.3.</span> <span class="toc-text">设置属性-attr()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JQuery添加元素"><span class="toc-number">1.3.</span> <span class="toc-text">JQuery添加元素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#append"><span class="toc-number">1.3.1.</span> <span class="toc-text">append()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#prepend"><span class="toc-number">1.3.2.</span> <span class="toc-text">prepend()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过append-和prepend-方法添加若干新元素"><span class="toc-number">1.3.3.</span> <span class="toc-text">通过append()和prepend()方法添加若干新元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#after-和before"><span class="toc-number">1.3.4.</span> <span class="toc-text">after()和before()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过after-和before-方法添加若干新元素"><span class="toc-number">1.3.5.</span> <span class="toc-text">通过after()和before()方法添加若干新元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#after-、before-与append-、prepend-之间的区别"><span class="toc-number">1.3.6.</span> <span class="toc-text">after()、before()与append()、prepend()之间的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JQuery删除元素"><span class="toc-number">1.4.</span> <span class="toc-text">JQuery删除元素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#remove"><span class="toc-number">1.4.1.</span> <span class="toc-text">remove()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#empty"><span class="toc-number">1.4.2.</span> <span class="toc-text">empty()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#过滤被删除的元素"><span class="toc-number">1.4.3.</span> <span class="toc-text">过滤被删除的元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JQuery获取并设置CSS类"><span class="toc-number">1.4.4.</span> <span class="toc-text">JQuery获取并设置CSS类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例样式表"><span class="toc-number">1.4.5.</span> <span class="toc-text">实例样式表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#addClass"><span class="toc-number">1.4.6.</span> <span class="toc-text">addClass()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#removeClass"><span class="toc-number">1.4.7.</span> <span class="toc-text">removeClass()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JQuery-css-方法"><span class="toc-number">1.5.</span> <span class="toc-text">JQuery css()方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#返回CSS属性"><span class="toc-number">1.5.1.</span> <span class="toc-text">返回CSS属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置CSS属性"><span class="toc-number">1.5.2.</span> <span class="toc-text">设置CSS属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JQuery尺寸"><span class="toc-number">1.6.</span> <span class="toc-text">JQuery尺寸</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#width-和height"><span class="toc-number">1.6.1.</span> <span class="toc-text">width()和height()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#innerWidth-和innerHeight"><span class="toc-number">1.6.2.</span> <span class="toc-text">innerWidth()和innerHeight()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#outerWidth-和outerHeight"><span class="toc-number">1.6.3.</span> <span class="toc-text">outerWidth()和outerHeight()</span></a></li></ol></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>本文转自<a href="http://www.runoob.com/jquery/jquery-dom-get.html" target="_blank" rel="external">菜鸟教程</a>。</p>
+<h2 id="JQuery获取内容和属性"><a href="#JQuery获取内容和属性" class="headerlink" title="JQuery获取内容和属性"></a>JQuery获取内容和属性</h2><h3 id="获得内容"><a href="#获得内容" class="headerlink" title="获得内容"></a>获得内容</h3><p>三个简单实用的用于DOM操作的JQuery方法：</p>
+<ul>
+<li>text()：设置或返回所选元素的文本内容</li>
+<li>html()：设置或返回所选元素的内容（包括HTML标记）</li>
+<li>val()：设置或返回表单字段的值</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$("#btn1").click(function()&#123;</div><div class="line">  	alert("Text: " + $("#test").text());</div><div class="line">&#125;);</div><div class="line">$("#btn2").click(function()&#123;</div><div class="line">  	alert("HTML: " + $("#test").html());</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>下面的例子是通过JQuery的val()方法获得输入字段的值：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$("#btn1").click(function()&#123;</div><div class="line">  	alert("值为: " + $("#test").val());</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="获取属性-attr"><a href="#获取属性-attr" class="headerlink" title="获取属性-attr()"></a>获取属性-attr()</h3><p>JQuery attr()方法用于获取属性值，下面的例子为获得链接中href属性的值：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$("button").click(function()&#123;</div><div class="line">  	alert($("#runoob").attr("href"));</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="JQuery设置内容和属性"><a href="#JQuery设置内容和属性" class="headerlink" title="JQuery设置内容和属性"></a>JQuery设置内容和属性</h2><h3 id="设置内容-text-、html-以及val"><a href="#设置内容-text-、html-以及val" class="headerlink" title="设置内容-text()、html()以及val()"></a>设置内容-text()、html()以及val()</h3><ul>
+<li>text()：设置或返回所选元素的文本内容</li>
+<li>html()：设置或返回所选元素的内容（包括HTML标记）</li>
+<li>val()：设置或返回表单字段的值</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$("#btn1").click(function()&#123;</div><div class="line">    $("#test1").text("Hello world!");</div><div class="line">&#125;);</div><div class="line">$("#btn2").click(function()&#123;</div><div class="line">    $("#test2").html("<span class="tag">&lt;<span class="name">b</span>&gt;</span>Hello world!<span class="tag">&lt;/<span class="name">b</span>&gt;</span>");</div><div class="line">&#125;);</div><div class="line">$("#btn3").click(function()&#123;</div><div class="line">    $("#test3").val("RUNOOB");</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="text-、html-以及val-的回调函数"><a href="#text-、html-以及val-的回调函数" class="headerlink" title="text()、html()以及val()的回调函数"></a>text()、html()以及val()的回调函数</h3><p>text()、html()以及val()均拥有回调函数，回调函数有两个参数：被选元素列表当中当前元素的下标以及原始的值，然后以函数新值返回您希望使用的字符串：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$("#btn1").click(function() &#123;</div><div class="line">  	$("#test1").text(function(i, origText) &#123;</div><div class="line">      	return "旧文本：" + origText + " 新文本：Hello World! (index: " + i + ")";</div><div class="line">  	&#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="设置属性-attr"><a href="#设置属性-attr" class="headerlink" title="设置属性-attr()"></a>设置属性-attr()</h3><p>attr()方法用于设置/改变属性值，例如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$("button").click(function() &#123;</div><div class="line">  	$("#runoob").attr("href", "http://www.google.com");</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>attr()方法也可以同时设置多个属性，例如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$("button").click(function() &#123;</div><div class="line">  	$("#runoob").attr(&#123;</div><div class="line">		"href" : "http:www.google.com",</div><div class="line">		"title": "JQuery"</div><div class="line">	&#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="JQuery添加元素"><a href="#JQuery添加元素" class="headerlink" title="JQuery添加元素"></a>JQuery添加元素</h2><h3 id="append"><a href="#append" class="headerlink" title="append()"></a>append()</h3><p>用于在被选元素的结尾插入内容，例如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$("p").append("追加");</div></pre></td></tr></table></figure>
+<h3 id="prepend"><a href="#prepend" class="headerlink" title="prepend()"></a>prepend()</h3><p>在被选元素的开头插入内容，例如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$("p").prepend("在开头追加");</div></pre></td></tr></table></figure>
+<h3 id="通过append-和prepend-方法添加若干新元素"><a href="#通过append-和prepend-方法添加若干新元素" class="headerlink" title="通过append()和prepend()方法添加若干新元素"></a>通过append()和prepend()方法添加若干新元素</h3><p>append()和prepend()方法能够通过参数无限数量的新元素，在下面的例子中，我们创建若干个元素，这些元素可以通过text/HTML、JQuery或者JavaScript/DOM来创建，然后通过append()方法把这些新元素追加到文本中：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function appendText() &#123;</div><div class="line">  	var text1 = "<span class="tag">&lt;<span class="name">p</span>&gt;</span>文本。<span class="tag">&lt;/<span class="name">p</span>&gt;</span>"; // 使用HTML标签创建文本</div><div class="line">	var text2 = $("<span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span>").text("文本。"); // 使用JQuery创建文本</div><div class="line">	var text3 = document.createElement("p")</div><div class="line">; // 使用DOM创建文本</div><div class="line">	text3.innerHTML="文本";</div><div class="line">	$("body").append(text1, text2, text3); // 追加新元素</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="after-和before"><a href="#after-和before" class="headerlink" title="after()和before()"></a>after()和before()</h3><p>after() 方法在被选元素之后插入内容，before() 方法在被选元素之前插入内容。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$("img").after("在后面添加文本");</div><div class="line">$("img").before("在前面添加文本");</div></pre></td></tr></table></figure>
+<h3 id="通过after-和before-方法添加若干新元素"><a href="#通过after-和before-方法添加若干新元素" class="headerlink" title="通过after()和before()方法添加若干新元素"></a>通过after()和before()方法添加若干新元素</h3><p>after()和before()方法能够通过参数无限数量的新元素，在下面的例子中，我们创建若干个元素，这些元素可以通过text/HTML、JQuery或者JavaScript/DOM来创建，然后通过append()方法把这些新元素追加到文本中：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function appendText() &#123;</div><div class="line">  	var text1 = "<span class="tag">&lt;<span class="name">b</span>&gt;</span>I <span class="tag">&lt;/<span class="name">b</span>&gt;</span>"; // 使用HTML标签创建文本</div><div class="line">	var text2 = $("<span class="tag">&lt;<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span>").text("love "); // 使用JQuery创建文本</div><div class="line">	var text3 = document.createElement("big")</div><div class="line">; // 使用DOM创建文本</div><div class="line">	text3.innerHTML="JQuery!";</div><div class="line">	$("img").after(text1, text2, text3); // 追加新元素</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="after-、before-与append-、prepend-之间的区别"><a href="#after-、before-与append-、prepend-之间的区别" class="headerlink" title="after()、before()与append()、prepend()之间的区别"></a>after()、before()与append()、prepend()之间的区别</h3><p>看下面的例子：</p>
+<p>append:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></div><div class="line">  	<span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"s1"</span>&gt;</span>s1<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="xml"></span></div><div class="line">$("p").append('<span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"s2"</span>&gt;</span>s2<span class="tag">&lt;/<span class="name">span</span>&gt;</span>');</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></div><div class="line">  	<span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"s1"</span>&gt;</span>s1<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">  	<span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"s2"</span>&gt;</span>s2<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>而对于after：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></div><div class="line">  	<span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"s1"</span>&gt;</span>s1<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="xml"></span></div><div class="line">$("p").after('<span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"s2"</span>&gt;</span>s2<span class="tag">&lt;/<span class="name">span</span>&gt;</span>');</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></div><div class="line">  	<span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"s1"</span>&gt;</span>s1<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"s2"</span>&gt;</span>s2<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>可见两者的区别是：</p>
+<blockquote>
+<p>append/prepend 是在选择元素内部嵌入。</p>
+<p>after/before 是在元素外面追加。</p>
+</blockquote>
+<h2 id="JQuery删除元素"><a href="#JQuery删除元素" class="headerlink" title="JQuery删除元素"></a>JQuery删除元素</h2><p>如需删除元素和内容，有以下两个方法：</p>
+<ul>
+<li>remove()：删除被选元素及其子元素</li>
+<li>empty()：从被选元素中删除子元素</li>
+</ul>
+<h3 id="remove"><a href="#remove" class="headerlink" title="remove()"></a>remove()</h3><p>remove()方法删除被选元素及其子元素：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$("#div1").remove();</div></pre></td></tr></table></figure>
+<h3 id="empty"><a href="#empty" class="headerlink" title="empty()"></a>empty()</h3><p>empty()方法删除被选元素的子元素：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$("#div1").empty();</div></pre></td></tr></table></figure>
+<h3 id="过滤被删除的元素"><a href="#过滤被删除的元素" class="headerlink" title="过滤被删除的元素"></a>过滤被删除的元素</h3><p>remove()方法可以接收一个参数，允许对被删除元素进行过滤，该参数可以是任何JQuery选择器的语法，例如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$("p").remove(".italic");</div></pre></td></tr></table></figure>
+<p>上面的例子用于删除class=”italic”的所有p元素。</p>
+<h3 id="JQuery获取并设置CSS类"><a href="#JQuery获取并设置CSS类" class="headerlink" title="JQuery获取并设置CSS类"></a>JQuery获取并设置CSS类</h3><ul>
+<li>addClass()：向被选元素添加一个或多个类</li>
+<li>removeClass()：从被选元素删除一个或多个类</li>
+<li>toggleClass()：对被选元素进行添加/删除类的切换操作</li>
+<li>css()：设置或返回样式属性</li>
+</ul>
+<h3 id="实例样式表"><a href="#实例样式表" class="headerlink" title="实例样式表"></a>实例样式表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">.important &#123;</div><div class="line">  	font-weight: bold;</div><div class="line">  	font-size: xx-large;</div><div class="line">&#125;</div><div class="line">.blue &#123;</div><div class="line">  	color: blue;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="addClass"><a href="#addClass" class="headerlink" title="addClass()"></a>addClass()</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$("button").click(function() &#123;</div><div class="line">  	$("h1,h2,p").addClass("blue");</div><div class="line">	$("div").addClass("important");</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>在上面的例子中，在添加类时可以同时选取多个元素，当然，也可以在addClass()方法中规定多个类：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$("button").click(function() &#123;</div><div class="line">  	$("body div:first").addClass("important blue");</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="removeClass"><a href="#removeClass" class="headerlink" title="removeClass()"></a>removeClass()</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$("button").click(function() &#123;</div><div class="line">  	$("h1,h2,p").removeClass("blue");</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="JQuery-css-方法"><a href="#JQuery-css-方法" class="headerlink" title="JQuery css()方法"></a>JQuery css()方法</h2><p>css()方法用于返回或设置被选元素的一个或多个样式属性。</p>
+<h3 id="返回CSS属性"><a href="#返回CSS属性" class="headerlink" title="返回CSS属性"></a>返回CSS属性</h3><p>其语法格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">css(&quot;propertyname&quot;);</div></pre></td></tr></table></figure>
+<p>看下面的这个例子：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$("p").css("background-color");</div></pre></td></tr></table></figure>
+<h3 id="设置CSS属性"><a href="#设置CSS属性" class="headerlink" title="设置CSS属性"></a>设置CSS属性</h3><p>其语法格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">css(&#123;&quot;propertyname&quot;:&quot;value&quot;, &quot;propertyname&quot;:&quot;value&quot;,...&#125;);</div></pre></td></tr></table></figure>
+<p>看下面这个例子：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$("p").css(&#123;"background-color":"yellow", "font-size":"200%"&#125;);</div></pre></td></tr></table></figure>
+<h2 id="JQuery尺寸"><a href="#JQuery尺寸" class="headerlink" title="JQuery尺寸"></a>JQuery尺寸</h2><p>通过JQuery可以很容易处理元素和浏览器窗口的尺寸，其常用方法有：</p>
+<ul>
+<li>width()</li>
+<li>height()</li>
+<li>innerWidth()</li>
+<li>innerHeight()</li>
+<li>outerWidth()</li>
+<li>outerHeight()</li>
+</ul>
+<p>看下面这张图：</p>
+<p><img src="http://www.runoob.com/images/img_jquerydim.gif" alt=""></p>
+<h3 id="width-和height"><a href="#width-和height" class="headerlink" title="width()和height()"></a>width()和height()</h3><p>width() 方法设置或返回元素的宽度（不包括内边距、边框或外边距），height() 方法设置或返回元素的高度（不包括内边距、边框或外边距）。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$("button").click(function() &#123;</div><div class="line">  	var text = "";</div><div class="line">	text += "div的宽度是：" + $("div1").width() + "<span class="tag">&lt;<span class="name">br</span>/&gt;</span>";</div><div class="line">	text += "div的高度时：" + $("div1").height();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="innerWidth-和innerHeight"><a href="#innerWidth-和innerHeight" class="headerlink" title="innerWidth()和innerHeight()"></a>innerWidth()和innerHeight()</h3><p>innerWidth() 方法返回元素的宽度（包括内边距），innerHeight() 方法返回元素的高度（包括内边距）。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$("button").click(function()&#123;</div><div class="line">    var txt = "";</div><div class="line">    txt += "div 宽度，包含内边距: " + $("#div1").innerWidth() + "<span class="tag">&lt;/<span class="name">br</span>&gt;</span>";</div><div class="line">    txt += "div 高度，包含内边距: " + $("#div1").innerHeight();</div><div class="line">    $("#div1").html(txt);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="outerWidth-和outerHeight"><a href="#outerWidth-和outerHeight" class="headerlink" title="outerWidth()和outerHeight()"></a>outerWidth()和outerHeight()</h3><p>outerWidth() 方法返回元素的宽度（包括内边距和边框），outerHeight() 方法返回元素的高度（包括内边距和边框）。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$("button").click(function()&#123;</div><div class="line">    var txt = "";</div><div class="line">    txt += "div 宽度，包含内边距和边框: " + $("#div1").outerWidth() + "<span class="tag">&lt;/<span class="name">br</span>&gt;</span>";</div><div class="line">    txt += "div 高度，包含内边距和边框: " + $("#div1").outerHeight();</div><div class="line">    $("#div1").html(txt);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/JQuery/">JQuery</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/JQuery/">JQuery</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2017/08/30/[JQuery] JQuery第六课/" data-title="[JQuery] JQuery第六课 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/08/30/[JQuery] JQuery第七课/" title="[JQuery] JQuery第七课">
+  <strong>上一篇：</strong><br/>
+  <span>
+  [JQuery] JQuery第七课</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/08/29/[SpringMVC] SpringMVC/"  title="[SpringMVC] SpringMVC">
+ <strong>下一篇：</strong><br/> 
+ <span>[SpringMVC] SpringMVC
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/08/30/[JQuery] JQuery第六课/" data-title="[JQuery] JQuery第六课" data-url="http://yoursite.com/2017/08/30/[JQuery] JQuery第六课/"></div>
+</section>
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#说明"><span class="toc-number">1.</span> <span class="toc-text">说明</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#JQuery获取内容和属性"><span class="toc-number">1.1.</span> <span class="toc-text">JQuery获取内容和属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#获得内容"><span class="toc-number">1.1.1.</span> <span class="toc-text">获得内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#获取属性-attr"><span class="toc-number">1.1.2.</span> <span class="toc-text">获取属性-attr()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JQuery设置内容和属性"><span class="toc-number">1.2.</span> <span class="toc-text">JQuery设置内容和属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#设置内容-text-、html-以及val"><span class="toc-number">1.2.1.</span> <span class="toc-text">设置内容-text()、html()以及val()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#text-、html-以及val-的回调函数"><span class="toc-number">1.2.2.</span> <span class="toc-text">text()、html()以及val()的回调函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置属性-attr"><span class="toc-number">1.2.3.</span> <span class="toc-text">设置属性-attr()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JQuery添加元素"><span class="toc-number">1.3.</span> <span class="toc-text">JQuery添加元素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#append"><span class="toc-number">1.3.1.</span> <span class="toc-text">append()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#prepend"><span class="toc-number">1.3.2.</span> <span class="toc-text">prepend()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过append-和prepend-方法添加若干新元素"><span class="toc-number">1.3.3.</span> <span class="toc-text">通过append()和prepend()方法添加若干新元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#after-和before"><span class="toc-number">1.3.4.</span> <span class="toc-text">after()和before()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过after-和before-方法添加若干新元素"><span class="toc-number">1.3.5.</span> <span class="toc-text">通过after()和before()方法添加若干新元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#after-、before-与append-、prepend-之间的区别"><span class="toc-number">1.3.6.</span> <span class="toc-text">after()、before()与append()、prepend()之间的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JQuery删除元素"><span class="toc-number">1.4.</span> <span class="toc-text">JQuery删除元素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#remove"><span class="toc-number">1.4.1.</span> <span class="toc-text">remove()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#empty"><span class="toc-number">1.4.2.</span> <span class="toc-text">empty()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#过滤被删除的元素"><span class="toc-number">1.4.3.</span> <span class="toc-text">过滤被删除的元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JQuery获取并设置CSS类"><span class="toc-number">1.4.4.</span> <span class="toc-text">JQuery获取并设置CSS类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例样式表"><span class="toc-number">1.4.5.</span> <span class="toc-text">实例样式表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#addClass"><span class="toc-number">1.4.6.</span> <span class="toc-text">addClass()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#removeClass"><span class="toc-number">1.4.7.</span> <span class="toc-text">removeClass()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JQuery-css-方法"><span class="toc-number">1.5.</span> <span class="toc-text">JQuery css()方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#返回CSS属性"><span class="toc-number">1.5.1.</span> <span class="toc-text">返回CSS属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置CSS属性"><span class="toc-number">1.5.2.</span> <span class="toc-text">设置CSS属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JQuery尺寸"><span class="toc-number">1.6.</span> <span class="toc-text">JQuery尺寸</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#width-和height"><span class="toc-number">1.6.1.</span> <span class="toc-text">width()和height()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#innerWidth-和innerHeight"><span class="toc-number">1.6.2.</span> <span class="toc-text">innerWidth()和innerHeight()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#outerWidth-和outerHeight"><span class="toc-number">1.6.3.</span> <span class="toc-text">outerWidth()和outerHeight()</span></a></li></ol></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="glemontree" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android/" title="Android">Android<sup>15</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Boost/" title="Boost">Boost<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C/" title="C++">C++<sup>24</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CMake/" title="CMake">CMake<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/DB/" title="DB">DB<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Effective-Java/" title="Effective Java">Effective Java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/HTTPS/" title="HTTPS">HTTPS<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/IntelliJ-IDEA/" title="IntelliJ IDEA">IntelliJ IDEA<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/JQuery/" title="JQuery">JQuery<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Java/" title="Java">Java<sup>16</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>22</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/MyBatis/" title="MyBatis">MyBatis<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Qt/" title="Qt">Qt<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Redis/" title="Redis">Redis<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Servlet/" title="Servlet">Servlet<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Spring/" title="Spring">Spring<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/SpringMVC/" title="SpringMVC">SpringMVC<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Struts2/" title="Struts2">Struts2<sup>18</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/TCP-IP/" title="TCP/IP">TCP/IP<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/TCPIP/" title="TCPIP">TCPIP<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows核心编程/" title="Windows核心编程">Windows核心编程<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/html/" title="html">html<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/多线程/" title="多线程">多线程<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/编程规范/" title="编程规范">编程规范<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络编程/" title="网络编程">网络编程<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>5</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Linux-Shell/" title="Linux, Shell">Linux, Shell<sup>16</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JQuery/" title="JQuery">JQuery<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C++">C++<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java-并发/" title="Java 并发">Java 并发<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MyBatis/" title="MyBatis">MyBatis<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-boost/" title="C++ boost">C++ boost<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DB/" title="DB">DB<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Redis/" title="Redis">Redis<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/动态规划/" title="动态规划">动态规划<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SpringMVC/" title="SpringMVC">SpringMVC<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spring-AOP/" title="Spring, AOP">Spring, AOP<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Struts2-OGNL/" title="Struts2, OGNL">Struts2, OGNL<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html/" title="html">html<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MyBatis-SQL映射文件/" title="MyBatis, SQL映射文件">MyBatis, SQL映射文件<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-new-operator-new-placement-new/" title="C++, new, operator new, placement new">C++, new, operator new, placement new<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-泛型/" title="C++ 泛型">C++ 泛型<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://github.com/glemontree" target="_blank" title="GitHub">GitHub</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/u010216743" target="_blank" title="CSDN">CSDN</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">Weibo</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello World. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/glemontree" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:gtp0521@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Glemontree">Glemontree</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"glemontree"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'null'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

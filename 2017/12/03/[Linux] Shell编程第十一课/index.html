@@ -1,0 +1,826 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>[Linux] Shell编程第十一课 | Glemontree&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Glemontree">
+    
+
+    
+    <meta name="description" content="bash shell会将一些称为位置参数的特殊变量分配给输入到命令行中的所有参数，其中$0是程序名，$1是第一个参数，$2是第二个参数…
+1234567#!/bin/bashfactorial=1for (( number = 1; number &amp;lt;= $1 ; number++ ))do   factorial=[ factorial * $number ]doneecho The fa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Linux] Shell编程第十一课">
+<meta property="og:url" content="http://yoursite.com/2017/12/03/[Linux] Shell编程第十一课/index.html">
+<meta property="og:site_name" content="Glemontree's blog">
+<meta property="og:description" content="bash shell会将一些称为位置参数的特殊变量分配给输入到命令行中的所有参数，其中$0是程序名，$1是第一个参数，$2是第二个参数…
+1234567#!/bin/bashfactorial=1for (( number = 1; number &amp;lt;= $1 ; number++ ))do   factorial=[ factorial * $number ]doneecho The fa">
+<meta property="og:updated_time" content="2017-12-03T12:35:47.910Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Linux] Shell编程第十一课">
+<meta name="twitter:description" content="bash shell会将一些称为位置参数的特殊变量分配给输入到命令行中的所有参数，其中$0是程序名，$1是第一个参数，$2是第二个参数…
+1234567#!/bin/bashfactorial=1for (( number = 1; number &amp;lt;= $1 ; number++ ))do   factorial=[ factorial * $number ]doneecho The fa">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/favicon.ico" alt="Glemontree&#39;s blog" title="Glemontree&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Glemontree&#39;s blog">Glemontree&#39;s blog</a></h1>
+				<h2 class="blog-motto">day day up!</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="http://zhannei.baidu.com/cse/search" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="Search"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/12/03/[Linux] Shell编程第十一课/" title="[Linux] Shell编程第十一课" itemprop="url">[Linux] Shell编程第十一课</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
+		
+  <p class="article-time">
+    <time datetime="2017-12-03T12:18:59.000Z" itemprop="datePublished"> Published 2017-12-03</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			
+		
+		</div>
+		
+		<ul>
+<li><p>bash shell会将一些称为位置参数的特殊变量分配给输入到命令行中的所有参数，其中<code>$0</code>是程序名，<code>$1</code>是第一个参数，<code>$2</code>是第二个参数…</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">factorial=1</div><div class="line">for (( number = 1; number &lt;= $1 ; number++ ))</div><div class="line">do</div><div class="line">   factorial=[ factorial * $number ]</div><div class="line">done</div><div class="line">echo The factorial of 1 is factorial</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ./test1.sh 5</div><div class="line">The factorial of 5 is 120</div></pre></td></tr></table></figure>
+<p>需要注意的是<code>factorial=$[ $factorial * $number ]</code>这一行等号左右不可以有空格。</p>
+</li>
+</ul>
+<ul>
+<li>在将文本字符串作为参数传递时，若碰到有空格的文本字符串，需要用引号将文本字符串包起来</li>
+</ul>
+<ul>
+<li><p>读取脚本名：可以用<code>$0</code>参数获取shell在命令行启动的脚本名，例如bash test.sh，那么在shell脚本中使用<code>$0</code>获取到的脚本名为test.sh，但是有一个问题就是使用<code>./test.sh</code>运行程序时，命令会和脚本名混在一起，例如执行<code>./test.sh</code>，那么在脚本中<code>$0</code>获取到的脚本名为<code>./test.sh</code>，另外一个问题就是当传给<code>$0</code>变量的实际字符串不仅仅是脚本名，而是完整的脚本路径时，变量<code>$0</code>就是使用整个路径，例如<code>bash /home/gtp/test.sh</code>，那么在脚本中获取的值就为<code>/home/gtp/test.sh</code>，有个命令可以帮我们提取出脚本名称，basename命令会返回不包含路径的脚本名，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">name=(basename 0)</div><div class="line">if [ $name = &quot;addem&quot; ]</div><div class="line">then</div><div class="line">	total=$[ $1 + $2 ]</div><div class="line">elif [ $name = &quot;multem&quot; ]</div><div class="line">then </div><div class="line">	total=$[ $1 * $2 ]</div><div class="line">fi</div></pre></td></tr></table></figure>
+</li>
+<li><p>​在shell脚本中使用命令行参数如果脚本不加参数运行会报错，所以在脚本中使用命令行参数时一定要先判断：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">if [ -n &quot;$1&quot; ]</div><div class="line">then</div><div class="line">   echo Hello $1, glad to meet you.</div><div class="line">else</div><div class="line">   echo &quot;Sorry, you did not identify yourself&quot;</div><div class="line">fi</div></pre></td></tr></table></figure>
+</li>
+<li><p>特殊变量<code>$#</code>含有脚本运行时携带的命令行参数的个数，可以在脚本中任何地方使用这个特殊变量，就跟普通变量一样，我们通过如下形式获取到最后一个命令行参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">params=$#</div><div class="line">echo</div><div class="line">echo The last parameter is $params</div><div class="line">echo The last parameter is $&#123;!#&#125; </div><div class="line">echo</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ bash test.sh 1 2 3 4 5</div><div class="line">The last parameter is 5</div><div class="line">The last parameter is 5</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ bash test.sh </div><div class="line">The last parameter is 0</div><div class="line">The last parameter is test.sh</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>$*</code>和<code>$@</code>变量可以轻松访问所有的命令行参数，这两个变量都能够在单个变量上存储所有的命令行参数，<code>$*</code>变量会将命令行上提供的所有参数当作一个单词保存，这个单词包含了命令行上出现的每一个参数值，<code>$*</code>变量会将这些参数视为一个整体，而不是多个个体；而<code>$@</code>变量会将命令行上提供的所有参数当作同一字符串中的多个独立的单词，这样就能遍历所有的参数值，得到每一个参数值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">echo</div><div class="line">count=1</div><div class="line">for param in &quot;$*&quot;</div><div class="line">do</div><div class="line">   echo &quot;$* Parameter #count = param&quot;</div><div class="line">   count=[ count + 1 ]</div><div class="line">done</div><div class="line">echo</div><div class="line">count=1</div><div class="line">for param in &quot;$@&quot;</div><div class="line">do</div><div class="line">   echo &quot;$@ Paramter #count = param&quot;</div><div class="line">   count=[ count + 1]</div><div class="line">done</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ ./test.sh rich barbara katie jessica</div><div class="line">$* Parameter #1 = rich barbara katie jessica</div><div class="line">$@ Parameter #1 = rich</div><div class="line">$@ Parameter #2 = barbara</div><div class="line">$@ Parameter #3 = katie</div><div class="line">$@ Parameter #4 = jessica</div></pre></td></tr></table></figure>
+</li>
+<li><p>移动变量：shift命令能够用来操作命令行参数，shift命令会根据它们的相对位置来移动命令行参数，在使用shift命令时，默认情况下它会将每个参数变量向左移动一个位置，所以,变量<code>$3</code>的值会移到<code>$2</code>中,变量<code>$2</code>的值会移到<code>$1</code>中,而变量<code>$1</code>的值则会被删除(注意,变量<code>$0</code>的值,也就是程序名,不会改变)。这是遍历命令行参数的另一种方法，你可以只操作第一个参数，移动参数，然后继续操作第一个参数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">echo</div><div class="line">count=1</div><div class="line">while [ -n &quot;$1&quot; ]</div><div class="line">do</div><div class="line">	echo &quot;Parameter #$count = $1&quot;</div><div class="line">    count=$[ $count + 1 ]</div><div class="line">    shift</div><div class="line">done</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$</div><div class="line">$ ./test13.sh rich barbara katie jessica</div><div class="line">Parameter #1 = rich</div><div class="line">Parameter #2 = barbara</div><div class="line">Parameter #3 = katie</div><div class="line">Parameter #4 = jessica</div></pre></td></tr></table></figure>
+<p>使用shift命令需要注意的是如果某个参数被移出，它的值就被丢弃了，无法再恢复。</p>
+</li>
+</ul>
+<ul>
+<li><p>你可以使用shift命令来依次处理脚本程序携带的命令行参数，你也可以用同样的方法来处理命令行选项，在提取每个单独参数时，用case语句来判断某个参数是否为选项：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">echo</div><div class="line">while [ -n &quot;$1&quot; ]</div><div class="line">do </div><div class="line">  	case &quot;$1&quot; in </div><div class="line">		-a) echo &quot;Found the -a option&quot; ;;</div><div class="line">      	-b) echo &quot;Found the -a option&quot; ;;</div><div class="line">      	-c) echo &quot;Found the -c option&quot; ;;</div><div class="line">       	*) echo &quot;$1 is not an option&quot; ;;</div><div class="line">    esac</div><div class="line">    shift</div><div class="line">done</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ ./test.sh -a -b -c -d</div><div class="line">Found the -a option</div><div class="line">Found the -b option</div><div class="line">Found the -c option</div><div class="line">-d is not an option</div></pre></td></tr></table></figure>
+</li>
+<li><p>Linux中使用<code>--</code>特殊字符将选项和参数分开，shell会用双破折线来表明选项列表结束，在双破折线之后，脚本就可以放心的将剩下的命令行参数当作参数，而不是选项来处理了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">echo </div><div class="line">while [ -n &quot;$1&quot; ]</div><div class="line">do </div><div class="line">	case &quot;$1&quot; in</div><div class="line">		-a) echo &quot;Found the -a option&quot; ;;</div><div class="line">        -b) echo &quot;Found the -b option&quot; ;;</div><div class="line">        -c) echo &quot;Found the -c option&quot; ;;</div><div class="line">        --) shift</div><div class="line">            break ;;</div><div class="line">         *) echo &quot;$1 is not an option&quot; ;;</div><div class="line">    esac</div><div class="line">    shift</div><div class="line">done</div><div class="line">#</div><div class="line">count=1</div><div class="line">for param in $@</div><div class="line">do</div><div class="line">	echo &quot;Parameter #$count: $param&quot;</div><div class="line">    count=$[ $count + 1 ]</div><div class="line">done</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"> $ ./test16.sh -c -a -b -- test1 test2 test3</div><div class="line">Found the -c option</div><div class="line">Found the -a option</div><div class="line">Found the -b option</div><div class="line">Parameter #1: test1</div><div class="line">Parameter #2: test2</div><div class="line">Parameter #3: test3</div></pre></td></tr></table></figure>
+</li>
+<li><p>处理带值的选项：有些选项会带上一个额外的参数值，在这种情况下，命令行会类似于下面这种形式：<code>./test.sh -a -b test1 -c -d test2</code>，当命令行选项要求额外的参数时，脚本必须能够检测到并正确处理：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">echo</div><div class="line">while [ -n &quot;$1&quot; ]</div><div class="line">do</div><div class="line">    case &quot;$1&quot; in </div><div class="line">        -a) echo &quot;Found the -a option&quot;</div><div class="line">        -b) param=&quot;$2&quot;</div><div class="line">            echo &quot;Found the -b option, with parameter value $param&quot;</div><div class="line">            shift ;;</div><div class="line">        -c) echo &quot;Found the -c option&quot; ;;</div><div class="line">        --) shift</div><div class="line">            break ;;</div><div class="line">         *) echo &quot;$1 is not an option&quot;</div><div class="line">    esac</div><div class="line">    shift</div><div class="line">done</div><div class="line">#</div><div class="line">count=1</div><div class="line">for param in $@</div><div class="line">do</div><div class="line">    echo &quot;Parameter #$count: $param&quot;</div><div class="line">    count=$[ $count + 1 ]</div><div class="line">done</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ ./test.sh -a -b test1 -d</div><div class="line">Found the -a option</div><div class="line">Found the -b option, with parameter value test1</div><div class="line">-d is not an option</div></pre></td></tr></table></figure>
+</li>
+<li><p>getopt命令是一个处理命令行选项和参数的命令，它能够识别命令行参数，getopt命令可以接受一系列任意形式的命令行选项和参数，并自动将它们转换成适当的形式，它的命令形式如下：<code>getopt optstring parameters</code>。</p>
+<p>optstring定义了命令行有效的选项字母，还定义了哪些选项字母需要参数值，在optstring中列出你要在脚本中用到的每个命令行选项字母，然后在每个需要参数值的选项字母后加一个冒号，getopt命令会基于你定义的optstring解析提供的参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ getopt ab:cd -a -b test1 -cd test2 test3</div><div class="line">a -b test1 -c -d -- test2 test3</div></pre></td></tr></table></figure>
+<p>optstring定义了四个有效选项字母，a、b、c和d，冒号被放在了b后面，表示b选项需要一个参数值，当getopt命令运行时，它会检查提供的参数列表（<code>-a -b test1 -cd test2 test3</code>），并基于提供的optstring进行解析，它会自动将<code>-cd</code>选项分为两个独立的选项，并插入双破折线来分隔行中的额外参数。</p>
+</li>
+</ul>
+<ul>
+<li><p>可以在脚本中使用getopt来格式化脚本所携带的任何命令行选项和参数，方法是用getopt命令生成的格式化后的版本来替换已有的命令行选项和参数，这可以通过set命令做到，set命令的选项之一是双破折线<code>--</code>，它会将命令行参数替换成set命令的命令行值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">set -- $(getopt -q ab:cd &quot;$@&quot;)</div></pre></td></tr></table></figure>
+<p><code>-q</code>选项表示如果指定了一个不在optstring中的选项，默认情况下，getopt命令会产生一条错误信息，指定了<code>-q</code>选项后就可以忽略这条错误信息。</p>
+<p>现在原始的命令行参数变量的值会被getopt命令的输出替换：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">#Extract command line options &amp; values with getopt</div><div class="line">#</div><div class="line">set -- $(getopt -q ab:cd &quot;$@&quot;)</div><div class="line">#</div><div class="line">echo</div><div class="line">while [ -n &quot;$1&quot; ]</div><div class="line">do</div><div class="line">    case &quot;$1&quot; in</div><div class="line">        -a) echo &quot;Found the -a option&quot; ;;</div><div class="line">        -b) param=&quot;$2&quot;</div><div class="line">            echo &quot;Found the -b option, with parameter value $param&quot;</div><div class="line">            shift ;;</div><div class="line">        -c) echo &quot;Found the -c option&quot; ;;</div><div class="line">        --) shift</div><div class="line">            break ;;</div><div class="line">         *) echo &quot;$1 is not an option&quot;;;</div><div class="line">    esac</div><div class="line">    shift</div><div class="line">done</div><div class="line">#</div><div class="line">count=1</div><div class="line">for param in &quot;$@&quot; </div><div class="line">do</div><div class="line">    echo &quot;Parameter #$count: $param&quot;</div><div class="line">    count=$[ $count + 1 ]</div><div class="line">done</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ ./test.sh -ac</div><div class="line">Found the -a option</div><div class="line">Found the -c option</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ ./test.sh -a -b test1 -cd test2 test3 test4</div><div class="line">Found the -a option</div><div class="line">Found the -b option, with parameter value &apos;test1&apos;</div><div class="line">Found the -c option</div><div class="line">Parameter #1: &apos;test2&apos;</div><div class="line">Parameter #2: &apos;test3&apos;</div><div class="line">Parameter #3: &apos;test4&apos;</div></pre></td></tr></table></figure>
+</li>
+<li><p>getopt存在的一个问题就是当处理带空格和引号的参数值时，它会将空格当作参数分隔符，而不是根据双引号将二者当作一个参数，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./test.sh -a -b test1 -cd &quot;test2 test3&quot; test4</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Found the -a option</div><div class="line">Found the -b option, with parameter value &apos;test1&apos;</div><div class="line">Found the -c option</div><div class="line">Parameter #1: &apos;test2</div><div class="line">Parameter #2: test3&apos;</div><div class="line">Parameter #3: &apos;test4&apos;</div></pre></td></tr></table></figure>
+</li>
+<li><p>getopts一次只处理命令行上检测到的一个参数，处理完所有的参数后，它会退出并返回一个大于0的退出状态码，这让它非常适合用解析命令行所有参数的循环中： <code>getopts optstring variable</code></p>
+<p>有效的选项字母都会列在optstring中，如果选项字母要求有个参数值，就加一个冒号，要去掉错误信息的话，可以在optstring之前加一个冒号，getopts命令会将当前参数保存在命令行中定义的variable中。</p>
+<p>getopts命令会用到两个环境变量，如果选项要跟一个参数值，OPTARG环境变量就会保存这个值，OPTIND环境变量保存了参数列表中getopts正在处理的参数位置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">echo</div><div class="line">while getopts :ab:c opt</div><div class="line">do</div><div class="line">    case &quot;$opt&quot; in </div><div class="line">         a) echo &quot;Found the -a option&quot; ;;</div><div class="line">         b) echo &quot;Found the -b option, with value $OPTARG&quot; ;;</div><div class="line">         a) echo &quot;Found the -c option&quot; ;;</div><div class="line">         *) echo &quot;Unknown option: $opt&quot; ;;</div><div class="line">    esac</div><div class="line">done</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ ./test19.sh -ab test1 -c</div><div class="line">Found the -a option</div><div class="line">Found the -b option, with value test1</div><div class="line">Found the -c option</div></pre></td></tr></table></figure>
+<p>需要注意的是，getopts命令解析命令行选项时会移除开头的破折线，所以在case定义中不用单破折线。</p>
+</li>
+</ul>
+<ul>
+<li><p>getopts可以在参数中包含空格：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ./test.sh -b &quot;test1 test2&quot; -a</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Found the -b option, with value test1 test2</div><div class="line">Found the -a option</div></pre></td></tr></table></figure>
+</li>
+<li><p>选项字母和参数值放在一起使用,而不用加空格</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ./test.sh -abtest1</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Found the -a option</div><div class="line">Found the -b option, with value test1</div></pre></td></tr></table></figure>
+</li>
+<li><p>getopts还能够将命令行上找到的所有未定义的选项统一输出成问号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ./test19.sh -d</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Unknown option: ?</div></pre></td></tr></table></figure>
+</li>
+<li><p>在getopts处理每个选项时,它会将OPTIND环境变量值增一。在getopts完成处理时,你可以使用shift命令和OPTIND值来移动参数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">echo</div><div class="line">while getopts :ab:cd opt</div><div class="line">do</div><div class="line">    case &quot;$opt&quot; in</div><div class="line">        a) echo &quot;Found the -a option&quot; ;;</div><div class="line">        b) echo &quot;Found the -b option, with value $OPTARG;;</div><div class="line">        c) echo &quot;Found the -c option&quot; ;;</div><div class="line">        d) echo &quot;Found the -d option&quot; ;;  </div><div class="line">        *) echo &quot;Unknown option: $opt&quot; ;; </div><div class="line">    esac</div><div class="line">done</div><div class="line">#</div><div class="line">shift $[ OPTIND - 1 ]</div><div class="line">#</div><div class="line">echo</div><div class="line">count=1</div><div class="line">for param in &quot;$@&quot;</div><div class="line">do</div><div class="line">    echo &quot;Parameter $count: $param&quot;</div><div class="line">    count=$[ $count + 1 ]</div><div class="line">done</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ ./test.sh -a -b test1 -d test2 test3 test4</div><div class="line">Found the -a option </div><div class="line">Found the -b option, with value test1 </div><div class="line">Found the -d option </div><div class="line"></div><div class="line">Parameter 1: test2 </div><div class="line">Parameter 2: test3 </div><div class="line">Parameter 3: test4</div></pre></td></tr></table></figure>
+<p>注意：OPTIND总是存储下一个要处理的元素位置，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">echo</div><div class="line">while getopts :ab:cd opt</div><div class="line">do</div><div class="line">    case &quot;$opt&quot; in</div><div class="line">        a) echo &quot;a = $OPTIND&quot; ;;</div><div class="line">        b) echo &quot;b = $OPTIND&quot; ;;</div><div class="line">        c) echo &quot;c = $OPTIND&quot; ;;</div><div class="line">        d) echo &quot;d = $OPTIND&quot; ;;</div><div class="line">    esac</div><div class="line">done</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ ./test.sh -a -b test1 -c -d</div><div class="line">a = 2</div><div class="line">b = 4</div><div class="line">c = 5</div><div class="line">d = 6</div></pre></td></tr></table></figure>
+<p>之所以会有上述输出是因为当处理命令行参数<code>-a</code>时，下一个要处理的参数是<code>-b</code>，而<code>-b</code>参数所在的位置为2，所以a = 2，当处理<code>-b</code>时，下一个参数是test1，但test1不是命令行选项，所以跳过，因此下一个要处理的参数是<code>-c</code>，而<code>-c</code>参数所在的位置为4,后面几个输出的道理是一样的。</p>
+<p>我们看另外一种情况：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ ./test.sh -ab test1 -c -d</div><div class="line">a = 1</div><div class="line">b = 3</div><div class="line">c = 4</div><div class="line">d = 5</div></pre></td></tr></table></figure>
+<p>之所以会有上述输出是因为当成处理命令行参数<code>-a</code>时，下一个要处理的参数是b，依然在处理第一个元素，因此a = 1，当处理b时，下一个参数是test1，但test1不是命令行选项，所以跳过，一次下一个要处理的参数是<code>-c</code>，而<code>-c</code>参数所在的位置为3,后面几个输出的道理是一样的。</p>
+</li>
+</ul>
+<ul>
+<li><p>read命令从标准输入（键盘）或另一个文件描述符中接受输入，在受到输入后，read命令会将数据放进一个变量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">echo -n &quot;Enter your name: &quot;</div><div class="line">read name</div><div class="line">echo &quot;Hello $name, welcome&quot;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$./test.sh</div><div class="line">Enter your name: GTP</div><div class="line">Hello GTP, welcome</div></pre></td></tr></table></figure>
+<p>echo命令后面的<code>-n</code>选项表示不会在字符串末尾输出换行符，允许脚本用户紧跟其后输入数据，而不是下一行。</p>
+</li>
+</ul>
+<ul>
+<li><p>read命令包含了<code>-p</code>选项，允许直接在read命令行指定提示符：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">read -p &quot;Please enter your age: &quot; age</div><div class="line">days=$[ age * 365 ]</div><div class="line">echo &quot;That makes you over $days days old!&quot;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ ./test.sh</div><div class="line">Please enter your age: 10</div><div class="line">That makes you over 3650 days old!</div></pre></td></tr></table></figure>
+</li>
+<li><p>read命令会将姓和名保存在同一个变量中，read命令会将提示符后输入的所有数据分配给单个变量，要么你指定多个变量，输入的每个数据值都会分配给变量列表中的下一个变量，如果变量数量不够，剩下的数据就全部分配给最后一个变量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">read -p &quot;Enter your name: &quot; first last</div><div class="line">echo &quot;Checking data for last, first&quot;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ ./test.sh </div><div class="line">Enter your name: Rich Blum</div><div class="line">Checking data for Blum, Rich</div></pre></td></tr></table></figure>
+</li>
+<li><p>也可以在read命令中不指定变量，这样read命令会将它收到的任何数据都放进特殊环境变量REPLY中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">read -p &quot;Enter your name: &quot;</div><div class="line">echo</div><div class="line">echo Hello $REPLY, welcome!</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$./test.sh</div><div class="line">Enter your name: GTP</div><div class="line">Hello GTP, welcome!</div></pre></td></tr></table></figure>
+</li>
+<li><p>read命令可以通过-t选项指定一个计时器，指定了read命令等待输入的秒数，当计时器过期后，read命令会返回一个非零退出状态码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">if read -t 5 -p &quot;Please enter your name: &quot; name</div><div class="line">then </div><div class="line">    echo &quot;Hello $name, welcome!&quot;</div><div class="line">else </div><div class="line">    echo</div><div class="line">    echo &quot;Sorry, too slow!&quot;</div><div class="line">fi</div></pre></td></tr></table></figure>
+</li>
+<li><p>read命令还可以统计输入的字符数，当输入的字符数达到预设的字符数时，就自动退出，将输入的数据赋给变量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">#!/bin/bsh</div><div class="line">read -n1 -p &quot;Do you want to continue [Y/N]? &quot; answer</div><div class="line">case $answer in</div><div class="line">Y | y) echo </div><div class="line">       echo &quot;fine, continue on...&quot; ;;</div><div class="line">N | n) echo</div><div class="line">       echo &quot;OK, goodbye&quot;</div><div class="line">       exit ;;</div><div class="line">esac</div><div class="line">echo &quot;This is the end of the script&quot;</div></pre></td></tr></table></figure>
+<p><code>-n1</code>选项告诉read命令在接受单个字符后退出，只要按下单个字符回答后，read命令就会接受输入并将它传给变量，无需按回车键。</p>
+</li>
+</ul>
+<ul>
+<li><p>read命令的<code>-s</code>选项可以避免在read命令中输入的数据显示在显示器上（实际上数据会被显示，只是read命令会将文本颜色设成跟背景色一样）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">read -s -p &quot;Enter your password: &quot; pass</div><div class="line">echo </div><div class="line">echo &quot;Is your password really $pass? &quot;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ ./test.sh</div><div class="line">Enter your password:</div><div class="line">Is your password really T3stlng?</div></pre></td></tr></table></figure>
+<p>这样输入提示符输入的数据不会出现在屏幕上，但会赋给变量。</p>
+</li>
+</ul>
+<ul>
+<li><p>read命令可以读取文件中保存的数据，每次调用read命令， 会从文件中读取一行文本，当文件中再没有内容时，read命令会退出并返回非零退出状态码，最常见的方法是对文件使用cat命令，将结果通过管道直接传给read命令的while命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">count=1</div><div class="line">cat test | while read line</div><div class="line">do</div><div class="line">    echo &quot;Line $count: $line&quot;</div><div class="line">    count=$[ $count + 1 ]</div><div class="line">done</div><div class="line">echo &quot;Finished procession the file&quot;</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2017/12/03/[Linux] Shell编程第十一课/" data-title="[Linux] Shell编程第十一课 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/12/10/[DB] mysql的最左前缀匹配原则/" title="[DB] mysql的最左前缀匹配原则">
+  <strong>上一篇：</strong><br/>
+  <span>
+  [DB] mysql的最左前缀匹配原则</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/12/03/[Linux] Shell编程第十七课/"  title="[Linux] Shell编程第十七课">
+ <strong>下一篇：</strong><br/> 
+ <span>[Linux] Shell编程第十七课
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/12/03/[Linux] Shell编程第十一课/" data-title="[Linux] Shell编程第十一课" data-url="http://yoursite.com/2017/12/03/[Linux] Shell编程第十一课/"></div>
+</section>
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ 
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="glemontree" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android/" title="Android">Android<sup>15</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Boost/" title="Boost">Boost<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C/" title="C++">C++<sup>24</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CMake/" title="CMake">CMake<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/DB/" title="DB">DB<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Effective-Java/" title="Effective Java">Effective Java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/HTTPS/" title="HTTPS">HTTPS<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/IntelliJ-IDEA/" title="IntelliJ IDEA">IntelliJ IDEA<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/JQuery/" title="JQuery">JQuery<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Java/" title="Java">Java<sup>16</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>22</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/MyBatis/" title="MyBatis">MyBatis<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Qt/" title="Qt">Qt<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Redis/" title="Redis">Redis<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Servlet/" title="Servlet">Servlet<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Spring/" title="Spring">Spring<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/SpringMVC/" title="SpringMVC">SpringMVC<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Struts2/" title="Struts2">Struts2<sup>18</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/TCP-IP/" title="TCP/IP">TCP/IP<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/TCPIP/" title="TCPIP">TCPIP<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows核心编程/" title="Windows核心编程">Windows核心编程<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/html/" title="html">html<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/多线程/" title="多线程">多线程<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/编程规范/" title="编程规范">编程规范<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络编程/" title="网络编程">网络编程<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>5</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Linux-Shell/" title="Linux, Shell">Linux, Shell<sup>16</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JQuery/" title="JQuery">JQuery<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C++">C++<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java-并发/" title="Java 并发">Java 并发<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MyBatis/" title="MyBatis">MyBatis<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-boost/" title="C++ boost">C++ boost<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DB/" title="DB">DB<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Redis/" title="Redis">Redis<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/动态规划/" title="动态规划">动态规划<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SpringMVC/" title="SpringMVC">SpringMVC<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spring-AOP/" title="Spring, AOP">Spring, AOP<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Struts2-OGNL/" title="Struts2, OGNL">Struts2, OGNL<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html/" title="html">html<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MyBatis-SQL映射文件/" title="MyBatis, SQL映射文件">MyBatis, SQL映射文件<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-new-operator-new-placement-new/" title="C++, new, operator new, placement new">C++, new, operator new, placement new<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-泛型/" title="C++ 泛型">C++ 泛型<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://github.com/glemontree" target="_blank" title="GitHub">GitHub</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/u010216743" target="_blank" title="CSDN">CSDN</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">Weibo</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello World. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/glemontree" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:gtp0521@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Glemontree">Glemontree</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"glemontree"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'null'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

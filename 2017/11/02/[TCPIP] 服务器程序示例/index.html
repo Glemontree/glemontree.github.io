@@ -1,0 +1,790 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>[TCP/IP] 服务器程序示例 | Glemontree&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Glemontree">
+    
+
+    
+    <meta name="description" content="信号处理函数
+signal函数每次设置的信号处理函数只能生效一次，每次在进程响应处理信号时，随即将信号处理函数恢复为默认处理方式，所以如果想多次相同方式处理某个信号，通常的做法是在响应函数开始时，再次调用signal设置
+而对于sigaction函数，在信号处理程序调用时，系统建立的新信号屏蔽字会自动包括正被递送的信号，因此保证了在处理一个给定的信号时，如果这种信号再次发生，那么它会阻塞到对一个信">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[TCP/IP] 服务器程序示例">
+<meta property="og:url" content="http://yoursite.com/2017/11/02/[TCPIP] 服务器程序示例/index.html">
+<meta property="og:site_name" content="Glemontree's blog">
+<meta property="og:description" content="信号处理函数
+signal函数每次设置的信号处理函数只能生效一次，每次在进程响应处理信号时，随即将信号处理函数恢复为默认处理方式，所以如果想多次相同方式处理某个信号，通常的做法是在响应函数开始时，再次调用signal设置
+而对于sigaction函数，在信号处理程序调用时，系统建立的新信号屏蔽字会自动包括正被递送的信号，因此保证了在处理一个给定的信号时，如果这种信号再次发生，那么它会阻塞到对一个信">
+<meta property="og:updated_time" content="2017-11-02T03:19:07.967Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[TCP/IP] 服务器程序示例">
+<meta name="twitter:description" content="信号处理函数
+signal函数每次设置的信号处理函数只能生效一次，每次在进程响应处理信号时，随即将信号处理函数恢复为默认处理方式，所以如果想多次相同方式处理某个信号，通常的做法是在响应函数开始时，再次调用signal设置
+而对于sigaction函数，在信号处理程序调用时，系统建立的新信号屏蔽字会自动包括正被递送的信号，因此保证了在处理一个给定的信号时，如果这种信号再次发生，那么它会阻塞到对一个信">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/favicon.ico" alt="Glemontree&#39;s blog" title="Glemontree&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Glemontree&#39;s blog">Glemontree&#39;s blog</a></h1>
+				<h2 class="blog-motto">day day up!</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="http://zhannei.baidu.com/cse/search" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="Search"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/11/02/[TCPIP] 服务器程序示例/" title="[TCP/IP] 服务器程序示例" itemprop="url">[TCP/IP] 服务器程序示例</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
+		
+  <p class="article-time">
+    <time datetime="2017-11-02T03:17:22.000Z" itemprop="datePublished"> Published 2017-11-02</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#信号处理函数"><span class="toc-number">1.</span> <span class="toc-text">信号处理函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP回射服务器程序：main函数"><span class="toc-number">2.</span> <span class="toc-text">TCP回射服务器程序：main函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP回射服务器程序：str-echo函数"><span class="toc-number">3.</span> <span class="toc-text">TCP回射服务器程序：str_echo函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP回射客户程序：main函数"><span class="toc-number">4.</span> <span class="toc-text">TCP回射客户程序：main函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP回射客户程序：str-cli函数"><span class="toc-number">5.</span> <span class="toc-text">TCP回射客户程序：str_cli函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正常启动"><span class="toc-number">6.</span> <span class="toc-text">正常启动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正常终止"><span class="toc-number">7.</span> <span class="toc-text">正常终止</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#POSIX信号处理"><span class="toc-number">8.</span> <span class="toc-text">POSIX信号处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#处理SIGCHLD信号"><span class="toc-number">9.</span> <span class="toc-text">处理SIGCHLD信号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#wait和waitpid"><span class="toc-number">10.</span> <span class="toc-text">wait和waitpid</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="信号处理函数"><a href="#信号处理函数" class="headerlink" title="信号处理函数"></a>信号处理函数</h2><ul>
+<li>signal函数每次设置的信号处理函数只能生效一次，每次在进程响应处理信号时，随即将信号处理函数恢复为默认处理方式，所以如果想多次相同方式处理某个信号，通常的做法是在响应函数开始时，再次调用signal设置</li>
+<li>而对于sigaction函数，在信号处理程序调用时，系统建立的新信号屏蔽字会自动包括正被递送的信号，因此保证了在处理一个给定的信号时，如果这种信号再次发生，那么它会阻塞到对一个信号的处理结束为止；并且响应函数设置后会一直生效，不会重置</li>
+<li>如果希望能用相同方式处理信号的多次出现，最好用sigaction，而如果信号只出现并处理一次，可以用signal</li>
+</ul>
+<h2 id="TCP回射服务器程序：main函数"><a href="#TCP回射服务器程序：main函数" class="headerlink" title="TCP回射服务器程序：main函数"></a>TCP回射服务器程序：main函数</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"unp.h"</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>** argv)</span> </span>&#123;</div><div class="line">  <span class="keyword">int</span> listenfd, connfd;</div><div class="line">  <span class="keyword">pid_t</span> childpid;</div><div class="line">  <span class="keyword">socklen_t</span> clilen;</div><div class="line">  <span class="keyword">struct</span> sockaddr_in cliaddr, servaddr;</div><div class="line">  listenfd = Socket(AF_INET, SOCK_STREAM, <span class="number">0</span>);</div><div class="line">  bzero(&amp;servaddr, <span class="keyword">sizeof</span>(servaddr));</div><div class="line">  servaddr.sin_family = AF_INET;</div><div class="line">  servaddr.sin_addr.s_addr = htonl(INADDR_ANY);</div><div class="line">  servaddr.sin_port = htons(SERV_PORT);</div><div class="line">  Bind(listenfd, (SA*)&amp;servaddr, <span class="keyword">sizeof</span>(servaddr));</div><div class="line">  Listen(listenfd, LISTENQ);</div><div class="line">  <span class="keyword">for</span> (; ;) &#123;</div><div class="line">  	clilen = <span class="keyword">sizeof</span>(cliaddr);</div><div class="line">    connfd = Accept(listenfd, (SA*)&amp;cliaddr, &amp;clilen);</div><div class="line">    <span class="keyword">if</span> ((childpid = Fork()) == <span class="number">0</span>) &#123;</div><div class="line">  	  Close(listenfd);</div><div class="line">      str_echo(connfd);</div><div class="line">      <span class="built_in">exit</span>(<span class="number">0</span>);</div><div class="line">	&#125;</div><div class="line">    Close(connfd);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上述程序的流程如下：</p>
+<ul>
+<li>创建套接字，在待捆绑到该TCP套接字的网际网套接字地址结构中填入通配地址（INADDR_ANY）和服务器的众所周知端口（SERV_PORT，9877），捆绑通配地址是告诉系统，要是系统是多宿主机，我们将接受目的地址为任何本地接口的连接</li>
+<li>服务器阻塞于accept等待客户连接的完成</li>
+<li>fork为每个客户派生一个处理它们的子进程，子进程关闭监听套接字，而父进程关闭连接套接字，子进程接着调用str_echo处理客户</li>
+</ul>
+<h2 id="TCP回射服务器程序：str-echo函数"><a href="#TCP回射服务器程序：str-echo函数" class="headerlink" title="TCP回射服务器程序：str_echo函数"></a>TCP回射服务器程序：str_echo函数</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"unp.h"</span></span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">str_echo</span><span class="params">(<span class="keyword">int</span> sockfd)</span> </span>&#123;</div><div class="line">  <span class="keyword">ssize_t</span> n;</div><div class="line">  <span class="keyword">char</span> buf[MAXLINE];</div><div class="line">again:</div><div class="line">  <span class="keyword">while</span>((n = read(sockfd, buf, MAXLINE)) &gt; <span class="number">0</span>) &#123;</div><div class="line">  	Writen(sockfd, buf, n);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">if</span> (n &lt; <span class="number">0</span> &amp;&amp; errno == EINTR) &#123; <span class="comment">// EINTR：由于信号中断，没有读到任何数据</span></div><div class="line">  	<span class="keyword">goto</span> again;</div><div class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (n &lt; <span class="number">0</span>) &#123;</div><div class="line">  	err_sys(<span class="string">"str_echo: read error"</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="TCP回射客户程序：main函数"><a href="#TCP回射客户程序：main函数" class="headerlink" title="TCP回射客户程序：main函数"></a>TCP回射客户程序：main函数</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"unp.h"</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>** argv)</span> </span>&#123;</div><div class="line">  <span class="keyword">int</span> sockfd;</div><div class="line">  <span class="keyword">struct</span> sockaddr_in servaddr;</div><div class="line">  <span class="keyword">if</span> (argc != <span class="number">2</span>) &#123;</div><div class="line">  	err_quit(<span class="string">"usage: tcpcli &lt;IPaddress&gt;"</span>);</div><div class="line">  &#125;</div><div class="line">  sockfd = Socket(AF_INET, SOCK_STREAM, <span class="number">0</span>);</div><div class="line">  bzero(&amp;servaddr, <span class="keyword">sizeof</span>(servaddr));</div><div class="line">  servaddr.sin_family = AF_INET;</div><div class="line">  srevaddr.sin_port = htons(SERV_PORT);</div><div class="line">  Inet_pton(AF_INET, argv[<span class="number">1</span>], &amp;servaddr.sin_addr);</div><div class="line">  Connect(sockfd, (SA*)&amp;servaddr, <span class="keyword">sizeof</span>(servaddr));</div><div class="line">  str_cli(<span class="built_in">stdin</span>, sockfd);</div><div class="line">  <span class="built_in">exit</span>(<span class="number">0</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上述程序的流程如下：</p>
+<ul>
+<li>创建套接字，用服务器的IP地址和端口号装填一个网际网套接字地址结构</li>
+<li>connect服务器，str_cli函数完成剩余部分的客户处理工作</li>
+</ul>
+<h2 id="TCP回射客户程序：str-cli函数"><a href="#TCP回射客户程序：str-cli函数" class="headerlink" title="TCP回射客户程序：str_cli函数"></a>TCP回射客户程序：str_cli函数</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"	unp.h"</span></span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">str_cli</span><span class="params">(FILE* fp, <span class="keyword">int</span> sockfd)</span> </span>&#123;</div><div class="line">  <span class="keyword">char</span> sendline[MAXLINE], recvline[MAXLINE];</div><div class="line">  <span class="keyword">while</span>(Fgets(sendline, MAXLINE, fp) != <span class="literal">NULL</span>) &#123;</div><div class="line">  	Writen(sockfd, sendline, <span class="built_in">strlen</span>(sendline));</div><div class="line">    <span class="keyword">if</span> (Readline(sockfd, recvline, MAXLINE) == <span class="number">0</span>) &#123;</div><div class="line">  	  err_quit(<span class="string">"str_cli: server terminated prematurely"</span>);</div><div class="line">    &#125;</div><div class="line">    Fputs(recvline, <span class="built_in">stdout</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上述程序的流程如下：</p>
+<ul>
+<li>fgets读入一行文本，writen把该行发送给服务器</li>
+<li>readline从服务器读入回射行，fputs把它写到标准输出</li>
+</ul>
+<h2 id="正常启动"><a href="#正常启动" class="headerlink" title="正常启动"></a>正常启动</h2><p>当使用ps命令检查进程的状态时，Linux在进程阻塞于accept或connect时，WCHAN列输出wait_for_connect，在进程阻塞于套接字输入或输出时，输出tcp_data_wait，在进程阻塞于终端I/O时，输出read_chan</p>
+<h2 id="正常终止"><a href="#正常终止" class="headerlink" title="正常终止"></a>正常终止</h2><ul>
+<li>对于上面的客户端和服务器程序，当我们在客户端输入EOF字符时，fgets返回一个空指针，于是str_cli函数返回</li>
+<li>当str_cli函数返回到客户的main函数时，main通过调用exit终止</li>
+<li>进程终止处理的部分工作是关闭所有打开的描述符，因此客户打开的套接字由内核关闭，这导致客户TCP发送一个FIN给服务器，服务器TCP则以ACK响应，这就是TCP连接终止序列的前半部分，至此，服务器套接字处于CLOSE_WAIT状态，客户套接字处于FIN_WAIT_2状态</li>
+<li>当服务器TCP收到FIN时，服务器子进程阻塞于readline调用，于是readline返回0，这导致str_echo函数返回服务器子进程的main函数</li>
+<li>服务器子进程通过调用exit来终止</li>
+<li>服务器子进程中打开的所有描述符随之关闭，由子进程来关闭已连接套接字会引发TCP连接终止序列的最后两个分节：一个从服务器到客户的FIN和一个从客户到服务器的ACK，至此，连接完全终止，客户套接字进入TIME_WAIT状态。</li>
+<li>在服务器子进程终止时，给父进程发送一个SIGCHLD信号</li>
+</ul>
+<h2 id="POSIX信号处理"><a href="#POSIX信号处理" class="headerlink" title="POSIX信号处理"></a>POSIX信号处理</h2><p>信号可以由一个进程发给另一个进程，也可以由内核发给某个进程。我们可以同调用sigaction函数来设定一个信号的处置。</p>
+<ul>
+<li>可以提供一个函数，只要在特定信号发生时它就被调用，这种行为成为捕获信号，有两个信号不能被捕获，分别是SIGKILL和SIGSTOP</li>
+<li>可以把某个信号的处置设置为SIG_IGN来忽略它，SIGKILL和SIGSTOP两个信号不能被忽略</li>
+<li>可以将某个信号的处置设置为SIG_DFL来启用它的默认设置</li>
+</ul>
+<p>建立信号处理的POSIX方法是调用sigaction函数，可以像下面这样定义：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"unp.h"</span></span></div><div class="line"><span class="function">Sigfunc* <span class="title">signal</span><span class="params">(<span class="keyword">int</span> signo, Sigfunc* func)</span> </span>&#123;</div><div class="line">  <span class="keyword">struct</span> sigaction act, oact;</div><div class="line">  act.sa_handler = func;</div><div class="line">  sigemptyset(&amp;act.sa_mask);</div><div class="line">  act.sa_flags = <span class="number">0</span>;</div><div class="line">  <span class="keyword">if</span> (signo == SIGALRM) &#123;</div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> SA_INTERRUPT</span></div><div class="line">    act.sa_flags |= SA_INTERRUPT;</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">#ifdef SA_RESTART</div><div class="line">    act.sa_flags |= SA_RESTART;</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">  &#125;</div><div class="line">  <span class="keyword">if</span> (sigaction(signo, &amp;act, &amp;oact) &lt; <span class="number">0</span>) &#123;</div><div class="line">  	<span class="keyword">return</span> (SIR_ERR);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> oact.sa_handler;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>用typedef 简化函数模型</p>
+<p>函数signal的正常函数原型为:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> (*signal(<span class="keyword">int</span> signo, <span class="keyword">void</span> (func)(<span class="keyword">int</span>)))(<span class="keyword">int</span>);</div></pre></td></tr></table></figure>
+<p>我们定义如下的Sigfunc函数，这样signal的函数原型变为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">typedef</span> <span class="keyword">void</span> <span class="title">Sigfunc</span><span class="params">(<span class="keyword">int</span>)</span></span>;</div><div class="line"><span class="function">Sigfunc* <span class="title">signal</span><span class="params">(<span class="keyword">int</span>, Sigfunc* func)</span></span>;</div></pre></td></tr></table></figure>
+</li>
+<li><p>typedef定义函数类型和函数指针</p>
+</li>
+<li><p>typedef定义函数指针类型：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">int</span> <span class="params">(*<span class="keyword">fp_t</span>)</span><span class="params">(<span class="keyword">char</span> c)</span></span>;</div></pre></td></tr></table></figure>
+<p>需要注意的是函数名本身就是一个指针，所以函数名和fp_t之间可以相互赋值</p>
+</li>
+<li><p>typedef定义函数类型</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">typedef</span> <span class="keyword">int</span> <span class="title">fp_t</span><span class="params">(<span class="keyword">char</span>)</span></span>;</div></pre></td></tr></table></figure>
+<p>此时不能直接将函数名赋值给fp_t，而只能是赋值个fp_t*。</p>
+</li>
+<li><p>对于上面的程序段解释如下：</p>
+</li>
+<li><p>设置处理函数：</p>
+<p>sigaction结构的sa_handler成员被置为func参数。</p>
+</li>
+<li><p>设置处理函数的信号掩码：</p>
+<p>POSIX允许指定一组信号，它们在信号处理函数被调用时被阻塞，任何阻塞的信号都不能递交给进程，把sa_mask成员设置为空集，意味着在该信号处理函数运行期间，不阻塞额外的信号</p>
+</li>
+<li><p>SA_RESTART标志</p>
+<p>SA_RESTART表示由此信号中断的系统调用会自动重启，而如果设置为SA_INTERRUPT，则表示由此信号中断的系统调用不会自动重启</p>
+</li>
+</ul>
+<h2 id="处理SIGCHLD信号"><a href="#处理SIGCHLD信号" class="headerlink" title="处理SIGCHLD信号"></a>处理SIGCHLD信号</h2><p>设置僵死状态的目的是维护子进程的信息，以便父进程在以后某个时候获取，这些信息包括子进程的进程ID、终止状态以及资源利用时间（CPU时间、内存使用量等）。如果一个进程终止，而该进程所有子进程处于僵死状态，那么它的所有僵死子进程的父进程ID被重置为1（init进程），继承这些子进程的init进程将清理它们（init进程将wait它们，从而去除它们的僵死状态）。</p>
+<ul>
+<li><p>处理僵死进程</p>
+<p>无论何时fork子进程都得wait它们，以防它们变成僵死进程，可以建立一个俘获SIGCHLD信号的信号处理函数，在函数体中调用wait。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">sig_chld</span><span class="params">(<span class="keyword">int</span> signo)</span> </span>&#123;</div><div class="line">  <span class="keyword">pid_t</span> pid;</div><div class="line">  <span class="keyword">int</span> stat;</div><div class="line">  pid = wait(&amp;stat);</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"child %d terminated\n"</span>, pid);</div><div class="line">  <span class="keyword">return</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>处理被中断的系统调用</p>
+<p>当阻塞于某个慢系统调用的一个进程捕获某个信号且相应信号处理函数返回时，该系统调用可能返回一个EINTR错误，有些内核自动重启某些被中断的系统调用。因此，为了便于移植，当我们编写捕获信号的程序时，我们必须对慢系统调用返回EINTR有所准备。</p>
+<p>为了处理被中断的accept，可以将accept的调用放入for循环中：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (; ;) &#123;</div><div class="line">  clilen = <span class="keyword">sizeof</span>(chiaddr);</div><div class="line">  <span class="keyword">if</span> ((connfd = accept(listenfd, (SA*)&amp;cliaddr, &amp;clilen)) &lt; <span class="number">0</span>) &#123;</div><div class="line">    <span class="keyword">if</span> (errno == EINTR) &#123;</div><div class="line">      <span class="keyword">continue</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      err_sys(<span class="string">"accept error"</span>);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这段代码所做的事情就是自己重启被中断的系统调用，对于accept、read、write、select和open之类函数时合适的，不过有一个函数不能重启：connect。如果该函数返回EINTR，不能再次调用它，否则立即返回一个错误。当connect被一个捕获的信号中断而且不自动重启时，我们必须调用select来等待连接完成。</p>
+</li>
+</ul>
+<h2 id="wait和waitpid"><a href="#wait和waitpid" class="headerlink" title="wait和waitpid"></a>wait和waitpid</h2><p>这两个函数的原型如下;</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/wait.h&gt;</span></span></div><div class="line"><span class="keyword">pid_t</span> wait(<span class="keyword">int</span>* staloc);</div><div class="line"><span class="keyword">pid_t</span> waitpid(<span class="keyword">pid_t</span> pid, <span class="keyword">int</span>* staloc, <span class="keyword">int</span> options);</div></pre></td></tr></table></figure>
+<p>如果调用wait的进程没有已终止的子进程，不过有一个或多个子进程仍在执行，那么wait将阻塞到现有子进程第一个终止为止。</p>
+<p>waitpid函数就等待哪个进程以及是否阻塞给了我们更多的控制，pid参数允许我们指定想等待的进程ID，值-1表示等待第一个终止的子进程；options参数允许我们制定附加选项，最常用的选项是WNOHANG，告知内核在没有已终止子进程时不要阻塞。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/TCP-IP/">TCP/IP</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/服务器/">服务器</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2017/11/02/[TCPIP] 服务器程序示例/" data-title="[TCP/IP] 服务器程序示例 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/11/02/[TCPIP] 数据包管理/" title="[TCP/IP] 数据包管理">
+  <strong>上一篇：</strong><br/>
+  <span>
+  [TCP/IP] 数据包管理</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/11/02/[TCPIP] 基本TCP套接字编程/"  title="[TCP/IP] 基本TCP套接字编程">
+ <strong>下一篇：</strong><br/> 
+ <span>[TCP/IP] 基本TCP套接字编程
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/11/02/[TCPIP] 服务器程序示例/" data-title="[TCP/IP] 服务器程序示例" data-url="http://yoursite.com/2017/11/02/[TCPIP] 服务器程序示例/"></div>
+</section>
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#信号处理函数"><span class="toc-number">1.</span> <span class="toc-text">信号处理函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP回射服务器程序：main函数"><span class="toc-number">2.</span> <span class="toc-text">TCP回射服务器程序：main函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP回射服务器程序：str-echo函数"><span class="toc-number">3.</span> <span class="toc-text">TCP回射服务器程序：str_echo函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP回射客户程序：main函数"><span class="toc-number">4.</span> <span class="toc-text">TCP回射客户程序：main函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP回射客户程序：str-cli函数"><span class="toc-number">5.</span> <span class="toc-text">TCP回射客户程序：str_cli函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正常启动"><span class="toc-number">6.</span> <span class="toc-text">正常启动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正常终止"><span class="toc-number">7.</span> <span class="toc-text">正常终止</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#POSIX信号处理"><span class="toc-number">8.</span> <span class="toc-text">POSIX信号处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#处理SIGCHLD信号"><span class="toc-number">9.</span> <span class="toc-text">处理SIGCHLD信号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#wait和waitpid"><span class="toc-number">10.</span> <span class="toc-text">wait和waitpid</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="glemontree" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android/" title="Android">Android<sup>15</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Boost/" title="Boost">Boost<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C/" title="C++">C++<sup>24</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CMake/" title="CMake">CMake<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/DB/" title="DB">DB<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Effective-Java/" title="Effective Java">Effective Java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/HTTPS/" title="HTTPS">HTTPS<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/IntelliJ-IDEA/" title="IntelliJ IDEA">IntelliJ IDEA<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/JQuery/" title="JQuery">JQuery<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Java/" title="Java">Java<sup>16</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>22</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/MyBatis/" title="MyBatis">MyBatis<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Qt/" title="Qt">Qt<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Redis/" title="Redis">Redis<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Servlet/" title="Servlet">Servlet<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Spring/" title="Spring">Spring<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/SpringMVC/" title="SpringMVC">SpringMVC<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Struts2/" title="Struts2">Struts2<sup>18</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/TCP-IP/" title="TCP/IP">TCP/IP<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/TCPIP/" title="TCPIP">TCPIP<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows核心编程/" title="Windows核心编程">Windows核心编程<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/html/" title="html">html<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/多线程/" title="多线程">多线程<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/编程规范/" title="编程规范">编程规范<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络编程/" title="网络编程">网络编程<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>5</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Linux-Shell/" title="Linux, Shell">Linux, Shell<sup>16</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JQuery/" title="JQuery">JQuery<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C++">C++<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java-并发/" title="Java 并发">Java 并发<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MyBatis/" title="MyBatis">MyBatis<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-boost/" title="C++ boost">C++ boost<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DB/" title="DB">DB<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Redis/" title="Redis">Redis<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/动态规划/" title="动态规划">动态规划<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SpringMVC/" title="SpringMVC">SpringMVC<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spring-AOP/" title="Spring, AOP">Spring, AOP<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Struts2-OGNL/" title="Struts2, OGNL">Struts2, OGNL<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html/" title="html">html<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MyBatis-SQL映射文件/" title="MyBatis, SQL映射文件">MyBatis, SQL映射文件<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-new-operator-new-placement-new/" title="C++, new, operator new, placement new">C++, new, operator new, placement new<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-泛型/" title="C++ 泛型">C++ 泛型<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://github.com/glemontree" target="_blank" title="GitHub">GitHub</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/u010216743" target="_blank" title="CSDN">CSDN</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">Weibo</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello World. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/glemontree" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:gtp0521@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Glemontree">Glemontree</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"glemontree"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'null'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

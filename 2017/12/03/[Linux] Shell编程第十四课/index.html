@@ -1,0 +1,819 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>[Linux] Shell编程第十四课 | Glemontree&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Glemontree">
+    
+
+    
+    <meta name="description" content="有两种格式可以在shell中创建函数：
+
+采用关键字function，后跟分配给该代码块的函数名：
+123function name &amp;#123;    commands&amp;#125;
+
+更加接近于其他编程语言中定义函数的方式：
+123name() &amp;#123;  	commands&amp;#125;
+
+
+
+要在脚本中使用函数，只需要像其他shell命令一样，在行中指定函数名就可以了：
+12345678">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Linux] Shell编程第十四课">
+<meta property="og:url" content="http://yoursite.com/2017/12/03/[Linux] Shell编程第十四课/index.html">
+<meta property="og:site_name" content="Glemontree's blog">
+<meta property="og:description" content="有两种格式可以在shell中创建函数：
+
+采用关键字function，后跟分配给该代码块的函数名：
+123function name &amp;#123;    commands&amp;#125;
+
+更加接近于其他编程语言中定义函数的方式：
+123name() &amp;#123;  	commands&amp;#125;
+
+
+
+要在脚本中使用函数，只需要像其他shell命令一样，在行中指定函数名就可以了：
+12345678">
+<meta property="og:updated_time" content="2017-12-03T11:59:39.862Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Linux] Shell编程第十四课">
+<meta name="twitter:description" content="有两种格式可以在shell中创建函数：
+
+采用关键字function，后跟分配给该代码块的函数名：
+123function name &amp;#123;    commands&amp;#125;
+
+更加接近于其他编程语言中定义函数的方式：
+123name() &amp;#123;  	commands&amp;#125;
+
+
+
+要在脚本中使用函数，只需要像其他shell命令一样，在行中指定函数名就可以了：
+12345678">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/favicon.ico" alt="Glemontree&#39;s blog" title="Glemontree&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Glemontree&#39;s blog">Glemontree&#39;s blog</a></h1>
+				<h2 class="blog-motto">day day up!</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="http://zhannei.baidu.com/cse/search" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="Search"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/12/03/[Linux] Shell编程第十四课/" title="[Linux] Shell编程第十四课" itemprop="url">[Linux] Shell编程第十四课</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
+		
+  <p class="article-time">
+    <time datetime="2017-12-03T11:57:31.000Z" itemprop="datePublished"> Published 2017-12-03</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			
+		
+		</div>
+		
+		<ul>
+<li><p>有两种格式可以在shell中创建函数：</p>
+<ul>
+<li><p>采用关键字function，后跟分配给该代码块的函数名：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function name &#123;</div><div class="line">    commands</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>更加接近于其他编程语言中定义函数的方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">name() &#123;</div><div class="line">  	commands</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>要在脚本中使用函数，只需要像其他shell命令一样，在行中指定函数名就可以了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">#using a function in a script</div><div class="line">function func1 &#123;</div><div class="line">	echo &quot;This is an example of a function&quot;</div><div class="line">&#125;</div><div class="line">count=1</div><div class="line">while [ $count -le 5 ]</div><div class="line">do</div><div class="line">	func1</div><div class="line">	count=[ count + 1 ]</div><div class="line">done</div><div class="line">echo &quot;This is the end of the loop&quot;</div><div class="line">func1</div><div class="line">echo &quot;Now this is the end of the script&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>bash shell把函数当作一个小型脚本，运行结束时会返回一个退出状态码</p>
+<ul>
+<li><p>默认退出状态码</p>
+<p>默认情况下，函数的退出状态码是函数中最后一条命令返回的退出状态码，在函数执行结束后，可以用$?来确定函数的退出状态码</p>
+</li>
+<li><p>使用return命令</p>
+<p>bash shell使用return命令来退出函数并返回特定的退出状态码，return命令允许你指定一个整数值来定义函数的退出状态码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">function db1 &#123;</div><div class="line">	read -p &quot;Enter a value: &quot; value</div><div class="line">	echo &quot;doubling the value&quot;</div><div class="line">    return $[ $value * 2 ]</div><div class="line">&#125;</div><div class="line">db1</div><div class="line">echo &quot;The new value is $?&quot;</div></pre></td></tr></table></figure>
+<p>使用这种方法从函数中返回值，需小心：</p>
+<ul>
+<li><p>函数一结束就取返回值</p>
+</li>
+<li><p>退出状态码必须是0~255</p>
+</li>
+<li><p>如果在用$?变量提取函数返回值之前执行了其他命令，函数的返回值就会丢失。</p>
+</li>
+<li><p>使用函数输出，将函数的输出保存到变量中：result=’db1’，这个命令将db1函数的输出赋给$result变量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">    function db1&#123;</div><div class="line">    	read -p &quot;Enter a value: &quot; value</div><div class="line">    	echo $[ $value * 2 ]</div><div class="line">    &#125;</div><div class="line">    result=$(db1)</div><div class="line">    echo &quot;The new value is $result&quot;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>函数可以使用标准的参数环境变量来表示命令行上传给函数的参数，例如函数名会在<code>$0</code>变量中定义，函数命令行上的任何参数都会通过<code>$1</code>、<code>$2</code>等定义，也可以用特殊变量<code>$#</code>来判断传给函数的参数数目：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">function addem &#123;</div><div class="line">	if [ $# -eq 0 ] || [ $# -gt 2 ]</div><div class="line">    then </div><div class="line">         echo -1</div><div class="line">	elif [ $# -eq 1 ]</div><div class="line">    then</div><div class="line">		echo $[ $1 + $1 ]</div><div class="line">	else </div><div class="line">		echo $[ $1 + $2 ]</div><div class="line">	fi</div><div class="line">&#125;</div><div class="line">echo -n &quot;Adding 10 and 15: &quot;</div><div class="line">value=$(addem 10 15)</div><div class="line">echo $value</div></pre></td></tr></table></figure>
+<p>由于函数使用特殊参数环境变量作为自己的参数值，因此无法直接获取脚本在命令行中的参数值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">function badfunc1 &#123;</div><div class="line">	echo $[ $1 * $2 ]</div><div class="line">&#125;</div><div class="line">if [$# -eq 2] </div><div class="line">then</div><div class="line">	value=$(badfunc1)</div><div class="line">	echo &quot;The result is $value&quot;</div><div class="line">else </div><div class="line">	echo &quot;Usage: badtest1 a b&quot;</div><div class="line">fi</div></pre></td></tr></table></figure>
+<p>尽管函数也使用了<code>$1</code>和<code>$2</code>变量，但它们和脚本主体中的<code>$1</code>和<code>$2</code>变量并不相同，要在函数中使用这些值，必须在调用函数时手动将它们传过去。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">function func &#123;</div><div class="line">	echo $[ $1 * $2 ]</div><div class="line">&#125;</div><div class="line">if [$# -eq 2]</div><div class="line">then </div><div class="line">	value=$(func $1 $2)</div><div class="line">	echo &quot;The result is $value&quot;</div><div class="line">else </div><div class="line">	echo &quot;Usage: badtest a b&quot;</div><div class="line">fi</div></pre></td></tr></table></figure>
+</li>
+<li><p>在函数内部使用的任何变量都可以被声明为局部变量，只要在变量声明的前面加上local关键字即可：local temp，当然也可以在变量赋值语句中使用local关键字：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">local temp=[ value + 5 ]</div></pre></td></tr></table></figure>
+</li>
+<li><p>向函数传数组参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">functon testit &#123;</div><div class="line">	echo &quot;The parameters are: $@&quot;</div><div class="line">	thisarray=$1</div><div class="line">	echo &quot;The received array is $&#123;thisarray[*]&#125;&quot;</div><div class="line">&#125;</div><div class="line">myarray=(1 2 3 4 5)</div><div class="line">echo &quot;The original array is: $&#123;myarray[*]&#125;&quot;</div><div class="line">testit $myarray</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ ./badtest3</div><div class="line">The original array is: 1 2 3 4 5</div><div class="line">The parameters are: 1</div><div class="line">The received array is 1</div></pre></td></tr></table></figure>
+<p>如果你试图将数组变量作为函数参数，函数只会取数组变量的第一个值，要解决这个问题，你可以将该数组变量的值分解成单个的值，然后将这些值作为函数参数使用，在函数内部，可以将所有的参数重新组合成一个新的变量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">function testit &#123;</div><div class="line">	local newarray</div><div class="line">    newarray=(&apos;echo &quot;$@&quot;&apos;)</div><div class="line">    echo &quot;The new array value is: $&#123;newarray[*]&#125;&quot;</div><div class="line">&#125;</div><div class="line">myarray=(1 2 3 4 5)</div><div class="line">echo &quot;The original array is $&#123;myarray[*]&#125;&quot;</div><div class="line">testit $&#123;myarray[*]&#125;</div></pre></td></tr></table></figure>
+<p>另一个例子如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">function addarray &#123;</div><div class="line">	local sum=0</div><div class="line">    local newarray</div><div class="line">    newarray=($(echo &quot;$@&quot;))</div><div class="line">    for value in $&#123;newarray[*]&#125;</div><div class="line">    do </div><div class="line">       sum=$[ $sum + $value ]</div><div class="line">    done</div><div class="line">    echo $sum</div><div class="line">&#125;</div><div class="line">myarray=(1 2 3 4 5)</div><div class="line">echo &quot;The original array is $&#123;myarray[*]&#125;&quot;</div><div class="line">arg1=$(echo &#123;myarray[*]&#125;)</div><div class="line">result=$(addarray arg1)</div><div class="line">echo &quot;The result is $result&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>从函数里向shell脚本传回数组变量可以使用echo语句按正确顺序输出单个数组值，然后脚本再将它们放进一个新的数组变量中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">function arraydblr &#123;</div><div class="line">	local orginarray</div><div class="line">	local newarray</div><div class="line">	local elements</div><div class="line">	local i</div><div class="line">	originarray=((echo &quot;$@&quot;))</div><div class="line">	newarray=((echo &quot;$@&quot;))</div><div class="line">	elements=[ $# - 1 ]</div><div class="line">	for (( i = 0; i &lt;= $elements; i++ )) &#123;</div><div class="line">    	newarray[$i]=$[ $&#123;originarray[$i]&#125; * 2 ]</div><div class="line">    &#125;</div><div class="line">	echo $&#123;newarray[*]&#125;</div><div class="line">&#125;</div><div class="line">myarray=(1 2 3 4 5)</div><div class="line">echo &quot;The original array is: $&#123;myarray[*]&#125;&quot;</div><div class="line">arg1=(echo $&#123;myarray[*]&#125;)</div><div class="line">result=($(arraydblr arg1))</div><div class="line">echo &quot;The new array is: $&#123;result[*]&#125;&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>给一个递归的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">function factorial &#123;</div><div class="line">	if [ $1 -eq 1 ] </div><div class="line">	then</div><div class="line">		echo 1</div><div class="line">    else</div><div class="line">		local temp=$[ $1 - 1 ]</div><div class="line">		local result=$(factorial $temp)</div><div class="line">		echo $[ $result * $1 ]</div><div class="line">	fi  </div><div class="line">&#125;</div><div class="line">read -p &quot;Enter value: &quot; value</div><div class="line">result=(factorial $value)</div><div class="line">echo &quot;The factorial of value is: $result&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>bash shell 允许创建库文件，然后在多个脚本中引用该库文件，这个过程的第一步就是创建一个包含脚本中所需函数的公用库文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">$cat myfuncs</div><div class="line">function addem &#123;</div><div class="line">   echo $[ $1 + $2 ]</div><div class="line">&#125;</div><div class="line">function multem &#123;</div><div class="line">   echo $[ $1 * $2 ]</div><div class="line"></div><div class="line">&#125;</div><div class="line">function divem &#123;</div><div class="line">   if ($2 -ne 0) </div><div class="line">   then</div><div class="line">      echo $[ $1 / $2 ]</div><div class="line">   else </div><div class="line">      echo -1</div><div class="line">   fi</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>下一步就是在用到这些函数的脚本文件中包含myfuncs库文件，和环境变量一样，shell函数仅在定义它的shell会话内有效，如果你在shell命令行界面的提示符下运行myfuncs shell脚本，shell会创建一个新的shell并在其中运行这个脚本，它会为那个新的shell定义这三个函数，但当你运行另外一个要用到这些函数的脚本时，它们是无法使用的。</p>
+<p> 使用函数库的关键在于source命令，source命令会在当前shell上下文中执行命令，而不是创建一个新的shell，可以用source命令在shell脚本中运行库文件脚本，这样脚本就可以使用库中的函数了。</p>
+<p>source命令有个快捷的别名，称作点操作符，要在shell脚本中运行myfuncs库文件，只需要这样：. ./myfuncs：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">. ./myfuncs</div><div class="line"> value1=10</div><div class="line"> value2=5</div><div class="line"> result1=(addem $value1 $value2)</div><div class="line"> result2=(multem $value1 $value2)</div><div class="line"> result3=(diven $value1 $value2)</div><div class="line"> echo &quot;The result of adding them is: $result1&quot;</div><div class="line"> echo &quot;The result of multiplying them is: $result2&quot;</div><div class="line"> echo &quot;The result of dividing them is: $result3&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>在命令行上创建函数：</p>
+<ul>
+<li><p>采用单行方式定义参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ function divem &#123; echo $[ $1 + $2 ]; &#125;</div><div class="line">$ divem 100 5</div><div class="line">20</div><div class="line">$</div></pre></td></tr></table></figure>
+<p>当在命令行上定义函数时，需要在每个命令后面加上分号，这样shell就能知道在哪里是命令的起止了。</p>
+</li>
+<li><p>采用多行方式定义函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ function multem &#123;</div><div class="line">&gt; echo [ 1 * $2 ]</div><div class="line">&gt; &#125;</div><div class="line">$ multem 2 5</div><div class="line">10</div><div class="line">$</div></pre></td></tr></table></figure>
+<p>在函数的尾部使用花括号，shell就会知道你已经完成了函数的定义。</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>在命令行上定义的函数在退出shell时函数就会消失，一个好的方法就是将函数定义在一个特定的位置，这个位置在每次启动一个新shell的时候，都会由shell重新载入。</p>
+<p>可以将函数放在.bashrc中，有两种方法：</p>
+<ul>
+<li>直接在.bashrc文件中定义函数</li>
+<li>读取函数文件，只要是在shell脚本中，都可以使用source命令将库文件中的函数添加到你的.bashrc脚本中</li>
+</ul>
+<p>更好的是，shell还会将定义好的函数传给子shell进程，这样一来，这些函数就自动能够用于该shell会话的任何sehll脚本了</p>
+</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Linux/">Linux</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Linux-Shell/">Linux, Shell</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2017/12/03/[Linux] Shell编程第十四课/" data-title="[Linux] Shell编程第十四课 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/12/03/[Linux] Shell编程第十五课/" title="[Linux] Shell编程第十五课">
+  <strong>上一篇：</strong><br/>
+  <span>
+  [Linux] Shell编程第十五课</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/12/03/[Linux] Shell编程第十三课/"  title="[Linux] Shell编程第十三课">
+ <strong>下一篇：</strong><br/> 
+ <span>[Linux] Shell编程第十三课
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/12/03/[Linux] Shell编程第十四课/" data-title="[Linux] Shell编程第十四课" data-url="http://yoursite.com/2017/12/03/[Linux] Shell编程第十四课/"></div>
+</section>
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ 
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="glemontree" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android/" title="Android">Android<sup>15</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Boost/" title="Boost">Boost<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C/" title="C++">C++<sup>24</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CMake/" title="CMake">CMake<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/DB/" title="DB">DB<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Effective-Java/" title="Effective Java">Effective Java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/HTTPS/" title="HTTPS">HTTPS<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/IntelliJ-IDEA/" title="IntelliJ IDEA">IntelliJ IDEA<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/JQuery/" title="JQuery">JQuery<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Java/" title="Java">Java<sup>16</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>22</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/MyBatis/" title="MyBatis">MyBatis<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Qt/" title="Qt">Qt<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Redis/" title="Redis">Redis<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Servlet/" title="Servlet">Servlet<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Spring/" title="Spring">Spring<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/SpringMVC/" title="SpringMVC">SpringMVC<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Struts2/" title="Struts2">Struts2<sup>18</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/TCP-IP/" title="TCP/IP">TCP/IP<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/TCPIP/" title="TCPIP">TCPIP<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows核心编程/" title="Windows核心编程">Windows核心编程<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/html/" title="html">html<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/多线程/" title="多线程">多线程<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/编程规范/" title="编程规范">编程规范<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络编程/" title="网络编程">网络编程<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>5</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Linux-Shell/" title="Linux, Shell">Linux, Shell<sup>16</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JQuery/" title="JQuery">JQuery<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C++">C++<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java-并发/" title="Java 并发">Java 并发<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MyBatis/" title="MyBatis">MyBatis<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-boost/" title="C++ boost">C++ boost<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DB/" title="DB">DB<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Redis/" title="Redis">Redis<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/动态规划/" title="动态规划">动态规划<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SpringMVC/" title="SpringMVC">SpringMVC<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spring-AOP/" title="Spring, AOP">Spring, AOP<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Struts2-OGNL/" title="Struts2, OGNL">Struts2, OGNL<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html/" title="html">html<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MyBatis-SQL映射文件/" title="MyBatis, SQL映射文件">MyBatis, SQL映射文件<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-new-operator-new-placement-new/" title="C++, new, operator new, placement new">C++, new, operator new, placement new<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-泛型/" title="C++ 泛型">C++ 泛型<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://github.com/glemontree" target="_blank" title="GitHub">GitHub</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/u010216743" target="_blank" title="CSDN">CSDN</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">Weibo</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello World. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/glemontree" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:gtp0521@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Glemontree">Glemontree</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"glemontree"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'null'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

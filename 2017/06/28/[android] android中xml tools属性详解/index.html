@@ -1,0 +1,755 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>[Android] Android中xml tools属性详解 | Glemontree&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Glemontree">
+    
+
+    
+    <meta name="description" content="预览效果有些效果必须在运行之后才能看见，比如TextView在xml中没有设置任何字符，在activity中设置了text，因此为了在AS中预览效果，你可能会在xml中设置android:text属性来预览效果：
+12345&amp;lt;TextView  android:id=&quot;@+id/text_main&quot;  android:layout_width=&quot;match_parent&quot;  android:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Android] Android中xml tools属性详解">
+<meta property="og:url" content="http://yoursite.com/2017/06/28/[Android] Android中xml tools属性详解/index.html">
+<meta property="og:site_name" content="Glemontree's blog">
+<meta property="og:description" content="预览效果有些效果必须在运行之后才能看见，比如TextView在xml中没有设置任何字符，在activity中设置了text，因此为了在AS中预览效果，你可能会在xml中设置android:text属性来预览效果：
+12345&amp;lt;TextView  android:id=&quot;@+id/text_main&quot;  android:layout_width=&quot;match_parent&quot;  android:">
+<meta property="og:updated_time" content="2017-08-08T06:41:37.030Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Android] Android中xml tools属性详解">
+<meta name="twitter:description" content="预览效果有些效果必须在运行之后才能看见，比如TextView在xml中没有设置任何字符，在activity中设置了text，因此为了在AS中预览效果，你可能会在xml中设置android:text属性来预览效果：
+12345&amp;lt;TextView  android:id=&quot;@+id/text_main&quot;  android:layout_width=&quot;match_parent&quot;  android:">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/favicon.ico" alt="Glemontree&#39;s blog" title="Glemontree&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Glemontree&#39;s blog">Glemontree&#39;s blog</a></h1>
+				<h2 class="blog-motto">day day up!</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="http://zhannei.baidu.com/cse/search" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="Search"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/06/28/[Android] Android中xml tools属性详解/" title="[Android] Android中xml tools属性详解" itemprop="url">[Android] Android中xml tools属性详解</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
+		
+  <p class="article-time">
+    <time datetime="2017-06-28T10:22:09.000Z" itemprop="datePublished"> Published 2017-06-28</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#预览效果"><span class="toc-number">1.</span> <span class="toc-text">预览效果</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#tools属性的种类"><span class="toc-number">2.</span> <span class="toc-text">tools属性的种类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Lint相关的属性"><span class="toc-number">2.1.</span> <span class="toc-text">Lint相关的属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xml布局相关的属性"><span class="toc-number">2.2.</span> <span class="toc-text">xml布局相关的属性</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#tools-context"><span class="toc-number">2.2.0.0.0.1.</span> <span class="toc-text">tools:context</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#tools-menu"><span class="toc-number">2.2.0.0.0.2.</span> <span class="toc-text">tools:menu</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#tools-actionBarNavMode"><span class="toc-number">2.2.0.0.0.3.</span> <span class="toc-text">tools:actionBarNavMode</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#listitem，listheader，listfooter属性"><span class="toc-number">2.2.0.0.0.4.</span> <span class="toc-text">listitem，listheader，listfooter属性</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#layout属性"><span class="toc-number">2.2.0.0.0.5.</span> <span class="toc-text">layout属性</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#tools-showIn"><span class="toc-number">2.2.0.0.0.6.</span> <span class="toc-text">tools:showIn</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+		
+		</div>
+		
+		<h1 id="预览效果"><a href="#预览效果" class="headerlink" title="预览效果"></a>预览效果</h1><p>有些效果必须在运行之后才能看见，比如TextView在xml中没有设置任何字符，在activity中设置了text，因此为了在AS中预览效果，你可能会在xml中设置android:text属性来预览效果：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;TextView</div><div class="line">  android:id=<span class="string">"@+id/text_main"</span></div><div class="line">  android:layout_width=<span class="string">"match_parent"</span></div><div class="line">  android:layout_height=<span class="string">"wrap_content"</span></div><div class="line">  android:text=<span class="string">"Hello"</span>/&gt;</div></pre></td></tr></table></figure>
+<p>一般这样做之后在最终发布之前你仍然需要将<code>android:text=&quot;Hello&quot;</code>这行代码删除，但是存在的问题就是你很可能会忘记，而且如果代码中存在很多这样的代码，删除也是个很大的工作量，这时候你应该想到tools，我们只需要用如下的方法即可解决：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xmlns:tools=<span class="string">"http://schemas.android.com/tools"</span></div></pre></td></tr></table></figure>
+<p>tools可以告诉AS，哪些属性在运行的时候是被忽略的，只在设计的时候可以看到，在运行的时候tools本身也是被忽略的，不会被带进APK中。</p>
+<h1 id="tools属性的种类"><a href="#tools属性的种类" class="headerlink" title="tools属性的种类"></a>tools属性的种类</h1><p>tools属性可以分为两类，一种是影响Lint提示的，一种是关于xml布局设计的。</p>
+<h2 id="Lint相关的属性"><a href="#Lint相关的属性" class="headerlink" title="Lint相关的属性"></a>Lint相关的属性</h2><p>lint相关的属性主要有以下三个：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">tools:ignore</div><div class="line">tools:targetApi</div><div class="line">tools:locale</div></pre></td></tr></table></figure>
+<ul>
+<li><p>tools:ignore</p>
+<p>ignore属性时告诉lint忽略xml中的某些警告，假设我们有个ImageView如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;ImageView</div><div class="line">  android:layout_width=<span class="string">"wrap_content"</span></div><div class="line">  android:layout_height=<span class="string">"wrap_content"</span></div><div class="line">  android:scaleType=<span class="string">"center"</span></div><div class="line">  android:src=<span class="string">"@drawable/divider"</span>/&gt;</div></pre></td></tr></table></figure>
+<p>Lint会提示ImageView缺少android:contentDescription属性，我们可以使用tools:ignore来忽略这个警告：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;ImageView</div><div class="line">  android:layout_width=<span class="string">"wrap_content"</span></div><div class="line">  android:layout_height=<span class="string">"wrap_content"</span></div><div class="line">  android:scaleType=<span class="string">"center"</span></div><div class="line">  android:src=<span class="string">"@drawable/divider"</span></div><div class="line">  tools:ignore=<span class="string">"contentDescription"</span>/&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>tools:targetApi</p>
+<p>假设minSdkLevel 为15，而你使用了api21中的控件如RippleDrawable</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;ripple xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></div><div class="line">  android:color=<span class="string">"@color/accent_color"</span>/&gt;</div></pre></td></tr></table></figure>
+<p>那么Lint会提示警告，为了不显示这个警告，可以这样：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;ripple xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></div><div class="line">  xmlns:tools=<span class="string">"http://schemas.android.com/tools"</span></div><div class="line">  android:color=<span class="string">"@color/accent_color"</span></div><div class="line">  tools:targetApi=<span class="string">"LOLLIPOP"</span>/&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>tools:locale属性</p>
+<p>默认情况下res/values/strings.xml中的字符串会执行拼写检查，如果不是英语，会提示拼写错误，通过以下代码来告诉AS本地语言不是英语：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;resources</div><div class="line">  xmlns:android="http://schemas.android.com/apk/res/android"</div><div class="line">  xmlns:tools="http://schemas.android.com/tools"</div><div class="line">  tools:locale="it"&gt;</div><div class="line">&lt;/resources&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="xml布局相关的属性"><a href="#xml布局相关的属性" class="headerlink" title="xml布局相关的属性"></a>xml布局相关的属性</h2><p>xml布局相关的属性主要有以下几个：</p>
+<ul>
+<li>tools:context</li>
+<li>tools:menu</li>
+<li>tools:actionBarNavMode</li>
+<li>tools:listitem/listheader/listfooter</li>
+<li>tools:showIn</li>
+<li>tools:layout</li>
+</ul>
+<h6 id="tools-context"><a href="#tools-context" class="headerlink" title="tools:context"></a>tools:context</h6><p>该属性的值通常是activity的完整包名，例如：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;LinearLayout</div><div class="line">  xmlns:android="http://schemas.android.com/apk/res/android"</div><div class="line">  xmlns:tools="http://schemas.adnroid.com/tools"</div><div class="line">  android:id="@+id/container"</div><div class="line">  android:layout_width="match_parent"</div><div class="line">  android:lauouy_height="match_parent"</div><div class="line">  android:orientation="vertical"</div><div class="line">  tools:context="com.android.example.MainActivity"&gt;</div><div class="line">&lt;/LinearLayout&gt;</div></pre></td></tr></table></figure>
+<h6 id="tools-menu"><a href="#tools-menu" class="headerlink" title="tools:menu"></a>tools:menu</h6><p>告诉AS在预览窗口中使用哪个菜单，这个菜单将显示在layout的根结点上（actionbar的位置）。</p>
+<p>其实预览窗口非常智能，如果布局和一个activity关联（tools:context进行关联），它将会自动查询相关activity的onCreateOptionsMenu方法中的代码，以显示菜单，而menu属性可以覆盖这种行为。</p>
+<p>还以可以在menu属性中定义多个菜单资源，不同的菜单资源之间用逗号隔开。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tools:menu=<span class="string">"menu_main,menu_edit"</span></div></pre></td></tr></table></figure>
+<p>如果不希望在预览图中显示菜单则：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tools:menu=&quot;&quot;</div></pre></td></tr></table></figure>
+<p>需要注意的是：<strong>当主题为Theme.AppCompat时，这个属性不起作用</strong></p>
+<h6 id="tools-actionBarNavMode"><a href="#tools-actionBarNavMode" class="headerlink" title="tools:actionBarNavMode"></a>tools:actionBarNavMode</h6><p>这个属性告诉AS，app bar的显示模式，其值可以是：</p>
+<ul>
+<li>standard</li>
+<li>tabs</li>
+<li>list</li>
+</ul>
+<p>同样的，当主题为Theme.AppCompat或者Theme.Material该属性不起作用，只有holo主题才有效。</p>
+<h6 id="listitem，listheader，listfooter属性"><a href="#listitem，listheader，listfooter属性" class="headerlink" title="listitem，listheader，listfooter属性"></a>listitem，listheader，listfooter属性</h6><p>指在ListView或ExpandableListView等的预览效果中添加头部、尾部以及子item的预览布局。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;GridView</div><div class="line"> android:id=<span class="string">"@+id/list"</span></div><div class="line"> android:layout_width=<span class="string">"match_parent"</span></div><div class="line"> android:layout_height=<span class="string">"wrap_content"</span></div><div class="line"> tools:listheader=<span class="string">"@layout/list_header"</span></div><div class="line"> tools:listitem=<span class="string">"@layout/list_item"</span></div><div class="line"> tools:listfooter=<span class="string">"@layout/list_footer"</span> /&gt;</div></pre></td></tr></table></figure>
+<h6 id="layout属性"><a href="#layout属性" class="headerlink" title="layout属性"></a>layout属性</h6><p>tools:layout告诉AS，fragment在程序预览的时候该显示什么样：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;fragment xmlns=<span class="string">"http://schemas.android.com/apk/res/android"</span></div><div class="line">  xmlns:tools=<span class="string">"http://schemas.android.com/tools"</span></div><div class="line">  android:id=<span class="string">"@+id/item_list"</span></div><div class="line">  android:name=<span class="string">"com.example.fragmenttwopanel.ItemListFragment"</span></div><div class="line">  android:layout_width=<span class="string">"match_parent"</span></div><div class="line">  android:layout_height=<span class="string">"match_parent"</span></div><div class="line">  android:layout_marginLeft=<span class="string">"16dp"</span></div><div class="line">  android:layout_marginRight=<span class="string">"16dp"</span></div><div class="line">  tools:layout=<span class="string">"@android:layout/list_content"</span> /&gt;</div></pre></td></tr></table></figure>
+<h6 id="tools-showIn"><a href="#tools-showIn" class="headerlink" title="tools:showIn"></a>tools:showIn</h6><p>该属性设置与一个被其他布局<code>&lt;include&gt;</code>的布局的根元素上，这样可以指向包含此布局的其中一个布局，在设计时这个被包含的布局会带着周围的外部布局被渲染。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>本文摘录自<a href="http://blog.csdn.net/meegomeego/article/details/49176055" target="_blank" rel="external"><a href="http://my.csdn.net/meegomeego" target="_blank" rel="external">speedboy007的博客</a></a>，需要了解更多的可以去详细阅读！</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android/">Android</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android-xml-tools/">Android, xml-tools</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2017/06/28/[Android] Android中xml tools属性详解/" data-title="[Android] Android中xml tools属性详解 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/06/28/[Android] Android_监听电池电量/" title="[Android] Android_监听电池电量">
+  <strong>上一篇：</strong><br/>
+  <span>
+  [Android] Android_监听电池电量</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/06/28/[C++] assert用法/"  title="[C++] assert用法">
+ <strong>下一篇：</strong><br/> 
+ <span>[C++] assert用法
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/06/28/[Android] Android中xml tools属性详解/" data-title="[Android] Android中xml tools属性详解" data-url="http://yoursite.com/2017/06/28/[Android] Android中xml tools属性详解/"></div>
+</section>
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#预览效果"><span class="toc-number">1.</span> <span class="toc-text">预览效果</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#tools属性的种类"><span class="toc-number">2.</span> <span class="toc-text">tools属性的种类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Lint相关的属性"><span class="toc-number">2.1.</span> <span class="toc-text">Lint相关的属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xml布局相关的属性"><span class="toc-number">2.2.</span> <span class="toc-text">xml布局相关的属性</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#tools-context"><span class="toc-number">2.2.0.0.0.1.</span> <span class="toc-text">tools:context</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#tools-menu"><span class="toc-number">2.2.0.0.0.2.</span> <span class="toc-text">tools:menu</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#tools-actionBarNavMode"><span class="toc-number">2.2.0.0.0.3.</span> <span class="toc-text">tools:actionBarNavMode</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#listitem，listheader，listfooter属性"><span class="toc-number">2.2.0.0.0.4.</span> <span class="toc-text">listitem，listheader，listfooter属性</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#layout属性"><span class="toc-number">2.2.0.0.0.5.</span> <span class="toc-text">layout属性</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#tools-showIn"><span class="toc-number">2.2.0.0.0.6.</span> <span class="toc-text">tools:showIn</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="glemontree" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android/" title="Android">Android<sup>15</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Boost/" title="Boost">Boost<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C/" title="C++">C++<sup>24</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CMake/" title="CMake">CMake<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/DB/" title="DB">DB<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Effective-Java/" title="Effective Java">Effective Java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/HTTPS/" title="HTTPS">HTTPS<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/IntelliJ-IDEA/" title="IntelliJ IDEA">IntelliJ IDEA<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/JQuery/" title="JQuery">JQuery<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Java/" title="Java">Java<sup>16</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>22</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/MyBatis/" title="MyBatis">MyBatis<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Qt/" title="Qt">Qt<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Redis/" title="Redis">Redis<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Servlet/" title="Servlet">Servlet<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Spring/" title="Spring">Spring<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/SpringMVC/" title="SpringMVC">SpringMVC<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Struts2/" title="Struts2">Struts2<sup>18</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/TCP-IP/" title="TCP/IP">TCP/IP<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/TCPIP/" title="TCPIP">TCPIP<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows核心编程/" title="Windows核心编程">Windows核心编程<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/html/" title="html">html<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/多线程/" title="多线程">多线程<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/编程规范/" title="编程规范">编程规范<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络编程/" title="网络编程">网络编程<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>5</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Linux-Shell/" title="Linux, Shell">Linux, Shell<sup>16</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JQuery/" title="JQuery">JQuery<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C++">C++<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java-并发/" title="Java 并发">Java 并发<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MyBatis/" title="MyBatis">MyBatis<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-boost/" title="C++ boost">C++ boost<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DB/" title="DB">DB<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Redis/" title="Redis">Redis<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/动态规划/" title="动态规划">动态规划<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SpringMVC/" title="SpringMVC">SpringMVC<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spring-AOP/" title="Spring, AOP">Spring, AOP<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Struts2-OGNL/" title="Struts2, OGNL">Struts2, OGNL<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html/" title="html">html<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MyBatis-SQL映射文件/" title="MyBatis, SQL映射文件">MyBatis, SQL映射文件<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-new-operator-new-placement-new/" title="C++, new, operator new, placement new">C++, new, operator new, placement new<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-泛型/" title="C++ 泛型">C++ 泛型<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://github.com/glemontree" target="_blank" title="GitHub">GitHub</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/u010216743" target="_blank" title="CSDN">CSDN</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">Weibo</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello World. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/glemontree" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:gtp0521@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Glemontree">Glemontree</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"glemontree"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'null'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

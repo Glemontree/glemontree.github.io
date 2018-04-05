@@ -1,0 +1,786 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>[DB] 事务的隔离级别 | Glemontree&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Glemontree">
+    
+
+    
+    <meta name="description" content="数据库事务有不同的隔离级别，不同的隔离级别对锁的使用是不同的，锁的应用最终导致不同事务的隔离级别。
+
+隔离级别有以下四种：
+
+读未提交（Read Uncommitted）
+读已提交（Read Committed）大多数数据库默认的隔离级别
+可重复读（Repeatable-Read）mysql数据库默认的级别
+序列化（serializable）
+
+
+看下面这个例子，A修改事务级别为未提交读，并开始">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[DB] 事务的隔离级别">
+<meta property="og:url" content="http://yoursite.com/2017/12/15/[DB] 事务的隔离级别/index.html">
+<meta property="og:site_name" content="Glemontree's blog">
+<meta property="og:description" content="数据库事务有不同的隔离级别，不同的隔离级别对锁的使用是不同的，锁的应用最终导致不同事务的隔离级别。
+
+隔离级别有以下四种：
+
+读未提交（Read Uncommitted）
+读已提交（Read Committed）大多数数据库默认的隔离级别
+可重复读（Repeatable-Read）mysql数据库默认的级别
+序列化（serializable）
+
+
+看下面这个例子，A修改事务级别为未提交读，并开始">
+<meta property="og:image" content="https://pic2.zhimg.com/50/v2-f3f7a559c42064af5102ab95388d654d_hd.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/50/v2-4ae7a68c02f2a64605faa60908e72e1d_hd.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/50/v2-ce2497f31b85344940ad46e9f20a3626_hd.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/50/v2-ef013f5c7c697460311c30e5211b4afe_hd.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/50/v2-579f1ebaac2616411603687b6a6b6160_hd.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/50/v2-501201e5e87e1b9b94f5410fc1e60435_hd.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/50/v2-bb86e5eaaa89d342125a426c05a096a0_hd.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/50/v2-f1ed9b67af09782dc16b832a2796907b_hd.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/50/v2-30a832483a152dc31c818de21acf737a_hd.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/50/v2-fd2565c4437cfd385f408e5535694169_hd.jpg">
+<meta property="og:updated_time" content="2017-12-15T03:09:37.713Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[DB] 事务的隔离级别">
+<meta name="twitter:description" content="数据库事务有不同的隔离级别，不同的隔离级别对锁的使用是不同的，锁的应用最终导致不同事务的隔离级别。
+
+隔离级别有以下四种：
+
+读未提交（Read Uncommitted）
+读已提交（Read Committed）大多数数据库默认的隔离级别
+可重复读（Repeatable-Read）mysql数据库默认的级别
+序列化（serializable）
+
+
+看下面这个例子，A修改事务级别为未提交读，并开始">
+<meta name="twitter:image" content="https://pic2.zhimg.com/50/v2-f3f7a559c42064af5102ab95388d654d_hd.jpg">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/favicon.ico" alt="Glemontree&#39;s blog" title="Glemontree&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Glemontree&#39;s blog">Glemontree&#39;s blog</a></h1>
+				<h2 class="blog-motto">day day up!</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="http://zhannei.baidu.com/cse/search" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="Search"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/12/15/[DB] 事务的隔离级别/" title="[DB] 事务的隔离级别" itemprop="url">[DB] 事务的隔离级别</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
+		
+  <p class="article-time">
+    <time datetime="2017-12-15T02:39:53.000Z" itemprop="datePublished"> Published 2017-12-15</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			
+		
+		</div>
+		
+		<ul>
+<li><p>数据库事务有不同的隔离级别，不同的隔离级别对锁的使用是不同的，锁的应用最终导致不同事务的隔离级别。</p>
+</li>
+<li><p>隔离级别有以下四种：</p>
+<ul>
+<li>读未提交（Read Uncommitted）</li>
+<li>读已提交（Read Committed）大多数数据库默认的隔离级别</li>
+<li>可重复读（Repeatable-Read）mysql数据库默认的级别</li>
+<li>序列化（serializable）</li>
+</ul>
+</li>
+<li><p>看下面这个例子，A修改事务级别为未提交读，并开始事务，对user表做一次查询：</p>
+<p><img src="https://pic2.zhimg.com/50/v2-f3f7a559c42064af5102ab95388d654d_hd.jpg" alt=""></p>
+<p>B事务更新一条记录：</p>
+<p><img src="https://pic2.zhimg.com/50/v2-4ae7a68c02f2a64605faa60908e72e1d_hd.jpg" alt=""></p>
+<p>此时B事务还未提交，A在事务内做一次查询，发现查询结果已经改变：</p>
+<p><img src="https://pic3.zhimg.com/50/v2-ce2497f31b85344940ad46e9f20a3626_hd.jpg" alt=""></p>
+<p>B进行事务回滚：</p>
+<p><img src="https://pic3.zhimg.com/50/v2-ef013f5c7c697460311c30e5211b4afe_hd.jpg" alt=""></p>
+<p>A再做一次查询，查询结果又变回去了：</p>
+<p><img src="https://pic1.zhimg.com/50/v2-579f1ebaac2616411603687b6a6b6160_hd.jpg" alt=""></p>
+<p>由试验可知，在一个进程的事务当中，我更改了其中的一行数据，但是我修改完之后就释放了锁，这时候另一个进程读取了该数据，此时先前的事务是还未提交的，直到我回滚了数据，另一个进程读的数据就变成了无用的或是错误的数据，我们通常把这种数据称为脏数据，这种情况读出来的数据叫脏读。</p>
+</li>
+<li><p>之前是只要操作完数据就立刻释放掉锁，现在是把释放锁的位置调整到事务提交之后，此时在事务提交之前，其他进程是无法对该行数据进行读取的，包括任何操作。那么数据库为此种状态的数据库操作规则又给了一个名字叫“读已提交（Read Committed）”，或者叫不可重复读。</p>
+</li>
+<li><p>把隔离性调整为READ-COMMITTED（读取提交内容），设置A的事务隔离级别，并进入事务做一次查询：</p>
+<p><img src="https://pic2.zhimg.com/50/v2-501201e5e87e1b9b94f5410fc1e60435_hd.jpg" alt=""></p>
+<p>B开始事务，并对记录进行修改：</p>
+<p><img src="https://pic1.zhimg.com/50/v2-bb86e5eaaa89d342125a426c05a096a0_hd.jpg" alt=""></p>
+<p>A再对user表进行查询，发现记录没有受到影响：</p>
+<p><img src="https://pic4.zhimg.com/50/v2-f1ed9b67af09782dc16b832a2796907b_hd.jpg" alt=""></p>
+<p>B提交事务：</p>
+<p><img src="https://pic3.zhimg.com/50/v2-30a832483a152dc31c818de21acf737a_hd.jpg" alt=""></p>
+<p>A再对user表进行查询，发现记录被修改：</p>
+<p><img src="https://pic2.zhimg.com/50/v2-fd2565c4437cfd385f408e5535694169_hd.jpg" alt=""></p>
+<p>试验进行到这里，你会发现，在同一个事务中如果两次读取相同的数据时，最后的结果却不一致。这里我们把这种现象称为：不可重复读。因为在第一个事务读取了数据之后，此时另一个事务把该数据给修改了，这时候事务提交，那么另一个事务在第二次读取的时候，结果就不一样，一个修改前的，一个是修改后的。</p>
+<p>但是细心的你会发现，既然你说此种隔离性是在事务提交后才释放锁，那么在试验过程中，在该数据未提交前，另一个事务为什么也是仍然可以读取的呀。是我说错了吗？不是的，在这里mysql使用了一个并发版本控制机制，他们把它叫做MVCC，通俗的也就是说：mysql为了提高系统的并发量，在事务未提交前，虽然事务内操作的数据是锁定状态，但是另一个事务仍然可以读取，大多数数据库默认的就是这个级别的隔离性。但mysql不是。</p>
+<p>而且不只是在更新数据时出现这个问题，在插入数据时仍然会造成类似的这样一种现象：mysql虽然锁住了正在操作的数据行，但它仍然不会阻止另一个事务往表插入新行新的数据。比如：一个事务读取或更新了表里的所有行，接着又有另一个事务往该表里插入一个新行，在事务提交后。原来读取或更改过数据的事务又第二次读取了相同的数据，这时候这个事务中两次读取的结果集行数就不一样。原来更新了所有行，而现在读出来发现竟然还有一行没有更新。这就是所谓的幻读。</p>
+<p>为了防止同事务中两次读取数据不一致，（包括不可重读和幻读），接下来该如何继续做呢？！</p>
+<p>mysql依然采取的是MVCC并发版本控制来解决这个问题。具体是：如果事务中存在多次读取同样的数据，MySQL第一次读的时候仍然会保持选择读最新提交事务的数据，当第一次之后，之后再读时，mysql会取第一次读取的数据作为结果。这样就保证了同一个事务多次读取数据时数据的一致性。这时候，mysql把这种解决方案叫做：可重复读（Repeatable-Read)，也就是上述所写的第三个隔离性，也是mysql默认的隔离级别。</p>
+<p>注意：幻读和不可重复读（Read Committed）都是读取了另一条已经提交的事务（这点就脏读不同），所不同的是不可重复读查询的都是同一个数据项，而幻读针对的是一批数据整体（比如数据的个数）。</p>
+<p>说到这里，真的就完事了吗？到这里其实mysql并未完全解决数据的一致性问题。只是在读取上做了手脚，解决了传统意义上的幻读和不可重复读。<br>例子：1 A事务开启，B事务开启。<br>​           2 B事务往表里面插入了一条数据，但还并未提交。<br>​           3 A事务开始查询了，并没有发现B事务这次插入的数据。然后此时B事务提交了数据。<br>​           4 于是乎，A事务就以为没有这条数据，就开始添加这条数据，但是却发现，发生了数据 重复冲突。</p>
+<p>最后这个时候，该我们的最后一种隔离级别也是最高的隔离级：别序列化（serializable）登场了。<br>该隔离级别会自动在锁住你要操作的整个表的数据，如果另一个进程事务想要操作表里的任何数据就需要等待获得锁的进程操作完成释放锁。可避免脏读、不可重复读、幻读的发生。当然性能会下降很多，会导致很多的进程相互排队竞争锁。</p>
+<p>后记：以上所说的四种隔离性的锁机制应用是数据库自动完成的，不需要人为干预。隔离级别的设置只对当前链接有效。对于使用MySQL命令窗口而言，一个窗口就相当于一个链接，当前窗口设置的隔离级别只对当前窗口中的事务有效</p>
+</li>
+<li><p>本文转自<a href="https://www.zhihu.com/question/30272728/answer/95908054" target="_blank" rel="external">数据库事务原子性、一致性是怎样实现的？</a></p>
+<p>​</p>
+<p>​</p>
+</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/DB/">DB</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/事务隔离级别/">事务隔离级别</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2017/12/15/[DB] 事务的隔离级别/" data-title="[DB] 事务的隔离级别 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/12/23/[TCPIP] 利用TCPIP参考模型分析数据传输过程/" title="[TCPIP] 利用TCP/IP参考模型分析数据传输过程">
+  <strong>上一篇：</strong><br/>
+  <span>
+  [TCPIP] 利用TCP/IP参考模型分析数据传输过程</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/12/14/[TCPIP] 三次握手和四次挥手/"  title="[TCPIP] 三次握手和四次挥手">
+ <strong>下一篇：</strong><br/> 
+ <span>[TCPIP] 三次握手和四次挥手
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/12/15/[DB] 事务的隔离级别/" data-title="[DB] 事务的隔离级别" data-url="http://yoursite.com/2017/12/15/[DB] 事务的隔离级别/"></div>
+</section>
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ 
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="glemontree" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android/" title="Android">Android<sup>15</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Boost/" title="Boost">Boost<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C/" title="C++">C++<sup>24</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CMake/" title="CMake">CMake<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/DB/" title="DB">DB<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Effective-Java/" title="Effective Java">Effective Java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/HTTPS/" title="HTTPS">HTTPS<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/IntelliJ-IDEA/" title="IntelliJ IDEA">IntelliJ IDEA<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/JQuery/" title="JQuery">JQuery<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Java/" title="Java">Java<sup>16</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>22</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/MyBatis/" title="MyBatis">MyBatis<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Qt/" title="Qt">Qt<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Redis/" title="Redis">Redis<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Servlet/" title="Servlet">Servlet<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Spring/" title="Spring">Spring<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/SpringMVC/" title="SpringMVC">SpringMVC<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Struts2/" title="Struts2">Struts2<sup>18</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/TCP-IP/" title="TCP/IP">TCP/IP<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/TCPIP/" title="TCPIP">TCPIP<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows核心编程/" title="Windows核心编程">Windows核心编程<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/html/" title="html">html<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/多线程/" title="多线程">多线程<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/编程规范/" title="编程规范">编程规范<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络编程/" title="网络编程">网络编程<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>5</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Linux-Shell/" title="Linux, Shell">Linux, Shell<sup>16</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JQuery/" title="JQuery">JQuery<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C++">C++<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java-并发/" title="Java 并发">Java 并发<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MyBatis/" title="MyBatis">MyBatis<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-boost/" title="C++ boost">C++ boost<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DB/" title="DB">DB<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Redis/" title="Redis">Redis<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/动态规划/" title="动态规划">动态规划<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SpringMVC/" title="SpringMVC">SpringMVC<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spring-AOP/" title="Spring, AOP">Spring, AOP<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Struts2-OGNL/" title="Struts2, OGNL">Struts2, OGNL<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html/" title="html">html<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MyBatis-SQL映射文件/" title="MyBatis, SQL映射文件">MyBatis, SQL映射文件<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-new-operator-new-placement-new/" title="C++, new, operator new, placement new">C++, new, operator new, placement new<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-泛型/" title="C++ 泛型">C++ 泛型<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://github.com/glemontree" target="_blank" title="GitHub">GitHub</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/u010216743" target="_blank" title="CSDN">CSDN</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">Weibo</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello World. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/glemontree" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:gtp0521@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Glemontree">Glemontree</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"glemontree"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'null'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

@@ -1,0 +1,725 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>[C++] allocator原理 | Glemontree&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Glemontree">
+    
+
+    
+    <meta name="description" content="allocator原理介绍考虑到小型区域可能造成内存破碎问题，SGI STL设计了双层级配置器，第一层配置器直接使用malloc()和free()，第二层配置器则视情况采用不同的策略：当配置区块超过128bytes时，调用第一层级配置器，当配置区块小于128bytes时，采用复杂的memory pool方式。
+第一级配置器__malloc_alloc_template123456789101112">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[C++] allocator原理">
+<meta property="og:url" content="http://yoursite.com/2017/10/23/[C++] allocator原理/index.html">
+<meta property="og:site_name" content="Glemontree's blog">
+<meta property="og:description" content="allocator原理介绍考虑到小型区域可能造成内存破碎问题，SGI STL设计了双层级配置器，第一层配置器直接使用malloc()和free()，第二层配置器则视情况采用不同的策略：当配置区块超过128bytes时，调用第一层级配置器，当配置区块小于128bytes时，采用复杂的memory pool方式。
+第一级配置器__malloc_alloc_template123456789101112">
+<meta property="og:image" content="http://images.cnitblog.com/i/566545/201404/291845299705479.png">
+<meta property="og:image" content="http://images.cnitblog.com/i/566545/201404/291901512525167.png">
+<meta property="og:image" content="http://images.cnitblog.com/i/566545/201404/291925362832756.png">
+<meta property="og:updated_time" content="2017-10-23T12:11:31.339Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[C++] allocator原理">
+<meta name="twitter:description" content="allocator原理介绍考虑到小型区域可能造成内存破碎问题，SGI STL设计了双层级配置器，第一层配置器直接使用malloc()和free()，第二层配置器则视情况采用不同的策略：当配置区块超过128bytes时，调用第一层级配置器，当配置区块小于128bytes时，采用复杂的memory pool方式。
+第一级配置器__malloc_alloc_template123456789101112">
+<meta name="twitter:image" content="http://images.cnitblog.com/i/566545/201404/291845299705479.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/favicon.ico" alt="Glemontree&#39;s blog" title="Glemontree&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Glemontree&#39;s blog">Glemontree&#39;s blog</a></h1>
+				<h2 class="blog-motto">day day up!</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="http://zhannei.baidu.com/cse/search" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="Search"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/10/23/[C++] allocator原理/" title="[C++] allocator原理" itemprop="url">[C++] allocator原理</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
+		
+  <p class="article-time">
+    <time datetime="2017-10-23T11:57:49.000Z" itemprop="datePublished"> Published 2017-10-23</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#allocator原理介绍"><span class="toc-number">1.</span> <span class="toc-text">allocator原理介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#第一级配置器-malloc-alloc-template"><span class="toc-number">1.1.</span> <span class="toc-text">第一级配置器__malloc_alloc_template</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第二级配置器-default-alloc-template"><span class="toc-number">1.2.</span> <span class="toc-text">第二级配置器__default_alloc_template</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#说明"><span class="toc-number">2.</span> <span class="toc-text">说明</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="allocator原理介绍"><a href="#allocator原理介绍" class="headerlink" title="allocator原理介绍"></a>allocator原理介绍</h2><p>考虑到小型区域可能造成内存破碎问题，SGI STL设计了双层级配置器，第一层配置器直接使用malloc()和free()，第二层配置器则视情况采用不同的策略：当配置区块超过128bytes时，调用第一层级配置器，当配置区块小于128bytes时，采用复杂的memory pool方式。</p>
+<h3 id="第一级配置器-malloc-alloc-template"><a href="#第一级配置器-malloc-alloc-template" class="headerlink" title="第一级配置器__malloc_alloc_template"></a>第一级配置器<code>__malloc_alloc_template</code></h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div></pre></td><td class="code"><pre><div class="line">//以下是第第一级配置器</div><div class="line">template &lt;int inst&gt;</div><div class="line">class __malloc_alloc_template &#123;</div><div class="line"></div><div class="line">private:</div><div class="line"></div><div class="line">//以下函数用来处理内存不足的情况</div><div class="line">static void *oom_malloc(size_t);</div><div class="line"></div><div class="line">static void *oom_realloc(void *, size_t);</div><div class="line"></div><div class="line">static void (* __malloc_alloc_oom_handler)();</div><div class="line"></div><div class="line">public:</div><div class="line"></div><div class="line">static void * allocate(size_t n)</div><div class="line">&#123;</div><div class="line">    void *result = malloc(n);                    //第一级配置器，直接使用malloc()</div><div class="line">    //如果内存不足，则调用内存不足处理函数oom_alloc()来申请内存</div><div class="line">    if (0 == result) result = oom_malloc(n);</div><div class="line">    return result;</div><div class="line">&#125;</div><div class="line"></div><div class="line">static void deallocate(void *p, size_t /* n */)</div><div class="line">&#123;</div><div class="line">    free(p);            //第一级配置器直接使用 free()</div><div class="line">&#125;</div><div class="line"></div><div class="line">static void * reallocate(void *p, size_t /* old_sz */, size_t new_sz)</div><div class="line">&#123;</div><div class="line">    void * result = realloc(p, new_sz);            //第一级配置器直接使用realloc()</div><div class="line">    //当内存不足时，则调用内存不足处理函数oom_realloc()来申请内存</div><div class="line">    if (0 == result) result = oom_realloc(p, new_sz);</div><div class="line">    return result;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//设置自定义的out-of-memory handle就像set_new_handle()函数</div><div class="line">static void (* set_malloc_handler(void (*f)()))()</div><div class="line">&#123;</div><div class="line">    void (* old)() = __malloc_alloc_oom_handler;</div><div class="line">    __malloc_alloc_oom_handler = f;</div><div class="line">    return(old);</div><div class="line">&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">template &lt;int inst&gt;　　　　</div><div class="line">void (* __malloc_alloc_template&lt;inst&gt;::__malloc_alloc_oom_handler)() = 0;　　//内存处理函数指针为空，等待客户端赋值</div><div class="line"></div><div class="line">template &lt;int inst&gt;</div><div class="line">void * __malloc_alloc_template&lt;inst&gt;::oom_malloc(size_t n)</div><div class="line">&#123;</div><div class="line">    void (* my_malloc_handler)();</div><div class="line">    void *result;</div><div class="line"></div><div class="line">    for (;;) &#123;                                                     //死循环</div><div class="line">        my_malloc_handler = __malloc_alloc_oom_handler;            //设定自己的oom(out of memory)处理函数</div><div class="line">        if (0 == my_malloc_handler) &#123; __THROW_BAD_ALLOC; &#125;         //如果没有设定自己的oom处理函数，毫不客气的抛出异常</div><div class="line">        (*my_malloc_handler)();                                    //设定了就调用oom处理函数</div><div class="line">        result = malloc(n);                                        //再次尝试申请</div><div class="line">        if (result) return(result);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">template &lt;int inst&gt;</div><div class="line">void * __malloc_alloc_template&lt;inst&gt;::oom_realloc(void *p, size_t n)</div><div class="line">&#123;</div><div class="line">    void (* my_malloc_handler)();</div><div class="line">    void *result;</div><div class="line"></div><div class="line">    for (;;) &#123;</div><div class="line">        my_malloc_handler = __malloc_alloc_oom_handler;</div><div class="line">        if (0 == my_malloc_handler) &#123; __THROW_BAD_ALLOC; &#125;    //如果自己没有定义oom处理函数，则编译器毫不客气的抛出异常</div><div class="line">        (*my_malloc_handler)();                                //执行自定义的oom处理函数</div><div class="line">        result = realloc(p, n);                                //重新分配空间</div><div class="line">        if (result) return(result);                            //如果分配到了，返回指向内存的指针</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面代码看起来复杂，其实流程是这样的：</p>
+<ul>
+<li>通过allocate()申请内存，通过deallocate()来释放内存，通过reallocate()重新分配内存</li>
+<li>当allocate()或reallocate()分配内存不足时会调用oom_malloc()或oom_remalloc()来处理</li>
+<li>当oom_malloc() 或 oom_remalloc()还是没能分配到申请的内存时，会转如下两步中的一步：<ul>
+<li>调用用户自定义的内存分配不足处理函数(这个函数通过set_malloc_handler() 来设定)，然后继续申请内存</li>
+<li>如果用户未定义内存分配不足处理函数，程序就会抛出bad_alloc异常或利用exit(1)终止程序</li>
+</ul>
+</li>
+</ul>
+<h3 id="第二级配置器-default-alloc-template"><a href="#第二级配置器-default-alloc-template" class="headerlink" title="第二级配置器__default_alloc_template"></a>第二级配置器<code>__default_alloc_template</code></h3><p>当申请的内存大于 128 bytes时就调用第一层配置器。当申请的内存小于 128bytes时才会调用第二层配置器。第二层配置器如何维护128bytes以下内存的配置呢？ SGI 第二层配置器定义了一个 free-lists，这个free-list是一个数组，如下图：</p>
+<p><img src="http://images.cnitblog.com/i/566545/201404/291845299705479.png" alt=""></p>
+<p>这个数组的元素都是指针，用来指向16个链表的表头，这16个链表上面挂的都是可以用的内存块。只是不同链表中元素的内存块大小不一样，16个链表上分别挂着大小为8、16、24、32、40、48、56、64、72、80、88、96、104、112、120、128 bytes的小额区块，图如下：</p>
+<p><img src="http://images.cnitblog.com/i/566545/201404/291901512525167.png" alt=""></p>
+<p>下面我们看下allocate()代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> * <span class="title">allocate</span><span class="params">(<span class="keyword">size_t</span> n)</span></span></div><div class="line">&#123;</div><div class="line">    obj * __VOLATILE * my_free_list;</div><div class="line">    obj * __RESTRICT result;</div><div class="line"></div><div class="line">    <span class="comment">//要申请的空间大于128bytes就调用第一级配置</span></div><div class="line">    <span class="keyword">if</span> (n &gt; (<span class="keyword">size_t</span>) __MAX_BYTES) &#123;</div><div class="line">      	<span class="keyword">return</span>(malloc_alloc::allocate(n));</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//寻找 16 个free lists中恰当的一个</span></div><div class="line">    my_free_list = free_list + FREELIST_INDEX(n);</div><div class="line">    result = *my_free_list;</div><div class="line">    <span class="keyword">if</span> (result == <span class="number">0</span>) &#123;</div><div class="line">        <span class="comment">//没找到可用的free list，准备新填充free list</span></div><div class="line">        <span class="keyword">void</span> *r = refill(ROUND_UP(n));</div><div class="line">        <span class="keyword">return</span> r;</div><div class="line">    &#125;</div><div class="line">    *my_free_list = result -&gt; free_list_link;</div><div class="line">    <span class="keyword">return</span> (result);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>其中有两个函数我来提一下，一个是ROUND_UP()，这个是将要申请的内存字节数上调为8的倍数。因为我们free-lists中挂的内存块大小都是8的倍数嘛，这样才知道应该去找哪一个链表。另一个就是refill()。这个是在没找到可用的free list的时候调用，准备填充free lists。意思是：参考上图，假设我现在要申请大小为 56bytes 的内存空间，那么就会到free lists 的第 7 个元素所指的链表上去找。如果此时 #7元素所指的链表为空怎么办？这个时候就要调用refill()函数向内存池申请N（一般为20个）个大小为56bytes的内存区块，然后挂到 #7 所指的链表上。这样，申请者就可以得到内存块了。当然，这里为了避免复杂，误导读者我就不讨论refill()函数了。allocate()过程图如下：</p>
+<p><img src="http://images.cnitblog.com/i/566545/201404/291925362832756.png" alt=""></p>
+<p>下面再看下deallocate()的代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">deallocate</span><span class="params">(<span class="keyword">void</span> *p, <span class="keyword">size_t</span> n)</span></span></div><div class="line">&#123;</div><div class="line">    obj *q = (obj *)p;</div><div class="line">    obj * __VOLATILE * my_free_list;</div><div class="line"></div><div class="line">    <span class="comment">//如果要释放的字节数大于128，则调第一级配置器</span></div><div class="line">    <span class="keyword">if</span> (n &gt; (<span class="keyword">size_t</span>) __MAX_BYTES) &#123;</div><div class="line">        malloc_alloc::deallocate(p, n);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//寻找对应的位置</span></div><div class="line">    my_free_list = free_list + FREELIST_INDEX(n);</div><div class="line">    <span class="comment">//以下两步将待释放的块加到链表上</span></div><div class="line">    q -&gt; free_list_link = *my_free_list;    </div><div class="line">    *my_free_list = q;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>本文转载自文章<a href="http://www.cnblogs.com/zhuwbox/p/3699977.html" target="_blank" rel="external">浅析STL allocator</a>。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/C/">C++</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/C-allocator/">C++, allocator</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2017/10/23/[C++] allocator原理/" data-title="[C++] allocator原理 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/10/23/[C++] C++中的new、operator new和placement new/" title="[C++] C++中的new、operator new和placement new">
+  <strong>上一篇：</strong><br/>
+  <span>
+  [C++] C++中的new、operator new和placement new</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/10/23/[C++] C++中的模板/"  title="[C++] C++中的模板">
+ <strong>下一篇：</strong><br/> 
+ <span>[C++] C++中的模板
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/10/23/[C++] allocator原理/" data-title="[C++] allocator原理" data-url="http://yoursite.com/2017/10/23/[C++] allocator原理/"></div>
+</section>
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#allocator原理介绍"><span class="toc-number">1.</span> <span class="toc-text">allocator原理介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#第一级配置器-malloc-alloc-template"><span class="toc-number">1.1.</span> <span class="toc-text">第一级配置器__malloc_alloc_template</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第二级配置器-default-alloc-template"><span class="toc-number">1.2.</span> <span class="toc-text">第二级配置器__default_alloc_template</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#说明"><span class="toc-number">2.</span> <span class="toc-text">说明</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="glemontree" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android/" title="Android">Android<sup>15</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Boost/" title="Boost">Boost<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C/" title="C++">C++<sup>24</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CMake/" title="CMake">CMake<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/DB/" title="DB">DB<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Effective-Java/" title="Effective Java">Effective Java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/HTTPS/" title="HTTPS">HTTPS<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/IntelliJ-IDEA/" title="IntelliJ IDEA">IntelliJ IDEA<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/JQuery/" title="JQuery">JQuery<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Java/" title="Java">Java<sup>16</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>22</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/MyBatis/" title="MyBatis">MyBatis<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Qt/" title="Qt">Qt<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Redis/" title="Redis">Redis<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Servlet/" title="Servlet">Servlet<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Spring/" title="Spring">Spring<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/SpringMVC/" title="SpringMVC">SpringMVC<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Struts2/" title="Struts2">Struts2<sup>18</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/TCP-IP/" title="TCP/IP">TCP/IP<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/TCPIP/" title="TCPIP">TCPIP<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows核心编程/" title="Windows核心编程">Windows核心编程<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/html/" title="html">html<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/多线程/" title="多线程">多线程<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/编程规范/" title="编程规范">编程规范<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络编程/" title="网络编程">网络编程<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>5</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Linux-Shell/" title="Linux, Shell">Linux, Shell<sup>16</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JQuery/" title="JQuery">JQuery<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C++">C++<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java-并发/" title="Java 并发">Java 并发<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MyBatis/" title="MyBatis">MyBatis<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-boost/" title="C++ boost">C++ boost<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DB/" title="DB">DB<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Redis/" title="Redis">Redis<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/动态规划/" title="动态规划">动态规划<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SpringMVC/" title="SpringMVC">SpringMVC<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spring-AOP/" title="Spring, AOP">Spring, AOP<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Struts2-OGNL/" title="Struts2, OGNL">Struts2, OGNL<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html/" title="html">html<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MyBatis-SQL映射文件/" title="MyBatis, SQL映射文件">MyBatis, SQL映射文件<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-new-operator-new-placement-new/" title="C++, new, operator new, placement new">C++, new, operator new, placement new<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-泛型/" title="C++ 泛型">C++ 泛型<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://github.com/glemontree" target="_blank" title="GitHub">GitHub</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/u010216743" target="_blank" title="CSDN">CSDN</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">Weibo</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello World. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/glemontree" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:gtp0521@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Glemontree">Glemontree</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"glemontree"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'null'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

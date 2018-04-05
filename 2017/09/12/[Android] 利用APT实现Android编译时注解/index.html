@@ -1,0 +1,818 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>[Android] 利用APT实现Android编译时注解 | Glemontree&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Glemontree">
+    
+
+    
+    <meta name="description" content="说在前面本文转载自文章利用APT实现Android编译时注解，文章对实现编译时注解讲解很详细！
+APT概述我们在前面的java注解详解一文中已经讲过，可以在运行时利用反射机制运行处理注解。其实，我们还可以在编译时处理注解，这就是不得不说官方为我们提供的注解处理工具APT (Annotation Processing Tool )。
+APT用来在编译时期扫描处理源代码中的注解信息，我们可以根据注解信">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Android] 利用APT实现Android编译时注解">
+<meta property="og:url" content="http://yoursite.com/2017/09/12/[Android] 利用APT实现Android编译时注解/index.html">
+<meta property="og:site_name" content="Glemontree's blog">
+<meta property="og:description" content="说在前面本文转载自文章利用APT实现Android编译时注解，文章对实现编译时注解讲解很详细！
+APT概述我们在前面的java注解详解一文中已经讲过，可以在运行时利用反射机制运行处理注解。其实，我们还可以在编译时处理注解，这就是不得不说官方为我们提供的注解处理工具APT (Annotation Processing Tool )。
+APT用来在编译时期扫描处理源代码中的注解信息，我们可以根据注解信">
+<meta property="og:updated_time" content="2017-09-12T05:02:57.605Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Android] 利用APT实现Android编译时注解">
+<meta name="twitter:description" content="说在前面本文转载自文章利用APT实现Android编译时注解，文章对实现编译时注解讲解很详细！
+APT概述我们在前面的java注解详解一文中已经讲过，可以在运行时利用反射机制运行处理注解。其实，我们还可以在编译时处理注解，这就是不得不说官方为我们提供的注解处理工具APT (Annotation Processing Tool )。
+APT用来在编译时期扫描处理源代码中的注解信息，我们可以根据注解信">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/favicon.ico" alt="Glemontree&#39;s blog" title="Glemontree&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Glemontree&#39;s blog">Glemontree&#39;s blog</a></h1>
+				<h2 class="blog-motto">day day up!</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="http://zhannei.baidu.com/cse/search" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="Search"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/09/12/[Android] 利用APT实现Android编译时注解/" title="[Android] 利用APT实现Android编译时注解" itemprop="url">[Android] 利用APT实现Android编译时注解</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
+		
+  <p class="article-time">
+    <time datetime="2017-09-12T03:40:15.000Z" itemprop="datePublished"> Published 2017-09-12</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#说在前面"><span class="toc-number">1.</span> <span class="toc-text">说在前面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#APT概述"><span class="toc-number">2.</span> <span class="toc-text">APT概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现目标"><span class="toc-number">3.</span> <span class="toc-text">实现目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目框架"><span class="toc-number">4.</span> <span class="toc-text">项目框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义注解模块"><span class="toc-number">5.</span> <span class="toc-text">自定义注解模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注解处理器模块"><span class="toc-number">6.</span> <span class="toc-text">注解处理器模块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Element元素"><span class="toc-number">6.1.</span> <span class="toc-text">Element元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现process方法"><span class="toc-number">6.2.</span> <span class="toc-text">实现process方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#收集注解信息"><span class="toc-number">6.2.1.</span> <span class="toc-text">收集注解信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#匹配准则"><span class="toc-number">6.2.2.</span> <span class="toc-text">匹配准则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#错误处理"><span class="toc-number">6.2.3.</span> <span class="toc-text">错误处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据模型"><span class="toc-number">6.2.4.</span> <span class="toc-text">数据模型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件的生成"><span class="toc-number">6.3.</span> <span class="toc-text">文件的生成</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#API模块"><span class="toc-number">7.</span> <span class="toc-text">API模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目中的使用"><span class="toc-number">8.</span> <span class="toc-text">项目中的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">9.</span> <span class="toc-text">总结</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="说在前面"><a href="#说在前面" class="headerlink" title="说在前面"></a>说在前面</h2><p>本文转载自文章<a href="http://blog.csdn.net/asialiyazhou/article/details/53055460" target="_blank" rel="external">利用APT实现Android编译时注解</a>，文章对实现编译时注解讲解很详细！</p>
+<h2 id="APT概述"><a href="#APT概述" class="headerlink" title="APT概述"></a>APT概述</h2><p>我们在前面的<a href="http://blog.csdn.net/mcryeasy/article/details/52452341" target="_blank" rel="external">java注解详解</a>一文中已经讲过，可以在运行时利用反射机制运行处理注解。其实，我们还可以在编译时处理注解，这就是不得不说官方为我们提供的注解处理工具<code>APT (Annotation Processing Tool )</code>。</p>
+<p><code>APT</code>用来在编译时期扫描处理源代码中的注解信息，我们可以根据注解信息生成一些文件，比如<a href="http://lib.csdn.net/base/javaee" target="_blank" rel="external">Java</a>文件。利用<code>APT</code>为我们生成的<code>Java</code>代码，实现冗余的代码功能，这样就减少手动的代码输入，提升了编码效率，而且使源代码看起来更清晰简洁。</p>
+<p>从<code>Java5</code>开始，<code>JDK</code>就自带了注解处理器<code>APT</code>，不过从近几年开始APT才真正的流行起来，这要得益于<a href="http://lib.csdn.net/base/android" target="_blank" rel="external">Android</a>上各种主流库都用了<code>APT</code>来实现，比如<code>Dagger</code>、<code>ButterKnife</code>、<code>AndroidAnnotation</code>、<code>EventBus</code>等。因为我本身工作中经常用到上面这些框架，为了更深入了解这些框架的实现过程，因此想利用<code>APT</code>技术实现自己的编译时注解。</p>
+<h2 id="实现目标"><a href="#实现目标" class="headerlink" title="实现目标"></a>实现目标</h2><p>在<code>Android</code>开发中我们经常要编写如下冗余的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Button button = (Button) findViewById(R.id.button1);  </div><div class="line">Button button2 = (Button) findViewById(R.id.button2);  </div><div class="line">button.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;  </div><div class="line">    <span class="meta">@Override</span>  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View view)</span> </span>&#123;&#125;  </div><div class="line">&#125;);  </div><div class="line">button2.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;  </div><div class="line">    <span class="meta">@Override</span>  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View view)</span> </span>&#123;&#125;  </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>编写上面这些冗余代码不但浪费时间，而且一定程度上造成源代码冗余复杂。那么为了解决这种问题，我们可以利用注解和<code>APT</code>工具生成一个代理类（<code>ProxyClass</code>），让这个代理类帮助我们实现上面这些冗余的代码。</p>
+<p>首先我们通过自定义的注解注解要处理的元素：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;  </div><div class="line">    <span class="meta">@ViewById</span>(R.id.tv)  </div><div class="line">    TextView textView;  </div><div class="line">    <span class="meta">@ViewById</span>(R.id.btn)  </div><div class="line">    Button button;  </div><div class="line">    <span class="meta">@Override</span>  </div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;  </div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);  </div><div class="line">        setContentView(R.layout.activity_main);  </div><div class="line">        ProxyTool.bind(<span class="keyword">this</span>);  </div><div class="line">	&#125;  </div><div class="line">    <span class="meta">@Click</span>(&#123;R.id.tv, R.id.btn&#125;)  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">myClick</span><span class="params">(View view)</span> </span>&#123;  </div><div class="line">    	<span class="comment">//Click  </span></div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后我们利用<code>APT</code>生成<code>MainActivity</code>的代理类 <code>MainActivity$$Proxy</code>，让该类帮我们实现冗余的功能：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span>$$<span class="title">Proxy</span> <span class="keyword">implements</span> <span class="title">IProxy</span>&lt;<span class="title">MainActivity</span>&gt; </span>&#123;  </div><div class="line">    <span class="meta">@Override</span>  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">inject</span><span class="params">(<span class="keyword">final</span> MainActivity target, View root)</span> </span>&#123;  </div><div class="line">        target.button = (Button)(root.findViewById(R.id.btn));  </div><div class="line">        target.textView = (TextView)(root.findViewById(R.id.tv));  </div><div class="line">        View.OnClickListener listener;  </div><div class="line">        listener = <span class="keyword">new</span> View.OnClickListener() &#123;  </div><div class="line">            <span class="meta">@Override</span>  </div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View view)</span> </span>&#123;  </div><div class="line">            target.myClick(view);  </div><div class="line">        	&#125;  </div><div class="line">        &#125; ;  </div><div class="line">        (root.findViewById(R.id.btn)).setOnClickListener(listener);  </div><div class="line">        (root.findViewById(R.id.tv)).setOnClickListener(listener);  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>OK，我们接下来就要实现上面的功能。</p>
+<h2 id="项目框架"><a href="#项目框架" class="headerlink" title="项目框架"></a>项目框架</h2><p>我把我们的注解框架命名为<code>ProxyTool</code>，把该框架分为四个模块，前三个为核心模块：</p>
+<ul>
+<li><code>proxytool-api</code>：框架api模块，供使用者调用，<code>Android Library</code>类型模块</li>
+<li><code>proxytool-annotations</code>：自定义注解模块，Java类型模块</li>
+<li><code>proxytool-compiler</code>：注解处理器模块，用于处理注解并生成文件，Java类型模块</li>
+<li><code>proxytool-sample</code>：示例Demo模块，Android工程类型模块</li>
+</ul>
+<p>其中这四个模块的依赖关系如下：</p>
+<p>proxytool-api依赖proxytool-annotations模块。<br>proxytool-compiler依赖proxytool-annotations模块。<br>proxytool-sample模块依赖proxytool-api模块。</p>
+<blockquote>
+<p>  有人也许会问，为什么不可以将这写模块写在一起呢？<br>  因为注解处理模块器proxytool-compiler只在我们编译过程中需要使用到，在APP运行阶段就不需要使用该模块了。所以在发布APP时，我们就不必把注解处理器模块打包进来，以免造成程序臃肿，所以把proxytool-compiler模块单独拿出来。同时注解处理模块和api模块都需要使用到自定义注解模块，所以就需要把自定义注解模块单独拿出来。这样为何需要分成三个模块的原因也就一目了然了，其实<a href="https://github.com/JakeWharton/butterknife" target="_blank" rel="external">butterfnife框架</a>也是这样分的。</p>
+</blockquote>
+<h2 id="自定义注解模块"><a href="#自定义注解模块" class="headerlink" title="自定义注解模块"></a>自定义注解模块</h2><p>首先我们在自定义注解模块中定义两个注解类型，分别用于绑定View的id和注册View的点击事件：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/** </span></div><div class="line">*  Bind a field to the view for the specified ID </div><div class="line">*/  </div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.SOURCE)  </div><div class="line"><span class="meta">@Target</span>(ElementType.FIELD)  </div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> ViewById  &#123;  </div><div class="line">	<span class="function"><span class="keyword">int</span> <span class="title">value</span><span class="params">()</span></span>;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/** </span></div><div class="line">* Bind a method to an android.view.View.OnClickListener on the view for each ID specified. </div><div class="line">*/  </div><div class="line"><span class="meta">@Target</span>(ElementType.METHOD)  </div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.SOURCE)  </div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> OnClick &#123;  </div><div class="line">	<span class="keyword">public</span> <span class="keyword">int</span>[] value();  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>ViewById</code>中的<code>value</code>用于接收注解该View的id值，<code>OnClick</code>中的<code>value</code>数组用于接收一组View的id值，这些view会被注册点击响应事件。因为这些注册只在编译时有需要用到，程序运行时就不再需要了，所以我们把这些注解定义成编译时保留（<code>RetentionPolicy.SOURCE</code>）即可。限于篇幅的考虑，下面的介绍中我只对<code>ViewById</code>注解做处理，<code>OnClick</code>注解处理也是类似的。</p>
+<h2 id="注解处理器模块"><a href="#注解处理器模块" class="headerlink" title="注解处理器模块"></a>注解处理器模块</h2><p>创建好自定义注解后，我们就需要利用java提供的注解处理器根据自定义的注解来生成代理类了，该模块需要依赖其他三个模块：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">compile &apos;com.squareup:javapoet:1.7.0&apos;  </div><div class="line">compile &apos;com.google.auto.service:auto-service:1.0-rc2&apos;  </div><div class="line">compile project(&apos;:proxytool-annotations&apos;)</div></pre></td></tr></table></figure>
+<ul>
+<li><a href="https://github.com/square/javapoet" target="_blank" rel="external">javapoet</a>是square公司出的一个帮助我们非常方便生成java代码文件的第三方库，避免我们手动拼接字符串的麻烦。</li>
+<li>auto-service是google公司出的第三方库，主要用于注解处理器，可以自动帮我们生成META-INF 配置信息。</li>
+<li>注解处理器要根据自定义注解进行解析，所以也需要依赖该模块。</li>
+</ul>
+<p>让我们看一下注解处理器的API。所有的注解处理器都必须继承<code>AbstractProcessor</code>，如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/** </span></div><div class="line">* 注解处理器 </div><div class="line">*/  </div><div class="line"><span class="meta">@AutoService</span>(Processor.class)  </div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyToolProcessor</span> <span class="keyword">extends</span> <span class="title">AbstractProcessor</span> </span>&#123;  </div><div class="line">    <span class="keyword">private</span> Filer mFiler; <span class="comment">//文件相关工具类  </span></div><div class="line">    <span class="keyword">private</span> Elements mElementUtils; <span class="comment">//元素相关的工具类  </span></div><div class="line">    <span class="keyword">private</span> Messager mMessager; <span class="comment">//日志相关的工具类  </span></div><div class="line">    <span class="comment">/** </span></div><div class="line">     * 处理器的初始化方法，可以获取相关的工具类 </div><div class="line">     */  </div><div class="line">    <span class="meta">@Override</span>  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(ProcessingEnvironment processingEnv)</span> </span>&#123;  </div><div class="line">        <span class="keyword">super</span>.init(processingEnv);  </div><div class="line">        mFiler = processingEnv.getFiler();  </div><div class="line">        mElementUtils = processingEnv.getElementUtils();  </div><div class="line">        mMessager = processingEnv.getMessager();  </div><div class="line">    &#125;  </div><div class="line">    <span class="comment">/** </span></div><div class="line">     * 处理器的主方法，用于扫描处理注解，生成java文件 </div><div class="line">     */  </div><div class="line">    <span class="meta">@Override</span>  	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">process</span><span class="params">(Set&lt;? extends TypeElement&gt; annotations, RoundEnvironment roundEnv)</span> </span>&#123;  </div><div class="line">        ...  </div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;  </div><div class="line">    &#125;  </div><div class="line">    <span class="comment">/** </span></div><div class="line">     *  指定哪些注解应该被注解处理器注册 </div><div class="line">     */  </div><div class="line">    <span class="meta">@Override</span>  </div><div class="line">    <span class="function"><span class="keyword">public</span> Set&lt;String&gt; <span class="title">getSupportedOptions</span><span class="params">()</span> </span>&#123;  </div><div class="line">        Set&lt;String&gt; types = <span class="keyword">new</span> LinkedHashSet&lt;&gt;();  </div><div class="line">        types.add(ViewById.class.getName());  </div><div class="line">        types.add(OnClick.class.getName());  </div><div class="line">        <span class="keyword">return</span>  types;  </div><div class="line">    &#125;  </div><div class="line">    <span class="comment">/** </span></div><div class="line">     *  用来指定你使用的 java 版本 </div><div class="line">     */  </div><div class="line">    <span class="meta">@Override</span>  </div><div class="line">    <span class="function"><span class="keyword">public</span> SourceVersion <span class="title">getSupportedSourceVersion</span><span class="params">()</span> </span>&#123;  </div><div class="line">        <span class="keyword">return</span> SourceVersion.latestSupported();  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><code>@AutoService(Processor.class)</code> 属于auto-service库，可以自动生成META-INF/services/javax.annotation.processing.Processor文件（该文件是所有注解处理器都必须定义的），免去了我们手动配置的麻烦。</li>
+<li><code>init(ProcessingEnvironment processingEnvironment)</code> 在处理器初始化的调用，通过<code>processingEnv</code>参数我们可以拿到一些实用的工具类<code>Elements</code>, <code>Messager</code>和<code>Filer</code>。我们在后面将会使用到它们。<code>Elements</code>，一个用来处理<code>Element</code>的工具类。<code>Messager</code>，一个用来输出日志信息的工具类。<code>Filer</code>、如这个类的名字所示，你可以使用这个类来创建文件。</li>
+<li><code>process(Set set, RoundEnvironment roundEnvironment)</code> 这是注解处理器的主方法，你可以在这个方法里面编码实现扫描，处理注解，生成 java 文件。</li>
+<li><code>getSupportedAnnotationTypes()</code> 在这个方法里面你必须指定哪些注解应该被注解处理器注册。它的返回值是一个String集合，包含了你的注解处理器想要处理的注解类型的全限定名。</li>
+<li><code>getSupportedSourceVersion()</code> 用来指定你使用的 java 版本，通常我们返回<code>SourceVersion.latestSupported()</code>即可。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@SupportedSourceVersion</span>(SourceVersion.RELEASE_7)</div><div class="line"><span class="meta">@SupportedAnnotationTypes</span>(&#123;</div><div class="line">        <span class="string">"proxytool.ViewById"</span>,</div><div class="line">        <span class="string">"proxytool.OnClick"</span></div><div class="line">&#125;)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyProcessor</span> <span class="keyword">extends</span> <span class="title">AbstractProcessor</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">process</span><span class="params">(Set&lt;? extends TypeElement&gt; annoations,</span></span></div><div class="line">            RoundEnvironment env) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(ProcessingEnvironment processingEnv)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.init(processingEnv);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>但是考虑到兼容性问题，建议还是重写<code>getSupportedSourceVersion</code>方法和<code>getSupportedAnnotationTypes</code>方法</p>
+<h3 id="Element元素"><a href="#Element元素" class="headerlink" title="Element元素"></a>Element元素</h3><p>在继续讲解处理器之前，我们必须先明白<code>Elment</code>元素这个概念。在注解处理器中，我们扫描 java 源文件，源代码中的每一部分都是<code>Element</code>的一个特定类型。换句话说：<code>Element</code>代表程序中的元素，比如说 包，类，方法。在下面的例子中，我将添加注释来说明这个问题：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.example; <span class="comment">//PackageElement  </span></div><div class="line">  </div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123; <span class="comment">// TypeElement  </span></div><div class="line">  </div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> a; <span class="comment">// VariableElement  </span></div><div class="line">    <span class="keyword">private</span> Foo other; <span class="comment">// VariableElement  </span></div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Foo</span><span class="params">()</span> </span>&#123;&#125; <span class="comment">// ExecuteableElement  </span></div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setA</span><span class="params">( // ExecuteableElement  </span></span></div><div class="line">            <span class="keyword">int</span> newA // TypeElement  </div><div class="line">    ) &#123;  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><code>ExecuteableElement</code>：可以表示一个普通方法、构造方法、初始化方法（静态和实例）。</li>
+<li><code>PackageElement</code>：代表一个包名。</li>
+<li><code>TypeElement</code>：代表一个类、接口。</li>
+<li><code>VariableElement</code>：代表一个字段、枚举常量、方法或构造方法的参数、本地变量、或异常参数等。</li>
+<li><code>Element</code>：上述所有元素的父接口，代表源码中的每一个元素。</li>
+</ul>
+<p>在注解处理器世界中，整个java代码被结构化了。我们需要像解析XML文件一样去解析整个源代码。<code>Element</code>就像XML解析器中的DOM元素，你可以通过如下两个方法获取该元素的子元素和父元素：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function">Element <span class="title">getEnclosingElement</span><span class="params">()</span></span>;  <span class="comment">//获取父元素  </span></div><div class="line">List&lt;? extends Element&gt; getEnclosedElements(); <span class="comment">//获取子元素</span></div></pre></td></tr></table></figure>
+<p>比如你有如下的一个类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;   </div><div class="line">  </div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> a; <span class="comment">// VariableElement  </span></div><div class="line">    <span class="keyword">private</span> Foo other; <span class="comment">// VariableElement  </span></div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Foo</span><span class="params">()</span> </span>&#123;&#125; <span class="comment">// ExecuteableElement  </span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>成员变量a通过getEnclosingElement()方法返回的是的父元素是类Foo，类Foo</p>
+<p>通过getEnclosedElements()返回的子元素就包括成员变量a、成员变量other以及构造方法Foo()。关于这两个方法更多的解释，可以参见官方文档。</p>
+<h3 id="实现process方法"><a href="#实现process方法" class="headerlink" title="实现process方法"></a>实现process方法</h3><h4 id="收集注解信息"><a href="#收集注解信息" class="headerlink" title="收集注解信息"></a>收集注解信息</h4><p>注解处理器中，最核心的方法就是<code>process()</code>，在这里你可以扫描和处理注解，并生成java文件。首先我们扫描所有被<code>@ViewById</code>注解的元素：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span>  </div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">process</span><span class="params">(Set&lt;? extends TypeElement&gt; set, RoundEnvironment roundEnvironment)</span> </span>&#123;  </div><div class="line">  </div><div class="line">   <span class="comment">//处理被ViewById注解的元素  </span></div><div class="line">    <span class="keyword">for</span> (Element element : roundEnv.getElementsAnnotatedWith(ViewById.class)) &#123;  </div><div class="line">        <span class="keyword">if</span> (!isValid(ViewById.class, <span class="string">"fields"</span>, element)) &#123;  </div><div class="line">             <span class="keyword">return</span> <span class="keyword">true</span>;  </div><div class="line">        &#125;  </div><div class="line">        parseViewById(element);  </div><div class="line">    &#125;  </div><div class="line">  ...</div></pre></td></tr></table></figure>
+<p>通过<code>roundEnvironment.getElementsAnnotatedWith(ViewById.class)</code>方法返回一个被<code>@ViewById</code>注解的Element</p>
+<p>类型的元素列表。注意这里是Element列表，而不是类列表，Element可以包括类、方法、变量等。</p>
+<h4 id="匹配准则"><a href="#匹配准则" class="headerlink" title="匹配准则"></a>匹配准则</h4><p>接下来我们需要对这个元素做进一步的检查，保证被注解的元素是符合规范的。如果使用者不按规范随意注解元素的话，程序是无法正常运行的。所以我们需要执行<code>isVaid</code>方法用于检测被注解元素的合法性：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isValid</span><span class="params">(Class&lt;? extends Annotation&gt; annotationClass, String targetThing, Element element)</span> </span>&#123;  </div><div class="line">    <span class="keyword">boolean</span> isVaild = <span class="keyword">true</span>;  </div><div class="line"></div><div class="line">    <span class="comment">//获取变量的所在的父元素，肯能是类、接口、枚举  </span></div><div class="line">    TypeElement enclosingElement = (TypeElement) element.getEnclosingElement();  </div><div class="line">    <span class="comment">//父元素的全限定名  </span></div><div class="line">    String qualifiedName = enclosingElement.getQualifiedName().toString();  </div><div class="line"></div><div class="line">    <span class="comment">// 所在的类不能是private或static修饰  </span></div><div class="line">    Set&lt;Modifier&gt; modifiers = element.getModifiers();  </div><div class="line">    <span class="keyword">if</span> (modifiers.contains(PRIVATE) || modifiers.contains(STATIC)) &#123;  </div><div class="line">      error(element, <span class="string">"@%s %s must not be private or static. (%s.%s)"</span>,  </div><div class="line">            annotationClass.getSimpleName(), targetThing, enclosingElement.getQualifiedName(),  </div><div class="line">            element.getSimpleName());  </div><div class="line">      isVaild = <span class="keyword">false</span>;  </div><div class="line">    &#125;  </div><div class="line"></div><div class="line">    <span class="comment">// 父元素必须是类，而不能是接口或枚举  </span></div><div class="line">    <span class="keyword">if</span> (enclosingElement.getKind() != ElementKind.CLASS) &#123;  </div><div class="line">      error(enclosingElement, <span class="string">"@%s %s may only be contained in classes. (%s.%s)"</span>,  </div><div class="line">            annotationClass.getSimpleName(), targetThing, enclosingElement.getQualifiedName(),  </div><div class="line">            element.getSimpleName());  </div><div class="line">      isVaild = <span class="keyword">false</span>;  </div><div class="line">    &#125;  </div><div class="line"></div><div class="line">    <span class="comment">//不能在Android框架层注解  </span></div><div class="line">    <span class="keyword">if</span> (qualifiedName.startsWith(<span class="string">"android."</span>)) &#123;  </div><div class="line">      error(element, <span class="string">"@%s-annotated class incorrectly in Android framework package. (%s)"</span>,  </div><div class="line">            annotationClass.getSimpleName(), qualifiedName);  </div><div class="line">      <span class="keyword">return</span> <span class="keyword">false</span>;  </div><div class="line">    &#125;  </div><div class="line">    <span class="comment">//不能在java框架层注解  </span></div><div class="line">    <span class="keyword">if</span> (qualifiedName.startsWith(<span class="string">"java."</span>)) &#123;  </div><div class="line">      error(element, <span class="string">"@%s-annotated class incorrectly in Java framework package. (%s)"</span>,  </div><div class="line">            annotationClass.getSimpleName(), qualifiedName);  </div><div class="line">      <span class="keyword">return</span> <span class="keyword">false</span>;  </div><div class="line">    &#125;  </div><div class="line"></div><div class="line">    <span class="keyword">return</span> isVaild;  </div><div class="line">&#125;  </div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">error</span><span class="params">(Element e, String msg, Object... args)</span> </span>&#123;  </div><div class="line">  	mMessager.printMessage(Diagnostic.Kind.ERROR, String.format(msg, args), e);  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在<code>isValid</code>方法中，它检查被注解的元素是否符合规则：</p>
+<ul>
+<li>被注解元素的父元素必须是个类，而不能是接口、枚举。</li>
+<li>被注解元素的父元素必须是非private 和 非static修饰。</li>
+<li>被注解的元素只能注解非框架层元素。</li>
+</ul>
+<p>这里只是简单的列出几个是否符合注解规范的条件，更严格的判断条件还需要大家来完善。</p>
+<h4 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h4><p>不知道大家有没有发现，在<code>error</code>方法中利用了<code>Messager</code>（<code>init</code>方法中获取到的工具类）来处理错误信息。<code>Messager</code>为注解处理器提供了一种报告错误消息，警告信息和其他消息的方式。它不是注解处理器开发者的日志工具。<code>Messager</code>是用来给那些使用了你的注解处理器的第三方开发者显示信息的。<br>其中非常重要的是<code>Kind.ERROR</code>级别信息，因为这种消息类型是用来表明我们的注解处理器在处理过程中出错了。有可能是第三方开发者误使用了我们的<code>@ViewById</code>注解（比如，使用<code>@ViewById</code>注解了一个接口中的变量）。这个概念与传统的 java 应用程序有一点区别。传统的 java 应用程序出现了错误，你可以抛出一个异常。如果你在<code>process()</code>中抛出了一个异常，那 jvm 就会崩溃。注解处理器的使用者将会得到一个从 javac 给出的非常难懂的异常错误信息。因为它包含了注解处理器的堆栈信息。因此注解处理器提供了<code>Messager</code>类。它能打印漂亮的错误信息，而且你可以链接到引起这个错误的元素上。回到process中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span>  </div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">process</span><span class="params">(Set&lt;? extends TypeElement&gt; set, RoundEnvironment roundEnvironment)</span> </span>&#123;  </div><div class="line">   <span class="comment">//处理被ViewById注解的元素  </span></div><div class="line">   <span class="keyword">for</span> (Element element : roundEnvironment.getElementsAnnotatedWith(ViewById.class)) &#123;  </div><div class="line">        <span class="keyword">if</span> (!isValid(ViewById.class, <span class="string">"fields"</span>, element)) &#123;  </div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;  </div><div class="line">        &#125;  </div><div class="line">        parseViewById(element);  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    ...  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>为了能够获取<code>Messager</code>显示的信息，非常重要的是注解处理器必须不崩溃地完成运行。这就是我们在调用<code>error()</code>后，跳出<code>isValid</code>，执行<code>return true</code>的原因。如果我们在这里没有返回的话，<code>process()</code>就会继续运行，因为<code>messager.printMessage( Diagnostic.Kind.ERROR)</code>并不会终止进程。</p>
+<h4 id="数据模型"><a href="#数据模型" class="headerlink" title="数据模型"></a>数据模型</h4><p>一旦<code>isValid</code>方法检查通过，那么就表示该注解元素是可以使用的，因此我们继续执行<code>parseViewById</code>方法，把这些元素封装成model，供后面生成Java文件时使用。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> Map&lt;String, ProxyClass&gt; mProxyClassMap = <span class="keyword">new</span> HashMap&lt;&gt;();  </div><div class="line">  </div><div class="line"><span class="comment">/** </span></div><div class="line"> * 处理ViewById注解 </div><div class="line"> * </div><div class="line"> * <span class="doctag">@param</span> element </div><div class="line"> */  </div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">parseViewById</span><span class="params">(Element element)</span> </span>&#123;  </div><div class="line">    ProxyClass proxyClass = getProxyClass(element);  </div><div class="line">    <span class="comment">//把被注解的view对象封装成一个model，放入代理类的集合中  </span></div><div class="line">    FieldViewBinding bindView = <span class="keyword">new</span> FieldViewBinding(element);  </div><div class="line">    proxyClass.add(bindView);  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="comment">/** </span></div><div class="line"> * 生成或获取注解元素所对应的ProxyClass类 </div><div class="line"> */  </div><div class="line"><span class="function"><span class="keyword">private</span> ProxyClass <span class="title">getProxyClass</span><span class="params">(Element element)</span> </span>&#123;  </div><div class="line">    <span class="comment">//被注解的变量所在的类  </span></div><div class="line">    TypeElement classElement = (TypeElement) element.getEnclosingElement();  </div><div class="line">    String qualifiedName = classElement.getQualifiedName().toString();  </div><div class="line">    ProxyClass proxyClass = mProxyClassMap.get(qualifiedName);  </div><div class="line">    <span class="keyword">if</span> (proxyClass == <span class="keyword">null</span>) &#123;  </div><div class="line">        <span class="comment">//生成每个宿主类所对应的代理类，后面用于生产java文件  </span></div><div class="line">        proxyClass = <span class="keyword">new</span> ProxyClass(classElement, mElementUtils);  </div><div class="line">        mProxyClassMap.put(qualifiedName, proxyClass);  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">return</span> proxyClass;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><code>parseViewById(Element element)</code>：在该方法中，首先需要通过<code>getProxyClass</code>方法获取一个<code>ProxyClass</code>类型的对象。<code>ProxyClass</code>代表了该注解元素所对应的类元素，这里我们利用面向对象的思想进行了封装。然后我们把被注解的元素也封装成一个FieldViewBinding类型的model，并放入到ProxyClass中。</li>
+<li><code>getProxyClass(Element element)</code>：该方法主要是生成或获取注解元素所对应的类，。你可以在<code>getProxyClass</code>方法中看到，利用<code>getEnclosingElement</code>方法获取了该注解元素的父元素，也就是该注解元素的所在的类。我们把每一个类元素<code>TypeElement</code>都封装成了ProxyClass，并保存在HashMap中。</li>
+</ul>
+<p>上面这两个方法的作用，主要是把注解的元素和注解元素所在的类都封装成了model，并存储起来，供我们后面生成Java源码时使用。下面表示了两个model类：</p>
+<p><code>FieldViewBinding</code>类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FieldViewBinding</span> </span>&#123;  </div><div class="line">  </div><div class="line">    <span class="comment">/** 注解元素*/</span>  </div><div class="line">    <span class="keyword">private</span> VariableElement mElement;  </div><div class="line">  </div><div class="line">    <span class="comment">/** 资源id*/</span>  </div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mResId;  </div><div class="line">  </div><div class="line">    <span class="comment">/** 变量名*/</span>  </div><div class="line">    <span class="keyword">private</span> String mVariableName;  </div><div class="line">  </div><div class="line">    <span class="comment">/**变量类型*/</span>  </div><div class="line">    <span class="keyword">private</span> TypeMirror mTypeMirror;  </div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">FieldViewBinding</span><span class="params">(Element element)</span> </span>&#123;  </div><div class="line">  </div><div class="line">        mElement = (VariableElement) element;  </div><div class="line">        ViewById viewById = element.getAnnotation(ViewById.class);  </div><div class="line">        <span class="comment">//资源id  </span></div><div class="line">        mResId = viewById.value();  </div><div class="line">        <span class="comment">//变量名  </span></div><div class="line">        mVariableName = element.getSimpleName().toString();  </div><div class="line">        <span class="comment">//变量类型  </span></div><div class="line">        mTypeMirror = element.asType();  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">public</span> VariableElement <span class="title">getElement</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> mElement;&#125;  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getResId</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> mResId;&#125;  </div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getVariableName</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> mVariableName;&#125;  </div><div class="line">    <span class="function"><span class="keyword">public</span> TypeMirror <span class="title">getTypeMirror</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> mTypeMirror;&#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyClass</span> </span>&#123;  </div><div class="line">  </div><div class="line">    <span class="comment">/**类元素 */</span>  </div><div class="line">    <span class="keyword">public</span> TypeElement mTypeElement;  </div><div class="line">  </div><div class="line">    <span class="comment">/**元素相关的辅助类*/</span>  </div><div class="line">    <span class="keyword">private</span> Elements mElementUtils;  </div><div class="line">  </div><div class="line">    <span class="comment">/** FieldViewBinding类型的集合*/</span>  </div><div class="line">    <span class="keyword">private</span> Set&lt;FieldViewBinding&gt; bindViews = <span class="keyword">new</span> HashSet&lt;&gt;();  </div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ProxyClass</span><span class="params">(TypeElement mTypeElement, Elements mElementUtils)</span> </span>&#123;  </div><div class="line">        <span class="keyword">this</span>.mTypeElement = mTypeElement;  </div><div class="line">        <span class="keyword">this</span>.mElementUtils = mElementUtils;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(FieldViewBinding bindView)</span> </span>&#123;  </div><div class="line">        bindViews.add(bindView);  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">  </div><div class="line">    <span class="comment">/** </span></div><div class="line">     * 用于生成代理类 </div><div class="line">     */  </div><div class="line">    <span class="function"><span class="keyword">public</span> JavaFile <span class="title">generateProxy</span><span class="params">()</span> </span>&#123;  </div><div class="line">        ...  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>ProxyClass</code>类中的generateProxy()方法是用于生成每个类所对应的代理类，比如类<code>MainActivity</code>就会生成类<code>MainActivity$$Proxy</code>，该方法生成的详细过程会后面再讲。</p>
+<h3 id="文件的生成"><a href="#文件的生成" class="headerlink" title="文件的生成"></a>文件的生成</h3><p>既然我们已经收集到了注解元素和注解元素所在的类，那么我们就需要为每个类生成一个全新的代理类，在代理类中执行那些冗余的代码操作。继续回到process方法中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">[java] view plain copy</div><div class="line"><span class="meta">@Override</span>  </div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">process</span><span class="params">(Set&lt;? extends TypeElement&gt; annotations, RoundEnvironment roundEnv)</span> </span>&#123;  </div><div class="line">  </div><div class="line">    ...  </div><div class="line">  </div><div class="line">    <span class="comment">//为每个宿主类生成所对应的代理类  </span></div><div class="line">    <span class="keyword">for</span> (ProxyClass proxyClass_ : mProxyClassMap.values()) &#123;  </div><div class="line">        <span class="keyword">try</span> &#123;  </div><div class="line">            proxyClass_.generateProxy().writeTo(mFiler);  </div><div class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;  </div><div class="line">            error(<span class="keyword">null</span>, e.getMessage());  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">    mProxyClassMap.clear();  </div><div class="line">  </div><div class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>现在既然已经收集到了每个注解元素所对应的类，那么我们就需要为每个类生成所对应的代理类，遍历所有的类元素集合<code>mProxyClassMap</code> 通过<code>ProxyClass</code>的<code>generateProxy()</code>方法来生成Java源码：</p>
+<p>ProxyClass##generateProxy()</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//proxytool.IProxy  </span></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> ClassName IPROXY = ClassName.get(<span class="string">"proxytool.api"</span>, <span class="string">"IProxy"</span>);  </div><div class="line"><span class="comment">//android.view.View  </span></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> ClassName VIEW = ClassName.get(<span class="string">"android.view"</span>, <span class="string">"View"</span>);  </div><div class="line"><span class="comment">//生成代理类的后缀名  </span></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String SUFFIX = <span class="string">"$$Proxy"</span>;  </div><div class="line">  </div><div class="line"><span class="comment">/** </span></div><div class="line"> * 用于生成代理类 </div><div class="line"> */  </div><div class="line"><span class="function"><span class="keyword">public</span> JavaFile <span class="title">generateProxy</span><span class="params">()</span> </span>&#123;  </div><div class="line">  </div><div class="line">    <span class="comment">//生成public void inject(final T target, View root)方法  </span></div><div class="line">    MethodSpec.Builder injectMethodBuilder = MethodSpec.methodBuilder(<span class="string">"inject"</span>)  </div><div class="line">            .addModifiers(Modifier.PUBLIC)  </div><div class="line">            .addAnnotation(Override.class)  </div><div class="line">            .addParameter(TypeName.get(mTypeElement.asType()), <span class="string">"target"</span>, Modifier.FINAL)  </div><div class="line">            .addParameter(VIEW, <span class="string">"root"</span>);  </div><div class="line">  </div><div class="line">    <span class="comment">//在inject方法中，添加我们的findViewById逻辑  </span></div><div class="line">    <span class="keyword">for</span> (FieldViewBinding model : bindViews) &#123;  </div><div class="line">        <span class="comment">// find views  </span></div><div class="line">        injectMethodBuilder.addStatement(<span class="string">"target.$N = ($T)(root.findViewById($L))"</span>, model.getVariableName(),  </div><div class="line">                ClassName.get(model.getTypeMirror()), model.getResId());  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">  </div><div class="line">    <span class="comment">// 添加以$$Proxy为后缀的类  </span></div><div class="line">    TypeSpec finderClass = TypeSpec.classBuilder(mTypeElement.getSimpleName() + SUFFIX)  </div><div class="line">            .addModifiers(Modifier.PUBLIC)  </div><div class="line">            <span class="comment">//添加父接口  </span></div><div class="line">            .addSuperinterface(ParameterizedTypeName.get(IPROXY, TypeName.get(mTypeElement.asType())))   </div><div class="line">            <span class="comment">//把inject方法添加到该类中  </span></div><div class="line">            .addMethod(injectMethodBuilder.build())  </div><div class="line">            .build();  </div><div class="line">  </div><div class="line">    <span class="comment">//添加包名  </span></div><div class="line">    String packageName = mElementUtils.getPackageOf(mTypeElement).getQualifiedName().toString();  </div><div class="line">  </div><div class="line">    <span class="comment">//生成Java文件  </span></div><div class="line">    <span class="keyword">return</span> JavaFile.builder(packageName, finderClass).build();  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面我们使用了<a href="https://github.com/square/javapoet" target="_blank" rel="external">javapoet</a>来帮助我们生成Java源码，免去手动拼接字符串的麻烦。生成过程很简单，看注释就明白了。</p>
+<p>不知道大家发现了没有循环结束后我们还执行了<code>mProxyClassMap.clear()</code>，原因就在于<code>process()</code>可以被多次调用，因为新生成的Java文件很可能包括<code>@ViewById</code>注解，所以process方法会多次执行直到没有生成该注解为止。所以我们应该清空之前的数据，避免生成重复的代理类。</p>
+<h2 id="API模块"><a href="#API模块" class="headerlink" title="API模块"></a>API模块</h2><p>既然已经生成了代理类，那么我还需要提供API供使用者访问该代理类，供在Activity、Fragment、View中如下使用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//Activity  </span></div><div class="line">ProxyTool.bind(<span class="keyword">this</span>);  </div><div class="line">  </div><div class="line"><span class="comment">//Fragment  </span></div><div class="line">ProxyTool.bind(<span class="keyword">this</span>, view);  </div><div class="line">  </div><div class="line"><span class="comment">//View  </span></div><div class="line">ProxyTool.bind(<span class="keyword">this</span>);</div></pre></td></tr></table></figure>
+<p>在ProxyTool的bind()方法中我们需要为需要为不同的目标（比如 Activity、Fragment 和 View 等）提供重载的注入方法，这些方法最终都调用createBinding()方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyTool</span> </span>&#123;  </div><div class="line">  </div><div class="line">   <span class="comment">//Activity  </span></div><div class="line">    <span class="meta">@UiThread</span>  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">bind</span><span class="params">(@NonNull Activity target)</span> </span>&#123;  </div><div class="line">        View sourceView = target.getWindow().getDecorView();  </div><div class="line">        createBinding(target, sourceView);  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">   <span class="comment">//View  </span></div><div class="line">    <span class="meta">@UiThread</span>  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">bind</span><span class="params">(@NonNull View target)</span> </span>&#123;  </div><div class="line">        createBinding(target, target);  </div><div class="line">    &#125;  </div><div class="line">    <span class="comment">//Fragment  </span></div><div class="line">    <span class="meta">@UiThread</span>  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">bind</span><span class="params">(@NonNull Object target, @NonNull View source)</span> </span>&#123;  </div><div class="line">        createBinding(target, source);  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String SUFFIX = <span class="string">"$$Proxy"</span>;  </div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">createBinding</span><span class="params">(@NonNull Object target, @NonNull View root)</span> </span>&#123;  </div><div class="line">  </div><div class="line">        <span class="keyword">try</span> &#123;  </div><div class="line">            <span class="comment">//生成类名+后缀名的代理类，并执行注入操作  </span></div><div class="line">            Class&lt;?&gt; targetClass = target.getClass();  </div><div class="line">            Class&lt;?&gt; proxyClass = Class.forName(targetClass.getName() + SUFFIX);  </div><div class="line">            IProxy proxy = (IProxy) proxyClass.newInstance();  </div><div class="line">            proxy.inject(target, root);  </div><div class="line">  </div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;  </div><div class="line">            e.printStackTrace();  </div><div class="line">        &#125;  </div><div class="line">  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>我们重载了三个<code>bind</code>方法用于接收的不同目标（Activity、Fragment 和 View 等），<code>target</code>参数表示注解元素所在的类，<code>root</code>参数表示要查找的View的，因为Activity和View本身即是target也是root，所以只要一个参数即可，而Fragment中类和View是分离的，所以需要两个参数。</li>
+<li>所有bind方法最终调用了<code>createBinding</code>方法，在该方法中我们通过<code>targetClass.getName() + SUFFIX</code>，拼接成代理类的全限定名，然后生成代理类的实例，并执行代理类的<code>inject</code>方法，该方法中执行的就是findViewById的操作。</li>
+</ul>
+<p>这里我们还需要注意一点，所有生成的代理类都默认实现<code>IProxy</code>接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IProxy</span>&lt;<span class="title">T</span>&gt; </span>&#123;  </div><div class="line">    <span class="comment">/** </span></div><div class="line"> </div><div class="line">     * <span class="doctag">@param</span> target 所在的类 </div><div class="line">     * <span class="doctag">@param</span> root 查找 View 的地方 </div><div class="line">     */  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">inject</span><span class="params">(<span class="keyword">final</span> T target, View root)</span></span>;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>该接口定义了inject方法，代理类中需要在该方法中实现具体的注入逻辑。代理类的生成和inject方法的实现，都是在注解处理器模块中进行处理，具体的生成过程都在<code>文件的生成</code>章节中，这里就不再讲。</p>
+<h2 id="项目中的使用"><a href="#项目中的使用" class="headerlink" title="项目中的使用"></a>项目中的使用</h2><p>上面三个核心模块都已经介绍完了，现在让我们在具体的项目中使用吧。</p>
+<p>首先在整个工程的build.gradle中添加如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;  </div><div class="line">     ...  </div><div class="line">    classpath &apos;com.neenbedankt.gradle.plugins:android-apt:1.8&apos;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后在自己module的build.gradle中添加插件和依赖，如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">apply plugin: &apos;com.neenbedankt.android-apt&apos;  </div><div class="line">  </div><div class="line">...  </div><div class="line">  </div><div class="line">dependencies &#123;  </div><div class="line">    ...  </div><div class="line">    compile project(&apos;:proxytool-api&apos;)  </div><div class="line">    apt project(&apos;:proxytool-compiler&apos;)  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后我们在项目中使用该框架的注解和API：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;  </div><div class="line">  </div><div class="line">    <span class="meta">@ViewById</span>(R.id.btnOne)  </div><div class="line">    Button btnOne;  </div><div class="line">    <span class="meta">@ViewById</span>(R.id.btnTwo)  </div><div class="line">    Button btnTwo;  </div><div class="line">  </div><div class="line">    <span class="meta">@Override</span>  </div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;  </div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);  </div><div class="line">        setContentView(R.layout.activity_main);  </div><div class="line">        ProxyTool.bind(<span class="keyword">this</span>);  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="meta">@OnClick</span>(&#123;R.id.btnOne,R.id.btnTwo&#125;)  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">myClick</span><span class="params">(View view)</span></span>&#123;  </div><div class="line">        btnOne.setText(<span class="string">"111111"</span>);  </div><div class="line">        btnTwo.setText(<span class="string">"222222"</span>);  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>执行<code>Make Project</code>操作后，在<code>build/generated/source/apt/debug/</code>下就会生成所对应的代理<code>MainActivity$$Proxy</code>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span>$$<span class="title">Proxy</span> <span class="keyword">implements</span> <span class="title">IProxy</span>&lt;<span class="title">MainActivity</span>&gt; </span>&#123;  </div><div class="line">    <span class="meta">@Override</span>  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">inject</span><span class="params">(<span class="keyword">final</span> MainActivity target, View root)</span> </span>&#123;  </div><div class="line">        target.btnTwo = (Button)(root.findViewById(<span class="number">2131427414</span>));  </div><div class="line">        target.btnOne = (Button)(root.findViewById(<span class="number">2131427413</span>));  </div><div class="line">        View.OnClickListener listener;  </div><div class="line">        listener = <span class="keyword">new</span> View.OnClickListener() &#123;  </div><div class="line">            <span class="meta">@Override</span>  </div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View view)</span> </span>&#123;  </div><div class="line">              target.myClick(view);  </div><div class="line">            &#125;  </div><div class="line">        &#125; ;  </div><div class="line">        (root.findViewById(<span class="number">2131427413</span>)).setOnClickListener(listener);  </div><div class="line">        (root.findViewById(<span class="number">2131427414</span>)).setOnClickListener(listener);  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>限于篇幅的考虑，上面只介绍了如何对<code>ViewById</code>注解进行处理，<code>OnClick</code>注解处理也是类似的。整个项目的地址：<a href="https://github.com/maofan4041/ProxyTool" target="_blank" rel="external">https://github.com/maofan4041/ProxyTool</a></p>
+<p>参考：<br><a href="http://hannesdorfmann.com/annotation-processing/annotationprocessing101" target="_blank" rel="external">ANNOTATION PROCESSING 101</a><br><a href="http://qiushao.net/2015/07/07/Annotation-Processing-Tool%E8%AF%A6%E8%A7%A3/" target="_blank" rel="external">Annotation-Processing-Tool详解</a><br><a href="http://brucezz.itscoder.com/articles/2016/08/06/use-apt-in-android/" target="_blank" rel="external">Android 利用 APT 技术在编译期生成代码</a><br><a href="http://blog.csdn.net/lmj623565791/article/details/51931859" target="_blank" rel="external">Android 如何编写基于编译时注解的项目</a><br><a href="http://zjutkz.net/2016/04/07/%E4%B8%87%E8%83%BD%E7%9A%84APT%EF%BC%81%E7%BC%96%E8%AF%91%E6%97%B6%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%A6%99%E7%94%A8/?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="external">万能的APT！编译时注解的妙用</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android/">Android</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android-APT、编译时注解/">Android, APT、编译时注解</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2017/09/12/[Android] 利用APT实现Android编译时注解/" data-title="[Android] 利用APT实现Android编译时注解 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/09/13/[MyBatis] MyBatis第五课---MyBatis参数处理/" title="[MyBatis] MyBatis第五课---MyBatis参数处理">
+  <strong>上一篇：</strong><br/>
+  <span>
+  [MyBatis] MyBatis第五课---MyBatis参数处理</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/09/11/[Java] Java反射/"  title="[Java] Java反射">
+ <strong>下一篇：</strong><br/> 
+ <span>[Java] Java反射
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/09/12/[Android] 利用APT实现Android编译时注解/" data-title="[Android] 利用APT实现Android编译时注解" data-url="http://yoursite.com/2017/09/12/[Android] 利用APT实现Android编译时注解/"></div>
+</section>
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#说在前面"><span class="toc-number">1.</span> <span class="toc-text">说在前面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#APT概述"><span class="toc-number">2.</span> <span class="toc-text">APT概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现目标"><span class="toc-number">3.</span> <span class="toc-text">实现目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目框架"><span class="toc-number">4.</span> <span class="toc-text">项目框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义注解模块"><span class="toc-number">5.</span> <span class="toc-text">自定义注解模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注解处理器模块"><span class="toc-number">6.</span> <span class="toc-text">注解处理器模块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Element元素"><span class="toc-number">6.1.</span> <span class="toc-text">Element元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现process方法"><span class="toc-number">6.2.</span> <span class="toc-text">实现process方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#收集注解信息"><span class="toc-number">6.2.1.</span> <span class="toc-text">收集注解信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#匹配准则"><span class="toc-number">6.2.2.</span> <span class="toc-text">匹配准则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#错误处理"><span class="toc-number">6.2.3.</span> <span class="toc-text">错误处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据模型"><span class="toc-number">6.2.4.</span> <span class="toc-text">数据模型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件的生成"><span class="toc-number">6.3.</span> <span class="toc-text">文件的生成</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#API模块"><span class="toc-number">7.</span> <span class="toc-text">API模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目中的使用"><span class="toc-number">8.</span> <span class="toc-text">项目中的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">9.</span> <span class="toc-text">总结</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="glemontree" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android/" title="Android">Android<sup>15</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Boost/" title="Boost">Boost<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C/" title="C++">C++<sup>24</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CMake/" title="CMake">CMake<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/DB/" title="DB">DB<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Effective-Java/" title="Effective Java">Effective Java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/HTTPS/" title="HTTPS">HTTPS<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/IntelliJ-IDEA/" title="IntelliJ IDEA">IntelliJ IDEA<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/JQuery/" title="JQuery">JQuery<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Java/" title="Java">Java<sup>16</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>22</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/MyBatis/" title="MyBatis">MyBatis<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Qt/" title="Qt">Qt<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Redis/" title="Redis">Redis<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Servlet/" title="Servlet">Servlet<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Spring/" title="Spring">Spring<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/SpringMVC/" title="SpringMVC">SpringMVC<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Struts2/" title="Struts2">Struts2<sup>18</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/TCP-IP/" title="TCP/IP">TCP/IP<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/TCPIP/" title="TCPIP">TCPIP<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows核心编程/" title="Windows核心编程">Windows核心编程<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/html/" title="html">html<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/多线程/" title="多线程">多线程<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/编程规范/" title="编程规范">编程规范<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络编程/" title="网络编程">网络编程<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>5</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Linux-Shell/" title="Linux, Shell">Linux, Shell<sup>16</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JQuery/" title="JQuery">JQuery<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C++">C++<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java-并发/" title="Java 并发">Java 并发<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MyBatis/" title="MyBatis">MyBatis<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-boost/" title="C++ boost">C++ boost<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DB/" title="DB">DB<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Redis/" title="Redis">Redis<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/动态规划/" title="动态规划">动态规划<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SpringMVC/" title="SpringMVC">SpringMVC<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spring-AOP/" title="Spring, AOP">Spring, AOP<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Struts2-OGNL/" title="Struts2, OGNL">Struts2, OGNL<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html/" title="html">html<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MyBatis-SQL映射文件/" title="MyBatis, SQL映射文件">MyBatis, SQL映射文件<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-new-operator-new-placement-new/" title="C++, new, operator new, placement new">C++, new, operator new, placement new<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-泛型/" title="C++ 泛型">C++ 泛型<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://github.com/glemontree" target="_blank" title="GitHub">GitHub</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/u010216743" target="_blank" title="CSDN">CSDN</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">Weibo</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello World. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/glemontree" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:gtp0521@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Glemontree">Glemontree</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"glemontree"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'null'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

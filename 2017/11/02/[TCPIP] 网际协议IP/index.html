@@ -1,0 +1,766 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>[TCP/IP] 网际协议IP | Glemontree&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Glemontree">
+    
+
+    
+    <meta name="description" content="IP是整个TCP/IP协议的核心，TCP、UDP、ICMP、IGMP等协议都基于IP来传送协议数据，常见的广域网路由器就工作在IP层，它们负责将IP数据报从源主机送至目的主机。
+
+网络相关知识
+IP是一种不可靠的无连接数据报协议，它提供尽量最大努力交付服务，但是并不保证每个分组都能被正确送达，此外，IP不会对运载的数据进行差错校验和跟踪。
+
+IP地址被分为A，B，C，D，E五类，在分类地址中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[TCP/IP] 网际协议IP">
+<meta property="og:url" content="http://yoursite.com/2017/11/02/[TCPIP] 网际协议IP/index.html">
+<meta property="og:site_name" content="Glemontree's blog">
+<meta property="og:description" content="IP是整个TCP/IP协议的核心，TCP、UDP、ICMP、IGMP等协议都基于IP来传送协议数据，常见的广域网路由器就工作在IP层，它们负责将IP数据报从源主机送至目的主机。
+
+网络相关知识
+IP是一种不可靠的无连接数据报协议，它提供尽量最大努力交付服务，但是并不保证每个分组都能被正确送达，此外，IP不会对运载的数据进行差错校验和跟踪。
+
+IP地址被分为A，B，C，D，E五类，在分类地址中">
+<meta property="og:updated_time" content="2017-11-02T03:24:16.430Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[TCP/IP] 网际协议IP">
+<meta name="twitter:description" content="IP是整个TCP/IP协议的核心，TCP、UDP、ICMP、IGMP等协议都基于IP来传送协议数据，常见的广域网路由器就工作在IP层，它们负责将IP数据报从源主机送至目的主机。
+
+网络相关知识
+IP是一种不可靠的无连接数据报协议，它提供尽量最大努力交付服务，但是并不保证每个分组都能被正确送达，此外，IP不会对运载的数据进行差错校验和跟踪。
+
+IP地址被分为A，B，C，D，E五类，在分类地址中">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/favicon.ico" alt="Glemontree&#39;s blog" title="Glemontree&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Glemontree&#39;s blog">Glemontree&#39;s blog</a></h1>
+				<h2 class="blog-motto">day day up!</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="http://zhannei.baidu.com/cse/search" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="Search"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/11/02/[TCPIP] 网际协议IP/" title="[TCP/IP] 网际协议IP" itemprop="url">[TCP/IP] 网际协议IP</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
+		
+  <p class="article-time">
+    <time datetime="2017-11-02T03:23:02.000Z" itemprop="datePublished"> Published 2017-11-02</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#网络相关知识"><span class="toc-number">1.</span> <span class="toc-text">网络相关知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据报"><span class="toc-number">2.</span> <span class="toc-text">数据报</span></a></li></ol>
+		
+		</div>
+		
+		<blockquote>
+<p>  IP是整个TCP/IP协议的核心，TCP、UDP、ICMP、IGMP等协议都基于IP来传送协议数据，常见的广域网路由器就工作在IP层，它们负责将IP数据报从源主机送至目的主机。</p>
+</blockquote>
+<h2 id="网络相关知识"><a href="#网络相关知识" class="headerlink" title="网络相关知识"></a>网络相关知识</h2><ul>
+<li><p>IP是一种不可靠的无连接数据报协议，它提供尽量最大努力交付服务，但是并不保证每个分组都能被正确送达，此外，IP不会对运载的数据进行差错校验和跟踪。</p>
+</li>
+<li><p>IP地址被分为A，B，C，D，E五类，在分类地址中，IP地址由网络号和主机号组成，网络号标识某个网络，主机号标识该网络内的某台主机，这两个部分的长度是可变的，主要取决于地址的类型：对于A类地址，第一个字节定义网络号，后三个字节定义主机号；对于B类地址，前两个字节定义网络号，后两个字节定义主机号；对于C类网络地址，前三个字节定义网络号，最后一个字节定义主机号；对于D类和E类地址，不进行主机号和网络号的划分，D类地址是多播（组播）地址，而E类地址保留未用。</p>
+</li>
+<li><p>网络地址：用来标识不同的网络，不指向具体的哪一个主机或设备，而是标识属于同一个网络的主机或网络设备的集合。当一个数据包到达一个网络时，该网络的路由器首先判断数据包的目的网络是否与本地网络号相匹配，如果两个地址不匹配，那么路由器将会根据合适的算法对数据包进行转发，只有两个地址相互匹配，路由器才会查找响应的主机号进行主机的匹配，最后将数据包发送到指定的主机。</p>
+</li>
+<li><p>子网编址：将网络进一步划分为子网的设计，允许多个物理网络共享一个网络前缀，但每个子网都有自己的子网地址。在子网编址中，将主机号再划分为一个子网号和主机号。</p>
+</li>
+<li><p>NAT（网络地址转换）</p>
+<p>通常，企业内部使用的局域网路由器都是具有NAT功能的，具有NAT功能的路由器至少有一个内部端口和一个外部端口，内部端口是路由器为了与局域网内的用户通信而使用的，它使用一个内部专用的IP地址，例如常见的路由器内部IP地址为192.168.1.1，外部端口是路由器用来与外部网络通信用的，它通常具有一个有效的IP地址，例如一个有效的C类地址222.197.179.21。</p>
+<p>当内部网络用户连接互联网时，NAT将用户的内部IP地址转换成一个外部公共IP地址，反之，数据从外部返回时，NAT将目的地址替换成用户的内部IP地址。</p>
+<p>NAT的实现方式有很多种，使用最广泛的是端口多路复用，它基于TCP或UDP协议端口号以及IP地址来实现NAT功能。假如我们的局域网用户（专用地址是192.168.1.78）需要使用TCP协议与Internet中的一个Http服务器进行通信（IP地址为130.21.45.20，服务端口号是80），则它将发送一个包含源IP地址、源端口号、目的IP地址、目的端口号的IP分组到路由器处，这里假设这四个值为：（192.168.1.78, 1234, 130.21.45.20, 80），具有NAT功能的路由器会在内部维护一个NAT转换表，当路由器收到该分组时，会在表中为连接（192.168.1.78, 1234, 130.21.45.20, 80）分配一个路由器内部的NAT端口（假设为5678），另一方面，路由器在转发该分组时，会先更改分组中的源IP地址和端口号（分别改为路由器外部IP地址和NAT端口），然后才将数据包发送出去，所以被路由器转发出去的数据包中的信息为（222.178.197.21,5678,130.21.45.20,80），当服务器响应这个数据包时，它返回的数据报头部信息应为（130.21.45.20,80,222.178.197.21,5678），路由器接收到这个分组后，会在NAT转换表中查找NAT端口号为5678的连接，并把数据分组中的IP地址信号和端口信号更改为NAT转换表中记录的信息（130.21.45.20,80,192.168.1.78, 1234），最后把这个数据包返回给用户主机。</p>
+<p>经过NAT两次简单的转换，局域网用户就实现了与外部网络的数据包交互，但是路由器应该为每个连接分配一个唯一的NAT端口号，并及时回收那些不用的端口号。</p>
+</li>
+</ul>
+<h2 id="数据报"><a href="#数据报" class="headerlink" title="数据报"></a>数据报</h2><ul>
+<li><p>IP层的数据包，更正式的叫IP数据报或IP分组，在以太网中，IP数据报和ARP报文都是组装在以太网数据帧中发送的。</p>
+</li>
+<li><p>IP数据报的组织形式：通常有两部分组成，即IP首部和数据，首部常见长度为20个字节，IP数据报对数据的格式没有规定，所以IP数据报可以用来运输任意类型的数据。</p>
+</li>
+<li><p>IP数据报的组成：</p>
+</li>
+<li><p>版本号（4bit）：包含了创建数据报所使用的IP协议版本信息，对于IPv4，该值为4，对于IPv6，该值为6</p>
+</li>
+<li><p>首部长度（4bit）：这个长度以字为单位（4字节），对于不含任何选项字段的IP首部，该长度值为5（5*4=20字节），该字段最大值为15，所以最大IP首部长度为60字节</p>
+</li>
+<li><p>服务类型字段（8bit）：Type of Service, TOS，该字段主要用于描述当前IP数据报急需的服务类型，如最小延时、最大吞吐量、最高可靠性、最小费用等，路由器在转发数据报时可以根据这个字段的值来为数据报选择最合理的路由路径</p>
+</li>
+<li><p>总长度字段（16bit）：描述了整个IP数据报（IP首部和数据区）的总字节数，理论来说，IP数据报总长度最大可达65535字节，但在实际应用中，底层链路不允许这么大的数据包出现在链路中，在以太网中，以太网数据帧中的数据长度最长为1500字节（MTU），当一个很大的IP数据报需要发送时，IP层首先要检查底层接口设备的MTU，然后将大的数据报划分为几个分片包，最后分别递交给底层发送；另一方面，当以太网数据帧中的数据量较少时，例如小于46字节，底层会在以太网数据中加入一定的填充字节以满足长度要求</p>
+</li>
+<li><p>标识字段（16bit）：用于标识IP层发送出去的每一份IP数据报，没发送一份报文，则该值加1，数据包被分片时，该字段会被复制到每一个分片中，在接收端，会使用这个字段值来组装所有分片为一个完整的数据报</p>
+</li>
+<li><p>标志字段（3bit）：第一位保留，第二位为不分片位，当该位被置位时，IP数据报在发送或转发过程中，不能进行分片，在这种情况下，如果这个数据报由于太大而不能被放在任何物理网络中进行发送，那么这个数据报会被丢弃，当该位为0时，IP层将在需要的时候对数据包进行分片处理；第三位表示更多分片位，当该位被置1时，说明该分片不是某个数据报的最后一个分片，当该位为0时，表示该分片时某个数据报的最后一个分片，或者是某个数据报的唯一分片</p>
+</li>
+<li><p>片偏移字段（13bit）：当前分片所携带的数据在整个数据报中的相对位置（以8字节为单位），目的站必须收到从0偏移量到最高偏移量的所有分片，才能将分片重装为一个完整的数据报，每个分片在网络中单独传输，它们到达终点的顺序可能会各不相同，但在目的端，将按照分片的偏移量来顺序组织各个分片</p>
+</li>
+<li><p>生存时间（TTL）：描述IP数据报最多能被转发的次数，每经过一次转发，该值会减一，当该值为0时，路由器会丢弃该分组，同时一个ICMP差错报文会返回到源主机</p>
+</li>
+<li><p>协议字段（8bit）：描述数据报中的数据是来自于哪个上层协议，该位为1表示ICMP协议，为2表示IGMP协议，为6表示TCP协议，为17表示UDP协议</p>
+</li>
+<li><p>首部检验和（16bit）：针对IP首部进行校验，它并不关心内部数据在传输过程中出错与否，对于数据的校验是上层协议负责的，如ICMP、IGMP、TCP、UDP协议都会计算它们头部以及整个数据区的校验和</p>
+</li>
+<li><p>IP层输出</p>
+</li>
+<li><p>发送数据报</p>
+<p>当传输层协议（TCP或UDP）要发送数据时，它们会将数据按照自己的格式组装在一个pbuf    中，并将payload指针指向协议首部，然后调用IP层的数据报发送函数ip_output    发送数据，ip_output的调用者需要为它提供数据报首部中的目的IP地址、源IP地址、协议类型、TTL等重要信息，ip_output的函数源代码如下，它主要的工作是根据目的IP地址为该数据报选择一个合适的网络接口，然后调用函数ip_output_if将数据报发送出去。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line">	函数功能：被传输层协议调用以发送数据报，该函数查找网络接口并调用函数ip_output_if完成最终的发送工作</div><div class="line">	@p: 传输层协议需要发送的数据包pbuf，payload指针已指向协议首部</div><div class="line">	@src:源IP地址，若为NULL，则使用网络接口结构中保存的IP地址</div><div class="line">	@dest：目的IP地址，若为IP_HDRINCL，则表示p中已经有了填写好的IP数据报首部，且payload指针也已经指向了IP首部</div><div class="line">	@ttl：IP首部中的TTL字段</div><div class="line">	@tos：IP首部中的服务类型</div><div class="line">	@proto：IP首部中的协议类型值</div><div class="line">*/</div><div class="line"><span class="keyword">err_t</span> ip_output(<span class="keyword">struct</span> pbuf* p, <span class="keyword">struct</span> ip_addr* src, <span class="keyword">struct</span> ip_addr* dest, <span class="keyword">u8_t</span> ttl, <span class="keyword">u8_t</span> tos, <span class="keyword">u8_t</span> proto) &#123;</div><div class="line">  <span class="keyword">struct</span> netif* netif;</div><div class="line">  <span class="comment">//根据目的IP地址为数据报寻找一个合适的网络接口</span></div><div class="line">  <span class="keyword">if</span> ((netif = ip_route(dest)) == <span class="literal">NULL</span>) &#123;</div><div class="line">    <span class="keyword">return</span> ERR_RTE;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> ip_output_if(p, src, dest, ttl, tos, proto, netif);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">err_t</span> ip_output_if(<span class="keyword">struct</span> pbuf* p, <span class="keyword">struct</span> ip_addr* src, <span class="keyword">struct</span> ip_addr* dest, <span class="keyword">u8_t</span> ttl, <span class="keyword">u8_t</span> tos, <span class="keyword">u8_t</span> proto, <span class="keyword">struct</span> netif* netif) &#123;</div><div class="line">  <span class="keyword">struct</span> ip_hdr* iphdr;</div><div class="line">  <span class="keyword">static</span> <span class="keyword">u16_t</span> ip_id = <span class="number">0</span>; <span class="comment">// 静态变量，记录IP数据报的编号（标识字段）</span></div><div class="line">  <span class="keyword">if</span> (dest != IP_HDRINCL) &#123;</div><div class="line">  	<span class="keyword">u16_t</span> ip_hlen = IP_HLEN; <span class="comment">// IP_HLEN为默认的IP首部长度，20</span></div><div class="line">    <span class="keyword">if</span> (pbuf_header(p, IP_HLEN)) &#123; <span class="comment">// 移动payload指针，指向pbuf中的IP首部</span></div><div class="line">  	  <span class="keyword">return</span> ERR_BUF;</div><div class="line">	&#125;</div><div class="line">    iphdr = p-&gt;payload; <span class="comment">// iphdr指向数据报首部</span></div><div class="line">    IPH_TTL_SET(iphdr, ttl);</div><div class="line">    IPH_PROTO_SET(iphdr, proto);</div><div class="line">    ip_addr_set(&amp;(iphdr-&gt;dest), dest);</div><div class="line">    IPH_VHLTOS_SET(iphdr, <span class="number">4</span>, ip_hlen / <span class="number">4</span>, tos); <span class="comment">// 填写版本号+首部长度+服务类型</span></div><div class="line">    IPH_LEN_SET(iphdr, htons(p-&gt;tot_len)); <span class="comment">// 填写数据报总长度</span></div><div class="line">    IPH_OFFSET_SET(iphdr, <span class="number">0</span>); <span class="comment">// 填写标志位和片偏移字段，都为0</span></div><div class="line">    IPH_ID_SET(iphdr, htons(ip_id)); <span class="comment">// 填写标识字段</span></div><div class="line">    ++ip_id; <span class="comment">// 数据报编号值加1</span></div><div class="line">    <span class="keyword">if</span> (ip_addr_isany(src)) &#123;<span class="comment">// 若src为空，则将源IP地址填写为网络接口的IP地址</span></div><div class="line">      ip_addr_set(&amp;(iphdr-&gt;src), &amp;(netif-&gt;ip_addr));</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">  	  ip_addr_set(&amp;(iphdr-&gt;src), src);</div><div class="line">	&#125;</div><div class="line">    IPH_CHKSUM_SET(iphdr, <span class="number">0</span>); <span class="comment">// 清0校验和字段</span></div><div class="line">    IPH_CHKSUM_SET(iphdr, inet_chksum(iphdr, ip_hlen)); <span class="comment">// 计算并填写首部校验和</span></div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">  	iphdr = p-&gt;payload;</div><div class="line">    dest = &amp;(iphdr-&gt;dest);</div><div class="line">  &#125;</div><div class="line">  <span class="comment">// 下面开始发送IP数据报，分为三种情况进行处理</span></div><div class="line">  <span class="keyword">if</span> (ip_addr_cmp(dest, &amp;netif-&gt;ip_addr)) &#123; <span class="comment">// 如果目的IP地址是本网卡的地址</span></div><div class="line">  	<span class="keyword">return</span> netif_loop_output(netif, p ,dest);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">if</span> (netif-&gt;mtu &amp;&amp; (p-&gt;tot_len &gt; netif-&gt;mtu)) &#123;</div><div class="line">  	<span class="keyword">return</span> ip_frag(p, netif, dest);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> netif-&gt;output(netif, p, dest);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>对于最后一种情况，会调用网卡结构注册的output函数来完成数据报的发送工作，这里这个函数应为etharp_output，它会解析MAC地址，组装以太网帧并发送。</p>
+<p>​</p>
+<p>​</p>
+</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/TCP-IP/">TCP/IP</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/IP/">IP</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2017/11/02/[TCPIP] 网际协议IP/" data-title="[TCP/IP] 网际协议IP | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/11/02/[TCPIP] 网络接口管理/" title="[TCP/IP] 网络接口管理">
+  <strong>上一篇：</strong><br/>
+  <span>
+  [TCP/IP] 网络接口管理</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/11/02/[TCPIP] 数据包管理/"  title="[TCP/IP] 数据包管理">
+ <strong>下一篇：</strong><br/> 
+ <span>[TCP/IP] 数据包管理
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/11/02/[TCPIP] 网际协议IP/" data-title="[TCP/IP] 网际协议IP" data-url="http://yoursite.com/2017/11/02/[TCPIP] 网际协议IP/"></div>
+</section>
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#网络相关知识"><span class="toc-number">1.</span> <span class="toc-text">网络相关知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据报"><span class="toc-number">2.</span> <span class="toc-text">数据报</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="glemontree" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android/" title="Android">Android<sup>15</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Boost/" title="Boost">Boost<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C/" title="C++">C++<sup>24</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CMake/" title="CMake">CMake<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/DB/" title="DB">DB<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Effective-Java/" title="Effective Java">Effective Java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/HTTPS/" title="HTTPS">HTTPS<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/IntelliJ-IDEA/" title="IntelliJ IDEA">IntelliJ IDEA<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/JQuery/" title="JQuery">JQuery<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Java/" title="Java">Java<sup>16</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>22</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/MyBatis/" title="MyBatis">MyBatis<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Qt/" title="Qt">Qt<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Redis/" title="Redis">Redis<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Servlet/" title="Servlet">Servlet<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Spring/" title="Spring">Spring<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/SpringMVC/" title="SpringMVC">SpringMVC<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Struts2/" title="Struts2">Struts2<sup>18</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/TCP-IP/" title="TCP/IP">TCP/IP<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/TCPIP/" title="TCPIP">TCPIP<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows核心编程/" title="Windows核心编程">Windows核心编程<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/html/" title="html">html<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/多线程/" title="多线程">多线程<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/编程规范/" title="编程规范">编程规范<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络编程/" title="网络编程">网络编程<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>5</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Linux-Shell/" title="Linux, Shell">Linux, Shell<sup>16</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JQuery/" title="JQuery">JQuery<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C++">C++<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java-并发/" title="Java 并发">Java 并发<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MyBatis/" title="MyBatis">MyBatis<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-boost/" title="C++ boost">C++ boost<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DB/" title="DB">DB<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Redis/" title="Redis">Redis<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/动态规划/" title="动态规划">动态规划<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SpringMVC/" title="SpringMVC">SpringMVC<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spring-AOP/" title="Spring, AOP">Spring, AOP<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Struts2-OGNL/" title="Struts2, OGNL">Struts2, OGNL<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html/" title="html">html<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MyBatis-SQL映射文件/" title="MyBatis, SQL映射文件">MyBatis, SQL映射文件<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-new-operator-new-placement-new/" title="C++, new, operator new, placement new">C++, new, operator new, placement new<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-泛型/" title="C++ 泛型">C++ 泛型<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://github.com/glemontree" target="_blank" title="GitHub">GitHub</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/u010216743" target="_blank" title="CSDN">CSDN</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">Weibo</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello World. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/glemontree" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:gtp0521@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Glemontree">Glemontree</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"glemontree"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'null'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

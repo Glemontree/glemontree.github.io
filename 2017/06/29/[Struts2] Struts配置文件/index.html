@@ -1,0 +1,803 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>[Struts2] Action类 | Glemontree&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Glemontree">
+    
+
+    
+    <meta name="description" content="action与Action类
+action
+代表一个Struts2请求
+
+Action类
+能够处理Struts2请求的类就是Action类，Action类具有以下特点：
+
+属性的名字必须遵守与JavaBean属性名相同的命名规则，属性的类型可以是任意类型，属性名字(get set方法对应的属性名字)应当与表单发请求时对应的参数名字相对应
+必须有一个不带参的构造函数（反射）
+至少有一个供struts">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Struts2] Action类">
+<meta property="og:url" content="http://yoursite.com/2017/06/29/[Struts2] Struts配置文件/index.html">
+<meta property="og:site_name" content="Glemontree's blog">
+<meta property="og:description" content="action与Action类
+action
+代表一个Struts2请求
+
+Action类
+能够处理Struts2请求的类就是Action类，Action类具有以下特点：
+
+属性的名字必须遵守与JavaBean属性名相同的命名规则，属性的类型可以是任意类型，属性名字(get set方法对应的属性名字)应当与表单发请求时对应的参数名字相对应
+必须有一个不带参的构造函数（反射）
+至少有一个供struts">
+<meta property="og:updated_time" content="2017-07-04T11:29:49.661Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Struts2] Action类">
+<meta name="twitter:description" content="action与Action类
+action
+代表一个Struts2请求
+
+Action类
+能够处理Struts2请求的类就是Action类，Action类具有以下特点：
+
+属性的名字必须遵守与JavaBean属性名相同的命名规则，属性的类型可以是任意类型，属性名字(get set方法对应的属性名字)应当与表单发请求时对应的参数名字相对应
+必须有一个不带参的构造函数（反射）
+至少有一个供struts">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/favicon.ico" alt="Glemontree&#39;s blog" title="Glemontree&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Glemontree&#39;s blog">Glemontree&#39;s blog</a></h1>
+				<h2 class="blog-motto">day day up!</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="http://zhannei.baidu.com/cse/search" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="Search"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/06/29/[Struts2] Struts配置文件/" title="[Struts2] Action类" itemprop="url">[Struts2] Action类</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
+		
+  <p class="article-time">
+    <time datetime="2017-06-29T11:22:10.000Z" itemprop="datePublished"> Published 2017-06-29</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#action与Action类"><span class="toc-number">1.</span> <span class="toc-text">action与Action类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Action中访问WEB资源"><span class="toc-number">2.</span> <span class="toc-text">Action中访问WEB资源</span></a></li></ol>
+		
+		</div>
+		
+		<h1 id="action与Action类"><a href="#action与Action类" class="headerlink" title="action与Action类"></a>action与Action类</h1><ul>
+<li><p>action</p>
+<p>代表一个Struts2请求</p>
+</li>
+<li><p>Action类</p>
+<p>能够处理Struts2请求的类就是Action类，Action类具有以下特点：</p>
+<ul>
+<li>属性的名字必须遵守与JavaBean属性名相同的命名规则，属性的类型可以是任意类型，属性名字(get set方法对应的属性名字)应当与表单发请求时对应的参数名字相对应</li>
+<li>必须有一个不带参的构造函数（反射）</li>
+<li>至少有一个供struts在执行这个action时调用的方法</li>
+<li>同一个Action类可以包含多个action方法</li>
+<li>Struts为每一个Http请求创建一个新的Action实例，即Action不是单例的，是线程安全的</li>
+</ul>
+</li>
+</ul>
+<h1 id="Action中访问WEB资源"><a href="#Action中访问WEB资源" class="headerlink" title="Action中访问WEB资源"></a>Action中访问WEB资源</h1><ul>
+<li><p>什么是WEB资源</p>
+<p>HttpServletRequest、HttpSession、ServletContext等原生的Servlet API</p>
+</li>
+<li><p>为什么需要访问WEB资源</p>
+<p>B/S应用的Controller中必然需要访问WEB资源，比如向域对象中读写属性，读写cookie，获取realPath…</p>
+</li>
+<li><p>如何访问</p>
+<ul>
+<li><p>和Servlet API解耦的方式</p>
+<p>只能访问有限的Servlet API对象，只能访问其有限的方法（读取请求参数，读写域对象的属性，使session失效…）。</p>
+<p>Struts2对HttpServletRequest、HttpSession、ServletContext进行了封装，构造了3个Map对象来替代这3个对象，在Action中可以直接调用HttpServletRequest、HttpServletSession、ServletContext对应的Map对应来保存和读取数据。</p>
+<ul>
+<li><p>使用ActionContext</p>
+<p>ActionContext是Action执行的上下文对象，在ActionContext中保存了Action执行所需要的所有对象，包括parameters、request、session、application等</p>
+<ul>
+<li><p>获取HttpSession对应的Map对象</p>
+<p><code>public Map getSession()</code></p>
+</li>
+<li><p>获取ServletContext对应的Map对象</p>
+<p><code>public Map getApplication()</code></p>
+</li>
+<li><p>获取请求参数对应的Map对象</p>
+<p><code>public Map getParameters()</code></p>
+</li>
+<li><p>获取HttpServletRequest对应的Map对象</p>
+<p><code>public Object get(Object key)</code>：ActionContext类中没有提供类似getRequest()这样的方法获取HttpServletRequest对应的Map对象，要得到HttpServletRequest对应的Map对象，可以通过get()方法传递”request”参数实现</p>
+</li>
+</ul>
+<p>举例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.glemontree.struts2;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.Map;</div><div class="line"></div><div class="line"><span class="keyword">import</span> com.opensymphony.xwork2.ActionContext;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestActionContextAction</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">execute</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// 获取ActionContext对象</span></div><div class="line">    ActionContext actionContext = ActionContext.getContext();</div><div class="line"></div><div class="line">    <span class="comment">// 1.获取Application对应的Map，并向其中添加一个属性</span></div><div class="line">    <span class="comment">// 通过调用ActionContext的getApplication方法来获取application对应的Map对象</span></div><div class="line">    Map&lt;String, Object&gt; applicationMap = actionContext.getApplication();</div><div class="line">    <span class="comment">// 设置属性</span></div><div class="line">    applicationMap.put(<span class="string">"applicationkey"</span>, <span class="string">"applicationValue"</span>);</div><div class="line">    <span class="comment">// 获取属性</span></div><div class="line">    Object date = applicationMap.get(<span class="string">"date"</span>);</div><div class="line">    System.out.println(<span class="string">"date: "</span> + date);</div><div class="line"></div><div class="line">    <span class="comment">// 2.获取Session对应的Map，并向其中添加一个属性</span></div><div class="line">    Map&lt;String, Object&gt; sessionMap = actionContext.getSession();</div><div class="line">    sessionMap.put(<span class="string">"sessionKey"</span>, <span class="string">"sessionValue"</span>);</div><div class="line"></div><div class="line">    <span class="comment">// 3.获取Request对应的Map，并向其中添加一个属性</span></div><div class="line">    <span class="comment">// ActionContext中并没有提供getRequest()方法来获取request对应的Map，需要手工调用get()方法，传入request字符串来获取</span></div><div class="line">    Map&lt;String, Object&gt; requestMap = (Map&lt;String, Object&gt;) actionContext.get(<span class="string">"request"</span>);</div><div class="line">    requestMap.put(<span class="string">"requestKey"</span>, <span class="string">"requestValue"</span>);</div><div class="line"></div><div class="line">    <span class="comment">// 4.获取请求参数对应的Map，并获取指定的参数值</span></div><div class="line">    <span class="comment">// 键：请求参数的名字  值：请求参数的值对应的字符串数组</span></div><div class="line">    <span class="comment">// 注意：getParameteres()的返回值为Map&lt;String, Object&gt;，而不是Map&lt;String, String[]&gt;</span></div><div class="line">    <span class="comment">// 另外，parameters这个Map只能读，不能写入数据，如果写入，但不会报错，但也不起作用</span></div><div class="line">    Map&lt;String, Object&gt; parameters = actionContext.getParameters();</div><div class="line">    System.out.println(((String[])parameters.get(<span class="string">"name"</span>))[<span class="number">0</span>]);</div><div class="line">    parameters.put(<span class="string">"age"</span>, <span class="number">100</span>);</div><div class="line">    <span class="keyword">return</span> <span class="string">"success"</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面这段代码主要有以下一些注意点：</p>
+<ul>
+<li>为了在Action中获取ActionContext，需要通过ActionContext的静态方法getContext()来获取</li>
+<li>对于applicationMap、sessionMap以及parameters均可以通过对应的getXXX方法获取Map对象，唯独requestMap不可以直接通过getRequest()方法来获得，而必须通过get(“request”)方法来获得requestMap</li>
+<li>applicationMap、sessionMap以及requestMap均可以向其中写入数据，然后从jsp中读取出来，但是parameters只能读取而不能写入数据</li>
+</ul>
+<p>在jsp中读取前面写入的值的方法如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&lt;%@ page language="java" contentType="text/html; charset=GB18030"</div><div class="line">  pageEncoding="GB18030"%&gt;</div><div class="line">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;</div><div class="line">&lt;html&gt;</div><div class="line">  &lt;head&gt;</div><div class="line">    &lt;meta http-equiv="Content-Type" content="text/html; charset=GB18030"&gt;</div><div class="line">    &lt;title&gt;Insert title here&lt;/title&gt;</div><div class="line">  &lt;/head&gt;</div><div class="line">  &lt;body&gt;</div><div class="line">    &lt;h4&gt; Test ActionContext Page&lt;/h4&gt;</div><div class="line">    application: $&#123;applicationScope.applicationkey &#125;</div><div class="line">    &lt;br&gt;&lt;br&gt;</div><div class="line">    session: $&#123;sessionScope.sessionKey &#125;</div><div class="line">    &lt;br&gt;&lt;br&gt;</div><div class="line">    request: $&#123;requestScope.requestKey &#125;</div><div class="line">    &lt;br&gt;&lt;br&gt;</div><div class="line">    age: $&#123;parameters.age &#125;</div><div class="line">  &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<p>注意：与范围相关的EL隐含对象包含4个：pageScope、requestScope、sessionScope以及applicationScope</p>
+</li>
+<li><p>实现XXXAware接口</p>
+<ul>
+<li><p>TestAwareAction.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.glemontree.struts2;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.Map;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.apache.struts2.interceptor.ApplicationAware;</div><div class="line"><span class="keyword">import</span> org.apache.struts2.interceptor.ParameterAware;</div><div class="line"><span class="keyword">import</span> org.apache.struts2.interceptor.RequestAware;</div><div class="line"><span class="keyword">import</span> org.apache.struts2.interceptor.SessionAware;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestAwareAction</span> <span class="keyword">implements</span> <span class="title">ApplicationAware</span>, <span class="title">SessionAware</span>, <span class="title">RequestAware</span>, <span class="title">ParameterAware</span></span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">execute</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="comment">//1.向application中加入一个属性：applicationKey2 - applicationValue2</span></div><div class="line">    application.put(<span class="string">"applicationKey2"</span>, <span class="string">"applicationValue2"</span>);</div><div class="line">    System.out.println(application.get(<span class="string">"date"</span>));</div><div class="line">    <span class="comment">//2.从application中读取一个属性date并打印</span></div><div class="line">    <span class="keyword">return</span> <span class="string">"success"</span>;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">private</span> Map&lt;String, Object&gt; application;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setApplication</span><span class="params">(Map&lt;String, Object&gt; application)</span> </span>&#123;</div><div class="line">    <span class="comment">// TODO Auto-generated method stub</span></div><div class="line">    <span class="keyword">this</span>.application = application;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setParameters</span><span class="params">(Map&lt;String, String[]&gt; arg0)</span> </span>&#123;</div><div class="line">    <span class="comment">// TODO Auto-generated method stub</span></div><div class="line"></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setRequest</span><span class="params">(Map&lt;String, Object&gt; arg0)</span> </span>&#123;</div><div class="line">    <span class="comment">// TODO Auto-generated method stub</span></div><div class="line"></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSession</span><span class="params">(Map&lt;String, Object&gt; arg0)</span> </span>&#123;</div><div class="line">    <span class="comment">// TODO Auto-generated method stub</span></div><div class="line"></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>index.jsp</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">&lt;%@page import="java.util.Date"%&gt;</div><div class="line">&lt;%@ page language="java" contentType="text/html; charset=GB18030"</div><div class="line">  pageEncoding="GB18030"%&gt;</div><div class="line">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;</div><div class="line">&lt;html&gt;</div><div class="line">  &lt;head&gt;</div><div class="line">    &lt;meta http-equiv="Content-Type" content="text/html; charset=GB18030"&gt;</div><div class="line">    &lt;title&gt;Insert title here&lt;/title&gt;</div><div class="line">  &lt;/head&gt;</div><div class="line">  &lt;body&gt;</div><div class="line">    &lt;a href="TestActionContext.action?name=glemontree"&gt;Test ActionContext&lt;/a&gt;</div><div class="line">    &lt;br&gt;&lt;br&gt;</div><div class="line">    &lt;a href="TestAware.action?name=glemontree"&gt;Test Aware&lt;/a&gt;</div><div class="line"></div><div class="line">    &lt;%</div><div class="line">  if (application.getAttribute("date") == null) &#123;</div><div class="line">    application.setAttribute("date", new Date());</div><div class="line">  &#125;</div><div class="line">%&gt;</div><div class="line">  &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>test-aware.jsp</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;%@ page language="java" contentType="text/html; charset=GB18030"</div><div class="line">  pageEncoding="GB18030"%&gt;</div><div class="line">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;</div><div class="line">&lt;html&gt;</div><div class="line">  &lt;head&gt;</div><div class="line">    &lt;meta http-equiv="Content-Type" content="text/html; charset=GB18030"&gt;</div><div class="line">    &lt;title&gt;Insert title here&lt;/title&gt;</div><div class="line">  &lt;/head&gt;</div><div class="line">  &lt;body&gt;</div><div class="line">    &lt;h4&gt;Test Aware Page&lt;/h4&gt;</div><div class="line">    application: $&#123;applicationScope.applicationKey2 &#125;</div><div class="line">  &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>和Servlet API耦合的方式</p>
+</li>
+</ul>
+<p>可以访问更多的Servlet API对象且可以调用其原生的方法</p>
+<ul>
+<li>使用ServletActionContext</li>
+<li>实现ServletXXXAware接口</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Struts2/">Struts2</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Struts2-配置文件/">Struts2, 配置文件</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2017/06/29/[Struts2] Struts配置文件/" data-title="[Struts2] Action类 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/06/30/[Servlet] HttpServletResponse/" title="[Servlet] HttpServletResponse">
+  <strong>上一篇：</strong><br/>
+  <span>
+  [Servlet] HttpServletResponse</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/06/29/[Struts2] URL、URI以及ServletPath之间的区别/"  title="[Struts2] URL、URI以及ServletPath之间的区别">
+ <strong>下一篇：</strong><br/> 
+ <span>[Struts2] URL、URI以及ServletPath之间的区别
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/06/29/[Struts2] Struts配置文件/" data-title="[Struts2] Action类" data-url="http://yoursite.com/2017/06/29/[Struts2] Struts配置文件/"></div>
+</section>
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#action与Action类"><span class="toc-number">1.</span> <span class="toc-text">action与Action类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Action中访问WEB资源"><span class="toc-number">2.</span> <span class="toc-text">Action中访问WEB资源</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="glemontree" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android/" title="Android">Android<sup>15</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Boost/" title="Boost">Boost<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C/" title="C++">C++<sup>24</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CMake/" title="CMake">CMake<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/DB/" title="DB">DB<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Effective-Java/" title="Effective Java">Effective Java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/HTTPS/" title="HTTPS">HTTPS<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/IntelliJ-IDEA/" title="IntelliJ IDEA">IntelliJ IDEA<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/JQuery/" title="JQuery">JQuery<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Java/" title="Java">Java<sup>16</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>22</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/MyBatis/" title="MyBatis">MyBatis<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Qt/" title="Qt">Qt<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Redis/" title="Redis">Redis<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Servlet/" title="Servlet">Servlet<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Spring/" title="Spring">Spring<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/SpringMVC/" title="SpringMVC">SpringMVC<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Struts2/" title="Struts2">Struts2<sup>18</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/TCP-IP/" title="TCP/IP">TCP/IP<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/TCPIP/" title="TCPIP">TCPIP<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows核心编程/" title="Windows核心编程">Windows核心编程<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/html/" title="html">html<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/多线程/" title="多线程">多线程<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/编程规范/" title="编程规范">编程规范<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络编程/" title="网络编程">网络编程<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>5</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Linux-Shell/" title="Linux, Shell">Linux, Shell<sup>16</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JQuery/" title="JQuery">JQuery<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C++">C++<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java-并发/" title="Java 并发">Java 并发<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MyBatis/" title="MyBatis">MyBatis<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-boost/" title="C++ boost">C++ boost<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DB/" title="DB">DB<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Redis/" title="Redis">Redis<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/动态规划/" title="动态规划">动态规划<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SpringMVC/" title="SpringMVC">SpringMVC<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spring-AOP/" title="Spring, AOP">Spring, AOP<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Struts2-OGNL/" title="Struts2, OGNL">Struts2, OGNL<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html/" title="html">html<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MyBatis-SQL映射文件/" title="MyBatis, SQL映射文件">MyBatis, SQL映射文件<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-new-operator-new-placement-new/" title="C++, new, operator new, placement new">C++, new, operator new, placement new<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-泛型/" title="C++ 泛型">C++ 泛型<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://github.com/glemontree" target="_blank" title="GitHub">GitHub</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/u010216743" target="_blank" title="CSDN">CSDN</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">Weibo</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello World. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/glemontree" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:gtp0521@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Glemontree">Glemontree</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"glemontree"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'null'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

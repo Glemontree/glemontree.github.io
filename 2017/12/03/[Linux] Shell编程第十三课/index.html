@@ -1,0 +1,802 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>[Linux] Shell编程第十三课 | Glemontree&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Glemontree">
+    
+
+    
+    <meta name="description" content="默认情况下，bash shell会忽略收到的任何SIGQUIT（3）和SIGTERM（5）信号，但是bash shell会处理收到的SIGHUP（1）和SIGINT（2）信号，如果bash shell收到了SIGHUP信号，它就会退出，但在退出之前，它会将SIGHUP信号传给所有由该shell所启动的进程（包括正在运行的shell脚本）
+
+
+Ctrl+C组合键会生成SIGINT信号，并将其发送给">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Linux] Shell编程第十三课">
+<meta property="og:url" content="http://yoursite.com/2017/12/03/[Linux] Shell编程第十三课/index.html">
+<meta property="og:site_name" content="Glemontree's blog">
+<meta property="og:description" content="默认情况下，bash shell会忽略收到的任何SIGQUIT（3）和SIGTERM（5）信号，但是bash shell会处理收到的SIGHUP（1）和SIGINT（2）信号，如果bash shell收到了SIGHUP信号，它就会退出，但在退出之前，它会将SIGHUP信号传给所有由该shell所启动的进程（包括正在运行的shell脚本）
+
+
+Ctrl+C组合键会生成SIGINT信号，并将其发送给">
+<meta property="og:updated_time" content="2017-12-03T11:57:19.208Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Linux] Shell编程第十三课">
+<meta name="twitter:description" content="默认情况下，bash shell会忽略收到的任何SIGQUIT（3）和SIGTERM（5）信号，但是bash shell会处理收到的SIGHUP（1）和SIGINT（2）信号，如果bash shell收到了SIGHUP信号，它就会退出，但在退出之前，它会将SIGHUP信号传给所有由该shell所启动的进程（包括正在运行的shell脚本）
+
+
+Ctrl+C组合键会生成SIGINT信号，并将其发送给">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/favicon.ico" alt="Glemontree&#39;s blog" title="Glemontree&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Glemontree&#39;s blog">Glemontree&#39;s blog</a></h1>
+				<h2 class="blog-motto">day day up!</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="http://zhannei.baidu.com/cse/search" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="Search"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/12/03/[Linux] Shell编程第十三课/" title="[Linux] Shell编程第十三课" itemprop="url">[Linux] Shell编程第十三课</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
+		
+  <p class="article-time">
+    <time datetime="2017-12-03T11:55:01.000Z" itemprop="datePublished"> Published 2017-12-03</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			
+		
+		</div>
+		
+		<ul>
+<li>默认情况下，bash shell会忽略收到的任何SIGQUIT（3）和SIGTERM（5）信号，但是bash shell会处理收到的SIGHUP（1）和SIGINT（2）信号，如果bash shell收到了SIGHUP信号，它就会退出，但在退出之前，它会将SIGHUP信号传给所有由该shell所启动的进程（包括正在运行的shell脚本）</li>
+</ul>
+<ul>
+<li>Ctrl+C组合键会生成SIGINT信号，并将其发送给当前在shell中运行的所有进程，该信号会停止shell中当前运行的进程。</li>
+</ul>
+<ul>
+<li>可以在进程运行期间暂停进程，而无需终止它，Ctrl+Z组合键会生成一个SIGTSTP信号，停止shell中运行的任何进程，停止进程和终止进程不同：停止进程会让程序继续停留在内存中，并能从上次停止的位置继续运行。shell将shell中运行的每个进程称为作业，并为每个作业分配唯一的作业号，它会给第一个作业分配作业号1，第二个作业号2，可以使用ps -l命令察看已停止的作业，此时S列中进程的状态为T，表示命令要么被追踪，要么被停止了。</li>
+</ul>
+<ul>
+<li>trap命令允许你来指定shell脚本要监看并从shell中拦截的Linux信号，如果脚本收到了trap命令中列出的信号，该信号不再由shell处理，而是交由本地处理： trap commands signals，commands表示想要shell执行的命令，signals表示待捕获的信号，可以用数值或Linux信号名来指定信号。</li>
+</ul>
+<ul>
+<li>要捕获shell脚本的退出，只要在trap命令后加上EXIT信号即可：trap “echo Goodbye…” EXIT</li>
+</ul>
+<ul>
+<li>在trap命令与希望恢复默认行为的信号列表之前加上两个破折号可以删除已设置好的捕获：trap – SIGINT</li>
+</ul>
+<ul>
+<li>在命令后加上&amp;符号就可以让shell脚本以后台模式运行：./test.sh &amp;，当执行了上面这条命令后，会输出类似于下面这条语句：[1] 3231，其中方括号中的数字是shell分配给后台进程的作业号，下一个数是Linux系统分配给进程的进程ID（PID）。</li>
+</ul>
+<ul>
+<li><p>nohup命令运行了另外一个命令来阻断所有发送给该进程的SIGHUP信号，这会在退出终端会话时阻止进程退出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup ./test.sh &amp;</div></pre></td></tr></table></figure>
+<p>由于nohup命令会解除终端和进程的关联，进程也就不再同STDOUT和STDERR联系在一起，为了保存该命令产生的输出，nohup命令会自动将STDOUT和STDERR的消息重定向到一个名为nohup.out文件中，需要注意的是当运行位于同一个目录中的多个命令时所有的输出都会被发送到同一个nohup.out文件中</p>
+</li>
+</ul>
+<ul>
+<li>当使用Ctrl+Z命令将进程停止后，你可以使用kill命令停止该进程，要重启停止的进程需要向其发送一个SIGCONT信号</li>
+</ul>
+<ul>
+<li>jobs命令可以查看分配给shell的作业，以及它们的作业号和作业中使用的命令，要想察看作业的PID，可以在jobs命令中加入-l选项，jobs输出中有加号和减号，带加号的作业被当作默认作业，在私用作业控制命令时，如果未在命令行指定任何作业号，该作业会被当成作业控制命令的操作对象，当前的默认作业完成处理后，带减号的作业成为下一个默认作业，任何时候都只有一个带加号的作业和一个带减号的作业，不管shell中有多少个正在运行的作业。</li>
+</ul>
+<ul>
+<li>要以后台模式重启一个作业，可用bg命令加上作业号，当然如果该作业是默认作业，只需要使用bg命令就可以将其以后台模式重启；要以前台模式重启作业，可用带作业号的fg命令。</li>
+</ul>
+<ul>
+<li>调度优先级是个整数值，从-20（最高优先级）到+19（最低优先级），默认情况下，bash shell以优先级0来启动所有进程。</li>
+</ul>
+<ul>
+<li><p>nice命令允许你设置命令启动时的调度优先级，要让命令以更低的优先级运行，只要用nice的-n命令行来指定新的优先级级别：nice -n 10 ./test.sh &gt; test.out &amp;，可以用这条命令显示进程的谦让度值：ps -p 4973 -o pid,ppid,ni,cmd。当然，nice命令阻止普通系统用户来提高命令的优先级。</p>
+<p>nice命令的-n选项并不是必须的，只需要在破折号后面跟上优先级就行了：nice -10 ./test.sh &gt; test.out</p>
+</li>
+</ul>
+<ul>
+<li><p>renice命令可以改变系统上已运行命令的优先级，它允许你指定运行进程的PID来改变它的优先级：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ./test.sh &amp;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[1] 5055</div><div class="line">$ps -p 5055 -o pid,ppid,ni,cmd</div><div class="line">PID  PPID NI CMD</div><div class="line">5055 4721 0  /bin/bash ./test.sh</div><div class="line">$renice -n 10 -p 5055</div><div class="line">5055: old priority 0, new priority 10</div><div class="line">ps -p 5055 -o pid,ppid,ni,cmd</div><div class="line">PID  PPID NI CMD</div><div class="line">5055 4721 10 /bin/bash ./test.sh</div></pre></td></tr></table></figure>
+<p>renice命令只能对属于你的进程执行renice，只能通过renice降低进程的优先级，root用户可以通过renice来任意调整进程的优先级。</p>
+</li>
+</ul>
+<ul>
+<li><p>at命令允许指定Linux系统何时运行脚本，at命令会将作业提交到队列中，指定shell何时运行该脚本，at的守护进程atd会以后台模式运行，检查作业队列来运行作业，大多数Linux发行版本在启动时运行此守护进程。</p>
+<p>atd守护进程会检查系统上的一个特殊目录（/var/spool/at）来获取用at命令提交的作业，默认情况下，atd守护进程会每60s检查一下这个目录，有作业时，atd守护进程会检查作业设置运行的时间，如果时间跟当前时间匹配，atd守护进程会运行此作业</p>
+<p>at命令的格式如下：at [-f filename] time，默认情况下at命令会将STDIN的输入放到队列中，你可以用-f参数来指定用于读取命令（脚本文件）的文件名，time参数指定了Linux系统何时运行该作业，如果指定的时间已经错过，at命令会在第二天的那个时间运行指定的作业。</p>
+<p>at命令能识别多种不同的时间格式：</p>
+<ul>
+<li>标准的小时和分钟格式： 10:15</li>
+<li>AM/PM指示符：10:15 PM</li>
+<li>特定可命名时间，比如now、noon、midnight、teatime（4PM）</li>
+</ul>
+<p>除了指定运行作业的时间，也可以通过不同的日期格式指定特定的日期：</p>
+<ul>
+<li>标准日期格式：MMDDYY、MM/DD/YY、DD.MM.YY</li>
+<li>文本日期：Jul 4、Dec 25，加不加年份均可</li>
+</ul>
+<p>你也可以指定时间增量：  </p>
+<ul>
+<li>当前时间+25min  </li>
+<li>明天10:15 PM</li>
+<li>10:15+7天</li>
+</ul>
+<p>在使用at命令时，该作业会被提交到作业队列，针对不同优先级，存在26种不同的作业队列，通过用小写字母a~z和大写字母A~Z来指代，作业队列的字母排序越高，作业运行的优先级越低（更高的nice值），默认情况下，at的作业会被提交到a作业队列，如果想以更高优先级运行作业，可以用-q参数指定不同的队列字母。</p>
+<p>at命令指定的作业在运行时，显示器并不会关联到该作业，Linux系统会将提交该作业的用户的电子邮件地址作业STDOUT和STDERR，任何法道STDOUT和STDERR的输出会通过邮件系统发送给该用户。</p>
+<p>at命令会显示分配给作业的作业号以及为作业安排的运行时间。</p>
+<p>在使用at命令时，最好在脚本中对STDOUT和STDERR进行重定向。</p>
+</li>
+</ul>
+<ul>
+<li>atq命令可以列出系统中有哪些作业在等待，作业列表中列出了作业号、系统运行该作业的日期和时间以及所在的作业队列</li>
+</ul>
+<ul>
+<li>一旦知道了哪些作业在作业队列中等待，就能用atrm命令来删除等待中的作业，指明想要删除的作业号即可</li>
+</ul>
+<ul>
+<li><p>Linux使用cron程序来安排要定期指定的作业，cron程序会在后台运行并检查一个特殊的表（称为cron时间表），以获知已安排执行的作业。</p>
+<p>cron时间表采用一种特别的格式来指定作业何时运行：min hour dayofmonth month dayofweek command，cron时间表允许你用特定值、取值范围或者通配符来指定条目，例如想在每天的10:15运行一个命令：</p>
+<p>15 10 <em> </em> * command</p>
+<p>cron程序会用提交作业的用户账户运行该脚本，因此你必须有访问该命令和命令中指定的输出文件的权限</p>
+</li>
+</ul>
+<ul>
+<li><p>可以使用crontab命令来处理cron时间表，要列出已有的cron时间表，可以用-l选项，默认情况下，用户的cron时间表文件不存在，要为cron时间表添加条目，可以用-e选项，在添加条目时crontab命令会启用一个文本编辑器。</p>
+<p>如果你创建的脚本对精确的执行时间要求不高，用预配置的cron脚本目录会更方便，有4个基本目录：hourly、daily、monthly、weekly：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ ls /etc/cron.*ly</div><div class="line">/etc/cron.daily: </div><div class="line">cups makewhatis.cron prelink tmpwatch</div><div class="line">/etc/cron.hourly:</div><div class="line">0anacron</div><div class="line">/etc/cron.monthly:</div><div class="line">readahead-monthly.cron</div><div class="line">/etc/cron.weekly:</div></pre></td></tr></table></figure>
+<p>因此，如果脚本需要每天运行一次，只要将脚本复制到daily目录，cron就会每天执行它</p>
+</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Linux/">Linux</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Linux-Shell/">Linux, Shell</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2017/12/03/[Linux] Shell编程第十三课/" data-title="[Linux] Shell编程第十三课 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/12/03/[Linux] Shell编程第十四课/" title="[Linux] Shell编程第十四课">
+  <strong>上一篇：</strong><br/>
+  <span>
+  [Linux] Shell编程第十四课</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/12/03/[Linux] Shell编程第十二课/"  title="[Linux] Shell编程第十二课">
+ <strong>下一篇：</strong><br/> 
+ <span>[Linux] Shell编程第十二课
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/12/03/[Linux] Shell编程第十三课/" data-title="[Linux] Shell编程第十三课" data-url="http://yoursite.com/2017/12/03/[Linux] Shell编程第十三课/"></div>
+</section>
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ 
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="glemontree" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android/" title="Android">Android<sup>15</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Boost/" title="Boost">Boost<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C/" title="C++">C++<sup>24</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CMake/" title="CMake">CMake<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/DB/" title="DB">DB<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Effective-Java/" title="Effective Java">Effective Java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/HTTPS/" title="HTTPS">HTTPS<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/IntelliJ-IDEA/" title="IntelliJ IDEA">IntelliJ IDEA<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/JQuery/" title="JQuery">JQuery<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Java/" title="Java">Java<sup>16</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>22</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/MyBatis/" title="MyBatis">MyBatis<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Qt/" title="Qt">Qt<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Redis/" title="Redis">Redis<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Servlet/" title="Servlet">Servlet<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Spring/" title="Spring">Spring<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/SpringMVC/" title="SpringMVC">SpringMVC<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Struts2/" title="Struts2">Struts2<sup>18</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/TCP-IP/" title="TCP/IP">TCP/IP<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/TCPIP/" title="TCPIP">TCPIP<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows核心编程/" title="Windows核心编程">Windows核心编程<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/html/" title="html">html<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/多线程/" title="多线程">多线程<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/编程规范/" title="编程规范">编程规范<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络编程/" title="网络编程">网络编程<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>5</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Linux-Shell/" title="Linux, Shell">Linux, Shell<sup>16</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JQuery/" title="JQuery">JQuery<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C++">C++<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java-并发/" title="Java 并发">Java 并发<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MyBatis/" title="MyBatis">MyBatis<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-boost/" title="C++ boost">C++ boost<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DB/" title="DB">DB<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Redis/" title="Redis">Redis<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/动态规划/" title="动态规划">动态规划<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SpringMVC/" title="SpringMVC">SpringMVC<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spring-AOP/" title="Spring, AOP">Spring, AOP<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Struts2-OGNL/" title="Struts2, OGNL">Struts2, OGNL<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html/" title="html">html<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MyBatis-SQL映射文件/" title="MyBatis, SQL映射文件">MyBatis, SQL映射文件<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-new-operator-new-placement-new/" title="C++, new, operator new, placement new">C++, new, operator new, placement new<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-泛型/" title="C++ 泛型">C++ 泛型<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://github.com/glemontree" target="_blank" title="GitHub">GitHub</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/u010216743" target="_blank" title="CSDN">CSDN</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">Weibo</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello World. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/glemontree" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:gtp0521@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Glemontree">Glemontree</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"glemontree"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'null'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

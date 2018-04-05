@@ -1,0 +1,894 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>[Linux] Shell编程第九课 | Glemontree&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Glemontree">
+    
+
+    
+    <meta name="description" content="sed编辑器可以根据命令来处理数据流中的数据，这些命令要么从命令行中输入，要么存储在一个命令文本文件中，sed编辑器会执行下列操作：
+
+一次从输入中读取一行数据
+根据所提供的编辑器命令匹配数据
+按照命令修改流中的数据
+将新的数据输出到STDOUT
+
+在流编辑器将所有命令与一行数据匹配完毕后，它会读取下一行数据并重复这个过程，当处理完所有数据后，它就会终止，sed命令的格式如下：sed optio">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Linux] Shell编程第九课">
+<meta property="og:url" content="http://yoursite.com/2017/12/03/[Linux] Shell编程第九课/index.html">
+<meta property="og:site_name" content="Glemontree's blog">
+<meta property="og:description" content="sed编辑器可以根据命令来处理数据流中的数据，这些命令要么从命令行中输入，要么存储在一个命令文本文件中，sed编辑器会执行下列操作：
+
+一次从输入中读取一行数据
+根据所提供的编辑器命令匹配数据
+按照命令修改流中的数据
+将新的数据输出到STDOUT
+
+在流编辑器将所有命令与一行数据匹配完毕后，它会读取下一行数据并重复这个过程，当处理完所有数据后，它就会终止，sed命令的格式如下：sed optio">
+<meta property="og:updated_time" content="2017-12-03T11:50:42.169Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Linux] Shell编程第九课">
+<meta name="twitter:description" content="sed编辑器可以根据命令来处理数据流中的数据，这些命令要么从命令行中输入，要么存储在一个命令文本文件中，sed编辑器会执行下列操作：
+
+一次从输入中读取一行数据
+根据所提供的编辑器命令匹配数据
+按照命令修改流中的数据
+将新的数据输出到STDOUT
+
+在流编辑器将所有命令与一行数据匹配完毕后，它会读取下一行数据并重复这个过程，当处理完所有数据后，它就会终止，sed命令的格式如下：sed optio">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/favicon.ico" alt="Glemontree&#39;s blog" title="Glemontree&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Glemontree&#39;s blog">Glemontree&#39;s blog</a></h1>
+				<h2 class="blog-motto">day day up!</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="http://zhannei.baidu.com/cse/search" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="Search"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/12/03/[Linux] Shell编程第九课/" title="[Linux] Shell编程第九课" itemprop="url">[Linux] Shell编程第九课</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Glemontree" target="_blank" itemprop="author">Glemontree</a>
+		
+  <p class="article-time">
+    <time datetime="2017-12-03T11:48:07.000Z" itemprop="datePublished"> Published 2017-12-03</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			
+		
+		</div>
+		
+		<ul>
+<li><p>sed编辑器可以根据命令来处理数据流中的数据，这些命令要么从命令行中输入，要么存储在一个命令文本文件中，sed编辑器会执行下列操作：</p>
+<ul>
+<li>一次从输入中读取一行数据</li>
+<li>根据所提供的编辑器命令匹配数据</li>
+<li>按照命令修改流中的数据</li>
+<li>将新的数据输出到STDOUT</li>
+</ul>
+<p>在流编辑器将所有命令与一行数据匹配完毕后，它会读取下一行数据并重复这个过程，当处理完所有数据后，它就会终止，sed命令的格式如下：<code>sed options script file</code></p>
+<p>选项允许你修改sed命令的行为：</p>
+<ul>
+<li>-e script     在处理输入时，将script中指定的命令添加到已有的命令中</li>
+<li>-f file          在处理输入时，将file中指定的命令添加到已有的命令中</li>
+<li>-n               不产生命令输出，使用print命令来完成输出        </li>
+</ul>
+<p>script参数指定了应用于数据流上的单个命令，如果需要多个命令，要么使用-e选项在命令行中指定，要么使用-f选项在单独的文件中指定。</p>
+</li>
+</ul>
+<ul>
+<li><p>默认情况下，sed编辑器会将指定的命令应用到STDIN数据流上，可以直接将数据通过管道输入sed编辑器处理：</p>
+<p>echo “This is a test” | sed ‘s/test/big test/‘</p>
+<p>This is a big test</p>
+<p>这个例子在sed编辑器中使用了s命令，s命令会用斜线间指定的第二个文本字符串来替换第一个文本字符串模式，需要注意的是sed编辑器并不会修改文本文件的数据，它只会将修改后的数据发送到STDOUT中。</p>
+</li>
+</ul>
+<ul>
+<li><p>要在sed命令行中执行多个命令时，只要用-e选项就可以了：</p>
+<p><code>sed -e &#39;s/brown/green/; s/dog/cat/&#39; data1.txt</code></p>
+<p>两个命令都作用到文件中的每一行数据中，命令之间用分号隔开，并且在命令末尾和分号之间不能有空格，如果不想用分号，只要在命令行中输入第一个单引号标示出sed程序脚本的起始，bash会继续提示你输入更多命令，直到输入了标示结束的单引号：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sed -e &apos;</div><div class="line">&gt; s/brown/green/</div><div class="line">&gt; s/fox/elephant/</div><div class="line">&gt; s/dog/cat/&apos; data1.txt</div></pre></td></tr></table></figure>
+</li>
+<li><p>可以在sed命令中通过-f选项来指定sed文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sed -f script1.sed data1.txt</div></pre></td></tr></table></figure>
+</li>
+<li><p>替换命令(s)在替换多行中的文本时能正常工作，但默认情况下它只替换每行出现的第一处，要让替换命令能够替换一行中不同地方出现的文本必须使用替换标记，替换标记会在替换字符串之后设置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s/pattern/replacement/flags</div></pre></td></tr></table></figure>
+<p>有4种可用的替换标记：</p>
+<ul>
+<li>数字，表明新文本将替换第几处模式匹配的地方</li>
+<li>g，表明新文本将会替换所有匹配的文本</li>
+<li>p，表明原先行的内容要打印出来</li>
+<li>w file， 将替换的结果写入到文件中</li>
+</ul>
+<p>p替换标记会打印与替换命令中指定的模式匹配的行，这通常会和sed的-n选项一起使用，-n选项会禁止sed编辑器输出，但p标记会输出修改过的行，将二者配合使用的效果就是只输出被替换命令修改过的行</p>
+</li>
+</ul>
+<ul>
+<li><p>如果你想用C shell替换/etc/passwd文件中的bash shell，必须这么做：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sed &apos;s/\/bin\/bash/\/bin\/csh&apos; /etc/passwd</div></pre></td></tr></table></figure>
+<p>由于正斜线通过用作字符串分隔符，因而出现在模式文本中的话，必须用反斜线来转义，要解决这个问题，sed编辑器允许选择其他字符来作为替换命令中的字符串分隔符：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sed &apos;s!/bin/bash!/bin/csh!&apos; /etc/passwd</div></pre></td></tr></table></figure>
+</li>
+<li><p>默认情况下，sed编辑器中使用的命令会作用与文本数据的所有行，如果只想命令作用于特定行或某些行，则必须使用行寻址，在sed编辑器中有两种形式的行寻址：</p>
+<ul>
+<li>以数字形式表示行区间</li>
+<li>用文本模式来过滤出行</li>
+</ul>
+<p>两种形式都使用相同的格式来指定地址：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[address]command</div></pre></td></tr></table></figure>
+<p>也可以将特定地址的多个命令分组：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">address &#123;</div><div class="line">command1</div><div class="line">command2</div><div class="line">command3</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>sed编辑器会将指定的每条命令作用到匹配指定地址的行上。</p>
+</li>
+</ul>
+<ul>
+<li><p>数字方式的行寻址</p>
+<p>sed编辑器会将文本流中的第一行编号为1，然后继续按顺序为接下来的行分配行号，在命令中指定的地址可以是单个行号，或是用起始行号、逗号、结尾行号指定的一定区间范围的行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sed &apos;2s/dog/cat/&apos; data1.txt  (sed编辑器只修改地址指定的第二行的文本)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sed &apos;2,3s/dog/cat/&apos; data1.txt (sed编辑器将修改地址指定的二、三行的文本)</div></pre></td></tr></table></figure>
+<p>如果想将命令作用到文本中从某行开始的所有行，可以用特殊地址-美元符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sed &apos;2,$s/dog/cat/&apos; data1.txt</div></pre></td></tr></table></figure>
+</li>
+<li><p>使用文本模式过滤器</p>
+<p>sed编辑器允许指定文本模式来过滤出命令要作用的行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/pattern/command</div></pre></td></tr></table></figure>
+<p>必须用正斜线将要指定的pattern封起来，sed编辑器会将该命令作用到指定文本模式的行上：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sed &apos;/Samantha/s/bash/csh&apos; /etc/password</div></pre></td></tr></table></figure>
+<p>上面这条命令将会将/etc/password文件中Samantha用户的bash改为csh</p>
+</li>
+</ul>
+<ul>
+<li><p>如果需要在单行上指定多条命令，可以用花括号将多条命令组合在一起：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sed &apos;2&#123;</div><div class="line">&gt; s/fox/elephant/</div><div class="line">&gt; s/dog/cat/</div><div class="line">&#125;&apos; data1.txt</div></pre></td></tr></table></figure>
+</li>
+<li><p>删除命令d会删除匹配指定寻址模式的所有行，当和指定地址一起使用时，可以从数据流中删除特定的文本行，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sed &apos;3d&apos; data.txt</div></pre></td></tr></table></figure>
+<p>也可以使用两个文本模式来删除某个区间内的行，你指定的第一个模式会打开行删除功能，第二个模式会关闭行删除功能，sed编辑器会删除两个指定行之间的所有行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sed &apos;/1/,/3/d&apos; data.txt</div></pre></td></tr></table></figure>
+<p>指定完上面的命令后，文本文件中出现1和3之间的行以及它们之间的行都会被删除，需要注意的是只要在sed编辑器在数据流中匹配了开始模式，删除功能就会打开，这可能会导致意外。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ cat data7.txt</div><div class="line">This is line number 1.</div><div class="line">This is line number 2.</div><div class="line">This is line number 3.</div><div class="line">This is line number 4.</div><div class="line">This is line number 1 again.</div><div class="line">This is text you want to keep.</div><div class="line">This is the last line in the file.</div><div class="line">$ sed &apos;/1/,/3/d&apos; data7.txt</div><div class="line">This is line number 4</div></pre></td></tr></table></figure>
+<p>第二个出现数字”1”的行再次触发了删除命令，因为没有找到停止模式，所以就将数据流中的剩余行全部删除。</p>
+</li>
+</ul>
+<ul>
+<li><p>插入和附加文本</p>
+</li>
+<li><p>插入命令(i): 在指定行前增加一个新行</p>
+<ul>
+<li>附加命令(a): 在指定行后增加一个新行</li>
+</ul>
+<p>格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sed &apos;[address]command\new line&apos;</div></pre></td></tr></table></figure>
+<p>new line中的文本将会出现在sed编辑器输出中你指定的位置，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">echo &quot;Test line 2&quot; | sed &apos;i\Test line 1&apos;</div></pre></td></tr></table></figure>
+<p>运行结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Test line 1</div><div class="line">Test line 2</div></pre></td></tr></table></figure>
+<p> 下面是一个将一个新行插入到数据流第三行前：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sed &apos;3i\This is an inserted line.&apos; data.txt</div></pre></td></tr></table></figure>
+<p>如果你有一个多行数据流，想要将新行附加到数据流的末尾，只要用代表数据最后一行的美元符就可以了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sed &apos;$a\This is a new line of text.&apos; data.txt</div></pre></td></tr></table></figure>
+<p>要插入或附加多行文本，就必须对要插入或附加的文本中的每一行使用反斜线，直到最后一行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sed &apos;1i\</div><div class="line">&gt; This is one line of new text.\</div><div class="line">&gt; This is another line of new text.&apos; data.txt</div></pre></td></tr></table></figure>
+</li>
+<li><p>修改行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sed &apos;3c\This is a changed line of text.&apos; data.txt</div></pre></td></tr></table></figure>
+<p>当然也可以用文本模式来寻址：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sed &apos;/number 3/c\This is a changed line of text.&apos; data.txt</div></pre></td></tr></table></figure>
+<p>你也可以在修改命令中使用地址区间：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sed &apos;2,3c\This is a new line of text.&apos;data.txt</div></pre></td></tr></table></figure>
+<p>sed编辑器会用这一行文本来替换数据流中的两行文本，而不是逐一修改这两行文本。</p>
+</li>
+</ul>
+<ul>
+<li><p>转换命令：</p>
+<p>转换命令(y)是唯一一个可以处理单个字符的sed编辑器命令，格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[address]y/inchars/outchars/</div></pre></td></tr></table></figure>
+<p> 转换命令会对inchars和outchars进行一对一的映射，inchars中的第一个字符会被转换为outchars中的第一个字符，第二个字符会被转换成outchars中的第二个字符，如果两者长度不同会报错。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sed &apos;y/123/789/&apos; data.txt</div></pre></td></tr></table></figure>
+<p> 转换命令是一个全局命令，也就是说它会文本行中找到的所有指定字符自动进行转换，而不会考虑它们出现的位置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">echo &quot;This 1 is a test of 1 try.&quot; | sed &apos;y/123/456&apos;</div><div class="line">This 4 is a test of 4 try.</div></pre></td></tr></table></figure>
+</li>
+<li><p>跟替换命令中的p标记类似，p命令可以打印sed编辑器输出中的一行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ echo &quot;this is a test&quot; | sed &apos;p&apos;</div></pre></td></tr></table></figure>
+<p>输出结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">this is a test</div><div class="line">this is a test</div></pre></td></tr></table></figure>
+<p>它所做的就是打印已有的数据文本，打印命令最常见的用法就是打印包含匹配文本模式的行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ cat data6.txt</div><div class="line">This is line number 1.</div><div class="line">This is line number 2.</div><div class="line">This is line number 3.</div><div class="line">This is line number 4.</div><div class="line">$</div><div class="line">$ sed -n &apos;/number 3/p&apos; data6.txt</div><div class="line">This is line number 3.</div><div class="line">$</div></pre></td></tr></table></figure>
+<p>在命令行上用-n选项，你可以禁止输出其他行，只打印包含匹配文本模式的行。</p>
+<p>如果需要在修改之前查看行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sed -n &apos;/3/&#123;</div><div class="line">&gt; p</div><div class="line">&gt; s/line/test/p</div><div class="line">&gt; &#125;&apos; data.txt</div></pre></td></tr></table></figure>
+<p>输出结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">This is line number 3.</div><div class="line">This is test number 3.</div></pre></td></tr></table></figure>
+<p>sed编辑器命令会查找包含数字3的行,然后执行两条命令。首先,脚本用p命令来打印出原始行;然后它用s命令替换文本,并用p标记打印出替换结果。输出同时显示了原来的行文本和新的行文本。</p>
+</li>
+</ul>
+<ul>
+<li><p>等号命令会打印行在数据流中的当前行号，每次数据流中出现一个换行符，sed编辑器就会认为一行文本结束了。</p>
+<p>如果你要在数据流中查找特定文本模式的话：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sed -n &apos;/number 4/&#123;</div><div class="line">&gt; =</div><div class="line">&gt; p</div><div class="line">&gt; &#125;&apos; data.txt</div></pre></td></tr></table></figure>
+<p>输出结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">4</div><div class="line">This is line number 4</div></pre></td></tr></table></figure>
+<p>利用-n选项，就能让sed编辑器只显示包含匹配文本模式的行的行号和文本。</p>
+</li>
+<li><p>列出行</p>
+<p>列出命令(l)可以打印数据流中的文本和不可打印的ASCII字符，任何不可打印的字符要么在其八进制前加一个反斜线，要么使用标准C风格的命名法，比如\t：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ cat data9.txt</div><div class="line">This	line	contains	tabs.</div><div class="line">$</div><div class="line">$ sed -n &apos;l&apos; data9.txt</div><div class="line">This\tline\tcontains\ttabs.$</div><div class="line">$</div></pre></td></tr></table></figure>
+<p>行尾的美元符表示换行符</p>
+</li>
+</ul>
+<ul>
+<li><p>写入文件</p>
+<p>w命令用来向文件写入行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[address]w filename</div></pre></td></tr></table></figure>
+<p>filename可以使用相对路径或绝对路径，但不管是哪种，运行sed编辑器的用户必须有文件的写权限：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sed &apos;1,2w test.txt&apos; data.txt</div></pre></td></tr></table></figure>
+<p>执行上面的命令后会将data.txt文件中一二行写入到test.txt中</p>
+</li>
+</ul>
+<ul>
+<li><p>读取文件</p>
+<p>读取命令(r)允许你将一个独立文件的数据插入到数据流中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[address]r filename</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$ cat data12.txt</div><div class="line">This is an added line.</div><div class="line">This is the second added line.</div><div class="line">$</div><div class="line">$ sed &apos;3r data12.txt&apos; data6.txt</div><div class="line">This is line number 1.</div><div class="line">This is line number 2.</div><div class="line">This is line number 3.</div><div class="line">This is an added line.</div><div class="line">This is the second added line.</div><div class="line">This is line number 4.</div><div class="line">$</div></pre></td></tr></table></figure>
+<p>同样的方法在使用文本模式地址时也适用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ sed &apos;/number 2/r data12.txt&apos; data6.txt</div><div class="line">This is line number 1.</div><div class="line">This is line number 2.</div><div class="line">This is an added line.</div><div class="line">This is the second added line.</div><div class="line">This is line number 3.</div><div class="line">This is line number 4.</div><div class="line">$</div></pre></td></tr></table></figure>
+<p>如果你要在数据流的末尾添加文本,只需用美元符地址符就行了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">sed &apos;$r data12.txt&apos; data6.txt</div><div class="line">This is line number 1.</div><div class="line">This is line number 2.</div><div class="line">This is line number 3.</div><div class="line">This is line number 4.</div><div class="line">This is an added line.</div><div class="line">This is the second added line.</div><div class="line">$</div></pre></td></tr></table></figure></li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Linux/">Linux</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Linux-Shell/">Linux, Shell</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2017/12/03/[Linux] Shell编程第九课/" data-title="[Linux] Shell编程第九课 | Glemontree&#39;s blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/12/03/[Linux] Shell编程第十课/" title="[Linux] Shell编程第十课">
+  <strong>上一篇：</strong><br/>
+  <span>
+  [Linux] Shell编程第十课</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/12/03/[Linux] Shell编程第八课/"  title="[Linux] Shell编程第八课">
+ <strong>下一篇：</strong><br/> 
+ <span>[Linux] Shell编程第八课
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/12/03/[Linux] Shell编程第九课/" data-title="[Linux] Shell编程第九课" data-url="http://yoursite.com/2017/12/03/[Linux] Shell编程第九课/"></div>
+</section>
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ 
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="glemontree" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android/" title="Android">Android<sup>15</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Boost/" title="Boost">Boost<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C/" title="C++">C++<sup>24</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CMake/" title="CMake">CMake<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/DB/" title="DB">DB<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Effective-Java/" title="Effective Java">Effective Java<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/HTTPS/" title="HTTPS">HTTPS<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/IntelliJ-IDEA/" title="IntelliJ IDEA">IntelliJ IDEA<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/JQuery/" title="JQuery">JQuery<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Java/" title="Java">Java<sup>16</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>22</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/MyBatis/" title="MyBatis">MyBatis<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Qt/" title="Qt">Qt<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Redis/" title="Redis">Redis<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Servlet/" title="Servlet">Servlet<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Spring/" title="Spring">Spring<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/SpringMVC/" title="SpringMVC">SpringMVC<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Struts2/" title="Struts2">Struts2<sup>18</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/TCP-IP/" title="TCP/IP">TCP/IP<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/TCPIP/" title="TCPIP">TCPIP<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Windows核心编程/" title="Windows核心编程">Windows核心编程<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/html/" title="html">html<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/多线程/" title="多线程">多线程<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/编程规范/" title="编程规范">编程规范<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络编程/" title="网络编程">网络编程<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>5</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Linux-Shell/" title="Linux, Shell">Linux, Shell<sup>16</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JQuery/" title="JQuery">JQuery<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C++">C++<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java-并发/" title="Java 并发">Java 并发<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MyBatis/" title="MyBatis">MyBatis<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-boost/" title="C++ boost">C++ boost<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DB/" title="DB">DB<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Redis/" title="Redis">Redis<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-依赖库制作/" title="Android, 依赖库制作">Android, 依赖库制作<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Android-自定义View/" title="Android, 自定义View">Android, 自定义View<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/动态规划/" title="动态规划">动态规划<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SpringMVC/" title="SpringMVC">SpringMVC<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spring-AOP/" title="Spring, AOP">Spring, AOP<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Struts2-OGNL/" title="Struts2, OGNL">Struts2, OGNL<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html/" title="html">html<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MyBatis-SQL映射文件/" title="MyBatis, SQL映射文件">MyBatis, SQL映射文件<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-模板/" title="C++, 模板">C++, 模板<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-new-operator-new-placement-new/" title="C++, new, operator new, placement new">C++, new, operator new, placement new<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C-泛型/" title="C++ 泛型">C++ 泛型<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://github.com/glemontree" target="_blank" title="GitHub">GitHub</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/u010216743" target="_blank" title="CSDN">CSDN</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">Weibo</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello World. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/glemontree" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:gtp0521@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Glemontree">Glemontree</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"glemontree"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: 'null'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
