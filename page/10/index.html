@@ -1,1127 +1,718 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
-    
-
-    <title>第 10 页 | day day up!</title>
-    <meta name="author" content="Glemontree">
-    
-    <meta name="description" content="记录我学习的每一步">
-    
-    
+  <meta charset="utf-8">
+  
+  <title>Glemontree&#39;s blog | day day up!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    
-    <meta property="og:site_name" content="Glemontree&#39;s blog"/>
-
-    
-    <meta property="og:image" content="undefined"/>
-    
-
-    <link rel="icon" type="image/png" href="/favicon.png">
-    <link rel="alternate" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
-    <link rel="stylesheet" href="/css/lib/materialize.min.css">
-    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
-    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-
-    
-        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
-    
-    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="undefined">
+  <meta name="description" content="记录我学习的每一步">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Glemontree's blog">
+<meta property="og:url" content="http://yoursite.com/page/10/index.html">
+<meta property="og:site_name" content="Glemontree's blog">
+<meta property="og:description" content="记录我学习的每一步">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Glemontree's blog">
+<meta name="twitter:description" content="记录我学习的每一步">
+  
+    <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
+  
+  <meta name="summary" content="记录我学习的每一步">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 
-
 <body>
-    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+  <div id="loading" class="active"></div>
 
-    <nav class="indigo">
-    <div class="nav-wrapper">
-        <a href="#" data-activates="main-menu" class="button-collapse">
-            <i class="fa fa-navicon"></i>
-        </a>
-        <div class="">
-            <a href="/" class="brand-logo hide-on-med-and-down">Glemontree&#39;s blog</a>
-            <ul class="right hide-on-med-and-down">
-                
-                    <li>
-                        <a class="menu-home " href="/" >
-                            <i class="fa fa-home "></i>
-                            
-                            首页
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a class="menu-archive " href="/archives" >
-                            <i class="fa fa-archive "></i>
-                            
-                            归档
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
-                            <i class="fa fa-bookmark "></i>
-                            
-                            分类
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a class="menu-reading " href="/reading" >
-                            <i class="fa fa-book "></i>
-                            
-                            读书
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a class="menu-about " href="/about" >
-                            <i class="fa fa-user "></i>
-                            
-                            关于
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a class="menu-search modal-trigger " href="#search" >
-                            <i class="fa fa-search "></i>
-                            
-                            搜索
-                        </a>
-                    </li>
-                
-            </ul>
-            <div>
-    <ul class="side-nav indigo darken-1" id="main-menu">
-        
-        <li class="side-user">
-            <div class="row">
-                <div class="col s4 no-padding">
-                    <img class="avatar-image circle responsive-img" src="http://a2.qpic.cn/psb?/7f08dc85-11f9-4e2c-98bf-46f57deaea51/y3454JNrI*wKHx2Q4UGOkYW5ceOFrz5b1VKCL6GAt7A!/m/dDEBAAAAAAAAnull&amp;bo=hAOEAwAAAAARBzA!&amp;rf=photolist&amp;t=5" alt="User Avatar">
-                </div>
-                <div class="info col s8 valign-wrapper no-padding">
-                    <div class="valign">
-                        <p class="name">Glemontree</p>
-                        <p class="desc">Java后端/Android/C++/Linux/技术宅</p>
-                    </div>
-                </div>
-            </div>
-        </li>
-        
-
-        
-            <li class="no-padding">
-                <a class="waves-effect menu-home " href="/" >
-                    <i class="fa fa-home "></i>
-                    
-                    首页
-                </a>
-            </li>
-        
-            <li class="no-padding">
-                <a class="waves-effect menu-archive " href="/archives" >
-                    <i class="fa fa-archive "></i>
-                    
-                    归档
-                </a>
-            </li>
-        
-            <li class="no-padding">
-                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
-                    <i class="fa fa-bookmark "></i>
-                    
-                    分类
-                </a>
-            </li>
-        
-            <li class="no-padding">
-                <a class="waves-effect menu-reading " href="/reading" >
-                    <i class="fa fa-book "></i>
-                    
-                    读书
-                </a>
-            </li>
-        
-            <li class="no-padding">
-                <a class="waves-effect menu-about " href="/about" >
-                    <i class="fa fa-user "></i>
-                    
-                    关于
-                </a>
-            </li>
-        
-            <li class="no-padding">
-                <a class="waves-effect menu-search modal-trigger " href="#search" >
-                    <i class="fa fa-search "></i>
-                    
-                    搜索
-                </a>
-            </li>
-        
+  <nav id="menu"  >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">Glemontree</h5>
+        <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <div class="scroll-wrap flex-col">
+    <ul class="nav">
+      
+          <li class="waves-block waves-effect">
+            <a href="/"  >
+              <i class="icon icon-lg icon-home"></i>
+              主页
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/archives"  >
+              <i class="icon icon-lg icon-archives"></i>
+              Archives
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/tags"  >
+              <i class="icon icon-lg icon-tags"></i>
+              Tags
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://github.com/yscoder" target="_blank" >
+              <i class="icon icon-lg icon-github"></i>
+              Github
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="http://www.weibo.com/ysweb" target="_blank" >
+              <i class="icon icon-lg icon-weibo"></i>
+              Weibo
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/404"  >
+              <i class="icon icon-lg icon-link"></i>
+              测试
+            </a>
+          </li>
+      
     </ul>
 
-    <ul class="side-nav indigo darken-1" id="category-menu">
-    
+    <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>Glemontree&#39;s blog &copy; 2018</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
 
-            
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Android/">
-                    Android <span class="right">15 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/C/">
-                    C <span class="right">24 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Boost/">
-                    Boost <span class="right">1 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/CMake/">
-                    CMake <span class="right">2 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/DB/">
-                    DB <span class="right">7 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Effective-Java/">
-                    Effective-Java <span class="right">1 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Hexo/">
-                    Hexo <span class="right">1 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/HTTPS/">
-                    HTTPS <span class="right">1 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/JQuery/">
-                    JQuery <span class="right">8 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/IntelliJ-IDEA/">
-                    IntelliJ-IDEA <span class="right">1 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Java/">
-                    Java <span class="right">16 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Linux/">
-                    Linux <span class="right">22 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/MyBatis/">
-                    MyBatis <span class="right">8 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Qt/">
-                    Qt <span class="right">4 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Redis/">
-                    Redis <span class="right">3 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Servlet/">
-                    Servlet <span class="right">3 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/SpringMVC/">
-                    SpringMVC <span class="right">4 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Spring/">
-                    Spring <span class="right">5 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Struts2/">
-                    Struts2 <span class="right">18 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/TCP-IP/">
-                    TCP-IP <span class="right">9 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/TCPIP/">
-                    TCPIP <span class="right">1 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Windows核心编程/">
-                    Windows核心编程 <span class="right">2 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/html/">
-                    html <span class="right">7 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/算法/">
-                    算法 <span class="right">3 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/多线程/">
-                    多线程 <span class="right">3 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/编程规范/">
-                    编程规范 <span class="right">1 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/网络编程/">
-                    网络编程 <span class="right">2 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/设计模式/">
-                    设计模式 <span class="right">5 篇</span></a>
-                </a>
-            </li>
-
-        
-
-    </ul>
+  </div>
 </div>
 
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Glemontree&#39;s blog</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
         </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">Glemontree&#39;s blog</h1>
+    <h5 class="subtitle">
+        
+        day day up!
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <ul class="post-list">
+  
+    <li class="post-list-item">
+        <article id="post-[JQuery] JQuery第六课"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/08/30/[JQuery] JQuery第六课/">[JQuery] JQuery第六课</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2017-08-30T07:39:34.000Z" itemprop="datePublished" class="post-time">
+  2017-08-30
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/JQuery/">JQuery</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           说明  本文转自 菜鸟教程 。 
+   JQuery获取内容和属性    获得内容  三个简单实用的用于DOM操作的JQuery方法： 
+ 
+ text()：设置或返回所选元素的文本内容 
+ html()：设置或返回所选元素的内容（包括HTML标记） 
+ val()：设置或返回表单字段的值 
+ 
+ 例如： 
+      1  2  3  4  5  6      $("#btn1").cli
+    
+    
+        <a href="/2017/08/30/[JQuery] JQuery第六课/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JQuery/">JQuery</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-[SpringMVC] SpringMVC"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/08/29/[SpringMVC] SpringMVC/">[SpringMVC] SpringMVC</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2017-08-29T13:03:47.000Z" itemprop="datePublished" class="post-time">
+  2017-08-29
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/SpringMVC/">SpringMVC</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           RequestMapping注解  
+ SpringMVC使用 @RequestMapping 注解为控制器指定可以处理哪些URL请求 
+ 在控制器的类定义及方法定义处都可标注 
+ 类定义处：提供初步的请求映射信息，相对于WEB应用的根目录 
+ 方法定义处：提供进一步的细分映射信息，相对于类定义处的URL，若类定义处未标注 @RequestMapping ，则方法标记处的URL相当于WEB应
+    
+    
+        <a href="/2017/08/29/[SpringMVC] SpringMVC/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringMVC/">SpringMVC</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-[JQuery] JQuery第五课"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/08/29/[JQuery] JQuery第五课/">[JQuery] JQuery第五课</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2017-08-29T12:16:59.000Z" itemprop="datePublished" class="post-time">
+  2017-08-29
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/JQuery/">JQuery</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           说明  本文转自 菜鸟教程 。 
+   JQuery动画  JQuery animate()方法用于创建自定义动画，其语法如下： 
+      1      $(selector).animate(&#123;params&#125;, speed, callback);      
+ 必须的params参数定义形成动画的CSS属性，可选的 speed 参数规定效果的时长。它可以取以下值：”
+    
+    
+        <a href="/2017/08/29/[JQuery] JQuery第五课/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JQuery/">JQuery</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-[JQuery] JQuery第四课"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/08/29/[JQuery] JQuery第四课/">[JQuery] JQuery第四课</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2017-08-29T12:11:20.000Z" itemprop="datePublished" class="post-time">
+  2017-08-29
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/JQuery/">JQuery</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           说明  本文转自 菜鸟教程 。 
+   JQuery滑动方法  通过JQuery，您可以在元素上创建滑动效果，JQuery拥有以下滑动方法： 
+ 
+ slideDown() 
+ slideUp() 
+ slideToggle() 
+ 
+   JQuery slideDown()方法  用于向下滑动元素，其语法如下： 
+      1      $(selector).slideDown(sp
+    
+    
+        <a href="/2017/08/29/[JQuery] JQuery第四课/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JQuery/">JQuery</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-[JQuery] JQuery第三课"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/08/29/[JQuery] JQuery第三课/">[JQuery] JQuery第三课</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2017-08-29T11:59:17.000Z" itemprop="datePublished" class="post-time">
+  2017-08-29
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/JQuery/">JQuery</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           说明  本文转自 菜鸟教程 。 
+   JQuery Fading方法  通过JQuery，您可以实现元素的淡入淡出效果，JQuery拥有以下四种方法： 
+ 
+ fadeIn() 
+ fadeOut() 
+ fadeToggle() 
+ fadeTo() 
+ 
+   JQuery fadeIn()方法  JQuery fadeIn()方法用于淡入已隐藏的元素，语法如下： 
+      1  
+    
+    
+        <a href="/2017/08/29/[JQuery] JQuery第三课/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JQuery/">JQuery</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-[JQuery] JQuery第二课"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/08/29/[JQuery] JQuery第二课/">[JQuery] JQuery第二课</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2017-08-29T11:48:23.000Z" itemprop="datePublished" class="post-time">
+  2017-08-29
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/JQuery/">JQuery</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           说明  本文转自 菜鸟教程 。 
+   JQuery hide()和show()  通过JQuery，可以通过hide()和show()方法来隐藏和显示HTML元素，例如： 
+      1  2  3  4  5  6  7      $("#hide").click(function() &#123;    	$("p").hide();  &#125;);    $("#show").
+    
+    
+        <a href="/2017/08/29/[JQuery] JQuery第二课/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JQuery/">JQuery</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-[JQuery] JQuery第一课"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/08/29/[JQuery] JQuery第一课/">[JQuery] JQuery第一课</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2017-08-29T08:24:19.000Z" itemprop="datePublished" class="post-time">
+  2017-08-29
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/JQuery/">JQuery</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           说明  本文转自 菜鸟教程 。 
+   什么是JQuery  JQuery是一个JavaScript函数库，其包含以下功能： 
+ 
+ HTML元素选取 
+ HTML元素操作 
+ CSS操作 
+ HTML事件函数 
+ JavaScript特效与动画 
+ HTML DOM遍历和修改 
+ AJAX 
+ Utilities 
+ 
+   JQuery安装  可以通过多种方法在网页中添加JQuery： 
+    
+    
+        <a href="/2017/08/29/[JQuery] JQuery第一课/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JQuery/">JQuery</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-[Android] Android绘制文本基本概念之- top, bottom, ascent, descent, baseline"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/08/19/[Android] Android绘制文本基本概念之- top, bottom, ascent, descent, baseline/">[Android] Android绘制文本基本概念之- top, bottom, ascent, descent, baseline</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2017-08-19T14:25:30.000Z" itemprop="datePublished" class="post-time">
+  2017-08-19
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           介绍  通过一个图来了解一下这些概念： 
+   
+ baseline是基线，在Android中绘制文本都是从baseline处开始的，从baseline往上至至文本最高处的距离称之为ascent(上坡度)，baseline至文本最低处的距离称之为descent(下坡度)。 top和bottom是绘制文本时在最外层留出的一些内边距。 baseline是基线，baseline以上是负值，base
+    
+    
+        <a href="/2017/08/19/[Android] Android绘制文本基本概念之- top, bottom, ascent, descent, baseline/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android-绘制文本/">Android, 绘制文本</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-[Android] Android制作自己的依赖库让别人引用(2)"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/08/19/[Android] Android制作自己的依赖库让别人引用(2)/">[Android] Android制作自己的依赖库让别人引用(2)</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2017-08-19T06:12:59.000Z" itemprop="datePublished" class="post-time">
+  2017-08-19
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           制作自己的依赖库的第二种方法  上一篇文章中我们介绍了制作自己的依赖库的第一种方法，出于好奇心，今天尝试了下第二种方法，也踩了一些坑，所以在这边做个笔记记录一下。 
+ 所谓的第二种方法就是将库发布到jCenter，下面我们具体看下步骤！ 
+   将库发布到jCenter的步骤    准备要发布的library  这一步直接跳过，不清楚的请上网查询或者查看上一篇文章！ 
+   注册账号  jC
+    
+    
+        <a href="/2017/08/19/[Android] Android制作自己的依赖库让别人引用(2)/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android-依赖库制作/">Android, 依赖库制作</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-[Android] Android制作自己的依赖库让别人引用(1)"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/08/17/[Android] Android制作自己的依赖库让别人引用(1)/">[Android] Android制作自己的依赖库让别人引用(1)</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2017-08-17T11:56:26.000Z" itemprop="datePublished" class="post-time">
+  2017-08-17
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           什么是依赖库  我们在Android开发过程中不可避免的需要引用别人造的轮子，在Android Studio中往往只需要一行代码就可以引用别人的库文件，如下图： 
+   
+ 羡慕吧，那我们怎么将自己的库让别人引用呢？其实有两种方法，大家可以参考 Android如何制作自己的依赖库上传至github供别人下载使用  这篇文章，我这里只介绍第一种方法，结合我自己的实践，顺便做个笔记，以后不用每次
+    
+    
+        <a href="/2017/08/17/[Android] Android制作自己的依赖库让别人引用(1)/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android-依赖库制作/">Android, 依赖库制作</a></li></ul>
+
+</article>
+
+    </li>
+  
+</ul>
+
+<nav id="page-nav">
+    <div class="inner">
+    <a class="extend prev" rel="prev" href="/page/9/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/11/">下一页</a>
     </div>
 </nav>
 
-<div id="search" class="modal search-modal">
-    <div class="row">
-        <div class="input-field col s12">
-              <input id="search-input" type="text">
-              <label for="search-input">搜索</label>
-        </div>
-
     </div>
-    <div id="search-result" class="search-result col s12">
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
-    </div>
-</div>
-
-
-    <main>
-        
-
-<div class="slider">
-    <ul class="slides">
-    
-       <li>
-           <a href="/">
-               <img class="slider-image" src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=556704721,3767465756&amp;fm=200&amp;gp=0.jpg">
-               <div class="caption center-align">
-                 <h4></h3>
-                 <h5 class="light grey-text text-lighten-3"></h5>
-               </div>
-           </a>
-       </li>
-    
-       <li>
-           <a href="javascript:;">
-               <img class="slider-image" src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2398059823,3544350631&amp;fm=200&amp;gp=0.jpg">
-               <div class="caption left-align">
-                 <h4></h3>
-                 <h5 class="light grey-text text-lighten-3"></h5>
-               </div>
-           </a>
-       </li>
-    
-       <li>
-           <a href="javascript:;">
-               <img class="slider-image" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3719618601,4200702224&amp;fm=200&amp;gp=0.jpg">
-               <div class="caption right-align">
-                 <h4></h3>
-                 <h5 class="light grey-text text-lighten-3"></h5>
-               </div>
-           </a>
-       </li>
-    
-   </ul>
+<script>
+var BLOG_SHARE = {
+    title: "Glemontree's blog",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "http://yoursite.com/page/10/index.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
  </div>
 
 
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 
-<div id="article-list" class="container main-container">
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2017/08/30/[JQuery] JQuery第六课/">[JQuery] JQuery第六课</a></h1>
-    
+<script src="/js/main.js"></script>
 
 
-            </div>
 
-            <time class="pink-link-context" datetime="2017-08-30T07:39:34.000Z"><a href="/2017/08/30/[JQuery] JQuery第六课/">2017-08-30</a></time>
-
-            
-    <div class="tags-row">
-        
-            <a href="/tags/JQuery/" class="chip pink lighten-1">JQuery</a>
-        
-    </div>
-
-
-
-            
-        </div>
-
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2017/08/29/[SpringMVC] SpringMVC/">[SpringMVC] SpringMVC</a></h1>
-    
-
-
-            </div>
-
-            <time class="pink-link-context" datetime="2017-08-29T13:03:47.000Z"><a href="/2017/08/29/[SpringMVC] SpringMVC/">2017-08-29</a></time>
-
-            
-    <div class="tags-row">
-        
-            <a href="/tags/SpringMVC/" class="chip pink lighten-1">SpringMVC</a>
-        
-    </div>
-
-
-
-            
-        </div>
-
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2017/08/29/[JQuery] JQuery第五课/">[JQuery] JQuery第五课</a></h1>
-    
-
-
-            </div>
-
-            <time class="pink-link-context" datetime="2017-08-29T12:16:59.000Z"><a href="/2017/08/29/[JQuery] JQuery第五课/">2017-08-29</a></time>
-
-            
-    <div class="tags-row">
-        
-            <a href="/tags/JQuery/" class="chip pink lighten-1">JQuery</a>
-        
-    </div>
-
-
-
-            
-        </div>
-
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2017/08/29/[JQuery] JQuery第四课/">[JQuery] JQuery第四课</a></h1>
-    
-
-
-            </div>
-
-            <time class="pink-link-context" datetime="2017-08-29T12:11:20.000Z"><a href="/2017/08/29/[JQuery] JQuery第四课/">2017-08-29</a></time>
-
-            
-    <div class="tags-row">
-        
-            <a href="/tags/JQuery/" class="chip pink lighten-1">JQuery</a>
-        
-    </div>
-
-
-
-            
-        </div>
-
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2017/08/29/[JQuery] JQuery第三课/">[JQuery] JQuery第三课</a></h1>
-    
-
-
-            </div>
-
-            <time class="pink-link-context" datetime="2017-08-29T11:59:17.000Z"><a href="/2017/08/29/[JQuery] JQuery第三课/">2017-08-29</a></time>
-
-            
-    <div class="tags-row">
-        
-            <a href="/tags/JQuery/" class="chip pink lighten-1">JQuery</a>
-        
-    </div>
-
-
-
-            
-        </div>
-
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2017/08/29/[JQuery] JQuery第二课/">[JQuery] JQuery第二课</a></h1>
-    
-
-
-            </div>
-
-            <time class="pink-link-context" datetime="2017-08-29T11:48:23.000Z"><a href="/2017/08/29/[JQuery] JQuery第二课/">2017-08-29</a></time>
-
-            
-    <div class="tags-row">
-        
-            <a href="/tags/JQuery/" class="chip pink lighten-1">JQuery</a>
-        
-    </div>
-
-
-
-            
-        </div>
-
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2017/08/29/[JQuery] JQuery第一课/">[JQuery] JQuery第一课</a></h1>
-    
-
-
-            </div>
-
-            <time class="pink-link-context" datetime="2017-08-29T08:24:19.000Z"><a href="/2017/08/29/[JQuery] JQuery第一课/">2017-08-29</a></time>
-
-            
-    <div class="tags-row">
-        
-            <a href="/tags/JQuery/" class="chip pink lighten-1">JQuery</a>
-        
-    </div>
-
-
-
-            
-        </div>
-
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2017/08/19/[Android] Android绘制文本基本概念之- top, bottom, ascent, descent, baseline/">[Android] Android绘制文本基本概念之- top, bottom, ascent, descent, baseline</a></h1>
-    
-
-
-            </div>
-
-            <time class="pink-link-context" datetime="2017-08-19T14:25:30.000Z"><a href="/2017/08/19/[Android] Android绘制文本基本概念之- top, bottom, ascent, descent, baseline/">2017-08-19</a></time>
-
-            
-    <div class="tags-row">
-        
-            <a href="/tags/Android-绘制文本/" class="chip pink lighten-1">Android, 绘制文本</a>
-        
-    </div>
-
-
-
-            
-        </div>
-
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2017/08/19/[Android] Android制作自己的依赖库让别人引用(2)/">[Android] Android制作自己的依赖库让别人引用(2)</a></h1>
-    
-
-
-            </div>
-
-            <time class="pink-link-context" datetime="2017-08-19T06:12:59.000Z"><a href="/2017/08/19/[Android] Android制作自己的依赖库让别人引用(2)/">2017-08-19</a></time>
-
-            
-    <div class="tags-row">
-        
-            <a href="/tags/Android-依赖库制作/" class="chip pink lighten-1">Android, 依赖库制作</a>
-        
-    </div>
-
-
-
-            
-        </div>
-
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2017/08/17/[Android] Android制作自己的依赖库让别人引用(1)/">[Android] Android制作自己的依赖库让别人引用(1)</a></h1>
-    
-
-
-            </div>
-
-            <time class="pink-link-context" datetime="2017-08-17T11:56:26.000Z"><a href="/2017/08/17/[Android] Android制作自己的依赖库让别人引用(1)/">2017-08-17</a></time>
-
-            
-    <div class="tags-row">
-        
-            <a href="/tags/Android-依赖库制作/" class="chip pink lighten-1">Android, 依赖库制作</a>
-        
-    </div>
-
-
-
-            
-        </div>
-
-        
-    </div>
-</article>
-
-    
-
-    <ul class="pagination center-align">
-    <li class="">
-        <a href="/page/9/"><i class="fa fa-angle-left"></i></a>
-    </li>
-    
-    
-        <li class="waves-effect"><a href="/">1</a></li>
-    
-        <li class="waves-effect"><a href="/page/2">2</a></li>
-    
-        <li class="waves-effect"><a href="/page/3">3</a></li>
-    
-        <li class="waves-effect"><a href="/page/4">4</a></li>
-    
-        <li class="waves-effect"><a href="/page/5">5</a></li>
-    
-        <li class="waves-effect"><a href="/page/6">6</a></li>
-    
-        <li class="waves-effect"><a href="/page/7">7</a></li>
-    
-        <li class="waves-effect"><a href="/page/8">8</a></li>
-    
-        <li class="waves-effect"><a href="/page/9">9</a></li>
-    
-        <li class="active pink"><a href="/page/10">10</a></li>
-    
-        <li class="waves-effect"><a href="/page/11">11</a></li>
-    
-        <li class="waves-effect"><a href="/page/12">12</a></li>
-    
-        <li class="waves-effect"><a href="/page/13">13</a></li>
-    
-        <li class="waves-effect"><a href="/page/14">14</a></li>
-    
-        <li class="waves-effect"><a href="/page/15">15</a></li>
-    
-        <li class="waves-effect"><a href="/page/16">16</a></li>
-    
-        <li class="waves-effect"><a href="/page/17">17</a></li>
-    
-        <li class="waves-effect"><a href="/page/18">18</a></li>
-    
-    
-    <li class="">
-        <a href="/page/11/"><i class="fa fa-angle-right"></i></a>
-    </li>
- </ul>
-
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
 </div>
-
-        <div class="fixed-action-btn float-sitemap">
-    <a class="btn-floating btn-large pink">
-      <i class="fa fa-caret-square-o-up"></i>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
     </a>
-    <ul>
-      <li><a class="btn-return-top btn-floating waves-effect green" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
-      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="菜单"><i class="fa fa-navicon"></i></a></li>
-    </ul>
-  </div>
-
-    </main>
-    <footer class="page-footer indigo darken-1">
-    
-    <div class="footer-container container">
-        <div class="row">
-            
-            <div class="social-group col m4 s12">
-                <h5 class="white-text">社交</h5>
-                
-                    <a class="social-link" href="https://weibo.com/2520520192" target="_blank">
-                        <i class="fa fa-2x fa-weibo"></i>
-                    </a>
-                
-                    <a class="social-link" href="https://github.com/Glemontree" target="_blank">
-                        <i class="fa fa-2x fa-github"></i>
-                    </a>
-                
-                    <a class="social-link" href="/atom.xml" target="_blank">
-                        <i class="fa fa-2x fa-rss"></i>
-                    </a>
-                
-                
-    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-    </script>
-    <div class="site-visitors-container white-text">
-        <span>
-            <i class="fa fa-user"></i>
-            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-        </span>
-        <span>&nbsp;|&nbsp;</span>
-        <span>
-            <i class="fa fa-eye"></i>
-            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-        </span>
-    </div>
-
-
-            </div>
-            
-
-            
-            <div class="col m8 s12">
-                <h5 class="white-text">友情链接</h5>
-                
-                    <a class="social-link" href="https://glemontree.github.io/" target="_blank">我的博客</a>
-                
-                    <a class="social-link" href="https://github.com/Glemontree" target="_blank">Github地址</a>
-                
-            </div>
-            
-        </div>
-    </div>
-    
-
-    <div class="footer-copyright pink-link-context">
-        <div class="container">
-            © 2016 example.com, All rights reserved.
-            <p class="right" style="margin-top: 0;">本博客由 <a href="https://hexo.io">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
-        </div>
-    </div>
-</footer>
-
-
-    <noscript>
-    <div class="noscript">
-        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
-    </div>
-</noscript>
-<div class="noscript">
-    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
-</div>
-
-
-<script src="/js/jquery.min.js"></script>
-<script src="/js/materialize.min.js"></script>
-
-<script>
-    (function($) {
-        $(document).ready(function() {
-            // 隐藏禁用javascript（针对微信内置浏览器）的提示
-            $('.noscript').hide();
-
-            // 图片缩放效果
-            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
-
-            // 给图片加上点击放大效果（materialbox插件）
-            $imgs.addClass('materialboxed').each(function(i, el) {
-                $(this).attr('data-caption', $(this).attr('alt') || ' ');
-            }).materialbox();
-
-            // 优化表格的显示
-            $('table').each(function() {
-                var $table = $(this);
-                // 除去多行代码的情况
-                if ($table.find('pre').length == 0) {
-                    $table.addClass('responsive-table striped bordered');
-                }
-            });
-
-            // 首页幻灯片
-            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
-
-            $(".button-collapse").sideNav();
-            $(".category-menu").sideNav();
-
-            // 针对gallery post
-            $('.carousel').carousel({full_width: true});
-            $('.carousel-control.prev').click(function() {
-                $('.carousel').carousel('prev');
-            });
-            $('.carousel-control.next').click(function() {
-                $('.carousel').carousel('next');
-            });
-
-            // 文章目录
-            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
-
-            // 目录随屏幕滚动（防止目录过长越过footer）
-            var $toc = $('.toc');
-            var scrollTargetTop = 0;
-            $(window).scroll(function() {
-                var $activeLink = $toc.find('a.active.section');
-                if ($(window).scrollTop() < 100) {
-                    scrollTargetTop = 0;
-                } else {
-                    if ($activeLink[0]) {
-                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
-                    }
-                }
-                $toc.css('top', '-' + scrollTargetTop + 'px');
-            });
-
-            // 修正文章目录的left-border颜色
-            var color = $('.table-of-contents-text').css('color');
-            $('.table-of-contents-link').css('border-left-color', color);
-
-            // 针对移动端做的优化：FAB按钮点击一下收回
-            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                $('.fixed-action-btn').addClass('click-to-toggle');
-            }
-            // 回到顶部
-            $('.btn-return-top').click(function() {
-                $('body, html').animate({
-                    scrollTop: 0
-                }, 500);
-            });
-
-            // 重置读书页面的Tab标签页的颜色
-            $('li.tab a').hover(function() {
-                $(this).toggleClass('text-lighten-4');
-            });
-            $('.indicator').addClass('pink lighten-2');
-
-            
-            // 添加new标签
-            $('.menu-reading, .menu-about').append('<span class="new badge pink"></span>');
-            
-
-            // 搜索功能
-            $('.modal-trigger').leanModal({
-                // 打开搜索框时自动聚焦
-                ready: function() {
-                    if ($('#search').is(":visible")) {
-                        $('#search-input').focus();
-                    }
-                }
-            });
-            var searchXml = "search.xml";
-            if (searchXml.length == 0) {
-             	searchXml = "search.xml";
-            }
-            var searchPath = "/" + searchXml;
-            initSearch(searchPath, 'search-input', 'search-result');
-        });
-
-        // 初始化搜索与匹配函数
-        var initSearch = function(path, search_id, content_id) {
-            'use strict';
-            $.ajax({
-                url: path,
-                dataType: "xml",
-                success: function(xmlResponse) {
-                    // get the contents from search data
-                    var datas = $("entry", xmlResponse).map(function() {
-                        return {
-                            title: $("title", this).text(),
-                            content: $("content", this).text(),
-                            url: $("url", this).text()
-                        };
-                    }).get();
-                    var $input = document.getElementById(search_id);
-                    var $resultContent = document.getElementById(content_id);
-                    $input.addEventListener('input', function() {
-                        var str = '<ul class=\"search-result-list\">';
-                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-                        $resultContent.innerHTML = "";
-                        if (this.value.trim().length <= 0) {
-                            return;
-                        }
-                        // perform local searching
-                        datas.forEach(function(data) {
-                            var isMatch = true;
-                            var content_index = [];
-                            var data_title = data.title.trim().toLowerCase();
-                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
-                            var data_url = data.url;
-                            var index_title = -1;
-                            var index_content = -1;
-                            var first_occur = -1;
-                            // only match artiles with not empty titles and contents
-                            if (data_title != '' && data_content != '') {
-                                keywords.forEach(function(keyword, i) {
-                                    index_title = data_title.indexOf(keyword);
-                                    index_content = data_content.indexOf(keyword);
-                                    if (index_title < 0 && index_content < 0) {
-                                        isMatch = false;
-                                    } else {
-                                        if (index_content < 0) {
-                                            index_content = 0;
-                                        }
-                                        if (i == 0) {
-                                            first_occur = index_content;
-                                        }
-                                    }
-                                });
-                            }
-                            // show search results
-                            if (isMatch) {
-                                keywords.forEach(function(keyword) {
-                                    var regS = new RegExp(keyword, "gi");
-                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
-                                });
-
-                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
-                                var content = data.content.trim().replace(/<[^>]+>/g, "");
-                                if (first_occur >= 0) {
-                                    // cut out 100 characters
-                                    var start = first_occur - 20;
-                                    var end = first_occur + 80;
-                                    if (start < 0) {
-                                        start = 0;
-                                    }
-                                    if (start == 0) {
-                                        end = 100;
-                                    }
-                                    if (end > content.length) {
-                                        end = content.length;
-                                    }
-                                    var match_content = content.substring(start, end);
-                                    // highlight all keywords
-                                    keywords.forEach(function(keyword) {
-                                        var regS = new RegExp(keyword, "gi");
-                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
-                                    });
-
-                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
-                                }
-                                str += "</li>";
-                            }
-                        });
-                        str += "</ul>";
-                        $resultContent.innerHTML = str;
-                    });
-                }
-            });
-        }
-    })(jQuery);
+</li>
 </script>
 
-
-<script src="/js/prettify.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $("pre").addClass("prettyprint");
-        prettyPrint();
-    });
-</script>
+<script src="/js/search.js"></script>
 
 
 
 
-<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65601540" charset="UTF-8"></script>
 
 
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
-});
-</script>
-<script type="text/javascript" async
-  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
 
 
 

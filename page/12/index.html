@@ -1,1127 +1,709 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
-    
-
-    <title>第 12 页 | day day up!</title>
-    <meta name="author" content="Glemontree">
-    
-    <meta name="description" content="记录我学习的每一步">
-    
-    
+  <meta charset="utf-8">
+  
+  <title>Glemontree&#39;s blog | day day up!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    
-    <meta property="og:site_name" content="Glemontree&#39;s blog"/>
-
-    
-    <meta property="og:image" content="undefined"/>
-    
-
-    <link rel="icon" type="image/png" href="/favicon.png">
-    <link rel="alternate" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
-    <link rel="stylesheet" href="/css/lib/materialize.min.css">
-    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
-    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-
-    
-        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
-    
-    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="undefined">
+  <meta name="description" content="记录我学习的每一步">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Glemontree's blog">
+<meta property="og:url" content="http://yoursite.com/page/12/index.html">
+<meta property="og:site_name" content="Glemontree's blog">
+<meta property="og:description" content="记录我学习的每一步">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Glemontree's blog">
+<meta name="twitter:description" content="记录我学习的每一步">
+  
+    <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
+  
+  <meta name="summary" content="记录我学习的每一步">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 
-
 <body>
-    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+  <div id="loading" class="active"></div>
 
-    <nav class="indigo">
-    <div class="nav-wrapper">
-        <a href="#" data-activates="main-menu" class="button-collapse">
-            <i class="fa fa-navicon"></i>
-        </a>
-        <div class="">
-            <a href="/" class="brand-logo hide-on-med-and-down">Glemontree&#39;s blog</a>
-            <ul class="right hide-on-med-and-down">
-                
-                    <li>
-                        <a class="menu-home " href="/" >
-                            <i class="fa fa-home "></i>
-                            
-                            首页
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a class="menu-archive " href="/archives" >
-                            <i class="fa fa-archive "></i>
-                            
-                            归档
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
-                            <i class="fa fa-bookmark "></i>
-                            
-                            分类
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a class="menu-reading " href="/reading" >
-                            <i class="fa fa-book "></i>
-                            
-                            读书
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a class="menu-about " href="/about" >
-                            <i class="fa fa-user "></i>
-                            
-                            关于
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a class="menu-search modal-trigger " href="#search" >
-                            <i class="fa fa-search "></i>
-                            
-                            搜索
-                        </a>
-                    </li>
-                
-            </ul>
-            <div>
-    <ul class="side-nav indigo darken-1" id="main-menu">
-        
-        <li class="side-user">
-            <div class="row">
-                <div class="col s4 no-padding">
-                    <img class="avatar-image circle responsive-img" src="http://a2.qpic.cn/psb?/7f08dc85-11f9-4e2c-98bf-46f57deaea51/y3454JNrI*wKHx2Q4UGOkYW5ceOFrz5b1VKCL6GAt7A!/m/dDEBAAAAAAAAnull&amp;bo=hAOEAwAAAAARBzA!&amp;rf=photolist&amp;t=5" alt="User Avatar">
-                </div>
-                <div class="info col s8 valign-wrapper no-padding">
-                    <div class="valign">
-                        <p class="name">Glemontree</p>
-                        <p class="desc">Java后端/Android/C++/Linux/技术宅</p>
-                    </div>
-                </div>
-            </div>
-        </li>
-        
-
-        
-            <li class="no-padding">
-                <a class="waves-effect menu-home " href="/" >
-                    <i class="fa fa-home "></i>
-                    
-                    首页
-                </a>
-            </li>
-        
-            <li class="no-padding">
-                <a class="waves-effect menu-archive " href="/archives" >
-                    <i class="fa fa-archive "></i>
-                    
-                    归档
-                </a>
-            </li>
-        
-            <li class="no-padding">
-                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
-                    <i class="fa fa-bookmark "></i>
-                    
-                    分类
-                </a>
-            </li>
-        
-            <li class="no-padding">
-                <a class="waves-effect menu-reading " href="/reading" >
-                    <i class="fa fa-book "></i>
-                    
-                    读书
-                </a>
-            </li>
-        
-            <li class="no-padding">
-                <a class="waves-effect menu-about " href="/about" >
-                    <i class="fa fa-user "></i>
-                    
-                    关于
-                </a>
-            </li>
-        
-            <li class="no-padding">
-                <a class="waves-effect menu-search modal-trigger " href="#search" >
-                    <i class="fa fa-search "></i>
-                    
-                    搜索
-                </a>
-            </li>
-        
+  <nav id="menu"  >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">Glemontree</h5>
+        <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <div class="scroll-wrap flex-col">
+    <ul class="nav">
+      
+          <li class="waves-block waves-effect">
+            <a href="/"  >
+              <i class="icon icon-lg icon-home"></i>
+              主页
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/archives"  >
+              <i class="icon icon-lg icon-archives"></i>
+              Archives
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/tags"  >
+              <i class="icon icon-lg icon-tags"></i>
+              Tags
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://github.com/yscoder" target="_blank" >
+              <i class="icon icon-lg icon-github"></i>
+              Github
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="http://www.weibo.com/ysweb" target="_blank" >
+              <i class="icon icon-lg icon-weibo"></i>
+              Weibo
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/404"  >
+              <i class="icon icon-lg icon-link"></i>
+              测试
+            </a>
+          </li>
+      
     </ul>
 
-    <ul class="side-nav indigo darken-1" id="category-menu">
-    
+    <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>Glemontree&#39;s blog &copy; 2018</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
 
-            
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Android/">
-                    Android <span class="right">15 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/C/">
-                    C <span class="right">24 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Boost/">
-                    Boost <span class="right">1 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/CMake/">
-                    CMake <span class="right">2 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/DB/">
-                    DB <span class="right">7 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Effective-Java/">
-                    Effective-Java <span class="right">1 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Hexo/">
-                    Hexo <span class="right">1 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/HTTPS/">
-                    HTTPS <span class="right">1 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/JQuery/">
-                    JQuery <span class="right">8 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/IntelliJ-IDEA/">
-                    IntelliJ-IDEA <span class="right">1 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Java/">
-                    Java <span class="right">16 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Linux/">
-                    Linux <span class="right">22 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/MyBatis/">
-                    MyBatis <span class="right">8 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Qt/">
-                    Qt <span class="right">4 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Redis/">
-                    Redis <span class="right">3 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Servlet/">
-                    Servlet <span class="right">3 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/SpringMVC/">
-                    SpringMVC <span class="right">4 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Spring/">
-                    Spring <span class="right">5 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Struts2/">
-                    Struts2 <span class="right">18 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/TCP-IP/">
-                    TCP-IP <span class="right">9 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/TCPIP/">
-                    TCPIP <span class="right">1 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Windows核心编程/">
-                    Windows核心编程 <span class="right">2 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/html/">
-                    html <span class="right">7 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/算法/">
-                    算法 <span class="right">3 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/多线程/">
-                    多线程 <span class="right">3 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/编程规范/">
-                    编程规范 <span class="right">1 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/网络编程/">
-                    网络编程 <span class="right">2 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/设计模式/">
-                    设计模式 <span class="right">5 篇</span></a>
-                </a>
-            </li>
-
-        
-
-    </ul>
+  </div>
 </div>
 
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Glemontree&#39;s blog</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
         </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">Glemontree&#39;s blog</h1>
+    <h5 class="subtitle">
+        
+        day day up!
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <ul class="post-list">
+  
+    <li class="post-list-item">
+        <article id="post-[Android] 百度地图API Android相关配置教程（包含获取包名、发布版SHA1和 开发版SHA1）"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/07/10/[Android] 百度地图API Android相关配置教程（包含获取包名、发布版SHA1和 开发版SHA1）/">[Android] 百度地图API Android相关配置教程（包含获取包名、发布版SHA1和开发版SHA1）</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2017-07-10T09:51:38.000Z" itemprop="datePublished" class="post-time">
+  2017-07-10
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           声明  本篇文章转载自 Moment__格调的博客 ，作者写的十分详细，对于进行Android的百度地图开发很有帮助，感谢作者的分享！ 
+   主要内容  本篇相较于当前（2017.6.18）百度地图开放平台上的开发指南更为全面 
+ 新版百度地图API相较于旧版增加了发布版SHA1， 开发版SHA1按官方教程操作即可，本篇来仔细介绍一下发布版SHA1、开发版SHA1和包名的获取方法。 本文基
+    
+    
+        <a href="/2017/07/10/[Android] 百度地图API Android相关配置教程（包含获取包名、发布版SHA1和 开发版SHA1）/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android-百度地图/">Android, 百度地图</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-[Struts2] 值栈"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/07/10/[Struts2] 值栈/">[Struts2] 值栈</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2017-07-10T03:51:01.000Z" itemprop="datePublished" class="post-time">
+  2017-07-10
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Struts2/">Struts2</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+         
+  ValueStack（值栈） 
+ 贯穿整个Action的生命周期，每个Action类的对象实例都拥有一个ValueStack对象，相当于一个数据的中转站，在其中保存当前Action对象和其他相关对象 
+ 
+  Struts框架把ValueStack对象保存在名为”struts.valueStack”的请求属性中 
+ 
+  在ValueStack对象的内部有两个逻辑部分： 
+ 
+  cont
+    
+    
+        <a href="/2017/07/10/[Struts2] 值栈/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Struts2-值栈/">Struts2, 值栈</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-[Struts2] page、request、session、application的区别"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/07/10/[Struts2] page、request、session、application的区别/">[Struts2] page、request、session、application的区别</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2017-07-10T03:49:44.000Z" itemprop="datePublished" class="post-time">
+  2017-07-10
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Struts2/">Struts2</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+         
+  page 
+ page指当前页面，在一个jsp页面中有效 
+ 
+  request 
+ request值从http请求到服务器处理结束，返回响应的整个过程，在这个过程中使用forward方式跳转多个jsp，在这些页面里都可以使用这个变量 
+ 
+  session 
+ 当前会话中有效，从浏览器打开到浏览器关闭这个过程，每个用户都有唯一的一个 
+ 
+  application 
+ 它的有效范围
+    
+    
+        <a href="/2017/07/10/[Struts2] page、request、session、application的区别/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Struts2/">Struts2</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-[Struts2] 配置Struts可以受理的请求的扩展名"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/07/10/[Struts2] 配置Struts可以受理的请求的扩展名/">[Struts2] 配置Struts可以受理的请求的扩展名</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2017-07-10T03:45:57.000Z" itemprop="datePublished" class="post-time">
+  2017-07-10
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Struts2/">Struts2</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+         
+  在工程目录的Web App Libraries目录下的struts2-core-2.3.15.jar下的org.apache.struts2下的default.properties文件下定义了Struts可以受理的请求的扩展名： struts.action.extension=action,, ，表示Struts可以受理扩展名为.action和没有扩展名的请求 
+ 
+  若想更改Strut
+    
+    
+        <a href="/2017/07/10/[Struts2] 配置Struts可以受理的请求的扩展名/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Struts2-扩展名/">Struts2, 扩展名</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-[Spring] Spring配置文件头部xmlns配置"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/07/06/[Spring] Spring配置文件头部xmlns配置/">[Spring] Spring配置文件头部xmlns配置</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2017-07-06T11:41:32.000Z" itemprop="datePublished" class="post-time">
+  2017-07-06
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Spring/">Spring</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+         刚开始学习 Spring 或许都对其配置文件头部的各种配置表示困惑，先贴出一个比较常见的头部文件 
+      1  2  3  4  5  6  7  8  9  10  11       &lt; beans   xmlns = "http://www.springframework.org/schema/beans"              xmlns:xsi = "http://www
+    
+    
+        <a href="/2017/07/06/[Spring] Spring配置文件头部xmlns配置/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-[Struts2] 国际化"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/07/06/[Struts2] 国际化/">[Struts2] 国际化</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2017-07-06T09:08:51.000Z" itemprop="datePublished" class="post-time">
+  2017-07-06
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Struts2/">Struts2</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           概述  在程序设计领域，把在无需改写源代码即可让开发出来的程序能够支持多种语言和数据格式的技术称为国际化。 
+ 与国际化对应的是本地化，指让一个具备国际化支持的应用程序支持某个特定的地区。 
+ Struts2国际化是建立在Java国际化基础上的： 
+ 
+ 为不同国家/地区提供对应的消息资源文件 
+ Struts2框架会根据请求中包含的Locale加载对应的资源文件 
+ 通过程序代码取得资源文
+    
+    
+        <a href="/2017/07/06/[Struts2] 国际化/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Struts2-国际化/">Struts2, 国际化</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-[Struts2] ModelDriven和Preparable拦截器"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/07/05/[Struts2] ModelDriven和Preparable拦截器/">[Struts2] ModelDriven和Preparable拦截器</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2017-07-05T14:11:08.000Z" itemprop="datePublished" class="post-time">
+  2017-07-05
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Struts2/">Struts2</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           Struts2运行流程  
+ ActionProxy是Action的一个代理类，也就是说Action的调用时通过ActionProxy实现的，其实就是调用了ActionProxy.execute()方法，而该方法又调用了ActionInvocation.invoke()方法 
+ ActonInvocation就是Action的调用者，ActonInvocation在Action的执行过程中，
+    
+    
+        <a href="/2017/07/05/[Struts2] ModelDriven和Preparable拦截器/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Struts2-ModelDriven-Preparable/">Struts2, ModelDriven, Preparable</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-[Struts2] 文件上传和下载"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/07/05/[Struts2] 文件上传和下载/">[Struts2] 文件上传和下载</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2017-07-05T10:04:38.000Z" itemprop="datePublished" class="post-time">
+  2017-07-05
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Struts2/">Struts2</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           表单准备  要想使用HTML表单上传一个或多个文件： 
+ 
+ 需把HTML表单的enctype属性设置为multipart/form-data 
+ 需把HTML表单的method属性设置为post 
+ 需添加 &lt;input type=&quot;file&quot;&gt; 字段 
+ 
+   Struts对文件上传的支持  在Struts应用程序里，FileUpload拦截器和Comm
+    
+    
+        <a href="/2017/07/05/[Struts2] 文件上传和下载/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Struts2-文件上传-文件下载/">Struts2, 文件上传, 文件下载</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-[Struts2] OGNL siterator标签的使用"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/07/04/[Struts2] OGNL siterator标签的使用/">[Struts2] OGNL s:iterator标签的使用</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2017-07-04T10:50:07.000Z" itemprop="datePublished" class="post-time">
+  2017-07-04
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Struts2/">Struts2</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           简介  iterator标签用来遍历一个数组、Collection或一个Map，并把这个可遍历对象的每一个元素一次压入和弹出。 
+   例子  为了搞清楚OGNL中 s:iteraor 标签的使用方法，这里举了一个例子： 
+ 
+  User.java 
+      1  2  3  4  5  6  7  8  9  10  11  12  13  14  15  16  17  18  1
+    
+    
+        <a href="/2017/07/04/[Struts2] OGNL siterator标签的使用/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Struts2-OGNL/">Struts2, OGNL</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-[Servlet] Java Web乱码"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/07/01/[Servlet] Java Web乱码/">[Servlet] Java Web乱码</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2017-07-01T06:21:31.000Z" itemprop="datePublished" class="post-time">
+  2017-07-01
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Servlet/">Servlet</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           乱码  先看一个简单的例子： 
+      1  2  3  4  5        protected   void   doGet  (HttpServletRequest request, HttpServletResponse response)   throws  ServletException, IOException  &#123;    OutputStream out =
+    
+    
+        <a href="/2017/07/01/[Servlet] Java Web乱码/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java-Servlet-乱码/">Java, Servlet, 乱码</a></li></ul>
+
+</article>
+
+    </li>
+  
+</ul>
+
+<nav id="page-nav">
+    <div class="inner">
+    <a class="extend prev" rel="prev" href="/page/11/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/13/">下一页</a>
     </div>
 </nav>
 
-<div id="search" class="modal search-modal">
-    <div class="row">
-        <div class="input-field col s12">
-              <input id="search-input" type="text">
-              <label for="search-input">搜索</label>
-        </div>
-
     </div>
-    <div id="search-result" class="search-result col s12">
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
-    </div>
-</div>
-
-
-    <main>
-        
-
-<div class="slider">
-    <ul class="slides">
-    
-       <li>
-           <a href="/">
-               <img class="slider-image" src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=556704721,3767465756&amp;fm=200&amp;gp=0.jpg">
-               <div class="caption center-align">
-                 <h4></h3>
-                 <h5 class="light grey-text text-lighten-3"></h5>
-               </div>
-           </a>
-       </li>
-    
-       <li>
-           <a href="javascript:;">
-               <img class="slider-image" src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2398059823,3544350631&amp;fm=200&amp;gp=0.jpg">
-               <div class="caption left-align">
-                 <h4></h3>
-                 <h5 class="light grey-text text-lighten-3"></h5>
-               </div>
-           </a>
-       </li>
-    
-       <li>
-           <a href="javascript:;">
-               <img class="slider-image" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3719618601,4200702224&amp;fm=200&amp;gp=0.jpg">
-               <div class="caption right-align">
-                 <h4></h3>
-                 <h5 class="light grey-text text-lighten-3"></h5>
-               </div>
-           </a>
-       </li>
-    
-   </ul>
+<script>
+var BLOG_SHARE = {
+    title: "Glemontree's blog",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "http://yoursite.com/page/12/index.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
  </div>
 
 
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 
-<div id="article-list" class="container main-container">
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2017/07/10/[Android] 百度地图API Android相关配置教程（包含获取包名、发布版SHA1和 开发版SHA1）/">[Android] 百度地图API Android相关配置教程（包含获取包名、发布版SHA1和开发版SHA1）</a></h1>
-    
+<script src="/js/main.js"></script>
 
 
-            </div>
 
-            <time class="pink-link-context" datetime="2017-07-10T09:51:38.000Z"><a href="/2017/07/10/[Android] 百度地图API Android相关配置教程（包含获取包名、发布版SHA1和 开发版SHA1）/">2017-07-10</a></time>
-
-            
-    <div class="tags-row">
-        
-            <a href="/tags/Android-百度地图/" class="chip pink lighten-1">Android, 百度地图</a>
-        
-    </div>
-
-
-
-            
-        </div>
-
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2017/07/10/[Struts2] 值栈/">[Struts2] 值栈</a></h1>
-    
-
-
-            </div>
-
-            <time class="pink-link-context" datetime="2017-07-10T03:51:01.000Z"><a href="/2017/07/10/[Struts2] 值栈/">2017-07-10</a></time>
-
-            
-    <div class="tags-row">
-        
-            <a href="/tags/Struts2-值栈/" class="chip pink lighten-1">Struts2, 值栈</a>
-        
-    </div>
-
-
-
-            
-        </div>
-
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2017/07/10/[Struts2] page、request、session、application的区别/">[Struts2] page、request、session、application的区别</a></h1>
-    
-
-
-            </div>
-
-            <time class="pink-link-context" datetime="2017-07-10T03:49:44.000Z"><a href="/2017/07/10/[Struts2] page、request、session、application的区别/">2017-07-10</a></time>
-
-            
-    <div class="tags-row">
-        
-            <a href="/tags/Struts2/" class="chip pink lighten-1">Struts2</a>
-        
-    </div>
-
-
-
-            
-        </div>
-
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2017/07/10/[Struts2] 配置Struts可以受理的请求的扩展名/">[Struts2] 配置Struts可以受理的请求的扩展名</a></h1>
-    
-
-
-            </div>
-
-            <time class="pink-link-context" datetime="2017-07-10T03:45:57.000Z"><a href="/2017/07/10/[Struts2] 配置Struts可以受理的请求的扩展名/">2017-07-10</a></time>
-
-            
-    <div class="tags-row">
-        
-            <a href="/tags/Struts2-扩展名/" class="chip pink lighten-1">Struts2, 扩展名</a>
-        
-    </div>
-
-
-
-            
-        </div>
-
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2017/07/06/[Spring] Spring配置文件头部xmlns配置/">[Spring] Spring配置文件头部xmlns配置</a></h1>
-    
-
-
-            </div>
-
-            <time class="pink-link-context" datetime="2017-07-06T11:41:32.000Z"><a href="/2017/07/06/[Spring] Spring配置文件头部xmlns配置/">2017-07-06</a></time>
-
-            
-    <div class="tags-row">
-        
-            <a href="/tags/Spring/" class="chip pink lighten-1">Spring</a>
-        
-    </div>
-
-
-
-            
-        </div>
-
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2017/07/06/[Struts2] 国际化/">[Struts2] 国际化</a></h1>
-    
-
-
-            </div>
-
-            <time class="pink-link-context" datetime="2017-07-06T09:08:51.000Z"><a href="/2017/07/06/[Struts2] 国际化/">2017-07-06</a></time>
-
-            
-    <div class="tags-row">
-        
-            <a href="/tags/Struts2-国际化/" class="chip pink lighten-1">Struts2, 国际化</a>
-        
-    </div>
-
-
-
-            
-        </div>
-
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2017/07/05/[Struts2] ModelDriven和Preparable拦截器/">[Struts2] ModelDriven和Preparable拦截器</a></h1>
-    
-
-
-            </div>
-
-            <time class="pink-link-context" datetime="2017-07-05T14:11:08.000Z"><a href="/2017/07/05/[Struts2] ModelDriven和Preparable拦截器/">2017-07-05</a></time>
-
-            
-    <div class="tags-row">
-        
-            <a href="/tags/Struts2-ModelDriven-Preparable/" class="chip pink lighten-1">Struts2, ModelDriven, Preparable</a>
-        
-    </div>
-
-
-
-            
-        </div>
-
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2017/07/05/[Struts2] 文件上传和下载/">[Struts2] 文件上传和下载</a></h1>
-    
-
-
-            </div>
-
-            <time class="pink-link-context" datetime="2017-07-05T10:04:38.000Z"><a href="/2017/07/05/[Struts2] 文件上传和下载/">2017-07-05</a></time>
-
-            
-    <div class="tags-row">
-        
-            <a href="/tags/Struts2-文件上传-文件下载/" class="chip pink lighten-1">Struts2, 文件上传, 文件下载</a>
-        
-    </div>
-
-
-
-            
-        </div>
-
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2017/07/04/[Struts2] OGNL siterator标签的使用/">[Struts2] OGNL s:iterator标签的使用</a></h1>
-    
-
-
-            </div>
-
-            <time class="pink-link-context" datetime="2017-07-04T10:50:07.000Z"><a href="/2017/07/04/[Struts2] OGNL siterator标签的使用/">2017-07-04</a></time>
-
-            
-    <div class="tags-row">
-        
-            <a href="/tags/Struts2-OGNL/" class="chip pink lighten-1">Struts2, OGNL</a>
-        
-    </div>
-
-
-
-            
-        </div>
-
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2017/07/01/[Servlet] Java Web乱码/">[Servlet] Java Web乱码</a></h1>
-    
-
-
-            </div>
-
-            <time class="pink-link-context" datetime="2017-07-01T06:21:31.000Z"><a href="/2017/07/01/[Servlet] Java Web乱码/">2017-07-01</a></time>
-
-            
-    <div class="tags-row">
-        
-            <a href="/tags/Java-Servlet-乱码/" class="chip pink lighten-1">Java, Servlet, 乱码</a>
-        
-    </div>
-
-
-
-            
-        </div>
-
-        
-    </div>
-</article>
-
-    
-
-    <ul class="pagination center-align">
-    <li class="">
-        <a href="/page/11/"><i class="fa fa-angle-left"></i></a>
-    </li>
-    
-    
-        <li class="waves-effect"><a href="/">1</a></li>
-    
-        <li class="waves-effect"><a href="/page/2">2</a></li>
-    
-        <li class="waves-effect"><a href="/page/3">3</a></li>
-    
-        <li class="waves-effect"><a href="/page/4">4</a></li>
-    
-        <li class="waves-effect"><a href="/page/5">5</a></li>
-    
-        <li class="waves-effect"><a href="/page/6">6</a></li>
-    
-        <li class="waves-effect"><a href="/page/7">7</a></li>
-    
-        <li class="waves-effect"><a href="/page/8">8</a></li>
-    
-        <li class="waves-effect"><a href="/page/9">9</a></li>
-    
-        <li class="waves-effect"><a href="/page/10">10</a></li>
-    
-        <li class="waves-effect"><a href="/page/11">11</a></li>
-    
-        <li class="active pink"><a href="/page/12">12</a></li>
-    
-        <li class="waves-effect"><a href="/page/13">13</a></li>
-    
-        <li class="waves-effect"><a href="/page/14">14</a></li>
-    
-        <li class="waves-effect"><a href="/page/15">15</a></li>
-    
-        <li class="waves-effect"><a href="/page/16">16</a></li>
-    
-        <li class="waves-effect"><a href="/page/17">17</a></li>
-    
-        <li class="waves-effect"><a href="/page/18">18</a></li>
-    
-    
-    <li class="">
-        <a href="/page/13/"><i class="fa fa-angle-right"></i></a>
-    </li>
- </ul>
-
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
 </div>
-
-        <div class="fixed-action-btn float-sitemap">
-    <a class="btn-floating btn-large pink">
-      <i class="fa fa-caret-square-o-up"></i>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
     </a>
-    <ul>
-      <li><a class="btn-return-top btn-floating waves-effect green" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
-      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="菜单"><i class="fa fa-navicon"></i></a></li>
-    </ul>
-  </div>
-
-    </main>
-    <footer class="page-footer indigo darken-1">
-    
-    <div class="footer-container container">
-        <div class="row">
-            
-            <div class="social-group col m4 s12">
-                <h5 class="white-text">社交</h5>
-                
-                    <a class="social-link" href="https://weibo.com/2520520192" target="_blank">
-                        <i class="fa fa-2x fa-weibo"></i>
-                    </a>
-                
-                    <a class="social-link" href="https://github.com/Glemontree" target="_blank">
-                        <i class="fa fa-2x fa-github"></i>
-                    </a>
-                
-                    <a class="social-link" href="/atom.xml" target="_blank">
-                        <i class="fa fa-2x fa-rss"></i>
-                    </a>
-                
-                
-    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-    </script>
-    <div class="site-visitors-container white-text">
-        <span>
-            <i class="fa fa-user"></i>
-            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-        </span>
-        <span>&nbsp;|&nbsp;</span>
-        <span>
-            <i class="fa fa-eye"></i>
-            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-        </span>
-    </div>
-
-
-            </div>
-            
-
-            
-            <div class="col m8 s12">
-                <h5 class="white-text">友情链接</h5>
-                
-                    <a class="social-link" href="https://glemontree.github.io/" target="_blank">我的博客</a>
-                
-                    <a class="social-link" href="https://github.com/Glemontree" target="_blank">Github地址</a>
-                
-            </div>
-            
-        </div>
-    </div>
-    
-
-    <div class="footer-copyright pink-link-context">
-        <div class="container">
-            © 2016 example.com, All rights reserved.
-            <p class="right" style="margin-top: 0;">本博客由 <a href="https://hexo.io">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
-        </div>
-    </div>
-</footer>
-
-
-    <noscript>
-    <div class="noscript">
-        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
-    </div>
-</noscript>
-<div class="noscript">
-    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
-</div>
-
-
-<script src="/js/jquery.min.js"></script>
-<script src="/js/materialize.min.js"></script>
-
-<script>
-    (function($) {
-        $(document).ready(function() {
-            // 隐藏禁用javascript（针对微信内置浏览器）的提示
-            $('.noscript').hide();
-
-            // 图片缩放效果
-            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
-
-            // 给图片加上点击放大效果（materialbox插件）
-            $imgs.addClass('materialboxed').each(function(i, el) {
-                $(this).attr('data-caption', $(this).attr('alt') || ' ');
-            }).materialbox();
-
-            // 优化表格的显示
-            $('table').each(function() {
-                var $table = $(this);
-                // 除去多行代码的情况
-                if ($table.find('pre').length == 0) {
-                    $table.addClass('responsive-table striped bordered');
-                }
-            });
-
-            // 首页幻灯片
-            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
-
-            $(".button-collapse").sideNav();
-            $(".category-menu").sideNav();
-
-            // 针对gallery post
-            $('.carousel').carousel({full_width: true});
-            $('.carousel-control.prev').click(function() {
-                $('.carousel').carousel('prev');
-            });
-            $('.carousel-control.next').click(function() {
-                $('.carousel').carousel('next');
-            });
-
-            // 文章目录
-            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
-
-            // 目录随屏幕滚动（防止目录过长越过footer）
-            var $toc = $('.toc');
-            var scrollTargetTop = 0;
-            $(window).scroll(function() {
-                var $activeLink = $toc.find('a.active.section');
-                if ($(window).scrollTop() < 100) {
-                    scrollTargetTop = 0;
-                } else {
-                    if ($activeLink[0]) {
-                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
-                    }
-                }
-                $toc.css('top', '-' + scrollTargetTop + 'px');
-            });
-
-            // 修正文章目录的left-border颜色
-            var color = $('.table-of-contents-text').css('color');
-            $('.table-of-contents-link').css('border-left-color', color);
-
-            // 针对移动端做的优化：FAB按钮点击一下收回
-            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                $('.fixed-action-btn').addClass('click-to-toggle');
-            }
-            // 回到顶部
-            $('.btn-return-top').click(function() {
-                $('body, html').animate({
-                    scrollTop: 0
-                }, 500);
-            });
-
-            // 重置读书页面的Tab标签页的颜色
-            $('li.tab a').hover(function() {
-                $(this).toggleClass('text-lighten-4');
-            });
-            $('.indicator').addClass('pink lighten-2');
-
-            
-            // 添加new标签
-            $('.menu-reading, .menu-about').append('<span class="new badge pink"></span>');
-            
-
-            // 搜索功能
-            $('.modal-trigger').leanModal({
-                // 打开搜索框时自动聚焦
-                ready: function() {
-                    if ($('#search').is(":visible")) {
-                        $('#search-input').focus();
-                    }
-                }
-            });
-            var searchXml = "search.xml";
-            if (searchXml.length == 0) {
-             	searchXml = "search.xml";
-            }
-            var searchPath = "/" + searchXml;
-            initSearch(searchPath, 'search-input', 'search-result');
-        });
-
-        // 初始化搜索与匹配函数
-        var initSearch = function(path, search_id, content_id) {
-            'use strict';
-            $.ajax({
-                url: path,
-                dataType: "xml",
-                success: function(xmlResponse) {
-                    // get the contents from search data
-                    var datas = $("entry", xmlResponse).map(function() {
-                        return {
-                            title: $("title", this).text(),
-                            content: $("content", this).text(),
-                            url: $("url", this).text()
-                        };
-                    }).get();
-                    var $input = document.getElementById(search_id);
-                    var $resultContent = document.getElementById(content_id);
-                    $input.addEventListener('input', function() {
-                        var str = '<ul class=\"search-result-list\">';
-                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-                        $resultContent.innerHTML = "";
-                        if (this.value.trim().length <= 0) {
-                            return;
-                        }
-                        // perform local searching
-                        datas.forEach(function(data) {
-                            var isMatch = true;
-                            var content_index = [];
-                            var data_title = data.title.trim().toLowerCase();
-                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
-                            var data_url = data.url;
-                            var index_title = -1;
-                            var index_content = -1;
-                            var first_occur = -1;
-                            // only match artiles with not empty titles and contents
-                            if (data_title != '' && data_content != '') {
-                                keywords.forEach(function(keyword, i) {
-                                    index_title = data_title.indexOf(keyword);
-                                    index_content = data_content.indexOf(keyword);
-                                    if (index_title < 0 && index_content < 0) {
-                                        isMatch = false;
-                                    } else {
-                                        if (index_content < 0) {
-                                            index_content = 0;
-                                        }
-                                        if (i == 0) {
-                                            first_occur = index_content;
-                                        }
-                                    }
-                                });
-                            }
-                            // show search results
-                            if (isMatch) {
-                                keywords.forEach(function(keyword) {
-                                    var regS = new RegExp(keyword, "gi");
-                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
-                                });
-
-                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
-                                var content = data.content.trim().replace(/<[^>]+>/g, "");
-                                if (first_occur >= 0) {
-                                    // cut out 100 characters
-                                    var start = first_occur - 20;
-                                    var end = first_occur + 80;
-                                    if (start < 0) {
-                                        start = 0;
-                                    }
-                                    if (start == 0) {
-                                        end = 100;
-                                    }
-                                    if (end > content.length) {
-                                        end = content.length;
-                                    }
-                                    var match_content = content.substring(start, end);
-                                    // highlight all keywords
-                                    keywords.forEach(function(keyword) {
-                                        var regS = new RegExp(keyword, "gi");
-                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
-                                    });
-
-                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
-                                }
-                                str += "</li>";
-                            }
-                        });
-                        str += "</ul>";
-                        $resultContent.innerHTML = str;
-                    });
-                }
-            });
-        }
-    })(jQuery);
+</li>
 </script>
 
-
-<script src="/js/prettify.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $("pre").addClass("prettyprint");
-        prettyPrint();
-    });
-</script>
+<script src="/js/search.js"></script>
 
 
 
 
-<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65601540" charset="UTF-8"></script>
 
 
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
-});
-</script>
-<script type="text/javascript" async
-  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
 
 
 

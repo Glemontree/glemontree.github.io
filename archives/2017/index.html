@@ -1,1759 +1,496 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
-    
-
-    <title>归档：2017 | day day up!</title>
-    <meta name="author" content="Glemontree">
-    
-    <meta name="description" content="记录我学习的每一步">
-    
-    
+  <meta charset="utf-8">
+  
+  <title>Archives: 2017 | Glemontree&#39;s blog | day day up!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    
-    <meta property="og:site_name" content="Glemontree&#39;s blog"/>
-
-    
-    <meta property="og:image" content="undefined"/>
-    
-
-    <link rel="icon" type="image/png" href="/favicon.png">
-    <link rel="alternate" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
-    <link rel="stylesheet" href="/css/lib/materialize.min.css">
-    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
-    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-
-    
-        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
-    
-    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="undefined">
+  <meta name="description" content="记录我学习的每一步">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Glemontree's blog">
+<meta property="og:url" content="http://yoursite.com/archives/2017/index.html">
+<meta property="og:site_name" content="Glemontree's blog">
+<meta property="og:description" content="记录我学习的每一步">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Glemontree's blog">
+<meta name="twitter:description" content="记录我学习的每一步">
+  
+    <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
+  
+  <meta name="summary" content="记录我学习的每一步">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 
-
 <body>
-    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+  <div id="loading" class="active"></div>
 
-    <nav class="indigo">
-    <div class="nav-wrapper">
-        <a href="#" data-activates="main-menu" class="button-collapse">
-            <i class="fa fa-navicon"></i>
-        </a>
-        <div class="">
-            <a href="/" class="brand-logo hide-on-med-and-down">Glemontree&#39;s blog</a>
-            <ul class="right hide-on-med-and-down">
-                
-                    <li>
-                        <a class="menu-home " href="/" >
-                            <i class="fa fa-home "></i>
-                            
-                            首页
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a class="menu-archive " href="/archives" >
-                            <i class="fa fa-archive "></i>
-                            
-                            归档
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
-                            <i class="fa fa-bookmark "></i>
-                            
-                            分类
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a class="menu-reading " href="/reading" >
-                            <i class="fa fa-book "></i>
-                            
-                            读书
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a class="menu-about " href="/about" >
-                            <i class="fa fa-user "></i>
-                            
-                            关于
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a class="menu-search modal-trigger " href="#search" >
-                            <i class="fa fa-search "></i>
-                            
-                            搜索
-                        </a>
-                    </li>
-                
-            </ul>
-            <div>
-    <ul class="side-nav indigo darken-1" id="main-menu">
-        
-        <li class="side-user">
-            <div class="row">
-                <div class="col s4 no-padding">
-                    <img class="avatar-image circle responsive-img" src="http://a2.qpic.cn/psb?/7f08dc85-11f9-4e2c-98bf-46f57deaea51/y3454JNrI*wKHx2Q4UGOkYW5ceOFrz5b1VKCL6GAt7A!/m/dDEBAAAAAAAAnull&amp;bo=hAOEAwAAAAARBzA!&amp;rf=photolist&amp;t=5" alt="User Avatar">
-                </div>
-                <div class="info col s8 valign-wrapper no-padding">
-                    <div class="valign">
-                        <p class="name">Glemontree</p>
-                        <p class="desc">Java后端/Android/C++/Linux/技术宅</p>
-                    </div>
-                </div>
-            </div>
-        </li>
-        
-
-        
-            <li class="no-padding">
-                <a class="waves-effect menu-home " href="/" >
-                    <i class="fa fa-home "></i>
-                    
-                    首页
-                </a>
-            </li>
-        
-            <li class="no-padding">
-                <a class="waves-effect menu-archive " href="/archives" >
-                    <i class="fa fa-archive "></i>
-                    
-                    归档
-                </a>
-            </li>
-        
-            <li class="no-padding">
-                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
-                    <i class="fa fa-bookmark "></i>
-                    
-                    分类
-                </a>
-            </li>
-        
-            <li class="no-padding">
-                <a class="waves-effect menu-reading " href="/reading" >
-                    <i class="fa fa-book "></i>
-                    
-                    读书
-                </a>
-            </li>
-        
-            <li class="no-padding">
-                <a class="waves-effect menu-about " href="/about" >
-                    <i class="fa fa-user "></i>
-                    
-                    关于
-                </a>
-            </li>
-        
-            <li class="no-padding">
-                <a class="waves-effect menu-search modal-trigger " href="#search" >
-                    <i class="fa fa-search "></i>
-                    
-                    搜索
-                </a>
-            </li>
-        
-    </ul>
-
-    <ul class="side-nav indigo darken-1" id="category-menu">
-    
-
-            
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Android/">
-                    Android <span class="right">15 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/C/">
-                    C <span class="right">24 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Boost/">
-                    Boost <span class="right">1 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/CMake/">
-                    CMake <span class="right">2 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/DB/">
-                    DB <span class="right">7 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Effective-Java/">
-                    Effective-Java <span class="right">1 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Hexo/">
-                    Hexo <span class="right">1 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/HTTPS/">
-                    HTTPS <span class="right">1 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/JQuery/">
-                    JQuery <span class="right">8 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/IntelliJ-IDEA/">
-                    IntelliJ-IDEA <span class="right">1 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Java/">
-                    Java <span class="right">16 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Linux/">
-                    Linux <span class="right">22 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/MyBatis/">
-                    MyBatis <span class="right">8 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Qt/">
-                    Qt <span class="right">4 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Redis/">
-                    Redis <span class="right">3 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Servlet/">
-                    Servlet <span class="right">3 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/SpringMVC/">
-                    SpringMVC <span class="right">4 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Spring/">
-                    Spring <span class="right">5 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Struts2/">
-                    Struts2 <span class="right">18 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/TCP-IP/">
-                    TCP-IP <span class="right">9 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/TCPIP/">
-                    TCPIP <span class="right">1 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Windows核心编程/">
-                    Windows核心编程 <span class="right">2 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/html/">
-                    html <span class="right">7 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/算法/">
-                    算法 <span class="right">3 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/多线程/">
-                    多线程 <span class="right">3 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/编程规范/">
-                    编程规范 <span class="right">1 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/网络编程/">
-                    网络编程 <span class="right">2 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/设计模式/">
-                    设计模式 <span class="right">5 篇</span></a>
-                </a>
-            </li>
-
-        
-
-    </ul>
-</div>
-
-        </div>
+  <nav id="menu"  >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">Glemontree</h5>
+        <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+      </hgroup>
     </div>
-</nav>
-
-<div id="search" class="modal search-modal">
-    <div class="row">
-        <div class="input-field col s12">
-              <input id="search-input" type="text">
-              <label for="search-input">搜索</label>
-        </div>
-
-    </div>
-    <div id="search-result" class="search-result col s12">
-
-    </div>
-</div>
-
-
-    <main>
-        <div class="container main-container">
-    
-
-<nav class="page-nav hide-on-small-only">
-    <div class="nav-wrapper indigo">
-        <span class="breadcrumb">当前位置（归档）</span>
-        
-
-        
-    </div>
-</nav>
-
-
-
-    <ul class="collapsible mt-0" data-collapsible="accordion">
-        
-        
-            <li>
-                <div class="collapsible-header active">
-                    <i class="fa fa-archive"></i>2017
-                </div>
-                <div class="collapsible-body">
-                    <div class="collection">
-                        
-                            <a href="/2017/12/23/[TCPIP] 利用TCPIP参考模型分析数据传输过程/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-12-23T03:51:45.000Z">2017-12-23</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [TCPIP] 利用TCP/IP参考模型分析数据传输过程
-                            </a>
-                        
-                            <a href="/2017/12/15/[DB] 事务的隔离级别/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-12-15T02:39:53.000Z">2017-12-15</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [DB] 事务的隔离级别
-                            </a>
-                        
-                            <a href="/2017/12/14/[TCPIP] 三次握手和四次挥手/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-12-14T11:26:02.000Z">2017-12-14</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [TCPIP] 三次握手和四次挥手
-                            </a>
-                        
-                            <a href="/2017/12/14/[Java] Java虚拟机/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-12-14T09:22:58.000Z">2017-12-14</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Java] Java虚拟机
-                            </a>
-                        
-                            <a href="/2017/12/13/[DB] JDBC知识点/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-12-13T08:47:13.000Z">2017-12-13</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [DB] JDBC知识点
-                            </a>
-                        
-                            <a href="/2017/12/10/[Linux] vmware中启动ubuntu蓝屏/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-12-10T14:18:34.000Z">2017-12-10</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Linux] vmware中启动ubuntu蓝屏
-                            </a>
-                        
-                            <a href="/2017/12/10/[DB] mysql的最左前缀匹配原则/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-12-10T09:43:29.000Z">2017-12-10</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [DB] mysql的最左前缀匹配原则
-                            </a>
-                        
-                            <a href="/2017/12/03/[Linux] Shell编程第十一课/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-12-03T12:18:59.000Z">2017-12-03</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Linux] Shell编程第十一课
-                            </a>
-                        
-                            <a href="/2017/12/03/[Linux] Shell编程第十七课/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-12-03T12:01:30.000Z">2017-12-03</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Linux] Shell编程第十七课
-                            </a>
-                        
-                            <a href="/2017/12/03/[Linux] Shell编程第十六课/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-12-03T12:00:48.000Z">2017-12-03</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Linux] Shell编程第十六课
-                            </a>
-                        
-                            <a href="/2017/12/03/[Linux] Shell编程第十五课/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-12-03T11:59:52.000Z">2017-12-03</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Linux] Shell编程第十五课
-                            </a>
-                        
-                            <a href="/2017/12/03/[Linux] Shell编程第十四课/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-12-03T11:57:31.000Z">2017-12-03</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Linux] Shell编程第十四课
-                            </a>
-                        
-                            <a href="/2017/12/03/[Linux] Shell编程第十三课/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-12-03T11:55:01.000Z">2017-12-03</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Linux] Shell编程第十三课
-                            </a>
-                        
-                            <a href="/2017/12/03/[Linux] Shell编程第十二课/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-12-03T11:54:12.000Z">2017-12-03</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Linux] Shell编程第十二课
-                            </a>
-                        
-                            <a href="/2017/12/03/[Linux] Shell编程第十课/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-12-03T11:50:53.000Z">2017-12-03</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Linux] Shell编程第十课
-                            </a>
-                        
-                            <a href="/2017/12/03/[Linux] Shell编程第九课/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-12-03T11:48:07.000Z">2017-12-03</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Linux] Shell编程第九课
-                            </a>
-                        
-                            <a href="/2017/12/03/[Linux] Shell编程第八课/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-12-03T11:47:18.000Z">2017-12-03</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Linux] Shell编程第八课
-                            </a>
-                        
-                            <a href="/2017/12/03/[Linux] Shell编程第七课/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-12-03T11:45:42.000Z">2017-12-03</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Linux] Shell编程第七课
-                            </a>
-                        
-                            <a href="/2017/12/03/[Linux] Shell编程第六课/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-12-03T11:45:01.000Z">2017-12-03</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Linux] Shell编程第六课
-                            </a>
-                        
-                            <a href="/2017/12/03/[Linux] Shell编程第五课/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-12-03T11:44:05.000Z">2017-12-03</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Linux] Shell编程第五课
-                            </a>
-                        
-                            <a href="/2017/12/03/[Linux] Shell编程第四课/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-12-03T11:43:24.000Z">2017-12-03</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Linux] Shell编程第四课
-                            </a>
-                        
-                            <a href="/2017/12/03/[Linux] Shell编程第三课/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-12-03T11:42:36.000Z">2017-12-03</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Linux] Shell编程第三课
-                            </a>
-                        
-                            <a href="/2017/12/03/[Linux] Shell编程第二课/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-12-03T11:41:45.000Z">2017-12-03</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Linux] Shell编程第二课
-                            </a>
-                        
-                            <a href="/2017/12/03/[Linux] Shell编程第一课/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-12-03T11:40:27.000Z">2017-12-03</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Linux] Shell编程第一课
-                            </a>
-                        
-                            <a href="/2017/12/02/[Java] Java并发编程实战之任务执行/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-12-02T10:37:09.000Z">2017-12-02</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Java] Java并发编程实战之任务执行
-                            </a>
-                        
-                            <a href="/2017/11/30/[Java] Java并发编程实战之基础构建模块/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-11-30T13:37:18.000Z">2017-11-30</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Java] Java并发编程实战之基础构建模块
-                            </a>
-                        
-                            <a href="/2017/11/30/[Java] Java并发编程实战之对象的组合/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-11-30T09:02:06.000Z">2017-11-30</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Java] Java并发编程实战之对象的组合
-                            </a>
-                        
-                            <a href="/2017/11/29/[Java] Java并发编程实战之对象的共享/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-11-29T05:05:03.000Z">2017-11-29</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Java] Java并发编程实战之对象的共享
-                            </a>
-                        
-                            <a href="/2017/11/28/[Java] Java并发编程实战之线程安全性/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-11-28T11:43:21.000Z">2017-11-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Java] Java并发编程实战之线程安全性
-                            </a>
-                        
-                            <a href="/2017/11/28/[Java] ClassLoader机制/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-11-28T10:38:02.000Z">2017-11-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Java] ClassLoader机制
-                            </a>
-                        
-                            <a href="/2017/11/02/[Effective Java] 考虑用静态工厂方法代替构造器/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-11-02T07:47:21.000Z">2017-11-02</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Effective Java] 创建和销毁对象
-                            </a>
-                        
-                            <a href="/2017/11/02/[MyBatis] mybatis/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-11-02T03:30:32.000Z">2017-11-02</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [MyBatis] mybatis
-                            </a>
-                        
-                            <a href="/2017/11/02/[TCPIP] 动态主机配置/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-11-02T03:27:58.000Z">2017-11-02</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [TCP/IP] 动态主机配置
-                            </a>
-                        
-                            <a href="/2017/11/02/[TCPIP] TCP封包解包与大小端问题/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-11-02T03:26:19.000Z">2017-11-02</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [TCP/IP] TCP封包解包与大小端问题
-                            </a>
-                        
-                            <a href="/2017/11/02/[TCPIP] 网络接口管理/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-11-02T03:24:48.000Z">2017-11-02</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [TCP/IP] 网络接口管理
-                            </a>
-                        
-                            <a href="/2017/11/02/[TCPIP] 网际协议IP/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-11-02T03:23:02.000Z">2017-11-02</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [TCP/IP] 网际协议IP
-                            </a>
-                        
-                            <a href="/2017/11/02/[TCPIP] 数据包管理/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-11-02T03:19:55.000Z">2017-11-02</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [TCP/IP] 数据包管理
-                            </a>
-                        
-                            <a href="/2017/11/02/[TCPIP] 服务器程序示例/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-11-02T03:17:22.000Z">2017-11-02</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [TCP/IP] 服务器程序示例
-                            </a>
-                        
-                            <a href="/2017/11/02/[TCPIP] 基本TCP套接字编程/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-11-02T03:15:22.000Z">2017-11-02</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [TCP/IP] 基本TCP套接字编程
-                            </a>
-                        
-                            <a href="/2017/11/01/[Struts2] EL表达式/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-11-01T07:33:19.000Z">2017-11-01</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Struts2] EL表达式
-                            </a>
-                        
-                            <a href="/2017/11/01/[html] html/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-11-01T07:28:37.000Z">2017-11-01</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [html] html
-                            </a>
-                        
-                            <a href="/2017/11/01/[Struts2] CSS/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-11-01T06:53:35.000Z">2017-11-01</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Struts2] CSS
-                            </a>
-                        
-                            <a href="/2017/11/01/[Android] Android的4种文件类型Java、class、dex、apk/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-11-01T06:51:02.000Z">2017-11-01</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Android] Android的4种文件类型Java、class、dex、apk
-                            </a>
-                        
-                            <a href="/2017/11/01/[Struts2] Ajax/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-11-01T06:41:18.000Z">2017-11-01</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Struts2] Ajax
-                            </a>
-                        
-                            <a href="/2017/11/01/[Struts2] Cookie/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-11-01T06:27:23.000Z">2017-11-01</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Struts2] Cookie
-                            </a>
-                        
-                            <a href="/2017/11/01/[C++] C++中实现回调/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-11-01T06:24:25.000Z">2017-11-01</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [C++] C++中实现回调
-                            </a>
-                        
-                            <a href="/2017/11/01/[C++] C++泛型/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-11-01T06:12:17.000Z">2017-11-01</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [C++] C++泛型
-                            </a>
-                        
-                            <a href="/2017/11/01/[Spring] AOP/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-11-01T05:42:47.000Z">2017-11-01</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Spring] AOP
-                            </a>
-                        
-                            <a href="/2017/10/31/[Java] 分布式和集群的区别/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-10-31T05:22:40.000Z">2017-10-31</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Java] 分布式和集群的区别
-                            </a>
-                        
-                            <a href="/2017/10/28/[C++] C++面试/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-10-28T05:08:43.000Z">2017-10-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [C++] C++面试
-                            </a>
-                        
-                            <a href="/2017/10/24/[C++] 迭代器失效/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-10-24T13:56:42.000Z">2017-10-24</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [C++] 迭代器失效
-                            </a>
-                        
-                            <a href="/2017/10/23/[C++] C++中的new、operator new和placement new/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-10-23T14:38:12.000Z">2017-10-23</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [C++] C++中的new、operator new和placement new
-                            </a>
-                        
-                            <a href="/2017/10/23/[C++] allocator原理/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-10-23T11:57:49.000Z">2017-10-23</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [C++] allocator原理
-                            </a>
-                        
-                            <a href="/2017/10/23/[C++] C++中的模板/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-10-23T10:07:40.000Z">2017-10-23</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [C++] C++中的模板
-                            </a>
-                        
-                            <a href="/2017/10/23/[C++] static void ( __set_malloc_handler(void (__f)()))()/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-10-23T09:49:12.000Z">2017-10-23</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [C++] static void (* __set_malloc_handler(void (*__f)()))()
-                            </a>
-                        
-                            <a href="/2017/10/23/[Linux] Linux中的伙伴系统和slab机制/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-10-23T08:34:00.000Z">2017-10-23</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Linux] Linux中的伙伴系统和slab机制
-                            </a>
-                        
-                            <a href="/2017/10/22/[Java] Java并发编程之volatile关键字/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-10-22T02:10:59.000Z">2017-10-22</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Java] Java并发编程之volatile关键字
-                            </a>
-                        
-                            <a href="/2017/10/20/[Java] Java面试题/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-10-20T09:54:39.000Z">2017-10-20</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Java] Java面试题
-                            </a>
-                        
-                            <a href="/2017/10/07/[SpringMVC] 解决The resource identified by this request is only capable of generating responses with characteristics not acceptable according to the request accept headers/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-10-07T07:52:10.000Z">2017-10-07</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [SpringMVC] 解决The resource identified by this request is only capable of generating responses with characteristics not acceptable according to the request accept headers.
-                            </a>
-                        
-                            <a href="/2017/09/21/[Redis] 推荐一篇关于Redis集群的文章/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-09-21T10:53:20.000Z">2017-09-21</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Redis] 推荐一篇关于Redis集群的文章
-                            </a>
-                        
-                            <a href="/2017/09/18/[MyBatis] MyBatis第七课---resultMap的用法/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-09-18T13:32:45.000Z">2017-09-18</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [MyBatis]MyBatis第七课---resultMap的用法
-                            </a>
-                        
-                            <a href="/2017/09/13/[MyBatis] MyBatis第六课---select操作/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-09-13T12:09:47.000Z">2017-09-13</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [MyBatis] MyBatis第六课---select操作
-                            </a>
-                        
-                            <a href="/2017/09/13/[DB] SQL小知识/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-09-13T12:05:26.000Z">2017-09-13</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [DB] SQL小知识
-                            </a>
-                        
-                            <a href="/2017/09/13/[MyBatis] MyBatis第五课---MyBatis参数处理/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-09-13T08:38:13.000Z">2017-09-13</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [MyBatis] MyBatis第五课---MyBatis参数处理
-                            </a>
-                        
-                            <a href="/2017/09/12/[Android] 利用APT实现Android编译时注解/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-09-12T03:40:15.000Z">2017-09-12</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Android] 利用APT实现Android编译时注解
-                            </a>
-                        
-                            <a href="/2017/09/11/[Java] Java反射/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-09-11T12:00:00.000Z">2017-09-11</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Java] Java反射
-                            </a>
-                        
-                            <a href="/2017/09/11/[Java] Java注解/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-09-11T11:27:51.000Z">2017-09-11</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Java] Java注解
-                            </a>
-                        
-                            <a href="/2017/09/10/[MyBatis] MyBatis第四课---SQL映射文件/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-09-10T06:27:56.000Z">2017-09-10</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [MyBatis] MyBatis第四课---SQL映射文件
-                            </a>
-                        
-                            <a href="/2017/09/09/[MyBatis] MyBatis第三课---全局配置文件/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-09-09T14:50:44.000Z">2017-09-09</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [MyBatis] MyBatis第三课---全局配置文件
-                            </a>
-                        
-                            <a href="/2017/09/09/[MyBatis] MyBatis第二课---接口式编程/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-09-09T14:12:09.000Z">2017-09-09</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [MyBatis] MyBatis第二课---接口式编程
-                            </a>
-                        
-                            <a href="/2017/09/09/[MyBatis] MyBatis第一课---创建一个HelloWorld/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-09-09T13:24:00.000Z">2017-09-09</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [MyBatis] MyBatis第一课---创建一个HelloWorld
-                            </a>
-                        
-                            <a href="/2017/09/09/[Redis] Windows安装和配置Redis/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-09-08T16:10:24.000Z">2017-09-09</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Redis] Windows安装和配置Redis
-                            </a>
-                        
-                            <a href="/2017/09/05/[SpringMVC] 今日最坑/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-09-05T15:07:21.000Z">2017-09-05</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [SpringMVC] 今日最坑
-                            </a>
-                        
-                            <a href="/2017/09/05/[IntelliJ IDEA] IntelliJ IDEA 源值1.5已过时，将在未来所有版本中删除/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-09-05T06:06:15.000Z">2017-09-05</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [IntelliJ IDEA] IntelliJ IDEA 源值1.5已过时，将在未来所有版本中删除
-                            </a>
-                        
-                            <a href="/2017/08/31/[HTTPS] 一个故事讲完HTTPS/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-08-31T05:38:44.000Z">2017-08-31</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [HTTPS] 一个故事讲完HTTPS
-                            </a>
-                        
-                            <a href="/2017/08/31/[JQuery] JQuery第八课/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-08-31T01:49:21.000Z">2017-08-31</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [JQuery] JQuery第八课
-                            </a>
-                        
-                            <a href="/2017/08/30/[JQuery] JQuery第七课/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-08-30T09:01:48.000Z">2017-08-30</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [JQuery] JQuery第七课
-                            </a>
-                        
-                            <a href="/2017/08/30/[JQuery] JQuery第六课/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-08-30T07:39:34.000Z">2017-08-30</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [JQuery] JQuery第六课
-                            </a>
-                        
-                            <a href="/2017/08/29/[SpringMVC] SpringMVC/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-08-29T13:03:47.000Z">2017-08-29</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [SpringMVC] SpringMVC
-                            </a>
-                        
-                            <a href="/2017/08/29/[JQuery] JQuery第五课/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-08-29T12:16:59.000Z">2017-08-29</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [JQuery] JQuery第五课
-                            </a>
-                        
-                            <a href="/2017/08/29/[JQuery] JQuery第四课/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-08-29T12:11:20.000Z">2017-08-29</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [JQuery] JQuery第四课
-                            </a>
-                        
-                            <a href="/2017/08/29/[JQuery] JQuery第三课/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-08-29T11:59:17.000Z">2017-08-29</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [JQuery] JQuery第三课
-                            </a>
-                        
-                            <a href="/2017/08/29/[JQuery] JQuery第二课/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-08-29T11:48:23.000Z">2017-08-29</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [JQuery] JQuery第二课
-                            </a>
-                        
-                            <a href="/2017/08/29/[JQuery] JQuery第一课/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-08-29T08:24:19.000Z">2017-08-29</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [JQuery] JQuery第一课
-                            </a>
-                        
-                            <a href="/2017/08/19/[Android] Android绘制文本基本概念之- top, bottom, ascent, descent, baseline/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-08-19T14:25:30.000Z">2017-08-19</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Android] Android绘制文本基本概念之- top, bottom, ascent, descent, baseline
-                            </a>
-                        
-                            <a href="/2017/08/19/[Android] Android制作自己的依赖库让别人引用(2)/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-08-19T06:12:59.000Z">2017-08-19</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Android] Android制作自己的依赖库让别人引用(2)
-                            </a>
-                        
-                            <a href="/2017/08/17/[Android] Android制作自己的依赖库让别人引用(1)/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-08-17T11:56:26.000Z">2017-08-17</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Android] Android制作自己的依赖库让别人引用(1)
-                            </a>
-                        
-                            <a href="/2017/08/15/[Android] Android自定义View修炼之路(2)/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-08-15T12:40:38.000Z">2017-08-15</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Android] Android自定义View修炼之路(2)
-                            </a>
-                        
-                            <a href="/2017/08/11/[Android] Android自定义View修炼之路(1)/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-08-11T06:29:43.000Z">2017-08-11</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Android] Android自定义View修炼之路(1)
-                            </a>
-                        
-                            <a href="/2017/08/04/[Android] Android零碎知识点/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-08-04T13:56:59.000Z">2017-08-04</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Android] Android零碎知识点
-                            </a>
-                        
-                            <a href="/2017/08/03/[Android] Build.VERSION_CODES类下面的版本信息/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-08-03T03:52:07.000Z">2017-08-03</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Android] Build.VERSION_CODES类下面的版本信息
-                            </a>
-                        
-                            <a href="/2017/07/23/[算法] 海量数据处理/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-07-23T08:50:24.000Z">2017-07-23</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [算法] 海量数据处理
-                            </a>
-                        
-                            <a href="/2017/07/22/[Java] 内部类访问外部类的变量为什么外部类的变量一定得是final类型/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-07-22T07:52:50.000Z">2017-07-22</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Java] 匿名内部类访问外部类的局部变量为什么一定得是final类型
-                            </a>
-                        
-                            <a href="/2017/07/18/[Struts2] 拦截器和过滤器/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-07-18T10:18:47.000Z">2017-07-18</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Struts2] 拦截器和过滤器
-                            </a>
-                        
-                            <a href="/2017/07/18/[Struts2] 日期类型转换/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-07-18T09:51:51.000Z">2017-07-18</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Struts2] 日期类型转换
-                            </a>
-                        
-                            <a href="/2017/07/15/[Struts2] pageContext.request.contextPath/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-07-15T05:53:56.000Z">2017-07-15</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Struts2] pageContext.request.contextPath
-                            </a>
-                        
-                            <a href="/2017/07/12/[Struts2] Struts2接受参数的几种类型和接受复杂类型参数/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-07-12T03:39:20.000Z">2017-07-12</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Struts2] Struts2接受参数的几种类型和接受复杂类型参数
-                            </a>
-                        
-                            <a href="/2017/07/10/[Android] 百度地图API Android相关配置教程（包含获取包名、发布版SHA1和 开发版SHA1）/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-07-10T09:51:38.000Z">2017-07-10</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Android] 百度地图API Android相关配置教程（包含获取包名、发布版SHA1和开发版SHA1）
-                            </a>
-                        
-                            <a href="/2017/07/10/[Struts2] 值栈/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-07-10T03:51:01.000Z">2017-07-10</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Struts2] 值栈
-                            </a>
-                        
-                            <a href="/2017/07/10/[Struts2] page、request、session、application的区别/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-07-10T03:49:44.000Z">2017-07-10</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Struts2] page、request、session、application的区别
-                            </a>
-                        
-                            <a href="/2017/07/10/[Struts2] 配置Struts可以受理的请求的扩展名/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-07-10T03:45:57.000Z">2017-07-10</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Struts2] 配置Struts可以受理的请求的扩展名
-                            </a>
-                        
-                            <a href="/2017/07/06/[Spring] Spring配置文件头部xmlns配置/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-07-06T11:41:32.000Z">2017-07-06</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Spring] Spring配置文件头部xmlns配置
-                            </a>
-                        
-                            <a href="/2017/07/06/[Struts2] 国际化/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-07-06T09:08:51.000Z">2017-07-06</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Struts2] 国际化
-                            </a>
-                        
-                            <a href="/2017/07/05/[Struts2] ModelDriven和Preparable拦截器/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-07-05T14:11:08.000Z">2017-07-05</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Struts2] ModelDriven和Preparable拦截器
-                            </a>
-                        
-                            <a href="/2017/07/05/[Struts2] 文件上传和下载/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-07-05T10:04:38.000Z">2017-07-05</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Struts2] 文件上传和下载
-                            </a>
-                        
-                            <a href="/2017/07/04/[Struts2] OGNL siterator标签的使用/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-07-04T10:50:07.000Z">2017-07-04</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Struts2] OGNL s:iterator标签的使用
-                            </a>
-                        
-                            <a href="/2017/07/01/[Servlet] Java Web乱码/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-07-01T06:21:31.000Z">2017-07-01</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Servlet] Java Web乱码
-                            </a>
-                        
-                            <a href="/2017/06/30/[Servlet] HttpServletRequest/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-30T12:39:30.000Z">2017-06-30</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Servlet] HttpServletRequest
-                            </a>
-                        
-                            <a href="/2017/06/30/[Servlet] HttpServletResponse/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-30T11:57:21.000Z">2017-06-30</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Servlet] HttpServletResponse
-                            </a>
-                        
-                            <a href="/2017/06/29/[Struts2] Struts配置文件/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-29T11:22:10.000Z">2017-06-29</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Struts2] Action类
-                            </a>
-                        
-                            <a href="/2017/06/29/[Struts2] URL、URI以及ServletPath之间的区别/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-29T02:37:46.000Z">2017-06-29</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Struts2] URL、URI以及ServletPath之间的区别
-                            </a>
-                        
-                            <a href="/2017/06/28/[C++] ACE书籍推荐/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T10:26:30.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [C++] ACE书籍推荐
-                            </a>
-                        
-                            <a href="/2017/06/28/[Android] Android assets目录下资源使用/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T10:25:19.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Android] Android assets目录下资源使用
-                            </a>
-                        
-                            <a href="/2017/06/28/[Android] ProgressDialog与耗时操作/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T10:24:14.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Android] ProgressDialog与耗时操作
-                            </a>
-                        
-                            <a href="/2017/06/28/[Android] Android_监听电池电量/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T10:23:12.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Android] Android_监听电池电量
-                            </a>
-                        
-                            <a href="/2017/06/28/[Android] Android中xml tools属性详解/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T10:22:09.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Android] Android中xml tools属性详解
-                            </a>
-                        
-                            <a href="/2017/06/28/[C++] assert用法/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T10:21:09.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [C++] assert用法
-                            </a>
-                        
-                            <a href="/2017/06/28/[C++] boostfunction boostbind 与 回调/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T10:20:01.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [C++] boost::function boost::bind 与 回调
-                            </a>
-                        
-                            <a href="/2017/06/28/[C++] boostless_than_comparable/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T10:18:51.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [C++] boost::less_than_comparable
-                            </a>
-                        
-                            <a href="/2017/06/28/[C++] BOOST_STATIC_ASSERT和assert的区别/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T10:17:37.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [C++] BOOST_STATIC_ASSERT和assert的区别
-                            </a>
-                        
-                            <a href="/2017/06/28/[C++] C++11 bind 的用法/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T10:16:33.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [C++] C++11 bind 的用法
-                            </a>
-                        
-                            <a href="/2017/06/28/[C++] C++中boostany的使用/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T10:15:17.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [C++] C++中boost::any的使用
-                            </a>
-                        
-                            <a href="/2017/06/28/[CMake] CMake的使用/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T10:14:17.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [CMake] CMake的使用
-                            </a>
-                        
-                            <a href="/2017/06/28/[C++] effective_C++_条款02/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T10:13:17.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [C++] effective_C++_条款02
-                            </a>
-                        
-                            <a href="/2017/06/28/[C++] effective_C++_条款03/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T10:12:05.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [C++] effective_C++_条款03
-                            </a>
-                        
-                            <a href="/2017/06/28/[C++] effective_C++_条款05/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T10:10:57.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [C++] effective_C++_条款05
-                            </a>
-                        
-                            <a href="/2017/06/28/[C++] Effective_C++_条款06/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T10:09:52.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [C++] Effective_C++_条款06
-                            </a>
-                        
-                            <a href="/2017/06/28/[Qt] file的作用/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T10:08:22.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Qt] file:///的作用
-                            </a>
-                        
-                            <a href="/2017/06/28/[Hexo] Hexo更换主题/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T10:07:25.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Hexo] Hexo更换主题
-                            </a>
-                        
-                            <a href="/2017/06/28/[html] div标签/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T10:06:31.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [html] div标签
-                            </a>
-                        
-                            <a href="/2017/06/28/[html] h标签/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T10:05:33.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [html] h标签
-                            </a>
-                        
-                            <a href="/2017/06/28/[html] img标签的alt属性/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T10:04:39.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [html] img标签的alt属性
-                            </a>
-                        
-                            <a href="/2017/06/28/[html] link标签/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T10:03:18.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [html] link标签
-                            </a>
-                        
-                            <a href="/2017/06/28/[html] p标签/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T10:02:18.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [html] p标签
-                            </a>
-                        
-                            <a href="/2017/06/28/[html] span元素/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T10:01:27.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [html] span元素
-                            </a>
-                        
-                            <a href="/2017/06/28/[网络编程] IO多路复用/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T10:00:26.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [网络编程] IO多路复用
-                            </a>
-                        
-                            <a href="/2017/06/28/[Java] Java反射为什么需要无参构造函数/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T09:59:14.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Java] Java反射为什么需要无参构造函数
-                            </a>
-                        
-                            <a href="/2017/06/28/[Linux] Linux epoll的用法/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T09:57:39.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Linux] Linux epoll的用法
-                            </a>
-                        
-                            <a href="/2017/06/28/[Linux] Linux网络编程/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T09:56:40.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Linux] Linux网络编程
-                            </a>
-                        
-                            <a href="/2017/06/28/[Linux] Linux中eventfd的使用/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T09:55:37.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Linux] Linux中eventfd的使用
-                            </a>
-                        
-                            <a href="/2017/06/28/[DB] MySQL UPDATE查询/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T09:54:26.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [DB] MySQL UPDATE查询
-                            </a>
-                        
-                            <a href="/2017/06/28/[Qt] Qt中processEvents函数/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T09:53:28.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Qt] Qt中processEvents函数
-                            </a>
-                        
-                            <a href="/2017/06/28/[Spring] Spring AOP编程理解/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T09:52:20.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Spring] Spring AOP编程理解
-                            </a>
-                        
-                            <a href="/2017/06/28/[Spring] Spring JDBCTemplate/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T09:51:21.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Spring] Spring JDBCTemplate
-                            </a>
-                        
-                            <a href="/2017/06/28/[Struts2] Struts中OGNL/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T09:50:24.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Struts2] Struts中OGNL
-                            </a>
-                        
-                            <a href="/2017/06/28/[TCPIP] TCP与UDP不同的包处理方式/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T09:49:21.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [TCP/IP] TCP与UDP不同的包处理方式
-                            </a>
-                        
-                            <a href="/2017/06/28/[Qt] VS+Qt生成软件图标/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T09:48:17.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Qt] VS+Qt生成软件图标
-                            </a>
-                        
-                            <a href="/2017/06/28/[C++] VS中出现未将对象引用设置到对象的实例/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T09:47:27.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [C++] VS中出现未将对象引用设置到对象的实例
-                            </a>
-                        
-                            <a href="/2017/06/28/[Qt] QWebView的使用/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T09:46:34.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Qt] QWebView的使用
-                            </a>
-                        
-                            <a href="/2017/06/28/[Android] WebView之loadDataWithBaseUrl()和loadUrl()/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T09:45:34.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Android] WebView之loadDataWithBaseUrl()和loadUrl()
-                            </a>
-                        
-                            <a href="/2017/06/28/[Windows核心编程] 如何编写Unicode源代码/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T09:44:40.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Windows核心编程] 如何编写Unicode源代码
-                            </a>
-                        
-                            <a href="/2017/06/28/[Windows核心编程] 谈谈Windows中的错误处理机制/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T09:43:44.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Windows核心编程] 谈谈Windows中的错误处理机制
-                            </a>
-                        
-                            <a href="/2017/06/28/[多线程] x=y的原子性/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T09:42:51.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [多线程] x=y的原子性
-                            </a>
-                        
-                            <a href="/2017/06/28/[Linux] zsh corrupt/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T09:41:39.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Linux] zsh corrupt
-                            </a>
-                        
-                            <a href="/2017/06/28/[设计模式] 单例模式/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T09:40:04.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [设计模式] 单例模式
-                            </a>
-                        
-                            <a href="/2017/06/28/[多线程] 互斥对象和锁/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T09:38:55.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [多线程] 互斥对象和锁
-                            </a>
-                        
-                            <a href="/2017/06/28/[多线程] 互斥量和临界区的区别/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T09:37:33.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [多线程] 互斥量和临界区的区别
-                            </a>
-                        
-                            <a href="/2017/06/28/[编程规范] 函数/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T09:36:14.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [编程规范] 函数
-                            </a>
-                        
-                            <a href="/2017/06/28/[Spring] 基于注解来配置Bean/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T09:32:52.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [Spring] 基于注解来配置Bean
-                            </a>
-                        
-                            <a href="/2017/06/28/[C++] 继承与同名成员变量/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T09:31:01.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [C++] 继承与同名成员变量
-                            </a>
-                        
-                            <a href="/2017/06/28/[C++] 零散知识点/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T09:29:08.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [C++] 零散知识点
-                            </a>
-                        
-                            <a href="/2017/06/28/[C++] 前置++和后置++的区别/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T09:27:34.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [C++] 前置++和后置++的区别
-                            </a>
-                        
-                            <a href="/2017/06/28/[设计模式] 适配器模式/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T09:26:13.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [设计模式] 适配器模式
-                            </a>
-                        
-                            <a href="/2017/06/28/[DB] 数据库将一个表中数据插入到另外一张表中/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T09:24:49.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [DB] 数据库将一个表中数据插入到另外一张表中
-                            </a>
-                        
-                            <a href="/2017/06/28/[DB] 数据库中%和_的用法/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T09:23:09.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [DB] 数据库中%和_的用法
-                            </a>
-                        
-                            <a href="/2017/06/28/[C++] 推荐一个在线编辑、编译、运行程序的网页/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T09:21:53.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [C++] 推荐一个在线编辑、编译、运行程序的网页
-                            </a>
-                        
-                            <a href="/2017/06/28/[CMake] 推荐一个关于CMake的一个很详细的教程/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-06-28T09:18:46.000Z">2017-06-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                [CMake] 推荐一个关于CMake的一个很详细的教程
-                            </a>
-                        
-                    </div>
-                </div>
-            </li>
-        
-    </ul>
-
-
-</div>
-
-        <div class="fixed-action-btn float-sitemap">
-    <a class="btn-floating btn-large pink">
-      <i class="fa fa-caret-square-o-up"></i>
-    </a>
-    <ul>
-      <li><a class="btn-return-top btn-floating waves-effect green" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
-      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="菜单"><i class="fa fa-navicon"></i></a></li>
-    </ul>
   </div>
+  <div class="scroll-wrap flex-col">
+    <ul class="nav">
+      
+          <li class="waves-block waves-effect">
+            <a href="/"  >
+              <i class="icon icon-lg icon-home"></i>
+              主页
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/archives"  >
+              <i class="icon icon-lg icon-archives"></i>
+              Archives
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/tags"  >
+              <i class="icon icon-lg icon-tags"></i>
+              Tags
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://github.com/yscoder" target="_blank" >
+              <i class="icon icon-lg icon-github"></i>
+              Github
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="http://www.weibo.com/ysweb" target="_blank" >
+              <i class="icon icon-lg icon-weibo"></i>
+              Weibo
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/404"  >
+              <i class="icon icon-lg icon-link"></i>
+              测试
+            </a>
+          </li>
+      
+    </ul>
 
-    </main>
-    <footer class="page-footer indigo darken-1">
-    
-    <div class="footer-container container">
-        <div class="row">
-            
-            <div class="social-group col m4 s12">
-                <h5 class="white-text">社交</h5>
-                
-                    <a class="social-link" href="https://weibo.com/2520520192" target="_blank">
-                        <i class="fa fa-2x fa-weibo"></i>
-                    </a>
-                
-                    <a class="social-link" href="https://github.com/Glemontree" target="_blank">
-                        <i class="fa fa-2x fa-github"></i>
-                    </a>
-                
-                    <a class="social-link" href="/atom.xml" target="_blank">
-                        <i class="fa fa-2x fa-rss"></i>
-                    </a>
-                
-                
-    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-    </script>
-    <div class="site-visitors-container white-text">
-        <span>
-            <i class="fa fa-user"></i>
-            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-        </span>
-        <span>&nbsp;|&nbsp;</span>
-        <span>
-            <i class="fa fa-eye"></i>
-            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-        </span>
-    </div>
-
-
-            </div>
-            
-
-            
-            <div class="col m8 s12">
-                <h5 class="white-text">友情链接</h5>
-                
-                    <a class="social-link" href="https://glemontree.github.io/" target="_blank">我的博客</a>
-                
-                    <a class="social-link" href="https://github.com/Glemontree" target="_blank">Github地址</a>
-                
-            </div>
-            
-        </div>
-    </div>
-    
-
-    <div class="footer-copyright pink-link-context">
-        <div class="container">
-            © 2016 example.com, All rights reserved.
-            <p class="right" style="margin-top: 0;">本博客由 <a href="https://hexo.io">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
-        </div>
-    </div>
+    <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>Glemontree&#39;s blog &copy; 2018</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
 </footer>
 
-
-    <noscript>
-    <div class="noscript">
-        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
-    </div>
-</noscript>
-<div class="noscript">
-    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+  </div>
 </div>
 
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Glemontree&#39;s blog</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">Glemontree&#39;s blog</h1>
+    <h5 class="subtitle">
+        
+        day day up!
+        
+    </h5>
+  </div>
+</header>
 
-<script src="/js/jquery.min.js"></script>
-<script src="/js/materialize.min.js"></script>
+    <div class="container body-wrap">
+      
+
+
+        <h3 class="archive-separator">December, 2017</h3>
+
+
+
+     <article class="archive-article">
+  <div class="archive-article-date">
+    <time datetime="2017-12-23T03:51:45.000Z" itemprop="datePublished" class="post-time">
+  Dec 23
+</time>
+
+  </div>
+  <div class="archive-article-inner">
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/12/23/[TCPIP] 利用TCPIP参考模型分析数据传输过程/">[TCPIP] 利用TCP/IP参考模型分析数据传输过程</a>
+    </h3>
+  
+
+
+
+    
+  </div>
+</article>
+
+
+     <article class="archive-article">
+  <div class="archive-article-date">
+    <time datetime="2017-12-15T02:39:53.000Z" itemprop="datePublished" class="post-time">
+  Dec 15
+</time>
+
+  </div>
+  <div class="archive-article-inner">
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/12/15/[DB] 事务的隔离级别/">[DB] 事务的隔离级别</a>
+    </h3>
+  
+
+
+
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/事务隔离级别/">事务隔离级别</a></li></ul>
+
+  </div>
+</article>
+
+
+     <article class="archive-article">
+  <div class="archive-article-date">
+    <time datetime="2017-12-14T11:26:02.000Z" itemprop="datePublished" class="post-time">
+  Dec 14
+</time>
+
+  </div>
+  <div class="archive-article-inner">
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/12/14/[TCPIP] 三次握手和四次挥手/">[TCPIP] 三次握手和四次挥手</a>
+    </h3>
+  
+
+
+
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/三次握手-四次挥手/">三次握手, 四次挥手</a></li></ul>
+
+  </div>
+</article>
+
+
+     <article class="archive-article">
+  <div class="archive-article-date">
+    <time datetime="2017-12-14T09:22:58.000Z" itemprop="datePublished" class="post-time">
+  Dec 14
+</time>
+
+  </div>
+  <div class="archive-article-inner">
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/12/14/[Java] Java虚拟机/">[Java] Java虚拟机</a>
+    </h3>
+  
+
+
+
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java-虚拟机-类加载/">Java, 虚拟机, 类加载</a></li></ul>
+
+  </div>
+</article>
+
+
+     <article class="archive-article">
+  <div class="archive-article-date">
+    <time datetime="2017-12-13T08:47:13.000Z" itemprop="datePublished" class="post-time">
+  Dec 13
+</time>
+
+  </div>
+  <div class="archive-article-inner">
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/12/13/[DB] JDBC知识点/">[DB] JDBC知识点</a>
+    </h3>
+  
+
+
+
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DB-JDBC/">DB JDBC</a></li></ul>
+
+  </div>
+</article>
+
+
+     <article class="archive-article">
+  <div class="archive-article-date">
+    <time datetime="2017-12-10T14:18:34.000Z" itemprop="datePublished" class="post-time">
+  Dec 10
+</time>
+
+  </div>
+  <div class="archive-article-inner">
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/12/10/[Linux] vmware中启动ubuntu蓝屏/">[Linux] vmware中启动ubuntu蓝屏</a>
+    </h3>
+  
+
+
+
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux-vmware-ubuntu-蓝屏/">Linux, vmware, ubuntu, 蓝屏</a></li></ul>
+
+  </div>
+</article>
+
+
+     <article class="archive-article">
+  <div class="archive-article-date">
+    <time datetime="2017-12-10T09:43:29.000Z" itemprop="datePublished" class="post-time">
+  Dec 10
+</time>
+
+  </div>
+  <div class="archive-article-inner">
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/12/10/[DB] mysql的最左前缀匹配原则/">[DB] mysql的最左前缀匹配原则</a>
+    </h3>
+  
+
+
+
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DB-最左前缀/">DB 最左前缀</a></li></ul>
+
+  </div>
+</article>
+
+
+     <article class="archive-article">
+  <div class="archive-article-date">
+    <time datetime="2017-12-03T12:18:59.000Z" itemprop="datePublished" class="post-time">
+  Dec 3
+</time>
+
+  </div>
+  <div class="archive-article-inner">
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/12/03/[Linux] Shell编程第十一课/">[Linux] Shell编程第十一课</a>
+    </h3>
+  
+
+
+
+    
+  </div>
+</article>
+
+
+     <article class="archive-article">
+  <div class="archive-article-date">
+    <time datetime="2017-12-03T12:01:30.000Z" itemprop="datePublished" class="post-time">
+  Dec 3
+</time>
+
+  </div>
+  <div class="archive-article-inner">
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/12/03/[Linux] Shell编程第十七课/">[Linux] Shell编程第十七课</a>
+    </h3>
+  
+
+
+
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux-Shell/">Linux, Shell</a></li></ul>
+
+  </div>
+</article>
+
+
+     <article class="archive-article">
+  <div class="archive-article-date">
+    <time datetime="2017-12-03T12:00:48.000Z" itemprop="datePublished" class="post-time">
+  Dec 3
+</time>
+
+  </div>
+  <div class="archive-article-inner">
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/12/03/[Linux] Shell编程第十六课/">[Linux] Shell编程第十六课</a>
+    </h3>
+  
+
+
+
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux-Shell/">Linux, Shell</a></li></ul>
+
+  </div>
+</article>
+
+
+
+<nav id="page-nav">
+    <div class="inner">
+    <span class="page-number current">1</span><a class="page-number" href="/archives/2017/page/2/">2</a><a class="page-number" href="/archives/2017/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2017/page/17/">17</a><a class="extend next" rel="next" href="/archives/2017/page/2/">下一页</a>
+    </div>
+</nav>
+
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
 <script>
-    (function($) {
-        $(document).ready(function() {
-            // 隐藏禁用javascript（针对微信内置浏览器）的提示
-            $('.noscript').hide();
+var BLOG_SHARE = {
+    title: "Glemontree's blog",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "http://yoursite.com/archives/2017/index.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
 
-            // 图片缩放效果
-            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
-            // 给图片加上点击放大效果（materialbox插件）
-            $imgs.addClass('materialboxed').each(function(i, el) {
-                $(this).attr('data-caption', $(this).attr('alt') || ' ');
-            }).materialbox();
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 
-            // 优化表格的显示
-            $('table').each(function() {
-                var $table = $(this);
-                // 除去多行代码的情况
-                if ($table.find('pre').length == 0) {
-                    $table.addClass('responsive-table striped bordered');
-                }
-            });
+<script src="/js/main.js"></script>
 
-            // 首页幻灯片
-            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
 
-            $(".button-collapse").sideNav();
-            $(".category-menu").sideNav();
 
-            // 针对gallery post
-            $('.carousel').carousel({full_width: true});
-            $('.carousel-control.prev').click(function() {
-                $('.carousel').carousel('prev');
-            });
-            $('.carousel-control.next').click(function() {
-                $('.carousel').carousel('next');
-            });
-
-            // 文章目录
-            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
-
-            // 目录随屏幕滚动（防止目录过长越过footer）
-            var $toc = $('.toc');
-            var scrollTargetTop = 0;
-            $(window).scroll(function() {
-                var $activeLink = $toc.find('a.active.section');
-                if ($(window).scrollTop() < 100) {
-                    scrollTargetTop = 0;
-                } else {
-                    if ($activeLink[0]) {
-                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
-                    }
-                }
-                $toc.css('top', '-' + scrollTargetTop + 'px');
-            });
-
-            // 修正文章目录的left-border颜色
-            var color = $('.table-of-contents-text').css('color');
-            $('.table-of-contents-link').css('border-left-color', color);
-
-            // 针对移动端做的优化：FAB按钮点击一下收回
-            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                $('.fixed-action-btn').addClass('click-to-toggle');
-            }
-            // 回到顶部
-            $('.btn-return-top').click(function() {
-                $('body, html').animate({
-                    scrollTop: 0
-                }, 500);
-            });
-
-            // 重置读书页面的Tab标签页的颜色
-            $('li.tab a').hover(function() {
-                $(this).toggleClass('text-lighten-4');
-            });
-            $('.indicator').addClass('pink lighten-2');
-
-            
-            // 添加new标签
-            $('.menu-reading, .menu-about').append('<span class="new badge pink"></span>');
-            
-
-            // 搜索功能
-            $('.modal-trigger').leanModal({
-                // 打开搜索框时自动聚焦
-                ready: function() {
-                    if ($('#search').is(":visible")) {
-                        $('#search-input').focus();
-                    }
-                }
-            });
-            var searchXml = "search.xml";
-            if (searchXml.length == 0) {
-             	searchXml = "search.xml";
-            }
-            var searchPath = "/" + searchXml;
-            initSearch(searchPath, 'search-input', 'search-result');
-        });
-
-        // 初始化搜索与匹配函数
-        var initSearch = function(path, search_id, content_id) {
-            'use strict';
-            $.ajax({
-                url: path,
-                dataType: "xml",
-                success: function(xmlResponse) {
-                    // get the contents from search data
-                    var datas = $("entry", xmlResponse).map(function() {
-                        return {
-                            title: $("title", this).text(),
-                            content: $("content", this).text(),
-                            url: $("url", this).text()
-                        };
-                    }).get();
-                    var $input = document.getElementById(search_id);
-                    var $resultContent = document.getElementById(content_id);
-                    $input.addEventListener('input', function() {
-                        var str = '<ul class=\"search-result-list\">';
-                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-                        $resultContent.innerHTML = "";
-                        if (this.value.trim().length <= 0) {
-                            return;
-                        }
-                        // perform local searching
-                        datas.forEach(function(data) {
-                            var isMatch = true;
-                            var content_index = [];
-                            var data_title = data.title.trim().toLowerCase();
-                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
-                            var data_url = data.url;
-                            var index_title = -1;
-                            var index_content = -1;
-                            var first_occur = -1;
-                            // only match artiles with not empty titles and contents
-                            if (data_title != '' && data_content != '') {
-                                keywords.forEach(function(keyword, i) {
-                                    index_title = data_title.indexOf(keyword);
-                                    index_content = data_content.indexOf(keyword);
-                                    if (index_title < 0 && index_content < 0) {
-                                        isMatch = false;
-                                    } else {
-                                        if (index_content < 0) {
-                                            index_content = 0;
-                                        }
-                                        if (i == 0) {
-                                            first_occur = index_content;
-                                        }
-                                    }
-                                });
-                            }
-                            // show search results
-                            if (isMatch) {
-                                keywords.forEach(function(keyword) {
-                                    var regS = new RegExp(keyword, "gi");
-                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
-                                });
-
-                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
-                                var content = data.content.trim().replace(/<[^>]+>/g, "");
-                                if (first_occur >= 0) {
-                                    // cut out 100 characters
-                                    var start = first_occur - 20;
-                                    var end = first_occur + 80;
-                                    if (start < 0) {
-                                        start = 0;
-                                    }
-                                    if (start == 0) {
-                                        end = 100;
-                                    }
-                                    if (end > content.length) {
-                                        end = content.length;
-                                    }
-                                    var match_content = content.substring(start, end);
-                                    // highlight all keywords
-                                    keywords.forEach(function(keyword) {
-                                        var regS = new RegExp(keyword, "gi");
-                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
-                                    });
-
-                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
-                                }
-                                str += "</li>";
-                            }
-                        });
-                        str += "</ul>";
-                        $resultContent.innerHTML = str;
-                    });
-                }
-            });
-        }
-    })(jQuery);
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
 </script>
 
-
-<script src="/js/prettify.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $("pre").addClass("prettyprint");
-        prettyPrint();
-    });
-</script>
+<script src="/js/search.js"></script>
 
 
 
 
-<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65601540" charset="UTF-8"></script>
 
 
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
-});
-</script>
-<script type="text/javascript" async
-  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
 
 
 
