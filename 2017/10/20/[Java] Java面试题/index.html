@@ -219,14 +219,6 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/HTTPS/">
-                    HTTPS <span class="right">1 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/Hexo/">
                     Hexo <span class="right">1 篇</span></a>
                 </a>
@@ -235,8 +227,8 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/IntelliJ-IDEA/">
-                    IntelliJ-IDEA <span class="right">1 篇</span></a>
+                <a class="no-padding" href="/categories/HTTPS/">
+                    HTTPS <span class="right">1 篇</span></a>
                 </a>
             </li>
 
@@ -245,6 +237,14 @@
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/JQuery/">
                     JQuery <span class="right">8 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/IntelliJ-IDEA/">
+                    IntelliJ-IDEA <span class="right">1 篇</span></a>
                 </a>
             </li>
 
@@ -355,16 +355,16 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/多线程/">
-                    多线程 <span class="right">3 篇</span></a>
+                <a class="no-padding" href="/categories/算法/">
+                    算法 <span class="right">3 篇</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/算法/">
-                    算法 <span class="right">3 篇</span></a>
+                <a class="no-padding" href="/categories/多线程/">
+                    多线程 <span class="right">3 篇</span></a>
                 </a>
             </li>
 
@@ -545,7 +545,7 @@
 <li><p>Spring事务管理</p>
 <p>Spring并不直接管理事务，而是提供了多种事务管理器，他们将事务管理的职责委托给Hibernate或者JTA等持久化机制所提供的相关平台框架的事务来实现。</p>
 <p>Spring事务管理器的接口是<code>org.springframework.transaction.PlatformTransactionManager</code>，通过这个接口Spring为各个平台如JDBC、Hibernate等都提供了对应的事务管理器，但是具体的实现就是各个平台自己的事情了：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function">Public interface <span class="title">PlatformTransactionManager</span><span class="params">()</span>...</span>&#123;  </div><div class="line">    <span class="comment">// 由TransactionDefinition得到TransactionStatus对象</span></div><div class="line">    <span class="function">TransactionStatus <span class="title">getTransaction</span><span class="params">(TransactionDefinition definition)</span> <span class="keyword">throws</span> TransactionException</span>; </div><div class="line">    <span class="comment">// 提交</span></div><div class="line">    <span class="function">Void <span class="title">commit</span><span class="params">(TransactionStatus status)</span> <span class="keyword">throws</span> TransactionException</span>;  </div><div class="line">    <span class="comment">// 回滚</span></div><div class="line">    <span class="function">Void <span class="title">rollback</span><span class="params">(TransactionStatus status)</span> <span class="keyword">throws</span> TransactionException</span>;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function">Public interface <span class="title">PlatformTransactionManager</span><span class="params">()</span>...</span>&#123;  </div><div class="line">    <span class="comment">/* 由TransactionDefinition得到TransactionStatus对象 */</span></div><div class="line">    <span class="function">TransactionStatus <span class="title">getTransaction</span><span class="params">(TransactionDefinition definition)</span> <span class="keyword">throws</span> TransactionException</span>; </div><div class="line">    <span class="comment">/* 提交 */</span></div><div class="line">    <span class="function">Void <span class="title">commit</span><span class="params">(TransactionStatus status)</span> <span class="keyword">throws</span> TransactionException</span>;  </div><div class="line">    <span class="comment">/* 回滚 */</span></div><div class="line">    <span class="function">Void <span class="title">rollback</span><span class="params">(TransactionStatus status)</span> <span class="keyword">throws</span> TransactionException</span>;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <ul>
 <li><p>JDBC事务</p>
 <p>  如果应用程序中直接使用JDBC来进行持久化，DataSourceTransactionManager会为你处理事务边界，为了使用DataSourceTransactionManager，你需要使用如下的XML将其装配到应用程序的上下文定义中：</p>
