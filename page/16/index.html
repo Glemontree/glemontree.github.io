@@ -143,6 +143,96 @@
       <ul class="post-list">
   
     <li class="post-list-item">
+        <article id="post-[网络编程] IO多路复用"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/06/28/[网络编程] IO多路复用/">[网络编程] IO多路复用</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2017-06-28T10:00:26.000Z" itemprop="datePublished" class="post-time">
+  2017-06-28
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/网络编程/">网络编程</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           阻塞IO和非阻塞IO  常见的IO操作有read和write，通常IO操作都是阻塞I/O，即当前调用read时如果没有数据收到，那么线程或者进行就会被挂起，直到收到数据。 
+ 对于非阻塞I/O，通过fcntl（POSIX）或ioctl（UNIX）设为非阻塞模式，这时当你调用read时，如果有数据收到，就返回数据，如果没有数据收到，就立刻返回。 
+   I/O多路复用  多路复用是指使用一个线
+    
+    
+        <a href="/2017/06/28/[网络编程] IO多路复用/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux-IO-多路复用/">Linux, IO, 多路复用</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-[Java] Java反射为什么需要无参构造函数"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/06/28/[Java] Java反射为什么需要无参构造函数/">[Java] Java反射为什么需要无参构造函数</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2017-06-28T09:59:14.000Z" itemprop="datePublished" class="post-time">
+  2017-06-28
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           Java反射为什么需要无参构造函数  最近在学习Spring，Spring有个关键的技术就是IOC，即控制反转，其中用到得一个重要的技术就是反射，在学习的过程中发现如果不提供一个无参的构造函数程序会报错，查了一些资料后对Java反射为什么需要无参构造函数这一知识点进行记录。 
+ 一般来说反射是这样实现的： 
+      1  2      Class   class   = Class.fo
+    
+    
+        <a href="/2017/06/28/[Java] Java反射为什么需要无参构造函数/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java-反射-无参构造函数/">Java, 反射, 无参构造函数</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
         <article id="post-[Linux] Linux epoll的用法"
   class="article article-type-post" itemprop="blogPost">
      
@@ -511,108 +601,11 @@
 
     </li>
   
-    <li class="post-list-item">
-        <article id="post-[TCPIP] TCP与UDP不同的包处理方式"
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/06/28/[TCPIP] TCP与UDP不同的包处理方式/">[TCP/IP] TCP与UDP不同的包处理方式</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2017-06-28T09:49:21.000Z" itemprop="datePublished" class="post-time">
-  2017-06-28
-</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/TCP-IP/">TCP/IP</a></li></ul>
-
-
-
-    </div>
-
-    <div class="post-content" id="post-content" itemprop="postContent" >
-
-    
-           TCP与UDP不同的包处理方式   声明 ：本文转载自 博客  
- 
-  UDP发包的问题 
- 举个例子：udp发送两次数据，第一次发送100字节， 第二字发送200字节，接收方一次recvfrom(1000)，收到是100，还是200，还是300？ 
- UDP是数据报文协议，是以数据包形式，所以每次可以接收100，200，在理想情况下，第一次是无论recvfrom多少都是接收到100，当然
-    
-    
-        <a href="/2017/06/28/[TCPIP] TCP与UDP不同的包处理方式/" class="post-more waves-effect waves-button">
-            阅读全文...
-        </a>
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tcp-UDP-包/">Tcp, UDP, 包</a></li></ul>
-
-</article>
-
-    </li>
-  
-    <li class="post-list-item">
-        <article id="post-[Qt] VS+Qt生成软件图标"
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/06/28/[Qt] VS+Qt生成软件图标/">[Qt] VS+Qt生成软件图标</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2017-06-28T09:48:17.000Z" itemprop="datePublished" class="post-time">
-  2017-06-28
-</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Qt/">Qt</a></li></ul>
-
-
-
-    </div>
-
-    <div class="post-content" id="post-content" itemprop="postContent" >
-
-    
-         
- 在项目文件夹里创建名为*.rc的文件，如myapp.rc; 
- 文件中写入IDI_ICON1 ICON DISCARDABLE “myapp.ico，其中，myapp.ico为图标的文件名； 
- 将文件myapp.ico拷贝到项目文件夹内； 
- 在解决方案资源管理器中，右键点击项目，添加myapp.rc及myapp.ico； 
- 重新生成解决方案。 
- 
-
-    
-    
-        <a href="/2017/06/28/[Qt] VS+Qt生成软件图标/" class="post-more waves-effect waves-button">
-            阅读全文...
-        </a>
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VS-Qt-软件图标/">VS, Qt, 软件图标</a></li></ul>
-
-</article>
-
-    </li>
-  
 </ul>
 
 <nav id="page-nav">
     <div class="inner">
-    <a class="extend prev" rel="prev" href="/page/15/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/17/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/15/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/17/">下一页</a>
     </div>
 </nav>
 

@@ -143,6 +143,94 @@
       <ul class="post-list">
   
     <li class="post-list-item">
+        <article id="post-[Linux] Linux中的伙伴系统和slab机制"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/10/23/[Linux] Linux中的伙伴系统和slab机制/">[Linux] Linux中的伙伴系统和slab机制</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2017-10-23T08:34:00.000Z" itemprop="datePublished" class="post-time">
+  2017-10-23
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           伙伴系统  Linux中采用4KB大小的页框作为标准的内存分配单元，在实际应用中，经常需要分配一组连续的页框，而频繁的申请和释放不同大小的连续页框，必然导致在已分配页框的内存块中分散了许多小块的空闲页框，这样，即使这些页框是空闲的，其他需要分配连续页框的应用也很难得到满足。 
+ Linux内核引入了伙伴系统算法来避免这种情况。其把所有的空闲页框分组为11个块链表，每个块链表分别包含大小为1、
+    
+    
+        <a href="/2017/10/23/[Linux] Linux中的伙伴系统和slab机制/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux-内存管理-伙伴系统-slab机制/">Linux, 内存管理, 伙伴系统, slab机制</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-[Java] Java并发编程之volatile关键字"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/10/22/[Java] Java并发编程之volatile关键字/">[Java] Java并发编程之volatile关键字</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2017-10-22T02:10:59.000Z" itemprop="datePublished" class="post-time">
+  2017-10-22
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           说在前面  本文转载自文章 Java并发编程：volatile关键字解析 ，作者对volatile关键字的使用以及原理进行了详细的解析，我觉得写的非常好，所以转载下来做个记录，感谢作者。 
+   内存模型的相关概念  计算机在执行程序的时候每条指令都是在CPU中执行的，而执行指令的过程中势必涉及到数据的读取和写入。由于程序运行过程中的临时数据都是存放在主存（物理内存）当中的，这时就存在一个问
+    
+    
+        <a href="/2017/10/22/[Java] Java并发编程之volatile关键字/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java-并发-volatile/">Java 并发 volatile</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
         <article id="post-[Java] Java面试题"
   class="article article-type-post" itemprop="blogPost">
      
@@ -511,101 +599,11 @@
 
     </li>
   
-    <li class="post-list-item">
-        <article id="post-[Java] Java反射"
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/09/11/[Java] Java反射/">[Java] Java反射</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2017-09-11T12:00:00.000Z" itemprop="datePublished" class="post-time">
-  2017-09-11
-</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
-
-
-
-    </div>
-
-    <div class="post-content" id="post-content" itemprop="postContent" >
-
-    
-           声明  本篇文章转载自 JAVA反射与注解 ，作者先讲解了Java反射，然后在Java反射的基础上又对Java注解进行了讲解，我主要是对其中Java反射部分进行摘录。 
-   什么是Java反射  主要是指程序可以访问，检测和修改它本身状态或行为的一种能力，并能根据自身行为的状态和结果，调整或修改应用所描述行为的状态和相关的语义。 
-   什么是反射机制  反射机制就是在运行状态中， 对于任
-    
-    
-        <a href="/2017/09/11/[Java] Java反射/" class="post-more waves-effect waves-button">
-            阅读全文...
-        </a>
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java-反射/">Java 反射</a></li></ul>
-
-</article>
-
-    </li>
-  
-    <li class="post-list-item">
-        <article id="post-[Java] Java注解"
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/09/11/[Java] Java注解/">[Java] Java注解</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2017-09-11T11:27:51.000Z" itemprop="datePublished" class="post-time">
-  2017-09-11
-</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
-
-
-
-    </div>
-
-    <div class="post-content" id="post-content" itemprop="postContent" >
-
-    
-           声明  本文转载自文章 Java中的注解是如何工作的？ ，文章对注解讲解比较清楚，所以转载下来做个记录。 
-   什么是注解  注解其实就是元数据，即一种描述数据的数据，所以，可以说注解就是源代码的元数据，比如，下面这段代码： 
-      1  2  3  4       @Override     public  String  toString  ()   &#123;    	 re
-    
-    
-        <a href="/2017/09/11/[Java] Java注解/" class="post-more waves-effect waves-button">
-            阅读全文...
-        </a>
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java-注解/">Java 注解</a></li></ul>
-
-</article>
-
-    </li>
-  
 </ul>
 
 <nav id="page-nav">
     <div class="inner">
-    <a class="extend prev" rel="prev" href="/page/7/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/9/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/7/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/9/">下一页</a>
     </div>
 </nav>
 
