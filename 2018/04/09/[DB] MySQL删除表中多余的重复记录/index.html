@@ -3,29 +3,26 @@
 <head>
   <meta charset="utf-8">
   
-  <title>[DB] MySQL中distinct的用法 | Glemontree&#39;s blog | day day up!</title>
+  <title>[DB] MySQL删除表中多余的重复记录 | Glemontree&#39;s blog | day day up!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="theme-color" content="#3F51B5">
   
   
-  <meta name="keywords" content="distinct">
-  <meta name="description" content="distinct用法在使用MySQL时，有时需要查出某个字段不重复的字段，这时可以使用MySQL提供的distinct关键字来过滤重复的记录，但是实际中往往使用distinct来返回不重复字段的条数（count(distinct id)），其原因是distinct只能返回它的目标字段，而无法返回其他字段，其常见用法为：
-1select distinct name from user;
-这样可以将不">
+  <meta name="keywords" content="group by,having,min">
+  <meta name="description" content="删除表中多余的重复记录，重复记录是根据单个字段peopleName来判断，只留有peopleId最小的记录：
+123delete from peoplewhere peopleName in (select peopleName from people group by peopleName having count(peopleName) &amp;gt; 1)and peopleId not in (">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[DB] MySQL中distinct的用法">
-<meta property="og:url" content="https://glemontree.github.io/2018/04/09/[DB] MySQL中distinct的用法/index.html">
+<meta property="og:title" content="[DB] MySQL删除表中多余的重复记录">
+<meta property="og:url" content="https://glemontree.github.io/2018/04/09/[DB] MySQL删除表中多余的重复记录/index.html">
 <meta property="og:site_name" content="Glemontree's blog">
-<meta property="og:description" content="distinct用法在使用MySQL时，有时需要查出某个字段不重复的字段，这时可以使用MySQL提供的distinct关键字来过滤重复的记录，但是实际中往往使用distinct来返回不重复字段的条数（count(distinct id)），其原因是distinct只能返回它的目标字段，而无法返回其他字段，其常见用法为：
-1select distinct name from user;
-这样可以将不">
-<meta property="og:updated_time" content="2018-04-09T08:43:07.374Z">
+<meta property="og:description" content="删除表中多余的重复记录，重复记录是根据单个字段peopleName来判断，只留有peopleId最小的记录：
+123delete from peoplewhere peopleName in (select peopleName from people group by peopleName having count(peopleName) &amp;gt; 1)and peopleId not in (">
+<meta property="og:updated_time" content="2018-04-09T08:56:22.350Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[DB] MySQL中distinct的用法">
-<meta name="twitter:description" content="distinct用法在使用MySQL时，有时需要查出某个字段不重复的字段，这时可以使用MySQL提供的distinct关键字来过滤重复的记录，但是实际中往往使用distinct来返回不重复字段的条数（count(distinct id)），其原因是distinct只能返回它的目标字段，而无法返回其他字段，其常见用法为：
-1select distinct name from user;
-这样可以将不">
+<meta name="twitter:title" content="[DB] MySQL删除表中多余的重复记录">
+<meta name="twitter:description" content="删除表中多余的重复记录，重复记录是根据单个字段peopleName来判断，只留有peopleId最小的记录：
+123delete from peoplewhere peopleName in (select peopleName from people group by peopleName having count(peopleName) &amp;gt; 1)and peopleId not in (">
   
     <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
   
@@ -116,7 +113,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">[DB] MySQL中distinct的用法</div>
+        <div class="flex-col header-title ellipsis">[DB] MySQL删除表中多余的重复记录</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -137,10 +134,10 @@
 </header>
 <header class="content-header">
   <div class="container">
-    <h1 class="author">[DB] MySQL中distinct的用法</h1>
+    <h1 class="author">[DB] MySQL删除表中多余的重复记录</h1>
     <h5 class="subtitle">
         
-            <time datetime="2018-04-09T08:28:44.000Z" itemprop="datePublished" class="page-time">
+            <time datetime="2018-04-09T08:50:47.000Z" itemprop="datePublished" class="page-time">
   2018-04-09
 </time>
 
@@ -153,11 +150,11 @@
 </header>
 
     <div class="container body-wrap">
-      <article id="post-[DB] MySQL中distinct的用法" 
+      <article id="post-[DB] MySQL删除表中多余的重复记录" 
   class="article article-type-post" itemprop="blogPost">
     <div class="post-meta flex-row">
         
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/distinct/">distinct</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/group-by/">group by</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/having/">having</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/min/">min</a></li></ul>
 
     </div>
     <div class="post-body">
@@ -204,7 +201,7 @@
 
             
             <nav class="post-toc-wrap" id="post-toc">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#distinct用法"><span class="post-toc-number">1.</span> <span class="post-toc-text">distinct用法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#说明"><span class="post-toc-number">2.</span> <span class="post-toc-text">说明</span></a></li></ol>
+            
             </nav>
             
         </aside>
@@ -212,17 +209,8 @@
         <div class="post-main">
 
             <div class="post-content" id="post-content" itemprop="postContent">
-            <h2 id="distinct用法"><a href="#distinct用法" class="headerlink" title="distinct用法"></a>distinct用法</h2><p>在使用MySQL时，有时需要查出某个字段不重复的字段，这时可以使用MySQL提供的distinct关键字来过滤重复的记录，但是实际中往往使用distinct来返回不重复字段的条数（count(distinct id)），其原因是distinct只能返回它的目标字段，而无法返回其他字段，其常见用法为：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> <span class="keyword">name</span> <span class="keyword">from</span> <span class="keyword">user</span>;</div></pre></td></tr></table></figure>
-<p>这样可以将不重复的用户名查询出来，但是用户的id并不会被查询出来，如果使用下面的语句：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">selelct distinct name, id from user;</div></pre></td></tr></table></figure>
-<p>则MySQL会认为要过滤掉name和id两个字段均不重复的字段，如果使用下面的sql语句：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">id</span>, <span class="keyword">distinct</span> <span class="keyword">name</span> <span class="keyword">from</span> <span class="keyword">user</span>;</div></pre></td></tr></table></figure>
-<p>则MySQL会报错，因为distinct必须放在要查询字段的开头。</p>
-<blockquote>
-<p>  distinct一般用来查询不重复记录的条数。</p>
-</blockquote>
-<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>本文转自<a href="http://www.cnblogs.com/shiluoliming/p/6604407.html" target="_blank" rel="external">mysql中去重 distinct 用法</a>。</p>
+            <p>删除表中多余的重复记录，重复记录是根据单个字段peopleName来判断，只留有peopleId最小的记录：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">delete</span> <span class="keyword">from</span> people</div><div class="line"><span class="keyword">where</span> peopleName <span class="keyword">in</span> (<span class="keyword">select</span> peopleName <span class="keyword">from</span> people <span class="keyword">group</span> <span class="keyword">by</span> peopleName <span class="keyword">having</span> <span class="keyword">count</span>(peopleName) &gt; <span class="number">1</span>)</div><div class="line"><span class="keyword">and</span> peopleId <span class="keyword">not</span> <span class="keyword">in</span> (<span class="keyword">select</span> <span class="keyword">min</span>(peopleId) <span class="keyword">from</span> people <span class="keyword">group</span> <span class="keyword">by</span> peopleName <span class="keyword">having</span> <span class="keyword">count</span>(peopleName) &gt; <span class="number">1</span>);</div></pre></td></tr></table></figure>
 
 
             
@@ -234,7 +222,7 @@
             <blockquote>
                 <p>
                 本文地址：
-                <a href="https://glemontree.github.io/2018/04/09/[DB] MySQL中distinct的用法/" target="_blank" rel="external">https://glemontree.github.io/2018/04/09/[DB] MySQL中distinct的用法/</a>
+                <a href="https://glemontree.github.io/2018/04/09/[DB] MySQL删除表中多余的重复记录/" target="_blank" rel="external">https://glemontree.github.io/2018/04/09/[DB] MySQL删除表中多余的重复记录/</a>
                 </p>
                 <footer><cite><a href="https://glemontree.github.io">@Glemontree's blog</a></cite></footer>
             </blockquote>
@@ -242,19 +230,12 @@
             
 <nav class="post-nav">
   
-    <div class="waves-block waves-effect prev fl">
-      <a href="/2018/04/09/[DB] MySQL删除表中多余的重复记录/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">[DB] MySQL删除表中多余的重复记录</h4>
-      </a>
-    </div>
-  
 
   
     <div class="waves-block waves-effect next fr">
-      <a href="/2018/04/09/[DB] MySQL中group by的用法/" id="post-next" class="post-nav-link">
+      <a href="/2018/04/09/[DB] MySQL中distinct的用法/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">[DB] MySQL中group by的用法</h4>
+        <h4 class="title">[DB] MySQL中distinct的用法</h4>
       </a>
     </div>
   
@@ -265,7 +246,7 @@
             
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="[DB] MySQL中distinct的用法" data-title="[DB] MySQL中distinct的用法" data-url="https://glemontree.github.io/2018/04/09/[DB] MySQL中distinct的用法/index.html"></div>
+	<div class="ds-thread" data-thread-key="[DB] MySQL删除表中多余的重复记录" data-title="[DB] MySQL删除表中多余的重复记录" data-url="https://glemontree.github.io/2018/04/09/[DB] MySQL删除表中多余的重复记录/index.html"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -321,10 +302,10 @@
 
 <script>
 var BLOG_SHARE = {
-    title: "[DB] MySQL中distinct的用法",
+    title: "[DB] MySQL删除表中多余的重复记录",
     pic: "/img/logo.jpg",
     summary: document.getElementsByName('summary')[0].content,
-    url: "https://glemontree.github.io/2018/04/09/[DB] MySQL中distinct的用法/index.html"
+    url: "https://glemontree.github.io/2018/04/09/[DB] MySQL删除表中多余的重复记录/index.html"
 };
 </script>
 <div class="global-share" id="global-share">

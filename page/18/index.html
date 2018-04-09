@@ -143,6 +143,53 @@
       <ul class="post-list">
   
     <li class="post-list-item">
+        <article id="post-[设计模式] 单例模式"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/06/28/[设计模式] 单例模式/">[设计模式] 单例模式</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2017-06-28T09:40:04.000Z" itemprop="datePublished" class="post-time">
+  2017-06-28
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/设计模式/">设计模式</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           懒汉模式  即第一次调用该类实例的时候才产生一个新的该类实例，并在以后仅返回此实例。需要用锁，来保证其线程安全性。原因：多个线程可能进入判断是否已经存在实例的if语句，从而non thread safety。使用double-check来保证thread safety。但是如果处理大量数据时，该锁才成为严重的性能瓶颈。 
+ 
+ 静态成员实例的懒汉模式： 
+ 
+      1  2  3  4
+    
+    
+        <a href="/2017/06/28/[设计模式] 单例模式/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-线程安全-单例模式/">C++, 线程安全, 单例模式</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
         <article id="post-[多线程] 互斥对象和锁"
   class="article article-type-post" itemprop="blogPost">
      
@@ -575,55 +622,6 @@
     </div>
     
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DB/">DB</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/INSERT/">INSERT</a></li></ul>
-
-</article>
-
-    </li>
-  
-    <li class="post-list-item">
-        <article id="post-[DB] 数据库中%和_的用法"
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/06/28/[DB] 数据库中%和_的用法/">[DB] 数据库中%和_的用法</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2017-06-28T09:23:09.000Z" itemprop="datePublished" class="post-time">
-  2017-06-28
-</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/DB/">DB</a></li></ul>
-
-
-
-    </div>
-
-    <div class="post-content" id="post-content" itemprop="postContent" >
-
-    
-         数据库中模糊查询命令like有两个通配符”%”和”_”，其中： 
- 
- %匹配0或多个字符 
- _匹配任意1个字符（必须有一个） 
- 
- 举例如下： 
-      1  2  3  4  5  6  7  8      SQL&gt;  create table tt ( name char(10) );  SQL&gt;  insert into tt values ( '1234' );  
-    
-    
-        <a href="/2017/06/28/[DB] 数据库中%和_的用法/" class="post-more waves-effect waves-button">
-            阅读全文...
-        </a>
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DB/">DB</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/通配符/">通配符</a></li></ul>
 
 </article>
 

@@ -143,6 +143,50 @@
       <ul class="post-list">
   
     <li class="post-list-item">
+        <article id="post-[DB] MySQL删除表中多余的重复记录"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2018/04/09/[DB] MySQL删除表中多余的重复记录/">[DB] MySQL删除表中多余的重复记录</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2018-04-09T08:50:47.000Z" itemprop="datePublished" class="post-time">
+  2018-04-09
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/DB/">DB</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+         删除表中多余的重复记录，重复记录是根据单个字段peopleName来判断，只留有peopleId最小的记录： 
+      1  2  3       delete   from  people   where  peopleName  in  ( select  peopleName  from  people  group   by  peopleName  having   count (
+    
+    
+        <a href="/2018/04/09/[DB] MySQL删除表中多余的重复记录/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/group-by/">group by</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/having/">having</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/min/">min</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
         <article id="post-[DB] MySQL中distinct的用法"
   class="article article-type-post" itemprop="blogPost">
      
@@ -566,60 +610,6 @@
     
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/">Redis</a></li></ul>
 
-</article>
-
-    </li>
-  
-    <li class="post-list-item">
-        <article id="post-[Java] Java虚拟机垃圾收集"
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/03/23/[Java] Java虚拟机垃圾收集/">[Java] Java虚拟机垃圾收集</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2018-03-23T09:08:56.000Z" itemprop="datePublished" class="post-time">
-  2018-03-23
-</time>
-
-        
-
-
-    </div>
-
-    <div class="post-content" id="post-content" itemprop="postContent" >
-
-    
-           垃圾收集算法  
-   可作为GC Roots的对象包括： 
- 
- 虚拟机栈（栈帧中的本地变量表）中的引用对象 
- 方法区中的类静态属性引用的对象 
- 方法区中的常量引用的对象 
- 本地方法栈中JNI的引用对象 
- 
- 
-   标记-清除算法  其缺点为： 
- 
- 效率不高 
- 标记清除之后会产生大量不连续的内存碎片 
- 
-   
-   复制算法  它将可用内存容量划分为大小相等的两块，每次
-    
-    
-        <a href="/2018/03/23/[Java] Java虚拟机垃圾收集/" class="post-more waves-effect waves-button">
-            阅读全文...
-        </a>
-    </div>
-    
 </article>
 
     </li>
