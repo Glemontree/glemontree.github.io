@@ -143,6 +143,143 @@
       <ul class="post-list">
   
     <li class="post-list-item">
+        <article id="post-[C++] C++中的new、operator new和placement new"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/10/23/[C++] C++中的new、operator new和placement new/">[C++] C++中的new、operator new和placement new</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2017-10-23T14:38:12.000Z" itemprop="datePublished" class="post-time">
+  2017-10-23
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/C/">C++</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           new/delete和operator new/operator delete  new operator/delete operator就是new和delete操作符，而operator new/operator delete是函数。 
+ new operator： 
+ 
+ 调用operator new分配足够的空间，并调用相关对象的构造函数 
+ 不可以被重载 
+ 
+ operator n
+    
+    
+        <a href="/2017/10/23/[C++] C++中的new、operator new和placement new/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-new-operator-new-placement-new/">C++, new, operator new, placement new</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-[C++] allocator原理"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/10/23/[C++] allocator原理/">[C++] allocator原理</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2017-10-23T11:57:49.000Z" itemprop="datePublished" class="post-time">
+  2017-10-23
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/C/">C++</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           allocator原理介绍  考虑到小型区域可能造成内存破碎问题，SGI STL设计了双层级配置器，第一层配置器直接使用malloc()和free()，第二层配置器则视情况采用不同的策略：当配置区块超过128bytes时，调用第一层级配置器，当配置区块小于128bytes时，采用复杂的memory pool方式。 
+   第一级配置器 __malloc_alloc_template     
+    
+    
+        <a href="/2017/10/23/[C++] allocator原理/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-allocator/">C++, allocator</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-[C++] C++中的模板"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/10/23/[C++] C++中的模板/">[C++] C++中的模板</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2017-10-23T10:07:40.000Z" itemprop="datePublished" class="post-time">
+  2017-10-23
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/C/">C++</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           非类型模板参数  非类型模板参数可以使用整型类型、指针或引用。绑定非类型整型形参的实参必须是常量表达式，不能把普通的局部变量或者动态对象绑定指针或引用的非类型，可以使用全局类型进行绑定。 
+      1  2  3  4  5  6       template  &lt; const   char * C&gt;    void   pointerT  ( const   char * 
+    
+    
+        <a href="/2017/10/23/[C++] C++中的模板/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-模板/">C++, 模板</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
         <article id="post-[C++] static void ( __set_malloc_handler(void (__f)()))()"
   class="article article-type-post" itemprop="blogPost">
      
@@ -456,144 +593,6 @@
     </div>
     
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis-resultMap/">MyBatis, resultMap</a></li></ul>
-
-</article>
-
-    </li>
-  
-    <li class="post-list-item">
-        <article id="post-[MyBatis] MyBatis第六课---select操作"
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/09/13/[MyBatis] MyBatis第六课---select操作/">[MyBatis] MyBatis第六课---select操作</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2017-09-13T12:09:47.000Z" itemprop="datePublished" class="post-time">
-  2017-09-13
-</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/MyBatis/">MyBatis</a></li></ul>
-
-
-
-    </div>
-
-    <div class="post-content" id="post-content" itemprop="postContent" >
-
-    
-           select返回List  如果返回的是一个集合，那么 resultType 应当为集合中元素的类型： 
-      1        public  List&lt;Employee&gt;  getEmpsByLastNameLike  (String lastName)  ;      
-      1  2  3       &lt; select   id = "getEmpsBy
-    
-    
-        <a href="/2017/09/13/[MyBatis] MyBatis第六课---select操作/" class="post-more waves-effect waves-button">
-            阅读全文...
-        </a>
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis/">MyBatis</a></li></ul>
-
-</article>
-
-    </li>
-  
-    <li class="post-list-item">
-        <article id="post-[DB] SQL小知识"
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/09/13/[DB] SQL小知识/">[DB] SQL小知识</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2017-09-13T12:05:26.000Z" itemprop="datePublished" class="post-time">
-  2017-09-13
-</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/DB/">DB</a></li></ul>
-
-
-
-    </div>
-
-    <div class="post-content" id="post-content" itemprop="postContent" >
-
-    
-         
-  使用sql语句 desc table_name 可以显示table_name表中的字段名以及Type等属性 
- 
-  使用sql语句 alter table employees modify email null 修改email字段的属性为可以为null 
- 
-  mysql中使用sql语句生成一张表并且同时指定表的编码： 
-      1  2  3  4  5  6  7       
-    
-    
-        <a href="/2017/09/13/[DB] SQL小知识/" class="post-more waves-effect waves-button">
-            阅读全文...
-        </a>
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DB/">DB</a></li></ul>
-
-</article>
-
-    </li>
-  
-    <li class="post-list-item">
-        <article id="post-[MyBatis] MyBatis第五课---MyBatis参数处理"
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/09/13/[MyBatis] MyBatis第五课---MyBatis参数处理/">[MyBatis] MyBatis第五课---MyBatis参数处理</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2017-09-13T08:38:13.000Z" itemprop="datePublished" class="post-time">
-  2017-09-13
-</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/MyBatis/">MyBatis</a></li></ul>
-
-
-
-    </div>
-
-    <div class="post-content" id="post-content" itemprop="postContent" >
-
-    
-           单个参数的传递  通过 #{参数名} 取出参数值，实际上在传递单个参数的时候， MyBatis 不会做特殊处理，实际上 #{} 内部的参数名你可以任意取值，但还是建议和接口中参数的名字保持一致。 
-   多个参数的传递   MyBatis 遇见多个参数时会进行特殊处理，多个参数会被封装成一个 Map ， #{} 就是从 Map 中获取指定 key 的值， key 的值为 param1...p
-    
-    
-        <a href="/2017/09/13/[MyBatis] MyBatis第五课---MyBatis参数处理/" class="post-more waves-effect waves-button">
-            阅读全文...
-        </a>
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis-参数处理/">MyBatis, 参数处理</a></li></ul>
 
 </article>
 

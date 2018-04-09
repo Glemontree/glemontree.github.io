@@ -143,6 +143,143 @@
       <ul class="post-list">
   
     <li class="post-list-item">
+        <article id="post-[Windows核心编程] 谈谈Windows中的错误处理机制"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/06/28/[Windows核心编程] 谈谈Windows中的错误处理机制/">[Windows核心编程] 谈谈Windows中的错误处理机制</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2017-06-28T09:43:44.000Z" itemprop="datePublished" class="post-time">
+  2017-06-28
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Windows核心编程/">Windows核心编程</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           谈谈Windows中的错误处理机制  
+  windows除了使用返回值标识函数执行情况，还引入了错误代码机制。返回值指示函数是否发生了错误，而要想知道究竟发生了什么错误，就得使用错误代码。 
+ 
+  windows将错误代码存储于独立于线程的，线程局部存储区中，也就是说这个区域时每个线程独有的其他线程无法更改，它存储着一些线程独有的东西。 
+ 
+  在函数执行后，可通过 GetLastEr
+    
+    
+        <a href="/2017/06/28/[Windows核心编程] 谈谈Windows中的错误处理机制/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-错误处理/">C++, 错误处理</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-[多线程] x=y的原子性"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/06/28/[多线程] x=y的原子性/">[多线程] x=y的原子性</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2017-06-28T09:42:51.000Z" itemprop="datePublished" class="post-time">
+  2017-06-28
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/多线程/">多线程</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           x=y的原子性    一、原子性介绍  所谓的原子性是指该操作不能再继续划分为更小的操作，在多线程中原子操作是一个很重要的概念，决定了该操作是否需要同步机制来进行保护。 
+   二、x=y操作的原子性  在X86中，x=y包含两个操作：读取y至寄存器，然后将该值写入x，其中读取y的值至寄存器中是原子的，将值写入x也是原子的，但是这里需要格外注意的是两个原子操作的组合不一定是原子操作，如果在这
+    
+    
+        <a href="/2017/06/28/[多线程] x=y的原子性/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/多线程-原子性/">多线程, 原子性</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-[Linux] zsh corrupt"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/06/28/[Linux] zsh corrupt/">[Linux] zsh corrupt</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2017-06-28T09:41:39.000Z" itemprop="datePublished" class="post-time">
+  2017-06-28
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           Linux中zsh遇到corrupt bug  这几天打开ubuntu，出现 zsh: corrupt history file /home/gtp/.zsh_history 的错误，网上找到了解决方案，这里记录一下，以防以后遇到了又得花时间在网上搜索解决方案。 
+ 解决方案如下： 
+      1  2  3      mv .zsh_history .zsh_history_bad  s
+    
+    
+        <a href="/2017/06/28/[Linux] zsh corrupt/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux-zsh/">Linux, zsh</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
         <article id="post-[设计模式] 单例模式"
   class="article article-type-post" itemprop="blogPost">
      
@@ -479,149 +616,6 @@
     </div>
     
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
-
-</article>
-
-    </li>
-  
-    <li class="post-list-item">
-        <article id="post-[C++] 前置++和后置++的区别"
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/06/28/[C++] 前置++和后置++的区别/">[C++] 前置++和后置++的区别</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2017-06-28T09:27:34.000Z" itemprop="datePublished" class="post-time">
-  2017-06-28
-</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/C/">C++</a></li></ul>
-
-
-
-    </div>
-
-    <div class="post-content" id="post-content" itemprop="postContent" >
-
-    
-           前置++和后置++的区别  前置++和后置++在程序开发中使用十分频繁，那么你是否真正了解它们的区别呢？ 
- 其实++i相当于下面的代码： 
-      1  2      i +=  1 ;   return  i;      
- 而i++则相当于下面的代码： 
-      1  2  3      j = i;  i +=  1 ;   return  j;      
- 对于内建数据类
-    
-    
-        <a href="/2017/06/28/[C++] 前置++和后置++的区别/" class="post-more waves-effect waves-button">
-            阅读全文...
-        </a>
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前置/">前置++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/后置/">后置++</a></li></ul>
-
-</article>
-
-    </li>
-  
-    <li class="post-list-item">
-        <article id="post-[设计模式] 适配器模式"
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/06/28/[设计模式] 适配器模式/">[设计模式] 适配器模式</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2017-06-28T09:26:13.000Z" itemprop="datePublished" class="post-time">
-  2017-06-28
-</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/设计模式/">设计模式</a></li></ul>
-
-
-
-    </div>
-
-    <div class="post-content" id="post-content" itemprop="postContent" >
-
-    
-           C++中的适配器模式    一、为什么需要适配器模式  当你想使用一格现存的类，但是它的方法和你的要求不相同时，此时就需要使用适配器模式。 
-   二、适配器的作用是什么  适配器就是将一个类的接口转换成客户希望的另外一个接口，适配器模式使得原本由于接口不兼容而不能一起工作的类可以一起工作。 
-   三、适配器模式的分类  适配器模式可以分为两类，一种是类模式适配器，另一种是对象模式适配器。
-    
-    
-        <a href="/2017/06/28/[设计模式] 适配器模式/" class="post-more waves-effect waves-button">
-            阅读全文...
-        </a>
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-设计模式-适配器模式/">C++, 设计模式, 适配器模式</a></li></ul>
-
-</article>
-
-    </li>
-  
-    <li class="post-list-item">
-        <article id="post-[DB] 数据库将一个表中数据插入到另外一张表中"
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/06/28/[DB] 数据库将一个表中数据插入到另外一张表中/">[DB] 数据库将一个表中数据插入到另外一张表中</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2017-06-28T09:24:49.000Z" itemprop="datePublished" class="post-time">
-  2017-06-28
-</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/DB/">DB</a></li></ul>
-
-
-
-    </div>
-
-    <div class="post-content" id="post-content" itemprop="postContent" >
-
-    
-         
-  两张表中的字段一致，并且希望插入全部数据： 
-      1       INSERT   INTO  目标表  SELECT  *  FROM  来源表;      
- 
-  只导入指定字段： 
-      1       INSERT   INTO  目标表(字段 1 ,字段 2 ,...)  SELECT  字段 1 ,字段 2 ,...  FROM  来源表;      
- 
-  
-    
-    
-        <a href="/2017/06/28/[DB] 数据库将一个表中数据插入到另外一张表中/" class="post-more waves-effect waves-button">
-            阅读全文...
-        </a>
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DB/">DB</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/INSERT/">INSERT</a></li></ul>
 
 </article>
 

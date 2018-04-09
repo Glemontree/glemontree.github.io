@@ -3,26 +3,26 @@
 <head>
   <meta charset="utf-8">
   
-  <title>[DB] MySQL删除表中多余的重复记录 | Glemontree&#39;s blog | day day up!</title>
+  <title>[DB] InnoDB行级锁 | Glemontree&#39;s blog | day day up!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="theme-color" content="#3F51B5">
   
   
-  <meta name="keywords" content="group by,min,having">
-  <meta name="description" content="删除表中多余的重复记录，重复记录是根据单个字段peopleName来判断，只留有peopleId最小的记录：
-123delete from peoplewhere peopleName in (select peopleName from people group by peopleName having count(peopleName) &amp;gt; 1)and peopleId not in (">
+  <meta name="keywords" content="行级锁">
+  <meta name="description" content="InnoDB行锁是通过给索引上的索引项加锁来实现的，而Oracle是通过在数据块中对相应数据行加锁来实现的，这也意味着只有通过索引条件检索数据，InnoDB才使用行级锁，否则，InnoDB将使用表锁。
+本文转自mysql-行锁的实现。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[DB] MySQL删除表中多余的重复记录">
-<meta property="og:url" content="https://glemontree.github.io/2018/04/09/[DB] MySQL删除表中多余的重复记录/index.html">
+<meta property="og:title" content="[DB] InnoDB行级锁">
+<meta property="og:url" content="https://glemontree.github.io/2018/04/09/[DB] InnoDB行级锁/index.html">
 <meta property="og:site_name" content="Glemontree's blog">
-<meta property="og:description" content="删除表中多余的重复记录，重复记录是根据单个字段peopleName来判断，只留有peopleId最小的记录：
-123delete from peoplewhere peopleName in (select peopleName from people group by peopleName having count(peopleName) &amp;gt; 1)and peopleId not in (">
-<meta property="og:updated_time" content="2018-04-09T08:56:22.350Z">
+<meta property="og:description" content="InnoDB行锁是通过给索引上的索引项加锁来实现的，而Oracle是通过在数据块中对相应数据行加锁来实现的，这也意味着只有通过索引条件检索数据，InnoDB才使用行级锁，否则，InnoDB将使用表锁。
+本文转自mysql-行锁的实现。">
+<meta property="og:updated_time" content="2018-04-09T10:12:11.020Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[DB] MySQL删除表中多余的重复记录">
-<meta name="twitter:description" content="删除表中多余的重复记录，重复记录是根据单个字段peopleName来判断，只留有peopleId最小的记录：
-123delete from peoplewhere peopleName in (select peopleName from people group by peopleName having count(peopleName) &amp;gt; 1)and peopleId not in (">
+<meta name="twitter:title" content="[DB] InnoDB行级锁">
+<meta name="twitter:description" content="InnoDB行锁是通过给索引上的索引项加锁来实现的，而Oracle是通过在数据块中对相应数据行加锁来实现的，这也意味着只有通过索引条件检索数据，InnoDB才使用行级锁，否则，InnoDB将使用表锁。
+本文转自mysql-行锁的实现。">
   
     <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
   
@@ -113,7 +113,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">[DB] MySQL删除表中多余的重复记录</div>
+        <div class="flex-col header-title ellipsis">[DB] InnoDB行级锁</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -134,10 +134,10 @@
 </header>
 <header class="content-header">
   <div class="container">
-    <h1 class="author">[DB] MySQL删除表中多余的重复记录</h1>
+    <h1 class="author">[DB] InnoDB行级锁</h1>
     <h5 class="subtitle">
         
-            <time datetime="2018-04-09T08:50:47.000Z" itemprop="datePublished" class="page-time">
+            <time datetime="2018-04-09T10:08:18.000Z" itemprop="datePublished" class="page-time">
   2018-04-09
 </time>
 
@@ -150,11 +150,11 @@
 </header>
 
     <div class="container body-wrap">
-      <article id="post-[DB] MySQL删除表中多余的重复记录" 
+      <article id="post-[DB] InnoDB行级锁" 
   class="article article-type-post" itemprop="blogPost">
     <div class="post-meta flex-row">
         
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/group-by/">group by</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/having/">having</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/min/">min</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/行级锁/">行级锁</a></li></ul>
 
     </div>
     <div class="post-body">
@@ -209,8 +209,8 @@
         <div class="post-main">
 
             <div class="post-content" id="post-content" itemprop="postContent">
-            <p>删除表中多余的重复记录，重复记录是根据单个字段peopleName来判断，只留有peopleId最小的记录：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">delete</span> <span class="keyword">from</span> people</div><div class="line"><span class="keyword">where</span> peopleName <span class="keyword">in</span> (<span class="keyword">select</span> peopleName <span class="keyword">from</span> people <span class="keyword">group</span> <span class="keyword">by</span> peopleName <span class="keyword">having</span> <span class="keyword">count</span>(peopleName) &gt; <span class="number">1</span>)</div><div class="line"><span class="keyword">and</span> peopleId <span class="keyword">not</span> <span class="keyword">in</span> (<span class="keyword">select</span> <span class="keyword">min</span>(peopleId) <span class="keyword">from</span> people <span class="keyword">group</span> <span class="keyword">by</span> peopleName <span class="keyword">having</span> <span class="keyword">count</span>(peopleName) &gt; <span class="number">1</span>);</div></pre></td></tr></table></figure>
+            <p>InnoDB行锁是通过给索引上的索引项加锁来实现的，而Oracle是通过在数据块中对相应数据行加锁来实现的，这也意味着<strong>只有通过索引条件检索数据，InnoDB才使用行级锁，否则，InnoDB将使用表锁</strong>。</p>
+<p>本文转自<a href="https://blog.csdn.net/alexdamiao/article/details/52049993" target="_blank" rel="external">mysql-行锁的实现</a>。</p>
 
 
             
@@ -222,7 +222,7 @@
             <blockquote>
                 <p>
                 本文地址：
-                <a href="https://glemontree.github.io/2018/04/09/[DB] MySQL删除表中多余的重复记录/" target="_blank" rel="external">https://glemontree.github.io/2018/04/09/[DB] MySQL删除表中多余的重复记录/</a>
+                <a href="https://glemontree.github.io/2018/04/09/[DB] InnoDB行级锁/" target="_blank" rel="external">https://glemontree.github.io/2018/04/09/[DB] InnoDB行级锁/</a>
                 </p>
                 <footer><cite><a href="https://glemontree.github.io">@Glemontree's blog</a></cite></footer>
             </blockquote>
@@ -231,18 +231,18 @@
 <nav class="post-nav">
   
     <div class="waves-block waves-effect prev fl">
-      <a href="/2018/04/09/[DB] InnoDB行级锁/" id="post-prev" class="post-nav-link">
+      <a href="/2018/04/09/[Java] 负载均衡算法/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">[DB] InnoDB行级锁</h4>
+        <h4 class="title">[Java] 负载均衡算法</h4>
       </a>
     </div>
   
 
   
     <div class="waves-block waves-effect next fr">
-      <a href="/2018/04/09/[DB] MySQL中distinct的用法/" id="post-next" class="post-nav-link">
+      <a href="/2018/04/09/[DB] MySQL删除表中多余的重复记录/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">[DB] MySQL中distinct的用法</h4>
+        <h4 class="title">[DB] MySQL删除表中多余的重复记录</h4>
       </a>
     </div>
   
@@ -253,7 +253,7 @@
             
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="[DB] MySQL删除表中多余的重复记录" data-title="[DB] MySQL删除表中多余的重复记录" data-url="https://glemontree.github.io/2018/04/09/[DB] MySQL删除表中多余的重复记录/index.html"></div>
+	<div class="ds-thread" data-thread-key="[DB] InnoDB行级锁" data-title="[DB] InnoDB行级锁" data-url="https://glemontree.github.io/2018/04/09/[DB] InnoDB行级锁/index.html"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -309,10 +309,10 @@
 
 <script>
 var BLOG_SHARE = {
-    title: "[DB] MySQL删除表中多余的重复记录",
+    title: "[DB] InnoDB行级锁",
     pic: "/img/logo.jpg",
     summary: document.getElementsByName('summary')[0].content,
-    url: "https://glemontree.github.io/2018/04/09/[DB] MySQL删除表中多余的重复记录/index.html"
+    url: "https://glemontree.github.io/2018/04/09/[DB] InnoDB行级锁/index.html"
 };
 </script>
 <div class="global-share" id="global-share">

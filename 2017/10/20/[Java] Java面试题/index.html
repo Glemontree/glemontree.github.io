@@ -34,7 +34,7 @@ HashMap和">
 <meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/theory-of-mysql-index/10.png">
 <meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/theory-of-mysql-index/11.png">
 <meta property="og:image" content="http://xiaorui.cc/wp-content/uploads/2016/02/20160225170734_38211.jpg">
-<meta property="og:updated_time" content="2018-04-08T03:45:00.557Z">
+<meta property="og:updated_time" content="2018-04-09T10:07:50.228Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Java] Java面试题">
 <meta name="twitter:description" content="String类为什么是final的？
@@ -983,6 +983,14 @@ HashMap和">
 </li>
 <li><p>enum定义的类默认继承的是java.lang.Enum类而不是Object类，同时注意枚举类不能派生子类（类的默认修饰符是final），其原因是它只有private构造器。</p>
 <p>枚举类是包含有固定数量实例（并且实例的值也固定）的特殊类，如果其含有public构造器，那么在类的外部就可以通过这个构造器来新建实例，显然这时实例的数量和值不固定。</p>
+</li>
+<li><p>volatile修饰的变量进行写操作的时候会多一个lock前缀的指令，lock前缀的指令在多核处理器下会发生以下两件事情：</p>
+<ul>
+<li>将当前处理器缓存行的数据写回到系统内存</li>
+<li>这个写回操作会引起其他CPU里缓存了该内存地址的数据无效</li>
+</ul>
+</li>
+<li><p>select语句是不会对数据加锁，而select for update语句则会加行级锁：<a href="http://www.cnblogs.com/GreenLeaves/p/6576646.html" target="_blank" rel="external">select for update和select for update wait和select for update nowait的区别</a>。</p>
 <p>​</p>
 </li>
 </ul>
