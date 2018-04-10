@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  
-  <title>[Java] Java并发编程实战之基础构建模块 | Glemontree&#39;s blog | day day up!</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  
-  <meta name="theme-color" content="#3F51B5">
-  
-  
-  <meta name="keywords" content="Java 并发">
-  <meta name="description" content="同步容器类包括Vector和Hashtable以及Collections.synchronizedXxx等工厂方法创建的，这些类实现线程安全的方式是：将它们的状态封装起来，并对每个公有方法都进行同步，使得每次只有一个线程能访问容器的状态。
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>[Java] Java并发编程实战之基础构建模块 | Glemontree&#39;s blog | day day up!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Java 并发">
+    <meta name="description" content="同步容器类包括Vector和Hashtable以及Collections.synchronizedXxx等工厂方法创建的，这些类实现线程安全的方式是：将它们的状态封装起来，并对每个公有方法都进行同步，使得每次只有一个线程能访问容器的状态。
 
 同步容器类通过其自身的锁来保护它的每一个方法。
 
@@ -35,92 +46,96 @@
 
 看下面这种情况：
 123456789public static Object getlast(Vector">
-  
-    <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
-  
-  <meta name="summary" content="记录我学习的每一步">
-  <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css">
+    
+        <link rel="alternate" type="application/atom+xml" title="Glemontree&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
 </head>
 
 <body>
-  <div id="loading" class="active"></div>
+    <div id="loading" class="active"></div>
 
-  <nav id="menu" class="hide" >
-   <div class="inner flex-row-vertical">
-  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
-      <i class="icon icon-lg icon-close"></i>
-  </a>
-  <div class="brand-wrap">
-    <div class="brand">
-      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
-      <hgroup class="introduce">
-        <h5 class="nickname">Glemontree</h5>
-        <a href="mailto:glemontree@163.com" title="glemontree@163.com" class="mail">glemontree@163.com</a>
-      </hgroup>
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Glemontree</h5>
+          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
     </div>
   </div>
-  <div class="scroll-wrap flex-col">
-    <ul class="nav">
-      
-          <li class="waves-block waves-effect">
-            <a href="/"  >
-              <i class="icon icon-lg icon-home"></i>
-              主页
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="/archives"  >
-              <i class="icon icon-lg icon-archives"></i>
-              Archives
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="/tags"  >
-              <i class="icon icon-lg icon-tags"></i>
-              Tags
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="https://github.com/Glemontree" target="_blank" >
-              <i class="icon icon-lg icon-github"></i>
-              Github
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="http://www.weibo.com/glemontree" target="_blank" >
-              <i class="icon icon-lg icon-weibo"></i>
-              Weibo
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="/about" target="_blank" >
-              <i class="icon icon-lg icon-link"></i>
-              About
-            </a>
-          </li>
-      
-    </ul>
+</aside>
 
-    <footer class="footer">
-  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
-  <p>Glemontree&#39;s blog &copy; 2018</p>
-  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
-  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
-  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
-</footer>
-
-  </div>
-</div>
-
-  </nav>
-  <main id="main">
-    <header class="top-header" id="header">
+    <main id="main">
+        <header class="top-header" id="header">
     <div class="flex-row">
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
@@ -131,96 +146,66 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
         </div>
         
         
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
             <i class="icon icon-lg icon-share-alt"></i>
         </a>
         
     </div>
 </header>
-<header class="content-header">
-  <div class="container">
-    <h1 class="author">[Java] Java并发编程实战之基础构建模块</h1>
-    <h5 class="subtitle">
-        
-            <time datetime="2017-11-30T13:37:18.000Z" itemprop="datePublished" class="page-time">
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">[Java] Java并发编程实战之基础构建模块</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-11-30T13:37:18.000Z" itemprop="datePublished" class="page-time">
   2017-11-30
 </time>
 
 
 	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
 
-        
-    </h5>
-  </div>
+            
+        </h5>
+    </div>
+
+    
+
+
 </header>
 
-    <div class="container body-wrap">
-      <article id="post-[Java] Java并发编程实战之基础构建模块" 
-  class="article article-type-post" itemprop="blogPost">
-    <div class="post-meta flex-row">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java-并发/">Java 并发</a></li></ul>
 
-    </div>
-    <div class="post-body">
-        <aside class="post-widget" id="post-widget">
+<div class="container body-wrap">
+    
 
-            
-            <div class="post-share" id="post-share">
-    <div class="tit">分享到：</div>
-    <ul class="reset share-icons">
-      <li>
-        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      <li>
-        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      <li>
-        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      <li>
-        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
-          <i class="icon icon-facebook"></i>
-        </a>
-      </li>
-      <li>
-        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
-          <i class="icon icon-twitter"></i>
-        </a>
-      </li>
-      <li>
-        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
-          豆
-        </a>
-      </li>
-    </ul>
- </div>
+<article id="post-[Java] Java并发编程实战之基础构建模块"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">[Java] Java并发编程实战之基础构建模块</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-11-30 21:37:18" datetime="2017-11-30T13:37:18.000Z"  itemprop="datePublished">2017-11-30</time>
 
             
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
+
+
 
             
-            <nav class="post-toc-wrap" id="post-toc">
-            
-            </nav>
-            
-        </aside>
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
 
-        <div class="post-main">
 
-            <div class="post-content" id="post-content" itemprop="postContent">
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
             <ul>
 <li><p>同步容器类包括Vector和Hashtable以及Collections.synchronizedXxx等工厂方法创建的，这些类实现线程安全的方式是：将它们的状态封装起来，并对每个公有方法都进行同步，使得每次只有一个线程能访问容器的状态。</p>
 </li>
@@ -285,25 +270,97 @@
 </li>
 </ul>
 
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-12-01T14:20:36.368Z" itemprop="dateUpdated">2017-12-01 22:20:36</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/11/30/[Java] Java并发编程实战之基础构建模块/" target="_blank" rel="external">https://glemontree.github.io/2017/11/30/[Java] Java并发编程实战之基础构建模块/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://glemontree.github.io">
+            <img src="/img/avatar.jpg" alt="Glemontree">
+            Glemontree
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java-并发/">Java 并发</a></li></ul>
+
 
             
-            <div class="post-reward">
-                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
-            </div>
-            
-            
-            <blockquote>
-                <p>
-                本文地址：
-                <a href="https://glemontree.github.io/2017/11/30/[Java] Java并发编程实战之基础构建模块/" target="_blank" rel="external">https://glemontree.github.io/2017/11/30/[Java] Java并发编程实战之基础构建模块/</a>
-                </p>
-                <footer><cite><a href="https://glemontree.github.io">@Glemontree's blog</a></cite></footer>
-            </blockquote>
-            </div>
-            
-<nav class="post-nav">
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://glemontree.github.io/2017/11/30/[Java] Java并发编程实战之基础构建模块/&title=《[Java] Java并发编程实战之基础构建模块》 — Glemontree's blog&pic=https://glemontree.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://glemontree.github.io/2017/11/30/[Java] Java并发编程实战之基础构建模块/&title=《[Java] Java并发编程实战之基础构建模块》 — Glemontree's blog&source=记录我学习的每一步" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://glemontree.github.io/2017/11/30/[Java] Java并发编程实战之基础构建模块/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《[Java] Java并发编程实战之基础构建模块》 — Glemontree's blog&url=https://glemontree.github.io/2017/11/30/[Java] Java并发编程实战之基础构建模块/&via=https://glemontree.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://glemontree.github.io/2017/11/30/[Java] Java并发编程实战之基础构建模块/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
   
-    <div class="waves-block waves-effect prev fl">
+    <div class="waves-block waves-effect prev">
       <a href="/2017/12/02/[Java] Java并发编程实战之任务执行/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
         <h4 class="title">[Java] Java并发编程实战之任务执行</h4>
@@ -312,7 +369,7 @@
   
 
   
-    <div class="waves-block waves-effect next fr">
+    <div class="waves-block waves-effect next">
       <a href="/2017/11/30/[Java] Java并发编程实战之对象的组合/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
         <h4 class="title">[Java] Java并发编程实战之对象的组合</h4>
@@ -322,121 +379,154 @@
 </nav>
 
 
-            
-            
-<div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="[Java] Java并发编程实战之基础构建模块" data-title="[Java] Java并发编程实战之基础构建模块" data-url="https://glemontree.github.io/2017/11/30/[Java] Java并发编程实战之基础构建模块/index.html"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"ysblog"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
+
+    
 
 
 
 
 
-        </div>
-    </div>
+
+
+
+
+
+
+
+
+
+
+
+
 </article>
 
-<div id="reward" class="reward-lay">
-    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <h3 class="reward-title">
         <i class="icon icon-quote-left"></i>
-        谢谢打赏
+        谢谢大爷~
         <i class="icon icon-quote-right"></i>
     </h3>
-    <ul class="reward-items">
+    <div class="reward-content">
         
-        <li>
-            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
-            <p>微信</p>
-        </li>
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
         
-
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
         
-        <li>
-            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
-            <p>支付宝</p>
-        </li>
-        
-    </ul>
+    </div>
 </div>
 
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
     </div>
-  </main>
-<div class="mask" id="mask"></div>
+    <div class="bottom">
+        <p><span>Glemontree &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
-<script>
-var BLOG_SHARE = {
-    title: "[Java] Java并发编程实战之基础构建模块",
-    pic: "/img/logo.jpg",
-    summary: document.getElementsByName('summary')[0].content,
-    url: "https://glemontree.github.io/2017/11/30/[Java] Java并发编程实战之基础构建模块/index.html"
-};
-</script>
-<div class="global-share" id="global-share">
-    <div class="tit">分享到：</div>
+
+
+<div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://glemontree.github.io/2017/11/30/[Java] Java并发编程实战之基础构建模块/&title=《[Java] Java并发编程实战之基础构建模块》 — Glemontree's blog&pic=https://glemontree.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
       <li>
-        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
           <i class="icon icon-weixin"></i>
         </a>
       </li>
       <li>
-        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://glemontree.github.io/2017/11/30/[Java] Java并发编程实战之基础构建模块/&title=《[Java] Java并发编程实战之基础构建模块》 — Glemontree's blog&source=记录我学习的每一步" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://glemontree.github.io/2017/11/30/[Java] Java并发编程实战之基础构建模块/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《[Java] Java并发编程实战之基础构建模块》 — Glemontree's blog&url=https://glemontree.github.io/2017/11/30/[Java] Java并发编程实战之基础构建模块/&via=https://glemontree.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
-          豆
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://glemontree.github.io/2017/11/30/[Java] Java并发编程实战之基础构建模块/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
         </a>
       </li>
     </ul>
  </div>
 
 
-<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADH0lEQVR42u3awXLiQAwE0Pz/T7PXVFGQbsnZiofnk4sEZp45CKnn6yu+Ht+u59ef79+/8updyf3z5zz/9bILGxsb+ybsx9vr/XZfLfme1z642a5+eDTY2NjYx7Gv3VBewGYl8/2DeG/BxsbGxm4Z+UaTorjZJzY2Njb2e9hmK0kpylsRbGxs7M9kt2UmaSQ2Q6u8Rfn1WRo2Njb2n2fnqejfv/+VfBsbGxv7D7Mf5ZU0MO3gKQlrZ7t9qcDGxsY+iN22FsmP+3z0P4sfZm0GNjY29iew29HS/wyJZzHDD48DGxsb+yD2/vBNXpySI5VteLwqctjY2NhHsNsmYTayT0ZUeYi7DzawsbGxz2AnP+43RSj5zP3xoHYtbGxs7PPYeftxVUHKY92I0cbP2NjY2Iey9wd0NlFB+2W07yoiXmxsbOxbsfNBzOzRzMreLAy4YAiFjY2NfVt22zDMUoj2GNDmc6L9Y2NjYx/Eng39Z+VnVoTa0VLRhGBjY2Mfx86p+WKb6DcpeJsYAxsbG/skdrJ8OxiabagdEl12cBMbGxv7huw9qY0B2qB39nCjWo2NjY19EPuyn/Kj0c8mlhi2TNjY2NjHsfOgd1gwRody2taoKMnY2NjYB7FnMW0S9O4LUjsJm4UK2NjY2Hdn5wu0JS3f3CY2nu0BGxsb+yR2QmoH+tce7tk/xLqMYWNjY9+KPQt6N61FvmIbCRT/iY2NjX0Qu10gB2yC5Pyht6EvNjY29nnsfdBbHJQph1btcZ8iusDGxsY+iH3tkrNmIy887ZEgbGxs7E9jJ1uZxQNJW/Ior+EgCRsbG/sj2fnCs3i4LVd52fth59jY2NjHsduf+JsYuI0E8pajuLCxsbGPYG8agE14kO+tbWyKJgQbGxv7CPamyOUFLL+/aly1GjZhY2Nj35CdFK1N49GGxPvGJiqZ2NjY2Mexf2N8nxe2ZOuzNuPll4GNjY398ez9mL6NDa46EoSNjY2NnccAbYOxGVrVZQwbGxv7OHZSMPJ49ary0+6tiJ+xsbGxD2LPDtDko59NgWyHUPVoCRsbG/ve7H+0QvcTBQyzFwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
 
-<script src="/js/main.js"></script>
 
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
 
 
 <div class="search-panel" id="search-panel">
     <ul class="search-result" id="search-result"></ul>
 </div>
-<script type="text/template" id="search-tpl">
+<template id="search-tpl">
 <li class="item">
-    <a href="/{path}" class="waves-block waves-effect">
+    <a href="{path}" class="waves-block waves-effect">
         <div class="title ellipsis" title="{title}">{title}</div>
         <div class="flex-row flex-middle">
             <div class="tags ellipsis">
@@ -446,15 +536,35 @@ var BLOG_SHARE = {
         </div>
     </a>
 </li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
 </script>
-
-<script src="/js/search.js"></script>
-
-
-
-
-
-
 
 
 

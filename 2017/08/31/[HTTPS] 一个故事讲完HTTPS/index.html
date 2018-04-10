@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  
-  <title>[HTTPS] 一个故事讲完HTTPS | Glemontree&#39;s blog | day day up!</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  
-  <meta name="theme-color" content="#3F51B5">
-  
-  
-  <meta name="keywords" content="HTTPS、对称加密、非对称加密">
-  <meta name="description" content="说在前面本文来自：码农翻身（微信号：coderising），本文是我在Java编程公众号（公众号：JavaCoder1024）上看到的，觉得写得很形象生动因此转载下载做个记录！
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>[HTTPS] 一个故事讲完HTTPS | Glemontree&#39;s blog | day day up!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="HTTPS、对称加密、非对称加密">
+    <meta name="description" content="说在前面本文来自：码农翻身（微信号：coderising），本文是我在Java编程公众号（公众号：JavaCoder1024）上看到的，觉得写得很形象生动因此转载下载做个记录！
 序言今天来聊一聊HTTPS安全传输的原理。
 在开始之前，我们来虚构两个人物， 一个是位于中国的张大胖（怎么又是你？！）， 还有一个是位于米国的Bill (怎么还是你？！)。
 这俩哥们隔着千山万水，通过网络联系上了， 两个人">
@@ -43,92 +54,96 @@
 在开始之前，我们来虚构两个人物， 一个是位于中国的张大胖（怎么又是你？！）， 还有一个是位于米国的Bill (怎么还是你？！)。
 这俩哥们隔着千山万水，通过网络联系上了， 两个人">
 <meta name="twitter:image" content="https://mmbiz.qpic.cn/mmbiz_png/KyXfCrME6UJFk4ma5Y5g5wIeggZaCZ3xEtI3NKKgVfhvEbTHU2XMhepPaIdvRKsLmGzUb1Sk1BrCyhbGGS4XFQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
-  
-    <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
-  
-  <meta name="summary" content="记录我学习的每一步">
-  <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css">
+    
+        <link rel="alternate" type="application/atom+xml" title="Glemontree&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
 </head>
 
 <body>
-  <div id="loading" class="active"></div>
+    <div id="loading" class="active"></div>
 
-  <nav id="menu" class="hide" >
-   <div class="inner flex-row-vertical">
-  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
-      <i class="icon icon-lg icon-close"></i>
-  </a>
-  <div class="brand-wrap">
-    <div class="brand">
-      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
-      <hgroup class="introduce">
-        <h5 class="nickname">Glemontree</h5>
-        <a href="mailto:glemontree@163.com" title="glemontree@163.com" class="mail">glemontree@163.com</a>
-      </hgroup>
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Glemontree</h5>
+          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
     </div>
   </div>
-  <div class="scroll-wrap flex-col">
-    <ul class="nav">
-      
-          <li class="waves-block waves-effect">
-            <a href="/"  >
-              <i class="icon icon-lg icon-home"></i>
-              主页
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="/archives"  >
-              <i class="icon icon-lg icon-archives"></i>
-              Archives
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="/tags"  >
-              <i class="icon icon-lg icon-tags"></i>
-              Tags
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="https://github.com/Glemontree" target="_blank" >
-              <i class="icon icon-lg icon-github"></i>
-              Github
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="http://www.weibo.com/glemontree" target="_blank" >
-              <i class="icon icon-lg icon-weibo"></i>
-              Weibo
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="/about" target="_blank" >
-              <i class="icon icon-lg icon-link"></i>
-              About
-            </a>
-          </li>
-      
-    </ul>
+</aside>
 
-    <footer class="footer">
-  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
-  <p>Glemontree&#39;s blog &copy; 2018</p>
-  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
-  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
-  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
-</footer>
-
-  </div>
-</div>
-
-  </nav>
-  <main id="main">
-    <header class="top-header" id="header">
+    <main id="main">
+        <header class="top-header" id="header">
     <div class="flex-row">
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
@@ -139,96 +154,73 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
         </div>
         
         
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
             <i class="icon icon-lg icon-share-alt"></i>
         </a>
         
     </div>
 </header>
-<header class="content-header">
-  <div class="container">
-    <h1 class="author">[HTTPS] 一个故事讲完HTTPS</h1>
-    <h5 class="subtitle">
-        
-            <time datetime="2017-08-31T05:38:44.000Z" itemprop="datePublished" class="page-time">
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">[HTTPS] 一个故事讲完HTTPS</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-08-31T05:38:44.000Z" itemprop="datePublished" class="page-time">
   2017-08-31
 </time>
 
 
 	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/HTTPS/">HTTPS</a></li></ul>
 
-        
-    </h5>
-  </div>
+            
+        </h5>
+    </div>
+
+    
+
+
 </header>
 
-    <div class="container body-wrap">
-      <article id="post-[HTTPS] 一个故事讲完HTTPS" 
-  class="article article-type-post" itemprop="blogPost">
-    <div class="post-meta flex-row">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTTPS、对称加密、非对称加密/">HTTPS、对称加密、非对称加密</a></li></ul>
 
-    </div>
-    <div class="post-body">
-        <aside class="post-widget" id="post-widget">
-
-            
-            <div class="post-share" id="post-share">
-    <div class="tit">分享到：</div>
-    <ul class="reset share-icons">
-      <li>
-        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      <li>
-        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      <li>
-        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      <li>
-        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
-          <i class="icon icon-facebook"></i>
-        </a>
-      </li>
-      <li>
-        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
-          <i class="icon icon-twitter"></i>
-        </a>
-      </li>
-      <li>
-        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
-          豆
-        </a>
-      </li>
-    </ul>
- </div>
-
-            
-
-            
-            <nav class="post-toc-wrap" id="post-toc">
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
             <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#说在前面"><span class="post-toc-number">1.</span> <span class="post-toc-text">说在前面</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#序言"><span class="post-toc-number">2.</span> <span class="post-toc-text">序言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总是有一种被偷看的感觉"><span class="post-toc-number">3.</span> <span class="post-toc-text">总是有一种被偷看的感觉</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#RSA-非对称加密"><span class="post-toc-number">4.</span> <span class="post-toc-text">RSA : 非对称加密</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#非对称加密-对称加密"><span class="post-toc-number">5.</span> <span class="post-toc-text">非对称加密+对称加密</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#中间人攻击"><span class="post-toc-number">6.</span> <span class="post-toc-text">中间人攻击</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#你到底是谁？"><span class="post-toc-number">7.</span> <span class="post-toc-text">你到底是谁？</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#HTTPS"><span class="post-toc-number">8.</span> <span class="post-toc-text">HTTPS</span></a></li></ol>
-            </nav>
+        </nav>
+    </aside>
+
+
+<article id="post-[HTTPS] 一个故事讲完HTTPS"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">[HTTPS] 一个故事讲完HTTPS</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-08-31 13:38:44" datetime="2017-08-31T05:38:44.000Z"  itemprop="datePublished">2017-08-31</time>
+
             
-        </aside>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/HTTPS/">HTTPS</a></li></ul>
 
-        <div class="post-main">
 
-            <div class="post-content" id="post-content" itemprop="postContent">
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
             <h2 id="说在前面"><a href="#说在前面" class="headerlink" title="说在前面"></a>说在前面</h2><p>本文来自：码农翻身（微信号：coderising），本文是我在<strong>Java编程</strong>公众号（公众号：JavaCoder1024）上看到的，觉得写得很形象生动因此转载下载做个记录！</p>
 <h2 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h2><p>今天来聊一聊HTTPS安全传输的原理。</p>
 <p>在开始之前，我们来虚构两个人物， 一个是位于中国的张大胖（怎么又是你？！）， 还有一个是位于米国的Bill (怎么还是你？！)。</p>
@@ -240,7 +232,13 @@
 <h2 id="总是有一种被偷看的感觉"><a href="#总是有一种被偷看的感觉" class="headerlink" title="总是有一种被偷看的感觉"></a>总是有一种被偷看的感觉</h2><p>有一天， Bill 突然意识到： 坏了， 我们的通信是明文的， 这简直就是网络上裸奔啊， 任何一个不怀好意的家伙都可以监听我们通信，打开我们发送的数据包，窥探我们的隐私啊。</p>
 <p>张大胖说： “你不早点说，我刚才是不是把我的微信号给你发过去了？ 我是不是告诉你我上周去哪儿旅游了?   估计已经被人截取了吧！”</p>
 <p>Bill  提议： “要不我们做个数据的加密？ 每次传输之前， 你把消息用一个加密算法加密， 然后发到我这里以后我再解密， 这样别人就无法偷窥了，像这样： ”</p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/KyXfCrME6UJFk4ma5Y5g5wIeggZaCZ3xEtI3NKKgVfhvEbTHU2XMhepPaIdvRKsLmGzUb1Sk1BrCyhbGGS4XFQ/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://mmbiz.qpic.cn/mmbiz_png/KyXfCrME6UJFk4ma5Y5g5wIeggZaCZ3xEtI3NKKgVfhvEbTHU2XMhepPaIdvRKsLmGzUb1Sk1BrCyhbGGS4XFQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
 <p>张大胖冰雪聪明，一看就明白了， 这加密和解密算法是公开的，那个密钥是保密的， 只有两人才知道， 这样生成的加密消息（密文） 别人就无法得知了。 他说： “Bill 老兄，你生成一个密钥， 然后把密钥发给我， 咱们这就开启加密消息， 让那些偷窥狂人们哭去吧！”</p>
 <p>（码农翻身注：这叫对称加密算法， 因为加密和解密用的是同一个密钥）</p>
 <p>一炷香功夫过去了， Bill 还是没有回音， 张大胖忍不住地催促： “快发啊？！！！”</p>
@@ -253,9 +251,21 @@
 <h2 id="RSA-非对称加密"><a href="#RSA-非对称加密" class="headerlink" title="RSA : 非对称加密"></a>RSA : 非对称加密</h2><p>Bill 和 张大胖的通信无法加密，说话谨慎了不少， 直到有一天， 他们听说了一个叫做RSA的非对称加密算法，一下子来了灵感。</p>
 <p>这个RSA算法非常有意思，它不是像之前的算法， 双方必须协商一个保密的密钥， 而是有一对儿钥匙， 一个是保密的，称为私钥，另外一个是公开的，称为公钥。</p>
 <p>更有意思的是，<strong>用私钥加密的数据，只有对应的公钥才能解密，用公钥加密的数据， 只有对应的私钥才能解密</strong>。</p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/KyXfCrME6UJFk4ma5Y5g5wIeggZaCZ3xVesHvBMLguuoJuPmFZs3AJW0z2DFPdXibo3GYiab9D8s8JwmolDAIt0g/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://mmbiz.qpic.cn/mmbiz_png/KyXfCrME6UJFk4ma5Y5g5wIeggZaCZ3xVesHvBMLguuoJuPmFZs3AJW0z2DFPdXibo3GYiab9D8s8JwmolDAIt0g/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
 <p>有了这两个漂亮的特性， 当张大胖给Bill发消息的时候， 就可以先用Bill的公钥去加密（反正Bill的公钥是公开的，地球人都知道）， 等到消息被Bill 收到后， 他就可以用自己的私钥去解密（只有Bill才能解开，私钥是保密的 ）</p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/KyXfCrME6UJFk4ma5Y5g5wIeggZaCZ3xl7E009LNibq0X9Qwt7rapNbUSxFZ2KuRSD0lNvu7zAv8fmADaia2r0aA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://mmbiz.qpic.cn/mmbiz_png/KyXfCrME6UJFk4ma5Y5g5wIeggZaCZ3xl7E009LNibq0X9Qwt7rapNbUSxFZ2KuRSD0lNvu7zAv8fmADaia2r0aA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
 <p>反过来也是如此， 当Bill 想给张大胖发消息的时候，就用张大胖的公钥加密， 张大胖收到后，就用自己的私钥解密。</p>
 <p>这样以来，通信安全固若金汤， 没有任何人能窥探他们的小秘密了。</p>
 <h2 id="非对称加密-对称加密"><a href="#非对称加密-对称加密" class="headerlink" title="非对称加密+对称加密"></a>非对称加密+对称加密</h2><p>两人实验了几次，  张大胖说： “Bill  , 你有没有感觉这个RSA的加密和解密有点慢啊？”</p>
@@ -268,7 +278,13 @@
 <p>张大胖着急地辩解说：“肯定是他啊，我都有他的公钥，我们俩的通信都是加密的。”</p>
 <p>老婆提醒道：＂假如啊，Bill给你发公钥的时候， 有个中间人，截取了Bill的公钥， 然后把自己的公钥发给了你，冒充Bill ，你发的消息就用中间人的公钥加了密，　那中间人不就可以解密看到消息了？＂</p>
 <p>张大胖背后出汗了，是啊，这个中间人解密以后，还可以用Bill的公钥加密，发给Bill ,  Bill和我根本都意识不到， 还以为我们在安全传输呢！</p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/KyXfCrME6UJFk4ma5Y5g5wIeggZaCZ3x2XHzfjYrw1jXdzzVFbKTz1PVKXOC4UiaI1P5PVqpRfrYCng25yyLJYA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://mmbiz.qpic.cn/mmbiz_png/KyXfCrME6UJFk4ma5Y5g5wIeggZaCZ3x2XHzfjYrw1jXdzzVFbKTz1PVKXOC4UiaI1P5PVqpRfrYCng25yyLJYA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
 <p><strong>看来问题出现在公钥的分发上</strong>！  虽然这个东西是公开的， 但是在别有用心的人看来，截取以后还可以干坏事 ！</p>
 <h2 id="你到底是谁？"><a href="#你到底是谁？" class="headerlink" title="你到底是谁？"></a>你到底是谁？</h2><p>但是怎么安全地分发公钥呢？ 似乎又回到了最初的问题： 怎么安全的保护密钥？</p>
 <p>可是似乎和最初的问题还不一样，这一次的公钥不用保密，但是一定得有个办法声明这个公钥确实是Bill的， 而不是别人的。</p>
@@ -280,50 +296,176 @@
 <p>张大胖心里不由地咒骂起来： 我操， 这简直就是鸡生蛋，蛋生鸡的问题啊。</p>
 <p>天无绝人之路， 张大胖很快就找到了突破口： <strong>数字签名</strong>。</p>
 <p>简单来讲是这样的， Bill可以把他的公钥和个人信息用一个Hash算法生成一个消息摘要， 这个Hash算法有个极好的特性，<strong>只要输入数据有一点点变化，那生成的消息摘要就会有巨变</strong>，这样就可以防止别人修改原始内容。</p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/KyXfCrME6UJFk4ma5Y5g5wIeggZaCZ3xz65YB4HHCtgIRdk20CwxjreqriatpLWV8wDWIwzRaqVm32zmCibSiacOQ/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://mmbiz.qpic.cn/mmbiz_png/KyXfCrME6UJFk4ma5Y5g5wIeggZaCZ3xz65YB4HHCtgIRdk20CwxjreqriatpLWV8wDWIwzRaqVm32zmCibSiacOQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
 <p>可是作为攻击者的中间人笑了： “虽然我没办法改公钥，但是我可以把整个原始信息都替换了， 生成一个新的消息摘要， 你不还是辨别不出来？”</p>
 <p>张大胖说你别得意的太早 ， 我们会让有公信力的认证中心（<strong>简称CA</strong>）用它的私钥对消息摘要加密，形成签名：</p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/KyXfCrME6UJFk4ma5Y5g5wIeggZaCZ3xuNMsricMF31LBK90LMefWibW7zJPOpoYZgJ594g5tI5JIBuyFudcmjiaQ/640?wx_fmt=gif&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/KyXfCrME6UJFk4ma5Y5g5wIeggZaCZ3xcHCS1Za6RllQr302IB7kibtADRFiaRFXj66eUPHhOicZsoJdicJibmU1Hfw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://mmbiz.qpic.cn/mmbiz_png/KyXfCrME6UJFk4ma5Y5g5wIeggZaCZ3xuNMsricMF31LBK90LMefWibW7zJPOpoYZgJ594g5tI5JIBuyFudcmjiaQ/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://mmbiz.qpic.cn/mmbiz_png/KyXfCrME6UJFk4ma5Y5g5wIeggZaCZ3xcHCS1Za6RllQr302IB7kibtADRFiaRFXj66eUPHhOicZsoJdicJibmU1Hfw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
 <p>这还不算， 还把原始信息和数据签名合并， 形成一个全新的东西，叫做“数字证书”</p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/KyXfCrME6UJFk4ma5Y5g5wIeggZaCZ3xviaVAYDBOyh06flLQcibdyVHiawCDRyjBOZ8kA40kMoQk4WPydvq0U9hA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/KyXfCrME6UJFk4ma5Y5g5wIeggZaCZ3xuNMsricMF31LBK90LMefWibW7zJPOpoYZgJ594g5tI5JIBuyFudcmjiaQ/640?wx_fmt=gif&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://mmbiz.qpic.cn/mmbiz_png/KyXfCrME6UJFk4ma5Y5g5wIeggZaCZ3xviaVAYDBOyh06flLQcibdyVHiawCDRyjBOZ8kA40kMoQk4WPydvq0U9hA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://mmbiz.qpic.cn/mmbiz_png/KyXfCrME6UJFk4ma5Y5g5wIeggZaCZ3xuNMsricMF31LBK90LMefWibW7zJPOpoYZgJ594g5tI5JIBuyFudcmjiaQ/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
 <p>张大胖接着说：当Bill把他的证书发给我的时候， 我就用同样的Hash 算法， 再次生成消息摘要，然后用CA的公钥对数字签名解密， 得到CA创建的消息摘要， 两者一比，就知道有没有人篡改了！</p>
 <p>如果没人篡改， 我就可以安全的拿到Bill的公钥喽，有了公钥， 后序的加密工作就可以开始了。</p>
 <p>虽然很费劲， 但是为了防范你们这些偷窥者，实在是没办法啊。</p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/KyXfCrME6UJFk4ma5Y5g5wIeggZaCZ3x1n4IwPsiaF62PuK3aASF76C3ortagdYyFs8gUic6aJr9ibwyj2quFCMjQ/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/KyXfCrME6UJFk4ma5Y5g5wIeggZaCZ3xuNMsricMF31LBK90LMefWibW7zJPOpoYZgJ594g5tI5JIBuyFudcmjiaQ/640?tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://mmbiz.qpic.cn/mmbiz_png/KyXfCrME6UJFk4ma5Y5g5wIeggZaCZ3x1n4IwPsiaF62PuK3aASF76C3ortagdYyFs8gUic6aJr9ibwyj2quFCMjQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://mmbiz.qpic.cn/mmbiz_png/KyXfCrME6UJFk4ma5Y5g5wIeggZaCZ3xuNMsricMF31LBK90LMefWibW7zJPOpoYZgJ594g5tI5JIBuyFudcmjiaQ/640?tp=webp&wxfrom=5&wx_lazy=1" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
 <p>中间人恶狠狠地说： “算你小子狠！ 等着吧，我还有别的招。 对了，我且问你， 你这个CA的公钥怎么拿到？　难道不怕我在你传输ＣＡ公钥的时候发起中间人攻击吗？　如果我成功的伪装成了ＣＡ，你这一套体系彻底玩完。”</p>
 <p>张大胖语塞了，折腾了半天，又回到了公钥安全传输的问题！</p>
 <p>不过转念一想，想解决鸡生蛋，蛋生鸡的问题必须得打破这个怪圈才行，我必须得信任ＣＡ，并且通过安全的的方式获取他们的公钥，这样才能把游戏玩下去。</p>
 <p>（注：这些ＣＡ本身也有证书来证明自己的身份，并且ＣＡ的信用是像树一样分级的，高层的ＣＡ给底层的ＣＡ做信用背书，而操作系统／浏览器中会内置一些顶层的ＣＡ的证书，相当于你自动信任了他们。　这些顶层的ＣＡ证书一定得安全地放入操作系统／浏览器当中，否则世界大乱。）</p>
 <h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><p>终于可以介绍HTTPS了，前面已经介绍了HTTPS的原理， 你把张大胖替换成浏览器， 把Bill 替换成某个网站就行了。</p>
 <p>一个<strong>简化的（例如下图没有包含Pre-Master Secret）</strong>HTTPS流程图是这样的， 如果你理解了前面的原理，这张图就变得非常简单：</p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/KyXfCrME6UJFk4ma5Y5g5wIeggZaCZ3xKYfzxv54kPQ9q9SKRPHpnVib9MF6MfPcLJgej3wicCVZSicUMNzoVasiaA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://mmbiz.qpic.cn/mmbiz_png/KyXfCrME6UJFk4ma5Y5g5wIeggZaCZ3xKYfzxv54kPQ9q9SKRPHpnVib9MF6MfPcLJgej3wicCVZSicUMNzoVasiaA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
 <blockquote>
 <p>来自：码农翻身（微信号：coderising）</p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/KyXfCrME6UJI2DR5NKoJQL1SeaBFo3Scibtnicedec4T3HZOVYBJEQYpd7z12xcgXGyE3qGktEBATOmAyWowouQA/0.jpeg?tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="img"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://mmbiz.qpic.cn/mmbiz_jpg/KyXfCrME6UJI2DR5NKoJQL1SeaBFo3Scibtnicedec4T3HZOVYBJEQYpd7z12xcgXGyE3qGktEBATOmAyWowouQA/0.jpeg?tp=webp&wxfrom=5&wx_lazy=1" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
 </blockquote>
 
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-08-31T05:51:36.823Z" itemprop="dateUpdated">2017-08-31 13:51:36</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/08/31/[HTTPS] 一个故事讲完HTTPS/" target="_blank" rel="external">https://glemontree.github.io/2017/08/31/[HTTPS] 一个故事讲完HTTPS/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://glemontree.github.io">
+            <img src="/img/avatar.jpg" alt="Glemontree">
+            Glemontree
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTTPS、对称加密、非对称加密/">HTTPS、对称加密、非对称加密</a></li></ul>
+
 
             
-            <div class="post-reward">
-                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
-            </div>
-            
-            
-            <blockquote>
-                <p>
-                本文地址：
-                <a href="https://glemontree.github.io/2017/08/31/[HTTPS] 一个故事讲完HTTPS/" target="_blank" rel="external">https://glemontree.github.io/2017/08/31/[HTTPS] 一个故事讲完HTTPS/</a>
-                </p>
-                <footer><cite><a href="https://glemontree.github.io">@Glemontree's blog</a></cite></footer>
-            </blockquote>
-            </div>
-            
-<nav class="post-nav">
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://glemontree.github.io/2017/08/31/[HTTPS] 一个故事讲完HTTPS/&title=《[HTTPS] 一个故事讲完HTTPS》 — Glemontree's blog&pic=https://glemontree.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://glemontree.github.io/2017/08/31/[HTTPS] 一个故事讲完HTTPS/&title=《[HTTPS] 一个故事讲完HTTPS》 — Glemontree's blog&source=记录我学习的每一步" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://glemontree.github.io/2017/08/31/[HTTPS] 一个故事讲完HTTPS/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《[HTTPS] 一个故事讲完HTTPS》 — Glemontree's blog&url=https://glemontree.github.io/2017/08/31/[HTTPS] 一个故事讲完HTTPS/&via=https://glemontree.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://glemontree.github.io/2017/08/31/[HTTPS] 一个故事讲完HTTPS/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
   
-    <div class="waves-block waves-effect prev fl">
+    <div class="waves-block waves-effect prev">
       <a href="/2017/09/05/[IntelliJ IDEA] IntelliJ IDEA 源值1.5已过时，将在未来所有版本中删除/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
         <h4 class="title">[IntelliJ IDEA] IntelliJ IDEA 源值1.5已过时，将在未来所有版本中删除</h4>
@@ -332,7 +474,7 @@
   
 
   
-    <div class="waves-block waves-effect next fr">
+    <div class="waves-block waves-effect next">
       <a href="/2017/08/31/[JQuery] JQuery第八课/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
         <h4 class="title">[JQuery] JQuery第八课</h4>
@@ -342,121 +484,154 @@
 </nav>
 
 
-            
-            
-<div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="[HTTPS] 一个故事讲完HTTPS" data-title="[HTTPS] 一个故事讲完HTTPS" data-url="https://glemontree.github.io/2017/08/31/[HTTPS] 一个故事讲完HTTPS/index.html"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"ysblog"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
+
+    
 
 
 
 
 
-        </div>
-    </div>
+
+
+
+
+
+
+
+
+
+
+
+
 </article>
 
-<div id="reward" class="reward-lay">
-    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <h3 class="reward-title">
         <i class="icon icon-quote-left"></i>
-        谢谢打赏
+        谢谢大爷~
         <i class="icon icon-quote-right"></i>
     </h3>
-    <ul class="reward-items">
+    <div class="reward-content">
         
-        <li>
-            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
-            <p>微信</p>
-        </li>
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
         
-
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
         
-        <li>
-            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
-            <p>支付宝</p>
-        </li>
-        
-    </ul>
+    </div>
 </div>
 
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
     </div>
-  </main>
-<div class="mask" id="mask"></div>
+    <div class="bottom">
+        <p><span>Glemontree &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
-<script>
-var BLOG_SHARE = {
-    title: "[HTTPS] 一个故事讲完HTTPS",
-    pic: "/img/logo.jpg",
-    summary: document.getElementsByName('summary')[0].content,
-    url: "https://glemontree.github.io/2017/08/31/[HTTPS] 一个故事讲完HTTPS/index.html"
-};
-</script>
-<div class="global-share" id="global-share">
-    <div class="tit">分享到：</div>
+
+
+<div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://glemontree.github.io/2017/08/31/[HTTPS] 一个故事讲完HTTPS/&title=《[HTTPS] 一个故事讲完HTTPS》 — Glemontree's blog&pic=https://glemontree.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
       <li>
-        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
           <i class="icon icon-weixin"></i>
         </a>
       </li>
       <li>
-        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://glemontree.github.io/2017/08/31/[HTTPS] 一个故事讲完HTTPS/&title=《[HTTPS] 一个故事讲完HTTPS》 — Glemontree's blog&source=记录我学习的每一步" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://glemontree.github.io/2017/08/31/[HTTPS] 一个故事讲完HTTPS/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《[HTTPS] 一个故事讲完HTTPS》 — Glemontree's blog&url=https://glemontree.github.io/2017/08/31/[HTTPS] 一个故事讲完HTTPS/&via=https://glemontree.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
-          豆
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://glemontree.github.io/2017/08/31/[HTTPS] 一个故事讲完HTTPS/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
         </a>
       </li>
     </ul>
  </div>
 
 
-<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACvklEQVR42u3aQU4kMQwF0L7/pUFiNSNI8W3HMCO9WrWgleSlpcRl+/WKn7eP5/SXtz+ez985/fc0zmnM0wgXHjw8PLzW0k/P89D5lBPG6TvPa8bDw8Pb5uULyqesAvKLp7DdeHh4eL/Ke54mD7InkTAeHh7e/8XLSVGwGyQsknnx8PDwfouXHMT5d/LDvZekWMm14OHh4dXO51ES9uc/L9b38PDw8AZV9TwdkC9iPkthBDw8PLwF3nPKNVni3UXnKZLChYGHh4d3lffcEJCX/CeYJKGQpzP+mhEPDw9vmZeXqW5lPqolsXyjX/n9g4eHhzfgJe1W1axpldcL1pv7h4eHhzfmVQ/i/MKYp2KTUPuL2fHw8PAWePlZOg++k3HykfO0Lx4eHt5d3rzkP9mIHnL0W+Hh4eEt8Kol/KQFYZKWra6tnKXGw8PDK/LyBqx5A0FvoXkgjoeHh/czvPy1v5darbZk5bCoqQsPDw9vjTefspfaqF4M1ZAdDw8Pb4N39yC+lc6YNyXg4eHh7fGqL/nV8n+19JUXwCIkHh4e3gIvP+hvXRK98lU1nVHoI8PDw8O7xEs+58d3NeDON6XwxoCHh4d3lddLpOZNBvnWNPsdqnE3Hh4e3oA3L9tX0xa3krnRduPh4eEt8Oav+r00bjVo7rU44OHh4e3xkqA2wVRTGNXR8hJaOaWLh4eHV+TNj+neonsJjupPgoeHh7fHS66EvMyft1VtZKaPbwx4eHh4Y97koK8GwflVUU1zHGfHw8PDW+D1bpLeRkyaFe42geHh4eHNebcW2kva5od7r60BDw8Pb483KYZVGwWS7+c32DcrwcPDw/sneb1Ggfzor14Sly8GPDw8vAEvL2hVw9/88qj+HQ8PD2+PV11WXrLKg/JeqeybdAkeHh7eAm9SAOstPU9G9MpgeHh4eGu8d+hdxpuRuWXLAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
 
-<script src="/js/main.js"></script>
 
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
 
 
 <div class="search-panel" id="search-panel">
     <ul class="search-result" id="search-result"></ul>
 </div>
-<script type="text/template" id="search-tpl">
+<template id="search-tpl">
 <li class="item">
-    <a href="/{path}" class="waves-block waves-effect">
+    <a href="{path}" class="waves-block waves-effect">
         <div class="title ellipsis" title="{title}">{title}</div>
         <div class="flex-row flex-middle">
             <div class="tags ellipsis">
@@ -466,15 +641,35 @@ var BLOG_SHARE = {
         </div>
     </a>
 </li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
 </script>
-
-<script src="/js/search.js"></script>
-
-
-
-
-
-
 
 
 

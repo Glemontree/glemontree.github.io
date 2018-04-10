@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  
-  <title>[Redis] Windows安装和配置Redis | Glemontree&#39;s blog | day day up!</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  
-  <meta name="theme-color" content="#3F51B5">
-  
-  
-  <meta name="keywords" content="Redis">
-  <meta name="description" content="最近准备研究一下Redis，今天就先来在Windows系统下安装Redis。
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>[Redis] Windows安装和配置Redis | Glemontree&#39;s blog | day day up!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Redis">
+    <meta name="description" content="最近准备研究一下Redis，今天就先来在Windows系统下安装Redis。
 下载Windows版本的RedisRedis的官网没有Windows版本的Redis下载，只能在GitHub上下载，官网只提供Linux版本的下载，下面分别给出官网的下载地址和GitHub的下载地址：
 
 官网下载地址：http://redis.io/download
@@ -36,92 +47,96 @@ GitHub下载地址：http://github.co">
 官网下载地址：http://redis.io/download
 GitHub下载地址：http://github.co">
 <meta name="twitter:image" content="http://images2015.cnblogs.com/blog/596198/201609/596198-20160924113328168-1037459915.png">
-  
-    <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
-  
-  <meta name="summary" content="记录我学习的每一步">
-  <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css">
+    
+        <link rel="alternate" type="application/atom+xml" title="Glemontree&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
 </head>
 
 <body>
-  <div id="loading" class="active"></div>
+    <div id="loading" class="active"></div>
 
-  <nav id="menu" class="hide" >
-   <div class="inner flex-row-vertical">
-  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
-      <i class="icon icon-lg icon-close"></i>
-  </a>
-  <div class="brand-wrap">
-    <div class="brand">
-      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
-      <hgroup class="introduce">
-        <h5 class="nickname">Glemontree</h5>
-        <a href="mailto:glemontree@163.com" title="glemontree@163.com" class="mail">glemontree@163.com</a>
-      </hgroup>
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Glemontree</h5>
+          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
     </div>
   </div>
-  <div class="scroll-wrap flex-col">
-    <ul class="nav">
-      
-          <li class="waves-block waves-effect">
-            <a href="/"  >
-              <i class="icon icon-lg icon-home"></i>
-              主页
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="/archives"  >
-              <i class="icon icon-lg icon-archives"></i>
-              Archives
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="/tags"  >
-              <i class="icon icon-lg icon-tags"></i>
-              Tags
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="https://github.com/Glemontree" target="_blank" >
-              <i class="icon icon-lg icon-github"></i>
-              Github
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="http://www.weibo.com/glemontree" target="_blank" >
-              <i class="icon icon-lg icon-weibo"></i>
-              Weibo
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="/about" target="_blank" >
-              <i class="icon icon-lg icon-link"></i>
-              About
-            </a>
-          </li>
-      
-    </ul>
+</aside>
 
-    <footer class="footer">
-  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
-  <p>Glemontree&#39;s blog &copy; 2018</p>
-  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
-  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
-  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
-</footer>
-
-  </div>
-</div>
-
-  </nav>
-  <main id="main">
-    <header class="top-header" id="header">
+    <main id="main">
+        <header class="top-header" id="header">
     <div class="flex-row">
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
@@ -132,96 +147,73 @@ GitHub下载地址：http://github.co">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
         </div>
         
         
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
             <i class="icon icon-lg icon-share-alt"></i>
         </a>
         
     </div>
 </header>
-<header class="content-header">
-  <div class="container">
-    <h1 class="author">[Redis] Windows安装和配置Redis</h1>
-    <h5 class="subtitle">
-        
-            <time datetime="2017-09-08T16:10:24.000Z" itemprop="datePublished" class="page-time">
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">[Redis] Windows安装和配置Redis</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-09-08T16:10:24.000Z" itemprop="datePublished" class="page-time">
   2017-09-09
 </time>
 
 
 	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Redis/">Redis</a></li></ul>
 
-        
-    </h5>
-  </div>
+            
+        </h5>
+    </div>
+
+    
+
+
 </header>
 
-    <div class="container body-wrap">
-      <article id="post-[Redis] Windows安装和配置Redis" 
-  class="article article-type-post" itemprop="blogPost">
-    <div class="post-meta flex-row">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/">Redis</a></li></ul>
 
-    </div>
-    <div class="post-body">
-        <aside class="post-widget" id="post-widget">
-
-            
-            <div class="post-share" id="post-share">
-    <div class="tit">分享到：</div>
-    <ul class="reset share-icons">
-      <li>
-        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      <li>
-        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      <li>
-        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      <li>
-        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
-          <i class="icon icon-facebook"></i>
-        </a>
-      </li>
-      <li>
-        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
-          <i class="icon icon-twitter"></i>
-        </a>
-      </li>
-      <li>
-        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
-          豆
-        </a>
-      </li>
-    </ul>
- </div>
-
-            
-
-            
-            <nav class="post-toc-wrap" id="post-toc">
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
             <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#下载Windows版本的Redis"><span class="post-toc-number">1.</span> <span class="post-toc-text">下载Windows版本的Redis</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Redis安装"><span class="post-toc-number">2.</span> <span class="post-toc-text">Redis安装</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Redis设置"><span class="post-toc-number">3.</span> <span class="post-toc-text">Redis设置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置Redis环境变量"><span class="post-toc-number">4.</span> <span class="post-toc-text">配置Redis环境变量</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">5.</span> <span class="post-toc-text">参考资料</span></a></li></ol>
-            </nav>
+        </nav>
+    </aside>
+
+
+<article id="post-[Redis] Windows安装和配置Redis"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">[Redis] Windows安装和配置Redis</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-09-09 00:10:24" datetime="2017-09-08T16:10:24.000Z"  itemprop="datePublished">2017-09-09</time>
+
             
-        </aside>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Redis/">Redis</a></li></ul>
 
-        <div class="post-main">
 
-            <div class="post-content" id="post-content" itemprop="postContent">
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
             <p>最近准备研究一下Redis，今天就先来在Windows系统下安装Redis。</p>
 <h2 id="下载Windows版本的Redis"><a href="#下载Windows版本的Redis" class="headerlink" title="下载Windows版本的Redis"></a>下载Windows版本的Redis</h2><p>Redis的官网没有Windows版本的Redis下载，只能在GitHub上下载，官网只提供Linux版本的下载，下面分别给出官网的下载地址和GitHub的下载地址：</p>
 <ul>
@@ -231,7 +223,13 @@ GitHub下载地址：http://github.co">
 <h2 id="Redis安装"><a href="#Redis安装" class="headerlink" title="Redis安装"></a>Redis安装</h2><p>我下载的Redis版本是<code>Redis-x64-3.2.100</code>，<code>WIN+R</code>打开cmd窗口，进入解压后的目录，输入下面的命令：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-server redis.windows.conf</div></pre></td></tr></table></figure>
 <p>出现下面的界面即表示启动成功了：</p>
-<p><img src="http://images2015.cnblogs.com/blog/596198/201609/596198-20160924113328168-1037459915.png" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://images2015.cnblogs.com/blog/596198/201609/596198-20160924113328168-1037459915.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <h2 id="Redis设置"><a href="#Redis设置" class="headerlink" title="Redis设置"></a>Redis设置</h2><p>虽然上面成功启动了Redis，但是如果关闭cmd窗口，那么Redis就会消失，所以要把Redis设置成Windows下的服务，执行下面的命令：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-server --service-install redis.windows-service.conf --loglevel verbose</div></pre></td></tr></table></figure>
 <p>这样设置成功后，<code>WIN+R</code>打开运行界面，输入<code>services.msc</code>查看系统服务，发现Redis已经存在，此时Redis服务并没有打开，需要执行下面的命令：</p>
@@ -241,31 +239,115 @@ GitHub下载地址：http://github.co">
 <p>如果想卸载服务，可以执行下面的命令：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-server --service-uninstall</div></pre></td></tr></table></figure>
 <p>出现下面的界面即表示Redis服务启动成功：</p>
-<p><img src="http://images2015.cnblogs.com/blog/596198/201609/596198-20160924113346559-1291084867.png" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://images2015.cnblogs.com/blog/596198/201609/596198-20160924113346559-1291084867.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <h2 id="配置Redis环境变量"><a href="#配置Redis环境变量" class="headerlink" title="配置Redis环境变量"></a>配置Redis环境变量</h2><p>我们每次执行命令都要去Redis的解压路径下去执行，这无疑是很麻烦的，为了解决这个问题，可以将Redis的解压路径加入到系统的环境变量中</p>
-<p><img src="http://a3.qpic.cn/psb?/V102Jpn32UNsWb/e.NKZHV5m*f8AAh7qj5MmOzGvQSMPmm7DWqhtmD50Gk!/b/dPIAAAAAAAAA&amp;bo=WgEXAAAAAAADB24!&amp;rf=viewer_4" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://a3.qpic.cn/psb?/V102Jpn32UNsWb/e.NKZHV5m*f8AAh7qj5MmOzGvQSMPmm7DWqhtmD50Gk!/b/dPIAAAAAAAAA&bo=WgEXAAAAAAADB24!&rf=viewer_4" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <p>现在你可以在任何路径下执行Redis的命令了。</p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>本文参考自文章<a href="http://www.cnblogs.com/M-LittleBird/p/5902850.html" target="_blank" rel="external">Redis在windows下安装过程</a>。</p>
 
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-09-09T05:45:10.023Z" itemprop="dateUpdated">2017-09-09 13:45:10</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/09/09/[Redis] Windows安装和配置Redis/" target="_blank" rel="external">https://glemontree.github.io/2017/09/09/[Redis] Windows安装和配置Redis/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://glemontree.github.io">
+            <img src="/img/avatar.jpg" alt="Glemontree">
+            Glemontree
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/">Redis</a></li></ul>
+
 
             
-            <div class="post-reward">
-                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
-            </div>
-            
-            
-            <blockquote>
-                <p>
-                本文地址：
-                <a href="https://glemontree.github.io/2017/09/09/[Redis] Windows安装和配置Redis/" target="_blank" rel="external">https://glemontree.github.io/2017/09/09/[Redis] Windows安装和配置Redis/</a>
-                </p>
-                <footer><cite><a href="https://glemontree.github.io">@Glemontree's blog</a></cite></footer>
-            </blockquote>
-            </div>
-            
-<nav class="post-nav">
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://glemontree.github.io/2017/09/09/[Redis] Windows安装和配置Redis/&title=《[Redis] Windows安装和配置Redis》 — Glemontree's blog&pic=https://glemontree.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://glemontree.github.io/2017/09/09/[Redis] Windows安装和配置Redis/&title=《[Redis] Windows安装和配置Redis》 — Glemontree's blog&source=记录我学习的每一步" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://glemontree.github.io/2017/09/09/[Redis] Windows安装和配置Redis/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《[Redis] Windows安装和配置Redis》 — Glemontree's blog&url=https://glemontree.github.io/2017/09/09/[Redis] Windows安装和配置Redis/&via=https://glemontree.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://glemontree.github.io/2017/09/09/[Redis] Windows安装和配置Redis/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
   
-    <div class="waves-block waves-effect prev fl">
+    <div class="waves-block waves-effect prev">
       <a href="/2017/09/09/[MyBatis] MyBatis第一课---创建一个HelloWorld/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
         <h4 class="title">[MyBatis] MyBatis第一课---创建一个HelloWorld</h4>
@@ -274,7 +356,7 @@ GitHub下载地址：http://github.co">
   
 
   
-    <div class="waves-block waves-effect next fr">
+    <div class="waves-block waves-effect next">
       <a href="/2017/09/05/[SpringMVC] 今日最坑/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
         <h4 class="title">[SpringMVC] 今日最坑</h4>
@@ -284,121 +366,154 @@ GitHub下载地址：http://github.co">
 </nav>
 
 
-            
-            
-<div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="[Redis] Windows安装和配置Redis" data-title="[Redis] Windows安装和配置Redis" data-url="https://glemontree.github.io/2017/09/09/[Redis] Windows安装和配置Redis/index.html"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"ysblog"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
+
+    
 
 
 
 
 
-        </div>
-    </div>
+
+
+
+
+
+
+
+
+
+
+
+
 </article>
 
-<div id="reward" class="reward-lay">
-    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <h3 class="reward-title">
         <i class="icon icon-quote-left"></i>
-        谢谢打赏
+        谢谢大爷~
         <i class="icon icon-quote-right"></i>
     </h3>
-    <ul class="reward-items">
+    <div class="reward-content">
         
-        <li>
-            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
-            <p>微信</p>
-        </li>
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
         
-
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
         
-        <li>
-            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
-            <p>支付宝</p>
-        </li>
-        
-    </ul>
+    </div>
 </div>
 
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
     </div>
-  </main>
-<div class="mask" id="mask"></div>
+    <div class="bottom">
+        <p><span>Glemontree &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
-<script>
-var BLOG_SHARE = {
-    title: "[Redis] Windows安装和配置Redis",
-    pic: "/img/logo.jpg",
-    summary: document.getElementsByName('summary')[0].content,
-    url: "https://glemontree.github.io/2017/09/09/[Redis] Windows安装和配置Redis/index.html"
-};
-</script>
-<div class="global-share" id="global-share">
-    <div class="tit">分享到：</div>
+
+
+<div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://glemontree.github.io/2017/09/09/[Redis] Windows安装和配置Redis/&title=《[Redis] Windows安装和配置Redis》 — Glemontree's blog&pic=https://glemontree.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
       <li>
-        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
           <i class="icon icon-weixin"></i>
         </a>
       </li>
       <li>
-        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://glemontree.github.io/2017/09/09/[Redis] Windows安装和配置Redis/&title=《[Redis] Windows安装和配置Redis》 — Glemontree's blog&source=记录我学习的每一步" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://glemontree.github.io/2017/09/09/[Redis] Windows安装和配置Redis/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《[Redis] Windows安装和配置Redis》 — Glemontree's blog&url=https://glemontree.github.io/2017/09/09/[Redis] Windows安装和配置Redis/&via=https://glemontree.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
-          豆
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://glemontree.github.io/2017/09/09/[Redis] Windows安装和配置Redis/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
         </a>
       </li>
     </ul>
  </div>
 
 
-<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACrUlEQVR42u3aQW7DMAwEQP//0+m1QGtnSYqAD+NTkDiJRgdJXvK64uvz5/r9/vPru9+5+1byX4cvPDw8vPHQ73767x883/n8Czk1n4h/pgAPDw9vjXe3ovYW/WRqJpObjBkPDw/vbbzmnz1OxKkpxsPDw3sbrxouTF7j4eHhvZmXR6jVqOJUgLueteDh4eHFvLyK9J7XK/U9PDw8vHFVvVrCry7T1YCjPFo8PDy8BV6+4D4P+tSwcnwyTjw8PLxt3iSSyFuyJu1WzcIbHh4e3lFedcFNlv5J+f9UQHz19hM8PDy8+ETaa6jqFa56pa/n5oCovoeHh4d3iNc78vZC22qL1bwhDA8PD2+Plx9q85ig+psrrVd4eHh4C7z5A3/OK+TKrXar5u6Hh4eH1+L1QtuzrVHzqcmP9Xh4eHgbvJydNxZMNpv5toGHh4d3itf7cjWMqBauJk1gUdMVHh4e3oBX3UPyT3utAPP7y88HeHh4eANe3kaQHLvzslYv6i1sTnh4eHhHeb1Wp2rR69Q2k29ChScGPDw8vBavV16alJ3mTVfRePDw8PDWeM+3TgaUbyrzQKTwrICHh4d3iJe/k7cO9KKKpGwWxSV4eHh4C7yzYcFk88in41hPGR4eHt6AlxSWesWtXhtWFfblW3h4eHhrvLz5aRIiVMPf/J7bO/Hw8PDWeJOlOYkJeiFv3qDwJXHBw8PDW+A1E4t4IvID8TW+vhyp8fDw8Aa8T/HKh9VrFEii3sKneHh4eAu83tI/KW71pnISguDh4eFt8Kp/c2pSkgP9gW0DDw8Pb413qlup2oBVLmjF48TDw8N7Dy9vOMjfnxThCvU9PDw8vBfzquFCvuiXD/14eHh4a7zqUTg/EM9Jk5ACDw8Pb4M3f+DPl+l5MJEf5fHw8PAWeD9wKyIWcdWOVAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
 
-<script src="/js/main.js"></script>
 
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
 
 
 <div class="search-panel" id="search-panel">
     <ul class="search-result" id="search-result"></ul>
 </div>
-<script type="text/template" id="search-tpl">
+<template id="search-tpl">
 <li class="item">
-    <a href="/{path}" class="waves-block waves-effect">
+    <a href="{path}" class="waves-block waves-effect">
         <div class="title ellipsis" title="{title}">{title}</div>
         <div class="flex-row flex-middle">
             <div class="tags ellipsis">
@@ -408,15 +523,35 @@ var BLOG_SHARE = {
         </div>
     </a>
 </li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
 </script>
-
-<script src="/js/search.js"></script>
-
-
-
-
-
-
 
 
 

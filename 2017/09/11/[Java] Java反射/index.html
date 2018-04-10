@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  
-  <title>[Java] Java反射 | Glemontree&#39;s blog | day day up!</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  
-  <meta name="theme-color" content="#3F51B5">
-  
-  
-  <meta name="keywords" content="Java 反射">
-  <meta name="description" content="声明本篇文章转载自JAVA反射与注解，作者先讲解了Java反射，然后在Java反射的基础上又对Java注解进行了讲解，我主要是对其中Java反射部分进行摘录。
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>[Java] Java反射 | Glemontree&#39;s blog | day day up!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Java 反射">
+    <meta name="description" content="声明本篇文章转载自JAVA反射与注解，作者先讲解了Java反射，然后在Java反射的基础上又对Java注解进行了讲解，我主要是对其中Java反射部分进行摘录。
 什么是Java反射主要是指程序可以访问，检测和修改它本身状态或行为的一种能力，并能根据自身行为的状态和结果，调整或修改应用所描述行为的状态和相关的语义。
 什么是反射机制反射机制就是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方">
 <meta property="og:type" content="article">
@@ -26,92 +37,96 @@
 <meta name="twitter:description" content="声明本篇文章转载自JAVA反射与注解，作者先讲解了Java反射，然后在Java反射的基础上又对Java注解进行了讲解，我主要是对其中Java反射部分进行摘录。
 什么是Java反射主要是指程序可以访问，检测和修改它本身状态或行为的一种能力，并能根据自身行为的状态和结果，调整或修改应用所描述行为的状态和相关的语义。
 什么是反射机制反射机制就是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方">
-  
-    <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
-  
-  <meta name="summary" content="记录我学习的每一步">
-  <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css">
+    
+        <link rel="alternate" type="application/atom+xml" title="Glemontree&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
 </head>
 
 <body>
-  <div id="loading" class="active"></div>
+    <div id="loading" class="active"></div>
 
-  <nav id="menu" class="hide" >
-   <div class="inner flex-row-vertical">
-  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
-      <i class="icon icon-lg icon-close"></i>
-  </a>
-  <div class="brand-wrap">
-    <div class="brand">
-      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
-      <hgroup class="introduce">
-        <h5 class="nickname">Glemontree</h5>
-        <a href="mailto:glemontree@163.com" title="glemontree@163.com" class="mail">glemontree@163.com</a>
-      </hgroup>
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Glemontree</h5>
+          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
     </div>
   </div>
-  <div class="scroll-wrap flex-col">
-    <ul class="nav">
-      
-          <li class="waves-block waves-effect">
-            <a href="/"  >
-              <i class="icon icon-lg icon-home"></i>
-              主页
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="/archives"  >
-              <i class="icon icon-lg icon-archives"></i>
-              Archives
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="/tags"  >
-              <i class="icon icon-lg icon-tags"></i>
-              Tags
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="https://github.com/Glemontree" target="_blank" >
-              <i class="icon icon-lg icon-github"></i>
-              Github
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="http://www.weibo.com/glemontree" target="_blank" >
-              <i class="icon icon-lg icon-weibo"></i>
-              Weibo
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="/about" target="_blank" >
-              <i class="icon icon-lg icon-link"></i>
-              About
-            </a>
-          </li>
-      
-    </ul>
+</aside>
 
-    <footer class="footer">
-  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
-  <p>Glemontree&#39;s blog &copy; 2018</p>
-  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
-  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
-  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
-</footer>
-
-  </div>
-</div>
-
-  </nav>
-  <main id="main">
-    <header class="top-header" id="header">
+    <main id="main">
+        <header class="top-header" id="header">
     <div class="flex-row">
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
@@ -122,96 +137,73 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
         </div>
         
         
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
             <i class="icon icon-lg icon-share-alt"></i>
         </a>
         
     </div>
 </header>
-<header class="content-header">
-  <div class="container">
-    <h1 class="author">[Java] Java反射</h1>
-    <h5 class="subtitle">
-        
-            <time datetime="2017-09-11T12:00:00.000Z" itemprop="datePublished" class="page-time">
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">[Java] Java反射</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-09-11T12:00:00.000Z" itemprop="datePublished" class="page-time">
   2017-09-11
 </time>
 
 
 	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
 
-        
-    </h5>
-  </div>
+            
+        </h5>
+    </div>
+
+    
+
+
 </header>
 
-    <div class="container body-wrap">
-      <article id="post-[Java] Java反射" 
-  class="article article-type-post" itemprop="blogPost">
-    <div class="post-meta flex-row">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java-反射/">Java 反射</a></li></ul>
 
-    </div>
-    <div class="post-body">
-        <aside class="post-widget" id="post-widget">
-
-            
-            <div class="post-share" id="post-share">
-    <div class="tit">分享到：</div>
-    <ul class="reset share-icons">
-      <li>
-        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      <li>
-        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      <li>
-        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      <li>
-        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
-          <i class="icon icon-facebook"></i>
-        </a>
-      </li>
-      <li>
-        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
-          <i class="icon icon-twitter"></i>
-        </a>
-      </li>
-      <li>
-        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
-          豆
-        </a>
-      </li>
-    </ul>
- </div>
-
-            
-
-            
-            <nav class="post-toc-wrap" id="post-toc">
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
             <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#声明"><span class="post-toc-number">1.</span> <span class="post-toc-text">声明</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是Java反射"><span class="post-toc-number">2.</span> <span class="post-toc-text">什么是Java反射</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是反射机制"><span class="post-toc-number">3.</span> <span class="post-toc-text">什么是反射机制</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#反射机制能做什么"><span class="post-toc-number">4.</span> <span class="post-toc-text">反射机制能做什么</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Java反射机制的应用场景是什么"><span class="post-toc-number">5.</span> <span class="post-toc-text">Java反射机制的应用场景是什么</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#理解Class类和类类型"><span class="post-toc-number">6.</span> <span class="post-toc-text">理解Class类和类类型</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Java反射相关操作"><span class="post-toc-number">7.</span> <span class="post-toc-text">Java反射相关操作</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#获取成员方法信息"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">获取成员方法信息</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#获取成员变量信息"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">获取成员变量信息</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#获取构造函数"><span class="post-toc-number">7.3.</span> <span class="post-toc-text">获取构造函数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#其他方法"><span class="post-toc-number">7.4.</span> <span class="post-toc-text">其他方法</span></a></li></ol></li></ol>
-            </nav>
+        </nav>
+    </aside>
+
+
+<article id="post-[Java] Java反射"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">[Java] Java反射</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-09-11 20:00:00" datetime="2017-09-11T12:00:00.000Z"  itemprop="datePublished">2017-09-11</time>
+
             
-        </aside>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
 
-        <div class="post-main">
 
-            <div class="post-content" id="post-content" itemprop="postContent">
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
             <h2 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h2><p>本篇文章转载自<a href="https://www.daidingkang.cc/2017/07/18/java-reflection-annotations/" target="_blank" rel="external">JAVA反射与注解</a>，作者先讲解了Java反射，然后在Java反射的基础上又对Java注解进行了讲解，我主要是对其中Java反射部分进行摘录。</p>
 <h2 id="什么是Java反射"><a href="#什么是Java反射" class="headerlink" title="什么是Java反射"></a>什么是Java反射</h2><p>主要是指程序可以访问，检测和修改它本身状态或行为的一种能力，并能根据自身行为的状态和结果，调整或修改应用所描述行为的状态和相关的语义。</p>
 <h2 id="什么是反射机制"><a href="#什么是反射机制" class="headerlink" title="什么是反射机制"></a>什么是反射机制</h2><p>反射机制就是在运行状态中，<strong>对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意一个方法和属性</strong>；这种动态获取的信息以及动态调用对象的方法的功能称为java语言的反射机制。</p>
@@ -343,25 +335,97 @@
 <p>获取class对象的信息：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">boolean</span> isPrimitive = class1.isPrimitive();<span class="comment">//判断是否是基础类型 </span></div><div class="line"><span class="keyword">boolean</span> isArray = class1.isArray();<span class="comment">//判断是否是集合类</span></div><div class="line"><span class="keyword">boolean</span> isAnnotation = class1.isAnnotation();<span class="comment">//判断是否是注解类 </span></div><div class="line"><span class="keyword">boolean</span> isInterface = class1.isInterface();<span class="comment">//判断是否是接口类 </span></div><div class="line"><span class="keyword">boolean</span> isEnum = class1.isEnum();<span class="comment">//判断是否是枚举类 </span></div><div class="line"><span class="keyword">boolean</span> isAnonymousClass = class1.isAnonymousClass();<span class="comment">//判断是否是匿名内部类 </span></div><div class="line"><span class="keyword">boolean</span> isAnnotationPresent = class1.isAnnotationPresent(Deprecated.class);<span class="comment">//判断是否被某个注解类修饰 </span></div><div class="line">String className = class1.getName();<span class="comment">//获取class名字 包含包名路径 </span></div><div class="line">Package aPackage = class1.getPackage();<span class="comment">//获取class的包信息 </span></div><div class="line">String simpleName = class1.getSimpleName();<span class="comment">//获取class类名 </span></div><div class="line"><span class="keyword">int</span> modifiers = class1.getModifiers();<span class="comment">//获取class访问权限 </span></div><div class="line">Class&lt;?&gt;[] declaredClasses = class1.getDeclaredClasses();<span class="comment">//内部类 </span></div><div class="line">Class&lt;?&gt; declaringClass = class1.getDeclaringClass();<span class="comment">//外部类</span></div><div class="line"></div><div class="line">getSuperclass()：获取某类的父类  </div><div class="line">getInterfaces()：获取某类实现的接口</div></pre></td></tr></table></figure>
 
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-09-11T12:26:05.033Z" itemprop="dateUpdated">2017-09-11 20:26:05</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/09/11/[Java] Java反射/" target="_blank" rel="external">https://glemontree.github.io/2017/09/11/[Java] Java反射/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://glemontree.github.io">
+            <img src="/img/avatar.jpg" alt="Glemontree">
+            Glemontree
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java-反射/">Java 反射</a></li></ul>
+
 
             
-            <div class="post-reward">
-                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
-            </div>
-            
-            
-            <blockquote>
-                <p>
-                本文地址：
-                <a href="https://glemontree.github.io/2017/09/11/[Java] Java反射/" target="_blank" rel="external">https://glemontree.github.io/2017/09/11/[Java] Java反射/</a>
-                </p>
-                <footer><cite><a href="https://glemontree.github.io">@Glemontree's blog</a></cite></footer>
-            </blockquote>
-            </div>
-            
-<nav class="post-nav">
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://glemontree.github.io/2017/09/11/[Java] Java反射/&title=《[Java] Java反射》 — Glemontree's blog&pic=https://glemontree.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://glemontree.github.io/2017/09/11/[Java] Java反射/&title=《[Java] Java反射》 — Glemontree's blog&source=记录我学习的每一步" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://glemontree.github.io/2017/09/11/[Java] Java反射/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《[Java] Java反射》 — Glemontree's blog&url=https://glemontree.github.io/2017/09/11/[Java] Java反射/&via=https://glemontree.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://glemontree.github.io/2017/09/11/[Java] Java反射/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
   
-    <div class="waves-block waves-effect prev fl">
+    <div class="waves-block waves-effect prev">
       <a href="/2017/09/12/[Android] 利用APT实现Android编译时注解/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
         <h4 class="title">[Android] 利用APT实现Android编译时注解</h4>
@@ -370,7 +434,7 @@
   
 
   
-    <div class="waves-block waves-effect next fr">
+    <div class="waves-block waves-effect next">
       <a href="/2017/09/11/[Java] Java注解/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
         <h4 class="title">[Java] Java注解</h4>
@@ -380,121 +444,154 @@
 </nav>
 
 
-            
-            
-<div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="[Java] Java反射" data-title="[Java] Java反射" data-url="https://glemontree.github.io/2017/09/11/[Java] Java反射/index.html"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"ysblog"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
+
+    
 
 
 
 
 
-        </div>
-    </div>
+
+
+
+
+
+
+
+
+
+
+
+
 </article>
 
-<div id="reward" class="reward-lay">
-    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <h3 class="reward-title">
         <i class="icon icon-quote-left"></i>
-        谢谢打赏
+        谢谢大爷~
         <i class="icon icon-quote-right"></i>
     </h3>
-    <ul class="reward-items">
+    <div class="reward-content">
         
-        <li>
-            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
-            <p>微信</p>
-        </li>
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
         
-
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
         
-        <li>
-            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
-            <p>支付宝</p>
-        </li>
-        
-    </ul>
+    </div>
 </div>
 
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
     </div>
-  </main>
-<div class="mask" id="mask"></div>
+    <div class="bottom">
+        <p><span>Glemontree &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
-<script>
-var BLOG_SHARE = {
-    title: "[Java] Java反射",
-    pic: "/img/logo.jpg",
-    summary: document.getElementsByName('summary')[0].content,
-    url: "https://glemontree.github.io/2017/09/11/[Java] Java反射/index.html"
-};
-</script>
-<div class="global-share" id="global-share">
-    <div class="tit">分享到：</div>
+
+
+<div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://glemontree.github.io/2017/09/11/[Java] Java反射/&title=《[Java] Java反射》 — Glemontree's blog&pic=https://glemontree.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
       <li>
-        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
           <i class="icon icon-weixin"></i>
         </a>
       </li>
       <li>
-        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://glemontree.github.io/2017/09/11/[Java] Java反射/&title=《[Java] Java反射》 — Glemontree's blog&source=记录我学习的每一步" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://glemontree.github.io/2017/09/11/[Java] Java反射/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《[Java] Java反射》 — Glemontree's blog&url=https://glemontree.github.io/2017/09/11/[Java] Java反射/&via=https://glemontree.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
-          豆
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://glemontree.github.io/2017/09/11/[Java] Java反射/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
         </a>
       </li>
     </ul>
  </div>
 
 
-<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACOUlEQVR42u3ay07DMBAFUP7/p4vECqk03DsuSLFPVqiksU8WU8/j4yO+Hl/X9SfP//1+z6v7n++5fvLShYGBcVvG4/J6tdgMcL1Kfv8Pe8DAwDiAkYfCZIvJk3NG8gOAgYGBkRzX8gCdhGwMDAyM9YCbHCXzBLU9hmJgYJzJyLfVJqhJ8M3XfUMujoGBcUNG2xj4z7//sL+BgYFxE8ajvGYNgHyt4a4wMDC2ZrTlsLbdmIfvNhlemgfBwMC4ISNJL/Mwmg94JSvWrQUMDIztGG1oawNlO2YxGzvDwMDYmzE75LWbno2a5ekxBgbG3oyVw9yseTm755c9YGBgHMBYL+jPSmbrAxYYGBgnM2aHvHzwKx81i1JZDAyMwxhteWs9BZ3tAQMD4xxG3jjMQ+qsMDcL6xgYGCcw2kbjyufrNfyoMYCBgbEdI/9y24C8fil5uzRZHQMD4wRGO1rR8vICXJ245g/FwMC4LSMfa2gDaP6tvAn68vVhYGBszZiVzPL0Mg+sbY0w+vXAwMDYglEPYC2w29J/kWBjYGAcwGhHHPJlksZA+2owMDBOY+Rh972DXEUbMj7CYmBg7MqYFb/y5LNti7Z1/pdVQwwMjI0YbZjL25/1fEf8gjAwMM5kvOto2LYBZgF3eEDEwMDYgtEWzmahcz19rdsDGBgYhzFm9bw2iF+X6jAwMDDaZHLWpJy9iLcdDTEwMG7LyEPeLCC29xTpKwYGxgGMWWOgDaxJUM7D9xCDgYFxP8YndyHwLmYLTMcAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
 
-<script src="/js/main.js"></script>
 
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
 
 
 <div class="search-panel" id="search-panel">
     <ul class="search-result" id="search-result"></ul>
 </div>
-<script type="text/template" id="search-tpl">
+<template id="search-tpl">
 <li class="item">
-    <a href="/{path}" class="waves-block waves-effect">
+    <a href="{path}" class="waves-block waves-effect">
         <div class="title ellipsis" title="{title}">{title}</div>
         <div class="flex-row flex-middle">
             <div class="tags ellipsis">
@@ -504,15 +601,35 @@ var BLOG_SHARE = {
         </div>
     </a>
 </li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
 </script>
-
-<script src="/js/search.js"></script>
-
-
-
-
-
-
 
 
 

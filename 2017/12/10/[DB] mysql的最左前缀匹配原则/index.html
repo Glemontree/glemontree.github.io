@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  
-  <title>[DB] mysql的最左前缀匹配原则 | Glemontree&#39;s blog | day day up!</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  
-  <meta name="theme-color" content="#3F51B5">
-  
-  
-  <meta name="keywords" content="DB 最左前缀">
-  <meta name="description" content="mysql建立联合索引有最左前缀的原则，即最左优先，如：
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>[DB] mysql的最左前缀匹配原则 | Glemontree&#39;s blog | day day up!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="DB 最左前缀">
+    <meta name="description" content="mysql建立联合索引有最左前缀的原则，即最左优先，如：
 如果有一个2列的索引(col1, col2)，则已经对(col1)、(col1, col2)上建立了索引；
 如果有一个3列的索引(col1, col2, col3)，则已经对(col1)、(col1, col2)、(col1, col2, col3)上建立了索引；
 总结：
@@ -39,92 +50,96 @@ b+树的数据项是复合的数据结构，比如(name,age,sex)的">
 
 b+树的数据项是复合的数据结构，比如(name,age,sex)的">
 <meta name="twitter:image" content="https://pic1.zhimg.com/50/d3086a6c81bb2c77796cfc2249b610bc_hd.jpg">
-  
-    <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
-  
-  <meta name="summary" content="记录我学习的每一步">
-  <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css">
+    
+        <link rel="alternate" type="application/atom+xml" title="Glemontree&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
 </head>
 
 <body>
-  <div id="loading" class="active"></div>
+    <div id="loading" class="active"></div>
 
-  <nav id="menu" class="hide" >
-   <div class="inner flex-row-vertical">
-  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
-      <i class="icon icon-lg icon-close"></i>
-  </a>
-  <div class="brand-wrap">
-    <div class="brand">
-      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
-      <hgroup class="introduce">
-        <h5 class="nickname">Glemontree</h5>
-        <a href="mailto:glemontree@163.com" title="glemontree@163.com" class="mail">glemontree@163.com</a>
-      </hgroup>
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Glemontree</h5>
+          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
     </div>
   </div>
-  <div class="scroll-wrap flex-col">
-    <ul class="nav">
-      
-          <li class="waves-block waves-effect">
-            <a href="/"  >
-              <i class="icon icon-lg icon-home"></i>
-              主页
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="/archives"  >
-              <i class="icon icon-lg icon-archives"></i>
-              Archives
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="/tags"  >
-              <i class="icon icon-lg icon-tags"></i>
-              Tags
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="https://github.com/Glemontree" target="_blank" >
-              <i class="icon icon-lg icon-github"></i>
-              Github
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="http://www.weibo.com/glemontree" target="_blank" >
-              <i class="icon icon-lg icon-weibo"></i>
-              Weibo
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="/about" target="_blank" >
-              <i class="icon icon-lg icon-link"></i>
-              About
-            </a>
-          </li>
-      
-    </ul>
+</aside>
 
-    <footer class="footer">
-  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
-  <p>Glemontree&#39;s blog &copy; 2018</p>
-  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
-  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
-  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
-</footer>
-
-  </div>
-</div>
-
-  </nav>
-  <main id="main">
-    <header class="top-header" id="header">
+    <main id="main">
+        <header class="top-header" id="header">
     <div class="flex-row">
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
@@ -135,96 +150,66 @@ b+树的数据项是复合的数据结构，比如(name,age,sex)的">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
         </div>
         
         
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
             <i class="icon icon-lg icon-share-alt"></i>
         </a>
         
     </div>
 </header>
-<header class="content-header">
-  <div class="container">
-    <h1 class="author">[DB] mysql的最左前缀匹配原则</h1>
-    <h5 class="subtitle">
-        
-            <time datetime="2017-12-10T09:43:29.000Z" itemprop="datePublished" class="page-time">
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">[DB] mysql的最左前缀匹配原则</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-12-10T09:43:29.000Z" itemprop="datePublished" class="page-time">
   2017-12-10
 </time>
 
 
 	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/DB/">DB</a></li></ul>
 
-        
-    </h5>
-  </div>
+            
+        </h5>
+    </div>
+
+    
+
+
 </header>
 
-    <div class="container body-wrap">
-      <article id="post-[DB] mysql的最左前缀匹配原则" 
-  class="article article-type-post" itemprop="blogPost">
-    <div class="post-meta flex-row">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DB-最左前缀/">DB 最左前缀</a></li></ul>
 
-    </div>
-    <div class="post-body">
-        <aside class="post-widget" id="post-widget">
+<div class="container body-wrap">
+    
 
-            
-            <div class="post-share" id="post-share">
-    <div class="tit">分享到：</div>
-    <ul class="reset share-icons">
-      <li>
-        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      <li>
-        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      <li>
-        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      <li>
-        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
-          <i class="icon icon-facebook"></i>
-        </a>
-      </li>
-      <li>
-        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
-          <i class="icon icon-twitter"></i>
-        </a>
-      </li>
-      <li>
-        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
-          豆
-        </a>
-      </li>
-    </ul>
- </div>
+<article id="post-[DB] mysql的最左前缀匹配原则"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">[DB] mysql的最左前缀匹配原则</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-12-10 17:43:29" datetime="2017-12-10T09:43:29.000Z"  itemprop="datePublished">2017-12-10</time>
 
             
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/DB/">DB</a></li></ul>
+
+
 
             
-            <nav class="post-toc-wrap" id="post-toc">
-            
-            </nav>
-            
-        </aside>
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
 
-        <div class="post-main">
 
-            <div class="post-content" id="post-content" itemprop="postContent">
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
             <p>mysql建立联合索引有最左前缀的原则，即最左优先，如：</p>
 <p>如果有一个2列的索引(col1, col2)，则已经对(col1)、(col1, col2)上建立了索引；</p>
 <p>如果有一个3列的索引(col1, col2, col3)，则已经对(col1)、(col1, col2)、(col1, col2, col3)上建立了索引；</p>
@@ -245,9 +230,21 @@ b+树的数据项是复合的数据结构，比如(name,age,sex)的">
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`student`</span> (</div><div class="line">  <span class="string">`id`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</div><div class="line">  <span class="string">`name`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`cid`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</div><div class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>),</div><div class="line">  <span class="keyword">KEY</span> <span class="string">`name_cid_INX`</span> (<span class="string">`name`</span>,<span class="string">`cid`</span>)</div><div class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> AUTO_INCREMENT=<span class="number">8</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</div></pre></td></tr></table></figure>
 <p>索引方面：id是主键，(name,cid)是一个多列索引。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">EXPLAIN</span> <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> student <span class="keyword">WHERE</span>   cid=<span class="number">1</span>;</div></pre></td></tr></table></figure>
-<p><img src="https://pic1.zhimg.com/50/d3086a6c81bb2c77796cfc2249b610bc_hd.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://pic1.zhimg.com/50/d3086a6c81bb2c77796cfc2249b610bc_hd.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">EXPLAIN</span> <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> student <span class="keyword">WHERE</span>   cid=<span class="number">1</span> <span class="keyword">AND</span> <span class="keyword">name</span>=<span class="string">'小红'</span>;</div></pre></td></tr></table></figure>
-<p><img src="https://pic3.zhimg.com/50/53ab2cdea64b7e58e66c4ef86aa6b06a_hd.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://pic3.zhimg.com/50/53ab2cdea64b7e58e66c4ef86aa6b06a_hd.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <p><strong>你的疑问是</strong>：sql查询用到索引的条件是必须要遵守最左前缀原则，为什么上面两个查询还能用到索引？</p>
 <p>上述你的两个查询的explain结果中显示用到索引的情况类型是不一样的。,可观察explain结果中的type字段。你的查询中分别是：</p>
 <ol>
@@ -260,7 +257,13 @@ b+树的数据项是复合的数据结构，比如(name,age,sex)的">
 <p>判断条件是cid=1,而cid是(name,cid)复合索引的一部分，没有问题，可以进行index类型的索引扫描方式。explain显示结果使用到了索引，是index类型的方式。</p>
 <p>ref：这种类型表示mysql会根据特定的算法快速查找到某个符合条件的索引，而不是会对索引中每一个数据都进行一 一的扫描判断，也就是所谓你平常理解的使用索引查询会更快的取出数据。而要想实现这种查找，索引却是有要求的，要实现这种能快速查找的算法，索引就要满足特定的数据结构。<strong>简单说，也就是索引字段的数据必须是有序的，才能实现这种类型的查找，才能利用到索引。</strong></p>
 <p><strong>下面就说下复合索引：</strong><br>以该表的(name,cid)复合索引为例,它内部结构简单说就是下面这样排列的：</p>
-<p><img src="https://pic2.zhimg.com/50/8c45fe417afbe97127e8c55fe1cd9395_hd.jpg" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://pic2.zhimg.com/50/8c45fe417afbe97127e8c55fe1cd9395_hd.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <p>mysql创建复合索引的规则是首先会对复合索引的最左边的，也就是第一个name字段的数据进行排序，在第一个字段的排序基础上，然后再对后面第二个的cid字段进行排序。其实就相当于实现了类似 order by name cid这样一种排序规则。</p>
 <p>所以：第一个name字段是绝对有序的，而第二字段就是无序的了。所以通常情况下，直接使用第二个cid字段进行条件判断是用不到索引的，当然，可能会出现上面的使用index类型的索引。这就是所谓的mysql为什么要强调最左前缀原则的原因。</p>
 <p><strong>那么什么时候才能用到呢?</strong><br>当然是cid字段的索引数据也是有序的情况下才能使用咯，什么时候才是有序的呢？观察可知，当然是在name字段是等值匹配的情况下，cid才是有序的。发现没有，观察两个name名字为 c 的cid字段是不是有序的呢。从上往下分别是4  5。<br>这也就是mysql索引规则中要求复合索引要想使用第二个索引，必须先使用第一个索引的原因。（而且第一个索引必须是等值匹配）。</p>
@@ -273,25 +276,97 @@ b+树的数据项是复合的数据结构，比如(name,age,sex)的">
 <p><strong>所以</strong>，而此时那就是我们的mysql查询优化器该登场了，mysql查询优化器会判断纠正这条sql语句该以什么样的顺序执行效率最高，最后才生成真正的执行计划。所以，当然是我们能尽量的利用到索引时的查询顺序效率最高咯，所以mysql查询优化器会最终以这种顺序进行查询执行。</p>
 <p>本文转载自知乎<a href="https://www.zhihu.com/question/36996520" target="_blank" rel="external">mysql索引最左匹配原则的理解?</a>，作者沈杰链接：<a href="https://www.zhihu.com/question/36996520/answer/93256153。" target="_blank" rel="external">https://www.zhihu.com/question/36996520/answer/93256153。</a></p>
 
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-12-10T10:14:14.506Z" itemprop="dateUpdated">2017-12-10 18:14:14</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/12/10/[DB] mysql的最左前缀匹配原则/" target="_blank" rel="external">https://glemontree.github.io/2017/12/10/[DB] mysql的最左前缀匹配原则/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://glemontree.github.io">
+            <img src="/img/avatar.jpg" alt="Glemontree">
+            Glemontree
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DB-最左前缀/">DB 最左前缀</a></li></ul>
+
 
             
-            <div class="post-reward">
-                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
-            </div>
-            
-            
-            <blockquote>
-                <p>
-                本文地址：
-                <a href="https://glemontree.github.io/2017/12/10/[DB] mysql的最左前缀匹配原则/" target="_blank" rel="external">https://glemontree.github.io/2017/12/10/[DB] mysql的最左前缀匹配原则/</a>
-                </p>
-                <footer><cite><a href="https://glemontree.github.io">@Glemontree's blog</a></cite></footer>
-            </blockquote>
-            </div>
-            
-<nav class="post-nav">
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://glemontree.github.io/2017/12/10/[DB] mysql的最左前缀匹配原则/&title=《[DB] mysql的最左前缀匹配原则》 — Glemontree's blog&pic=https://glemontree.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://glemontree.github.io/2017/12/10/[DB] mysql的最左前缀匹配原则/&title=《[DB] mysql的最左前缀匹配原则》 — Glemontree's blog&source=记录我学习的每一步" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://glemontree.github.io/2017/12/10/[DB] mysql的最左前缀匹配原则/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《[DB] mysql的最左前缀匹配原则》 — Glemontree's blog&url=https://glemontree.github.io/2017/12/10/[DB] mysql的最左前缀匹配原则/&via=https://glemontree.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://glemontree.github.io/2017/12/10/[DB] mysql的最左前缀匹配原则/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
   
-    <div class="waves-block waves-effect prev fl">
+    <div class="waves-block waves-effect prev">
       <a href="/2017/12/10/[Linux] vmware中启动ubuntu蓝屏/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
         <h4 class="title">[Linux] vmware中启动ubuntu蓝屏</h4>
@@ -300,7 +375,7 @@ b+树的数据项是复合的数据结构，比如(name,age,sex)的">
   
 
   
-    <div class="waves-block waves-effect next fr">
+    <div class="waves-block waves-effect next">
       <a href="/2017/12/03/[Linux] Shell编程第十一课/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
         <h4 class="title">[Linux] Shell编程第十一课</h4>
@@ -310,121 +385,154 @@ b+树的数据项是复合的数据结构，比如(name,age,sex)的">
 </nav>
 
 
-            
-            
-<div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="[DB] mysql的最左前缀匹配原则" data-title="[DB] mysql的最左前缀匹配原则" data-url="https://glemontree.github.io/2017/12/10/[DB] mysql的最左前缀匹配原则/index.html"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"ysblog"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
+
+    
 
 
 
 
 
-        </div>
-    </div>
+
+
+
+
+
+
+
+
+
+
+
+
 </article>
 
-<div id="reward" class="reward-lay">
-    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <h3 class="reward-title">
         <i class="icon icon-quote-left"></i>
-        谢谢打赏
+        谢谢大爷~
         <i class="icon icon-quote-right"></i>
     </h3>
-    <ul class="reward-items">
+    <div class="reward-content">
         
-        <li>
-            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
-            <p>微信</p>
-        </li>
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
         
-
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
         
-        <li>
-            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
-            <p>支付宝</p>
-        </li>
-        
-    </ul>
+    </div>
 </div>
 
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
     </div>
-  </main>
-<div class="mask" id="mask"></div>
+    <div class="bottom">
+        <p><span>Glemontree &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
-<script>
-var BLOG_SHARE = {
-    title: "[DB] mysql的最左前缀匹配原则",
-    pic: "/img/logo.jpg",
-    summary: document.getElementsByName('summary')[0].content,
-    url: "https://glemontree.github.io/2017/12/10/[DB] mysql的最左前缀匹配原则/index.html"
-};
-</script>
-<div class="global-share" id="global-share">
-    <div class="tit">分享到：</div>
+
+
+<div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://glemontree.github.io/2017/12/10/[DB] mysql的最左前缀匹配原则/&title=《[DB] mysql的最左前缀匹配原则》 — Glemontree's blog&pic=https://glemontree.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
       <li>
-        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
           <i class="icon icon-weixin"></i>
         </a>
       </li>
       <li>
-        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://glemontree.github.io/2017/12/10/[DB] mysql的最左前缀匹配原则/&title=《[DB] mysql的最左前缀匹配原则》 — Glemontree's blog&source=记录我学习的每一步" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://glemontree.github.io/2017/12/10/[DB] mysql的最左前缀匹配原则/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《[DB] mysql的最左前缀匹配原则》 — Glemontree's blog&url=https://glemontree.github.io/2017/12/10/[DB] mysql的最左前缀匹配原则/&via=https://glemontree.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
-          豆
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://glemontree.github.io/2017/12/10/[DB] mysql的最左前缀匹配原则/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
         </a>
       </li>
     </ul>
  </div>
 
 
-<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACq0lEQVR42u3aQW7jMBAEQP//01lgTxtsJHcPSUeH0kkHW2YxgGbSnNcrvr7+Xv/e/39dffLqW/e/df8rmy88PDy80dLbRedLbzErW/zDE/Dw8PCO8fLHXS0uX/T99uUber9mPDw8vCfw1r/VFoPZk/Hw8PCew5stN2+pd20cHh4e3md4SRgxW0TCnt1vzlrw8PDwDpwiPef++PkeHh4e3uhUvW2U81fzSgBRrBYPDw/vAG8W0c5GAdrmOHlaVDbw8PDwtvLyByVLySPalpSXpW/3eHh4eId5s0A2Dw5WRqyGm4WHh4d3gNeOBeQL2jsKkAcfeHh4eJ/kzYar8tKSRxJtvDtMgvHw8PBGvNlhVVIS8iP/9vOFBQ8PD+8YbxbLrg+P5gFEe/9mMgIPDw9vgTc7yF8/6GqfPAsm8PDw8E7wVmDtolfKSRvj4uHh4X2GNwt2V/CzcDnfAjw8PLwTvDY2bQvJ6Zg42jg8PDy8rbykVZ2NPa3HCnmbfnmPh4eHd4y3a9SpfcXngW++fT+EEXh4eHjHeG0nvquNXo9966ErPDw8vK28WVC7Aki2bBhM4OHh4f0SLx+QmsFWxhTe/Bnw8PDwjvFmr+xZDNEGx0njfrlyPDw8vGO8GSxvf/NYtt3WaNwKDw8P7wCvPV46UQZaTFSo8PDw8A7w8n/+kxiipc7ihnrgAA8PD28rLwfsaqnbYaxXedVhBB4eHt4Crx29mo0drDTN9Wbh4eHhHeDNXrhtOcnLQH641Tb6eHh4eHt5STFoD+9nL+h29Crabjw8PLxjvDaQzVvwYkxqoabh4eHhPZM3i1nXY47k1y9LER4eHt5jeO1Lv92sPBp+g8TDw8M7xsvb4lk4Gy2lHQ7Aw8PD+yXe7KFty7se+CYR84bzPTw8PLy73/oDkNSccTHvS3kAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
 
-<script src="/js/main.js"></script>
 
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
 
 
 <div class="search-panel" id="search-panel">
     <ul class="search-result" id="search-result"></ul>
 </div>
-<script type="text/template" id="search-tpl">
+<template id="search-tpl">
 <li class="item">
-    <a href="/{path}" class="waves-block waves-effect">
+    <a href="{path}" class="waves-block waves-effect">
         <div class="title ellipsis" title="{title}">{title}</div>
         <div class="flex-row flex-middle">
             <div class="tags ellipsis">
@@ -434,15 +542,35 @@ var BLOG_SHARE = {
         </div>
     </a>
 </li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
 </script>
-
-<script src="/js/search.js"></script>
-
-
-
-
-
-
 
 
 

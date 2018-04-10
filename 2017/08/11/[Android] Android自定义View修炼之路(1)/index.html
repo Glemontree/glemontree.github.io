@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  
-  <title>[Android] Android自定义View修炼之路(1) | Glemontree&#39;s blog | day day up!</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  
-  <meta name="theme-color" content="#3F51B5">
-  
-  
-  <meta name="keywords" content="Android, 自定义View">
-  <meta name="description" content="前言尼玛一直觉得自定义View好难，但是呢自定义View在Android开发过程中又是无法逃避的坎，一个App我觉得除了数据外，就属外观了，漂亮的界面总是让人心旷神怡。每每看到别人做的酷炫的控件都好羡慕，想知道他们是怎么实现的，相信很多初学者都有和我一样的苦恼。但是呢，学习是一个不断积累的过程，不能指望着一步登天，所以还是需要先打好基础，一步一步来，下面让我们跟着大神一步步学习自定义View吧（p">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>[Android] Android自定义View修炼之路(1) | Glemontree&#39;s blog | day day up!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Android, 自定义View">
+    <meta name="description" content="前言尼玛一直觉得自定义View好难，但是呢自定义View在Android开发过程中又是无法逃避的坎，一个App我觉得除了数据外，就属外观了，漂亮的界面总是让人心旷神怡。每每看到别人做的酷炫的控件都好羡慕，想知道他们是怎么实现的，相信很多初学者都有和我一样的苦恼。但是呢，学习是一个不断积累的过程，不能指望着一步登天，所以还是需要先打好基础，一步一步来，下面让我们跟着大神一步步学习自定义View吧（p">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[Android] Android自定义View修炼之路(1)">
 <meta property="og:url" content="https://glemontree.github.io/2017/08/11/[Android] Android自定义View修炼之路(1)/index.html">
@@ -24,92 +35,96 @@
 <meta name="twitter:title" content="[Android] Android自定义View修炼之路(1)">
 <meta name="twitter:description" content="前言尼玛一直觉得自定义View好难，但是呢自定义View在Android开发过程中又是无法逃避的坎，一个App我觉得除了数据外，就属外观了，漂亮的界面总是让人心旷神怡。每每看到别人做的酷炫的控件都好羡慕，想知道他们是怎么实现的，相信很多初学者都有和我一样的苦恼。但是呢，学习是一个不断积累的过程，不能指望着一步登天，所以还是需要先打好基础，一步一步来，下面让我们跟着大神一步步学习自定义View吧（p">
 <meta name="twitter:image" content="https://github.com/Glemontree/images/blob/master/images/h.JPG?raw=true">
-  
-    <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
-  
-  <meta name="summary" content="记录我学习的每一步">
-  <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css">
+    
+        <link rel="alternate" type="application/atom+xml" title="Glemontree&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
 </head>
 
 <body>
-  <div id="loading" class="active"></div>
+    <div id="loading" class="active"></div>
 
-  <nav id="menu" class="hide" >
-   <div class="inner flex-row-vertical">
-  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
-      <i class="icon icon-lg icon-close"></i>
-  </a>
-  <div class="brand-wrap">
-    <div class="brand">
-      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
-      <hgroup class="introduce">
-        <h5 class="nickname">Glemontree</h5>
-        <a href="mailto:glemontree@163.com" title="glemontree@163.com" class="mail">glemontree@163.com</a>
-      </hgroup>
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Glemontree</h5>
+          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
     </div>
   </div>
-  <div class="scroll-wrap flex-col">
-    <ul class="nav">
-      
-          <li class="waves-block waves-effect">
-            <a href="/"  >
-              <i class="icon icon-lg icon-home"></i>
-              主页
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="/archives"  >
-              <i class="icon icon-lg icon-archives"></i>
-              Archives
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="/tags"  >
-              <i class="icon icon-lg icon-tags"></i>
-              Tags
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="https://github.com/Glemontree" target="_blank" >
-              <i class="icon icon-lg icon-github"></i>
-              Github
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="http://www.weibo.com/glemontree" target="_blank" >
-              <i class="icon icon-lg icon-weibo"></i>
-              Weibo
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="/about" target="_blank" >
-              <i class="icon icon-lg icon-link"></i>
-              About
-            </a>
-          </li>
-      
-    </ul>
+</aside>
 
-    <footer class="footer">
-  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
-  <p>Glemontree&#39;s blog &copy; 2018</p>
-  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
-  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
-  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
-</footer>
-
-  </div>
-</div>
-
-  </nav>
-  <main id="main">
-    <header class="top-header" id="header">
+    <main id="main">
+        <header class="top-header" id="header">
     <div class="flex-row">
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
@@ -120,96 +135,73 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
         </div>
         
         
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
             <i class="icon icon-lg icon-share-alt"></i>
         </a>
         
     </div>
 </header>
-<header class="content-header">
-  <div class="container">
-    <h1 class="author">[Android] Android自定义View修炼之路(1)</h1>
-    <h5 class="subtitle">
-        
-            <time datetime="2017-08-11T06:29:43.000Z" itemprop="datePublished" class="page-time">
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">[Android] Android自定义View修炼之路(1)</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-08-11T06:29:43.000Z" itemprop="datePublished" class="page-time">
   2017-08-11
 </time>
 
 
 	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a></li></ul>
 
-        
-    </h5>
-  </div>
+            
+        </h5>
+    </div>
+
+    
+
+
 </header>
 
-    <div class="container body-wrap">
-      <article id="post-[Android] Android自定义View修炼之路(1)" 
-  class="article article-type-post" itemprop="blogPost">
-    <div class="post-meta flex-row">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android-自定义View/">Android, 自定义View</a></li></ul>
 
-    </div>
-    <div class="post-body">
-        <aside class="post-widget" id="post-widget">
-
-            
-            <div class="post-share" id="post-share">
-    <div class="tit">分享到：</div>
-    <ul class="reset share-icons">
-      <li>
-        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      <li>
-        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      <li>
-        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      <li>
-        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
-          <i class="icon icon-facebook"></i>
-        </a>
-      </li>
-      <li>
-        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
-          <i class="icon icon-twitter"></i>
-        </a>
-      </li>
-      <li>
-        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
-          豆
-        </a>
-      </li>
-    </ul>
- </div>
-
-            
-
-            
-            <nav class="post-toc-wrap" id="post-toc">
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
             <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#自定义View的步骤"><span class="post-toc-number">2.</span> <span class="post-toc-text">自定义View的步骤</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#自定义View的属性"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">自定义View的属性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#在View的构造方法中获得自定义的属性"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">在View的构造方法中获得自定义的属性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#重写onDraw"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">重写onDraw</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#重写onMeasure"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">重写onMeasure</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">3.</span> <span class="post-toc-text">总结</span></a></li></ol>
-            </nav>
+        </nav>
+    </aside>
+
+
+<article id="post-[Android] Android自定义View修炼之路(1)"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">[Android] Android自定义View修炼之路(1)</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-08-11 14:29:43" datetime="2017-08-11T06:29:43.000Z"  itemprop="datePublished">2017-08-11</time>
+
             
-        </aside>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a></li></ul>
 
-        <div class="post-main">
 
-            <div class="post-content" id="post-content" itemprop="postContent">
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
             <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>尼玛一直觉得自定义View好难，但是呢自定义View在Android开发过程中又是无法逃避的坎，一个App我觉得除了数据外，就属外观了，漂亮的界面总是让人心旷神怡。每每看到别人做的酷炫的控件都好羡慕，想知道他们是怎么实现的，相信很多初学者都有和我一样的苦恼。但是呢，学习是一个不断积累的过程，不能指望着一步登天，所以还是需要先打好基础，一步一步来，下面让我们跟着大神一步步学习自定义View吧（ps：我不是大神==，我也只是个菜鸟，我说的大神是<a href="http://my.csdn.net/lmj623565791" target="_blank" rel="external">洋神</a>， 我也只是跟着他的步骤将他博客里的案例做一下，顺便做些自己的笔记）。</p>
 <p>今天是第一课，是阅读<a href="http://my.csdn.net/lmj623565791" target="_blank" rel="external">洋神</a>的 <a href="http://blog.csdn.net/lmj623565791/article/details/24252901" target="_blank" rel="external">Android 自定义View (一)</a> 文章做的笔记。</p>
 <h2 id="自定义View的步骤"><a href="#自定义View的步骤" class="headerlink" title="自定义View的步骤"></a>自定义View的步骤</h2><p>一般来说，自定义View需要有以下四个步骤，视实际的情况某些步骤可有可无：</p>
@@ -293,34 +285,124 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDraw</span><span class="params">(Canvas canvas)</span> </span>&#123;</div><div class="line">    mPaint.setColor(Color.YELLOW);</div><div class="line">    canvas.drawRect(<span class="number">0</span>, <span class="number">0</span>, getMeasuredWidth(), getMeasuredHeight(), mPaint);</div><div class="line"></div><div class="line">    mPaint.setColor(mTitleTextColor);</div><div class="line">    canvas.drawText(mTitleText, getWidth() / <span class="number">2</span> - mBound.width() / <span class="number">2</span>, getHeight() / <span class="number">2</span> +       mBound.height() / <span class="number">2</span>, mPaint);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这里其实还有个坑，就是<code>drawText()</code>方法，大家有兴趣的可以去研究一下。</p>
 <p>现在基本上已经有效果了，运行程序，结果如下：</p>
-<p><img src="https://github.com/Glemontree/images/blob/master/images/h.JPG?raw=true" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/Glemontree/images/blob/master/images/h.JPG?raw=true" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <p>按照洋神的思路(/捂脸)，改下布局文件中CustomView的layout_width和layout_height属性，将CustomView的layout_width和layout_height属性均改为wrap_content，此时运行程序，结果如下：</p>
-<p><img src="https://github.com/Glemontree/images/blob/master/images/customview_wrap_conent.JPG?raw=true" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/Glemontree/images/blob/master/images/customview_wrap_conent.JPG?raw=true" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <p>这里因为我们没有重写onMeasure方法，而是直接调用的父类的onMeasure方法，当我们在布局文件中明确设置CustomView的宽度和高度时，系统帮我们测量的结果就是我们设置的值，但是但我们设置成wrap_content或者match_parent时，系统帮我们测量的结果就是match_parent的值，因此，一般我们都需要重写onMeasure方法，并且在onMeasure方法中根据实际的情况进行不同的设定。</p>
 <h3 id="重写onMeasure"><a href="#重写onMeasure" class="headerlink" title="重写onMeasure"></a>重写onMeasure</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onMeasure</span><span class="params">(<span class="keyword">int</span> widthMeasureSpec, <span class="keyword">int</span> heightMeasureSpec)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> widthMode = MeasureSpec.getMode(widthMeasureSpec);</div><div class="line">    <span class="keyword">int</span> widthSize = MeasureSpec.getSize(widthMeasureSpec);</div><div class="line">    <span class="keyword">int</span> heightMode = MeasureSpec.getMode(heightMeasureSpec);</div><div class="line">    <span class="keyword">int</span> heightSize = MeasureSpec.getSize(heightMeasureSpec);</div><div class="line"></div><div class="line">    <span class="keyword">int</span> width = <span class="number">0</span>, height = <span class="number">0</span>;</div><div class="line">    <span class="keyword">if</span> (width == MeasureSpec.EXACTLY) &#123;</div><div class="line">      width = widthSize;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      mPaint.setTextSize(mTitleTextSize);</div><div class="line">      mPaint.getTextBounds(mTitleText, <span class="number">0</span>, mTitleText.length(), mBound);</div><div class="line">      width = getPaddingLeft() + getPaddingRight() + mBound.width();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (height == MeasureSpec.EXACTLY) &#123;</div><div class="line">      height = heightSize;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      mPaint.setTextSize(mTitleTextSize);</div><div class="line">      mPaint.getTextBounds(mTitleText, <span class="number">0</span>, mTitleText.length(), mBound);</div><div class="line">      height = getPaddingTop() + getPaddingBottom() + mBound.height();</div><div class="line">    &#125;</div><div class="line">    setMeasuredDimension(width, height);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>并且修改布局文件，给CustomView添加上padding属性以及layout_centerInParent属性，运行结果如下：</p>
-<p><img src="https://github.com/Glemontree/images/blob/master/images/customview_override_onmeasure.JPG?raw=true" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/Glemontree/images/blob/master/images/customview_override_onmeasure.JPG?raw=true" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文是Android自定义View修炼之路的开篇，虽然大量参考了<a href="http://my.csdn.net/lmj623565791" target="_blank" rel="external">洋神的博客</a>，但是在自己动手操作的过程中对其中自定义View的过程有了更加深刻的了解，收获还是很大的，感谢<a href="http://my.csdn.net/lmj623565791" target="_blank" rel="external">洋神</a>的分享！</p>
 
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-08-11T12:43:40.792Z" itemprop="dateUpdated">2017-08-11 20:43:40</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/08/11/[Android] Android自定义View修炼之路(1)/" target="_blank" rel="external">https://glemontree.github.io/2017/08/11/[Android] Android自定义View修炼之路(1)/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://glemontree.github.io">
+            <img src="/img/avatar.jpg" alt="Glemontree">
+            Glemontree
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android-自定义View/">Android, 自定义View</a></li></ul>
+
 
             
-            <div class="post-reward">
-                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
-            </div>
-            
-            
-            <blockquote>
-                <p>
-                本文地址：
-                <a href="https://glemontree.github.io/2017/08/11/[Android] Android自定义View修炼之路(1)/" target="_blank" rel="external">https://glemontree.github.io/2017/08/11/[Android] Android自定义View修炼之路(1)/</a>
-                </p>
-                <footer><cite><a href="https://glemontree.github.io">@Glemontree's blog</a></cite></footer>
-            </blockquote>
-            </div>
-            
-<nav class="post-nav">
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://glemontree.github.io/2017/08/11/[Android] Android自定义View修炼之路(1)/&title=《[Android] Android自定义View修炼之路(1)》 — Glemontree's blog&pic=https://glemontree.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://glemontree.github.io/2017/08/11/[Android] Android自定义View修炼之路(1)/&title=《[Android] Android自定义View修炼之路(1)》 — Glemontree's blog&source=记录我学习的每一步" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://glemontree.github.io/2017/08/11/[Android] Android自定义View修炼之路(1)/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《[Android] Android自定义View修炼之路(1)》 — Glemontree's blog&url=https://glemontree.github.io/2017/08/11/[Android] Android自定义View修炼之路(1)/&via=https://glemontree.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://glemontree.github.io/2017/08/11/[Android] Android自定义View修炼之路(1)/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
   
-    <div class="waves-block waves-effect prev fl">
+    <div class="waves-block waves-effect prev">
       <a href="/2017/08/15/[Android] Android自定义View修炼之路(2)/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
         <h4 class="title">[Android] Android自定义View修炼之路(2)</h4>
@@ -329,7 +411,7 @@
   
 
   
-    <div class="waves-block waves-effect next fr">
+    <div class="waves-block waves-effect next">
       <a href="/2017/08/04/[Android] Android零碎知识点/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
         <h4 class="title">[Android] Android零碎知识点</h4>
@@ -339,121 +421,154 @@
 </nav>
 
 
-            
-            
-<div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="[Android] Android自定义View修炼之路(1)" data-title="[Android] Android自定义View修炼之路(1)" data-url="https://glemontree.github.io/2017/08/11/[Android] Android自定义View修炼之路(1)/index.html"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"ysblog"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
+
+    
 
 
 
 
 
-        </div>
-    </div>
+
+
+
+
+
+
+
+
+
+
+
+
 </article>
 
-<div id="reward" class="reward-lay">
-    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <h3 class="reward-title">
         <i class="icon icon-quote-left"></i>
-        谢谢打赏
+        谢谢大爷~
         <i class="icon icon-quote-right"></i>
     </h3>
-    <ul class="reward-items">
+    <div class="reward-content">
         
-        <li>
-            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
-            <p>微信</p>
-        </li>
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
         
-
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
         
-        <li>
-            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
-            <p>支付宝</p>
-        </li>
-        
-    </ul>
+    </div>
 </div>
 
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
     </div>
-  </main>
-<div class="mask" id="mask"></div>
+    <div class="bottom">
+        <p><span>Glemontree &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
-<script>
-var BLOG_SHARE = {
-    title: "[Android] Android自定义View修炼之路(1)",
-    pic: "/img/logo.jpg",
-    summary: document.getElementsByName('summary')[0].content,
-    url: "https://glemontree.github.io/2017/08/11/[Android] Android自定义View修炼之路(1)/index.html"
-};
-</script>
-<div class="global-share" id="global-share">
-    <div class="tit">分享到：</div>
+
+
+<div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://glemontree.github.io/2017/08/11/[Android] Android自定义View修炼之路(1)/&title=《[Android] Android自定义View修炼之路(1)》 — Glemontree's blog&pic=https://glemontree.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
       <li>
-        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
           <i class="icon icon-weixin"></i>
         </a>
       </li>
       <li>
-        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://glemontree.github.io/2017/08/11/[Android] Android自定义View修炼之路(1)/&title=《[Android] Android自定义View修炼之路(1)》 — Glemontree's blog&source=记录我学习的每一步" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://glemontree.github.io/2017/08/11/[Android] Android自定义View修炼之路(1)/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《[Android] Android自定义View修炼之路(1)》 — Glemontree's blog&url=https://glemontree.github.io/2017/08/11/[Android] Android自定义View修炼之路(1)/&via=https://glemontree.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
-          豆
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://glemontree.github.io/2017/08/11/[Android] Android自定义View修炼之路(1)/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
         </a>
       </li>
     </ul>
  </div>
 
 
-<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADJUlEQVR42u3aQW7CQAwF0N7/0nRbCRG+7VAR52WFKM3kmcVn7Pn5ia/Hn+vvO8nrV//7/H7vr8+fOe3CxsbGvgj7cXi9Yj/fISnQ8d2OV8/XikqDjY2NvY6dYJKHnpQyKVn+nG+M2NjY2DdmJ7HUC8I83rCxsbGx5+xqsM3jKikENjY29p3ZSfBM2vf5/Xtd/Q/20rCxsbG/np0v9v2vPzLfxsbGxv5i9jxsekGSj4Gr94zWxcbGxl7Erg5TJ2PX/CBO0jaqbjOwsbGx78aeH7LpkaK2fqvZVJ42YGNjY1+EndemOsTN4ycv1lmDZ2xsbOxN7LMC5viTSbTkDazJ6BcbGxv7nuwkHo4/mTeYCg8dN7PKvTRsbGzsC7InMVZYYFy4fGvUPIuEjY2NfUF2r8WTbz/y0hSO2gzK/fKkEjY2NvbF2XnA9MYAvXFytZFUnopgY2Njr2AfL5Ms3xu15s2jSbHe3A0bGxt7ETuPriT2qi2e3nCiOjwof0vY2NjYF2HnsF57qPrLv1egk3tp2NjY2BdnT1r5k/FtdSBRXREbGxv7buzeIcj/JCW8N4MBbGxs7EXs+cGa3mC4+jUkY4BoY4ONjY29iD0/x5KH1rn37IXracd3sLGxsb+MPWkMfaJMVVj14A42Njb2PnbelEk2BuWxazzErW6foufBxsbGXsqet5CS5k7ycJOBxGnpjY2NjX1Zdv7r/ThO8mhJCndWiGJjY2PvYOcLVI/U5OPk6n3ysfHL1bGxsbEXsc/dElQ/k5dj3mz64E4IGxsb+2vYvRlodTvR24r07vzGiI2Njb2Ufe5hncm2pDceLhQFGxsbex27R4p+9I9DqLpKVCZsbGzsdewkSCYlmJBydmF1bGxs7BXsR/GqRlSyYUgO2SSxVBhpYGNjYy9i9wJgfpQneT8PvF6JsbGxsTexc0ZexUnkTDY5hf/FxsbGXsfOh7J5UPWGu9WiNIfK2NjY2LdnVw9KJoxJw6h6Z2xsbGzsXrt/sv2YjyuwsbGxd7N77f7jklU3EtVQ7BUdGxsbex+72qDJm0HVkUPeHpqEGTY2NvYi9i8EmtmFeqyWFQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
 
-<script src="/js/main.js"></script>
 
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
 
 
 <div class="search-panel" id="search-panel">
     <ul class="search-result" id="search-result"></ul>
 </div>
-<script type="text/template" id="search-tpl">
+<template id="search-tpl">
 <li class="item">
-    <a href="/{path}" class="waves-block waves-effect">
+    <a href="{path}" class="waves-block waves-effect">
         <div class="title ellipsis" title="{title}">{title}</div>
         <div class="flex-row flex-middle">
             <div class="tags ellipsis">
@@ -463,15 +578,35 @@ var BLOG_SHARE = {
         </div>
     </a>
 </li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
 </script>
-
-<script src="/js/search.js"></script>
-
-
-
-
-
-
 
 
 
