@@ -3,22 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2018/4 | Glemontree&#39;s blog | day day up!</title>
+  <title>[Java] Java并发之ReentrantLock | Glemontree&#39;s blog | day day up!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="theme-color" content="#3F51B5">
   
   
-  <meta name="keywords" content="Java、C++、Android、Linux">
-  <meta name="description" content="记录我学习的每一步">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Glemontree's blog">
-<meta property="og:url" content="https://glemontree.github.io/archives/2018/04/index.html">
+  <meta name="keywords" content="ReentrantLock">
+  <meta name="description" content="推荐一篇关于ReentrantLock的文章：Java并发之ReentrantLock详解。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Java] Java并发之ReentrantLock">
+<meta property="og:url" content="https://glemontree.github.io/2018/04/10/[Java] Java并发之ReentrantLock/index.html">
 <meta property="og:site_name" content="Glemontree's blog">
-<meta property="og:description" content="记录我学习的每一步">
+<meta property="og:description" content="推荐一篇关于ReentrantLock的文章：Java并发之ReentrantLock详解。">
+<meta property="og:updated_time" content="2018-04-10T09:04:15.625Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Glemontree's blog">
-<meta name="twitter:description" content="记录我学习的每一步">
+<meta name="twitter:title" content="[Java] Java并发之ReentrantLock">
+<meta name="twitter:description" content="推荐一篇关于ReentrantLock的文章：Java并发之ReentrantLock详解。">
   
     <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
   
@@ -30,7 +31,7 @@
 <body>
   <div id="loading" class="active"></div>
 
-  <nav id="menu"  >
+  <nav id="menu" class="hide" >
    <div class="inner flex-row-vertical">
   <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
       <i class="icon icon-lg icon-close"></i>
@@ -109,7 +110,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">Glemontree&#39;s blog</div>
+        <div class="flex-col header-title ellipsis">[Java] Java并发之ReentrantLock</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -130,258 +131,165 @@
 </header>
 <header class="content-header">
   <div class="container">
-    <h1 class="author">Glemontree&#39;s blog</h1>
+    <h1 class="author">[Java] Java并发之ReentrantLock</h1>
     <h5 class="subtitle">
         
-        day day up!
+            <time datetime="2018-04-10T09:03:08.000Z" itemprop="datePublished" class="page-time">
+  2018-04-10
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
+
         
     </h5>
   </div>
 </header>
 
     <div class="container body-wrap">
-      
-
-
-        <h3 class="archive-separator">April, 2018</h3>
-
-
-
-     <article class="archive-article">
-  <div class="archive-article-date">
-    <time datetime="2018-04-10T09:03:08.000Z" itemprop="datePublished" class="post-time">
-  Apr 10
-</time>
-
-  </div>
-  <div class="archive-article-inner">
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/04/10/[Java] Java并发之ReentrantLock/">[Java] Java并发之ReentrantLock</a>
-    </h3>
-  
-
-
-
-    
+      <article id="post-[Java] Java并发之ReentrantLock" 
+  class="article article-type-post" itemprop="blogPost">
+    <div class="post-meta flex-row">
+        
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ReentrantLock/">ReentrantLock</a></li></ul>
 
-  </div>
-</article>
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+            
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <p>推荐一篇关于ReentrantLock的文章：<a href="https://blog.csdn.net/lipeng_bigdata/article/details/52154637" target="_blank" rel="external">Java并发之ReentrantLock详解</a>。</p>
 
 
-     <article class="archive-article">
-  <div class="archive-article-date">
-    <time datetime="2018-04-10T01:38:08.000Z" itemprop="datePublished" class="post-time">
-  Apr 10
-</time>
-
-  </div>
-  <div class="archive-article-inner">
-    
-
+            
+            <div class="post-reward">
+                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
+            </div>
+            
+            
+            <blockquote>
+                <p>
+                本文地址：
+                <a href="https://glemontree.github.io/2018/04/10/[Java] Java并发之ReentrantLock/" target="_blank" rel="external">https://glemontree.github.io/2018/04/10/[Java] Java并发之ReentrantLock/</a>
+                </p>
+                <footer><cite><a href="https://glemontree.github.io">@Glemontree's blog</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
+  
 
   
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/04/10/[Java] CAS操作/">[Java] CAS操作</a>
+    <div class="waves-block waves-effect next fr">
+      <a href="/2018/04/10/[Java] CAS操作/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">[Java] CAS操作</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="[Java] Java并发之ReentrantLock" data-title="[Java] Java并发之ReentrantLock" data-url="https://glemontree.github.io/2018/04/10/[Java] Java并发之ReentrantLock/index.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ysblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢打赏
+        <i class="icon icon-quote-right"></i>
     </h3>
-  
-
-
-
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CAS/">CAS</a></li></ul>
-
-  </div>
-</article>
-
-
-     <article class="archive-article">
-  <div class="archive-article-date">
-    <time datetime="2018-04-09T10:32:40.000Z" itemprop="datePublished" class="post-time">
-  Apr 9
-</time>
-
-  </div>
-  <div class="archive-article-inner">
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/04/09/[Java] LRU缓存实现/">[Java] LRU缓存实现</a>
-    </h3>
-  
-
-
-
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LRU/">LRU</a></li></ul>
-
-  </div>
-</article>
-
-
-     <article class="archive-article">
-  <div class="archive-article-date">
-    <time datetime="2018-04-09T10:18:27.000Z" itemprop="datePublished" class="post-time">
-  Apr 9
-</time>
-
-  </div>
-  <div class="archive-article-inner">
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/04/09/[Java] 负载均衡算法/">[Java] 负载均衡算法</a>
-    </h3>
-  
-
-
-
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/负载均衡/">负载均衡</a></li></ul>
-
-  </div>
-</article>
-
-
-     <article class="archive-article">
-  <div class="archive-article-date">
-    <time datetime="2018-04-09T10:08:18.000Z" itemprop="datePublished" class="post-time">
-  Apr 9
-</time>
-
-  </div>
-  <div class="archive-article-inner">
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/04/09/[DB] InnoDB行级锁/">[DB] InnoDB行级锁</a>
-    </h3>
-  
-
-
-
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/行级锁/">行级锁</a></li></ul>
-
-  </div>
-</article>
-
-
-     <article class="archive-article">
-  <div class="archive-article-date">
-    <time datetime="2018-04-09T08:50:47.000Z" itemprop="datePublished" class="post-time">
-  Apr 9
-</time>
-
-  </div>
-  <div class="archive-article-inner">
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/04/09/[DB] MySQL删除表中多余的重复记录/">[DB] MySQL删除表中多余的重复记录</a>
-    </h3>
-  
-
-
-
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/group-by/">group by</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/having/">having</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/min/">min</a></li></ul>
-
-  </div>
-</article>
-
-
-     <article class="archive-article">
-  <div class="archive-article-date">
-    <time datetime="2018-04-09T08:28:44.000Z" itemprop="datePublished" class="post-time">
-  Apr 9
-</time>
-
-  </div>
-  <div class="archive-article-inner">
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/04/09/[DB] MySQL中distinct的用法/">[DB] MySQL中distinct的用法</a>
-    </h3>
-  
-
-
-
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/distinct/">distinct</a></li></ul>
-
-  </div>
-</article>
-
-
-     <article class="archive-article">
-  <div class="archive-article-date">
-    <time datetime="2018-04-09T08:10:26.000Z" itemprop="datePublished" class="post-time">
-  Apr 9
-</time>
-
-  </div>
-  <div class="archive-article-inner">
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/04/09/[DB] MySQL中group by的用法/">[DB] MySQL中group by的用法</a>
-    </h3>
-  
-
-
-
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/group-by/">group by</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/having/">having</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/max/">max</a></li></ul>
-
-  </div>
-</article>
-
-
-     <article class="archive-article">
-  <div class="archive-article-date">
-    <time datetime="2018-04-05T12:01:20.000Z" itemprop="datePublished" class="post-time">
-  Apr 5
-</time>
-
-  </div>
-  <div class="archive-article-inner">
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/04/05/[Java] 静态代理、JDK动态代理与CGLIB动态代理/">[Java] 静态代理、JDK动态代理与CGLIB动态代理</a>
-    </h3>
-  
-
-
-
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/代理模式/">代理模式</a></li></ul>
-
-  </div>
-</article>
-
-
-
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
 
     </div>
   </main>
@@ -390,10 +298,10 @@
 
 <script>
 var BLOG_SHARE = {
-    title: "Glemontree's blog",
+    title: "[Java] Java并发之ReentrantLock",
     pic: "/img/logo.jpg",
     summary: document.getElementsByName('summary')[0].content,
-    url: "https://glemontree.github.io/archives/2018/04/index.html"
+    url: "https://glemontree.github.io/2018/04/10/[Java] Java并发之ReentrantLock/index.html"
 };
 </script>
 <div class="global-share" id="global-share">

@@ -9,7 +9,7 @@
   <meta name="theme-color" content="#3F51B5">
   
   
-  <meta name="keywords" content="group by,min,having">
+  <meta name="keywords" content="group by,having,min">
   <meta name="description" content="删除表中多余的重复记录，重复记录是根据单个字段peopleName来判断，只留有peopleId最小的记录：
 123delete from peoplewhere peopleName in (select peopleName from people group by peopleName having count(peopleName) &amp;gt; 1)and peopleId not in (">
 <meta property="og:type" content="article">
