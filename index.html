@@ -173,7 +173,7 @@
     
          CAS，Compare And Swap，即比较并交换，整个AQS同步组件、Atomic原子类操作等等都是以CAS实现的，甚至ConcurrentHashMap在1.8的版本中也调整为了CAS+Synchronized，可以说CAS是整个JUC的基石。 
    
-   CAS分析  在CAS中有三个参数，内存位置V、旧的预期值A、要更新的值B，当且仅当内存位置V的值等于旧的预期值A时才会将内存位
+ 对于并发控制而言，锁是一种悲观策略，会阻塞线程执行，而无锁是一种乐观策略，它会假设对资源的访问是没有冲突的，既然没有冲突就不需要等待
     
     
         <a href="/2018/04/10/[Java] CAS操作/" class="post-more waves-effect waves-button">

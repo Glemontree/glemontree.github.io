@@ -12,21 +12,21 @@
   <meta name="keywords" content="CAS">
   <meta name="description" content="CAS，Compare And Swap，即比较并交换，整个AQS同步组件、Atomic原子类操作等等都是以CAS实现的，甚至ConcurrentHashMap在1.8的版本中也调整为了CAS+Synchronized，可以说CAS是整个JUC的基石。
 
-CAS分析在CAS中有三个参数，内存位置V、旧的预期值A、要更新的值B，当且仅当内存位置V的值等于旧的预期值A时才会将内存位置V的值修改为B，否">
+对于并发控制而言，锁是一种悲观策略，会阻塞线程执行，而无锁是一种乐观策略，它会假设对资源的访问是没有冲突的，既然没有冲突就不需要等待，线程不需要">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[Java] CAS操作">
 <meta property="og:url" content="https://glemontree.github.io/2018/04/10/[Java] CAS操作/index.html">
 <meta property="og:site_name" content="Glemontree's blog">
 <meta property="og:description" content="CAS，Compare And Swap，即比较并交换，整个AQS同步组件、Atomic原子类操作等等都是以CAS实现的，甚至ConcurrentHashMap在1.8的版本中也调整为了CAS+Synchronized，可以说CAS是整个JUC的基石。
 
-CAS分析在CAS中有三个参数，内存位置V、旧的预期值A、要更新的值B，当且仅当内存位置V的值等于旧的预期值A时才会将内存位置V的值修改为B，否">
+对于并发控制而言，锁是一种悲观策略，会阻塞线程执行，而无锁是一种乐观策略，它会假设对资源的访问是没有冲突的，既然没有冲突就不需要等待，线程不需要">
 <meta property="og:image" content="http://dl.iteye.com/upload/attachment/0083/2584/b7b2472f-6b93-3f85-9e44-29a9ff774c8e.png">
-<meta property="og:updated_time" content="2018-04-10T03:15:08.119Z">
+<meta property="og:updated_time" content="2018-04-10T08:33:25.644Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Java] CAS操作">
 <meta name="twitter:description" content="CAS，Compare And Swap，即比较并交换，整个AQS同步组件、Atomic原子类操作等等都是以CAS实现的，甚至ConcurrentHashMap在1.8的版本中也调整为了CAS+Synchronized，可以说CAS是整个JUC的基石。
 
-CAS分析在CAS中有三个参数，内存位置V、旧的预期值A、要更新的值B，当且仅当内存位置V的值等于旧的预期值A时才会将内存位置V的值修改为B，否">
+对于并发控制而言，锁是一种悲观策略，会阻塞线程执行，而无锁是一种乐观策略，它会假设对资源的访问是没有冲突的，既然没有冲突就不需要等待，线程不需要">
 <meta name="twitter:image" content="http://dl.iteye.com/upload/attachment/0083/2584/b7b2472f-6b93-3f85-9e44-29a9ff774c8e.png">
   
     <link rel="alternative" href="/atom.xml" title="Glemontree&#39;s blog" type="application/atom+xml">
@@ -216,6 +216,7 @@ CAS分析在CAS中有三个参数，内存位置V、旧的预期值A、要更新
             <div class="post-content" id="post-content" itemprop="postContent">
             <p>CAS，Compare And Swap，即比较并交换，整个AQS同步组件、Atomic原子类操作等等都是以CAS实现的，甚至ConcurrentHashMap在1.8的版本中也调整为了CAS+Synchronized，可以说CAS是整个JUC的基石。</p>
 <p><img src="http://dl.iteye.com/upload/attachment/0083/2584/b7b2472f-6b93-3f85-9e44-29a9ff774c8e.png" alt=""></p>
+<p>对于并发控制而言，锁是一种悲观策略，会阻塞线程执行，而无锁是一种乐观策略，它会假设对资源的访问是没有冲突的，既然没有冲突就不需要等待，线程不需要阻塞。</p>
 <h2 id="CAS分析"><a href="#CAS分析" class="headerlink" title="CAS分析"></a>CAS分析</h2><p>在CAS中有三个参数，内存位置V、旧的预期值A、要更新的值B，当且仅当内存位置V的值等于旧的预期值A时才会将内存位置V的值修改为B，否则什么也不干，其伪代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="keyword">this</span>.value == A) &#123;</div><div class="line">  <span class="keyword">this</span>.value = B;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>其实上面这段伪代码也不是线程安全的，如果两个线程分别都通过了<code>this.value == A</code>的判断，那么最终value的值就未知了。</p>
@@ -231,7 +232,8 @@ CAS分析在CAS中有三个参数，内存位置V、旧的预期值A、要更新
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">compareAndSet</span><span class="params">(<span class="keyword">int</span> expect, <span class="keyword">int</span> update)</span> </span>&#123;</div><div class="line">  <span class="keyword">return</span> unsafe.compareAndSwapInt(<span class="keyword">this</span>, valueOffset, expect, update);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>可以发现，compareAndSet底层调用的仍然是compareAndSwapInt方法。</p>
 <p>再看一个方法getAndIncrement：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">getAndIncrement</span><span class="params">()</span> </span>&#123;</div><div class="line">  <span class="keyword">for</span> (; ;) &#123;</div><div class="line">    <span class="keyword">int</span> current = get();</div><div class="line">    <span class="keyword">int</span> next = current + <span class="number">1</span>;</div><div class="line">    <span class="keyword">if</span> (compareAndSet(current, next)) &#123;</div><div class="line">      <span class="keyword">return</span> current;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">getAndIncrement</span><span class="params">()</span> </span>&#123;</div><div class="line">  <span class="keyword">for</span> (; ;) &#123;</div><div class="line">    <span class="keyword">int</span> current = get();</div><div class="line">    <span class="keyword">int</span> next = current + <span class="number">1</span>;</div><div class="line">    <span class="comment">/*</span></div><div class="line">    	为了确保当前线程可以发现其他线程对临界区数据的修改，这里value使用volatile进行修饰</div><div class="line">    */</div><div class="line">    <span class="keyword">if</span> (compareAndSet(current, next)) &#123;</div><div class="line">      <span class="keyword">return</span> current;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里就是先获取value的值，再加1，然后进行CAS操作，如果在读取value值和加1的过程中value的值被其他线程改变了，那么CAS失败，一直循环到成功为止。</p>
 <h2 id="CAS的ABA问题"><a href="#CAS的ABA问题" class="headerlink" title="CAS的ABA问题"></a>CAS的ABA问题</h2><p>因为CAS需要在操作值的时候检查下值有没有发生变化，如果没有变化就更新，但是如果一个值原来是A，变成了B，又变成了A，那么使用CAS进行检查时会发现它的值没有发生变化，但是实际上却变化了，ABA问题的解决思路就是使用版本号，在变量前面加上版本号，每次变量更新的时候把版本号加1，那么A-B-A就会变成1A-2B-3A，从Java1.5开始的JDK的atomic包里提供了一个类AtomicStampedReference来解决ABA问题，这个类的compareAndSet方法作用是先检查当前引用是否等于预期引用，并且当前标志是否等于预期标志，如果全部相等，则以原子方式将该引用和该标志的值设置为给定的更新值。</p>
 
 
