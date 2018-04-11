@@ -164,6 +164,62 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-[Java] Java并发编程实战之线程安全性"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-11-28 19:43:21" datetime="2017-11-28T11:43:21.000Z"  itemprop="datePublished">2017-11-28</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/11/28/[Java] Java并发编程实战之线程安全性/">[Java] Java并发编程实战之线程安全性</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        
+一个对象是否是线程安全的，取决于它是否被多个线程访问，要使得对象是线程安全的，需要采用同步机制来协同对可变状态的访问
+
+在线程安全类中封装了必要的同步机制，因此客户端无需进一步采用同步措施
+
+无状态对象一定是线程安全的，大多数Servlet都是无状态的，从而极大的降低了在实现Servlet线程安全性时的复杂性
+
+为了确保线程安全性，先检查后执行和读取-修改-写入等操作必须是原子性的
+
+先检...
+    
+
+        <a href="/2017/11/28/[Java] Java并发编程实战之线程安全性/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java-并发/">Java 并发</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-[Java] ClassLoader机制"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -611,55 +667,6 @@ signal函数每次设置的信号处理函数只能生效一次，每次在进�
     <div class="post-footer">
         
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/服务器/">服务器</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-[TCPIP] 基本TCP套接字编程"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-11-02 11:15:22" datetime="2017-11-02T03:15:22.000Z"  itemprop="datePublished">2017-11-02</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/TCP-IP/">TCP/IP</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/11/02/[TCPIP] 基本TCP套接字编程/">[TCP/IP] 基本TCP套接字编程</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        socket函数12#include &lt;sys/socket.h&gt;int socket(int family, int type, int protocol);
-socket函数在成功时返回一个小的非负整数值，称为套接字描述符，简称sockfd。
-connect函数12#include &lt;sys/socket.h&gt;int connect(int sockfd, con...
-    
-
-        <a href="/2017/11/02/[TCPIP] 基本TCP套接字编程/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TCP/">TCP</a></li></ul>
 
     </div>
     
