@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://glemontree.github.io/"/>
-  <updated>2018-04-11T06:44:35.175Z</updated>
+  <updated>2018-04-12T01:52:37.561Z</updated>
   <id>https://glemontree.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://glemontree.github.io/2018/04/11/%5BJava%5D%20HTTP%E5%92%8CHTTPS%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
     <id>https://glemontree.github.io/2018/04/11/[Java] HTTP和HTTPS的区别/</id>
     <published>2018-04-11T06:42:51.000Z</published>
-    <updated>2018-04-11T06:44:35.175Z</updated>
+    <updated>2018-04-12T01:52:37.561Z</updated>
     
     <content type="html"><![CDATA[<p>推荐一篇讲解HTTPS和HTTP区别的文章：<a href="https://juejin.im/entry/58d7635e5c497d0057fae036" target="_blank" rel="external">详细解析 HTTP 与 HTTPS 的区别</a>。</p>]]></content>
     
@@ -37,7 +37,7 @@
       <category term="Java" scheme="https://glemontree.github.io/categories/Java/"/>
     
     
-      <category term="HTTP HTTPS SSL" scheme="https://glemontree.github.io/tags/HTTP-HTTPS-SSL/"/>
+      <category term="HTTP, HTTPS, SSL]" scheme="https://glemontree.github.io/tags/HTTP-HTTPS-SSL/"/>
     
   </entry>
   
