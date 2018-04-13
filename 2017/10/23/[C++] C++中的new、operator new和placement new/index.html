@@ -50,7 +50,7 @@ new operator：
 operator new：
 
 只分配所要求的空间，">
-<meta property="og:updated_time" content="2017-10-23T14:58:40.941Z">
+<meta property="og:updated_time" content="2018-04-13T06:16:47.954Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[C++] C++中的new、operator new和placement new">
 <meta name="twitter:description" content="new/delete和operator new/operator deletenew operator/delete operator就是new和delete操作符，而operator new/operator delete是函数。
@@ -99,7 +99,7 @@ operator new：
             <li class="waves-block waves-effect">
               <a href="/"  >
                 <i class="icon icon-lg icon-home"></i>
-                homepage
+                Homepage
               </a>
             </li>
         
@@ -241,47 +241,46 @@ operator new：
 <li>重载时，第一个参数类型必须为表达要求分配空间的大小（字节），类型为size_t</li>
 <li>重载时，可以带其他参数</li>
 </ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">class</span> X&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">  	X() &#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"constructor of X"</span> &lt;&lt; <span class="built_in">endl</span>; &#125;</div><div class="line">  	~X() &#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"destructor of X"</span> &lt;&lt; <span class="built_in">endl</span>; &#125;</div><div class="line">  </div><div class="line">  	<span class="function"><span class="keyword">void</span>* <span class="keyword">operator</span> <span class="title">new</span><span class="params">(<span class="keyword">size_t</span> size, <span class="built_in">string</span> str)</span> </span>&#123;</div><div class="line">      	<span class="built_in">cout</span> &lt;&lt; <span class="string">"operator new size "</span> &lt;&lt; size  &lt;&lt; <span class="string">" with string "</span> &lt;&lt; str &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">      	<span class="keyword">return</span> ::<span class="keyword">operator</span> <span class="keyword">new</span>(size);</div><div class="line">  	&#125;</div><div class="line">  </div><div class="line">  	<span class="function"><span class="keyword">void</span> <span class="keyword">operator</span> <span class="title">delete</span><span class="params">(<span class="keyword">void</span>* pointee)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="string">"operator delete"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">        ::<span class="function"><span class="keyword">operator</span> <span class="title">delete</span><span class="params">(pointee)</span></span>;</div><div class="line">    &#125;</div><div class="line">  </div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="keyword">int</span> num;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">  	X *px = <span class="keyword">new</span>(<span class="string">"A new class"</span>) X;</div><div class="line">    <span class="keyword">delete</span> px;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>X* px = new X;  //该行代码中的new为new operator，它将调用类X中的operator new，为该类的对象分配空间，然后调用当前实例的构造函数。<br>delete px; //该行代码中的delete为delete operator，它将调用该实例的析构函数，然后调用类X中的operator delete，以释放该实例占用的空间。</p>
-<p>new operator与delete operator的行为是不能够也不应该被改变，这是C++标准作出的承诺。而operator new与operator delete和C语言中的malloc与free对应，只负责分配及释放空间。但使用operator new分配的空间必须使用operator delete来释放，而不能使用free，因为它们对内存使用的登记方式不同。反过来亦是一样。你可以重载operator new和operator delete以实现对内存管理的不同要求，但你不能重载new operator或delete operator以改变它们的行为。</p>
-<p>为什么有必要写自己的operator new和operator delete？<br>答案通常是：为了效率。缺省的operator new和operator delete具有非常好的通用性，它的这种灵活性也使得在某些特定的场合下，可以进一步改善它的性能。尤其在那些需要动态分配大量的但很小的对象的应用程序里，情况更是如此。具体可参考《Effective C++》中的第二章内存管理。</p>
-<h2 id="placement-new"><a href="#placement-new" class="headerlink" title="placement new"></a>placement new</h2><p>placement new 是重载operator new 的一个标准、全局的版本，它不能够被自定义的版本代替（不像普通版本的operator new和operator delete能够被替换）。</p>
-<p>void <em>operator new( size_t, void </em> p ) throw() { return p; }</p>
-<p>placement new的执行忽略了size_t参数，只返还第二个参数。其结果是允许用户把一个对象放到一个特定的地方，达到调用构造函数的效果。和其他普通的new不同的是，它在括号里多了另外一个参数。比如：</p>
-<p>Widget * ptr = new Widget;                    //ordinary new</p>
-<p>pi = new (ptr) int; pi = new (ptr) int;     //placement new</p>
-<p>括号里的参数ptr是一个指针，它指向一个内存缓冲器，placement new将在这个缓冲器上分配一个对象。Placement new的返回值是这个被构造对象的地址(比如括号中的传递参数)。placement new主要适用于：在对时间要求非常高的应用程序中，因为这些程序分配的时间是确定的；长时间运行而不被打断的程序；以及执行一个垃圾收集器 (garbage collector)。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">class</span> X&#123;</div><div class="line">  <span class="keyword">public</span>:</div><div class="line">  X() &#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"constructor of X"</span> &lt;&lt; <span class="built_in">endl</span>; &#125;</div><div class="line">  ~X() &#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"destructor of X"</span> &lt;&lt; <span class="built_in">endl</span>; &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">void</span>* <span class="keyword">operator</span> <span class="title">new</span><span class="params">(<span class="keyword">size_t</span> size, <span class="built_in">string</span> str)</span> </span>&#123;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"operator new size "</span> &lt;&lt; size  &lt;&lt; <span class="string">" with string "</span> &lt;&lt; str &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    <span class="keyword">return</span> ::<span class="keyword">operator</span> <span class="keyword">new</span>(size);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="keyword">operator</span> <span class="title">delete</span><span class="params">(<span class="keyword">void</span>* pointee)</span></span></div><div class="line">  &#123;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"operator delete"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    ::<span class="function"><span class="keyword">operator</span> <span class="title">delete</span><span class="params">(pointee)</span></span>;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">private</span>:</div><div class="line">  <span class="keyword">int</span> num;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">  X *px = <span class="keyword">new</span>(<span class="string">"A new class"</span>) X;</div><div class="line">  <span class="keyword">delete</span> px;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>X* px = new X;</code> ，该行代码中的<code>new</code>为<code>new operator</code>，它将调用类X中的<code>operator new</code>，为该类的对象分配空间，然后调用当前实例的构造函数。<br><code>delete px;</code>，该行代码中的<code>delete</code>为<code>delete operator</code>，它将调用该实例的析构函数，然后调用类X中的<code>operator delete</code>，以释放该实例占用的空间。</p>
+<p><code>new operator</code>与<code>delete operator</code>的行为是不能够也不应该被改变，这是C++标准作出的承诺。而<code>operator new</code>与<code>operator delete</code>和C语言中的<code>malloc</code>与<code>free</code>对应，只负责分配及释放空间。但使用<code>operator new</code>分配的空间必须使用<code>operator delete</code>来释放，而不能使用<code>free</code>，因为它们对内存使用的登记方式不同。反过来亦是一样。你可以重载<code>operator new</code>和<code>operator delete</code>以实现对内存管理的不同要求，但你不能重载<code>new operator</code>或<code>delete operator</code>以改变它们的行为。</p>
+<p>为什么有必要写自己的<code>operator new</code>和<code>operator delete</code>？<br>答案通常是：为了效率。缺省的<code>operator new</code>和<code>operator delete</code>具有非常好的通用性，它的这种灵活性也使得在某些特定的场合下，可以进一步改善它的性能。尤其在那些需要动态分配大量的但很小的对象的应用程序里，情况更是如此。具体可参考《Effective C++》中的第二章内存管理。</p>
+<h2 id="placement-new"><a href="#placement-new" class="headerlink" title="placement new"></a>placement new</h2><p><code>placement new</code> 是重载<code>operator new</code> 的一个标准、全局的版本，它不能够被自定义的版本代替（不像普通版本的<code>operator new</code>和<code>operator delete</code>能够被替换）。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> *<span class="keyword">operator</span> <span class="title">new</span><span class="params">( <span class="keyword">size_t</span>, <span class="keyword">void</span> * p )</span> <span class="title">throw</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> p; &#125;</div></pre></td></tr></table></figure>
+<p><code>placement new</code>的执行忽略了<code>size_t</code>参数，只返还第二个参数。其结果是允许用户把一个对象放到一个特定的地方，达到调用构造函数的效果。和其他普通的new不同的是，它在括号里多了另外一个参数。比如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Widget * ptr = <span class="keyword">new</span> Widget; <span class="comment">//ordinary new</span></div><div class="line">pi = <span class="keyword">new</span> (ptr) <span class="keyword">int</span>; <span class="comment">//placement new</span></div></pre></td></tr></table></figure>
+<p>括号里的参数<code>ptr</code>是一个指针，它指向一个内存缓冲器，<code>placement new</code>将在这个缓冲器上分配一个对象。<code>Placement new</code>的返回值是这个被构造对象的地址(比如括号中的传递参数)。<code>placement new</code>主要适用于：在对时间要求非常高的应用程序中，因为这些程序分配的时间是确定的；长时间运行而不被打断的程序；以及执行一个垃圾收集器 (garbage collector)。</p>
 <h2 id="new-、operator-new-和-placement-new-区别"><a href="#new-、operator-new-和-placement-new-区别" class="headerlink" title="new 、operator new 和 placement new 区别"></a><strong>new 、operator new 和 placement new 区别</strong></h2><ul>
-<li><p>new ：不能被重载，其行为总是一致的。它先调用operator new分配内存，然后调用构造函数初始化那段内存。</p>
-<p>new 操作符的执行过程：</p>
+<li><p><code>new</code>：不能被重载，其行为总是一致的。它先调用<code>operator new</code>分配内存，然后调用构造函数初始化那段内存。</p>
+<p><code>new</code> 操作符的执行过程：</p>
 <ul>
-<li>调用operator new分配内存 ；</li>
+<li>调用<code>operator new</code>分配内存 ；</li>
 <li>调用构造函数生成类对象；</li>
 <li>返回相应指针。</li>
 </ul>
 </li>
-<li><p>operator new：要实现不同的内存分配行为，应该重载operator new，而不是new。</p>
-<p>operator new就像operator + 一样，是可以重载的。如果类中没有重载operator new，那么调用的就是全局的::operator new来完成堆的分配。同理，operator new[]、operator delete、operator delete[]也是可以重载的。</p>
+<li><p><code>operator new</code>：要实现不同的内存分配行为，应该重载<code>operator new</code>，而不是<code>new</code>。</p>
+<p><code>operator new</code>就像<code>operator +</code> 一样，是可以重载的。如果类中没有重载<code>operator new</code>，那么调用的就是全局的<code>::operator new</code>来完成堆的分配。同理，<code>operator new[]</code>、<code>operator delete</code>、<code>operator delete[]</code>也是可以重载的。</p>
 </li>
-<li><p>placement new：只是operator new重载的一个版本。它并不分配内存，只是返回指向已经分配好的某段内存的一个指针。因此不能删除它，但需要调用对象的析构函数。</p>
-<p>如果你想在已经分配的内存中创建一个对象，使用new时行不通的。也就是说placement new允许你在一个已经分配好的内存中（栈或者堆中）构造一个新的对象。原型中void* p实际上就是指向一个已经分配好的内存缓冲区的的首地址。</p>
+<li><p><code>placement new</code>：只是<code>operator new</code>重载的一个版本。它并不分配内存，只是返回指向已经分配好的某段内存的一个指针。因此不能删除它，但需要调用对象的析构函数。</p>
+<p>如果你想在已经分配的内存中创建一个对象，使用new是行不通的。也就是说<code>placement new</code>允许你在一个已经分配好的内存中（栈或者堆中）构造一个新的对象。原型中<code>void* p</code>实际上就是指向一个已经分配好的内存缓冲区的的首地址。</p>
 </li>
 </ul>
 <h2 id="placement-new-存在的理由"><a href="#placement-new-存在的理由" class="headerlink" title="placement new 存在的理由"></a><strong>placement new 存在的理由</strong></h2><ul>
-<li><p>用placement new 解决buffer的问题</p>
-<p>问题描述：用new分配的数组缓冲时，由于调用了默认构造函数，因此执行效率上不佳。若没有默认构造函数则会发生编译时错误。如果你想在预分配的内存上创建对象，用缺省的new操作符是行不通的。要解决这个问题，你可以用placement new构造。它允许你构造一个新对象到预分配的内存上。</p>
+<li><p>用<code>placement new</code> 解决buffer的问题</p>
+<p>问题描述：用new分配的数组缓冲时，由于调用了默认构造函数，因此执行效率上不佳。若没有默认构造函数则会发生编译时错误。如果你想在预分配的内存上创建对象，用缺省的new操作符是行不通的。要解决这个问题，你可以用<code>placement new</code>构造。它允许你构造一个新对象到预分配的内存上。</p>
 </li>
 <li><p>增大时空效率的问题</p>
-<p>使用new操作符分配内存需要在堆中查找足够大的剩余空间，显然这个操作速度是很慢的，而且有可能出现无法分配内存的异常（空间不够）。placement new就可以解决这个问题。我们构造对象都是在一个预先准备好了的内存缓冲区中进行，不需要查找内存，内存分配的时间是常数；而且不会出现在程序运行中途出现内存不足的异常。所以，placement new非常适合那些对时间要求比较高，长时间运行不希望被打断的应用程序。</p>
+<p>使用<code>new</code>操作符分配内存需要在堆中查找足够大的剩余空间，显然这个操作速度是很慢的，而且有可能出现无法分配内存的异常（空间不够）。<code>placement new</code>就可以解决这个问题。我们构造对象都是在一个预先准备好了的内存缓冲区中进行，不需要查找内存，内存分配的时间是常数；而且不会出现在程序运行中途出现内存不足的异常。所以，<code>placement new</code>非常适合那些对时间要求比较高，长时间运行不希望被打断的应用程序。</p>
 </li>
 </ul>
 <h2 id="placement-new使用步骤"><a href="#placement-new使用步骤" class="headerlink" title="placement new使用步骤"></a><strong>placement new使用步骤</strong></h2><ul>
 <li><p>缓存提前分配</p>
 <p>有三种方式：</p>
 <ul>
-<li><p>为了保证通过placement new使用的缓存区的memory alignment(内存队列)正确准备，使用普通的new来分配它：在堆上进行分配</p>
+<li><p>为了保证通过<code>placement new</code>使用的缓存区的<code>memory alignment</code>(内存队列)正确准备，使用普通的new来分配它：在堆上进行分配</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Task ;</div><div class="line"><span class="keyword">char</span> * buff = <span class="keyword">new</span> [<span class="keyword">sizeof</span>(Task)]; <span class="comment">//分配内存</span></div></pre></td></tr></table></figure>
-<p>（请注意auto或者static内存并非都正确地为每一个对象类型排列，所以，你将不能以placement new使用它们。）</p>
+<p>（请注意auto或者static内存并非都正确地为每一个对象类型排列，所以，你将不能以<code>placement new</code>使用它们。）</p>
 </li>
 <li><p>在栈上进行分配</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">class Task ;</div><div class="line">char buf[N*sizeof(Task)]; //分配内存</div></pre></td></tr></table></figure>
@@ -292,7 +291,7 @@ operator new：
 </ul>
 </li>
 <li><p>对象的分配</p>
-<p>在刚才已分配的缓存区调用placement new来构造一个对象。</p>
+<p>在刚才已分配的缓存区调用<code>placement new</code>来构造一个对象。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Task *ptask = <span class="keyword">new</span> (buf) Task</div></pre></td></tr></table></figure>
 </li>
 <li><p>使用</p>
@@ -318,7 +317,7 @@ operator new：
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-10-23T14:58:40.941Z" itemprop="dateUpdated">2017-10-23 22:58:40</time>
+    最后更新时间：<time datetime="2018-04-13T06:16:47.954Z" itemprop="dateUpdated">2018-04-13 14:16:47</time>
 </span><br>
 
 

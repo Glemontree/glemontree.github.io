@@ -43,7 +43,7 @@ Factory：工厂角色，负责实现创建所有实例的内部逻辑
 Product：抽象产品角色，是所创建的所有对象的父类，负责描述所有实例共有的公共接口
 ConcreteProduct：具体产品角色。">
 <meta property="og:image" content="http://design-patterns.readthedocs.io/zh_CN/latest/_images/SimpleFactory.jpg">
-<meta property="og:updated_time" content="2018-03-23T15:53:41.703Z">
+<meta property="og:updated_time" content="2018-04-12T06:43:28.101Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[设计模式] 简单工厂模式">
 <meta name="twitter:description" content="模式定义简单工厂模式又称为静态工厂方法，在简单工厂模式中可以根据参数的不同返回不同类的实例，简单工厂模式专门定义一个类来负责创建其他类的实例，被创建的实例通常具有共同的父类。
@@ -89,7 +89,7 @@ ConcreteProduct：具体产品角色。">
             <li class="waves-block waves-effect">
               <a href="/"  >
                 <i class="icon icon-lg icon-home"></i>
-                homepage
+                Homepage
               </a>
             </li>
         
@@ -186,7 +186,7 @@ ConcreteProduct：具体产品角色。">
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#模式定义"><span class="post-toc-number">1.</span> <span class="post-toc-text">模式定义</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#模式结构"><span class="post-toc-number">2.</span> <span class="post-toc-text">模式结构</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#代码实现"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">代码实现</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#模式定义"><span class="post-toc-number">1.</span> <span class="post-toc-text">模式定义</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#模式结构"><span class="post-toc-number">2.</span> <span class="post-toc-text">模式结构</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#代码实现"><span class="post-toc-number">3.</span> <span class="post-toc-text">代码实现</span></a></li></ol>
         </nav>
     </aside>
 
@@ -225,7 +225,7 @@ ConcreteProduct：具体产品角色。">
                 </div>
                 <div class="image-caption"></div>
             </figure>
-<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><ul>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><ul>
 <li><p>Product抽象类</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Product</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">use</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>Product类仅仅提供一个接口，具体不同的商品实现不同的use()方法。</p>
@@ -252,7 +252,7 @@ ConcreteProduct：具体产品角色。">
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-03-23T15:53:41.703Z" itemprop="dateUpdated">2018-03-23 23:53:41</time>
+    最后更新时间：<time datetime="2018-04-12T06:43:28.101Z" itemprop="dateUpdated">2018-04-12 14:43:28</time>
 </span><br>
 
 
