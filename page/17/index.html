@@ -164,6 +164,54 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-[Linux] Linux epoll的用法"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-06-28 17:57:39" datetime="2017-06-28T09:57:39.000Z"  itemprop="datePublished">2017-06-28</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/06/28/[Linux] Linux epoll的用法/">[Linux] Linux epoll的用法</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        Epoll的用法select与epoll在旧的Linux中，通常都在使用select来做事件触发，而在新的Linux内核中，开始使用epoll来代替。相比于select，epoll最大的好处就是不会随着监听fd数目的增长而降低效率。
+当使用select时，它是采用轮询来处理的，轮询的fd数目越多，耗时越长，而且select同时监听的fd数目有限，通常为1024个，当然，这可以通过修改相关头文...
+    
+
+        <a href="/2017/06/28/[Linux] Linux epoll的用法/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux-EPoll/">Linux, EPoll</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-[Linux] Linux网络编程"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -615,56 +663,6 @@ UDP是数据报文协议，是以数据包形式，所以每次可以接收100�
     <div class="post-footer">
         
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VS-Qt-软件图标/">VS, Qt, 软件图标</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-[C++] VS中出现未将对象引用设置到对象的实例"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-06-28 17:47:27" datetime="2017-06-28T09:47:27.000Z"  itemprop="datePublished">2017-06-28</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/C/">C++</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/06/28/[C++] VS中出现未将对象引用设置到对象的实例/">[C++] VS中出现未将对象引用设置到对象的实例</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        VS中出现未将对象引用设置到对象的实例具体什么原因我也不知道，在知乎上看到了有人回答了解决方案，依据他给的方法，成功解决：
-在window中打开功能里输入regedit，回车打开注册器。然后进入如下路径中HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa\FipsAlgorithmPolicy，
-将enable设置为0。
-参考资料V...
-    
-
-        <a href="/2017/06/28/[C++] VS中出现未将对象引用设置到对象的实例/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-VS/">C++, VS</a></li></ul>
 
     </div>
     

@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65601540"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>[C++] C语言中模拟C++多态 | Glemontree&#39;s blog | day day up!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="多态">
+    <meta name="description" content="C语言中实现多态先看下面这段代码：
+12345678910111213141516171819202122232425262728293031323334#include &amp;lt;stdio.h&amp;gt;typedef void(*FUN)();struct _A &amp;#123;  FUN _fun;  int _a;&amp;#125;;struct _B&amp;#123;  _A _a_;  int _b;&amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[C++] C语言中模拟C++多态">
+<meta property="og:url" content="https://glemontree.github.io/2018/04/14/[C++] C语言中模拟C++多态/index.html">
+<meta property="og:site_name" content="Glemontree's blog">
+<meta property="og:description" content="C语言中实现多态先看下面这段代码：
+12345678910111213141516171819202122232425262728293031323334#include &amp;lt;stdio.h&amp;gt;typedef void(*FUN)();struct _A &amp;#123;  FUN _fun;  int _a;&amp;#125;;struct _B&amp;#123;  _A _a_;  int _b;&amp;#">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201109/6/8605981_1315292911UuGl.jpg">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201109/6/8605981_1315292914FCu0.jpg">
+<meta property="og:updated_time" content="2018-04-14T05:49:34.229Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[C++] C语言中模拟C++多态">
+<meta name="twitter:description" content="C语言中实现多态先看下面这段代码：
+12345678910111213141516171819202122232425262728293031323334#include &amp;lt;stdio.h&amp;gt;typedef void(*FUN)();struct _A &amp;#123;  FUN _fun;  int _a;&amp;#125;;struct _B&amp;#123;  _A _a_;  int _b;&amp;#">
+<meta name="twitter:image" content="http://hi.csdn.net/attachment/201109/6/8605981_1315292911UuGl.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="Glemontree&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Glemontree</h5>
+          <a href="mailto:glemontree@163.com" title="glemontree@163.com" class="mail">glemontree@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Homepage
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Glemontree" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/glemontree" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">[C++] C语言中模拟C++多态</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">[C++] C语言中模拟C++多态</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-04-14T05:11:20.000Z" itemprop="datePublished" class="page-time">
+  2018-04-14
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/C/">C++</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#C语言中实现多态"><span class="post-toc-number">1.</span> <span class="post-toc-text">C语言中实现多态</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#C-中的多态"><span class="post-toc-number">2.</span> <span class="post-toc-text">C++中的多态</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">3.</span> <span class="post-toc-text">总结</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-[C++] C语言中模拟C++多态"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">[C++] C语言中模拟C++多态</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-04-14 13:11:20" datetime="2018-04-14T05:11:20.000Z"  itemprop="datePublished">2018-04-14</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/C/">C++</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="C语言中实现多态"><a href="#C语言中实现多态" class="headerlink" title="C语言中实现多态"></a>C语言中实现多态</h2><p>先看下面这段代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span><span class="params">(*FUN)</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line"><span class="keyword">struct</span> _A &#123;</div><div class="line">  FUN _fun;</div><div class="line">  <span class="keyword">int</span> _a;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">struct</span> _B</div><div class="line">&#123;</div><div class="line">  _A _a_;</div><div class="line">  <span class="keyword">int</span> _b;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">void</span> _fA() &#123;</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"_A:_fun()\n"</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">void</span> _fB() &#123;</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"_B:_fun()\n"</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">  _A _a;</div><div class="line">  _B _b;</div><div class="line">  _a._fun = _fA;</div><div class="line">  _b._a_._fun = _fB;</div><div class="line"></div><div class="line">  _A* p = &amp;_a; <span class="comment">// _A类（父类）指针指向_A类（父类）对象</span></div><div class="line">  p-&gt;_fun(); <span class="comment">// 此时调用的是_A类（父类）的fun()函数</span></div><div class="line">  p = (_A*)&amp;_b; <span class="comment">// _A类（父类）指针指向_B类（子类）对象，由于类型不同，需要进行强制类型转换</span></div><div class="line">  p-&gt;_fun(); <span class="comment">// 此时调用的是_B类（子类）的fun()函数</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">_A:_fun()</div><div class="line">_B:_fun()</div></pre></td></tr></table></figure>
+<p>在上面的代码中：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">p = (_A*)&amp;_b;</div></pre></td></tr></table></figure>
+<p>这一行代码将<code>_B</code>类（子类）对象的地址转换为<code>_A</code>类指针，此时p指针实际指向的是<code>_B</code>类（子类）对象的<code>_a_</code> 成员，因此调用的是<code>_a_</code>成员的fun()函数。</p>
+<p>如果我们将上面代码中<code>_B</code>类（子类）的代码顺序变化一下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> _B</div><div class="line">&#123;</div><div class="line">  <span class="keyword">int</span> _b;</div><div class="line">  _A _a_;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>此时运行会出错。</p>
+<h2 id="C-中的多态"><a href="#C-中的多态" class="headerlink" title="C++中的多态"></a>C++中的多态</h2><p>看下面这个例子：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream.h&gt;</span>  </span></div><div class="line"><span class="keyword">class</span> animal  </div><div class="line">&#123;  </div><div class="line">  <span class="keyword">public</span>:  </div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">sleep</span><span class="params">()</span>  </span></div><div class="line">  &#123;  </div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"animal sleep"</span>&lt;&lt;<span class="built_in">endl</span>;  </div><div class="line">  &#125;  </div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">breathe</span><span class="params">()</span>  </span></div><div class="line">  &#123;  </div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"animal breathe"</span>&lt;&lt;<span class="built_in">endl</span>;  </div><div class="line">  &#125;  </div><div class="line">&#125;;  </div><div class="line"><span class="keyword">class</span> fish:<span class="keyword">public</span> animal  </div><div class="line">&#123;  </div><div class="line">  <span class="keyword">public</span>:  </div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">breathe</span><span class="params">()</span>  </span></div><div class="line">  &#123;  </div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"fish bubble"</span>&lt;&lt;<span class="built_in">endl</span>;  </div><div class="line">  &#125;  </div><div class="line">&#125;;  </div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span>  </span></div><div class="line">&#123;  </div><div class="line">  fish fh;  </div><div class="line">  animal *pAn=&amp;fh; <span class="comment">// 隐式类型转换  </span></div><div class="line">  pAn-&gt;breathe();  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这段代码实际的输出为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">animal breathe</div></pre></td></tr></table></figure>
+<p>C++编译器在编译的时候，要确定每个对象调用的函数的地址，这称为早期绑定，当我们将fish类的对象fh的地址赋给pAn时，C++编译器进行了强制类型转换，此时C++编译器会认为pAn保存的就是animal对象的地址，当在main()函数中执行<code>pAn-&gt;breathe()</code>时，调用的自然就是animal对象的<code>breathe()</code>函数。</p>
+<p>fish对象内存模型如下：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://hi.csdn.net/attachment/201109/6/8605981_1315292911UuGl.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>我们构造fish类的对象时，首先要调用animal类的构造函数去构造animal类的对象，然后才调用fish类的构造函数完成自身部分的构造，从而拼接出一个完整的fish对象。当我们将fish类的对象转换为animal类型时，该对象就被认为是原对象整个内存模型的上半部分，也就是图中animal对象所占内存，那么当我们利用类型转换后的对象指针去调用它的方法时，自然也就是调用它所在内存中的方法。</p>
+<p>但是上面这种输出并不是我们想要的，我们想要的输出应当是fish bubble，这个时候就需要使用虚函数了。</p>
+<p>前面输出的结果是因为编译器在编译的时候就已经确定了对象调用的函数的地址，要解决这个就要使用延迟绑定的技术，当编译器使用延迟绑定时，就会在运行时再去确定对象的类型以及正确的调用函数，我们对上面的代码进行修改：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream.h&gt;</span>  </span></div><div class="line"><span class="keyword">class</span> animal  </div><div class="line">&#123;  </div><div class="line">  <span class="keyword">public</span>:  </div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">sleep</span><span class="params">()</span>  </span></div><div class="line">  &#123;  </div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"animal sleep"</span>&lt;&lt;<span class="built_in">endl</span>;  </div><div class="line">  &#125;  </div><div class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">breathe</span><span class="params">()</span>  </span></div><div class="line">  &#123;  </div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"animal breathe"</span>&lt;&lt;<span class="built_in">endl</span>;  </div><div class="line">  &#125;  </div><div class="line">&#125;;  </div><div class="line"></div><div class="line"><span class="keyword">class</span> fish:<span class="keyword">public</span> animal  </div><div class="line">&#123;  </div><div class="line">  <span class="keyword">public</span>:  </div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">breathe</span><span class="params">()</span>  </span></div><div class="line">  &#123;  </div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"fish bubble"</span>&lt;&lt;<span class="built_in">endl</span>;  </div><div class="line">  &#125;  </div><div class="line">&#125;;  </div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span>  </span></div><div class="line">&#123;  </div><div class="line">  fish fh;  </div><div class="line">  animal *pAn=&amp;fh; <span class="comment">// 隐式类型转换  </span></div><div class="line">  pAn-&gt;breathe();  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样输出的结果就是fish bubble，为什么将<code>breathe()</code>声明为virtual后就会输出fish bubble呢？</p>
+<p>编译器在编译的时候发现animal类中有虚函数，此时编译器会为每个包含虚函数的类创建一个虚表，该表是一个一维数组，在这个数组中存放每个虚函数的地址，对于上面的例子，animal类和fish类都包含一个虚函数breathe()，因此编译器会为这两个类都创建一个虚表，如下所示：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://hi.csdn.net/attachment/201109/6/8605981_1315292914FCu0.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>编译器还会为每个类的对象提供一个虚表指针，这个指针指向了所属类的虚表，在程序运行时根据对象的类型去初始化虚表指针，从而在调用虚函数时找到正确的函数，在上面的程序中，由于pAn实际指向的对象类型是fish，因此虚表指针指向的fish类的虚函数表，当调用<code>pAn-&gt;breathe()</code>时，根据虚表中的函数地址找到的就是fish类的<code>breathe()</code>函数。</p>
+<blockquote>
+<p>  对于虚函数调用来说，每个对象内部都有一个虚表指针，该虚表指针被初始化为本类的虚表，所以在程序中，不管你的对象类型如何转换，但该对象内部的虚表指针是固定的，所以才能实现动态的对象函数调用。</p>
+<p>  每个对象调用的虚函数都是通过虚表指针来索引的，在虚表指针没有初始化之前，不能调用虚函数。</p>
+</blockquote>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li><p>虚表可以继承，如果子类没有重写虚函数，那么子类虚表中仍然会有该函数的地址，只不过这个地址指向的是基类的虚函数实现，如果基类有3个虚函数，那么基类的虚表中就有三项（虚函数地址），派生类也会有虚表，至少有三项，如果重写了相应的虚函数，那么虚表中的地址就会改变，指向自身的虚函数实现。如果派生类有自己的虚函数，那么虚表中就会添加该项。</p>
+</li>
+<li><p>当C++编译器在编译的时候，发现animal类的<code>breathe()</code>函数是虚函数，这个时候C++就会采用迟绑定（late binding）技术。也就是编译时并不确定具体调用的函数，而是在运行时，依据对象的类型（在程序中，我们传递的fish类对象的地址）来确认调用的是哪一个函数，这种能力就叫做C++的多态性。我们没有在<code>breathe()</code>函数前加virtual关键字时，C++编译器在编译时就确定了哪个函数被调用，这叫做早期绑定（early binding）。</p>
+</li>
+<li><p>C++的多态性是通过迟绑定技术来实现的。</p>
+</li>
+<li><p>C++的多态性用一句话概括就是：在基类的函数前加上virtual关键字，在派生类中重写该函数，运行时将会根据对象的实际类型来调用相应的函数。如果对象类型是派生类，就调用派生类的函数；如果对象类型是基类，就调用基类的函数。</p>
+</li>
+<li><p>本文参考 <a href="https://blog.csdn.net/tujiaw/article/details/6753498" target="_blank" rel="external">C++多态的实现原理</a>。</p>
+<p>​</p>
+</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-04-14T05:49:34.229Z" itemprop="dateUpdated">2018-04-14 13:49:34</time>
+</span><br>
+
+
+        
+        <a href="/2018/04/14/[C++] C语言中模拟C++多态/" target="_blank" rel="external">https://glemontree.github.io/2018/04/14/[C++] C语言中模拟C++多态/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://glemontree.github.io">
+            <img src="/img/avatar.jpg" alt="Glemontree">
+            Glemontree
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/多态/">多态</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://glemontree.github.io/2018/04/14/[C++] C语言中模拟C++多态/&title=《[C++] C语言中模拟C++多态》 — Glemontree's blog&pic=https://glemontree.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://glemontree.github.io/2018/04/14/[C++] C语言中模拟C++多态/&title=《[C++] C语言中模拟C++多态》 — Glemontree's blog&source=记录我学习的每一步" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://glemontree.github.io/2018/04/14/[C++] C语言中模拟C++多态/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《[C++] C语言中模拟C++多态》 — Glemontree's blog&url=https://glemontree.github.io/2018/04/14/[C++] C语言中模拟C++多态/&via=https://glemontree.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://glemontree.github.io/2018/04/14/[C++] C语言中模拟C++多态/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/04/11/[Java] HTTP和HTTPS的区别/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">[Java] HTTP和HTTPS的区别</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "Xkpzm75UqDRakK5m745rI78u-gzGzoHsz",
+            appKey: "nttscBKerm7QwkliKPpUSrln",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢打赏
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Glemontree &copy; 2017 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://glemontree.github.io/2018/04/14/[C++] C语言中模拟C++多态/&title=《[C++] C语言中模拟C++多态》 — Glemontree's blog&pic=https://glemontree.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://glemontree.github.io/2018/04/14/[C++] C语言中模拟C++多态/&title=《[C++] C语言中模拟C++多态》 — Glemontree's blog&source=记录我学习的每一步" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://glemontree.github.io/2018/04/14/[C++] C语言中模拟C++多态/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《[C++] C语言中模拟C++多态》 — Glemontree's blog&url=https://glemontree.github.io/2018/04/14/[C++] C语言中模拟C++多态/&via=https://glemontree.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://glemontree.github.io/2018/04/14/[C++] C语言中模拟C++多态/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtElEQVR42u3aQU7DQAwF0Nz/0iCxYpP02x63XbysUAlh3iDF5o+vK75+/q7nT5LP/193P/XzeF0bFx4eHl5r6c+PSxaUfPfuyc+A5Kdun4CHh4e3xnt+xU/Ad3dO7imUJTw8PLyP8p7vv1tWtQhN1oCHh4f3bbxJy5tvR5WKh4eH9yleEkY8N76TqLfXUh/OWvDw8PAWTpG+5+vF8z08PDy8wal6NSzIRwGqowbN1eLh4eEt8PIGdx5JVBfdG0G4ev07Hh4eXsyrLjf5vBco9DrhF38ePDw8vAVe3v72BgKSYpO/9JPnv2ip8fDw8BZ4edwwDyOqg1y9rcHDw8M7y8v/ve8NZo12PT6QuybVBg8PD6/Iq4awVWr1ZH8yAVGYLMPDw8Mb8HrjpAeO8+MgozeMhYeHh7fHy6PbXnM8wecF48WdeHh4eMu8XlybNN9zajK+EMUQeHh4eEd5k188WW6v2ERPw8PDwzvKy9vonDehJksvHNHh4eHhfYjXa4urkcFkO26/xsPDw1vgzQ/+8wGC/P5km8orx8PDwzvEO3W41RuQypvyXtHCw8PD2+D1SsIkJphED3khwcPDw3sPrxo0VMekeuHsgYKEh4eHt8arLiIf4cpb4cn9t/kDHh4e3lHefEBqclSWt8XNUoGHh4e3xuv1pdXXd1IGqhv6onPGw8PDW+D1otLJ67sajuTgaNwKDw8Pb8ybvL57cXCUjoyP4vDw8PDew8sXl4Pzw/5ewFEoDHh4eHgnE9Gr9/LNQ4Hqcdd8kAsPDw9vm9cbsZrvYjW8qBYMPDw8vG3e/NCrWh5ycDX8fXEAhoeHh/dGXg7oxbvJkVt1g/Dw8PC+gVcdHeiNEVTHBY4VBjw8PLyYl4QRk6GrU612uZDg4eHhLfAmg03V2DcPbavI0YWHh4eXPv8Xvea7YExsY3gAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1273392949&web_id=1273392949')
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
