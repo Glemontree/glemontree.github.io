@@ -164,6 +164,55 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-[DB] MySQL中distinct的用法"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-04-09 16:28:44" datetime="2018-04-09T08:28:44.000Z"  itemprop="datePublished">2018-04-09</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/DB/">DB</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2018/04/09/[DB] MySQL中distinct的用法/">[DB] MySQL中distinct的用法</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        distinct用法在使用MySQL时，有时需要查出某个字段不重复的字段，这时可以使用MySQL提供的distinct关键字来过滤重复的记录，但是实际中往往使用distinct来返回不重复字段的条数（count(distinct id)），其原因是distinct只能返回它的目标字段，而无法返回其他字段，其常见用法为：
+1select distinct name from user;
+这样可...
+    
+
+        <a href="/2018/04/09/[DB] MySQL中distinct的用法/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/distinct/">distinct</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-[DB] MySQL中group by的用法"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -643,61 +692,6 @@ ConcreteProduct：具体产品角色。
         <a href="/2018/03/23/[Java] Java虚拟机垃圾收集/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-[SpringMVC] HTTP协议中GET、PUT、DELETE、POST与幂等性"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-03-20 20:40:32" datetime="2018-03-20T12:40:32.000Z"  itemprop="datePublished">2018-03-20</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/SpringMVC/">SpringMVC</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/03/20/[SpringMVC] HTTP协议中GET、PUT、DELETE、POST与幂等性/">[SpringMVC] HTTP协议中GET、PUT、DELETE、POST与幂等性</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        
-幂等性
-幂等性即为不管进行多少次重复操作，或者说一次和多次请求某一个资源应该具有相同的副作用。
-
-REST请求中的幂等性操作
-GET、PUT和DELETE都是幂等操作，而POST不是。
-
-GET方法用于获取资源，不应有副作用，所以是幂等的，需要注意的是，这里强调的是一次和多次具有相同的副作用，而不是多次GET请求的结果相同
-DELETE方法用于删除资源，第一次将资源删除后，后面多次进行此删...
-    
-
-        <a href="/2018/03/20/[SpringMVC] HTTP协议中GET、PUT、DELETE、POST与幂等性/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/幂等性/">幂等性</a></li></ul>
-
     </div>
     
 </article>

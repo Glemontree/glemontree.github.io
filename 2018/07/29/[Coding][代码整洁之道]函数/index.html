@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65601540"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>[Coding][代码整洁之道]函数 | Glemontree&#39;s blog | day day up!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="函数">
+    <meta name="description" content="短小函数的第一规则是短小，第二规则是还要更短小。
+if语句、else语句、while语句等其中的代码块应该只有一行，该行大抵是一个函数调用语句。
+只做一件事要判断函数是否不止做了一件事，就看是否还能再拆出一个函数。
+switch语句写出短小的switch语句很难，我们可以利用多态来实现switch语句的重构。
+123456789101112public Money calculatePay(Emp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Coding][代码整洁之道]函数">
+<meta property="og:url" content="https://glemontree.github.io/2018/07/29/[Coding][代码整洁之道]函数/index.html">
+<meta property="og:site_name" content="Glemontree's blog">
+<meta property="og:description" content="短小函数的第一规则是短小，第二规则是还要更短小。
+if语句、else语句、while语句等其中的代码块应该只有一行，该行大抵是一个函数调用语句。
+只做一件事要判断函数是否不止做了一件事，就看是否还能再拆出一个函数。
+switch语句写出短小的switch语句很难，我们可以利用多态来实现switch语句的重构。
+123456789101112public Money calculatePay(Emp">
+<meta property="og:updated_time" content="2018-07-29T03:18:18.893Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Coding][代码整洁之道]函数">
+<meta name="twitter:description" content="短小函数的第一规则是短小，第二规则是还要更短小。
+if语句、else语句、while语句等其中的代码块应该只有一行，该行大抵是一个函数调用语句。
+只做一件事要判断函数是否不止做了一件事，就看是否还能再拆出一个函数。
+switch语句写出短小的switch语句很难，我们可以利用多态来实现switch语句的重构。
+123456789101112public Money calculatePay(Emp">
+    
+        <link rel="alternate" type="application/atom+xml" title="Glemontree&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Glemontree</h5>
+          <a href="mailto:glemontree@163.com" title="glemontree@163.com" class="mail">glemontree@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Homepage
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Glemontree" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/glemontree" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">[Coding][代码整洁之道]函数</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">[Coding][代码整洁之道]函数</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-07-29T02:09:27.000Z" itemprop="datePublished" class="page-time">
+  2018-07-29
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Coding/">Coding</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#短小"><span class="post-toc-number">1.</span> <span class="post-toc-text">短小</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#只做一件事"><span class="post-toc-number">2.</span> <span class="post-toc-text">只做一件事</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#switch语句"><span class="post-toc-number">3.</span> <span class="post-toc-text">switch语句</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#函数参数"><span class="post-toc-number">4.</span> <span class="post-toc-text">函数参数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#参数对象"><span class="post-toc-number">5.</span> <span class="post-toc-text">参数对象</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#动词与关键字"><span class="post-toc-number">6.</span> <span class="post-toc-text">动词与关键字</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#无副作用"><span class="post-toc-number">7.</span> <span class="post-toc-text">无副作用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用异常代替返回错误码"><span class="post-toc-number">8.</span> <span class="post-toc-text">使用异常代替返回错误码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#抽离try-catch代码块"><span class="post-toc-number">9.</span> <span class="post-toc-text">抽离try/catch代码块</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#错误处理就是一件事"><span class="post-toc-number">10.</span> <span class="post-toc-text">错误处理就是一件事</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#依赖磁铁"><span class="post-toc-number">11.</span> <span class="post-toc-text">依赖磁铁</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-[Coding][代码整洁之道]函数"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">[Coding][代码整洁之道]函数</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-07-29 10:09:27" datetime="2018-07-29T02:09:27.000Z"  itemprop="datePublished">2018-07-29</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Coding/">Coding</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="短小"><a href="#短小" class="headerlink" title="短小"></a>短小</h3><p>函数的第一规则是短小，第二规则是还要更短小。</p>
+<p>if语句、else语句、while语句等其中的代码块应该只有一行，该行大抵是一个函数调用语句。</p>
+<h3 id="只做一件事"><a href="#只做一件事" class="headerlink" title="只做一件事"></a>只做一件事</h3><p>要判断函数是否不止做了一件事，就看是否还能再拆出一个函数。</p>
+<h3 id="switch语句"><a href="#switch语句" class="headerlink" title="switch语句"></a>switch语句</h3><p>写出短小的switch语句很难，我们可以利用多态来实现switch语句的重构。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> Money <span class="title">calculatePay</span><span class="params">(Employee e)</span> <span class="keyword">throws</span> InvalidEmployeeType </span>&#123;</div><div class="line">  <span class="keyword">switch</span>(e.type) &#123;</div><div class="line">    <span class="keyword">case</span> COMMISSIONED:</div><div class="line">      <span class="keyword">return</span> calculateComissionPay(e);</div><div class="line">    <span class="keyword">case</span> HOURLY:</div><div class="line">      <span class="keyword">return</span> calculateHourlyPay(e);</div><div class="line">    <span class="keyword">case</span> SALARIED:</div><div class="line">      <span class="keyword">return</span> calculateSalariedPay(e);</div><div class="line">    <span class="keyword">default</span>:</div><div class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> InvalidEmployeeType(e.type);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>该函数有好几个问题。首先，它太长，当出现新的雇员类型时，还会变得更长；其次，它明显做了不止一件事；第三，它违反了单一权责原则；第四，它违反了开放闭合原则，因为每当添加新类型时，就必须修改它。不过，该函数最麻烦的可能是到处皆有类似结构的函数，例如可能会有<code>isPayDay(Employee e, Date d)</code>或<code>deliverPay(Employee e, Money pay)</code>。</p>
+<p>该问题的解决方案是将switch语句埋到抽象工厂底下，不让任何人看到。该工厂使用switch语句为Employee的派生物创建适当的实体，而不同的函数，如calculatePay、isPayday和deliverPay等，则借由Employee接口多态的接收派遣。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">boolean</span> <span class="title">isPayday</span><span class="params">()</span></span>;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> Money <span class="title">calculatePay</span><span class="params">()</span></span>;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">deliverPay</span><span class="params">(Money money)</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">EmployeeFactory</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> Employee <span class="title">makeEmployee</span><span class="params">(EmployeeRecord r)</span> <span class="keyword">throws</span> InvalidEmployeeType</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EmployeeFacvtoryImpl</span> <span class="keyword">implements</span> <span class="title">EmployeeFactory</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> Employee <span class="title">makeEmployee</span><span class="params">(EmployeeRecord r)</span> <span class="keyword">throws</span> InvalidEmployeeTypen </span>&#123;</div><div class="line">  	swicth (r.type) &#123;</div><div class="line">      <span class="keyword">case</span> COMMISSIONED:</div><div class="line">      	<span class="keyword">return</span> <span class="keyword">new</span> CommissionedEmployee(r);</div><div class="line">      <span class="keyword">case</span> HOURLY:</div><div class="line">      	<span class="keyword">return</span> <span class="keyword">new</span> HourlyEmployee(r);</div><div class="line">      <span class="keyword">case</span> SALARIED:</div><div class="line">      	<span class="keyword">return</span> <span class="keyword">new</span> SalariedEmployee(r);</div><div class="line">      <span class="keyword">default</span>:</div><div class="line">      	<span class="keyword">throw</span> <span class="keyword">new</span> InvalidEmployeeType(r.type);</div><div class="line">	&#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="函数参数"><a href="#函数参数" class="headerlink" title="函数参数"></a>函数参数</h3><p>最理想的参数数量是零，其次是一，再次是二，应尽量避免三。</p>
+<p>标识参数丑陋不堪，向函数传入布尔值简直就是骇人听闻的做法，这样做，方法签名立刻变得复杂起来，大声宣布本函数不止做一件事，如果标识为true将会这样做，标识为false将会那样做。</p>
+<p>对于二元函数来说，其不算恶劣，不过你应当尽量利用一些机制将其转换为一元函数。例如你可以把writeField方法写成outputStream的成员之一，从而可以这样用：<code>outputStream.writeField(name)</code>。或者你可以把outputStream写成当前类的成员变量，从而无需再传递它。</p>
+<h3 id="参数对象"><a href="#参数对象" class="headerlink" title="参数对象"></a>参数对象</h3><p>如果函数看来需要两个、三个或三个以上参数，就说明其中一些参数应该封装成类了，例如下面两个声明的差别：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function">Circle <span class="title">makeCircle</span><span class="params">(<span class="keyword">double</span> x, <span class="keyword">double</span> y, <span class="keyword">double</span> radius)</span></span>;</div><div class="line"><span class="function">Circle <span class="title">makeCircle</span><span class="params">(Point center, <span class="keyword">double</span> radius)</span></span>;</div></pre></td></tr></table></figure>
+<p>从参数传递对象，从而减少参数变量。</p>
+<h3 id="动词与关键字"><a href="#动词与关键字" class="headerlink" title="动词与关键字"></a>动词与关键字</h3><p>给函数取个好名字，能较好的解释函数的意图以及参数的顺序和意图。对于一元函数，函数和参数应当形成一种非常良好的动词/名词对形式。例如，write(name)就相当令人认同，不管这个name是什么，都要被write。更好的名称大概是writeField(name)，它告诉我们name是一个field。</p>
+<p>我们可以将参数的名称编码进函数名，例如assertEqual改成assertExpectedEqualsActual(expected, actual)可能更好些，这大大减轻了记忆参数顺序的负担。</p>
+<h3 id="无副作用"><a href="#无副作用" class="headerlink" title="无副作用"></a>无副作用</h3><p>函数承诺只做一件事，但是还是会做其他被隐藏起来的事，有时它会对自己类中的变量做出未能预期的改动。</p>
+<h3 id="使用异常代替返回错误码"><a href="#使用异常代替返回错误码" class="headerlink" title="使用异常代替返回错误码"></a>使用异常代替返回错误码</h3><p>从指令式函数返回错误码轻微违反了指令和询问分隔的规则，它鼓励了在if语句判断中把指令当做表达式使用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (deletePage(page) == E_OK)</div></pre></td></tr></table></figure>
+<p>当返回错误码时，就是在要求调用者立刻处理错误：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (deletePage(page) == E_OK) &#123;</div><div class="line">  <span class="keyword">if</span> (registry.deleteReference(page.name) == E_OK) &#123;</div><div class="line">  	<span class="keyword">if</span> (configKeys.deleteKey(page.name.makeKey()) == E_OK) &#123;</div><div class="line">  	  logger.log(<span class="string">"page deleted"</span>);</div><div class="line">	&#125; <span class="keyword">else</span> &#123;</div><div class="line">  	  logger.log(<span class="string">"configKey not deleted"</span>);</div><div class="line">	&#125; </div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">  	logger.log(<span class="string">"deleteReference from registry failed"</span>);</div><div class="line">  &#125;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">  logger.log(<span class="string">"delete failed"</span>);</div><div class="line">  <span class="keyword">return</span> E_ERROR;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>另一方面，如果使用异常代替返回错误码，错误处理代码就能从主路径中分离出来，得到简化：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">  deletePage(page);</div><div class="line">  registry.deleteReference(page.name);</div><div class="line">  configKeys.deleteKey(page.name.makeKey());</div><div class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">  logger.log(e.getMessage());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="抽离try-catch代码块"><a href="#抽离try-catch代码块" class="headerlink" title="抽离try/catch代码块"></a>抽离try/catch代码块</h3><p>try/catch代码块丑陋不堪，它们搞乱了代码结构，把错误处理与正常流程混为一谈，最好把try和catch代码块的主体部分抽离出来，另外形成函数。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">delete</span><span class="params">(Page page)</span> </span>&#123;</div><div class="line">  <span class="keyword">try</span> &#123;</div><div class="line">  	deletePageAndAllReferences(page);</div><div class="line">  &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">  	logError(e);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">deletePageAndAllReferences</span><span class="params">(Page page)</span> </span>&#123;</div><div class="line">  deletePage(page);</div><div class="line">  registry.deleteReference(page.name);</div><div class="line">  configKeys.deleteKey(page.name.makeKey());</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">logError</span><span class="params">(Exception e)</span> </span>&#123;</div><div class="line">  logger.log(e.getMessage());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在上述例子中，delete函数只与错误处理有关，很容器理解然后忽略掉，deletePageAndAllReferences函数只与完全删除一个page有关，错误处理可以忽略掉，有了这样美妙的区隔，代码就更易于理解和修改了。</p>
+<h3 id="错误处理就是一件事"><a href="#错误处理就是一件事" class="headerlink" title="错误处理就是一件事"></a>错误处理就是一件事</h3><p>函数应该只做一件事，而错误处理就是一件事。因此，处理错误的函数不该做其他事，这意味着如果关键字try在某个函数中存在，它就该是这个函数的第一个单词，而且在catch/finally代码块后面也不该有其他内容。</p>
+<h3 id="依赖磁铁"><a href="#依赖磁铁" class="headerlink" title="依赖磁铁"></a>依赖磁铁</h3><p>返回错误码通常暗示某处有个类或者枚举，定义了所有错误码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Error &#123;</div><div class="line">  OK,</div><div class="line">  INVALID,</div><div class="line">  NO_SUCH,</div><div class="line">  LOCKED,</div><div class="line">  OUT_OF_RESOURCES,</div><div class="line">  WAITING_FOR_EVENT;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样的类就是一块依赖磁铁，其他许多类都得导入和使用它，当Error枚举修改时，所有这些其他的类都需要重新编译和部署，这对Error类造成了负面压力。程序员不愿意条件新的错误代码，因为这样他们就得重新构建和部署所有东西，于是他们就复用旧的错误码，而不添加新的。</p>
+<p>使用异常替代错误码，新异常就可以从异常类派生出来，无需重新编译或重新部署</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-07-29T03:18:18.893Z" itemprop="dateUpdated">2018-07-29 11:18:18</time>
+</span><br>
+
+
+        
+        <a href="/2018/07/29/[Coding][代码整洁之道]函数/" target="_blank" rel="external">https://glemontree.github.io/2018/07/29/[Coding][代码整洁之道]函数/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://glemontree.github.io">
+            <img src="/img/avatar.jpg" alt="Glemontree">
+            Glemontree
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/函数/">函数</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://glemontree.github.io/2018/07/29/[Coding][代码整洁之道]函数/&title=《[Coding][代码整洁之道]函数》 — Glemontree's blog&pic=https://glemontree.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://glemontree.github.io/2018/07/29/[Coding][代码整洁之道]函数/&title=《[Coding][代码整洁之道]函数》 — Glemontree's blog&source=记录我学习的每一步" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://glemontree.github.io/2018/07/29/[Coding][代码整洁之道]函数/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《[Coding][代码整洁之道]函数》 — Glemontree's blog&url=https://glemontree.github.io/2018/07/29/[Coding][代码整洁之道]函数/&via=https://glemontree.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://glemontree.github.io/2018/07/29/[Coding][代码整洁之道]函数/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/07/29/[Coding] [代码整洁之道] 有意义的命名/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">[Coding] [代码整洁之道] 有意义的命名</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "Xkpzm75UqDRakK5m745rI78u-gzGzoHsz",
+            appKey: "nttscBKerm7QwkliKPpUSrln",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢打赏
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Glemontree &copy; 2017 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://glemontree.github.io/2018/07/29/[Coding][代码整洁之道]函数/&title=《[Coding][代码整洁之道]函数》 — Glemontree's blog&pic=https://glemontree.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://glemontree.github.io/2018/07/29/[Coding][代码整洁之道]函数/&title=《[Coding][代码整洁之道]函数》 — Glemontree's blog&source=记录我学习的每一步" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://glemontree.github.io/2018/07/29/[Coding][代码整洁之道]函数/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《[Coding][代码整洁之道]函数》 — Glemontree's blog&url=https://glemontree.github.io/2018/07/29/[Coding][代码整洁之道]函数/&via=https://glemontree.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://glemontree.github.io/2018/07/29/[Coding][代码整洁之道]函数/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuklEQVR42u3awW7bMBAEUP//T6fXAqmVmV2ydYGnkxErIp8O5HqWr1d8fX27vv/99788Pyd5fvvk1YWHh4e3nnrLeL7z+Z5kxPzbP7wCPDw8vGu850X8eYFONoNklPYFRRsPHh4e3gfwZsV0shUl/4WHh4f3P/JulMt5GY2Hh4f3Obw2Qs0L6zyqSELei1kLHh4eXszLi+DP+Xylv4eHh4e37qo/L7j76KE9glDPFg8PD+8CL5/o5khBHgFv2mxvR8TDw8M7ymsjgE3Imy/l+9ABDw8P7x7vedFvj0bNpr4/jvADGA8PD+8obxYBtIMli/j+/re/FfDw8PCO8vJFtg1228K3bfyvjgjg4eHhLXjtRNvgdXb4oB0x6u/h4eHhHeLl7ah8WrNEpA0piq0CDw8P7ygvac/nP/vzsrsNQfJA+YczEXh4eHhr3n4VTcrrvCWWv8RhMIGHh4d3iJcfh9qEv/kWkocOERgPDw/vKC8fIOc9xw35FnL4oAAeHh7eIV7bjkoi17yanbXH2vgDDw8P7wav3Qz24P2dyfaDh4eHd4O3aVPNJnrq0FVUauPh4eFd47Xl6R7TRhJ5IPLKB8bDw8Nb8PLgddaUSiKJzUGBt6Pj4eHhXeDN0s72QEAbE2+eiYeHh/eveLNjAUnAmm8D7eZRtMHw8PDw1ry2wd/e2RbHefAR3YOHh4d3jTdsMi2i29nRhHwLwcPDw/s7vLYsvlE0v8orKqnx8PDwDvG+yiuZ1ibAbQv6H77Fw8PDu8CbLb77QjmfXPt5eOHh4eGVvH17Pj8y1cYN7bbxNozAw8PDu8CbHQhI7s9fWdv6iuaJh4eH9zG8vNhNGmz5E+ryGg8PD+8DeHm8m0cbsyMIUSCCh4eHd423b3rljNkm1L5uPDw8vHu89gf/psM220jawh0PDw/vGu8X8z1zqGrU6KcAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1273392949&web_id=1273392949')
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
