@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://glemontree.github.io/"/>
-  <updated>2018-07-29T06:31:33.922Z</updated>
+  <updated>2018-10-28T10:53:43.990Z</updated>
   <id>https://glemontree.github.io/</id>
   
   <author>
@@ -15,6 +15,20 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>[设计模式] 面向对象的六大原则_开闭原则</title>
+    <link href="https://glemontree.github.io/2018/10/28/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%85%AD%E5%A4%A7%E5%8E%9F%E5%88%99-%E5%BC%80%E9%97%AD%E5%8E%9F%E5%88%99/"/>
+    <id>https://glemontree.github.io/2018/10/28/设计模式-面向对象的六大原则-开闭原则/</id>
+    <published>2018-10-28T10:53:43.000Z</published>
+    <updated>2018-10-28T10:53:43.990Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>[Coding][代码整洁之道]对象与数据结构</title>
