@@ -164,6 +164,54 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-[Java] Java并发之ReentrantLock"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-04-10 17:03:08" datetime="2018-04-10T09:03:08.000Z"  itemprop="datePublished">2018-04-10</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2018/04/10/[Java] Java并发之ReentrantLock/">[Java] Java并发之ReentrantLock</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        关于ReentrantLock从字面意思可以看出，ReentrantLock是可重入锁的意思，当然，其实Synchronized也是可重入锁，两者都是同一个线程每进入一次，锁的计算器都自增1，所以要等到锁的计数器为0时才能释放锁。
+ReentrantLock最常见的使用方式1234567ReentrantLock lock = new ReentrantLock();lock.lock();...
+    
+
+        <a href="/2018/04/10/[Java] Java并发之ReentrantLock/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ReentrantLock/">ReentrantLock</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-[Java] CAS操作"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -614,58 +662,6 @@ set(key, value)：设置&lt;key, value&gt;
     <div class="post-footer">
         
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态链接库/">动态链接库</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-[网络编程] Linux网络编程常用函数"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-03-28 09:59:01" datetime="2018-03-28T01:59:01.000Z"  itemprop="datePublished">2018-03-28</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/网络编程/">网络编程</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/03/28/[网络编程] Linux网络编程常用函数/">[网络编程] Linux网络编程常用函数</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        
-socket函数
-1int socket(int domain, int type, int protocol)
-
-domain：主机采用的通讯协议族（AF_UNIX和AF_INET），AF_UNIX只能够用于单一的Unix系统进程间进行通信，而AF_INET是针对Internet的。因而允许在远程主机之间进行通信。
-type：采用的通信协议（SOCK_STREAM、SOCK_DGRAM等...
-    
-
-        <a href="/2018/03/28/[网络编程] Linux网络编程常用函数/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux-网络编程/">Linux, 网络编程</a></li></ul>
 
     </div>
     
