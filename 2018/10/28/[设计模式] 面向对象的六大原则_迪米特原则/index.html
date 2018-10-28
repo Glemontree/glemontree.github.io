@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65601540"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>[设计模式] 面向对象的六大原则_迪米特原则 | Glemontree&#39;s blog | day day up!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="面向对象,设计模式,迪米特原则">
+    <meta name="description" content="定义一个对象应该对其他对象有最小的了解，也就是说，一个类应该对自己需要耦合或者调用的类知道的最少，类的内部如何实现与调用者或者依赖者没关系，调用者或者依赖者只需要知道它需要的方法即可。类和类之间的关系越密切，耦合度越大，当一个类发生改变时，对另一个类的影响越大。
+举例123456789101112131415161718192021222324252627282930313233343536373">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[设计模式] 面向对象的六大原则_迪米特原则">
+<meta property="og:url" content="https://glemontree.github.io/2018/10/28/[设计模式] 面向对象的六大原则_迪米特原则/index.html">
+<meta property="og:site_name" content="Glemontree's blog">
+<meta property="og:description" content="定义一个对象应该对其他对象有最小的了解，也就是说，一个类应该对自己需要耦合或者调用的类知道的最少，类的内部如何实现与调用者或者依赖者没关系，调用者或者依赖者只需要知道它需要的方法即可。类和类之间的关系越密切，耦合度越大，当一个类发生改变时，对另一个类的影响越大。
+举例123456789101112131415161718192021222324252627282930313233343536373">
+<meta property="og:updated_time" content="2018-10-28T13:36:58.624Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[设计模式] 面向对象的六大原则_迪米特原则">
+<meta name="twitter:description" content="定义一个对象应该对其他对象有最小的了解，也就是说，一个类应该对自己需要耦合或者调用的类知道的最少，类的内部如何实现与调用者或者依赖者没关系，调用者或者依赖者只需要知道它需要的方法即可。类和类之间的关系越密切，耦合度越大，当一个类发生改变时，对另一个类的影响越大。
+举例123456789101112131415161718192021222324252627282930313233343536373">
+    
+        <link rel="alternate" type="application/atom+xml" title="Glemontree&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Glemontree</h5>
+          <a href="mailto:glemontree@163.com" title="glemontree@163.com" class="mail">glemontree@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Homepage
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Glemontree" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/glemontree" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">[设计模式] 面向对象的六大原则_迪米特原则</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">[设计模式] 面向对象的六大原则_迪米特原则</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-10-28T12:18:56.000Z" itemprop="datePublished" class="page-time">
+  2018-10-28
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/设计模式/">设计模式</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#定义"><span class="post-toc-number">1.</span> <span class="post-toc-text">定义</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#举例"><span class="post-toc-number">2.</span> <span class="post-toc-text">举例</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-[设计模式] 面向对象的六大原则_迪米特原则"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">[设计模式] 面向对象的六大原则_迪米特原则</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-10-28 20:18:56" datetime="2018-10-28T12:18:56.000Z"  itemprop="datePublished">2018-10-28</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/设计模式/">设计模式</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>一个对象应该对其他对象有最小的了解，也就是说，一个类应该对自己需要耦合或者调用的类知道的最少，类的内部如何实现与调用者或者依赖者没关系，调用者或者依赖者只需要知道它需要的方法即可。类和类之间的关系越密切，耦合度越大，当一个类发生改变时，对另一个类的影响越大。</p>
+<h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Room</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">float</span> area;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">float</span> price;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Room</span><span class="params">(<span class="keyword">float</span> area, <span class="keyword">float</span> price)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.area = area;</div><div class="line">        <span class="keyword">this</span>.price = price;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"Room [area="</span> + area + <span class="string">", price="</span> + price + <span class="string">"]"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Mediator</span> </span>&#123;</div><div class="line">    List&#123;Room&#125; mRooms = <span class="keyword">new</span> ArrayList&lt;Room&gt;();</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Mediator</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</div><div class="line">            mRooms.add(<span class="keyword">new</span> Room(<span class="number">14</span> + i, (<span class="number">14</span> + i) * <span class="number">150</span>));</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;Room&gt; <span class="title">getAllRooms</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> mRooms;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Tenant</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">float</span> roomArea;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">float</span> roomPrice;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">float</span> diffPrice = <span class="number">100.0001f</span>;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">float</span> diffArea = <span class="number">0.00001f</span>;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rentRoom</span><span class="params">(Mediator mediator)</span> </span>&#123;</div><div class="line">        List&lt;Room&gt; rooms = mediator.getAllRooms();</div><div class="line">        <span class="keyword">for</span> (Room room : rooms) &#123;</div><div class="line">            <span class="keyword">if</span> (isSuitable(room)) &#123;</div><div class="line">                System.out.println(<span class="string">"租到房间啦! "</span> + room);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isSuitable</span><span class="params">(Room room)</span> </span>&#123;</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在上面的代码中，Tenant不仅依赖了Mediator类，还需要频繁的与Room类打交道，租户类的要求只是通过中介找到一间合适自己的房间罢了，如果把这些检测条件都放在Tenant类中，那么中介类的功能就被弱化，而且导致Tenant与Room的耦合较高，因为Tenant必须知道关于Room的细节，当Room变化时Tenant也必须跟着变化，Tenant又与Mediator耦合，这个时候就需要分清谁才是真正的朋友。</p>
+<p>既然耦合太重，我们就只能解耦了，我们只与Mediator直接通信，不直接操作Room：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Mediator</span> </span>&#123; </div><div class="line">	List&lt;Room&gt; mRooms = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Mediator</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</div><div class="line">            mRooms.add(<span class="keyword">new</span> Room(<span class="number">14</span> + i, (<span class="number">14</span> + i) * <span class="number">150</span>));</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> Room <span class="title">rentOut</span><span class="params">(<span class="keyword">float</span> area, <span class="keyword">float</span> price)</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span> (Room room : mRooms) &#123;</div><div class="line">            <span class="keyword">if</span> (isSuitable(area, price, room)) &#123;</div><div class="line">                <span class="keyword">return</span> room;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isSuitable</span><span class="params">(<span class="keyword">float</span> area, <span class="keyword">float</span> price, Room room)</span> </span>&#123;</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Tenant</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">float</span> roomArea;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">float</span> roomPrice;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">float</span> diffPrice = <span class="number">100.0001f</span>;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">float</span> diffArea = <span class="number">0.00001f</span>;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rentRoom</span><span class="params">(Mediator mediator)</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"租到房啦 "</span> + mediator.rentOut(roomArea, roomPrice));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>同样的，在前面几小节中，ImageCache就是用户的直接朋友，而SD卡缓存内部却是使用了DiskLruCache实现，这个DiskLruCache就不属于用户的直接朋友了，因此，用户完全不需要知道它的存在，用户只需要和ImageCache对象打交道。</p>
+<p>总之，最重要的还是<strong>抽象</strong>。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-10-28T13:36:58.624Z" itemprop="dateUpdated">2018-10-28 21:36:58</time>
+</span><br>
+
+
+        
+        <a href="/2018/10/28/[设计模式] 面向对象的六大原则_迪米特原则/" target="_blank" rel="external">https://glemontree.github.io/2018/10/28/[设计模式] 面向对象的六大原则_迪米特原则/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://glemontree.github.io">
+            <img src="/img/avatar.jpg" alt="Glemontree">
+            Glemontree
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/迪米特原则/">迪米特原则</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面向对象/">面向对象</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://glemontree.github.io/2018/10/28/[设计模式] 面向对象的六大原则_迪米特原则/&title=《[设计模式] 面向对象的六大原则_迪米特原则》 — Glemontree's blog&pic=https://glemontree.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://glemontree.github.io/2018/10/28/[设计模式] 面向对象的六大原则_迪米特原则/&title=《[设计模式] 面向对象的六大原则_迪米特原则》 — Glemontree's blog&source=记录我学习的每一步" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://glemontree.github.io/2018/10/28/[设计模式] 面向对象的六大原则_迪米特原则/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《[设计模式] 面向对象的六大原则_迪米特原则》 — Glemontree's blog&url=https://glemontree.github.io/2018/10/28/[设计模式] 面向对象的六大原则_迪米特原则/&via=https://glemontree.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://glemontree.github.io/2018/10/28/[设计模式] 面向对象的六大原则_迪米特原则/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/10/28/[设计模式] 面向对象的六大原则_接口隔离原则/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">[设计模式] 面向对象的六大原则_接口隔离原则</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "Xkpzm75UqDRakK5m745rI78u-gzGzoHsz",
+            appKey: "nttscBKerm7QwkliKPpUSrln",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢打赏
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Glemontree &copy; 2017 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://glemontree.github.io/2018/10/28/[设计模式] 面向对象的六大原则_迪米特原则/&title=《[设计模式] 面向对象的六大原则_迪米特原则》 — Glemontree's blog&pic=https://glemontree.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://glemontree.github.io/2018/10/28/[设计模式] 面向对象的六大原则_迪米特原则/&title=《[设计模式] 面向对象的六大原则_迪米特原则》 — Glemontree's blog&source=记录我学习的每一步" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://glemontree.github.io/2018/10/28/[设计模式] 面向对象的六大原则_迪米特原则/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《[设计模式] 面向对象的六大原则_迪米特原则》 — Glemontree's blog&url=https://glemontree.github.io/2018/10/28/[设计模式] 面向对象的六大原则_迪米特原则/&via=https://glemontree.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://glemontree.github.io/2018/10/28/[设计模式] 面向对象的六大原则_迪米特原则/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADJElEQVR42u3aQQ7iMAwFUO5/6c52JIbybacamr6sKgFNnllYtvN6xes4XX9/5/35/T2v4nrfa/5ObGxs7J3YPdKno+Th6D1Xz/YxZNjY2Njbsc8TQ7JlklqOYPXeUE6c2NjY2A9mJ2ksqQLy5+o5sbGxsbEnr0uSShKmqJzAxsbGxi42lfLiJCktqumwVzIt6KVhY2Nj/zz7iuLhfz1fMt/GxsbG/mH2MV7JlZpJEJPxQ/nM2NjY2BuxJ9dlqs2jBaPZQVH0j3diY2Njb8dOkL1rPdVdklDOg4WNjY29E7v6s0nT/5yRf1r9q7CxsbH3Zp+njSRm1Rj3gli9EtQsRbCxsbFvxU42riaz6nhg7QXNqEDCxsbG3o49aS0VNosHtL3hRLOFhI2NjX1z9jzxTJpHVXb+Vy0OATY2NvZN2L2O1FFcebOpesLe+BkbGxv77uxqa34+Tqi2k5IQNMcD2NjY2Juyc+SknVR9c6+Z9TFw2NjY2Fuze8fN20DVhtEE2WwkYWNjY9+Q3TtiHoJJ+PImVCERYmNjY2/KPi9LqkPcVUXLJVeCsLGxsTdi58VJ3ojPw1dNTmXM5C4SNjY29q3YV4xs8wP10mG1BMLGxsbem50PequXdaqJcDLKzcOHjY2N/Rx2kjx6Sas6SKgmvMX5HBsbG/uH2asu3+RlSW8MkLeZojdjY2NjP4C9tkGTlzHVyzd50vpyUwkbGxv7tuyEd57AqofLi438VNXyCRsbG3sndp7Arniezy56O2JjY2Pvx+4VDKtIedrLRxFfShpsbGzsjdjVw+XJ5vzQ1cFwfikn2RcbGxt7J/a8YdQb1lYTXuE/rA4GsLGxsW/OzvH598v5M2j950VI4bTY2NjYW7CP4poUG3lySn6bX+6Mai9sbGzs27KrI9V5CCZXdppjXWxsbOwHsHtpJh/EToqH6lgXGxsb+8nsvHmUfL/aZkoS5Ko0jI2Njf1kdpKieimt1yqaDIOxsbGxn8leNcqdDJXzAcOXXbCxsbG3Y/eGqUdrVRtJvYB+KWmwsbGxN2JXk82ElKe9yVA5SWzY2NjYW7D/AHM6B0qsdL1DAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1273392949&web_id=1273392949')
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

@@ -164,6 +164,115 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-[Linux] Shell编程第七课"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-12-03 19:45:42" datetime="2017-12-03T11:45:42.000Z"  itemprop="datePublished">2017-12-03</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/12/03/[Linux] Shell编程第七课/">[Linux] Shell编程第七课</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        
+在创建shell脚本文件时必须在文件的第一行指定要使用的shell，其格式为：#!/bin/bash，
+在通常的shell脚本中，井号（#）用作注释行，shell脚本不会处理shell脚本中的注释行，但是第一行是个例外，后面的！号会告诉shell用哪个shell来运行脚本。
+
+
+
+为了运行shell脚本，有两种方法：
+将shell脚本文件所处的目录添加到PATH环境变量中
+在提示符中用绝对...
+    
+
+        <a href="/2017/12/03/[Linux] Shell编程第七课/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux-Shell/">Linux, Shell</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-[Linux] Shell编程第六课"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-12-03 19:45:01" datetime="2017-12-03T11:45:01.000Z"  itemprop="datePublished">2017-12-03</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/12/03/[Linux] Shell编程第六课/">[Linux] Shell编程第六课</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        
+必须在存储设备上创建分区来容纳文件系统，分区可以是整个硬盘，也可以是部分硬盘，以容纳虚拟目录的一部分
+
+
+fdisk工具用来帮助管理安装在系统上的任何存储设备上的分区，要启动fdisk命令，必须指定要分区的存储设备的设备名，另外还得有超级用户权限，你应该这样使用fdisk工具：sudo fdisk /dev/sda
+
+
+可以使用p命令将一个存储设备的详细信息显示出来，使用n命令在存储设备上...
+    
+
+        <a href="/2017/12/03/[Linux] Shell编程第六课/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux-Shell/">Linux, Shell</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-[Linux] Shell编程第五课"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -566,112 +675,6 @@ Executor提供了一种标准的方法将任务的提交过程和执行过程解
     
 
         <a href="/2017/11/30/[Java] Java并发编程实战之对象的组合/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java-并发/">Java 并发</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-[Java] Java并发编程实战之对象的共享"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-11-29 13:05:03" datetime="2017-11-29T05:05:03.000Z"  itemprop="datePublished">2017-11-29</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/11/29/[Java] Java并发编程实战之对象的共享/">[Java] Java并发编程实战之对象的共享</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        
-对于非volatile类型的64位数值变量（double和long），JVM允许将64位的读操作和写操作分解为两个32位的操作。当读取一个非volatile类型的long变量时，如果对变量的读操作和写操作在不同的线程中执行，那么很可能会读取到某个值的高32位和另一个值的低32位。
-
-  在多线程中使用共享且可变的long和double类型的变量是不安全的，除非使用关键字volatile来声...
-    
-
-        <a href="/2017/11/29/[Java] Java并发编程实战之对象的共享/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java-并发/">Java 并发</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-[Java] Java并发编程实战之线程安全性"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-11-28 19:43:21" datetime="2017-11-28T11:43:21.000Z"  itemprop="datePublished">2017-11-28</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/11/28/[Java] Java并发编程实战之线程安全性/">[Java] Java并发编程实战之线程安全性</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        
-一个对象是否是线程安全的，取决于它是否被多个线程访问，要使得对象是线程安全的，需要采用同步机制来协同对可变状态的访问
-
-在线程安全类中封装了必要的同步机制，因此客户端无需进一步采用同步措施
-
-无状态对象一定是线程安全的，大多数Servlet都是无状态的，从而极大的降低了在实现Servlet线程安全性时的复杂性
-
-为了确保线程安全性，先检查后执行和读取-修改-写入等操作必须是原子性的
-
-先检...
-    
-
-        <a href="/2017/11/28/[Java] Java并发编程实战之线程安全性/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
     </div>

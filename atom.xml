@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://glemontree.github.io/"/>
-  <updated>2018-10-28T11:55:28.893Z</updated>
+  <updated>2018-10-28T13:36:58.624Z</updated>
   <id>https://glemontree.github.io/</id>
   
   <author>
@@ -15,6 +15,65 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>[设计模式] 面向对象的六大原则_迪米特原则</title>
+    <link href="https://glemontree.github.io/2018/10/28/%5B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%5D%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%85%AD%E5%A4%A7%E5%8E%9F%E5%88%99_%E8%BF%AA%E7%B1%B3%E7%89%B9%E5%8E%9F%E5%88%99/"/>
+    <id>https://glemontree.github.io/2018/10/28/[设计模式] 面向对象的六大原则_迪米特原则/</id>
+    <published>2018-10-28T12:18:56.000Z</published>
+    <updated>2018-10-28T13:36:58.624Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>一个对象应该对其他对象有最小的了解，也就是说，一个类应该对自己需要耦合或者调用的类知道的最少，类的内部如何实现与调用者或者依赖者没关系，调用者或者依赖者只需要知道它需要的方法即可。类和类之间的关系越密切，耦合度越大，当一个类发生改变时，对另一个类的影响越大。</p><h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Room</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">float</span> area;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">float</span> price;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Room</span><span class="params">(<span class="keyword">float</span> area, <span class="keyword">float</span> price)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.area = area;</div><div class="line">        <span class="keyword">this</span>.price = price;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"Room [area="</span> + area + <span class="string">", price="</span> + price + <span class="string">"]"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Mediator</span> </span>&#123;</div><div class="line">    List&#123;Room&#125; mRooms = <span class="keyword">new</span> ArrayList&lt;Room&gt;();</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Mediator</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</div><div class="line">            mRooms.add(<span class="keyword">new</span> Room(<span class="number">14</span> + i, (<span class="number">14</span> + i) * <span class="number">150</span>));</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;Room&gt; <span class="title">getAllRooms</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> mRooms;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Tenant</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">float</span> roomArea;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">float</span> roomPrice;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">float</span> diffPrice = <span class="number">100.0001f</span>;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">float</span> diffArea = <span class="number">0.00001f</span>;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rentRoom</span><span class="params">(Mediator mediator)</span> </span>&#123;</div><div class="line">        List&lt;Room&gt; rooms = mediator.getAllRooms();</div><div class="line">        <span class="keyword">for</span> (Room room : rooms) &#123;</div><div class="line">            <span class="keyword">if</span> (isSuitable(room)) &#123;</div><div class="line">                System.out.println(<span class="string">"租到房间啦! "</span> + room);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isSuitable</span><span class="params">(Room room)</span> </span>&#123;</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>在上面的代码中，Tenant不仅依赖了Mediator类，还需要频繁的与Room类打交道，租户类的要求只是通过中介找到一间合适自己的房间罢了，如果把这些检测条件都放在Tenant类中，那么中介类的功能就被弱化，而且导致Tenant与Room的耦合较高，因为Tenant必须知道关于Room的细节，当Room变化时Tenant也必须跟着变化，Tenant又与Mediator耦合，这个时候就需要分清谁才是真正的朋友。</p><p>既然耦合太重，我们就只能解耦了，我们只与Mediator直接通信，不直接操作Room：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Mediator</span> </span>&#123; </div><div class="line">List&lt;Room&gt; mRooms = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Mediator</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</div><div class="line">            mRooms.add(<span class="keyword">new</span> Room(<span class="number">14</span> + i, (<span class="number">14</span> + i) * <span class="number">150</span>));</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> Room <span class="title">rentOut</span><span class="params">(<span class="keyword">float</span> area, <span class="keyword">float</span> price)</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span> (Room room : mRooms) &#123;</div><div class="line">            <span class="keyword">if</span> (isSuitable(area, price, room)) &#123;</div><div class="line">                <span class="keyword">return</span> room;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isSuitable</span><span class="params">(<span class="keyword">float</span> area, <span class="keyword">float</span> price, Room room)</span> </span>&#123;</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Tenant</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">float</span> roomArea;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">float</span> roomPrice;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">float</span> diffPrice = <span class="number">100.0001f</span>;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">float</span> diffArea = <span class="number">0.00001f</span>;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rentRoom</span><span class="params">(Mediator mediator)</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"租到房啦 "</span> + mediator.rentOut(roomArea, roomPrice));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>同样的，在前面几小节中，ImageCache就是用户的直接朋友，而SD卡缓存内部却是使用了DiskLruCache实现，这个DiskLruCache就不属于用户的直接朋友了，因此，用户完全不需要知道它的存在，用户只需要和ImageCache对象打交道。</p><p>总之，最重要的还是<strong>抽象</strong>。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;定义&quot;&gt;&lt;a href=&quot;#定义&quot; class=&quot;headerlink&quot; title=&quot;定义&quot;&gt;&lt;/a&gt;定义&lt;/h3&gt;&lt;p&gt;一个对象应该对其他对象有最小的了解，也就是说，一个类应该对自己需要耦合或者调用的类知道的最少，类的内部如何实现与调用者或者依赖者没关系，调用
+      
+    
+    </summary>
+    
+      <category term="设计模式" scheme="https://glemontree.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="面向对象" scheme="https://glemontree.github.io/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"/>
+    
+      <category term="设计模式" scheme="https://glemontree.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+      <category term="迪米特原则" scheme="https://glemontree.github.io/tags/%E8%BF%AA%E7%B1%B3%E7%89%B9%E5%8E%9F%E5%88%99/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>[设计模式] 面向对象的六大原则_接口隔离原则</title>
+    <link href="https://glemontree.github.io/2018/10/28/%5B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%5D%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%85%AD%E5%A4%A7%E5%8E%9F%E5%88%99_%E6%8E%A5%E5%8F%A3%E9%9A%94%E7%A6%BB%E5%8E%9F%E5%88%99/"/>
+    <id>https://glemontree.github.io/2018/10/28/[设计模式] 面向对象的六大原则_接口隔离原则/</id>
+    <published>2018-10-28T12:10:47.000Z</published>
+    <updated>2018-10-28T12:18:33.203Z</updated>
+    
+    <content type="html"><![CDATA[<p>类间的依赖关系应该建立在最小的接口上，接口隔离原则将非常庞大、臃肿的接口拆分成更小的和更具体的接口，这样客户将会只知道他们感兴趣的方法。接口隔离原则的目的是系统解开耦合，从而容易重构、更改和重新部署。</p><p>接口隔离原则其实就是让客户端依赖的接口尽可能的小。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;类间的依赖关系应该建立在最小的接口上，接口隔离原则将非常庞大、臃肿的接口拆分成更小的和更具体的接口，这样客户将会只知道他们感兴趣的方法。接口隔离原则的目的是系统解开耦合，从而容易重构、更改和重新部署。&lt;/p&gt;
+&lt;p&gt;接口隔离原则其实就是让客户端依赖的接口尽可能的小。&lt;/p&gt;
+      
+    
+    </summary>
+    
+      <category term="设计模式" scheme="https://glemontree.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="面向对象" scheme="https://glemontree.github.io/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"/>
+    
+      <category term="设计模式" scheme="https://glemontree.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+      <category term="接口隔离原则" scheme="https://glemontree.github.io/tags/%E6%8E%A5%E5%8F%A3%E9%9A%94%E7%A6%BB%E5%8E%9F%E5%88%99/"/>
+    
+  </entry>
   
   <entry>
     <title>[设计模式] 面向对象的六大原则_依赖倒置原则</title>
@@ -451,9 +510,9 @@
     
       <category term="group by" scheme="https://glemontree.github.io/tags/group-by/"/>
     
-      <category term="min" scheme="https://glemontree.github.io/tags/min/"/>
-    
       <category term="having" scheme="https://glemontree.github.io/tags/having/"/>
+    
+      <category term="min" scheme="https://glemontree.github.io/tags/min/"/>
     
   </entry>
   
@@ -505,9 +564,9 @@
     
       <category term="group by" scheme="https://glemontree.github.io/tags/group-by/"/>
     
-      <category term="having" scheme="https://glemontree.github.io/tags/having/"/>
-    
       <category term="max" scheme="https://glemontree.github.io/tags/max/"/>
+    
+      <category term="having" scheme="https://glemontree.github.io/tags/having/"/>
     
   </entry>
   
