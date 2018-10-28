@@ -164,6 +164,110 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-[C++] 迭代器失效"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-10-24 21:56:42" datetime="2017-10-24T13:56:42.000Z"  itemprop="datePublished">2017-10-24</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/C/">C++</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/10/24/[C++] 迭代器失效/">[C++] 迭代器失效</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        迭代器失效当使用一个容器的insert或者erase函数通过迭代器插入或删除元素可能会导致迭代器失效，因此很多建议都是让我们获取insert或者erase返回的迭代器，以便用重新获取新的有效的迭代器进行正确的操作。
+12iter = vec.insert(iter);iter = vec.erase(iter);
+迭代器失效的原因以vector为例，当我们插入一个元素时它的预分配空间不够时，...
+    
+
+        <a href="/2017/10/24/[C++] 迭代器失效/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-11-迭代器/">C++11, 迭代器</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-[C++] C++中的new、operator new和placement new"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-10-23 22:38:12" datetime="2017-10-23T14:38:12.000Z"  itemprop="datePublished">2017-10-23</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/C/">C++</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/10/23/[C++] C++中的new、operator new和placement new/">[C++] C++中的new、operator new和placement new</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        new/delete和operator new/operator deletenew operator/delete operator就是new和delete操作符，而operator new/operator delete是函数。
+new operator：
+
+调用operator new分配足够的空间，并调用相关对象的构造函数
+不可以被重载
+
+operator new：
+
+只分配所要求的...
+    
+
+        <a href="/2017/10/23/[C++] C++中的new、operator new和placement new/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-new-operator-new-placement-new/">C++, new, operator new, placement new</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-[C++] allocator原理"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -552,106 +656,6 @@ HashM...
     <div class="post-footer">
         
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/">Redis</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-[MyBatis] MyBatis第七课---resultMap的用法"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-09-18 21:32:45" datetime="2017-09-18T13:32:45.000Z"  itemprop="datePublished">2017-09-18</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/MyBatis/">MyBatis</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/09/18/[MyBatis] MyBatis第七课---resultMap的用法/">[MyBatis]MyBatis第七课---resultMap的用法</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        自动映射
-全局setting设置
-autoMappingBehavior默认是PARTIAL，开启自动映射的功能，唯一的要求是列名和javaBean属性名一致
-如果autoMappingBehavior设置为null则会取消自动映射
-数据库字段命名规范，POJO属性符合驼峰命名法，如A_COLUMN—&gt;aColumn，我们可以开启自动驼峰命名规则映射功能，mapUnderscoreTo...
-    
-
-        <a href="/2017/09/18/[MyBatis] MyBatis第七课---resultMap的用法/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis-resultMap/">MyBatis, resultMap</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-[MyBatis] MyBatis第六课---select操作"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-09-13 20:09:47" datetime="2017-09-13T12:09:47.000Z"  itemprop="datePublished">2017-09-13</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/MyBatis/">MyBatis</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/09/13/[MyBatis] MyBatis第六课---select操作/">[MyBatis] MyBatis第六课---select操作</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        select返回List如果返回的是一个集合，那么resultType应当为集合中元素的类型：
-1public List&lt;Employee&gt; getEmpsByLastNameLike(String lastName);
-123&lt;select id="getEmpsByLastNameLike" resultType="com.glemontree.mybatis.bean...
-    
-
-        <a href="/2017/09/13/[MyBatis] MyBatis第六课---select操作/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis/">MyBatis</a></li></ul>
 
     </div>
     

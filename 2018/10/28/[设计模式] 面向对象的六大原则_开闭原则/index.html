@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65601540"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>[设计模式] 面向对象的六大原则_开闭原则 | Glemontree&#39;s blog | day day up!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="面向对象, 设计模式, 开闭原则">
+    <meta name="description" content="定义软件中的对象（类、模块、函数等）应该对于扩展是开放的，但是对于修改时封闭的。在软件需要变化时，我们应该尽量通过扩展的方式来实现变化，而不是通过修改已有的代码来实现。
+程序一旦开发完成，程序中一个类的实只应该因错误而被修改，新的或者改变的特性应该通过新建不同的类实现，新建的类可以通过继承的方式来重用原类的代码。
+举例在上一节中实现的代码是通过内存缓存解决了每次从网络加载图片的问题，但是Andro">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[设计模式] 面向对象的六大原则_开闭原则">
+<meta property="og:url" content="https://glemontree.github.io/2018/10/28/[设计模式] 面向对象的六大原则_开闭原则/index.html">
+<meta property="og:site_name" content="Glemontree's blog">
+<meta property="og:description" content="定义软件中的对象（类、模块、函数等）应该对于扩展是开放的，但是对于修改时封闭的。在软件需要变化时，我们应该尽量通过扩展的方式来实现变化，而不是通过修改已有的代码来实现。
+程序一旦开发完成，程序中一个类的实只应该因错误而被修改，新的或者改变的特性应该通过新建不同的类实现，新建的类可以通过继承的方式来重用原类的代码。
+举例在上一节中实现的代码是通过内存缓存解决了每次从网络加载图片的问题，但是Andro">
+<meta property="og:updated_time" content="2018-10-28T11:34:35.535Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[设计模式] 面向对象的六大原则_开闭原则">
+<meta name="twitter:description" content="定义软件中的对象（类、模块、函数等）应该对于扩展是开放的，但是对于修改时封闭的。在软件需要变化时，我们应该尽量通过扩展的方式来实现变化，而不是通过修改已有的代码来实现。
+程序一旦开发完成，程序中一个类的实只应该因错误而被修改，新的或者改变的特性应该通过新建不同的类实现，新建的类可以通过继承的方式来重用原类的代码。
+举例在上一节中实现的代码是通过内存缓存解决了每次从网络加载图片的问题，但是Andro">
+    
+        <link rel="alternate" type="application/atom+xml" title="Glemontree&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Glemontree</h5>
+          <a href="mailto:glemontree@163.com" title="glemontree@163.com" class="mail">glemontree@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Homepage
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Glemontree" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/glemontree" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">[设计模式] 面向对象的六大原则_开闭原则</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">[设计模式] 面向对象的六大原则_开闭原则</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-10-28T10:53:43.000Z" itemprop="datePublished" class="page-time">
+  2018-10-28
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/设计模式/">设计模式</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#定义"><span class="post-toc-number">1.</span> <span class="post-toc-text">定义</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#举例"><span class="post-toc-number">2.</span> <span class="post-toc-text">举例</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#总结"><span class="post-toc-number">3.</span> <span class="post-toc-text">总结</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-[设计模式] 面向对象的六大原则_开闭原则"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">[设计模式] 面向对象的六大原则_开闭原则</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-10-28 18:53:43" datetime="2018-10-28T10:53:43.000Z"  itemprop="datePublished">2018-10-28</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/设计模式/">设计模式</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>软件中的对象（类、模块、函数等）应该对于扩展是开放的，但是对于修改时封闭的。在软件需要变化时，我们应该尽量通过扩展的方式来实现变化，而不是通过修改已有的代码来实现。</p>
+<p>程序一旦开发完成，程序中一个类的实只应该因错误而被修改，新的或者改变的特性应该通过新建不同的类实现，新建的类可以通过继承的方式来重用原类的代码。</p>
+<h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><p>在上一节中实现的代码是通过内存缓存解决了每次从网络加载图片的问题，但是Android应用的内存很有限，且具有易失性。那么我们可以引入SD卡缓存，这样下载过的图片就会缓存在本地：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DiskCache</span> </span>&#123;</div><div class="line">    <span class="keyword">static</span> String cacheDir = <span class="string">"sdcard/cache/"</span>;</div><div class="line">    <span class="function"><span class="keyword">public</span> Bitmap <span class="title">get</span><span class="params">(String url)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> BitmapFactory.decodeFile(cacheDir + url);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(String url, Bitmap bmp)</span> </span>&#123;</div><div class="line">        FileOutputStream fileOutputStream = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            fileOutputStream = <span class="keyword">new</span> FileOutputStream(cacheDir + url);</div><div class="line">            bmp.compress(CompressFormat.PNG, <span class="number">100</span>, fileOutputStream);</div><div class="line">        &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; <span class="keyword">finally</span> &#123;</div><div class="line">            <span class="keyword">if</span> (fileOutputStream != <span class="keyword">null</span>) &#123;</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    fileOutputStream.close();</div><div class="line">                &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">                    e.printStackTrace();</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>因为需要将图片缓存在SD中，所以ImageLoader代码需要更新：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ImageLoader</span> </span>&#123;</div><div class="line">    ImageCache mImageCache = <span class="keyword">new</span> ImageCache();</div><div class="line">    DiskCache mDiskCache = <span class="keyword">new</span> DiskCache();</div><div class="line">    <span class="keyword">boolean</span> isUseDiskCache = <span class="keyword">false</span>;</div><div class="line">    ExecutorService mExecutorService =  Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">displayImage</span><span class="params">(<span class="keyword">final</span> String url, <span class="keyword">final</span> ImageView imageView)</span> </span>&#123;</div><div class="line">        Bitmap bitmap = isUseDiskCache ? mDiskCache.get(url) : mImageCache.get(url);</div><div class="line">        <span class="keyword">if</span> (bitmap != <span class="keyword">null</span>) &#123;</div><div class="line">            imageView.setImageBitmap(bitmap);</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">useDiskCache</span><span class="params">(<span class="keyword">boolean</span> useDiskCache)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.isUseDiskCache = useDiskCache;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>从上述代码中可以看出，仅仅新增了一个DiskCache类和往ImageLoader类中加入了少量代码就添加了SD卡缓存的功能，用户可以通过useDiskCache()方法来对使用哪种缓存进行设置。</p>
+<p>但是，上面的代码还是存在很大问题，扩展性太差了，而且每次都需要修改ImageLoader的代码，并且用户也不能实现自定义缓存。</p>
+<p>现在我们将上面的代码进行重构：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ImageLoader</span> </span>&#123;</div><div class="line">    ImageCache mImageCache = <span class="keyword">new</span> ImageCache();</div><div class="line">    ExecutorService mExecutorService =  Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setImageCache</span><span class="params">(ImageCache cache)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.mImageCache = cache;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">displayImage</span><span class="params">(<span class="keyword">final</span> String url, <span class="keyword">final</span> ImageView imageView)</span> </span>&#123;</div><div class="line">        Bitmap bitmap = mImageCache.get(url);</div><div class="line">        <span class="keyword">if</span> (bitmap != <span class="keyword">null</span>) &#123;</div><div class="line">            imageView.setImageBitmap(bitmap);</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        submitLoadRequest(url, imageView);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">submitLoadRequest</span><span class="params">(<span class="keyword">final</span> String url, <span class="keyword">final</span> ImageView imageView)</span> </span>&#123;</div><div class="line">    	imageView.setTag(url);</div><div class="line">        mExecutorService.submit(<span class="keyword">new</span> Runnable() &#123;</div><div class="line">           	<span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">                Bitmap bitmap = downloadImage(url);</div><div class="line">                <span class="keyword">if</span> (bitmap == <span class="keyword">null</span>) &#123;</div><div class="line">                    <span class="keyword">return</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span> (imageView.getTag().equals(url)) &#123;</div><div class="line">                    imageView.setImageBitmap(bitmap);</div><div class="line">                &#125;</div><div class="line">                mImageCache.put(url, bitmap);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> Bitmap <span class="title">downloadImage</span><span class="params">(String url)</span> </span>&#123;</div><div class="line">        Bitmap bitmap = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">           	URL url = <span class="keyword">new</span> URL(imageUrl);</div><div class="line">            <span class="keyword">final</span> HttpURLConnection conn = (HttpURLConnection) url.openConnection();</div><div class="line">            bitmap = BitmapFactory.decodeStream(conn.getInputStream());</div><div class="line">            conn.disconnect();</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> bitmap;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里的ImageCache并不是原来的ImageCache，而是抽象为了一个接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ImageCache</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> Bitmap <span class="title">get</span><span class="params">(String url)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(String url, Bitmap bitmap)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样不同的缓存策略只需要实现这个接口即可：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MemoryCache</span> <span class="keyword">implements</span> <span class="title">ImageCache</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MemoryCache</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line">    </div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Bitmap <span class="title">get</span><span class="params">(String url)</span> </span>&#123;</div><div class="line">        retutn mMemoryCache.get(url);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(String url, Bitmap bitmap)</span> </span>&#123;</div><div class="line">        mMemoryCache.put(url, bitmap);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DiskCache</span> <span class="keyword">implements</span> <span class="title">ImageCache</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DiskCache</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line">    </div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Bitmap <span class="title">get</span><span class="params">(String url)</span> </span>&#123;</div><div class="line">        <span class="comment">// 从本地文件中获取</span></div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(String url, Bitmap bitmap)</span> </span>&#123;</div><div class="line">        <span class="comment">// 将Bitmap写入文件中</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们还可以发现在ImageLoader类中增加了一个setImageCache(ImageCache cache)方法，用户可以通过该方法设置缓存实现，也就是通常说的依赖注入：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">ImageLoader imageLoader = <span class="keyword">new</span> ImageLoader();</div><div class="line">imageLoader.setImageCache(<span class="keyword">new</span> MemoryCache());</div><div class="line">imageLoader.setImageCache(<span class="keyword">new</span> DiskCache());</div><div class="line">imageLoader.setImageCache(<span class="keyword">new</span> ImageCache() &#123;</div><div class="line">   	<span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(String url, Bitmap bitmap)</span> </span>&#123;</div><div class="line">        <span class="comment">// 缓存图片</span></div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Bitmap <span class="title">get</span><span class="params">(String url)</span> </span>&#123;</div><div class="line">       	<span class="comment">// 从缓存中获取图片</span></div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>在上述代码中通过setImageCache(ImageCache cache)方法注入不同的缓存实现，这样不仅能够使ImageLoader更简单、健壮，也使得ImageLoader的可扩展性、灵活性更高。</p>
+<p>MemoryCache、DiskCache缓存图片的原理不同，但是它们的一个共同点就是实现了ImageCache接口，当用户需要自定义实现缓存策略时，只需要新建一个实现ImageLoader接口的类，然后构造该类的对象，并且通过setImageCache(ImageCache cache)注入到ImageLoader中，这样ImageLoader就实现了千变万化的缓存策略，且扩展这些缓存策略并不会导致ImageLoader类的修改。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>软件中的对象应该对于扩展是开放的，对于修改是封闭的，实现开闭原则的重要手段就是通过抽象。<strong>当软件需要变化时，应该尽量通过扩展的方式实现变化，而不是通过修改已有代码实现</strong>。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-10-28T11:34:35.535Z" itemprop="dateUpdated">2018-10-28 19:34:35</time>
+</span><br>
+
+
+        
+        <a href="/2018/10/28/[设计模式] 面向对象的六大原则_开闭原则/" target="_blank" rel="external">https://glemontree.github.io/2018/10/28/[设计模式] 面向对象的六大原则_开闭原则/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://glemontree.github.io">
+            <img src="/img/avatar.jpg" alt="Glemontree">
+            Glemontree
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面向对象-设计模式-开闭原则/">面向对象, 设计模式, 开闭原则</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://glemontree.github.io/2018/10/28/[设计模式] 面向对象的六大原则_开闭原则/&title=《[设计模式] 面向对象的六大原则_开闭原则》 — Glemontree's blog&pic=https://glemontree.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://glemontree.github.io/2018/10/28/[设计模式] 面向对象的六大原则_开闭原则/&title=《[设计模式] 面向对象的六大原则_开闭原则》 — Glemontree's blog&source=记录我学习的每一步" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://glemontree.github.io/2018/10/28/[设计模式] 面向对象的六大原则_开闭原则/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《[设计模式] 面向对象的六大原则_开闭原则》 — Glemontree's blog&url=https://glemontree.github.io/2018/10/28/[设计模式] 面向对象的六大原则_开闭原则/&via=https://glemontree.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://glemontree.github.io/2018/10/28/[设计模式] 面向对象的六大原则_开闭原则/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/10/28/[设计模式] 面向对象的六大原则_里氏替换原则/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">[设计模式] 面向对象的六大原则_里氏替换原则</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/10/28/[设计模式] 面向对象的六大原则_单一职责原则/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">[设计模式] 面向对象的六大原则_单一职责原则</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "Xkpzm75UqDRakK5m745rI78u-gzGzoHsz",
+            appKey: "nttscBKerm7QwkliKPpUSrln",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢打赏
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Glemontree &copy; 2017 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://glemontree.github.io/2018/10/28/[设计模式] 面向对象的六大原则_开闭原则/&title=《[设计模式] 面向对象的六大原则_开闭原则》 — Glemontree's blog&pic=https://glemontree.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://glemontree.github.io/2018/10/28/[设计模式] 面向对象的六大原则_开闭原则/&title=《[设计模式] 面向对象的六大原则_开闭原则》 — Glemontree's blog&source=记录我学习的每一步" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://glemontree.github.io/2018/10/28/[设计模式] 面向对象的六大原则_开闭原则/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《[设计模式] 面向对象的六大原则_开闭原则》 — Glemontree's blog&url=https://glemontree.github.io/2018/10/28/[设计模式] 面向对象的六大原则_开闭原则/&via=https://glemontree.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://glemontree.github.io/2018/10/28/[设计模式] 面向对象的六大原则_开闭原则/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADLElEQVR42u3ay27jMBAEQP//T3uBnBbIQ90cGTDp0slIJEbFAJnMNB+P+Hp+Xe3X/7/ylf++//s9yf2LFzY2NvYm7Oef1/d7fvvBydbkd87f82LrsbGxsY9j3/u6v92fF5782WRNbGxsbOy8SORPtfdgY2NjY7+OfdfWtOtjY2NjY7fDmnYcX4x44mghKWw3z9KwsbGx357dBr3v/PmF+TY2Njb2W7Kf5ZWssxYbtOXnObiwsbGxT2LnQ5x5m7G28rxcFR0YNjY29ubs+Zhm7ejP5LhPezDohwKGjY2NvTm7DV8no6i/N3EtZk62CRsbG/ts9toBnfywTlt42rakDTMea7uLjY2N/fbstRIyYUwODCWw4qQSNjY29ubsNnBtm4S11uKuARM2Njb2p7Hzf/rbCLYtP0kI3ZbJUV6BjY2N/fbs4k9/+d0bxvdLRW507BIbGxt7K3Yb2eYbMS9yCTgPJB5rFzY2NvYm7GTRyQslMcBdB0ALBTY2NvZB7Hbe0rYTa4dsJo1EvQI2Njb2tux5KLvWnOThQRvuRmtiY2NjH81eO0bZDn2SYjkJKi5+MdjY2NiHsidFqC2Bk9LVjrqwsbGxP4HdNgx3FZjJ0H/ULGFjY2MfxB49Vo7112LdtpglcQU2Njb2qez20ExSwOqjM8Grrw2hLqo3NjY29rbsvOTcG+LON3GyMjY2NvZ57ByTHJFJNqINhvMGI8FjY2Njn8TOI9u22CSj/7VAom112ogaGxsbe0d2u0OTYDgf8b/iDX+YpWFjY2MfwZ4Uj/mxm/bZfMuwsbGxP4GdD4/WBkx5cWqj5TZCvki2sbGxsY9gvyIMSI7UrMXJ7cGdi3wbGxsbe1v2WtQ6H/fnhWctKl7MQ7CxsbE3ZD/La1I88kZlrb0pyjA2Njb2Qey2bOSf721IJu+AjY2N/QnsSZsxaTzWnp0ECUX1xsbGxt6Q3RatvGHI129LYF50H/PfDDY2NvYR7Ml4qC2BSelqwwxsbGxs7LwZKFqCeFtb6oURGxsb+zj2ZKg0P8qTA/Ly+WirIjY2Nva27DbobRuJtUi4LYeTQAIbGxt7W/Y/j+ntOUu8fCgAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1273392949&web_id=1273392949')
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
