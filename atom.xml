@@ -353,9 +353,9 @@
     
       <category term="group by" scheme="https://glemontree.github.io/tags/group-by/"/>
     
-      <category term="min" scheme="https://glemontree.github.io/tags/min/"/>
-    
       <category term="having" scheme="https://glemontree.github.io/tags/having/"/>
+    
+      <category term="min" scheme="https://glemontree.github.io/tags/min/"/>
     
   </entry>
   
@@ -407,9 +407,9 @@
     
       <category term="group by" scheme="https://glemontree.github.io/tags/group-by/"/>
     
-      <category term="having" scheme="https://glemontree.github.io/tags/having/"/>
-    
       <category term="max" scheme="https://glemontree.github.io/tags/max/"/>
+    
+      <category term="having" scheme="https://glemontree.github.io/tags/having/"/>
     
   </entry>
   
