@@ -164,58 +164,6 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
-            <article id="post-[Android] Android的4种文件类型Java、class、dex、apk"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-11-01 14:51:02" datetime="2017-11-01T06:51:02.000Z"  itemprop="datePublished">2017-11-01</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/11/01/[Android] Android的4种文件类型Java、class、dex、apk/">[Android] Android的4种文件类型Java、class、dex、apk</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        
-Java文件：应用程序源文件
-Android是采用Java进行开发的（当然，现在Google开发推荐使用kotlin来进行开发）。
-
-class文件：Java编译后的目标文件
-android平台上class文件不能直接在android上运行，由于Google使用了自己的自己的Dalvik来运行应用，所以这里的class肯定不能直接在Android Dalvik的java环境中运行，需要链接...
-    
-
-        <a href="/2017/11/01/[Android] Android的4种文件类型Java、class、dex、apk/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
             <article id="post-[Struts2] Ajax"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -662,6 +610,54 @@ operator new：
     <div class="post-footer">
         
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-new-operator-new-placement-new/">C++, new, operator new, placement new</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-[C++] allocator原理"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-10-23 19:57:49" datetime="2017-10-23T11:57:49.000Z"  itemprop="datePublished">2017-10-23</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/C/">C++</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/10/23/[C++] allocator原理/">[C++] allocator原理</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        allocator原理介绍考虑到小型区域可能造成内存破碎问题，SGI STL设计了双层级配置器，第一层配置器直接使用malloc()和free()，第二层配置器则视情况采用不同的策略：当配置区块超过128bytes时，调用第一层级配置器，当配置区块小于128bytes时，采用复杂的memory pool方式。
+第一级配置器__malloc_alloc_template123456789101...
+    
+
+        <a href="/2017/10/23/[C++] allocator原理/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-allocator/">C++, allocator</a></li></ul>
 
     </div>
     
