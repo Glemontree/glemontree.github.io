@@ -40,7 +40,7 @@ Linux内核将所有的物理页面划分为3类内存管理区中，分别为ZO
 <meta property="og:image" content="https://img-blog.csdn.net/20170327204706119">
 <meta property="og:image" content="https://img-blog.csdn.net/20170327204738893">
 <meta property="og:image" content="https://img-blog.csdn.net/20170327204805121">
-<meta property="og:updated_time" content="2018-11-18T12:53:34.440Z">
+<meta property="og:updated_time" content="2018-11-18T13:09:52.108Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Linux] 内存管理与DMA Zone">
 <meta name="twitter:description" content="Linux内核地址空间划分32位Linux内核空间划分为0~3G为用户空间，3~4G为内核空间。
@@ -252,6 +252,9 @@ Linux内核将所有的物理页面划分为3类内存管理区中，分别为ZO
             </figure>
 <p>Linux将4G的线性地址空间分为两部分，0~3G为user space，3G~4G为kernel space。</p>
 <p>由于开启了分页机制，内核想要访问物理地址空间的话，必须先建立映射关系，然后通过虚拟地址访问，为了能够访问所有的物理地址空间，就要将全部物理地址空间映射到1G的内核线性空间中，这显然不可能。于是，内核将0~896M的物理地址空间一对一映射到自己的线性地址空间中，这样它便可以随时访问ZONE_DMA和ZONE_NORMAL里的物理页面。此时内核剩下的128M线性空间不足以完全映射所有的ZONE_HIGEMEM，Linux采取了动态映射的方法，即按需的将ZONE_HIGHMEM里的物理页面映射到kernel space的最后128M线性地址空间里，使用完之后释放映射关系，以供其他物理页面映射。虽然这样存在效率的问题，但是内核毕竟可以正常的访问所有的物理地址空间了。</p>
+<blockquote>
+<p><strong>区的划分没有任何物理意义，只不过是内核为了管理页而采取的一种逻辑上的分组，尽管某些分配可能需要从特定的页中获得页，但这并不是说，某种用途的内存一定要从对应的区来获取，如果这种可供分配的资源不够用了，内核就会占用其他可用区的内存。</strong></p>
+</blockquote>
 <h3 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h3><p>本文转自<a href="https://blog.csdn.net/farmwang/article/details/66976818" target="_blank" rel="external">linux内核内存管理(zone_dma zone_normal zone_highmem)</a>。</p>
 
         </div>
@@ -261,7 +264,7 @@ Linux内核将所有的物理页面划分为3类内存管理区中，分别为ZO
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-11-18T12:53:34.440Z" itemprop="dateUpdated">2018-11-18 20:53:34</time>
+    最后更新时间：<time datetime="2018-11-18T13:09:52.108Z" itemprop="dateUpdated">2018-11-18 21:09:52</time>
 </span><br>
 
 
