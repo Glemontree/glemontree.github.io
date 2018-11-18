@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://glemontree.github.io/"/>
-  <updated>2018-10-28T13:36:58.624Z</updated>
+  <updated>2018-11-18T12:53:34.440Z</updated>
   <id>https://glemontree.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>[Linux] 内存管理与DMA Zone</title>
+    <link href="https://glemontree.github.io/2018/11/18/%5BLinux%5D%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E4%B8%8EDMA%20Zone/"/>
+    <id>https://glemontree.github.io/2018/11/18/[Linux] 内存管理与DMA Zone/</id>
+    <published>2018-11-18T08:47:48.000Z</published>
+    <updated>2018-11-18T12:53:34.440Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Linux内核地址空间划分"><a href="#Linux内核地址空间划分" class="headerlink" title="Linux内核地址空间划分"></a>Linux内核地址空间划分</h3><p>32位Linux内核空间划分为0~3G为用户空间，3~4G为内核空间。</p><p>Linux内核将所有的物理页面划分为3类内存管理区中，分别为ZONE_DMA、ZONE_NORMAL以及ZONE_HIGHMEM，如下图所示：</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://img-blog.csdn.net/20170327204649057" alt="" title="">                </div>                <div class="image-caption"></div>            </figure><ul><li><p>ZONE_DMA</p><p>ZONE_DMA的范围是0~16M，该区域的物理页面专门供IO设备的DMA使用，之所以需要单独管理DMA的物理页面，是因为DMA使用物理地址访问内存，不经过MMU，并且需要连续的缓冲区，所以为了能够物理上连续的缓冲区，必须从物理地址空间专门划分一段区域用于DMA。</p></li><li><p>ZONE_NORMAL</p><p>ZONE_NORMAL的范围是16M~896M，该区域的物理页面是内核能够直接使用的。</p></li><li><p>ZONE_HIGHMEM</p><p>ZONE_HIGHMEM的范围是896M~结束，该区域为高端内存，内核不能直接使用。</p></li></ul><h3 id="Linux虚拟地址内核空间分布"><a href="#Linux虚拟地址内核空间分布" class="headerlink" title="Linux虚拟地址内核空间分布"></a>Linux虚拟地址内核空间分布</h3><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://img-blog.csdn.net/20170327204706119" alt="" title="">                </div>                <div class="image-caption"></div>            </figure><p>在kernel image下面有16M的内核空间用于DMA操作，位于内核空间高端的128M地址主要由3部分组成，分别为vmalloc area、持久化内核映射区、临时内核映射区。</p><p>由于ZONE_NORMAL和内核线性空间存在直接映射关系，所以内核会将频繁使用的数据如kernel代码、GDT、IDT、PGD、mem_map数组等放在ZONE_NORMAL中。而将用户数据、页表（PT）等不常用的数据放在ZONE_HIGHMEM里，只在要访问这些数据时才建立映射关系（kmap()）。比如，当内核要访问IO设备存储空间时，就使用ioremap()将位于物理地址高端的mmio区内存映射到内核空间的vmalloc area中，在使用之后便断开映射关系。</p><h3 id="Linux虚拟地址用户空间分布"><a href="#Linux虚拟地址用户空间分布" class="headerlink" title="Linux虚拟地址用户空间分布"></a>Linux虚拟地址用户空间分布</h3><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://img-blog.csdn.net/20170327204738893" alt="" title="">                </div>                <div class="image-caption"></div>            </figure><p>用户进程的代码区一般从虚拟地址空间的0x08048000开始，这是为了检查空指针。代码区之上便是数据区、未初始化数据区、堆区、栈区以及参数、全局环境变量。</p><h3 id="Linux虚拟地址与物理地址映射的关系"><a href="#Linux虚拟地址与物理地址映射的关系" class="headerlink" title="Linux虚拟地址与物理地址映射的关系"></a>Linux虚拟地址与物理地址映射的关系</h3><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://img-blog.csdn.net/20170327204805121" alt="" title="">                </div>                <div class="image-caption"></div>            </figure><p>Linux将4G的线性地址空间分为两部分，0~3G为user space，3G~4G为kernel space。</p><p>由于开启了分页机制，内核想要访问物理地址空间的话，必须先建立映射关系，然后通过虚拟地址访问，为了能够访问所有的物理地址空间，就要将全部物理地址空间映射到1G的内核线性空间中，这显然不可能。于是，内核将0~896M的物理地址空间一对一映射到自己的线性地址空间中，这样它便可以随时访问ZONE_DMA和ZONE_NORMAL里的物理页面。此时内核剩下的128M线性空间不足以完全映射所有的ZONE_HIGEMEM，Linux采取了动态映射的方法，即按需的将ZONE_HIGHMEM里的物理页面映射到kernel space的最后128M线性地址空间里，使用完之后释放映射关系，以供其他物理页面映射。虽然这样存在效率的问题，但是内核毕竟可以正常的访问所有的物理地址空间了。</p><h3 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h3><p>本文转自<a href="https://blog.csdn.net/farmwang/article/details/66976818" target="_blank" rel="external">linux内核内存管理(zone_dma zone_normal zone_highmem)</a>。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;Linux内核地址空间划分&quot;&gt;&lt;a href=&quot;#Linux内核地址空间划分&quot; class=&quot;headerlink&quot; title=&quot;Linux内核地址空间划分&quot;&gt;&lt;/a&gt;Linux内核地址空间划分&lt;/h3&gt;&lt;p&gt;32位Linux内核空间划分为0~3G为用户空间，3
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://glemontree.github.io/categories/Linux/"/>
+    
+    
+      <category term="内存管理" scheme="https://glemontree.github.io/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/"/>
+    
+      <category term="DMA Zone" scheme="https://glemontree.github.io/tags/DMA-Zone/"/>
+    
+  </entry>
   
   <entry>
     <title>[设计模式] 面向对象的六大原则_迪米特原则</title>
@@ -510,9 +537,9 @@
     
       <category term="group by" scheme="https://glemontree.github.io/tags/group-by/"/>
     
-      <category term="having" scheme="https://glemontree.github.io/tags/having/"/>
-    
       <category term="min" scheme="https://glemontree.github.io/tags/min/"/>
+    
+      <category term="having" scheme="https://glemontree.github.io/tags/having/"/>
     
   </entry>
   
@@ -564,9 +591,9 @@
     
       <category term="group by" scheme="https://glemontree.github.io/tags/group-by/"/>
     
-      <category term="max" scheme="https://glemontree.github.io/tags/max/"/>
-    
       <category term="having" scheme="https://glemontree.github.io/tags/having/"/>
+    
+      <category term="max" scheme="https://glemontree.github.io/tags/max/"/>
     
   </entry>
   

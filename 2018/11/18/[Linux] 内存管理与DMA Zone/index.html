@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65601540"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>[Linux] 内存管理与DMA Zone | Glemontree&#39;s blog | day day up!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="内存管理,DMA Zone">
+    <meta name="description" content="Linux内核地址空间划分32位Linux内核空间划分为0~3G为用户空间，3~4G为内核空间。
+Linux内核将所有的物理页面划分为3类内存管理区中，分别为ZONE_DMA、ZONE_NORMAL以及ZONE_HIGHMEM，如下图所示：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Linux] 内存管理与DMA Zone">
+<meta property="og:url" content="https://glemontree.github.io/2018/11/18/[Linux] 内存管理与DMA Zone/index.html">
+<meta property="og:site_name" content="Glemontree's blog">
+<meta property="og:description" content="Linux内核地址空间划分32位Linux内核空间划分为0~3G为用户空间，3~4G为内核空间。
+Linux内核将所有的物理页面划分为3类内存管理区中，分别为ZONE_DMA、ZONE_NORMAL以及ZONE_HIGHMEM，如下图所示：">
+<meta property="og:image" content="https://img-blog.csdn.net/20170327204649057">
+<meta property="og:image" content="https://img-blog.csdn.net/20170327204706119">
+<meta property="og:image" content="https://img-blog.csdn.net/20170327204738893">
+<meta property="og:image" content="https://img-blog.csdn.net/20170327204805121">
+<meta property="og:updated_time" content="2018-11-18T12:53:34.440Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Linux] 内存管理与DMA Zone">
+<meta name="twitter:description" content="Linux内核地址空间划分32位Linux内核空间划分为0~3G为用户空间，3~4G为内核空间。
+Linux内核将所有的物理页面划分为3类内存管理区中，分别为ZONE_DMA、ZONE_NORMAL以及ZONE_HIGHMEM，如下图所示：">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20170327204649057">
+    
+        <link rel="alternate" type="application/atom+xml" title="Glemontree&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Glemontree</h5>
+          <a href="mailto:glemontree@163.com" title="glemontree@163.com" class="mail">glemontree@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Homepage
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Glemontree" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/glemontree" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">[Linux] 内存管理与DMA Zone</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">[Linux] 内存管理与DMA Zone</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-11-18T08:47:48.000Z" itemprop="datePublished" class="page-time">
+  2018-11-18
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Linux内核地址空间划分"><span class="post-toc-number">1.</span> <span class="post-toc-text">Linux内核地址空间划分</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Linux虚拟地址内核空间分布"><span class="post-toc-number">2.</span> <span class="post-toc-text">Linux虚拟地址内核空间分布</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Linux虚拟地址用户空间分布"><span class="post-toc-number">3.</span> <span class="post-toc-text">Linux虚拟地址用户空间分布</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Linux虚拟地址与物理地址映射的关系"><span class="post-toc-number">4.</span> <span class="post-toc-text">Linux虚拟地址与物理地址映射的关系</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#声明"><span class="post-toc-number">5.</span> <span class="post-toc-text">声明</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-[Linux] 内存管理与DMA Zone"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">[Linux] 内存管理与DMA Zone</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-11-18 16:47:48" datetime="2018-11-18T08:47:48.000Z"  itemprop="datePublished">2018-11-18</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="Linux内核地址空间划分"><a href="#Linux内核地址空间划分" class="headerlink" title="Linux内核地址空间划分"></a>Linux内核地址空间划分</h3><p>32位Linux内核空间划分为0~3G为用户空间，3~4G为内核空间。</p>
+<p>Linux内核将所有的物理页面划分为3类内存管理区中，分别为ZONE_DMA、ZONE_NORMAL以及ZONE_HIGHMEM，如下图所示：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://img-blog.csdn.net/20170327204649057" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li><p>ZONE_DMA</p>
+<p>ZONE_DMA的范围是0~16M，该区域的物理页面专门供IO设备的DMA使用，之所以需要单独管理DMA的物理页面，是因为DMA使用物理地址访问内存，不经过MMU，并且需要连续的缓冲区，所以为了能够物理上连续的缓冲区，必须从物理地址空间专门划分一段区域用于DMA。</p>
+</li>
+<li><p>ZONE_NORMAL</p>
+<p>ZONE_NORMAL的范围是16M~896M，该区域的物理页面是内核能够直接使用的。</p>
+</li>
+<li><p>ZONE_HIGHMEM</p>
+<p>ZONE_HIGHMEM的范围是896M~结束，该区域为高端内存，内核不能直接使用。</p>
+</li>
+</ul>
+<h3 id="Linux虚拟地址内核空间分布"><a href="#Linux虚拟地址内核空间分布" class="headerlink" title="Linux虚拟地址内核空间分布"></a>Linux虚拟地址内核空间分布</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://img-blog.csdn.net/20170327204706119" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>在kernel image下面有16M的内核空间用于DMA操作，位于内核空间高端的128M地址主要由3部分组成，分别为vmalloc area、持久化内核映射区、临时内核映射区。</p>
+<p>由于ZONE_NORMAL和内核线性空间存在直接映射关系，所以内核会将频繁使用的数据如kernel代码、GDT、IDT、PGD、mem_map数组等放在ZONE_NORMAL中。而将用户数据、页表（PT）等不常用的数据放在ZONE_HIGHMEM里，只在要访问这些数据时才建立映射关系（kmap()）。比如，当内核要访问IO设备存储空间时，就使用ioremap()将位于物理地址高端的mmio区内存映射到内核空间的vmalloc area中，在使用之后便断开映射关系。</p>
+<h3 id="Linux虚拟地址用户空间分布"><a href="#Linux虚拟地址用户空间分布" class="headerlink" title="Linux虚拟地址用户空间分布"></a>Linux虚拟地址用户空间分布</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://img-blog.csdn.net/20170327204738893" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>用户进程的代码区一般从虚拟地址空间的0x08048000开始，这是为了检查空指针。代码区之上便是数据区、未初始化数据区、堆区、栈区以及参数、全局环境变量。</p>
+<h3 id="Linux虚拟地址与物理地址映射的关系"><a href="#Linux虚拟地址与物理地址映射的关系" class="headerlink" title="Linux虚拟地址与物理地址映射的关系"></a>Linux虚拟地址与物理地址映射的关系</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://img-blog.csdn.net/20170327204805121" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>Linux将4G的线性地址空间分为两部分，0~3G为user space，3G~4G为kernel space。</p>
+<p>由于开启了分页机制，内核想要访问物理地址空间的话，必须先建立映射关系，然后通过虚拟地址访问，为了能够访问所有的物理地址空间，就要将全部物理地址空间映射到1G的内核线性空间中，这显然不可能。于是，内核将0~896M的物理地址空间一对一映射到自己的线性地址空间中，这样它便可以随时访问ZONE_DMA和ZONE_NORMAL里的物理页面。此时内核剩下的128M线性空间不足以完全映射所有的ZONE_HIGEMEM，Linux采取了动态映射的方法，即按需的将ZONE_HIGHMEM里的物理页面映射到kernel space的最后128M线性地址空间里，使用完之后释放映射关系，以供其他物理页面映射。虽然这样存在效率的问题，但是内核毕竟可以正常的访问所有的物理地址空间了。</p>
+<h3 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h3><p>本文转自<a href="https://blog.csdn.net/farmwang/article/details/66976818" target="_blank" rel="external">linux内核内存管理(zone_dma zone_normal zone_highmem)</a>。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-11-18T12:53:34.440Z" itemprop="dateUpdated">2018-11-18 20:53:34</time>
+</span><br>
+
+
+        
+        <a href="/2018/11/18/[Linux] 内存管理与DMA Zone/" target="_blank" rel="external">https://glemontree.github.io/2018/11/18/[Linux] 内存管理与DMA Zone/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://glemontree.github.io">
+            <img src="/img/avatar.jpg" alt="Glemontree">
+            Glemontree
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DMA-Zone/">DMA Zone</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/内存管理/">内存管理</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://glemontree.github.io/2018/11/18/[Linux] 内存管理与DMA Zone/&title=《[Linux] 内存管理与DMA Zone》 — Glemontree's blog&pic=https://glemontree.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://glemontree.github.io/2018/11/18/[Linux] 内存管理与DMA Zone/&title=《[Linux] 内存管理与DMA Zone》 — Glemontree's blog&source=记录我学习的每一步" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://glemontree.github.io/2018/11/18/[Linux] 内存管理与DMA Zone/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《[Linux] 内存管理与DMA Zone》 — Glemontree's blog&url=https://glemontree.github.io/2018/11/18/[Linux] 内存管理与DMA Zone/&via=https://glemontree.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://glemontree.github.io/2018/11/18/[Linux] 内存管理与DMA Zone/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/10/28/[设计模式] 面向对象的六大原则_迪米特原则/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">[设计模式] 面向对象的六大原则_迪米特原则</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "Xkpzm75UqDRakK5m745rI78u-gzGzoHsz",
+            appKey: "nttscBKerm7QwkliKPpUSrln",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢打赏
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Glemontree &copy; 2017 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://glemontree.github.io/2018/11/18/[Linux] 内存管理与DMA Zone/&title=《[Linux] 内存管理与DMA Zone》 — Glemontree's blog&pic=https://glemontree.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://glemontree.github.io/2018/11/18/[Linux] 内存管理与DMA Zone/&title=《[Linux] 内存管理与DMA Zone》 — Glemontree's blog&source=记录我学习的每一步" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://glemontree.github.io/2018/11/18/[Linux] 内存管理与DMA Zone/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《[Linux] 内存管理与DMA Zone》 — Glemontree's blog&url=https://glemontree.github.io/2018/11/18/[Linux] 内存管理与DMA Zone/&via=https://glemontree.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://glemontree.github.io/2018/11/18/[Linux] 内存管理与DMA Zone/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuklEQVR42u3aSW7DQAwEQP3/0w6QU4JAcXMZ24fSyfAiqWRghmjyuuLj8X38ff3znbvv/P00OfPdVa4TBx4eHl7r1u+OHFDF3F094SX3jIeHh3eaV12y706Xw3qrevkqeHh4eG/l5RvG/P1qwY2Hh4f3ybx8+c4X98lv8fDw8N7FS8KI3dvNt5bed/Dw8PDO8SYNsHe9flF/Dw8PD6/YVc+PZGPIzzM5w69f4eHh4R3g7Ta38mZ/EnAkV4lCCjw8PLxVXm+Bnteruw+3HODi4eHhjXn5D5ICt3eG6vmjwAIPDw/vAG+rBdVrSvWuUt5U8PDw8FZ5SaFcHUut3kQ+lJCX9U/2JTw8PLwxb9Jq6o2WJp/2CvSr+l/h4eHhtXhRJFpsROUNsx4vuiIeHh7eMV6vsM5D1V7RXH30UcqCh4eHN+b14tTqp3mA2xsgKEcSeHh4eAPeJICofrM6cppvG7ePEg8PD+8YL4kDHq2jMFo6eBCjMAIPDw9vwJu0tf4nTeKM5KE/GbrCw8PDW+XlxyRUraYjObvaeMPDw8Ob8/JmfK/sTgak5qMDT/JpPDw8vFVePgzaa97n28MkYo52PDw8PLwDvARZjWvz2aethzv6D/Hw8PBi3qRczvGT0jkfusLDw8M7zUsa/L2FO2n8J4X1pNmGh4eHd4JXLaZ728YEPG+S4eHh4e3ykkV2K3rI44O1eBcPDw/vAK83aFXNhnstsepcWLT74eHh4Y15j+LRGzLoMSaFe6HnhoeHh1fk9ZbdXmu/t7XkAQQeHh7eK3n5ZpC3xPLSOZpuGITFeHh4eOd41YZ9texeSEfiyBgPDw/vM3nJYl19TMkm8aKNAQ8PD2+Jl5TFyUJfbYNVzxylI3h4eHhjXh5GbAW7vWGscssNDw8P7wBvtwHWa/NXI+O86MfDw8Nb5X0BzAnliv/BdXYAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1273392949&web_id=1273392949')
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
