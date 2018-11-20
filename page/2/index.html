@@ -164,6 +164,57 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-[Coding][代码整洁之道] 注释"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-07-29 12:36:25" datetime="2018-07-29T04:36:25.000Z"  itemprop="datePublished">2018-07-29</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Coding/">Coding</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2018/07/29/[Coding][代码整洁之道] 注释/">[Coding][代码整洁之道] 注释</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        用代码来阐述看这段代码：
+1if ((employee.flags &amp; HOURLY_FLAG) &amp;&amp; (employee.age &gt; 65))
+我们对其进行如下重构：
+1if (employee.isEligibleForFullBenefits())
+做上面的修改之后，我们一眼就能看出代码的意图，很多时候，简单到只需要创建一个描述与注释所言同一事物的函数即可...
+    
+
+        <a href="/2018/07/29/[Coding][代码整洁之道] 注释/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/注释/">注释</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-[Coding][代码整洁之道] 函数"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -610,54 +661,6 @@ set(key, value)：设置&lt;key, value&gt;
     <div class="post-footer">
         
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/行级锁/">行级锁</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-[DB] MySQL删除表中多余的重复记录"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-04-09 16:50:47" datetime="2018-04-09T08:50:47.000Z"  itemprop="datePublished">2018-04-09</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/DB/">DB</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/04/09/[DB] MySQL删除表中多余的重复记录/">[DB] MySQL删除表中多余的重复记录</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        删除表中多余的重复记录，重复记录是根据单个字段peopleName来判断，只留有peopleId最小的记录：
-123delete from peoplewhere peopleName in (select peopleName from people group by peopleName having count(peopleName) &gt; 1)and peopleId not i...
-    
-
-        <a href="/2018/04/09/[DB] MySQL删除表中多余的重复记录/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/group-by/">group by</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/having/">having</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/min/">min</a></li></ul>
 
     </div>
     

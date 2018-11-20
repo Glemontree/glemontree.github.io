@@ -164,6 +164,53 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-[Linux] 内存管理之CMA"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-11-20 11:55:44" datetime="2018-11-20T03:55:44.000Z"  itemprop="datePublished">2018-11-20</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2018/11/20/[Linux] 内存管理之CMA/">[Linux] 内存管理之CMA</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        CMA是在系统引导时获取内存，并将内存设置为MIGRATE_CMA迁移类型，然后再将内存归还给系统。内核分配内存时，在CMA管理内存中仅允许申请可移动类型的页面（movable page）。而通过dma_alloc_from_contiguous申请大块连续内存时，将会把这些可移动页面从CMA管理区中迁移出去，以便腾出足够的连续内存空间满足申请需要。由此，实现了任何时刻只要系统中有足够的内存...
+    
+
+        <a href="/2018/11/20/[Linux] 内存管理之CMA/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CMA/">CMA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/内存管理/">内存管理</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-[Linux] 内存管理之内存节点和内存分区"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -605,57 +652,6 @@ Linux内核将所有的物理页面划分为3类内存管理区中，分别为ZO
     <div class="post-footer">
         
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/对象与数据结构/">对象与数据结构</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-[Coding][代码整洁之道] 注释"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-07-29 12:36:25" datetime="2018-07-29T04:36:25.000Z"  itemprop="datePublished">2018-07-29</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Coding/">Coding</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/07/29/[Coding][代码整洁之道] 注释/">[Coding][代码整洁之道] 注释</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        用代码来阐述看这段代码：
-1if ((employee.flags &amp; HOURLY_FLAG) &amp;&amp; (employee.age &gt; 65))
-我们对其进行如下重构：
-1if (employee.isEligibleForFullBenefits())
-做上面的修改之后，我们一眼就能看出代码的意图，很多时候，简单到只需要创建一个描述与注释所言同一事物的函数即可...
-    
-
-        <a href="/2018/07/29/[Coding][代码整洁之道] 注释/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/注释/">注释</a></li></ul>
 
     </div>
     
