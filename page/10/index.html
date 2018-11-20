@@ -164,6 +164,54 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-[C++] C++中的模板"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-10-23 18:07:40" datetime="2017-10-23T10:07:40.000Z"  itemprop="datePublished">2017-10-23</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/C/">C++</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/10/23/[C++] C++中的模板/">[C++] C++中的模板</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        非类型模板参数非类型模板参数可以使用整型类型、指针或引用。绑定非类型整型形参的实参必须是常量表达式，不能把普通的局部变量或者动态对象绑定指针或引用的非类型，可以使用全局类型进行绑定。
+123456template &lt;const char* C&gt;void pointerT(const char* str) &#123;  	std::cout &lt;&lt; C &lt;&lt;...
+    
+
+        <a href="/2017/10/23/[C++] C++中的模板/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-模板/">C++, 模板</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-[C++] static void ( __set_malloc_handler(void (__f)()))()"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -609,54 +657,6 @@ mysql中使用sql语句生成一张表并且同时指定表的编码：
     <div class="post-footer">
         
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DB/">DB</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-[MyBatis] MyBatis第五课---MyBatis参数处理"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-09-13 16:38:13" datetime="2017-09-13T08:38:13.000Z"  itemprop="datePublished">2017-09-13</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/MyBatis/">MyBatis</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/09/13/[MyBatis] MyBatis第五课---MyBatis参数处理/">[MyBatis] MyBatis第五课---MyBatis参数处理</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        单个参数的传递通过#{参数名}取出参数值，实际上在传递单个参数的时候，MyBatis不会做特殊处理，实际上#{}内部的参数名你可以任意取值，但还是建议和接口中参数的名字保持一致。
-多个参数的传递MyBatis遇见多个参数时会进行特殊处理，多个参数会被封装成一个Map，#{}就是从Map中获取指定key的值，key的值为param1...paramN，而value才是我们传入的值。要想从传入的...
-    
-
-        <a href="/2017/09/13/[MyBatis] MyBatis第五课---MyBatis参数处理/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis-参数处理/">MyBatis, 参数处理</a></li></ul>
 
     </div>
     

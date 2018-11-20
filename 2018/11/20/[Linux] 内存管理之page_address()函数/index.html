@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65601540"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>[Linux] 内存管理之page_address()函数 | Glemontree&#39;s blog | day day up!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="内存管理,page_address,虚拟内存">
+    <meta name="description" content="由于在X86平台上，内存是划分为低端内存和高端内存的，所以在这两个区域内的page查找对应的虚拟地址是不一样的。
+page_address()的定义在include/linux/mm.h中，有对page_address()函数的三种定义，主要依赖于不同的平台：
+首先看几个宏的定义：
+
+CONFIG_HIGHMEM
+  是否支持高端内存，可以查看config文件，一般推荐内存超过896M的时候，才配">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Linux] 内存管理之page_address()函数">
+<meta property="og:url" content="https://glemontree.github.io/2018/11/20/[Linux] 内存管理之page_address()函数/index.html">
+<meta property="og:site_name" content="Glemontree's blog">
+<meta property="og:description" content="由于在X86平台上，内存是划分为低端内存和高端内存的，所以在这两个区域内的page查找对应的虚拟地址是不一样的。
+page_address()的定义在include/linux/mm.h中，有对page_address()函数的三种定义，主要依赖于不同的平台：
+首先看几个宏的定义：
+
+CONFIG_HIGHMEM
+  是否支持高端内存，可以查看config文件，一般推荐内存超过896M的时候，才配">
+<meta property="og:updated_time" content="2018-11-20T08:46:20.701Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Linux] 内存管理之page_address()函数">
+<meta name="twitter:description" content="由于在X86平台上，内存是划分为低端内存和高端内存的，所以在这两个区域内的page查找对应的虚拟地址是不一样的。
+page_address()的定义在include/linux/mm.h中，有对page_address()函数的三种定义，主要依赖于不同的平台：
+首先看几个宏的定义：
+
+CONFIG_HIGHMEM
+  是否支持高端内存，可以查看config文件，一般推荐内存超过896M的时候，才配">
+    
+        <link rel="alternate" type="application/atom+xml" title="Glemontree&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Glemontree</h5>
+          <a href="mailto:glemontree@163.com" title="glemontree@163.com" class="mail">glemontree@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Homepage
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Glemontree" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/glemontree" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">[Linux] 内存管理之page_address()函数</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">[Linux] 内存管理之page_address()函数</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-11-20T08:05:05.000Z" itemprop="datePublished" class="page-time">
+  2018-11-20
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#page-address-的定义"><span class="post-toc-number">1.</span> <span class="post-toc-text">page_address()的定义</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#page-address-在低端内存中的实现"><span class="post-toc-number">2.</span> <span class="post-toc-text">page_address()在低端内存中的实现</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#page-address-在高端内存中的实现"><span class="post-toc-number">3.</span> <span class="post-toc-text">page_address()在高端内存中的实现</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#说明"><span class="post-toc-number">4.</span> <span class="post-toc-text">说明</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-[Linux] 内存管理之page_address()函数"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">[Linux] 内存管理之page_address()函数</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-11-20 16:05:05" datetime="2018-11-20T08:05:05.000Z"  itemprop="datePublished">2018-11-20</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>由于在X86平台上，内存是划分为低端内存和高端内存的，所以在这两个区域内的page查找对应的虚拟地址是不一样的。</p>
+<h3 id="page-address-的定义"><a href="#page-address-的定义" class="headerlink" title="page_address()的定义"></a>page_address()的定义</h3><p>在<code>include/linux/mm.h</code>中，有对<code>page_address()</code>函数的三种定义，主要依赖于不同的平台：</p>
+<p>首先看几个宏的定义：</p>
+<ul>
+<li><p>CONFIG_HIGHMEM</p>
+<p>  是否支持高端内存，可以查看config文件，一般推荐内存超过896M的时候，才配置为支持高端内存。</p>
+</li>
+<li><p>WANT_PAGE_VIRTUAL</p>
+<p>  X86平台没有定义。所以下面的HASHED_PAGE_VIRTUAL在支持高端内存的i386平台上是有定义的：</p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">if</span> defined(CONFIG_HIGHMEM) &amp;&amp; !defined(WANT_PAGE_VIRTUAL)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> HASHED_PAGE_VIRTUAL</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>所以下面page_address()的定义在i386上是没有定义的：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">if</span> defined(WANT_PAGE_VIRTUAL)</span></div><div class="line">    <span class="meta">#<span class="meta-keyword">define</span> page_address(page) ((page)-&gt;virtual)</span></div><div class="line">    <span class="meta">#<span class="meta-keyword">define</span> set_page_address(page, address) \\</span></div><div class="line">    do &#123; \\</div><div class="line">    	(page)-&gt;virtual = (address); \\</div><div class="line">    &#125; while(0)</div><div class="line">    <span class="meta">#<span class="meta-keyword">define</span> page_address_init() do &#123; &#125; while(0)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure>
+<p>在没有配置CONFIG_HIGHMEM的i386平台上，page_address是这样定义的：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">if</span> !defined(HASHED_PAGE_VIRTUAL) &amp;&amp; !defined(WANT_PAGE_VIRTUAL)</span></div><div class="line">    <span class="meta">#<span class="meta-keyword">define</span> page_address(page) lowmem_page_address(page)</span></div><div class="line">    <span class="meta">#<span class="meta-keyword">define</span> set_page_address(page, address) do &#123; &#125; while(0)</span></div><div class="line">    <span class="meta">#<span class="meta-keyword">define</span> page_address_init() do &#123; &#125; while(0)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure>
+<p>而在支持高端内存的i386平台上，page_address()定义如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">if</span> defined(HASHED_PAGE_VIRTUAL)</span></div><div class="line">    <span class="function"><span class="keyword">void</span> *<span class="title">page_address</span><span class="params">(<span class="keyword">struct</span> page *page)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">set_page_address</span><span class="params">(<span class="keyword">struct</span> page *page, <span class="keyword">void</span> *<span class="keyword">virtual</span>)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">page_address_init</span><span class="params">(<span class="keyword">void</span>)</span></span>;</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure>
+<h3 id="page-address-在低端内存中的实现"><a href="#page-address-在低端内存中的实现" class="headerlink" title="page_address()在低端内存中的实现"></a>page_address()在低端内存中的实现</h3><p>函数实现如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> page_address(page) lowmem_page_address(page)</span></div><div class="line"><span class="keyword">static</span> __<span class="function">always_inline <span class="keyword">void</span> *<span class="title">lowmem_page_address</span><span class="params">(<span class="keyword">const</span> <span class="keyword">struct</span> page *page)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">return</span> page_to_virt(page);</div><div class="line">&#125;</div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> page_to_virt(x)	__va(PFN_PHYS(page_to_pfn(x)))</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> __va(x)			((void *)((unsigned long)(x)+PAGE_OFFSET))</span></div></pre></td></tr></table></figure>
+<p>小于896M的物理地址空间和3G~3G+896M的内核地址空间是一一对应映射的，所以只要知道page对应的物理地址就可以知道这个page对应的线性地址空间（pa  + PAGE_OFFSET）。<strong>在低端内存中，通过页page(struct page* page)取得虚拟地址就是这样转换的。</strong></p>
+<h3 id="page-address-在高端内存中的实现"><a href="#page-address-在高端内存中的实现" class="headerlink" title="page_address()在高端内存中的实现"></a>page_address()在高端内存中的实现</h3><p>在有配置CONFIG_HIGHMEM的i386平台上，page_address的实现在mm/highmem.c中：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> *<span class="title">page_address</span><span class="params">(<span class="keyword">const</span> <span class="keyword">struct</span> page *page)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span> flags;</div><div class="line">	<span class="keyword">void</span> *ret;</div><div class="line">	<span class="keyword">struct</span> page_address_slot *pas;</div><div class="line"></div><div class="line">	<span class="keyword">if</span> (!PageHighMem(page)) <span class="comment">// 判断是否属于高端内存，若不是，则通过上面的方法找到</span></div><div class="line">		<span class="keyword">return</span> lowmem_page_address(page);</div><div class="line"></div><div class="line">	pas = page_slot(page);</div><div class="line">	ret = <span class="literal">NULL</span>;</div><div class="line">	spin_lock_irqsave(&amp;pas-&gt;lock, flags);</div><div class="line">	<span class="keyword">if</span> (!list_empty(&amp;pas-&gt;lh)) &#123;</div><div class="line">		<span class="keyword">struct</span> page_address_map *pam;</div><div class="line"></div><div class="line">		list_for_each_entry(pam, &amp;pas-&gt;lh, <span class="built_in">list</span>) &#123;</div><div class="line">			<span class="keyword">if</span> (pam-&gt;page == page) &#123;</div><div class="line">				ret = pam-&gt;<span class="keyword">virtual</span>;</div><div class="line">				<span class="keyword">goto</span> done;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">done:</div><div class="line">	spin_unlock_irqrestore(&amp;pas-&gt;lock, flags);</div><div class="line">	<span class="keyword">return</span> ret;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在高端内存中，由于不能通过像在低端内存中一样，直接通过物理地址加PAGE_OFFSET得到线性地址，所以引入了一个叫做page_address_map的结构，该结构保存每个page（仅高端内存中的）和对应的虚拟地址，所有高端内存中的这种映射通过链表链接起来，这个结构是在高端内存映射的时候建立，并加入到链表中的。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> page_address_map &#123;</div><div class="line">	<span class="keyword">struct</span> page *page; <span class="comment">// page</span></div><div class="line">	<span class="keyword">void</span> *<span class="keyword">virtual</span>; <span class="comment">// 虚拟地址</span></div><div class="line">	<span class="keyword">struct</span> list_head <span class="built_in">list</span>; <span class="comment">// 指向下一个该结构</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>又因为如果内存远远大于896M，那么高端内存中的page就比较多，如果只用一个链表来表示，那么查找起来就比较耗时，所以这里引入了HASH算法，采用多个链表，每个page通过一定的HASH算法，对应到一个链表上，总共有128个链表：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="keyword">struct</span> page_address_slot &#123;</div><div class="line">	<span class="keyword">struct</span> list_head lh;			<span class="comment">/* List of page_address_maps */</span></div><div class="line">	<span class="keyword">spinlock_t</span> lock;			<span class="comment">/* Protect this bucket's list */</span></div><div class="line">&#125; ____cacheline_aligned_in_smp page_address_htable[<span class="number">1</span>&lt;&lt;PA_HASH_ORDER];</div></pre></td></tr></table></figure>
+<p>PA_HASH_ORDER=7，所有一共有1&lt;&lt;7（128）个链表，每个page通过HASH算法后对应一个page_address_htable链表，然后再遍历这个链表来找到对应的PAGE和虚拟地址。</p>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>本文转自<a href="https://www.cnblogs.com/alantu2018/p/8459336.html" target="_blank" rel="external">page_address()函数分析</a>。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-11-20T08:46:20.701Z" itemprop="dateUpdated">2018-11-20 16:46:20</time>
+</span><br>
+
+
+        
+        <a href="/2018/11/20/[Linux] 内存管理之page_address()函数/" target="_blank" rel="external">https://glemontree.github.io/2018/11/20/[Linux] 内存管理之page_address()函数/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://glemontree.github.io">
+            <img src="/img/avatar.jpg" alt="Glemontree">
+            Glemontree
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/page-address/">page_address</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/内存管理/">内存管理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/虚拟内存/">虚拟内存</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://glemontree.github.io/2018/11/20/[Linux] 内存管理之page_address()函数/&title=《[Linux] 内存管理之page_address()函数》 — Glemontree's blog&pic=https://glemontree.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://glemontree.github.io/2018/11/20/[Linux] 内存管理之page_address()函数/&title=《[Linux] 内存管理之page_address()函数》 — Glemontree's blog&source=记录我学习的每一步" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://glemontree.github.io/2018/11/20/[Linux] 内存管理之page_address()函数/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《[Linux] 内存管理之page_address()函数》 — Glemontree's blog&url=https://glemontree.github.io/2018/11/20/[Linux] 内存管理之page_address()函数/&via=https://glemontree.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://glemontree.github.io/2018/11/20/[Linux] 内存管理之page_address()函数/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/11/20/[Linux] 内存管理之CMA/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">[Linux] 内存管理之CMA</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "Xkpzm75UqDRakK5m745rI78u-gzGzoHsz",
+            appKey: "nttscBKerm7QwkliKPpUSrln",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢打赏
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Glemontree &copy; 2017 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://glemontree.github.io/2018/11/20/[Linux] 内存管理之page_address()函数/&title=《[Linux] 内存管理之page_address()函数》 — Glemontree's blog&pic=https://glemontree.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://glemontree.github.io/2018/11/20/[Linux] 内存管理之page_address()函数/&title=《[Linux] 内存管理之page_address()函数》 — Glemontree's blog&source=记录我学习的每一步" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://glemontree.github.io/2018/11/20/[Linux] 内存管理之page_address()函数/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《[Linux] 内存管理之page_address()函数》 — Glemontree's blog&url=https://glemontree.github.io/2018/11/20/[Linux] 内存管理之page_address()函数/&via=https://glemontree.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://glemontree.github.io/2018/11/20/[Linux] 内存管理之page_address()函数/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtElEQVR42u3aUW7jMAwE0N7/0t0DBHFnSKmbAs9fQdMoeg4g0SN+fcXX98v1+u7r6+fR2vGTkYcXHh4e3nrqr8Plf3lmJ1cyfjICHh4e3m3e8/KdDJ0v+i07337w8PDwPpPXfjavcvNCHA8PD+9v8driOBmh3XLw8PDwPoE3G3o2xc2nLmYteHh4eDEvP0X6nNdXzvfw8PDw1qfq7eL+fNjfNgfkcfDb2eLh4eFd4LVtUrNJ5IV43qaQzBMPDw/vN3l5YJofdOW3II8kok0FDw8P7wJvP6FTQUY7fh3g4uHh4a157SFTGxPkBXRyc/MmBjw8PLzbvPZgaRinjmCb1lU8PDy8G7x9qLoPC862Xr3NWvDw8PAO8fKsot088sjg1Le/DSPw8PDwjvLa5TgvlGdNV7Nyv4gk8PDw8I7y2of/PMxNiul98PH2ZuHh4eEd5T03VNUtTWWxnm9CCQkPDw/v//JOxQr32g6SohwPDw/vHm826efpFudvwZHY7Nbg4eHh3eDlS38eyM6apZKp5zexOAzDw8PDK3l5INsGrMnhVvs7tO/i4eHh3eDlk2jj11mQkUQkSfQcfQwPDw9vwWtj03bJnjVj5SV79JSAh4eHd4jXBgpnl+9ZRFscmOHh4eFd4OWFdRsftE0D+f/kcQYeHh7ePd7si9tto21ByLefw78YHh4eXtkuMItrN00Am9aEaMfDw8PDu8ybHeq3JXLdC7a58PDw8I7yZlHpqQhjH+z+8C4eHh7eBd5+88jbs9rJzW7Q4b0RDw8Pb1R5zgDtBrAPKYowAg8PD+8Qb3+gtbkRm7L4hzng4eHhfQwv3xjytoC2BI+aDPDw8PA+gJc3E+RLf8KYFf14eHh493jtEt+2CESLeLkJRRsYHh4e3gXe5oG/HTovuK+f6eHh4eFNeP8A46dBBSKNqCkAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1273392949&web_id=1273392949')
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
