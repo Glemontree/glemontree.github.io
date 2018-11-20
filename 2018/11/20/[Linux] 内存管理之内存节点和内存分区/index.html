@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65601540"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>[Linux] 内存管理之内存节点和内存分区 | Glemontree&#39;s blog | day day up!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="内存管理,Node,Zone">
+    <meta name="description" content="内存节点（Node）：主要依据CPU访问代价的不同而划分，多CPU环境下，本地内存和远端内存就是不同的节点。即使在单CPU环境下，访问所有内存的代价是一样的，Linux内核依然存在内存节点的概念，只不过只有一个内存节点而已，内核以struct pg_data_t来描述内存节点。
+内存分区（Zone）：Linux对内存节点再进行划分，分为不同的分区。内核以struct zone来描述内存分区，通常一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Linux] 内存管理之内存节点和内存分区">
+<meta property="og:url" content="https://glemontree.github.io/2018/11/20/[Linux] 内存管理之内存节点和内存分区/index.html">
+<meta property="og:site_name" content="Glemontree's blog">
+<meta property="og:description" content="内存节点（Node）：主要依据CPU访问代价的不同而划分，多CPU环境下，本地内存和远端内存就是不同的节点。即使在单CPU环境下，访问所有内存的代价是一样的，Linux内核依然存在内存节点的概念，只不过只有一个内存节点而已，内核以struct pg_data_t来描述内存节点。
+内存分区（Zone）：Linux对内存节点再进行划分，分为不同的分区。内核以struct zone来描述内存分区，通常一">
+<meta property="og:image" content="http://www.cppblog.com/images/cppblog_com/sixinquan/node.JPG">
+<meta property="og:image" content="https://img-blog.csdn.net/20170705095043895?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHdodXE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2018-11-20T01:37:21.314Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Linux] 内存管理之内存节点和内存分区">
+<meta name="twitter:description" content="内存节点（Node）：主要依据CPU访问代价的不同而划分，多CPU环境下，本地内存和远端内存就是不同的节点。即使在单CPU环境下，访问所有内存的代价是一样的，Linux内核依然存在内存节点的概念，只不过只有一个内存节点而已，内核以struct pg_data_t来描述内存节点。
+内存分区（Zone）：Linux对内存节点再进行划分，分为不同的分区。内核以struct zone来描述内存分区，通常一">
+<meta name="twitter:image" content="http://www.cppblog.com/images/cppblog_com/sixinquan/node.JPG">
+    
+        <link rel="alternate" type="application/atom+xml" title="Glemontree&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Glemontree</h5>
+          <a href="mailto:glemontree@163.com" title="glemontree@163.com" class="mail">glemontree@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Homepage
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Glemontree" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/glemontree" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">[Linux] 内存管理之内存节点和内存分区</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">[Linux] 内存管理之内存节点和内存分区</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-11-20T01:01:12.000Z" itemprop="datePublished" class="page-time">
+  2018-11-20
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#UMA与NUMA"><span class="post-toc-number">1.</span> <span class="post-toc-text">UMA与NUMA</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#UMA"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">UMA</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#NUMA"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">NUMA</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#内存节点Node"><span class="post-toc-number">2.</span> <span class="post-toc-text">内存节点Node</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#说明"><span class="post-toc-number">3.</span> <span class="post-toc-text">说明</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-[Linux] 内存管理之内存节点和内存分区"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">[Linux] 内存管理之内存节点和内存分区</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-11-20 09:01:12" datetime="2018-11-20T01:01:12.000Z"  itemprop="datePublished">2018-11-20</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>内存节点（Node）：主要依据CPU访问代价的不同而划分，多CPU环境下，本地内存和远端内存就是不同的节点。即使在单CPU环境下，访问所有内存的代价是一样的，Linux内核依然存在内存节点的概念，只不过只有一个内存节点而已，内核以struct pg_data_t来描述内存节点。</p>
+<p>内存分区（Zone）：Linux对内存节点再进行划分，分为不同的分区。内核以struct zone来描述内存分区，通常一个节点分为DMA、Normal和High Memory内存区。</p>
+<p>页框（Page Frame）：Linux采用页式内存管理，页是物理内存管理的基本单位，每个内存分区由大量的页组成。内存以struct page来描述页框。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.cppblog.com/images/cppblog_com/sixinquan/node.JPG" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>上图中zone_mem_map是一个页框的数组，它记录了一个内存分区的所有页框的使用情况。</p>
+<p>在NUMA多CPU架构下，每个CPU后面都有挂载本地内存，CPU之间通过总线连接。每个CPU在访问当地内存的速度都会比访问远程内存速度快。Linux系统下把每个CPU的本地内存资源用一个Node表示。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://img-blog.csdn.net/20170705095043895?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHdodXE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h3 id="UMA与NUMA"><a href="#UMA与NUMA" class="headerlink" title="UMA与NUMA"></a>UMA与NUMA</h3><h4 id="UMA"><a href="#UMA" class="headerlink" title="UMA"></a>UMA</h4><p>物理存储器被所有处理机均匀共享，所有处理机对所有存储字具有相同的存取时间。</p>
+<h4 id="NUMA"><a href="#NUMA" class="headerlink" title="NUMA"></a>NUMA</h4><p>NUMA模式下，处理器被划分为多个节点，每个节点被分配有本地存储空间。所有节点中的处理器都可以访问全部的物理存储器，但是访问本节点内的存储器所需要的时间比访问某些远程节点内的存储器所花的时间要少很多。</p>
+<h3 id="内存节点Node"><a href="#内存节点Node" class="headerlink" title="内存节点Node"></a>内存节点Node</h3><p>Linux内核把物理内存按照CPU节点划分为不同的Node，每个Node作为某个CPU节点的本地内存，而作为其他CPU节点的远程内存，而UMA结构下，则只存在一个内存Node。</p>
+<p><strong>CPU被划分为多个节点，内存则被划分为簇，每个CPU对应一个本地物理内存，即一个CPU Node对应一个内存簇bank，即每个内存簇被认为是一个节点Node。</strong></p>
+<p>内存被划分为节点，每个节点被关联到系统中的一个处理器，内核中表示为pg_data_t的实例，系统中每个节点被链接到一个以NULL结尾的pgdat_list链表中，而其中的每个节点利用pg_data_tnode_next字段链接到下一节点。对于UMA来说，只使用了一个称为contig_page_data的静态pg_data_t结构。</p>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>本文转自<a href="https://blog.csdn.net/wowricky/article/details/80633815" target="_blank" rel="external">linux内存管理 之 内存节点和内存分区（Zone）</a>和<a href="https://blog.csdn.net/gatieme/article/details/52384075" target="_blank" rel="external">Linux内存描述之内存节点node–Linux内存管理(二)</a>。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-11-20T01:37:21.314Z" itemprop="dateUpdated">2018-11-20 09:37:21</time>
+</span><br>
+
+
+        
+        <a href="/2018/11/20/[Linux] 内存管理之内存节点和内存分区/" target="_blank" rel="external">https://glemontree.github.io/2018/11/20/[Linux] 内存管理之内存节点和内存分区/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://glemontree.github.io">
+            <img src="/img/avatar.jpg" alt="Glemontree">
+            Glemontree
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node/">Node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zone/">Zone</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/内存管理/">内存管理</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://glemontree.github.io/2018/11/20/[Linux] 内存管理之内存节点和内存分区/&title=《[Linux] 内存管理之内存节点和内存分区》 — Glemontree's blog&pic=https://glemontree.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://glemontree.github.io/2018/11/20/[Linux] 内存管理之内存节点和内存分区/&title=《[Linux] 内存管理之内存节点和内存分区》 — Glemontree's blog&source=记录我学习的每一步" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://glemontree.github.io/2018/11/20/[Linux] 内存管理之内存节点和内存分区/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《[Linux] 内存管理之内存节点和内存分区》 — Glemontree's blog&url=https://glemontree.github.io/2018/11/20/[Linux] 内存管理之内存节点和内存分区/&via=https://glemontree.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://glemontree.github.io/2018/11/20/[Linux] 内存管理之内存节点和内存分区/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/11/18/[Linux] 内存管理与DMA Zone/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">[Linux] 内存管理与DMA Zone</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "Xkpzm75UqDRakK5m745rI78u-gzGzoHsz",
+            appKey: "nttscBKerm7QwkliKPpUSrln",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢打赏
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Glemontree &copy; 2017 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://glemontree.github.io/2018/11/20/[Linux] 内存管理之内存节点和内存分区/&title=《[Linux] 内存管理之内存节点和内存分区》 — Glemontree's blog&pic=https://glemontree.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://glemontree.github.io/2018/11/20/[Linux] 内存管理之内存节点和内存分区/&title=《[Linux] 内存管理之内存节点和内存分区》 — Glemontree's blog&source=记录我学习的每一步" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://glemontree.github.io/2018/11/20/[Linux] 内存管理之内存节点和内存分区/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《[Linux] 内存管理之内存节点和内存分区》 — Glemontree's blog&url=https://glemontree.github.io/2018/11/20/[Linux] 内存管理之内存节点和内存分区/&via=https://glemontree.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://glemontree.github.io/2018/11/20/[Linux] 内存管理之内存节点和内存分区/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADKUlEQVR42u3aQXLCQAwEQP7/aVKVc7BHkklh0T6lEmNvLwdFo3084uv5e736Of/r8fOTpx2v7eILGxsb+ybs5+GVvz4BJJuS/D55y6t7sLGxsbeyq0UruT8h9e7p3YmNjY2NnZeW43KSPP+k/GBjY2NjDwrYJNa5Kn6qrhMbGxv7G9h5WNPbiKSxmQRJb8zSsLGxsT+ePS88n/Pzv863sbGxsT+A/RxfvVCpV2Z6A+A/no+NjY29iF0NdCbBUHWo0GtpCoUNGxsbewW7NxioBk/HS883N3lOoW5jY2Njr2BfMC6Ni0ey9GoRrTZLj+o3jI2Njf3x7DwG6rUu1XIy35qoWGJjY2OvZudNRbXxqFbU6qcuGAxgY2Nj35ZdZRxHS5NjQNU1VMfM2NjY2LvZvRloNbKftDTzdb6cimBjY2Pfll1dXN4eVEez1SfkrVE0FcHGxsa+ObswDY6HAdV4aBIY5fdgY2Njb2UnEU/+gjwAqjYeSfHLCx42Njb2DnavYZh0PNXNqo6Ho+8ZGxsbexG7F9NEw9RLNygPpPLQChsbG3sfe7LQvI3Jx8bXBlvY2NjYW9lJKaq2AdXRbKF5iI/1nHyR2NjY2IvYvQ/3Dt9Uy0xylKf6ZWBjY2PvY/den/Q3+T2TsXFzMIyNjY29iJ0/KB8A98YG8zNHFwRV2NjY2Ldlz4/LTMax1bFx/syTrcTGxsZewa4G8e87snNtk3PyWWxsbOxF7N6xm6SwJY1EEiTlf82LMTY2NvY+9iTQSaL5pHRVt/6CEouNjY29jp23B9XCVm0qJpFW4cLGxsZexJ4cx+ltSg7oHcfJtwwbGxt7E7t34GY+BqguLomZqkeRsLGxsXewe//uTwL9PHjqtRxJWIaNjY19d3Zv+DoPd/LoP2+NChEYNjY29iL2pBjk4LxFyY/45IEXNjY29jewkxdUC1jeirx7IPFyc7GxsbHXsXvHa6pLrw4b3tH2YGNjY2P3Cl4PX21XCkd2sLGxsb+S3duISYQ0Oaxz0vBgY2Njr2P3jtpMAvpJ8ZuvGRsbG3sTe3KQMT/QU6X23thrgbCxsbFvy/4B4SeM4HFSMs8AAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1273392949&web_id=1273392949')
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

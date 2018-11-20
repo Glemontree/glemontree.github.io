@@ -164,6 +164,54 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-[Linux] Linux中的伙伴系统和slab机制"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-10-23 16:34:00" datetime="2017-10-23T08:34:00.000Z"  itemprop="datePublished">2017-10-23</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/10/23/[Linux] Linux中的伙伴系统和slab机制/">[Linux] Linux中的伙伴系统和slab机制</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        伙伴系统Linux中采用4KB大小的页框作为标准的内存分配单元，在实际应用中，经常需要分配一组连续的页框，而频繁的申请和释放不同大小的连续页框，必然导致在已分配页框的内存块中分散了许多小块的空闲页框，这样，即使这些页框是空闲的，其他需要分配连续页框的应用也很难得到满足。
+Linux内核引入了伙伴系统算法来避免这种情况。其把所有的空闲页框分组为11个块链表，每个块链表分别包含大小为1、2、4、...
+    
+
+        <a href="/2017/10/23/[Linux] Linux中的伙伴系统和slab机制/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux-内存管理-伙伴系统-slab机制/">Linux, 内存管理, 伙伴系统, slab机制</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-[Java] Java并发编程之volatile关键字"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -607,55 +655,6 @@ APT用来在编译时期扫描处理源代码中的注解信息，我们可以�
     <div class="post-footer">
         
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android-APT、编译时注解/">Android, APT、编译时注解</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-[Java] Java反射"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-09-11 20:00:00" datetime="2017-09-11T12:00:00.000Z"  itemprop="datePublished">2017-09-11</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/09/11/[Java] Java反射/">[Java] Java反射</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        声明本篇文章转载自JAVA反射与注解，作者先讲解了Java反射，然后在Java反射的基础上又对Java注解进行了讲解，我主要是对其中Java反射部分进行摘录。
-什么是Java反射主要是指程序可以访问，检测和修改它本身状态或行为的一种能力，并能根据自身行为的状态和结果，调整或修改应用所描述行为的状态和相关的语义。
-什么是反射机制反射机制就是在运行状态中，对于任意一个类，都能够知道这个类的所有属...
-    
-
-        <a href="/2017/09/11/[Java] Java反射/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java-反射/">Java 反射</a></li></ul>
 
     </div>
     

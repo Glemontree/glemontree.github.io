@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://glemontree.github.io/"/>
-  <updated>2018-11-18T13:09:52.108Z</updated>
+  <updated>2018-11-20T01:37:21.314Z</updated>
   <id>https://glemontree.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>[Linux] 内存管理之内存节点和内存分区</title>
+    <link href="https://glemontree.github.io/2018/11/20/%5BLinux%5D%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E4%B9%8B%E5%86%85%E5%AD%98%E8%8A%82%E7%82%B9%E5%92%8C%E5%86%85%E5%AD%98%E5%88%86%E5%8C%BA/"/>
+    <id>https://glemontree.github.io/2018/11/20/[Linux] 内存管理之内存节点和内存分区/</id>
+    <published>2018-11-20T01:01:12.000Z</published>
+    <updated>2018-11-20T01:37:21.314Z</updated>
+    
+    <content type="html"><![CDATA[<p>内存节点（Node）：主要依据CPU访问代价的不同而划分，多CPU环境下，本地内存和远端内存就是不同的节点。即使在单CPU环境下，访问所有内存的代价是一样的，Linux内核依然存在内存节点的概念，只不过只有一个内存节点而已，内核以struct pg_data_t来描述内存节点。</p><p>内存分区（Zone）：Linux对内存节点再进行划分，分为不同的分区。内核以struct zone来描述内存分区，通常一个节点分为DMA、Normal和High Memory内存区。</p><p>页框（Page Frame）：Linux采用页式内存管理，页是物理内存管理的基本单位，每个内存分区由大量的页组成。内存以struct page来描述页框。</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://www.cppblog.com/images/cppblog_com/sixinquan/node.JPG" alt="" title="">                </div>                <div class="image-caption"></div>            </figure><p>上图中zone_mem_map是一个页框的数组，它记录了一个内存分区的所有页框的使用情况。</p><p>在NUMA多CPU架构下，每个CPU后面都有挂载本地内存，CPU之间通过总线连接。每个CPU在访问当地内存的速度都会比访问远程内存速度快。Linux系统下把每个CPU的本地内存资源用一个Node表示。</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://img-blog.csdn.net/20170705095043895?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHdodXE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="" title="">                </div>                <div class="image-caption"></div>            </figure><h3 id="UMA与NUMA"><a href="#UMA与NUMA" class="headerlink" title="UMA与NUMA"></a>UMA与NUMA</h3><h4 id="UMA"><a href="#UMA" class="headerlink" title="UMA"></a>UMA</h4><p>物理存储器被所有处理机均匀共享，所有处理机对所有存储字具有相同的存取时间。</p><h4 id="NUMA"><a href="#NUMA" class="headerlink" title="NUMA"></a>NUMA</h4><p>NUMA模式下，处理器被划分为多个节点，每个节点被分配有本地存储空间。所有节点中的处理器都可以访问全部的物理存储器，但是访问本节点内的存储器所需要的时间比访问某些远程节点内的存储器所花的时间要少很多。</p><h3 id="内存节点Node"><a href="#内存节点Node" class="headerlink" title="内存节点Node"></a>内存节点Node</h3><p>Linux内核把物理内存按照CPU节点划分为不同的Node，每个Node作为某个CPU节点的本地内存，而作为其他CPU节点的远程内存，而UMA结构下，则只存在一个内存Node。</p><p><strong>CPU被划分为多个节点，内存则被划分为簇，每个CPU对应一个本地物理内存，即一个CPU Node对应一个内存簇bank，即每个内存簇被认为是一个节点Node。</strong></p><p>内存被划分为节点，每个节点被关联到系统中的一个处理器，内核中表示为pg_data_t的实例，系统中每个节点被链接到一个以NULL结尾的pgdat_list链表中，而其中的每个节点利用pg_data_tnode_next字段链接到下一节点。对于UMA来说，只使用了一个称为contig_page_data的静态pg_data_t结构。</p><h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>本文转自<a href="https://blog.csdn.net/wowricky/article/details/80633815" target="_blank" rel="external">linux内存管理 之 内存节点和内存分区（Zone）</a>和<a href="https://blog.csdn.net/gatieme/article/details/52384075" target="_blank" rel="external">Linux内存描述之内存节点node–Linux内存管理(二)</a>。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;内存节点（Node）：主要依据CPU访问代价的不同而划分，多CPU环境下，本地内存和远端内存就是不同的节点。即使在单CPU环境下，访问所有内存的代价是一样的，Linux内核依然存在内存节点的概念，只不过只有一个内存节点而已，内核以struct pg_data_t来描述内存节
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://glemontree.github.io/categories/Linux/"/>
+    
+    
+      <category term="内存管理" scheme="https://glemontree.github.io/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/"/>
+    
+      <category term="Node" scheme="https://glemontree.github.io/tags/Node/"/>
+    
+      <category term="Zone" scheme="https://glemontree.github.io/tags/Zone/"/>
+    
+  </entry>
   
   <entry>
     <title>[Linux] 内存管理与DMA Zone</title>

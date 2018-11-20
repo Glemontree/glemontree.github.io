@@ -164,6 +164,55 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-[网络编程] IO多路复用"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-06-28 18:00:26" datetime="2017-06-28T10:00:26.000Z"  itemprop="datePublished">2017-06-28</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/网络编程/">网络编程</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/06/28/[网络编程] IO多路复用/">[网络编程] IO多路复用</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        阻塞IO和非阻塞IO常见的IO操作有read和write，通常IO操作都是阻塞I/O，即当前调用read时如果没有数据收到，那么线程或者进行就会被挂起，直到收到数据。
+对于非阻塞I/O，通过fcntl（POSIX）或ioctl（UNIX）设为非阻塞模式，这时当你调用read时，如果有数据收到，就返回数据，如果没有数据收到，就立刻返回。
+I/O多路复用多路复用是指使用一个线程来检查多个文件描述...
+    
+
+        <a href="/2017/06/28/[网络编程] IO多路复用/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux-IO-多路复用/">Linux, IO, 多路复用</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-[Java] Java反射为什么需要无参构造函数"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -607,57 +656,6 @@ OGNL表达式的计算是围绕OGNL上下文进行的，OGNL上下文实际上�
     <div class="post-footer">
         
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Struts2-OGNL/">Struts2, OGNL</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-[TCPIP] TCP与UDP不同的包处理方式"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-06-28 17:49:21" datetime="2017-06-28T09:49:21.000Z"  itemprop="datePublished">2017-06-28</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/TCP-IP/">TCP/IP</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/06/28/[TCPIP] TCP与UDP不同的包处理方式/">[TCP/IP] TCP与UDP不同的包处理方式</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        TCP与UDP不同的包处理方式声明：本文转载自博客
-
-UDP发包的问题
-举个例子：udp发送两次数据，第一次发送100字节， 第二字发送200字节，接收方一次recvfrom(1000)，收到是100，还是200，还是300？
-UDP是数据报文协议，是以数据包形式，所以每次可以接收100，200，在理想情况下，第一次是无论recvfrom多少都是接收到100，当然可能由于网络原因，第二个包先...
-    
-
-        <a href="/2017/06/28/[TCPIP] TCP与UDP不同的包处理方式/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tcp-UDP-包/">Tcp, UDP, 包</a></li></ul>
 
     </div>
     
