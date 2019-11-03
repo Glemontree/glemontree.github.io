@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://glemontree.github.io/"/>
-  <updated>2019-11-02T12:54:34.839Z</updated>
+  <updated>2019-11-03T04:33:39.605Z</updated>
   <id>https://glemontree.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://glemontree.github.io/2019/11/02/%5BJava%5D%20%E5%86%8D%E8%AF%BBJava%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E4%B9%8B%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E6%80%A7/"/>
     <id>https://glemontree.github.io/2019/11/02/[Java] 再读Java并发编程之线程安全性/</id>
     <published>2019-11-02T12:47:16.000Z</published>
-    <updated>2019-11-02T12:54:34.839Z</updated>
+    <updated>2019-11-03T04:33:39.605Z</updated>
     
-    <content type="html"><![CDATA[<ul><li><p>在线程安全类中封装了必要的同步机制，因此客户端无须进一步采取同步措施</p></li><li><p>看下面这段代码：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StatelessFactorizer</span> <span class="keyword">implements</span> <span class="title">Servlet</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">service</span><span class="params">(ServletRequest req, ServletResponse resp)</span> </span>&#123;</div><div class="line">        BigInteger i = extractFromRequest(req);</div><div class="line">        BigInteger[] factors = factor(i);</div><div class="line">        encodeIntoResponse(resp, factors);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>与大多数Servlet相同，StatelessFactorizer是无状态的：它既不包含任何域，也不包含对其他类中域的引用。计算过程中的临时状态仅存在于线程栈上的局部变量中，并且只能由正在执行的线程访问。访问StatelessFactorizer的线程不会影响另一个访问同一个StatelessFactorizer的线程的计算结果，因为这两个线程并没有共享状态，就好像它们都在访问不同的实例。<strong>由于线程访问无状态对象的行为并不会影响其他线程中操作的正确性，因此无状态对象是线程安全的</strong>。</p></li></ul>]]></content>
+    <content type="html"><![CDATA[<ul><li><p>在线程安全类中封装了必要的同步机制，因此客户端无须进一步采取同步措施</p></li><li><p>看下面这段代码：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StatelessFactorizer</span> <span class="keyword">implements</span> <span class="title">Servlet</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">service</span><span class="params">(ServletRequest req, ServletResponse resp)</span> </span>&#123;</div><div class="line">        BigInteger i = extractFromRequest(req);</div><div class="line">        BigInteger[] factors = factor(i);</div><div class="line">        encodeIntoResponse(resp, factors);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>与大多数Servlet相同，StatelessFactorizer是无状态的：它既不包含任何域，也不包含对其他类中域的引用。计算过程中的临时状态仅存在于线程栈上的局部变量中，并且只能由正在执行的线程访问。访问StatelessFactorizer的线程不会影响另一个访问同一个StatelessFactorizer的线程的计算结果，因为这两个线程并没有共享状态，就好像它们都在访问不同的实例。<strong>由于线程访问无状态对象的行为并不会影响其他线程中操作的正确性，因此无状态对象是线程安全的</strong>。</p></li><li><p>为了确保线程安全性，“先检查后运行”和“读取-修改-写入”等操作必须是原子的。通常也将这两种操作成为复合操作：包含了一组必须以原子方式执行的操作以确保线程安全性。</p></li><li><p>以关键字synchrozied来修饰的方法就是一种横跨整个方法体的同步代码块，其中该同步代码块的锁就是方法调用所在的对象，静态的synchrozied方法以Class对象作为锁。</p></li></ul>]]></content>
     
     <summary type="html">
     
@@ -652,9 +652,9 @@
     
       <category term="group by" scheme="https://glemontree.github.io/tags/group-by/"/>
     
-      <category term="having" scheme="https://glemontree.github.io/tags/having/"/>
-    
       <category term="min" scheme="https://glemontree.github.io/tags/min/"/>
+    
+      <category term="having" scheme="https://glemontree.github.io/tags/having/"/>
     
   </entry>
   
@@ -706,9 +706,9 @@
     
       <category term="group by" scheme="https://glemontree.github.io/tags/group-by/"/>
     
-      <category term="max" scheme="https://glemontree.github.io/tags/max/"/>
-    
       <category term="having" scheme="https://glemontree.github.io/tags/having/"/>
+    
+      <category term="max" scheme="https://glemontree.github.io/tags/max/"/>
     
   </entry>
   
