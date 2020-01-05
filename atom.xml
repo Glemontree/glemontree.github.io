@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://glemontree.github.io/"/>
-  <updated>2019-11-03T04:33:39.605Z</updated>
+  <updated>2020-01-05T03:37:52.121Z</updated>
   <id>https://glemontree.github.io/</id>
   
   <author>
@@ -15,6 +15,59 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>数据传送类指令集</title>
+    <link href="https://glemontree.github.io/2020/01/05/%5BJava%E8%99%9A%E6%8B%9F%E6%9C%BA%5D%20%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%81%E7%B1%BB%E6%8C%87%E4%BB%A4%E9%9B%86/"/>
+    <id>https://glemontree.github.io/2020/01/05/[Java虚拟机] 数据传送类指令集/</id>
+    <published>2020-01-05T03:03:44.000Z</published>
+    <updated>2020-01-05T03:37:52.121Z</updated>
+    
+    <content type="html"><![CDATA[<p>在JVM中，能够存储操作数的空间主要包括局部变量和操作数栈，此外，还有一些常量数据允许是立即数，或者位于运行时常量池中。</p><h3 id="局部变量、常量池和操作数栈之间的数据传送"><a href="#局部变量、常量池和操作数栈之间的数据传送" class="headerlink" title="局部变量、常量池和操作数栈之间的数据传送"></a>局部变量、常量池和操作数栈之间的数据传送</h3><ul><li><p>Load类指令（数据方向：局部变量  –&gt; 操作数栈）</p><p>包括<code>iload、iload_&lt;n&gt;、lload、lload_&lt;n&gt;、fload、fload_&lt;n&gt;、dload、dload_&lt;n&gt;、aload、aload_&lt;n&gt;</code>等</p></li><li><p>Store类指令（数据方向：操作数栈  –&gt; 局部变量）</p><p>包括<code>istore、istore_&lt;n&gt;、lstore、lstore_&lt;n&gt;、fstore、fstore_&lt;n&gt;、dstore、dstore_&lt;n&gt;、astore、astore_&lt;n&gt;</code>等</p></li><li><p>此外，还有一些指令能够将来自立即数或常量池的数据传送至操作数栈，这类指令包括<code>bipush、sipush、ldc、ldc_w、ldc2_w、aconst_null、iconst_ml、iconst_&lt;i&gt;、lconst_&lt;l&gt;、fconst_&lt;f&gt;、dconst_&lt;d&gt;</code></p></li></ul><h3 id="数据传送指令"><a href="#数据传送指令" class="headerlink" title="数据传送指令"></a>数据传送指令</h3><h4 id="iload-lt-n-gt-指令分析"><a href="#iload-lt-n-gt-指令分析" class="headerlink" title="iload_&lt;n&gt;指令分析"></a><code>iload_&lt;n&gt;</code>指令分析</h4><p><code>iload_&lt;n&gt;</code>指令的实现如下：</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> TemplateTable::iload(<span class="keyword">int</span> n)</div><div class="line">&#123;</div><div class="line">  transition(vtos, itos);</div><div class="line">  __ ldr(r0, iaddress(n));</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">inline</span> Address <span class="title">iaddress</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">  <span class="keyword">return</span> Address(rlocals, Interpreter::local_offset_in_bytes(n));</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>上面的代码中，根据<code>iaddress(n)</code>取得第n个局部变量，<code>iaddress</code>函数封装了获取指定索引位置局部变量的功能：</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span>  <span class="title">local_offset_in_bytes</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> ((frame::interpreter_frame_expression_stack_direction() * n) * stackElementSize);</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>我们知道，此时局部变量地址存放在rlocals寄存器中，在本例中，<code>iload_&lt;0&gt;</code>指令的作用是将第一个int类型局部变量推送到栈顶，在执行这段Codelet时，从rlocals寄存器中取得局部变量首地址，即第一个局部变量地址，局部变量地址取得后，访问改地址的内存，就得到了第1个局部变量值。最后读取该值到r0寄存器返回。</p><p>对于<code>iload_&lt;1&gt;、iload_&lt;2&gt;、iload_&lt;3&gt;</code>，InterpreterCodelet根据rlocals的基址加偏移量来寻址局部变量。单需要注意的是：<strong>在计算偏移量时需要考虑栈的增长方向：栈的运动是按照内存地址变大还是变小</strong>。这与处理器架构有关，在x86和sparc架构上，栈都是向地址减小方向进行增长的，所以在<code>iload_&lt;1&gt;</code>计算第二个局部变量位置时，时用rlocals减去4来计算（0xfffffffc(%edi)，即%edi + 0xfffffffc，其效果等同于%edi - 0x4）。</p><p>与<code>iload_0</code>指令操作相比，<code>iload_&lt;1&gt;</code>获取第2个局部变量的操作区别仅在于所取得的局部变量地址不同，具体实现为：</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mov <span class="number">0xfffffffc</span>(%edi), %eax</div></pre></td></tr></table></figure><p>同理，<code>iload_2</code>获取第三个局部变量的操作实现为：</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mov <span class="number">0xfffffff8</span>(%edi), %eax</div></pre></td></tr></table></figure><p><code>iload_3</code>获取第三个局部变量的操作实现为：</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mov <span class="number">0xfffffff4</span>(%edi), %eax</div></pre></td></tr></table></figure><p>另外，由于Hotspot使用了栈顶缓存技术，所以<code>iload_&lt;n&gt;</code>指令从局部变量取得数据后，该数据将被写入eax寄存器中。</p><h4 id="iconst-lt-n-gt-指令分析"><a href="#iconst-lt-n-gt-指令分析" class="headerlink" title="iconst_&lt;n&gt;指令分析"></a><code>iconst_&lt;n&gt;</code>指令分析</h4><p>常量-1、0、1、2、3、4、5的取值利用了处理器的立即数寻址模式，这样只需一条机器指令就可以实现取值：</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">iconst_ml: mov $<span class="number">0xffffffff</span>, %eax</div><div class="line">iconst_0: xor %eax, %eax</div><div class="line">iconst _1: mov $<span class="number">0x1</span>, %eax</div><div class="line">iconst _2: mov $<span class="number">0x2</span>, %eax</div><div class="line">iconst _3: mov $<span class="number">0x3</span>, %eax</div><div class="line">iconst _4: mov $<span class="number">0x4</span>, %eax</div><div class="line">iconst _5: mov $<span class="number">0x5</span>, %eax</div></pre></td></tr></table></figure><h4 id="istore-lt-n-gt-指令分析"><a href="#istore-lt-n-gt-指令分析" class="headerlink" title="istore_&lt;n&gt;指令分析"></a><code>istore_&lt;n&gt;</code>指令分析</h4><p><code>istore_&lt;n&gt;</code>指令的数据传送方向与<code>iload_&lt;n&gt;</code>正好相反，但局部变量地址仍然存放在rdi(或edi)寄存器中。以<code>istore_0</code>指令为例，它将栈顶int类型数据存入第一个局部变量中。在执行该指令时，JVM首先将int类型数据从栈顶弹出到rax(或eax)寄存器中，然后将该寄存器值执行内存写指令，写入地址由rdi(或edi)寄存器表示的内存中，即第一个局部变量：</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pop %eax</div><div class="line">mov %eax, (%edi)</div></pre></td></tr></table></figure><h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>本文摘录自<code>《Hotspot实战》</code></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;在JVM中，能够存储操作数的空间主要包括局部变量和操作数栈，此外，还有一些常量数据允许是立即数，或者位于运行时常量池中。&lt;/p&gt;
+&lt;h3 id=&quot;局部变量、常量池和操作数栈之间的数据传送&quot;&gt;&lt;a href=&quot;#局部变量、常量池和操作数栈之间的数据传送&quot; class=&quot;hea
+      
+    
+    </summary>
+    
+      <category term="数据传送" scheme="https://glemontree.github.io/categories/%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%81/"/>
+    
+    
+      <category term="HotSpot 指令集" scheme="https://glemontree.github.io/tags/HotSpot-%E6%8C%87%E4%BB%A4%E9%9B%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>[Java虚拟机] 解释器.md</title>
+    <link href="https://glemontree.github.io/2020/01/01/%5BJava%E8%99%9A%E6%8B%9F%E6%9C%BA%5D%20%E8%A7%A3%E9%87%8A%E5%99%A8/"/>
+    <id>https://glemontree.github.io/2020/01/01/[Java虚拟机] 解释器/</id>
+    <published>2020-01-01T06:25:12.000Z</published>
+    <updated>2020-01-04T09:00:36.515Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="解释器的组成"><a href="#解释器的组成" class="headerlink" title="解释器的组成"></a>解释器的组成</h3><p>在HotSpot中，解释器主要由以下几个部分组成：</p><ul><li><p>解释器（interpreter）</p><p>解释执行的功能组件，在HotSpot中，实现了两种解释器，一种是虚拟机默认使用的模板解释器（TemplateInterpreter），另一种是C++解释器（CppInterpreter）</p></li><li><p>代码生成器（code generator）</p><p>利用解释器的宏汇编器（MASM）向代码缓存空间写入生成的代码</p></li><li><p>InterpreterCodelet</p><p>由解释器运行的代码片段，在HotSpot中，所有由代码生成器生成的代码都由一个Codelet来表示，面向解释器的Codelet称为InterpreterCodelet，由解释器进行维护。</p></li><li><p>转发表（dispatch table）</p><p>为方便快速找到与字节码对应的机器码，模板解释器使用了转发表，它按照字节码的顺序，包含了所有字节码到机器码的关联信息。模板解释器拥有两张转发表，一张是正常模式表，另一张表用来使解释器进入safepoint，转发表最大256个条目，这是由单字节表示的字节码的最大数量。</p></li></ul><h3 id="解释器如何工作"><a href="#解释器如何工作" class="headerlink" title="解释器如何工作"></a>解释器如何工作</h3><p>在系统启动时，解释器按照预定义的规则，为所有字节码分别创建能够在具体计算机平台上运行的机器码（code），并存放在特定位置。当运行时环境需要解释字节码时，就到指定位置取出相应的code，直接在机器上运行。</p><h4 id="code模块"><a href="#code模块" class="headerlink" title="code模块"></a>code模块</h4><ul><li><p>CodeCache模块</p><p>代码高速缓存。JVM在内存中分配了一块区域，用于代码缓存区，即CodeCache，用来保存那些在运行时生成的可在目标机器上运行的机器码，通过VM选项CodeCacheExpansionSize、InitialCodeCacheSize和ReservedCodeCacheSize可以配置该空间大小。</p></li><li><p>CodeBlob模块</p><p>CodeBlob用作描述Code Cache中所有的缓存项。</p></li></ul><h4 id="字节码表"><a href="#字节码表" class="headerlink" title="字节码表"></a>字节码表</h4><p>Bytecodes模块提供了一张字节码表来提供索引服务，其他模块利用bytecode的编号从表中相应位置取得字节码信息。</p><h4 id="Code-Cache"><a href="#Code-Cache" class="headerlink" title="Code Cache"></a>Code Cache</h4><p>CodeCache指代码高速缓存，主要用作生成和存储本地代码，这些代码片段包括已经编译好的Java方法和RuntimeStubs。Code Cache空间是由虚拟机托管的一块内存区域，在Jconsole中，也将其与Perm Gem一起合称为非堆内存。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;解释器的组成&quot;&gt;&lt;a href=&quot;#解释器的组成&quot; class=&quot;headerlink&quot; title=&quot;解释器的组成&quot;&gt;&lt;/a&gt;解释器的组成&lt;/h3&gt;&lt;p&gt;在HotSpot中，解释器主要由以下几个部分组成：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;解释器（interpre
+      
+    
+    </summary>
+    
+      <category term="Java虚拟机" scheme="https://glemontree.github.io/categories/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
+    
+    
+      <category term="HotSpot 解释器" scheme="https://glemontree.github.io/tags/HotSpot-%E8%A7%A3%E9%87%8A%E5%99%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>[Java] 再读Java并发编程之线程安全性.md</title>
@@ -652,9 +705,9 @@
     
       <category term="group by" scheme="https://glemontree.github.io/tags/group-by/"/>
     
-      <category term="min" scheme="https://glemontree.github.io/tags/min/"/>
-    
       <category term="having" scheme="https://glemontree.github.io/tags/having/"/>
+    
+      <category term="min" scheme="https://glemontree.github.io/tags/min/"/>
     
   </entry>
   
@@ -706,9 +759,9 @@
     
       <category term="group by" scheme="https://glemontree.github.io/tags/group-by/"/>
     
-      <category term="having" scheme="https://glemontree.github.io/tags/having/"/>
-    
       <category term="max" scheme="https://glemontree.github.io/tags/max/"/>
+    
+      <category term="having" scheme="https://glemontree.github.io/tags/having/"/>
     
   </entry>
   
